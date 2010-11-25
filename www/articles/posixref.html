@@ -2,9 +2,13 @@
 
 <html>
 <head>
-<!-- list of comments based on http://shellhaters.heroku.com/posix !-->
+<!-- list of commands based on http://shellhaters.heroku.com/posix !-->
 <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 <title>Posix reference guide</title>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.microsoft.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js"></script>
+
 <style type=text/css>
 .cheat {
   font-family:'consolas','dejavu sans mono','bitstream vera sans mono',monospace;
@@ -15,7 +19,8 @@
 
 .cheat h2 {
   font-size: 12pt;
-  margin:4px 0;
+  margin-top: 6px;
+  margin-bottom: 2px;
 }
 
 .cheat ul {
@@ -33,203 +38,57 @@
 </head>
 
 <body class="cheat">
+
+<center><h3>POSIX Shell reference</h3></center>
+
+<script id="groupTmpl" type="text/x-jquery-tmpl">
+<ul style="margin-left:20px;">
+  <h2>${hdr}</h2>
+  {{each(i,name) names}}
+    <li><a href="show('${fixId(name)}Id');">${name}</a></li>
+  {{/each}}
   
-<center><h2>POSIX Shell reference</h2></center>
-
-<ul style="margin-left:20px;">
-  <h2>Built-in</h2>
-  <li><a href="show('dotId');">.</a></li>
-  <li><a href="show('semicolonId');">:</a></li>
-  <li><a href="show('breakId');">break</a></li>
-  <li><a href="show('continueId');">continue</a></li>
-  <li><a href="show('evalId');">eval</a></li>
-  <li><a href="show('execId');">exec</a></li>
-  <li><a href="show('exitId');">exit</a></li>
-  <li><a href="show('exportId');">export</a></li>
-  <li><a href="show('readonlyId');">readonly</a></li>
-  <li><a href="show('returnId');">return</a></li>
-  <li><a href="show('setId');">set</a></li>
-  <li><a href="show('shiftId');">shift</a></li>
-  <li><a href="show('timesId');">times</a></li>
-  <li><a href="show('trapId');">trap</a></li>
-  <li><a href="show('unsetId');">unset</a></li>
-  <li><a href="show('Id');"></a></li>
 </ul>
+</script>
 
-<ul style="margin-left:20px;">
-  <h2>Shell</h2>
-  <li><a href="show('Id');">alias</a></li>
-  <li><a href="show('Id');">bc</a></li>
-  <li><a href="show('Id');">command</a></li>
-  <li><a href="show('Id');">date</a></li>
-  <li><a href="show('Id');">env</a></li>
-  <li><a href="show('Id');">expr</a></li>
-  <li><a href="show('Id');">false</a></li>
-  <li><a href="show('Id');">getopts</a></li>
-  <li><a href="show('Id');">hash</a></li>
-  <li><a href="show('Id');">fc</a></li>
-  <li><a href="show('Id');">id</a></li>
-  <li><a href="show('Id');">locale</a></li>
-  <li><a href="show('Id');">localedef</a></li>
-  <li><a href="show('Id');">logger</a></li>
-  <li><a href="show('Id');">logname</a></li>
-  <li><a href="show('Id');">newgrp</a></li>
-  <li><a href="show('Id');">pathchck</a></li>
-  <li><a href="show('Id');">pwd</a></li>
-  <li><a href="show('Id');">read</a></li>
-  <li><a href="show('Id');">sh</a></li>
-  <li><a href="show('Id');">sleep</a></li>
-  <li><a href="show('Id');">test</a></li>
-  <li><a href="show('Id');">time</a></li>
-  <li><a href="show('Id');">tput</a></li>
-  <li><a href="show('Id');">true</a></li>
-  <li><a href="show('Id');">type</a></li>
-  <li><a href="show('Id');">unalias</a></li>
-  <li><a href="show('Id');">uname</a></li>
-  <li><a href="show('Id');">write</a></li>
-  <li><a href="show('Id');">xargs</a></li>
-</ul>
+<div id="groupContainer"></div>
 
-<ul style="margin-left:20px;">
-  <h2>Text</h2>
-  <li><a href="show('Id');">awk</a></li>
-  <li><a href="show('Id');">cat</a></li>
-  <li><a href="show('Id');">cksum</a></li>
-  <li><a href="show('Id');">cmp</a></li>
-  <li><a href="show('Id');">comm</a></li>
-  <li><a href="show('Id');">csplit</a></li>
-  <li><a href="show('Id');">cut</a></li>
-  <li><a href="show('Id');">echo</a></li>
-  <li><a href="show('Id');">ed</a></li>
-  <li><a href="show('Id');">ex</a></li>
-  <li><a href="show('Id');">expand</a></li>
-  <li><a href="show('Id');">fold</a></li>
-  <li><a href="show('Id');">grep</a></li>
-  <li><a href="show('Id');">head</a></li>
-  <li><a href="show('Id');">join</a></li>
-  <li><a href="show('Id');">more</a></li>
-  <li><a href="show('Id');">nl</a></li>
-  <li><a href="show('Id');">od</a></li>
-  <li><a href="show('Id');">paste</a></li>
-  <li><a href="show('Id');">printf</a></li>
-  <li><a href="show('Id');">sed</a></li>
-  <li><a href="show('Id');">sort</a></li>
-  <li><a href="show('Id');">split</a></li>
-  <li><a href="show('Id');">tail</a></li>
-  <li><a href="show('Id');">tr</a></li>
-  <li><a href="show('Id');">tsort</a></li>
-  <li><a href="show('Id');">unexpand</a></li>
-  <li><a href="show('Id');">uniq</a></li>
-  <li><a href="show('Id');">wc</a></li>
-</ul>
+<script type="text/javascript">
+function fixId(s) {
+  if (s == ".") return "_dot";
+  if (s == ":") return "_colon";
+  return s;
+}
 
-<ul style="margin-left:20px;">
-  <h2>File</h2>
-  <li><a href="show('Id');">basename</a></li>
-  <li><a href="show('Id');">cal</a></li>
-  <li><a href="show('Id');">cd</a></li>
-  <li><a href="show('Id');">chgrp</a></li>
-  <li><a href="show('Id');">chmod</a></li>
-  <li><a href="show('Id');">chown</a></li>
-  <li><a href="show('Id');">cp</a></li>
-  <li><a href="show('Id');">dd</a></li>
-  <li><a href="show('Id');">df</a></li>
-  <li><a href="show('Id');">dirname</a></li>
-  <li><a href="show('Id');">du</a></li>
-  <li><a href="show('Id');">file</a></li>
-  <li><a href="show('Id');">find</a></li>
-  <li><a href="show('Id');">fuser</a></li>
-  <li><a href="show('Id');">link</a></li>
-  <li><a href="show('Id');">ln</a></li>
-  <li><a href="show('Id');">ls</a></li>
-  <li><a href="show('Id');">mkdir</a></li>
-  <li><a href="show('Id');">mkfifo</a></li>
-  <li><a href="show('Id');">mv</a></li>
-  <li><a href="show('Id');">rm</a></li>
-  <li><a href="show('Id');">rmdir</a></li>
-  <li><a href="show('Id');">tee</a></li>
-  <li><a href="show('Id');">touch</a></li>
-  <li><a href="show('Id');">unlink</a></li>
-</ul>
+var groups = [
+  {hdr : "Built-in", names : [".", ":", "break", "continue", "eval", "exec", 
+    "exit", "export", "readonly", "return", "set", "shift", "times", "trap",
+    "unset"]},
+  {hdr : "Shell", names : ["alias", "bc", "command", "date", "env", "expr", "false",
+    "getopts", "hash", "fc", "id", "locale", "localedef", "logger", "logname",
+    "newgrp", "pathchck", "pwd", "read", "sh", "sleep", "test", "time", "tput",
+    "true", "type", "unalias", "uname", "write", "xargs"]},
+  {hdr : "Text", names : ["awk", "cat", "cksum", "cmp", "comm", "csplit", "cut",
+    "echo", "ed", "ex", "expand", "fold", "grep", "head", "join", "more", "nl",
+    "od", "paste", "printf", "sed", "sort", "split", "tail", "tr", "tsort", "unexpand",
+    "uniq", "wc"]},
+  {hdr : "File", names : ["basename", "cal", "cd", "chgrp", "chmod", "chown", "cp",
+    "dd", "df", "dirname", "du", "file", "find", "fuser", "link", "ln", "ls", "mkdir",
+    "mkfifo", "mv", "rm", "rmdir", "tee", "touch", "unlink"]},
+  {hdr : "Processes", names : ["bg", "fg", "kill", "nice", "nohup", "ps", "renice", "wait"]},
+  {hdr : "Job Control", names : ["at", "batch", "jobs"]},
+  {hdr : "Development", names : ["ar", "asa", "c99", "cflow", "ctags", "cxref", "diff", "fort77",
+    "gencat", "iconv", "lex", "m4", "make", "man", "nm", "patch", "strings", "strip", "vi", "yacc"]},
+  {hdr : "Admin", names : ["crontab", "getconf", "ulimit", "umask", "who"]},
+  {hdr : "Terminal", names : ["stty", "tabs", "tty"]},
+  {hdr : "Comm", names : ["mailx", "mesg", "talk", "uucp", "uudecode", "uuencode", "uustat", "uux"]},
+  {hdr : "Compression", names : ["compress", "pax", "uncompress", "zcat"]}
+    ];
 
-<ul style="margin-left:20px;">
-  <h2>Processes</h2>
-  <li><a href="show('Id');">bg</a></li>
-  <li><a href="show('Id');">fg</a></li>
-  <li><a href="show('Id');">kill</a></li>
-  <li><a href="show('Id');">nice</a></li>
-  <li><a href="show('Id');">nohup</a></li>
-  <li><a href="show('Id');">ps</a></li>
-  <li><a href="show('Id');">renice</a></li>
-  <li><a href="show('Id');">wait</a></li>
-</ul>
-
-<ul style="margin-left:20px;">
-  <h2>Job Control</h2>
-  <li><a href="show('Id');">at</a></li>
-  <li><a href="show('Id');">batch</a></li>
-  <li><a href="show('Id');">jobs</a></li>
-</ul>
-
-<ul style="margin-left:20px;">
-  <h2>Development</h2>
-  <li><a href="show('Id');">ar</a></li>
-  <li><a href="show('Id');">asa</a></li>
-  <li><a href="show('Id');">c99</a></li>
-  <li><a href="show('Id');">cflow</a></li>
-  <li><a href="show('Id');">ctags</a></li>
-  <li><a href="show('Id');">cxref</a></li>
-  <li><a href="show('Id');">diff</a></li>
-  <li><a href="show('Id');">fort77</a></li>
-  <li><a href="show('Id');">gencat</a></li>
-  <li><a href="show('Id');">iconv</a></li>
-  <li><a href="show('Id');">lex</a></li>
-  <li><a href="show('Id');">m4</a></li>
-  <li><a href="show('Id');">make</a></li>
-  <li><a href="show('Id');">man</a></li>
-  <li><a href="show('Id');">nm</a></li>
-  <li><a href="show('Id');">patch</a></li>
-  <li><a href="show('Id');">strings</a></li>
-  <li><a href="show('Id');">strip</a></li>
-  <li><a href="show('Id');">vi</a></li>
-  <li><a href="show('Id');">yacc</a></li>
-</ul>
-
-<ul style="margin-left:20px;">
-  <h2>Admin</h2>
-  <li><a href="show('Id');">crontab</a></li>
-  <li><a href="show('Id');">getconf</a></li>
-  <li><a href="show('Id');">ulimit</a></li>
-  <li><a href="show('Id');">umask</a></li>
-  <li><a href="show('Id');">who</a></li>
-</ul>
-
-<ul style="margin-left:20px;">
-  <h2>Terminal</h2>
-  <li><a href="show('Id');">stty</a></li>
-  <li><a href="show('Id');">tabs</a></li>
-  <li><a href="show('Id');">tty</a></li>
-</ul>
-
-<ul style="margin-left:20px;">
-  <h2>Comm</h2>
-  <li><a href="show('Id');">mailx</a></li>
-  <li><a href="show('Id');">mesg</a></li>
-  <li><a href="show('Id');">talk</a></li>
-  <li><a href="show('Id');">uucp</a></li>
-  <li><a href="show('Id');">uudecode</a></li>
-  <li><a href="show('Id');">uuencode</a></li>
-  <li><a href="show('Id');">uustat</a></li>
-  <li><a href="show('Id');">uux</a></li>
-</ul>
-
-<ul style="margin-left:20px;">
-  <h2>Compression</h2>
-  <li><a href="show('Id');">compress</a></li>
-  <li><a href="show('Id');">pax</a></li>
-  <li><a href="show('Id');">uncompress</a></li>
-  <li><a href="show('Id');">zcat</a></li>
-</ul>
+$.each(groups, function(idx,val) {
+  $("#groupTmpl").tmpl(val).appendTo("#groupContainer");
+});
+</script>
 
 <div style="clear: both; padding-top: 10px;">
 <hr/>
