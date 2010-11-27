@@ -55,7 +55,7 @@ $(document).ready(function(){
   font-weight: bold;
 }
 
-.invisible { color: #F9F7F5 }
+.invisible { color: #D7E7EE }
 
 </style>
 </head>
@@ -83,36 +83,17 @@ $(document).ready(function(){
 <table style="margin-top:16px;">
 <tr>
     <td valign=top style="background: #D7E7EE; padding-right: 12px; padding-left: 4px; padding-top: 8px; padding-bottom: 8px; max-width: 260px; font-size: 80%">
+
         {% if is_admin %}
-            <div class="sidebarhdr">Admin actions</div>
-            <div style="margin-left: 6px">
-            <div><a href="{{ login_out_url }}">log out</a></div>
-            <div class="l"><a href="/app/edit">new blog post</a></div>
-            <div class="l"><a href="/app/edit?ramblings=yes">new note post</a></div>
-            <div class="l"><a href="/app/showprivate">show private</a></div>
-            </div>
-			<br>
-        {% endif %}
-
-        <div class="sidebarhdr">Me {% if not is_admin %} <a id="login_id" class="invisible" onMouseOver="showById('login_id');" onMouseOut="hideById('login_id');" href="{{ login_out_url }}">login</a>
-        {% endif %}</div>
-
+        <div class="sidebarhdr">Admin actions</div>
         <div style="margin-left: 6px">
-        <script>
-          var email = "kkowalczyk";
-          email += "@";
-          email += "gmail.com"
-          hyperlink = '<a href="mailto:em">em</a>';
-          hyperlink = hyperlink.replace(/em/g, email);
-          document.write(hyperlink);
-        </script>
-        <br>
-        <div class="l"><a href="http://github.com/kjk">github.com/kjk</a></div>
-        <div class="l"><a href="http://code.google.com/u/kkowalczyk/">code.google.com/u/kkowalczyk</a></div>
-        <div class="l"><a href="http://twitter.com/kjk">twitter.com/kjk</a></div>
-        <div class="l"><a href="/static/krzysztof.html">more...</a></div>
+        <div><a href="{{ login_out_url }}">log out</a></div>
+        <div class="l"><a href="/app/edit">new blog post</a></div>
+        <div class="l"><a href="/app/edit?ramblings=yes">new note post</a></div>
+        <div class="l"><a href="/app/showprivate">show private</a></div>
         </div>
         <br>
+        {% endif %}
 
         <div class="sidebarhdr">My software</div>
         <div style="margin-left: 6px">
@@ -132,6 +113,26 @@ $(document).ready(function(){
         <div class="l"><a href="/static/krzysztof.html">more...</a></div>
         </div>
 
+        <br>
+
+        <div class="sidebarhdr">Me {% if not is_admin %} <a id="login_id" class="invisible" onMouseOver="showById('login_id');" onMouseOut="hideById('login_id');" href="{{ login_out_url }}">login</a>
+        {% endif %}</div>
+
+        <div style="margin-left: 6px">
+        <script>
+          var email = "kkowalczyk";
+          email += "@";
+          email += "gmail.com"
+          hyperlink = '<a href="mailto:em">em</a>';
+          hyperlink = hyperlink.replace(/em/g, email);
+          document.write(hyperlink);
+        </script>
+        <br>
+        <div class="l"><a href="http://github.com/kjk">github.com/kjk</a></div>
+        <div class="l"><a href="http://code.google.com/u/kkowalczyk/">code.google.com/u/kkowalczyk</a></div>
+        <div class="l"><a href="http://twitter.com/kjk">twitter.com/kjk</a></div>
+        <div class="l"><a href="/static/krzysztof.html">more...</a></div>
+        </div>
         <br>
 
         <div class="sidebarhdr">Tags</div>
@@ -164,6 +165,7 @@ $(document).ready(function(){
         </div>
 
         {{ article.html_body }}
+        <hr color="#D7E7EE">
         <br>
         {% endfor %}
         </div>

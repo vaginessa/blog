@@ -76,9 +76,9 @@ $(document).ready(function(){
 
 		<td valign=top>
 			<h1 style="display:inline;">
-			  <a class="title" style="font-size:100%;" href="/index.html">home</a> &#8227;
-			  <span onMouseOver="showById('article_edit');" onMouseOut="hideById('article_edit');">
-			  {{ article.title|escape }}
+			  <a class="title" style="font-size:120%;" href="/index.html">home</a>
+			  <span class="title" style="font-size:120%;"  onMouseOver="showById('article_edit');" onMouseOut="hideById('article_edit');">
+		    &#8227; {{ article.title|escape }}
 			  {% if not article.is_public %}
 				&nbsp;<font color="red">private</font>
 			  {% endif %}
