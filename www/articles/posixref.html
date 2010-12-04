@@ -51,6 +51,16 @@
 </ul>
 </script>
 
+<script id="groupTmpl2" type="text/x-jquery-tmpl">
+<b>${hdr}</b>:
+  {{each(i,name) names}}
+  <a href="show('${fixId(name)}Id');">${name}</a>,
+  {{/each}}
+<br>
+</script>
+
+<div id="groupContainer2" style="margin-left: 18px; margin-right:18px;"></div>
+
 <div id="groupContainer"></div>
 
 <script type="text/javascript">
@@ -84,6 +94,10 @@ var groups = [
   {hdr : "Comm", names : ["mailx", "mesg", "talk", "uucp", "uudecode", "uuencode", "uustat", "uux"]},
   {hdr : "Compression", names : ["compress", "pax", "uncompress", "zcat"]}
     ];
+
+$.each(groups, function(idx,val) {
+  $("#groupTmpl2").tmpl(val).appendTo("#groupContainer2");
+});
 
 $.each(groups, function(idx,val) {
   $("#groupTmpl").tmpl(val).appendTo("#groupContainer");
