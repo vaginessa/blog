@@ -8,14 +8,6 @@
 <link rel="alternate" type="application/atom+xml" title="RSS 2.0" href="/atom.xml">
 <link  href="{{ prettify_css_url }}" type="text/css" rel="stylesheet">
 {% include "inline_css.html" %}
-<style type=text/css>
-body {
-  padding-left: 20px;
-}
-div#content {
-  max-width: 900px;
-}
-</style>
 
 <script type="text/javascript" src="{{ jquery_url }}"></script>
 
@@ -45,7 +37,84 @@ $(document).ready(function(){
 
 <body onload="prettyPrint()">
 
+<div id="tophdr">
+  <h1 style="padding-left:12px">
+    <a href="/"  class="namelink">Krzysztof Kowalczyk</a>
+    <span style="float:right; font-size:80%; font-weight:normal; margin-right: 12px;">
+      <a class="hdrlink" href="/">Blog</a>
+      <span style="color:gray">&nbsp;&bull;&nbsp;</span>
+      <a class="hdrlink" href="/static/krzysztof.html">Software</a>
+      <span style="color:gray">&nbsp;&bull;&nbsp;</span>
+      <a class="hdrlink" href="/static/krzysztof.html">Documents</a>
+      <span style="color:gray">&nbsp;&bull;&nbsp;</span>
+      <a class="hdrlink" href="/static/krzysztof.html">About Me</a>
+    </span>
+  </h1>
+</div>
+
 <div id="content">
+
+<div id="post" style="margin-top:16px;">
+	<table>
+	<tr>
+		<td valign=top>
+			<div class="postmeta" style="margin-left:12px; margin-right:12px">
+				<center class="nowrap">{{ article.published_on|date:"M d" }}</center>
+				<center>{{ article.published_on|date:"Y" }}</center>
+				<center>
+          {% if not is_admin %} <a id="login_id" class="invisible" onMouseOver="showById('login_id');" onMouseOut="hideById('login_id');" href="{{ login_out_url }}">login</a>
+          {% endif %}</center>
+			</div>
+		</td>
+
+
+		<td valign=top>
+		  <table>
+		    <tr>
+		      <td style="background: lightgray; width=4px"></td>
+		      <td>
+      			<h1 style="display:inline;">
+      			  <span class="title" style="font-size:13pt;">
+      		    {{ article.title|escape }}
+      			  {% if not article.is_public %}
+      				&nbsp;<font color="red">private</font>
+      			  {% endif %}
+      			  </span>
+      			</h1>
+      			{% if tags_display %}
+      			<div class="postmeta" style="margin-right: 8px;">
+      				Tags: <span class="tag">{{ tags_display }}</span>
+      			</div>
+      			{% endif %}
+      		</td>
+      	</tr>
+      </table>
+
+			<div style="margin-right:48px;">
+			{{ article.html_body }}
+			</div>
+		</td>
+	</tr>
+	</table>
+
+</div>
+
+<center class="postmeta" style="margin-bottom: 12px;">
+    {% if next_article %}
+    <a title="{{ next_article.title|escape }}" href="/{{ next_article.permalink}}">← newer</a>
+    {% else %}
+    ← newer
+    {% endif %}
+    &bull;
+    {{ article_no }} of <a href="/archives.html">{{ articles_count }}</a>
+    &bull;
+    {% if prev_article %}
+    <a title="{{ prev_article.title|escape }}" href="/{{ prev_article.permalink}}">older →</a>
+    {% else %}
+    older →
+    {% endif %}
+</center>
+
 {% if is_admin %}
     <center style="font-size: 90%; background: #ddd">
         <a href="{{ login_out_url }}">Log out</a>&nbsp;
@@ -63,69 +132,9 @@ $(document).ready(function(){
     <br>
 {% endif %}
 
-<div id="post" style="margin-top:28px;">
-	<table>
-	<tr>
-		<td valign=top>
-			<div class="postmeta" style="margin-left:12px; margin-right:12px">
-				<center>{{ article.published_on|date:"M" }}</center>
-				<center>{{ article.published_on|date:"d" }}</center>
-				<center>{{ article.published_on|date:"Y" }}</center>
-			</div>
-		</td>
-
-		<td valign=top>
-			<h1 style="display:inline;">
-			  <a class="title" style="font-size:120%;" href="/index.html">home</a>
-			  <span class="title" style="font-size:120%;"  onMouseOver="showById('article_edit');" onMouseOut="hideById('article_edit');">
-		    &#8227; {{ article.title|escape }}
-			  {% if not article.is_public %}
-				&nbsp;<font color="red">private</font>
-			  {% endif %}
-			  {% if is_admin %}&nbsp;
-			  <a id="article_edit" class="invisible" href="/app/edit?article_permalink={{ article.permalink }}">edit</a>
-			  {% else %}
-			  &nbsp;&nbsp;<a id="login" class="invisible" onMouseOver="showById('login');"
-							 onMouseOut="hideById('login');" href="{{ login_out_url }}">login</a>
-			  {% endif %}
-			  </span>
-			</h1>
-			{% if tags_display %}
-			<div>
-				<span class="postmeta" style="margin-right: 8px;">
-					Tags: <span class="tag">{{ tags_display }}</span>
-				</span>
-			</div>
-			{% endif %}
-
-			<div style="margin-right:48px;">
-			{{ article.html_body }}
-			</div>
-		</td>
-	</tr>
-	</table>
-
-</div>
-
-<center class="postmeta">
-    {% if next_article %}
-    <a title="{{ next_article.title|escape }}" href="/{{ next_article.permalink}}">← newer</a>
-    {% else %}
-    ← newer
-    {% endif %}
-    &bull;
-    {{ article_no }} of <a href="/archives.html">{{ articles_count }}</a>
-    &bull;
-    {% if prev_article %}
-    <a title="{{ prev_article.title|escape }}" href="/{{ prev_article.permalink}}">older →</a>
-    {% else %}
-    older →
-    {% endif %}
-</center>
-<br>
-
+<!--
 <center>
-<table class="ad" cellspacing=0 cellpadding=0>
+<table class="ad" style="visibility:hidden;" cellspacing=0 cellpadding=0>
 <tr><td>
   <a href="http://www.yepi.ws/fotofi/free-stock-photos"><b>Free stock photos</b></a>
 </td></tr>
@@ -135,6 +144,7 @@ Find free stock photos with <a href="http://www.yepi.ws/fotofi/free-stock-photos
 </td></tr>
 </table>
 </center>
+-->
 
 </div>
 
