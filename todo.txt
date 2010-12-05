@@ -2,7 +2,7 @@ Todo next:
 * add syntax help for markdown/textile in edit page
 * an easy way to import posts from real blog locally, so that I can test changes
   in a more meaningful way
-* archives.html should use articles_json, instead of us using another memcache data
+* archives.html should use articles_json, instead of using another memcache data
 * better 404 handling (all should redirect to 404.html?${orig_url})
 * show articles tagged e.g. with 'fav' as another list on index page if in
   admin mode
