@@ -63,9 +63,9 @@ $(document).ready(function(){
   <h1 style="padding-left:12px">
     <span class="namelink">Krzysztof Kowalczyk</span>
     <span style="float:right; font-size:80%; font-weight:normal;">
-      <a class="hdrlink" href="/static/krzysztof.html">Software</a>
+      <a class="hdrlink" href="/static/software.html">My Software</a>
       <span style="color:gray">&nbsp;&bull;&nbsp;</span>
-      <a class="hdrlink" href="/static/krzysztof.html">Documents</a>
+      <a class="hdrlink" href="/static/documents.html">My Documents</a>
       <span style="color:gray">&nbsp;&bull;&nbsp;</span>
       <a class="hdrlink" href="/static/krzysztof.html">About Me</a>
       <span style="color:gray">&nbsp;&bull;&nbsp;</span>
@@ -94,13 +94,17 @@ $(document).ready(function(){
       <a href="/software/vack/">VisualAck</a>
       <div class="smaller">Visual grep for Mac</div>
       <a href="/software/fofou/">fofou</a>
-      <div class="smaller">Forum software</div>
+      <div class="smaller">Forum software for App Engine</div>
+      <div class="l"><a href="/static/software.html">more...</a></div>
+    </div>
+    <br>
+
+    <div class="sidebarhdr">My documents</div>
+    <div style="margin-left: 6px">
       <div><a href="/articles/cocoa-reference.html">Cocoa reference</a></div>
-      <div class="l"><a href="/articles/pyref.html">Python reference</a></div>
+      <!-- <div class="l"><a href="/articles/pyref.html">Python reference</a></div> -->
       <div class="l"><a href="/articles/jsref.html">JavaScript reference</a></div>
-      <div class="l"><a href="/software/15minutes/">15minutes</a></div>
-      <div class="l"><a href="/software/scdiff/">scdiff</a></div>
-      <div class="l"><a href="/static/krzysztof.html">more...</a></div>
+      <div class="l"><a href="/static/documents.html">more...</a></div>
     </div>
     <br>
 
@@ -151,7 +155,7 @@ $(document).ready(function(){
           <div class="postmeta nowrap">
             {{ article.published_on|date:"M d Y" }}
             {% if article.tags_display %}
-             &bull; Tags: <span class="tag">{{ article.tags_display }}</span>
+             &bull; <span class="tag"><a href="/tag/">Tags</a>: {{ article.tags_display }}</span>
             {% endif %}
           </div>
         </td>

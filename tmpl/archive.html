@@ -7,6 +7,27 @@
 
 <title>All articles</title>
 
+{% include "inline_css.html" %}
+<style>
+
+#arc {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 12px;
+}
+
+#arc th {
+  padding: 0 1.75em 0 0;
+  vertical-align: baseline;
+  text-align: right;
+}
+
+.year th {
+  background: #dfdfdf;
+  color: black;
+}
+</style>
+
 <script type="text/javascript" src="{{ jquery_url }}"></script>
 
 {% include "tagcloud.js" %}
@@ -30,12 +51,25 @@ $(document).ready(function(){
 });
 </script>
 
-{% include "inline_css.html" %}
-
 </head>
 <body>
 
-<div id="content" style="line-height:1.50">
+<div id="tophdr">
+  <h1 style="padding-left:12px">
+    <a href="/"  class="namelink">Krzysztof Kowalczyk</a>
+    <span style="float:right; font-size:80%; font-weight:normal; margin-right: 12px;">
+      <a class="hdrlink" href="/">Blog</a>
+      <span style="color:gray">&nbsp;&bull;&nbsp;</span>
+      <a class="hdrlink" href="/static/krzysztof.html">Software</a>
+      <span style="color:gray">&nbsp;&bull;&nbsp;</span>
+      <a class="hdrlink" href="/static/krzysztof.html">Documents</a>
+      <span style="color:gray">&nbsp;&bull;&nbsp;</span>
+      <a class="hdrlink" href="/static/krzysztof.html">About Me</a>
+    </span>
+  </h1>
+</div>
+
+<div id="content" style="line-height:1.50; margin-top: 18px; margin-left: 12px; margin-right: 12px;">
 
 {% if is_admin %}
 <center style="font-size: 90%; background: #ddd">
@@ -45,27 +79,21 @@ $(document).ready(function(){
 </center>
 {% endif %}
 
-<h1 style="display:inline;">
-  <a class="title" style="font-size:100%;" href=/index.html>home</a> &#8227; 
-  {% if tag %}
-  Posts tagged with: {{ tag }} ({{ posts_count }} articles)
-  {% else %}
-  All {{ posts_count }} articles
-  {% endif %} 
-</h1>
+{% if posts_count %}
+  <h1 style="display:inline;">
+    {% if tag %}
+      {{ posts_count }} posts tagged as '{{ tag }}':
+    {% else %}
+      All posts:
+    {% endif %} 
+  </h1>
+{% endif %}
+
 {% if not is_admign %}
 <a id="login" class="invisible" onMouseOver="showById('login');" onMouseOut="hideById('login');" href="{{ login_out_url }}">login</a>
 {% endif %}
 
-<span style="float:right">
-  <form method="get" action="http://google.com/search" >
-  <input type="hidden" name="IncludeBlogs" value="1">
-  <input type="hidden" name="as_sitesearch" value="http://blog.kowalczyk.info">
-  <input size=20 type="text" name="q" id="searchFieldId" />
-  <input class="button" value="Go" type="submit">
-  </form>
-</span>
-
+{% if posts_count %}
 <table id=arc>
   {% for year in years %}
     <tr class=year><th colspan="2" style="text-align: left; padding-left: 5px;">{{ year.name }}</th></tr>
@@ -93,15 +121,17 @@ $(document).ready(function(){
       {% endfor %}
     {% endfor %}
   {% endfor %}
-
 </table>
 <br>
+{% endif %}
 
-<div id="tagCloud" style="margin-left:20px; margin-right:20px">
-</div>
+<h1 style="display:inline;">
+  Tags:
+</h1>
+<div id="tagCloud" style="margin-left:20px; margin-right:20px; text-align: center;"></div>
+
 <br>
 <div class="line"></div>
-<center><a href=/index.html>Krzysztof Kowalczyk</a></center>
 </div>
 
 {% include "analytics.html" %}
