@@ -5,7 +5,7 @@ body {
   font-family: arial, sans-serif;
 }
 
-h1,h2,h3 {
+h1, h2, h3 {
   font-size: medium;
 }
 
@@ -14,18 +14,8 @@ h1 {
   padding: 0;
 }
 
-.postmeta {
-  color: grey;
-  margin-top: 0;
-  padding-top: 1px;
-}
-
 img {
   border: 0;
-}
-
-div#navarea {
-  
 }
 
 div#tophdr {
@@ -36,6 +26,14 @@ div#tophdr {
   background-color: #4D5456;
 }
 
+div#content {
+  max-width: 1140px;
+}
+
+div#post {
+  min-width: 400px;
+  max-width: 768px;
+}
 
 .namelink {
   color: #aedc31;
@@ -56,42 +54,7 @@ a.hdrlink:hover {
   text-decoration: underline;
 }
 
-div#head {
-  margin: 0;
-  width: 100%;
-  font-size: small;
-  background: #7f7f7f;
-  color: #fff;
-  padding-top: 6px;
-  padding-bottom: 6px;
-  font-weight: bold;
-}
-
-div#head div#inner {
-  margin: 0 auto;
-  width: 720px;
-}
-
-div#head a {color: #fff;}
-div#head span.right {
-  float: right; 
-  color: #b9b9b9;
-}
-
-.invisible { color: #fff }
-.visible { color: #000 }
-
-div#content {
-  max-width: 1140px;
-}
-
-div#post {
-  min-width: 400px;
-  max-width: 768px;
-}
-
 .title, .title:visited {
-    color: #87979E;
     color: #008ac0;
     font-weight: bold;
     font-size: 130%;
@@ -102,32 +65,19 @@ a.title:hover {
     text-decoration: underline;
 }
 
-.light {
-  color: #999999;
-}
-
-.tag a:link, .tag a:visited {
-  color: grey;
+.taglink {
+  color: gray;
   text-decoration: none;
 }
 
-.tag a:hover {
+a.taglink:hover {
   text-decoration: underline;
 }
 
-.line {
-  border-top: 1px solid #ccc;
-  padding-bottom: 8px;
-}
-
-.nowrap {
-  white-space: nowrap;
-}
-
-.inactiveSearch {
+.postmeta {
   color: gray;
-  font-size: 85%;
-  font-style: italic;
+  margin-top: 0;
+  padding-top: 1px;
 }
 
 .ad {
@@ -141,4 +91,20 @@ a.title:hover {
   color: green;
 }
 
+.light {
+  color: #999999;
+}
+
+.invisible { color: #fff }
+.visible { color: #000 }
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.inactiveSearch {
+  color: gray;
+  font-size: 85%;
+  font-style: italic;
+}
 </style>

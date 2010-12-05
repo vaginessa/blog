@@ -501,7 +501,7 @@ def get_login_logut_url(url):
         return users.create_login_url(url)
 
 def url_for_tag(tag):
-    return '<a href="/tag/%s">%s</a>' % (urllib.quote(tag), tag)
+    return '<a href="/tag/%s" class="taglink">%s</a>' % (urllib.quote(tag), tag)
 
 def render_article(response, article):
     full_permalink = g_root_url + "/" + article.permalink

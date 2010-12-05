@@ -81,9 +81,7 @@ $(document).ready(function(){
               </span>
             </h1>
             {% if tags_display %}
-            <div class="postmeta" style="margin-right: 8px;">
-              <span class="tag"><a href="/tag/">Tags</a>: {{ tags_display }}</span>
-            </div>
+              <div><a href="/tag/" class="taglink">Tags</a>: {{ tags_display }}</div>
             {% endif %}
           </td>
         </tr>
