@@ -1,6 +1,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 
+<!--
+TODO: add fixed header using an iframe, as in e.g. http://www.brunildo.org/test/iframe_h100_hea_foo_abs_6.html
+-->
 <head>
   <title>Python 2.6 Quick Reference</title>
   <meta http-equiv="Content-Type" content="text/html;charset= iso-8859-1" />
@@ -12,27 +15,68 @@
   <link href="css/classic.css" rel="alternate stylesheet" type="text/css" title="Classic" media="all" />
   <link href="css/highcontrast.css" rel="alternate stylesheet" type="text/css" title="High contrast" media="all" />
   <link href="css/printing.css" rel="alternate stylesheet" type="text/css" title="Printing" media="all" />
-  <script type="text/javascript" src="css/styleswitcher.js"></script>
+
+  <style>
+  #tophdr {
+    position: fixed;
+    top: 0px;
+    z-index: 99;
+    padding-bottom: 4px;
+  }
+  </style>
+  <script type="text/javascript" >
+  function setActiveStyleSheet(title) {
+    var i, a, main;
+    for(i=0; (a = document.getElementsByTagName("link")[i]); i++) {
+      if(a.getAttribute("rel").indexOf("style") != -1 && a.getAttribute("title")) {
+        a.disabled = true;
+        if(a.getAttribute("title") == title) a.disabled = false;
+      }
+    }
+  }
+
+  function getActiveStyleSheet() {
+    var i, a;
+    for(i=0; (a = document.getElementsByTagName("link")[i]); i++) {
+      if(a.getAttribute("rel").indexOf("style") != -1 && a.getAttribute("title") && !a.disabled) return a.getAttribute("title");
+    }
+    return null;
+  }
+
+  function getPreferredStyleSheet() {
+    var i, a;
+    for(i=0; (a = document.getElementsByTagName("link")[i]); i++) {
+      if(a.getAttribute("rel").indexOf("style") != -1
+         && a.getAttribute("rel").indexOf("alt") == -1
+         && a.getAttribute("title")
+         ) return a.getAttribute("title");
+    }
+    return null;
+  }
+  </script>
 </head>
 
 <body>
-<a id="top" name="top"></a>
-<div class="invisible"> Does the web look weird? Ugly? Perhaps that's because your browser
-  does not support the CSS standard. I recommend you consider updating it. Without CSS, this
-  and other pages are visible, but nothing like they were meant to be. A very good free browser with
-  support for all standards is <a target="_top" href="http://www.mozilla.org/products/firefox/">Firefox</a>.
-  For information about standards and why they are important, please visit the
-  <a target="_top" href="http://www.webstandards.org/act/campaign/buc/">browser upgrade campaign</a>. </div>
 
+<a id="top" name="top"></a>
 <table class="main" summary="Layout" border="0" cellpadding="0">
   <tbody>
     <tr>
-      <td colspan="20" class="logo" height="59">
-      <h1> Python 2.6 Quick Reference </h1>
-      </td>
-    </tr>
-    <tr>
       <td class="content">
+      <div id="tophdr">
+        <a href="#top">Python 2.6 reference</a>&nbsp;&nbsp;
+        <span style="font-size:80%">
+            Style:
+            <a href="#" onclick="setActiveStyleSheet('Modern'); return false;" title="Modern style (default)">Modern</a>,
+            <a href="#" onclick="setActiveStyleSheet('Modern Black &amp; White'); return false;" title="Modern B&amp;W style, good for printing">Modern B&amp;W</a>,
+            <a href="#" onclick="setActiveStyleSheet('Modern Colored'); return false;" title="Modern variant, slightly Colored">Modern Colored</a>,
+            <a href="#" onclick="setActiveStyleSheet('Classic'); return false;" title="Classic (original) layout">Classic</a>,
+            <a href="#" onclick="setActiveStyleSheet('High contrast'); return false;" title="Black &amp; White">High contrast</a>
+            or <a href="#" onclick="setActiveStyleSheet('Printing'); return false;" title="Optimized for A4 paper">Printing</a>
+        </span>
+      </div>
+
+<!--
         <p><span class="noprint"> Style chooser:
           <a href="#" onclick="setActiveStyleSheet('Modern'); return false;" title="Modern style (default)">Modern</a>,
           <a href="#" onclick="setActiveStyleSheet('Modern Black &amp; White'); return false;" title="Modern B&amp;W style, good for printing">Modern B&amp;W</a>,
@@ -45,11 +89,11 @@
           Printing to print. If you get problems, try printing the <a href="http://rgruet.free.fr/#QuickRef" title="PDF versions">
           PDF versions</a> instead]</span>
         </p>
+-->
 
 <!-- SUMMARY -->
 <h2> <a id="contents" name="contents"></a> Contents </h2>
 <ul>
-  <li> <a href="#Frontstuff">Front matter</a> </li>
   <li> <a href="#Invocation"><b>Invocation Options</b></a> </li>
   <li> <a href="#Environment"><b>Environment variables</b></a> </li>
   <li> <a href="#LexEnt"><b>Lexical entities</b></a> :
@@ -103,146 +147,8 @@
   <li> <a href="#OtherModules"><b>List of modules</b> in the base distribution</a> </li>
   <li> <a href="#Workspace">Workspace exploration and idiom hints</a> </li>
   <li> <a href="#Emacs">Python mode for Emacs</a> </li>
+  <li> <a href="#Frontstuff">End matter</a> </li>
 </ul>
-
-<!-- FRONT STUFF -->
-<h2> <a id="Frontstuff" name="Frontstuff"></a> Front matter </h2>
-Version 2.6 (<a href="http://docs.python.org/whatsnew/2.6.html">What's new?</a>)<br />
-Check updates at <a target="_top" href="http://rgruet.free.fr/#QuickRef">http://rgruet.free.fr/#QuickRef</a>. <br />
-Please <b>report</b> errors, inaccuracies and suggestions to
-<a href="javascript:location='mailto:\u0070\u0071\u0072\u0040\u0072\u0067\u0072\u0075\u0065\u0074\u002e\u006e\u0065\u0074';void 0">
-Richard Gruet</a> (pqr at rgruet.net).<br />
-<br />
-<!-- LICENSE CREATIVE COMMONS -->
-<a target="_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/fr/deed.en_US">
-<img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/2.0/fr/88x31.png" />
-</a> Creative Commons License.
-<p />Last updated on <!-- #BeginDate format:Am1 -->January 31, 2010<!-- #EndDate -->.
-<dl>
-  <dt>Feb 10, 2009</dt>
-  <dd>upgraded by Richard Gruet and
-      <a href="javascript:location='mailto:\u0063\u0075\u0076\u0069\u0070\u0065\u0072\u0040\u0067\u006d\u0061\u0069\u006c\u002e\u0063\u006f\u006d';void 0">Josh Stone</a>
-      for Python 2.6</dd>
-  <dt>Dec 14, 2006</dt>
-  <dd>upgraded by Richard Gruet for Python 2.5</dd>
-  <dt>Feb 17, 2005,</dt>
-  <dd>upgraded by Richard Gruet for Python 2.4</dd>
-  <dt>Oct 3, 2003</dt>
-  <dd>upgraded by Richard Gruet for Python 2.3</dd>
-  <dt>May 11, 2003, rev 4</dt>
-  <dd>upgraded by Richard Gruet for Python 2.2 (restyled by <a
-      href="javascript:location='mailto:\u0070\u0072\u006f\u006a\u0065\u0063\u0074\u0035\u0040\u006f\u0070\u0065\u0072\u0061\u006d\u0061\u0069\u006c\u002e\u0063\u006f\u006d';void 0">Andrei</a>)</dd>
-  <dt>Aug 7, 2001</dt>
-  <dd>upgraded by Simon Brunning for Python 2.1 </dd>
-  <dt>May 16, 2001</dt>
-  <dd>upgraded by Richard Gruet and <a href="javascript:location='mailto:\u0073\u0062\u0072\u0075\u006e\u006e\u0069\u006e\u0067\u0040\u0062\u0069\u0067\u0066\u006f\u006f\u0074\u002e\u0063\u006f\u006d';void 0">
-            Simon Brunning</a> for Python 2.0 </dd>
-  <dt>Jun 18, 2000</dt>
-  <dd>upgraded by <a
-       href="javascript:location='mailto:\u0070\u0071\u0072\u0040\u0072\u0067\u0072\u0075\u0065\u0074\u002e\u006e\u0065\u0074';void 0">
-             Richard Gruet</a> for Python 1.5.2 </dd>
-  <dt>Oct 20, 1995</dt>
-  <dd>created by <a href="mailto:hoffmann@cs.umass.edu">Chris Hoffmann</a> for Python 1.3 </dd>
-</dl>
-
-Color coding:
-<dl>
-  <dd> <span class="since26">Features added in 2.6 since 2.5</span><br />
-       <span class="since25">Features added in 2.5 since 2.4</span><br />
-       <span class="since24">Features added in 2.4 since 2.3</span><br />
-	   <a href="">A link</a>
-  </dd>
-</dl>
-
-Originally based on:
-<ul>
-  <li> Python Bestiary, author: <a href="mailto:ken.manheimer@nist.gov" target="_blank">Ken Manheimer</a> </li>
-  <li> <a target="_blank" href="http://www.python.org/doc/current/">Python manuals</a>,
-       authors: <a href="mailto:guido@python.org">Guido van Rossum</a> and Fred Drake </li>
-  <li> python-mode.el, author: <a href="mailto:tim_one@email.msn.com">Tim Peters</a> </li>
-  <li> and the readers of <a href="news://comp.lang.python/">comp.lang.python</a></li>
-</ul>
-<br />
-
-<!-- LINKS -->
-Useful links :
-<blockquote>
-  <ul>
-    <li> <b>Python's nest</b>: <a target="_blank" href="http://www.python.org/">http://www.python.org</a> </li>
-    <li> <b>Official documentation</b>: <a target="_blank" href="http://docs.python.org/2.6/">http://docs.python.org/2.6/</a>
-         <span class="noprint">
-           &nbsp;&nbsp;[<a href="http://docs.python.org/2.6/lib/modindex.html" target="_blank"><b>Module index</b></a>;
-           <a href="http://docs.python.org/2.6/ref/ref.html" target="_blank"><b>Language Reference</b></a>]
-         </span>
-         <!-- SEARCH BOX -->
-         <div class="noprint">
-           <form class="search" action="http://docs.python.org/search.html" method="get" target="_blank">
-                <input type="text" name="q" size="18" />
-                <input type="submit" value="Search Doc" />
-                <input type="hidden" name="check_keywords" value="yes" />
-                <input type="hidden" name="area" value="default" />
-           </form>
-		   (use Ctrl-F to search the PQR)
-         </div></li>
-    <li> <b>Other doc &amp; free books</b>:
-            <a href="http://www.python.org/doc/faq/" target="_blank">FAQs</a>,
-            <a target="_blank" href="http://www.faqts.com/knowledge_base/index.phtml/fid/199/">Faqts</a>,
-            <a target="_blank" href="http://diveintopython.org/">Dive into Python</a>,
-            <a target="_blank" href="http://aspn.activestate.com/ASPN/Python/Cookbook/">Python Cookbook</a>,
-            <a target="_blank" href="http://www.mindview.net/Books/TIPython/">Thinking in Python</a>,
-            <a target="_blank" href="http://gnosis.cx/TPiP/">Text processing in Python</a> </li>
-    <li> <b>Getting started</b>: <a target="_blank" href="http://docs.python.org/tutorial/index.html">Python Tutorial</a>,
-         <a target="_blank" href="http://www.richarddooling.com/index.php/2006/03/14/python-on-xp-7-minutes-to-hello-world/">
-         7mn to Hello World (windows)</a></li>
-    <li><b>Topics</b>:
-         <a target="_blank" href="http://docs.python.org/howto/index.html">HOWTOs</a>,
-         <a target="_blank" href="http://www.python.org/topics/database/">Databases</a>,
-         <a target="_blank" href="http://wiki.python.org/moin/WebProgramming">Web programming</a>,
-         <a target="_blank" href="http://pyxml.sourceforge.net/topics/">XML</a>,
-         <a target="_blank" href="http://pywebsvcs.sourceforge.net/">Web Services</a>,
-         <a target="_blank" href="http://wiki.python.org/moin/LanguageParsing">Parsers</a>,
-         <a target="_blank" href="http://wiki.python.org/moin/NumericAndScientific">Numeric &amp; Scientific Computing</a>,
-         <a href="http://wiki.python.org/moin/GuiProgramming" target="_blank">GUI programming</a>,
-         <a href="http://docs.python.org/distutils/index.html" target="_blank">Distributing</a>
-    </li>
-    <li> <b>Where to find packages</b>:
-            <a target="_blank" href="http://www.python.org/pypi">Python Package Index (PyPI)</a>,
-            <a target="_blank" href="http://www.python-eggs.org/">Python Eggs</a>,
-            <a target="_blank" href="http://sourceforge.net/">SourceForge (search &quot;python&quot;)</a>,
-            <a href="http://peak.telecommunity.com/DevCenter/EasyInstall" target="_blank">Easy Install</a>,
-            <a target="_blank" href="http://www.onlamp.com/python/">O'Reilly Python DevCenter</a> </li>
-     <li> <b>Wiki</b>: <a target="_blank" href="http://www.python.org/cgi-bin/moinmoin">moinmoin</a> </li>
-     <li> <b>Newsgroups</b>:
-            <a target="_blank" href="news://comp.lang.python/">comp.lang.python</a> and
-            <a target="_blank" href="news://comp.lang.python.announce/">comp.lang.python.announce</a></li>
-     <li> <b>Misc pages</b>:
-            <a target="_blank" href="http://www.pythonware.com/daily/">Daily Python URL</a> </li>
-     <li> <b>Python Development</b>:
-            <a target="_blank" href="http://www.python.org/dev/">http://www.python.org/dev/</a></li>
-     <li> <b>Jython</b> - Java implementation of Python:
-            <a target="_blank" href="http://www.jython.org/">http://www.jython.org/</a> </li>
-     <li> <b>IronPython</b> - Python on .Net:
-            <a target="_blank" href="http://www.codeplex.com/Wiki/View.aspx?ProjectName=IronPython">http://www.codeplex.com/Wiki/View.aspx?ProjectName=IronPython</a></li>
-     <li> <b>ActivePython</b>:
-            <a target="_blank" href="http://www.activestate.com/ASPN/Python/">http://www.ActiveState.com/ASPN/Python/</a></li>
-     <li> <b>Help desk</b>:
-            <a href="mailto:help@python.org">help@python.org</a></li>
-     <li> 2 excellent (but somehow outdated) <strong>Python reference books</strong>:
-            <a target="_blank" href="http://www.amazon.com/exec/obidos/ASIN/0735709017/dostoevskintime/102-9999781-1827259">
-               Python Essential Reference</a> (Python 2.1) by David Beazley &amp; Guido Van Rossum (Other New Riders) and
-            <a href="http://www.amazon.com/gp/product/0596001886/qid=1138983550/sr=2-1/ref=pd_bbs_b_2_1/104-9016483-6791167?s=books&amp;v=glance&amp;n=283155"
-          target="_blank">Python in a nutshell</a> by Alex martelli (O'Reilly).</li>
-     <li><a target="_blank" href="http://www.limsi.fr/Individu/pointal/python/pqrc/">
-              <b>Python 2.4 Reference Card (cheatsheet)</b></a> by Laurent Pointal, designed for printing (15 pages).</li>
-     <li><a target="_blank" href="http://infohost.nmt.edu/tcc/help/pubs/python22/">
-              Online Python 2.2 Quick Reference</a> by the New Mexico Tech Computer Center. </li>
-   </ul>
-</blockquote>
-
-<blockquote>
-  <b>Tip</b>: From within the Python interpreter, type <code>help</code>, <code>help(<i>object</i>)</code>
-  or <code>help(&quot;<i>name</i>&quot;)</code> to get help.
-</blockquote>
 
 <!-- INVOCATION OPTIONS -->
 <h2> <a id="Invocation" name="Invocation"></a> Invocation Options </h2>
@@ -7190,6 +7096,145 @@ Emacs goodies available <a href="http://www.python.org/emacs/">here</a>.
 <pre><b>(The following has not been revised, probably not up to date - <span
  class="warning">any contribution welcome</span> -)</b><br /><br /> <br />Type C-c ? when in python-mode for extensive help.<br />INDENTATION<br />Primarily for entering new code:<br />        TAB      indent line appropriately<br />        LFD      insert newline, then indent<br />        DEL      reduce indentation, or delete single character<br />Primarily for reindenting existing code:<br />        C-c :    guess py-indent-offset from file content; change locally<br />        C-u C-c :        ditto, but change globally<br />        C-c TAB  reindent region to match its context<br />        C-c &lt;    shift region left by py-indent-offset<br />        C-c &gt;    shift region right by py-indent-offset<br />MARKING &amp; MANIPULATING REGIONS OF CODE<br />C-c C-b         mark block of lines<br />M-C-h           mark smallest enclosing def<br />C-u M-C-h       mark smallest enclosing class<br />C-c #           comment out region of code<br />C-u C-c #       uncomment region of code<br />MOVING POINT<br />C-c C-p         move to statement preceding point<br />C-c C-n         move to statement following point<br />C-c C-u         move up to start of current block<br />M-C-a           move to start of def<br />C-u M-C-a       move to start of class<br />M-C-e           move to end of def<br />C-u M-C-e       move to end of class<br />EXECUTING PYTHON CODE<br />C-c C-c sends the entire buffer to the Python interpreter<br />C-c |   sends the current region<br />C-c !   starts a Python interpreter window; this will be used by<br />        subsequent C-c C-c or C-c | commands<br />VARIABLES<br />py-indent-offset        indentation increment<br />py-block-comment-prefix comment string used by py-comment-region<br />py-python-command       shell command to invoke Python interpreter<br />py-scroll-process-buffer        t means always scroll Python process buffer<br />py-temp-directory       directory used for temp files (if needed)<br />py-beep-if-tab-change   ring the bell if tab-width is changed</pre>
 
+ <!-- FRONT STUFF -->
+ <h2> <a id="Frontstuff" name="Frontstuff"></a> End matter </h2>
+ Version 2.6 (<a href="http://docs.python.org/whatsnew/2.6.html">What's new?</a>)<br />
+ Check updates at <a target="_top" href="http://rgruet.free.fr/#QuickRef">http://rgruet.free.fr/#QuickRef</a>. <br />
+ Please <b>report</b> errors, inaccuracies and suggestions to
+ <a href="javascript:location='mailto:\u0070\u0071\u0072\u0040\u0072\u0067\u0072\u0075\u0065\u0074\u002e\u006e\u0065\u0074';void 0">
+ Richard Gruet</a> (pqr at rgruet.net).<br />
+ <br />
+ <!-- LICENSE CREATIVE COMMONS -->
+ <a target="_blank" rel="license" href="http://creativecommons.org/licenses/by-nc-sa/2.0/fr/deed.en_US">
+ <img alt="Creative Commons License" style="border-width:0" src="http://i.creativecommons.org/l/by-nc-sa/2.0/fr/88x31.png" />
+ </a> Creative Commons License.
+ <p />Last updated on <!-- #BeginDate format:Am1 -->January 31, 2010<!-- #EndDate -->.
+ <dl>
+   <dt>Feb 10, 2009</dt>
+   <dd>upgraded by Richard Gruet and
+       <a href="javascript:location='mailto:\u0063\u0075\u0076\u0069\u0070\u0065\u0072\u0040\u0067\u006d\u0061\u0069\u006c\u002e\u0063\u006f\u006d';void 0">Josh Stone</a>
+       for Python 2.6</dd>
+   <dt>Dec 14, 2006</dt>
+   <dd>upgraded by Richard Gruet for Python 2.5</dd>
+   <dt>Feb 17, 2005,</dt>
+   <dd>upgraded by Richard Gruet for Python 2.4</dd>
+   <dt>Oct 3, 2003</dt>
+   <dd>upgraded by Richard Gruet for Python 2.3</dd>
+   <dt>May 11, 2003, rev 4</dt>
+   <dd>upgraded by Richard Gruet for Python 2.2 (restyled by <a
+       href="javascript:location='mailto:\u0070\u0072\u006f\u006a\u0065\u0063\u0074\u0035\u0040\u006f\u0070\u0065\u0072\u0061\u006d\u0061\u0069\u006c\u002e\u0063\u006f\u006d';void 0">Andrei</a>)</dd>
+   <dt>Aug 7, 2001</dt>
+   <dd>upgraded by Simon Brunning for Python 2.1 </dd>
+   <dt>May 16, 2001</dt>
+   <dd>upgraded by Richard Gruet and <a href="javascript:location='mailto:\u0073\u0062\u0072\u0075\u006e\u006e\u0069\u006e\u0067\u0040\u0062\u0069\u0067\u0066\u006f\u006f\u0074\u002e\u0063\u006f\u006d';void 0">
+             Simon Brunning</a> for Python 2.0 </dd>
+   <dt>Jun 18, 2000</dt>
+   <dd>upgraded by <a
+        href="javascript:location='mailto:\u0070\u0071\u0072\u0040\u0072\u0067\u0072\u0075\u0065\u0074\u002e\u006e\u0065\u0074';void 0">
+              Richard Gruet</a> for Python 1.5.2 </dd>
+   <dt>Oct 20, 1995</dt>
+   <dd>created by <a href="mailto:hoffmann@cs.umass.edu">Chris Hoffmann</a> for Python 1.3 </dd>
+ </dl>
+
+ Color coding:
+ <dl>
+   <dd> <span class="since26">Features added in 2.6 since 2.5</span><br />
+        <span class="since25">Features added in 2.5 since 2.4</span><br />
+        <span class="since24">Features added in 2.4 since 2.3</span><br />
+ 	   <a href="">A link</a>
+   </dd>
+ </dl>
+
+ Originally based on:
+ <ul>
+   <li> Python Bestiary, author: <a href="mailto:ken.manheimer@nist.gov" target="_blank">Ken Manheimer</a> </li>
+   <li> <a target="_blank" href="http://www.python.org/doc/current/">Python manuals</a>,
+        authors: <a href="mailto:guido@python.org">Guido van Rossum</a> and Fred Drake </li>
+   <li> python-mode.el, author: <a href="mailto:tim_one@email.msn.com">Tim Peters</a> </li>
+   <li> and the readers of <a href="news://comp.lang.python/">comp.lang.python</a></li>
+ </ul>
+ <br />
+
+ <!-- LINKS -->
+ Useful links :
+ <blockquote>
+   <ul>
+     <li> <b>Python's nest</b>: <a target="_blank" href="http://www.python.org/">http://www.python.org</a> </li>
+     <li> <b>Official documentation</b>: <a target="_blank" href="http://docs.python.org/2.6/">http://docs.python.org/2.6/</a>
+          <span class="noprint">
+            &nbsp;&nbsp;[<a href="http://docs.python.org/2.6/lib/modindex.html" target="_blank"><b>Module index</b></a>;
+            <a href="http://docs.python.org/2.6/ref/ref.html" target="_blank"><b>Language Reference</b></a>]
+          </span>
+          <!-- SEARCH BOX -->
+          <div class="noprint">
+            <form class="search" action="http://docs.python.org/search.html" method="get" target="_blank">
+                 <input type="text" name="q" size="18" />
+                 <input type="submit" value="Search Doc" />
+                 <input type="hidden" name="check_keywords" value="yes" />
+                 <input type="hidden" name="area" value="default" />
+            </form>
+ 		   (use Ctrl-F to search the PQR)
+          </div></li>
+     <li> <b>Other doc &amp; free books</b>:
+             <a href="http://www.python.org/doc/faq/" target="_blank">FAQs</a>,
+             <a target="_blank" href="http://www.faqts.com/knowledge_base/index.phtml/fid/199/">Faqts</a>,
+             <a target="_blank" href="http://diveintopython.org/">Dive into Python</a>,
+             <a target="_blank" href="http://aspn.activestate.com/ASPN/Python/Cookbook/">Python Cookbook</a>,
+             <a target="_blank" href="http://www.mindview.net/Books/TIPython/">Thinking in Python</a>,
+             <a target="_blank" href="http://gnosis.cx/TPiP/">Text processing in Python</a> </li>
+     <li> <b>Getting started</b>: <a target="_blank" href="http://docs.python.org/tutorial/index.html">Python Tutorial</a>,
+          <a target="_blank" href="http://www.richarddooling.com/index.php/2006/03/14/python-on-xp-7-minutes-to-hello-world/">
+          7mn to Hello World (windows)</a></li>
+     <li><b>Topics</b>:
+          <a target="_blank" href="http://docs.python.org/howto/index.html">HOWTOs</a>,
+          <a target="_blank" href="http://www.python.org/topics/database/">Databases</a>,
+          <a target="_blank" href="http://wiki.python.org/moin/WebProgramming">Web programming</a>,
+          <a target="_blank" href="http://pyxml.sourceforge.net/topics/">XML</a>,
+          <a target="_blank" href="http://pywebsvcs.sourceforge.net/">Web Services</a>,
+          <a target="_blank" href="http://wiki.python.org/moin/LanguageParsing">Parsers</a>,
+          <a target="_blank" href="http://wiki.python.org/moin/NumericAndScientific">Numeric &amp; Scientific Computing</a>,
+          <a href="http://wiki.python.org/moin/GuiProgramming" target="_blank">GUI programming</a>,
+          <a href="http://docs.python.org/distutils/index.html" target="_blank">Distributing</a>
+     </li>
+     <li> <b>Where to find packages</b>:
+             <a target="_blank" href="http://www.python.org/pypi">Python Package Index (PyPI)</a>,
+             <a target="_blank" href="http://www.python-eggs.org/">Python Eggs</a>,
+             <a target="_blank" href="http://sourceforge.net/">SourceForge (search &quot;python&quot;)</a>,
+             <a href="http://peak.telecommunity.com/DevCenter/EasyInstall" target="_blank">Easy Install</a>,
+             <a target="_blank" href="http://www.onlamp.com/python/">O'Reilly Python DevCenter</a> </li>
+      <li> <b>Wiki</b>: <a target="_blank" href="http://www.python.org/cgi-bin/moinmoin">moinmoin</a> </li>
+      <li> <b>Newsgroups</b>:
+             <a target="_blank" href="news://comp.lang.python/">comp.lang.python</a> and
+             <a target="_blank" href="news://comp.lang.python.announce/">comp.lang.python.announce</a></li>
+      <li> <b>Misc pages</b>:
+             <a target="_blank" href="http://www.pythonware.com/daily/">Daily Python URL</a> </li>
+      <li> <b>Python Development</b>:
+             <a target="_blank" href="http://www.python.org/dev/">http://www.python.org/dev/</a></li>
+      <li> <b>Jython</b> - Java implementation of Python:
+             <a target="_blank" href="http://www.jython.org/">http://www.jython.org/</a> </li>
+      <li> <b>IronPython</b> - Python on .Net:
+             <a target="_blank" href="http://www.codeplex.com/Wiki/View.aspx?ProjectName=IronPython">http://www.codeplex.com/Wiki/View.aspx?ProjectName=IronPython</a></li>
+      <li> <b>ActivePython</b>:
+             <a target="_blank" href="http://www.activestate.com/ASPN/Python/">http://www.ActiveState.com/ASPN/Python/</a></li>
+      <li> <b>Help desk</b>:
+             <a href="mailto:help@python.org">help@python.org</a></li>
+      <li> 2 excellent (but somehow outdated) <strong>Python reference books</strong>:
+             <a target="_blank" href="http://www.amazon.com/exec/obidos/ASIN/0735709017/dostoevskintime/102-9999781-1827259">
+                Python Essential Reference</a> (Python 2.1) by David Beazley &amp; Guido Van Rossum (Other New Riders) and
+             <a href="http://www.amazon.com/gp/product/0596001886/qid=1138983550/sr=2-1/ref=pd_bbs_b_2_1/104-9016483-6791167?s=books&amp;v=glance&amp;n=283155"
+           target="_blank">Python in a nutshell</a> by Alex martelli (O'Reilly).</li>
+      <li><a target="_blank" href="http://www.limsi.fr/Individu/pointal/python/pqrc/">
+               <b>Python 2.4 Reference Card (cheatsheet)</b></a> by Laurent Pointal, designed for printing (15 pages).</li>
+      <li><a target="_blank" href="http://infohost.nmt.edu/tcc/help/pubs/python22/">
+               Online Python 2.2 Quick Reference</a> by the New Mexico Tech Computer Center. </li>
+    </ul>
+ </blockquote>
+
+ <blockquote>
+   <b>Tip</b>: From within the Python interpreter, type <code>help</code>, <code>help(<i>object</i>)</code>
+   or <code>help(&quot;<i>name</i>&quot;)</code> to get help.
+ </blockquote>
+
 <!-- CONTENT END -->
       </td>
     </tr>
@@ -7198,14 +7243,15 @@ Emacs goodies available <a href="http://www.python.org/emacs/">here</a>.
 
 <!-- Google Analytics -->
 <script type="text/javascript">
-  var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
-  document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script>
-<script type="text/javascript">
-  try {
-    var pageTracker = _gat._getTracker("UA-7433587-1");
-    pageTracker._trackPageview();
-  } catch(err) {}
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-194516-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+  })();
 </script>
 
 </body>
