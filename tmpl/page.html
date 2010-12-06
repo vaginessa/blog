@@ -24,10 +24,10 @@ function articlesJsonLoaded(articlesJson) {
 
 $(document).ready(function(){
   $("#searchFieldId").focus(function(){
-    $(this).val("").removeClass("inactiveSearch");
+    $(this).val("").removeClass("inactiveSearch").addClass("activeSearch");
   });
   $("#searchFieldId").blur(function(){
-    $(this).val("Search this site").addClass("inactiveSearch");
+    $(this).val("Search this site").addClass("inactiveSearch").removeClass("activeSearch");
   });
 
   $("#searchFieldId").blur(); /* force setting the text */
@@ -61,81 +61,86 @@ $(document).ready(function(){
 
 <div id="tophdr">
   <h1 style="padding-left:12px">
-    <span class="namelink">Krzysztof Kowalczyk</span>
-    <span style="float:right; font-size:80%; font-weight:normal;">
+    <span class="namelink">Krzysztof Kowalczyk</span>&nbsp;&nbsp;&nbsp;
+    <a class="namelink" href="/atom.xml"><img alt="Rss feed" src="http://kjkpub.s3.amazonaws.com/blog/img/feed-icon-14x14.png" style="position:relative; top:2px;" width=14 height=14> <span style="font-size: 80%">RSS</span></a>
+    <span style="float:right; font-size:80%; font-weight:normal;  margin-right: 12px;">
+      <a class="hdrlink" href="/">Blog</a>
+      <span style="color:gray">&nbsp;&bull;&nbsp;</span>
       <a class="hdrlink" href="/static/software.html">My Software</a>
       <span style="color:gray">&nbsp;&bull;&nbsp;</span>
       <a class="hdrlink" href="/static/documents.html">My Documents</a>
       <span style="color:gray">&nbsp;&bull;&nbsp;</span>
       <a class="hdrlink" href="/static/krzysztof.html">About Me</a>
-      <span style="color:gray">&nbsp;&bull;&nbsp;</span>
-      <a class="hdrlink" href="/atom.xml"><img alt="Rss feed" src="http://kjkpub.s3.amazonaws.com/blog/img/feed-icon-14x14.png" style="position:relative; top:2px;" width=14 height=14> <span style="">RSS</span></a>
-      <span style="color:gray">&nbsp;&bull;&nbsp;</span>
-      <form style="display:inline" method="get" action="http://google.com/search" >
-      <input type="hidden" name="IncludeBlogs" value="1">
-      <input type="hidden" name="as_sitesearch" value="http://blog.kowalczyk.info">
-      <input size=20 type="text" name="q" id="searchFieldId">
-      <input class="button" value="Go" type="submit">
-      </form>
     </span>
   </h1>
 </div>
 
 <div id="content">
 
-  <div id="navarea" style="float: right; font-size: 80%; margin-right: 12px; margin-left: 12px; border: 1px solid #CCC; padding: 6px">
+  <div style="float: right; margin-right: 12px; margin-left: 12px; font-size: 80%">
 
-    <div class="sidebarhdr">My software</div>
-    <div style="margin-left: 6px">
-      <a href="http://www.yepi.ws/fotofi/free-stock-photos">Fotofi</a>
-      <div class="smaller">Find free stock photos</div>
-      <a href="/software/sumatrapdf/free-pdf-reader.html">SumatraPDF</a>
-      <div class="smaller">PDF Reader for Windows</div>
-      <a href="/software/vack/">VisualAck</a>
-      <div class="smaller">Visual grep for Mac</div>
-      <a href="/software/fofou/">fofou</a>
-      <div class="smaller">Forum software for App Engine</div>
-      <div class="l"><a href="/static/software.html">more...</a></div>
-    </div>
-    <br>
+    <center>
+      <form style="display:inline;" method="get" action="http://google.com/search">
+        <input type="hidden" name="IncludeBlogs" value="1">
+        <input type="hidden" name="as_sitesearch" value="http://blog.kowalczyk.info">
+        <input size=36 type="text" style="font-size: 90%;" name="q" id="searchFieldId">
+      </form>
+    </center>
 
-    <div class="sidebarhdr">My documents</div>
-    <div style="margin-left: 6px">
-      <div><a href="/articles/cocoa-reference.html">Cocoa reference</a></div>
-      <!-- <div class="l"><a href="/articles/pyref.html">Python reference</a></div> -->
-      <div class="l"><a href="/articles/jsref.html">JavaScript reference</a></div>
-      <div class="l"><a href="/static/documents.html">more...</a></div>
-    </div>
-    <br>
-
-    <div class="sidebarhdr">Me {% if not is_admin %} <a id="login_id" class="invisible" onMouseOver="showById('login_id');" onMouseOut="hideById('login_id');" href="{{ login_out_url }}">login</a>
-    {% endif %}</div>
-    <div style="margin-left: 6px">
-      <script>
-        var email = "kkowalczyk";
-        email += "@";
-        email += "gmail.com"
-        hyperlink = '<a href="mailto:em">em</a>';
-        hyperlink = hyperlink.replace(/em/g, email);
-        document.write(hyperlink);
-      </script>
+    <div id="navarea" style="border: 1px solid #CCC; padding: 6px; margin-top: 8px;">
+  
+      <div class="sidebarhdr">My software</div>
+      <div style="margin-left: 6px">
+        <a href="http://www.yepi.ws/fotofi/free-stock-photos">Fotofi</a>
+        <div class="smaller">Find free stock photos</div>
+        <a href="/software/sumatrapdf/free-pdf-reader.html">SumatraPDF</a>
+        <div class="smaller">PDF Reader for Windows</div>
+        <a href="/software/vack/">VisualAck</a>
+        <div class="smaller">Visual grep for Mac</div>
+        <a href="/software/fofou/">fofou</a>
+        <div class="smaller">Forum software for App Engine</div>
+        <div class="l"><a href="/static/software.html">more...</a></div>
+      </div>
       <br>
-      <div class="l"><a href="http://github.com/kjk">github.com/kjk</a></div>
-      <div class="l"><a href="http://code.google.com/u/kkowalczyk/">code.google.com/u/kkowalczyk</a></div>
-      <div class="l"><a href="http://twitter.com/kjk">twitter.com/kjk</a></div>
+  
+      <div class="sidebarhdr">My documents</div>
+      <div style="margin-left: 6px">
+        <div><a href="/articles/cocoa-reference.html">Cocoa reference</a></div>
+        <!-- <div class="l"><a href="/articles/pyref.html">Python reference</a></div> -->
+        <div class="l"><a href="/articles/jsref.html">JavaScript reference</a></div>
+        <div class="l"><a href="/static/documents.html">more...</a></div>
+      </div>
+      <br>
+  
+      <div class="sidebarhdr">Me {% if not is_admin %} <a id="login_id" class="invisible" onMouseOver="showById('login_id');" onMouseOut="hideById('login_id');" href="{{ login_out_url }}">login</a>
+      {% endif %}</div>
+      <div style="margin-left: 6px">
+        <script>
+          var email = "kkowalczyk";
+          email += "@";
+          email += "gmail.com"
+          hyperlink = '<a href="mailto:em">em</a>';
+          hyperlink = hyperlink.replace(/em/g, email);
+          document.write(hyperlink);
+        </script>
+        <br>
+        <div class="l"><a href="http://github.com/kjk">github.com/kjk</a></div>
+        <div class="l"><a href="http://code.google.com/u/kkowalczyk/">code.google.com/u/kkowalczyk</a></div>
+        <div class="l"><a href="http://twitter.com/kjk">twitter.com/kjk</a></div>
+      </div>
+  
+      {% if is_admin %}
+      <br>
+      <div class="sidebarhdr">Admin actions</div>
+      <div style="margin-left: 6px">
+        <div><a href="{{ login_out_url }}">log out</a></div>
+        <div class="l"><a href="/app/edit">new blog post</a></div>
+        <div class="l"><a href="/app/edit?ramblings=yes">new note post</a></div>
+        <div class="l"><a href="/app/showprivate">show private</a></div>
+      </div>
+      {% endif %}
+  
     </div>
-
-    {% if is_admin %}
-    <br>
-    <div class="sidebarhdr">Admin actions</div>
-    <div style="margin-left: 6px">
-      <div><a href="{{ login_out_url }}">log out</a></div>
-      <div class="l"><a href="/app/edit">new blog post</a></div>
-      <div class="l"><a href="/app/edit?ramblings=yes">new note post</a></div>
-      <div class="l"><a href="/app/showprivate">show private</a></div>
-    </div>
-    {% endif %}
-
   </div>
 
   <div id="post" style="margin-left: 18px; margin-top:12px;">

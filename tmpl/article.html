@@ -20,14 +20,6 @@ function articlesJsonLoaded(articlesJson) {
 }
 
 $(document).ready(function(){
-  $("#searchFieldId").focus(function(){
-    $(this).val("").removeClass("inactiveSearch");
-  });
-  $("#searchFieldId").blur(function(){
-    $(this).val("Search this site").addClass("inactiveSearch");
-  });
-
-  $("#searchFieldId").blur(); /* force setting the text */
 });
 </script>
 
