@@ -1,0 +1,92 @@
+<!doctype html>
+<!--
+TODO:
+ * should indicate current style by not making it a link
+ * should show color legend for python versions
+ * drop-down toc
+ * a better style for pqr26int.html, perhaps based on Apple's docs http://developer.apple.com/library/mac/#documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/Reference/NSString.html#//apple_ref/occ/instm/NSString/longLongValue
+-->
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<style type="text/css"> 
+
+html, body, iframe {
+  height: 100%;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: arial, sans-serif;
+  font-size: 10pt;
+}
+
+html {
+  overflow-y: hidden;
+}
+
+#head, #ifra, iframe {
+	position: absolute;
+	width: 100%;
+	left: 0;
+}
+
+#ifra {
+  top: 23px;
+  bottom: 0px;
+}
+
+iframe {
+  border: 0 none;
+}
+
+#head {
+  top: 0;
+  background-color: #394244;
+  color: #88d629;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+a, a:visited, a:hover {
+  color: #fff;
+  color: #88d629;
+}
+</style>
+
+<script type="text/javascript" >
+function setActiveStyleSheet(title) {
+  var win = document.getElementById('contents-frame').contentWindow;
+  win.setActiveStyleSheet(title);
+}
+
+function navigateTop() {
+  var win = document.getElementById('contents-frame').contentWindow;
+  win.location.href="pqr26int.html#top";
+}
+
+</script>
+
+</head>
+<body>
+
+<div id="ifra"><iframe src="pqr26int.html" id="contents-frame"></iframe></div>
+
+<div id="head">
+&nbsp;&nbsp;
+<a href="/">Krzysztof Kowalczyk</a> &raquo; <a href="#" onclick="navigateTop(); return false;">Python 2.6 Quick Reference</a>
+<span style="font-size:80%; float: right;">
+    Style:
+    <a href="#" onclick="setActiveStyleSheet('Modern'); return false;" title="Modern style (default)">Modern</a>,
+    <a href="#" onclick="setActiveStyleSheet('Modern Black &amp; White'); return false;" title="Modern B&amp;W style, good for printing">Modern B&amp;W</a>,
+    <a href="#" onclick="setActiveStyleSheet('Modern Colored'); return false;" title="Modern variant, slightly Colored">Modern Colored</a>,
+    <a href="#" onclick="setActiveStyleSheet('Classic'); return false;" title="Classic (original) layout">Classic</a>,
+    <a href="#" onclick="setActiveStyleSheet('High contrast'); return false;" title="Black &amp; White">High contrast</a>,
+    <a href="#" onclick="setActiveStyleSheet('Printing'); return false;" title="Optimized for A4 paper">Printing</a>
+&nbsp;&nbsp;
+</span>
+</div>
+
+</body>
+</html>
