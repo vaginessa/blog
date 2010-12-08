@@ -49,6 +49,9 @@ handlers:
 - url: /articles
   static_dir: www/articles
 
+- url: /markitup
+  static_dir: www/markitup
+
 - url: /css
   static_dir: www/css
 
