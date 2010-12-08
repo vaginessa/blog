@@ -263,14 +263,14 @@ def show_analytics(): return not is_localhost()
 
 def jquery_url():
     url = "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"
-    if is_localhost(): url = "/static/js/jquery-1.4.2.js"
+    if is_localhost(): url = "/js/jquery-1.4.2.js"
     return url
 
 def prettify_js_url():
-    return "/static/js/prettify.js"
+    return "/js/prettify.js"
 
 def prettify_css_url():
-    return "/static/js/prettify.css"
+    return "/js/prettify.css"
 
 def is_empty_string(s):
     if not s: return True

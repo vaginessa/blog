@@ -52,15 +52,15 @@ handlers:
 - url: /css
   static_dir: www/css
 
+- url: /js
+  static_dir: www/js
+
 - url: /extremeoptimizations
   static_dir: www/extremeoptimizations
 
-- url: /static/gfx
+- url: /gfx
   static_dir: www/gfx
   expiration: "365d"
-
-- url: /static/js
-  static_dir: www/js
 
 - url: /static
   static_dir: www/static
