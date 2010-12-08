@@ -53,12 +53,35 @@ a, a:visited, a:hover {
   color: #fff;
   color: #88d629;
 }
+
+.StyleSelected {
+  text-decoration: none;
+}
 </style>
 
 <script type="text/javascript" >
-function setActiveStyleSheet(title) {
+var gStylesInfo = {
+  StyleModern : ["Modern"],
+  StyleModernBW : ["Modern Black White"],
+  StyleModernColor : ["Modern Colored"],
+  StyleClassic : ["Classic"],
+  StyleHighContrast : ["High contrast"],
+  StylePrinting : ["Printing"]
+};
+
+function setActiveStyleSheet(styleName) {
   var win = document.getElementById('contents-frame').contentWindow;
+  var title = gStylesInfo[styleName];
   win.setActiveStyleSheet(title);
+  var cls = "StyleSelected";
+  for (var idName in gStylesInfo) {
+    var link = document.getElementById(idName);
+    if (idName == styleName) {
+      link.className = "StyleSelected";
+    } else {
+      link.className = "";
+    }
+  }
 }
 
 function navigateTop() {
@@ -78,12 +101,12 @@ function navigateTop() {
 <a href="/">Krzysztof Kowalczyk</a> &raquo; <a href="#" onclick="navigateTop(); return false;">Python 2.6 Quick Reference</a>
 <span style="font-size:80%; float: right;">
     Style:
-    <a href="#" onclick="setActiveStyleSheet('Modern'); return false;" title="Modern style (default)">Modern</a>,
-    <a href="#" onclick="setActiveStyleSheet('Modern Black &amp; White'); return false;" title="Modern B&amp;W style, good for printing">Modern B&amp;W</a>,
-    <a href="#" onclick="setActiveStyleSheet('Modern Colored'); return false;" title="Modern variant, slightly Colored">Modern Colored</a>,
-    <a href="#" onclick="setActiveStyleSheet('Classic'); return false;" title="Classic (original) layout">Classic</a>,
-    <a href="#" onclick="setActiveStyleSheet('High contrast'); return false;" title="Black &amp; White">High contrast</a>,
-    <a href="#" onclick="setActiveStyleSheet('Printing'); return false;" title="Optimized for A4 paper">Printing</a>
+    <a href="#" id="StyleModern" class="StyleSelected" onclick="setActiveStyleSheet('StyleModern'); return false;" title="Modern style (default)">Modern</a>,
+    <a href="#" id="StyleModernBW" onclick="setActiveStyleSheet('StyleModernBW'); return false;" title="Modern B&amp;W style, good for printing">Modern B&amp;W</a>,
+    <a href="#" id="StyleModernColor" onclick="setActiveStyleSheet('StyleModernColor'); return false;" title="Modern variant, slightly Colored">Modern Colored</a>,
+    <a href="#" id="StyleClassic" onclick="setActiveStyleSheet('StyleClassic'); return false;" title="Classic (original) layout">Classic</a>,
+    <a href="#" id="StyleHighContrast" onclick="setActiveStyleSheet('StyleHighContrast'); return false;" title="Black &amp; White">High contrast</a>,
+    <a href="#" id="StylePrinting" onclick="setActiveStyleSheet('StylePrinting'); return false;" title="Optimized for A4 paper">Printing</a>
 &nbsp;&nbsp;
 </span>
 </div>
