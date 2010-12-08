@@ -59,9 +59,6 @@ handlers:
   static_dir: www/gfx
   expiration: "365d"
 
-- url: /static/img
-  static_dir: www/img
-
 - url: /static/js
   static_dir: www/js
 
