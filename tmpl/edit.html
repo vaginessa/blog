@@ -15,6 +15,12 @@
 
 <style type="text/css">
 
+body {
+  margin-left: 12px;
+  margin-right: 12px;
+  margin-top: 8px;
+}
+
 #header.private {
   background-color: #F2D0DC;
   font-size: 120%;
@@ -24,6 +30,10 @@
 #preview, #note {
   border: 1px solid #adadad !important;
   overflow: auto;
+}
+
+#titleHelp, #tagsHelp {
+  color: gray;
 }
 
 textarea {
@@ -42,103 +52,6 @@ textarea {
 var previewTimerId = 0;
 // true if we started the ajax call to do the preview
 var previewInProgress = false;
-
-function onWndResize() {
-  var dy = $(window).height() - 122;
-  var dx = $(window).width() - 32;
-  $('#note').width(dx/2).height(dy-38);
-  $('#sep').width(8);
-  $('#preview').width(dx/2).height(dy-6);
-
-  // don't understand why I need this, but I do
-  $('#markItUpNote').width(dx/2+8);
-
-  $('#title').width(dx/2);     
-  $('#tags').width(dx/2);
-  $('#sep2').width(8);
-  $('#progress').width(dx/2);
-}
-
-function noteFormat() { return $("#format").val(); }
-
-function schedulePreview() {
-  // reschedule the timer for doing the preview
-  clearTimeout(previewTimerId);
-  previewTimerId = setTimeout(preview, 2000);
-}
-
-function startInProgress() {
-  previewInProgress = true;
-  $("#progress2").show();
-}
-
-function stopInProgress() {
-  previewInProgress = false;
-  $("#progress2").hide();
-}
-
-function previewAllButHtml() {
-  function preview_callback(data, status) {
-    data = data.replace(/<p>(.*)<\/p>/, "$1");
-    $("#preview").html(data);
-    stopInProgress();
-    prettyPrint();
-  }
-
-  var note = $("#note").val();
-  var t = $.trim(note);
-  if (0 == t.length) { return; }
-  var data = { "format" : noteFormat(), "note" : note };
-  $.post("/app/preview", data, preview_callback, "html");
-  startInProgress();
-}
-
-function preview()  {
-  if (previewInProgress) { schedulePreview(); return; }
-  if (noteFormat() == "html") {
-    $("#preview").html($("#note").val());
-  } else {
-    previewAllButHtml();
-  }
-  return false;
-}
-
-function cleanHtml() {
-  function cleanCallback(data, status) {
-    $("#note").val(data);
-    $("#format").val("textile");
-  }
-  var data = { "note" : $("#note").val() };
-  $.post("/app/cleanhtml", data, cleanCallback, "html");
-  return false;
-}
-
-function markitUpSettingsForFormat(format) {
-  if ("html" == format) { return myHtmlSettings; }
-  if ("textile" == format) { return myTextileSettings; }
-  if ("markdown" == format) { return myMarkdownSettings; }
-  return null;
-}
-
-function onFormatChanged() {
-  if (noteFormat() == "html") { $("#cleanHtml").show(); }
-  else                        { $("#cleanHtml").hide(); }
-  preview();
-
-  $('#note').markItUpRemove();
-  var settings = markitUpSettingsForFormat(noteFormat());
-  if (null == settings) { return; }
-  $('#note').markItUp(settings);
-  onWndResize();
-}
-
-function updatePrivateStatus() {
-  if ($("#privateOrPublic").val() == "private") {
-    $("#header").show();
-  } else {
-    $("#header").hide();
-  }
-}
 
 myTextileSettings = {
     nameSpace:           "textile", // Useful to prevent multi-instances CSS conflict
@@ -221,12 +134,112 @@ myHtmlSettings = {
     ]
 }
 
+function cleanHtml() {
+  function cleanCallback(data, status) {
+    $("#note").val(data);
+    $("#format").val("textile");
+  }
+  var data = { "note" : $("#note").val() };
+  $.post("/app/cleanhtml", data, cleanCallback, "html");
+  return false;
+}
+
+function noteFormat() { return $("#format").val(); }
+
+function markitUpSettingsForFormat(format) {
+  if ("html" == format) { return myHtmlSettings; }
+  if ("textile" == format) { return myTextileSettings; }
+  if ("markdown" == format) { return myMarkdownSettings; }
+  return null;
+}
+
+function onFormatChanged() {
+  if (noteFormat() == "html") { $("#cleanHtml").show(); }
+  else                        { $("#cleanHtml").hide(); }
+  preview();
+
+  $('#note').markItUpRemove();
+  var settings = markitUpSettingsForFormat(noteFormat());
+  if (null == settings) { return; }
+  $('#note').markItUp(settings);
+  onWndResize();
+}
+
+function updatePrivateStatus() {
+  if ($('input[name=private_checkbox]').is(':checked')) {
+    $("#header").show();
+  } else {
+    $("#header").hide();
+  }
+}
+
+function schedulePreview() {
+  // reschedule the timer for doing the preview
+  clearTimeout(previewTimerId);
+  previewTimerId = setTimeout(preview, 2000);
+}
+
+function startInProgress() {
+  previewInProgress = true;
+  $("#progress2").show();
+}
+
+function stopInProgress() {
+  previewInProgress = false;
+  $("#progress2").hide();
+}
+
+function previewAllButHtml() {
+  function preview_callback(data, status) {
+    data = data.replace(/<p>(.*)<\/p>/, "$1");
+    $("#preview").html(data);
+    stopInProgress();
+    prettyPrint();
+  }
+
+  var note = $("#note").val();
+  var t = $.trim(note);
+  if (0 == t.length) { return; }
+  var data = { "format" : noteFormat(), "note" : note };
+  $.post("/app/preview", data, preview_callback, "html");
+  startInProgress();
+}
+
+function preview()  {
+  if (previewInProgress) { schedulePreview(); return; }
+  if (noteFormat() == "html") {
+    $("#preview").html($("#note").val());
+  } else {
+    previewAllButHtml();
+  }
+  return false;
+}
+
+function onWndResize() {
+  var dy = $(window).height() - 122;
+  var dx = $(window).width() - 44;
+
+  $('#note').width(dx/2).height(dy-38);
+  $('#sep').width(8);
+  var hdrDy = 22;
+  $('#previewSpacer').height(hdrDy);
+  $('#preview').width(dx/2).height(dy-6-hdrDy);
+  // don't understand why I need this, but I do
+  $('#markItUpNote').width(dx/2+8);
+
+  var titleTagMaxDx = Math.max($('#titleHelp').width(), $('#tagsHelp').width());
+  $('#title').width(dx/2 - titleTagMaxDx);
+  $('#tags').width(dx/2 - titleTagMaxDx);
+  $('#sep2').width(8);
+  $('#progress').width(dx/2);
+}
+
 $(document).ready(function() {
   $("#title").focus();
   $(window).resize(onWndResize);
   updatePrivateStatus();
   onFormatChanged();
-  $("#privateOrPublic").change(updatePrivateStatus);
+  $("#private_checkbox").change(updatePrivateStatus);
   $("#format").change(onFormatChanged);
   $('#note').keyup(schedulePreview);
   stopInProgress();
@@ -244,8 +257,11 @@ $(document).ready(function() {
   <table cellspacing=0 cellpadding=0>
   <tr>
     <td id="title2">
-      <input id="title" tabindex=1 type="text" width=100% maxlength="1024" name="title" value = "{{ article.title|escape }}"/><br>
-      <input id="tags" tabindex=2 type="text" width=100%  maxlength="1024" name="tags" value = "{{ tags|escape }}"/>
+      <input id="title" tabindex=1 type="text" width=100% maxlength="1024" name="title" value = "{{ article.title|escape }}">
+      <span id="titleHelp">title</span><br>
+
+      <input id="tags" tabindex=2 type="text" width=100%  maxlength="1024" name="tags" value = "{{ tags|escape }}">
+      <span id="tagsHelp">tags</span>
    </td>
    <td id="sep2"></td>
    <td id="progress" valign=bottom>
@@ -262,6 +278,7 @@ $(document).ready(function() {
      </td>
      <td id="sep"></td>
      <td>
+       <div id="previewSpacer"></div>
        <div id="preview"></div>
      </td>
     </tr>
@@ -270,22 +287,20 @@ $(document).ready(function() {
 
   <input type="submit" value="{{ submit_button_text }}"/>
 
-  <select id="privateOrPublic" name="private_or_public">
-    <option value="private" {{ type_private }}>Private</option>
-    <option value="public" {{ type_public }}>Public</option>
-  </select>
-
   <select id="format" name="format">
     <option value="textile" {{ format_textile_checked }}>Textile</option>
     <option value="markdown" {{ format_markdown_checked }}>Markdown</option>
     <option value="html" {{ format_html_checked }}>Html</option>
     <option value="text" {{ format_text_checked }}>Text</option>
   </select>
-  | 
-   <input type="checkbox" name="update_published_on" {{ update_published_on_checkbox_checked }}>
-   update published on <span id="cleanHtml">| <a onclick="cleanHtml(); return false;" href="#">clean html</a></span>
-  | <a href="/">cancel</a> 
+  &bull;
+  <input type="checkbox" name="private_checkbox" id="private_checkbox" {{ private_checkbox_checked }}>Private &bull;
+  <input type="checkbox" name="update_published_on" {{ update_published_on_checkbox_checked }}>
+   update published on 
+   <span id="cleanHtml">&bull; <a onclick="cleanHtml(); return false;" href="#">clean html</a></span>
+  &bull; <a href="/">cancel</a> 
   </form>
+
   <div id="header" class="private" width=100%>
   <center>This post is private!</center>
   </div>

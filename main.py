@@ -730,7 +730,7 @@ class EditHandler(webapp.RequestHandler):
 
         published_on = text_content.published_on
         article = Article(permalink = "tmp", title=title, body=body, format=format)
-        article.is_public = (self.request.get("private_or_public") == "public")
+        article.is_public = checkbox_to_bool(self.request.get("private_checkbox_checked"))
         article.previous_versions = [text_content.key()]
         article.published_on = published_on
         article.updated_on = published_on
@@ -763,7 +763,7 @@ class EditHandler(webapp.RequestHandler):
 
         format = self.request.get("format")
         assert format in ALL_FORMATS
-        is_public = (self.request.get("private_or_public") == "public")
+        is_public = checkbox_to_bool(self.request.get("private_checkbox_checked"))
         update_published_on = checkbox_to_bool(self.request.get("update_published_on"))
         title = self.request.get("title").strip()
         body = self.request.get("note")
@@ -817,29 +817,23 @@ class EditHandler(webapp.RequestHandler):
         self.redirect(url)
 
     def get(self):
-        if not users.is_current_user_admin():
-            return self.redirect("/404.html")
+        if not users.is_current_user_admin(): return self.redirect("/404.html")
 
-        ramblings = self.request.get("ramblings") == "yes"
         tags = []
-        if ramblings:
-            tags.append(NOTE_TAG)
+        if self.request.get("note") == "yes": tags.append(NOTE_TAG)
 
         article = None
         article_id = self.request.get('article_id')
-        if article_id:
-            article = db.get(db.Key.from_path('Article', int(article_id)))
+        if article_id: article = db.get(db.Key.from_path('Article', int(article_id)))
         permalink = self.request.get('article_permalink')
-        if permalink:
-            article = Article.gql("WHERE permalink = :1", permalink).get()
+        if permalink: article = Article.gql("WHERE permalink = :1", permalink).get()
 
         if not article:
             vals = {
-                'format_textile_checked' : "selected",
-                'type_private' : "selected",
-                'type_public' : "",
-                'submit_button_text' : "Post",
-                'tags' : ",".join(tags)
+                'format_textile_checked' : 'selected',
+                'private_checkbox_checked' : 'checked',
+                'submit_button_text' : 'Post',
+                'tags' : ','.join(tags)
             }
             template_out(self.response, "tmpl/edit.html", vals)
             return
@@ -849,18 +843,12 @@ class EditHandler(webapp.RequestHandler):
             'format_markdown_checked' : "",
             'format_html_checked' : "",
             'format_text_checked' : "",
-            'update_published_on_checkbox_checked' : "",
-            'type_private' : "",
-            'type_public' : "",
             'article' : article,
             'submit_button_text' : "Update post",            
             'tags' : ", ".join(article.tags),
         }
         vals['format_%s_checked' % article.format] = "selected"
-        if article.is_public:
-            vals['type_public'] = "selected"
-        else:
-        	vals['type_private'] = "selected"
+        vals['private_checkbox_checked'] = ("" if article.is_public else "checked")
         template_out(self.response, "tmpl/edit.html", vals)
 
 MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
@@ -1012,12 +1000,12 @@ class AtomHandlerBase(webapp.RequestHandler):
         self.response.headers['Content-Type'] = 'text/xml'
         self.response.out.write(feedtxt)
 
-# responds to /atom-all.xml. Returns atom feed of all items, including ramblings
+# responds to /atom-all.xml. Returns atom feed of all items, including notes
 class AtomAllHandler(AtomHandlerBase):
     def get(self):
         self.do_get(include_notes=True)
 
-# responds to /atom.xml. Returns atom feed of blog items (doesn't include ramblings)
+# responds to /atom.xml. Returns atom feed of blog items (doesn't include notes)
 class AtomHandler(AtomHandlerBase):
     def get(self):
         self.do_get(include_notes=False)
