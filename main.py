@@ -36,7 +36,7 @@ ATOM_ALL_MEMCACHE_KEY = "ata"
 JSON_ADMIN_MEMCACHE_KEY = "jsa"
 JSON_NON_ADMIN_MEMCACHE_KEY = "jsna"
 
-RAMBLINGS_TAG = "note"
+NOTE_TAG = "note"
 
 # e.g. "http://localhost:8081" or "http://blog.kowalczyk.info"
 g_root_url = None
@@ -192,7 +192,7 @@ def filter_nondeleted_articles(articles_summary):
 
 def filter_ramblings_articles(articles_summary):
     for article_summary in articles_summary:
-        if RAMBLINGS_TAG not in article_summary['tags']:
+        if NOTE_TAG not in article_summary['tags']:
             yield article_summary
     
 def filter_by_tag(articles_summary, tag):
@@ -428,7 +428,7 @@ def plaintext2html(text, tabstop=4):
             t = t.replace(' ', '&nbsp;')
             return t
         elif c['space'] == '\t':
-            return ' '*tabstop;
+            return ' '*tabstop
         else:
             url = m.group('protocal')
             if url.startswith(' '):
@@ -818,7 +818,7 @@ class EditHandler(webapp.RequestHandler):
         ramblings = self.request.get("ramblings") == "yes"
         tags = []
         if ramblings:
-            tags.append(RAMBLINGS_TAG)
+            tags.append(NOTE_TAG)
 
         article = None
         article_id = self.request.get('article_id')
@@ -975,42 +975,38 @@ class ShowPrivateHandler(webapp.RequestHandler):
 
 class AtomHandlerBase(webapp.RequestHandler):
 
-    def gen_atom_feed(self, all):
+    def gen_atom_feed(self, include_notes):
         url_path = "/atom.xml"
-        if all: url_path = "/atom-all.xml"
+        if include_notes: url_path = "/atom-all.xml"
         feed = feedgenerator.Atom1Feed(
             title = "Krzysztof Kowalczyk blog",
             link = self.request.host_url + url_path,
             description = "Krzysztof Kowalczyk blog")
 
-        MAX_ENTRIES = 25
-        articles = Article.gql("WHERE is_public = True AND is_deleted = False ORDER BY published_on DESC").fetch(125)
-        entries = 0
-        for a in articles:
-            # only include posts tagged with RAMBLINGS_TAG if all is True
-            if not all and RAMBLINGS_TAG in a.tags:
-                continue
+        query = Article.gql("WHERE is_public = True AND is_deleted = False ORDER BY published_on DESC")
+        count = 0
+        for a in query.fetch(200):
+            if not include_notes and NOTE_TAG in a.tags: continue
             title = a.title
             link = self.request.host_url + "/" + a.permalink
             article_gen_html_body(a)
             description = a.html_body
             pubdate = a.published_on
             feed.add_item(title=title, link=link, description=description, pubdate=pubdate)
-            entries += 1
-            if entries >= MAX_ENTRIES:
-                break;
+            count += 1
+            if count >= 25: break
         feedtxt = feed.writeString('utf-8')
         return feedtxt
 
-    def do_get(self, all=False):
+    def do_get(self, include_notes=False):
 
         # TODO: should I compress it?
         key = ATOM_MEMCACHE_KEY
-        if all:
+        if include_notes:
             key = ATOM_ALL_MEMCACHE_KEY
         feedtxt = memcache.get(key)
         if not feedtxt:
-            feedtxt = self.gen_atom_feed(all)
+            feedtxt = self.gen_atom_feed(include_notes)
             memcache.set(key, feedtxt)
 
         self.response.headers['Content-Type'] = 'text/xml'
@@ -1019,12 +1015,12 @@ class AtomHandlerBase(webapp.RequestHandler):
 # responds to /atom-all.xml. Returns atom feed of all items, including ramblings
 class AtomAllHandler(AtomHandlerBase):
     def get(self):
-        self.do_get(all=True)
+        self.do_get(include_notes=True)
 
 # responds to /atom.xml. Returns atom feed of blog items (doesn't include ramblings)
 class AtomHandler(AtomHandlerBase):
     def get(self):
-        self.do_get(all=False)
+        self.do_get(include_notes=False)
 
 class RedirectHandler(webapp.RequestHandler):
     def get(self):
