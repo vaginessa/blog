@@ -73,15 +73,6 @@ class Article(db.Model):
     # points to TextContent
     previous_versions = db.ListProperty(db.Key, default=[])
 
-    def full_permalink(self):
-        return g_root_url + '/' + self.permalink
-    
-    def rfc3339_published_on(self):
-        return to_rfc339(self.published_on)
-
-    def rfc3339_updated_on(self):
-        return to_rfc339(self.updated_on)
-
 def to_rfc339(dt): return dt.strftime('%Y-%m-%dT%H:%M:%SZ')
 
 def to_simple_date(dt): return dt.strftime('%Y-%m-%d')
@@ -89,6 +80,22 @@ def to_simple_date(dt): return dt.strftime('%Y-%m-%d')
 def httpdate(dt): return dt.strftime('%a, %d %b %Y %H:%M:%S GMT')
 
 def utf8_to_uni(val): return unicode(val, "utf-8")
+
+BASE_36_LETTERS = "0123456789abcdefghijklmnopqrstuvwxyz"
+def baseN(n, b, numerals=BASE_36_LETTERS):
+    return ((n == 0) and  "0" ) or ( baseN(n // b, b, numerals).lstrip("0") + numerals[n % b])
+
+def shortenId(n): return baseN(n, 36)
+def expandId(s): return int(s, 36)
+def getIdFromUrl(s):
+    parts = s.split("/")
+    if len(parts) == 1: return None
+    for c in parts[0]:
+        if c not in BASE_36_LETTERS: return None
+    # TODO: check for max length?
+    return expandId(parts[0])
+
+def isUrlWithId(s): return None != getIdFromUrl(s)
 
 def encode_code(text):
     for (txt,replacement) in [("&","&amp;"), ("<","&lt;"), (">","&gt;")]:
@@ -190,7 +197,7 @@ def filter_nondeleted_articles(articles_summary):
         if article_summary["is_deleted"]:
             yield article_summary
 
-def filter_ramblings_articles(articles_summary):
+def filter_notes(articles_summary):
     for article_summary in articles_summary:
         if NOTE_TAG not in article_summary['tags']:
             yield article_summary
@@ -214,16 +221,16 @@ def new_or_dup_text_content(body, format):
 
 (ARTICLE_SUMMARY_PUBLIC_OR_ADMIN, ARTICLE_PRIVATE, ARTICLE_DELETED) = range(3)
 
-def get_articles_summary(articles_type = ARTICLE_SUMMARY_PUBLIC_OR_ADMIN, all=True):
-    pickled = memcache.get(articles_info_memcache_key())
-    if NO_MEMCACHE: pickled = None
+def get_articles_summary(articles_type = ARTICLE_SUMMARY_PUBLIC_OR_ADMIN, include_notes=True, tag=None):
+    pickled = None
+    if not NO_MEMCACHE: pickled = memcache.get(articles_info_memcache_key())
     if pickled:
         articles_summary = unpickle_data(pickled)
         #logging.info("len(articles_summary) = %d" % len(articles_summary))
     else:
         articles_summary = build_articles_summary()
         pickled = pickle_data(articles_summary)
-        logging.info("len(articles_pickled) = %d" % len(pickled))
+        #logging.info("len(articles_pickled) = %d" % len(pickled))
         memcache.set(articles_info_memcache_key(), pickled)
     if articles_type == ARTICLE_SUMMARY_PUBLIC_OR_ADMIN:
         if users.is_current_user_admin():
@@ -234,9 +241,9 @@ def get_articles_summary(articles_type = ARTICLE_SUMMARY_PUBLIC_OR_ADMIN, all=Tr
         articles_summary = filter_nonprivate_articles(articles_summary)
     elif articles_type == ARTICLE_DELETED:
         articles_summary = filter_nondeleted_articles(articles_summary)
-    if not all:
-        articles_summary = filter_ramblings_articles(articles_summary)
-    return articles_summary
+    if not include_notes: articles_summary = filter_notes(articles_summary)
+    if tag: articles_summary = filter_by_tag(articles_summary, tag)
+    return list(articles_summary)
 
 def get_articles_json():
     memcache_key = JSON_NON_ADMIN_MEMCACHE_KEY
@@ -257,7 +264,7 @@ def get_articles_json():
 
 def get_article_json_url():
     (json, sha1) = get_articles_json()
-    return "/js/articles.js?%s" % sha1
+    return "/djs/articles.js?%s" % sha1
 
 def show_analytics(): return not is_localhost()
 
@@ -474,9 +481,6 @@ def do_sitemap_ping():
 
 def find_next_prev_article(article):
     articles_summary = get_articles_summary()
-    # TODO: change code below to not require this "materialization"
-    # of articles_summary generator
-    articles_summary = [a for a in articles_summary]
     permalink = article.permalink
     num = len(articles_summary)
     i = 0
@@ -528,7 +532,6 @@ class PageHandler(webapp.RequestHandler):
     # for human readability, pageno starts with 1
     def do_page(self, pageno):
         articles_summary = get_articles_summary()
-        articles_summary = [a for a in articles_summary]
         articles_count = len(articles_summary)
         pages_count = int(math.ceil(float(articles_count) / float(ARTICLES_PER_PAGE)))
         if pageno > pages_count:
@@ -582,15 +585,12 @@ class IndexHandler(PageHandler):
 class TagHandler(webapp.RequestHandler):
     def get(self, tag):
         tag = urllib.unquote(tag)
-        logging.info("tag: '%s'" % tag)
-        articles_summary = get_articles_summary()
-        articles_summary = filter_by_tag(articles_summary, tag)
-        do_archives(self.response, articles_summary, self.request.path, tag)
+        do_archives(self.response, get_articles_summary(tag=tag), self.request.path, tag)
 
-# responds to /js/${url}
+# responds to /djs/${url}
 class JsHandler(webapp.RequestHandler):
     def get(self, url):
-        logging.info("JsHandler, asking for '%s'" % url)
+        #logging.info("JsHandler, asking for '%s'" % url)
         if url == "articles.js":
             (json_txt, sha1) = get_articles_json()
             # must over-ride Cache-Control (is 'no-cache' by default)
@@ -601,13 +601,18 @@ class JsHandler(webapp.RequestHandler):
             self.response.headers.add_header("Expires", expires_date_txt)
             self.response.out.write(json_txt)
 
+def article_only_for_admin(article): return article and (article.is_deleted or not article.is_public)
+    
 # responds to /article/* and /kb/* and /blog/* (/kb and /blog for redirects
 # for links from old website)
 class ArticleHandler(webapp.RequestHandler):
     def get(self, url):
-        permalink = "article/" + url
-        is_admin = users.is_current_user_admin()
-        article = Article.gql("WHERE permalink = :1", permalink).get()
+        article = None
+        articleId = getIdFromUrl(url)
+        if articleId: article = Article.get_by_id(articleId)
+        if not article:
+            permalink = "article/" + url
+            article = Article.gql("WHERE permalink = :1", permalink).get()
         if not article:
             #logging.info("No article with permalink: '%s'" % permalink)
             url = self.request.path_info[1:]
@@ -617,9 +622,9 @@ class ArticleHandler(webapp.RequestHandler):
                 self.redirect(g_root_url + "/" + article.permalink, True)
                 return
 
-        if article and not is_admin:
-            if article.is_deleted or not article.is_public:
-                article = None
+        if article_only_for_admin(article) and not users.is_current_user_admin():
+            return do_404(self.response, url)
+
         if not article:
             redirect_url = get_redirect(self.request.path_info)
             if redirect_url:
@@ -632,7 +637,7 @@ class PermanentDeleteHandler(webapp.RequestHandler):
     def get(self):
         assert users.is_current_user_admin()
         article_id = self.request.get("article_id")
-        article = db.get(db.Key.from_path("Article", int(article_id)))
+        article = Article.get_by_id(int(article_id))
         url = article.permalink
         article.delete()
         clear_memcache()
@@ -648,7 +653,7 @@ class DeleteUndeleteHandler(webapp.RequestHandler):
         assert users.is_current_user_admin()
         article_id = self.request.get("article_id")
         #logging.info("article_id: '%s'" % article_id)
-        article = db.get(db.Key.from_path("Article", int(article_id)))
+        article = Article.get_by_id(int(article_id))
         assert article
 
         if article.is_deleted:
@@ -660,17 +665,14 @@ class DeleteUndeleteHandler(webapp.RequestHandler):
         url = "/" + article.permalink
         self.redirect(url)
 
-def gen_permalink(title):
-    title_sanitized = urlify(title)
-    url_base = "article/%s" % (title_sanitized)
+def gen_permalink(title, id):
+    url_base = "article/%s/%s" % (shortenId(id), urlify(title))
     # TODO: maybe use some random number or article.key.id to get
     # to a unique url faster
     iteration = 0
     while iteration < 19:
-        if iteration == 0:
-            permalink = url_base + ".html"
-        else:
-            permalink = "%s-%d.html" % (url_base, iteration)
+        permalink = url_base + ".html"
+        if iteration > 0: permalink = "%s-%d.html" % (url_base, iteration)
         existing = Article.gql("WHERE permalink = :1", permalink).get()
         if not existing:
             #logging.info("new_permalink: '%s'" % permalink)
@@ -726,16 +728,18 @@ class EditHandler(webapp.RequestHandler):
         assert not is_dup
 
         published_on = text_content.published_on
-        permalink = gen_permalink(title)
-        assert permalink
-        article = Article(permalink=permalink, title=title, body=body, format=format)
+        article = Article(permalink = "tmp", title=title, body=body, format=format)
         article.is_public = (self.request.get("private_or_public") == "public")
         article.previous_versions = [text_content.key()]
         article.published_on = published_on
         article.updated_on = published_on
         article.tags = tags_from_string(self.request.get("tags"))
-
         article.put()
+        
+        article.permalink = gen_permalink(title, article.key().id())
+        assert article.permalink != None
+        article.put()
+
         clear_memcache()
         if article.is_public:
             do_sitemap_ping()
@@ -778,7 +782,7 @@ class EditHandler(webapp.RequestHandler):
             pass
 
         if article.title != title:
-            new_permalink = gen_permalink(title)
+            new_permalink = gen_permalink(title, article.key().id())
             assert new_permalink
             article.permalink = new_permalink
             invalidate_articles_cache = True
@@ -929,15 +933,12 @@ def do_archives(response, articles_summary, url, tag_to_display=None):
 # responds to /archives.html
 class ArchivesHandler(webapp.RequestHandler):
     def get(self):
-        articles_summary = get_articles_summary()
-        do_archives(self.response, articles_summary, self.request.path)
+        do_archives(self.response, get_articles_summary(), self.request.path)
 
 class SitemapHandler(webapp.RequestHandler):
     def get(self):
-        articles = [a for a in get_articles_summary()]
-        if not articles:
-            return
-
+        articles = get_articles_summary()
+        if not articles: return
         for article in articles[:1000]:
             article["full_permalink"] = self.request.host_url + "/" + article["permalink"]
             article["rfc3339_published"] = to_rfc339(article["published_on"])
@@ -949,7 +950,7 @@ class SitemapHandler(webapp.RequestHandler):
         }
         template_out(self.response, "tmpl/sitemap.xml", vals)
 
-# responds to /app/articlesjson and /js/
+# responds to /app/articlesjson and /djs/
 class ArticlesJsonHandler(webapp.RequestHandler):
     def get(self):
         (articles_json, sha1) = get_articles_json()
@@ -962,16 +963,14 @@ class ShowDeletedHandler(webapp.RequestHandler):
     def get(self):
         if not users.is_current_user_admin():
             return self.redirect("/404.html")
-        articles_summary = get_articles_summary(ARTICLE_DELETED)
-        do_archives(self.response, articles_summary, self.request.path)
+        do_archives(self.response, get_articles_summary(ARTICLE_DELETED), self.request.path)
 
 # responds to /app/showprivate
 class ShowPrivateHandler(webapp.RequestHandler):
     def get(self):
         if not users.is_current_user_admin():
             return self.redirect("/")
-        articles_summary = get_articles_summary(ARTICLE_PRIVATE)
-        do_archives(self.response, articles_summary, self.request.path)
+        do_archives(self.response, get_articles_summary(ARTICLE_PRIVATE), self.request.path)
 
 class AtomHandlerBase(webapp.RequestHandler):
 
@@ -1046,53 +1045,6 @@ class ForumRedirect(webapp.RequestHandler):
 class ForumRssRedirect(webapp.RequestHandler):
     def get(self):
         return self.redirect("", True)
-
-# import one or more articles from old text format
-class ImportHandler(webapp.RequestHandler):
-    def post(self):
-        pickled = self.request.get("posts_to_import")
-        if not pickled:
-            logging.info("tried to import but no 'posts_to_import' field")
-            return self.error(HTTP_NOT_ACCEPTABLE)
-        fo = StringIO.StringIO(pickled)
-        posts = pickle.load(fo)
-        fo.close()
-        for post in posts:
-            try:
-                self.import_post(post)
-            except:
-                s = traceback.format_exc()
-                logging.info(s)
-
-    def import_post(self, post):
-        title = utf8_to_uni(post[POST_TITLE])
-        published_on = post[POST_DATE]
-        permalink = gen_permalink(title)
-        assert permalink
-
-        format = utf8_to_uni(post[POST_FORMAT])
-        assert format in ALL_FORMATS
-        body = post[POST_BODY] # body comes as utf8
-        body = utf8_to_uni(body)
-        tags = []
-        if POST_TAGS in post:
-            tags = tags_from_string(post[POST_TAGS])
-
-        (text_content, is_dup) = new_or_dup_text_content(body, format)
-        assert not is_dup
-
-        article = Article(permalink=permalink, title=title, body=body, format=format)
-        if POST_URL in post:
-            article.permalink2 = utf8_to_uni(post[POST_URL])
-        article.tags = tags
-        article.is_public = True
-        if POST_PRIVATE in post and post[POST_PRIVATE]:
-            article.is_public = False
-        article.previous_versions = [text_content.key()]
-        article.published_on = published_on
-        article.updated_on = published_on
-        article.put()
-        logging.info("imported article, url: '%s'" % permalink)
 
 def user_is_admin():
     user = users.get_current_user()
@@ -1215,7 +1167,7 @@ def main():
         ('/kb/(.*)', ArticleHandler),
         ('/blog/(.*)', ArticleHandler),
         ('/tag/(.*)', TagHandler),
-        ('/js/(.*)', JsHandler),
+        ('/djs/(.*)', JsHandler),
         ('/atom-all.xml', AtomAllHandler),
         ('/feedburner.xml', AtomHandler),
         ('/sitemap.xml', SitemapHandler),
@@ -1234,9 +1186,6 @@ def main():
         ('/app/crashsubmit', CrashSubmit),
         ('/app/crashes/(.*)', Crashes),
         ('/app/crashdelete/(.*)', CrashDelete),
-        # only enable /import before importing and disable right
-        # after importing, since it's not protected
-        #('/import', ImportHandler),
         ('/(.*)', NotFoundHandler)
     ]
     app = webapp.WSGIApplication(mappings,debug=True)
