@@ -301,8 +301,7 @@ def tags_from_string_iter(tags_string):
 def tags_from_string(tags_string):
     return [t for t in tags_from_string_iter(tags_string)]
 
-def checkbox_to_bool(checkbox_val):
-    return "on" == checkbox_val
+def checkbox_to_bool(checkbox_val): return "on" == checkbox_val.strip()
 
 def is_localhost():
     return "://localhost" in g_root_url or "://127.0.0.1" in g_root_url
@@ -672,7 +671,8 @@ def gen_permalink(title, id):
     # to a unique url faster
     iteration = 0
     while iteration < 19:
-        permalink = url_base + ".html"
+        permalink = url_base # default, for the case without the title
+        if len(title) > 0: permalink = url_base + ".html"
         if iteration > 0: permalink = "%s-%d.html" % (url_base, iteration)
         existing = Article.gql("WHERE permalink = :1", permalink).get()
         if not existing:
@@ -730,7 +730,7 @@ class EditHandler(webapp.RequestHandler):
 
         published_on = text_content.published_on
         article = Article(permalink = "tmp", title=title, body=body, format=format)
-        article.is_public = checkbox_to_bool(self.request.get("private_checkbox_checked"))
+        article.is_public = not checkbox_to_bool(self.request.get("private_checkbox"))
         article.previous_versions = [text_content.key()]
         article.published_on = published_on
         article.updated_on = published_on
@@ -749,7 +749,7 @@ class EditHandler(webapp.RequestHandler):
 
     def post(self):
         #logging.info("article_id: '%s'" % self.request.get("article_id"))
-        #logging.info("private: '%s'" % self.request.get("privateOrPublic"))
+        logging.info("private: '%s'" % self.request.get("private_checkbox"))
         #logging.info("format: '%s'" % self.request.get("format"))
         #logging.info("title: '%s'" % self.request.get("title"))
         #logging.info("body: '%s'" % self.request.get("note"))
@@ -763,7 +763,8 @@ class EditHandler(webapp.RequestHandler):
 
         format = self.request.get("format")
         assert format in ALL_FORMATS
-        is_public = checkbox_to_bool(self.request.get("private_checkbox_checked"))
+        is_public = not checkbox_to_bool(self.request.get("private_checkbox"))
+        logging.info("is_public: " + str(is_public))
         update_published_on = checkbox_to_bool(self.request.get("update_published_on"))
         title = self.request.get("title").strip()
         body = self.request.get("note")
@@ -800,7 +801,8 @@ class EditHandler(webapp.RequestHandler):
         if text_content:
             article.previous_versions.append(text_content.key())
 
-        if article.is_public != is_public: invalidate_articles_cache = True
+        if article.is_public != is_public:
+            invalidate_articles_cache = True
         if article.tags != tags: invalidate_articles_cache = True
             
         article.format = format
@@ -813,8 +815,7 @@ class EditHandler(webapp.RequestHandler):
         article.put()
         if article.is_public:
             do_sitemap_ping()
-        url = "/" + article.permalink
-        self.redirect(url)
+        self.redirect("/" + article.permalink)
 
     def get(self):
         if not users.is_current_user_admin(): return self.redirect("/404.html")

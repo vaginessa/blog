@@ -108,17 +108,19 @@ $(document).ready(function(){
 
 {% if is_admin %}
     <center style="font-size: 90%; background: #ddd">
-        <a href="{{ login_out_url }}">Log out</a>&nbsp;
-        <a href="/app/edit?article_id={{ article.key.id }}">Edit</a>&nbsp;
-        <a href="/app/edit">New</a>&nbsp;
+        <a href="{{ login_out_url }}">Log out</a> &bull;
+        <a href="/app/edit?article_id={{ article.key.id }}">Edit</a> &bull;
+        <a href="/app/edit">New</a> &bull;
+        <a href="/app/edit?note=yes">New note</a> &bull;
         {% if article.is_deleted %}
-         <a href="/app/undelete?article_id={{ article.key.id }}">Undelete</a>&nbsp;
+         <a href="/app/undelete?article_id={{ article.key.id }}">Undelete</a> &bull;
          {% else %}
-         <a href="/app/delete?article_id={{ article.key.id }}">Delete</a>&nbsp;
+         <a href="/app/delete?article_id={{ article.key.id }}">Delete</a> &bull;
         {% endif %}
-        <a href="/app/permanentdelete?article_id={{ article.key.id }}">Permanent delete</a>&nbsp;
-        <a href="/app/showprivate">Show private</a>&nbsp;
-        <a href="/app/showdeleted">Show deleted</a>&nbsp;
+        <a href="/app/permanentdelete?article_id={{ article.key.id }}">Permanent delete</a> &bull;
+        Show:
+        <a href="/app/showprivate">private</a>&nbsp;
+        <a href="/app/showdeleted">deleted</a>
     </center>
     <br>
 {% endif %}
