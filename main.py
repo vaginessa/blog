@@ -25,7 +25,7 @@ from django.utils import feedgenerator
 from django.template import Context, Template
 
 COMPRESS_PICKLED = False
-NO_MEMCACHE = False
+USE_MEMCACHE = True
 
 # deployed name of the server. Only for redirection from *.appspot.com 
 SERVER = "blog.kowalczyk.info"
@@ -223,7 +223,7 @@ def new_or_dup_text_content(body, format):
 
 def get_articles_summary(articles_type = ARTICLE_SUMMARY_PUBLIC_OR_ADMIN, include_notes=True, tag=None):
     pickled = None
-    if not NO_MEMCACHE: pickled = memcache.get(articles_info_memcache_key())
+    if USE_MEMCACHE: pickled = memcache.get(articles_info_memcache_key())
     if pickled:
         articles_summary = unpickle_data(pickled)
         #logging.info("len(articles_summary) = %d" % len(articles_summary))
@@ -249,8 +249,9 @@ def get_articles_json():
     memcache_key = JSON_NON_ADMIN_MEMCACHE_KEY
     if users.is_current_user_admin():
         memcache_key = JSON_ADMIN_MEMCACHE_KEY
-    articles_json = memcache.get(memcache_key)
-    if NO_MEMCACHE: articles_json = None
+
+    articles_json = None
+    if USE_MEMCACHE: articles_json = memcache.get(memcache_key)
     if not articles_json:
         #logging.info("re-generating articles_json")
         for_admin = users.is_current_user_admin()
