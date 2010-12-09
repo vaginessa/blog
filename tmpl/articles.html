@@ -147,31 +147,28 @@ $(document).ready(function(){
 
   <div id="post" style="margin-left: 18px; margin-top:12px;">
     {% for article in articles_summary %}
-
-    <table>
-      <tr>
-        <td style="background: lightgray; width=4px"></td>
-        <td>
-          <div onMouseOver="showById('article_{{ article.no }}');" onMouseOut="hideById('article_{{ article.no }}');">
-            <a href="/{{ article.permalink }}" class="title">{{ article.title|escape }}</a>
-            {% if not article.is_public %} &nbsp;<font style="color: red;">private</font> {% endif %}
-            {% if is_admin %}&nbsp;
-            <a id="article_{{ article.no }}" class="invisible" href="/app/edit?article_permalink={{ article.permalink }}">edit</a>
-            {% endif %}
-          </div>
-          <div class="postmeta nowrap">
-            {{ article.published_on|date:"M d Y" }}
-            {% if article.tags_display %}
-             &bull; <a href="/tag/" class="taglink">Tags</a>: {{ article.tags_display }}
-            {% endif %}
-          </div>
-        </td>
-      </tr>
-    </table>
-
-
-    {{ article.html_body }}
-    <br>
+      <table>
+        <tr>
+          <td style="background: lightgray; width=4px"></td>
+          <td>
+            <div onMouseOver="showById('article_{{ article.no }}');" onMouseOut="hideById('article_{{ article.no }}');">
+              <a href="/{{ article.permalink }}" class="title">{{ article.title|escape }}</a>
+              {% if not article.is_public %} &nbsp;<font style="color: red;">private</font> {% endif %}
+              {% if is_admin %}&nbsp;
+              <a id="article_{{ article.no }}" class="invisible" href="/app/edit?article_permalink={{ article.permalink }}">edit</a>
+              {% endif %}
+            </div>
+            <div class="postmeta nowrap">
+              {{ article.published_on|date:"M d Y" }}
+              {% if article.tags_display %}
+               &bull; <a href="/tag/" class="taglink">Tags</a>: {{ article.tags_display }}
+              {% endif %}
+            </div>
+          </td>
+        </tr>
+      </table>
+      {{ article.html_body }}
+      <br>
     {% endfor %}
   </div>
 

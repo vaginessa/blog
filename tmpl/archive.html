@@ -80,21 +80,22 @@ $(document).ready(function(){
       {% else %}
         All {{ posts_count }} posts:
       {% endif %} 
-      {% if not is_admign %}
+      {% if not is_admin %}
       <a id="login" class="invisible" onMouseOver="showById('login');" onMouseOut="hideById('login');" href="{{ login_out_url }}">login</a>
       {% endif %}
     </div>
 
     <table id=arc>
       {% for year in years %}
-        <tr class=year><th colspan="2" style="text-align: left; padding-left: 5px;">{{ year.name }}</th></tr>
+        <tr class=year><th colspan="2" style="text-align: left; padding-left: 5px;">{{ year.name|escape }}</th></tr>
         {% for month in year.months %}
-        <tr><th>{{ month.name }}</th><td></td></tr>    
+        <tr><th>{{ month.name|escape }}</th><td></td></tr>    
           {% for article in month.articles %}
           <tr>
-            <th>{{ article.day }}</th>
+            <th>{{ article.day|escape }}</th>
             <td>
-            <a href="/{{ article.permalink }}">{{ article.title }}</a>
+            <a href="/{{ article.permalink }}">
+              {% if article.title %} {{ article.title|escape }} {% else %} no title {% endif %}</a>
             {% if article.tags_display %}
               <span class="taglink">tags:</span> {{ article.tags_display }}
             {% endif %}
