@@ -528,7 +528,7 @@ def render_article(response, article):
 
 ARTICLES_PER_PAGE = 5
 
-class ArticlesHandler(webapp.RequestHandler):
+class PageHandler(webapp.RequestHandler):
     # for human readability, pageno starts with 1
     def do_page(self, pageno):
         articles_summary = get_articles_summary(include_notes=False)
@@ -577,7 +577,7 @@ class ArticlesHandler(webapp.RequestHandler):
         self.do_page(int(pageno))
 
 # responds to /
-class IndexHandler(ArticlesHandler):
+class IndexHandler(PageHandler):
     def get(self):
         self.do_page(1)
 
@@ -1201,7 +1201,7 @@ def main():
         ('/archives.html', ArchivesHandler),
         ('/article/(.*)', ArticleHandler),
         ('/notes/(.*)', NotesHandler),
-        ('/articles/(.*)', ArticlesHandler),
+        ('/page/(.*)', PageHandler),
         # /kb/ and /blog/ are for redirects from old website
         ('/kb/(.*)', ArticleHandler),
         ('/blog/(.*)', ArticleHandler),

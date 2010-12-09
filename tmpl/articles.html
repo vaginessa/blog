@@ -54,11 +54,6 @@ $(document).ready(function(){
   font-weight: bold;
 }
 
-.currhdrlink {
-  padding-bottom: 4px;
-  border-bottom: 3px solid #fff;
-}
-
 </style>
 </head>
 
@@ -69,7 +64,7 @@ $(document).ready(function(){
     <span class="namelink">Krzysztof Kowalczyk</span>&nbsp;&nbsp;&nbsp;
     <a class="namelink" href="/atom.xml"><img alt="Rss feed" src="http://kjkpub.s3.amazonaws.com/blog/img/feed-icon-14x14.png" style="position:relative; top:2px;" width=14 height=14> <span style="font-size: 80%">RSS</span></a>
     <span style="float:right; font-size:80%; font-weight:normal;  margin-right: 12px;">
-      <span class="hdrlink currhdrlink" href="/">Blog</span>
+      <span class="hdrlink currhdrlink">Blog</span>
       <span style="color:gray">&nbsp;&bull;&nbsp;</span>
       <a class="hdrlink" href="/notes/">Notes</a>
       <span style="color:gray">&nbsp;&bull;&nbsp;</span>
@@ -182,7 +177,7 @@ $(document).ready(function(){
 
 <center class="postmeta" style="margin-bottom: 12px;">
 {% if newer_page %}
-<a title="page {{ newer_page.no }}" href="/articles/{{ newer_page.no }}">← newer</a>
+<a title="page {{ newer_page.no }}" href="/page/{{ newer_page.no }}">← newer</a>
 {% else %}
 ← newer
 {% endif %}
@@ -192,7 +187,7 @@ $(document).ready(function(){
 &bull;
 
 {% if older_page %}
-<a title="page{{ older_page.no }}" href="/articles/{{ older_page.no }}">older →</a>
+<a title="page{{ older_page.no }}" href="/page/{{ older_page.no }}">older →</a>
 {% else %}
 older →
 {% endif %}

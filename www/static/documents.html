@@ -5,10 +5,57 @@
 <title>Documents by Krzysztof Kowalczyk</title>
 <style type="text/css">
 body {
+  margin: 0px;
+  font-size: 10pt;
+  font-family: arial, sans-serif;
+}
+
+h1 {
+  font-size: medium;
+  margin-bottom: 2px;
+  padding: 0;
+}
+
+div#content {
   font-family: geneva,helvetica,arial,sans-serif;
   font-size: 12px;
   margin: 1.75em auto;
   width: 600px;
+}
+
+div#tophdr {
+  margin: 0px;
+  padding: 0px;
+  padding-bottom:8px;
+  padding-top:1px;
+  background-color: #4D5456;
+}
+
+.namelink {
+  color: #aedc31;
+  text-decoration:none;
+}
+
+a.namelink:hover {
+  padding-bottom: 4px;
+  border-bottom: 3px solid #AEDC31;
+}
+
+.hdrlink {
+  font-weight: bold;
+  text-decoration: none;
+  color: white;
+}
+
+.currhdrlink {
+  padding-bottom: 4px;
+  border-bottom: 3px solid #fff;
+}
+
+a.hdrlink:hover {
+  padding-bottom: 4px;
+  border-bottom: 3px solid #AEDC31;
+  text-decoration: none;
 }
 
 img {
@@ -23,6 +70,24 @@ img {
 </head>
 <body>
 
+<div id="tophdr">
+  <h1 style="padding-left:12px">
+    <a class="namelink" href="/">Krzysztof Kowalczyk</a>&nbsp;&nbsp;&nbsp;
+    <span style="float:right; font-size:80%; font-weight:normal;  margin-right: 12px;">
+      <a class="hdrlink" href="/">Blog</a>
+      <span style="color:gray">&nbsp;&bull;&nbsp;</span>
+      <a class="hdrlink" href="/notes/">Notes</a>
+      <span style="color:gray">&nbsp;&bull;&nbsp;</span>
+      <a href="/static/software.html" class="hdrlink">My Software</a>
+      <span style="color:gray">&nbsp;&bull;&nbsp;</span>
+      <span class="hdrlink currhdrlink">My Documents</span>
+      <span style="color:gray">&nbsp;&bull;&nbsp;</span>
+      <a class="hdrlink" href="/static/krzysztof.html">About Me</a>
+    </span>
+  </h1>
+</div>
+
+<div id="content">
 <h2>Documents on this website</h2>
 
 <ul>
@@ -49,6 +114,6 @@ img {
 </p>
 <hr>
 <center><a href="/">Krzysztof Kowalczyk</a></center>
-
+</div>
 </body>
 </html>
