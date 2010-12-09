@@ -12,7 +12,6 @@
 
 #arc {
   border-collapse: collapse;
-  width: 100%;
   margin-top: 12px;
 }
 
@@ -66,11 +65,11 @@ $(document).ready(function(){
 <div id="content" style="line-height:1.50; margin-top: 18px; margin-left: 12px; margin-right: 12px;">
 
   {% if is_admin %}
-  <center style="font-size: 90%; background: #ddd">
-  <a href="{{ login_out_url }}">Log out</a>&nbsp;
-  <a href="/app/edit">New Post</a>&nbsp;
-  <a href="/app/showprivate">Show private</a>&nbsp;
-  </center>
+  <div style="float: right; margin-right: 12px; margin-left: 12px; font-size: 80%; border: 1px solid #CCC; padding: 6px;">
+    <a href="{{ login_out_url }}">Log out</a><br>
+    <a href="/app/edit">New Post</a><br>
+    <a href="/app/showprivate">Show private</a><br>
+  </div>
   {% endif %}
 
   {% if posts_count %}

@@ -70,7 +70,7 @@ $(document).ready(function(){
   border: 1px solid #ccc;
   border-radius: 3px;
   padding-left: 6px;
-  /* background-color: #eee; */
+  background-color: #eee;
   margin-bottom: 8px;
   padding-top: 4px;
 }
@@ -105,6 +105,7 @@ $(document).ready(function(){
 
   <div style="float: right; margin-right: 12px; margin-left: 12px; font-size: 80%">
 
+    <!--
     <center>
       <form style="display:inline;" method="get" action="http://google.com/search">
         <input type="hidden" name="IncludeBlogs" value="1">
@@ -114,7 +115,8 @@ $(document).ready(function(){
     </center>
     {% if not is_admin %} <a id="login_id" class="invisible" onMouseOver="showById('login_id');" onMouseOut="hideById('login_id');" href="{{ login_out_url }}">login</a>
     {% endif %}
-  
+  -->
+
     {% if is_admin %}
     <div id="navarea" style="border: 1px solid #CCC; padding: 6px; margin-top: 8px;">
       <div class="sidebarhdr">Admin actions</div>
@@ -131,7 +133,6 @@ $(document).ready(function(){
   <div id="post" style="margin-left: 18px; margin-top:12px;">
     {% for article in articles_summary %}
       <div class="onenote">
-        <div>
           <a href="/{{ article.permalink }}" class="title">{{ article.title|escape }}</a>
           <span class="postmeta nowrap">
             {{ article.published_on|date:"M d Y" }}
@@ -143,10 +144,7 @@ $(document).ready(function(){
             &nbsp;<a id="article_{{ article.no }}" href="/app/edit?article_permalink={{ article.permalink }}">edit</a>
             {% endif %}
           </span>
-        </div>
-        <div>
           {{ article.html_body }}
-        </div>
       </div>
     {% endfor %}
   </div>
