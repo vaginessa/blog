@@ -561,7 +561,7 @@ class PageHandler(webapp.RequestHandler):
 
         vals = {
             'is_admin' : users.is_current_user_admin(),
-            'login_out_url' : get_login_logut_url("/articles/%d" % pageno),
+            'login_out_url' : get_login_logut_url("/page/%d" % pageno),
             'articles_summary' : articles_summary,
             'articles_count' : articles_count,
             'newer_page' : newer_page,
