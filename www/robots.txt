@@ -1,4 +1,4 @@
 User-agent: *
-Disallow: /page/
+Disallow: /articles/
 Disallow: /tag/
-Disallow: /note/
+Disallow: /notes/

@@ -528,10 +528,10 @@ def render_article(response, article):
 
 ARTICLES_PER_PAGE = 5
 
-class PageHandler(webapp.RequestHandler):
+class ArticlesHandler(webapp.RequestHandler):
     # for human readability, pageno starts with 1
     def do_page(self, pageno):
-        articles_summary = get_articles_summary()
+        articles_summary = get_articles_summary(include_notes=False)
         articles_count = len(articles_summary)
         pages_count = int(math.ceil(float(articles_count) / float(ARTICLES_PER_PAGE)))
         if pageno > pages_count:
@@ -561,7 +561,7 @@ class PageHandler(webapp.RequestHandler):
 
         vals = {
             'is_admin' : users.is_current_user_admin(),
-            'login_out_url' : get_login_logut_url("/"),
+            'login_out_url' : get_login_logut_url("/articles/%d" % pageno),
             'articles_summary' : articles_summary,
             'articles_count' : articles_count,
             'newer_page' : newer_page,
@@ -577,9 +577,55 @@ class PageHandler(webapp.RequestHandler):
         self.do_page(int(pageno))
 
 # responds to /
-class IndexHandler(PageHandler):
+class IndexHandler(ArticlesHandler):
     def get(self):
         self.do_page(1)
+
+NOTES_PER_PAGE = 10
+# responds to /notes/(.*)
+class NotesHandler(webapp.RequestHandler):
+    def get(self, pageno):
+        pageno = (1 if len(pageno) == 0 else int(pageno))
+        articles_summary = get_articles_summary(tag="note")
+        articles_count = len(articles_summary)
+        pages_count = int(math.ceil(float(articles_count) / float(NOTES_PER_PAGE)))
+        if pageno > pages_count:
+            pageno = pages_count
+
+        first_article = (pageno - 1) * NOTES_PER_PAGE
+        last_article = first_article + NOTES_PER_PAGE
+        if last_article > articles_count:
+            last_article = articles_count
+        articles_summary = articles_summary[first_article:last_article]
+        articles_summary_set_tags_display(articles_summary, to_exclude=[NOTE_TAG])
+        no = 1
+        for article in articles_summary:
+            article_summary_gen_html_body(article)
+            article["no"] = no
+            no += 1
+        newer_page = None
+        if pageno > 1:
+            newer_page = { 'no' : pageno - 1 }
+        older_page = None
+        if pageno < pages_count:
+            older_page = { 'no' : pageno + 1 }
+
+        no_index = True  # don't index those pages
+
+        vals = {
+            'is_admin' : users.is_current_user_admin(),
+            'login_out_url' : get_login_logut_url("/notes/%d" % pageno),
+            'articles_summary' : articles_summary,
+            'articles_count' : articles_count,
+            'newer_page' : newer_page,
+            'older_page' : older_page,
+            'page_no' : pageno,
+            'pages_count' : pages_count,
+            'show_analytics' : show_analytics(),
+            'no_index' : no_index,
+        }
+        template_out(self.response, "tmpl/notes.html", vals)
+        
 
 # responds to /tag/${tag}
 class TagHandler(webapp.RequestHandler):
@@ -872,10 +918,12 @@ class Month(object):
     def add_article(self, article):
         self.articles.append(article)
 
-def articles_summary_set_tags_display(articles_summary):
+def articles_summary_set_tags_display(articles_summary, to_exclude=[]):
     for a in articles_summary:
         tags = a["tags"]
-        if tags:
+        for tag in to_exclude:
+            if tag in tags: tags.remove(tag)
+        if tags or len(tags) == 0:
             tags_urls = [url_for_tag(tag) for tag in tags]
             a['tags_display'] = ", ".join(tags_urls)
         else:
@@ -1152,7 +1200,8 @@ def main():
         ('/index.html', IndexHandler),
         ('/archives.html', ArchivesHandler),
         ('/article/(.*)', ArticleHandler),
-        ('/page/(.*)', PageHandler),
+        ('/notes/(.*)', NotesHandler),
+        ('/articles/(.*)', ArticlesHandler),
         # /kb/ and /blog/ are for redirects from old website
         ('/kb/(.*)', ArticleHandler),
         ('/blog/(.*)', ArticleHandler),

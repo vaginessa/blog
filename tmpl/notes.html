@@ -54,6 +54,28 @@ $(document).ready(function(){
   font-weight: bold;
 }
 
+.title {
+  font-weight: bold;
+  font-size: 100%;
+}
+
+.postmeta {
+  font-size: 80%;
+}
+
+.onenote {
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  padding-left: 6px;
+  background-color: #eee;
+  margin-bottom: 8px;
+  padding-top: 4px;
+}
+
+.onenote h1, .onenote h2, .onenote h3 {
+  font-size: 90%;
+}
+
 </style>
 </head>
 
@@ -86,53 +108,13 @@ $(document).ready(function(){
         <input type="hidden" name="IncludeBlogs" value="1">
         <input type="hidden" name="as_sitesearch" value="http://blog.kowalczyk.info">
         <input size=36 type="text" style="font-size: 90%;" name="q" id="searchFieldId">
-      </form>
+      </form><br>
+      {% if not is_admin %} <a id="login_id" class="invisible" onMouseOver="showById('login_id');" onMouseOut="hideById('login_id');" href="{{ login_out_url }}">login</a>
+      {% endif %}
     </center>
-
+  
+    {% if is_admin %}
     <div id="navarea" style="border: 1px solid #CCC; padding: 6px; margin-top: 8px;">
-  
-      <div class="sidebarhdr">My software</div>
-      <div style="margin-left: 6px">
-        <a href="http://www.yepi.ws/fotofi/free-stock-photos">Fotofi</a>
-        <div class="smaller">Find free stock photos</div>
-        <a href="/software/sumatrapdf/free-pdf-reader.html">SumatraPDF</a>
-        <div class="smaller">PDF Reader for Windows</div>
-        <a href="/software/vack/">VisualAck</a>
-        <div class="smaller">Visual grep for Mac</div>
-        <a href="/software/fofou/">fofou</a>
-        <div class="smaller">Forum software for App Engine</div>
-        <div class="l"><a href="/static/software.html">more...</a></div>
-      </div>
-      <br>
-  
-      <div class="sidebarhdr">My documents</div>
-      <div style="margin-left: 6px">
-        <div><a href="/articles/cocoa-reference.html">Cocoa reference</a></div>
-        <div class="l"><a href="/articles/pqr26/pqr26.html">Python reference</a></div>
-        <div class="l"><a href="/articles/jsref.html">JavaScript reference</a></div>
-        <div class="l"><a href="/static/documents.html">more...</a></div>
-      </div>
-      <br>
-  
-      <div class="sidebarhdr">Me {% if not is_admin %} <a id="login_id" class="invisible" onMouseOver="showById('login_id');" onMouseOut="hideById('login_id');" href="{{ login_out_url }}">login</a>
-      {% endif %}</div>
-      <div style="margin-left: 6px">
-        <script>
-          var email = "kkowalczyk";
-          email += "@";
-          email += "gmail.com"
-          hyperlink = '<a href="mailto:em">em</a>';
-          hyperlink = hyperlink.replace(/em/g, email);
-          document.write(hyperlink);
-        </script>
-        <br>
-        <div class="l"><a href="http://github.com/kjk">github.com/kjk</a></div>
-        <div class="l"><a href="http://code.google.com/u/kkowalczyk/">code.google.com/u/kkowalczyk</a></div>
-        <div class="l"><a href="http://twitter.com/kjk">twitter.com/kjk</a></div>
-      </div>
-  
-      {% if is_admin %}
-      <br>
       <div class="sidebarhdr">Admin actions</div>
       <div style="margin-left: 6px">
         <div><a href="{{ login_out_url }}">log out</a></div>
@@ -140,44 +122,36 @@ $(document).ready(function(){
         <div class="l"><a href="/app/edit?note=yes">new note</a></div>
         <div class="l"><a href="/app/showprivate">show private</a></div>
       </div>
-      {% endif %}
-  
     </div>
+    {% endif %}  
   </div>
 
   <div id="post" style="margin-left: 18px; margin-top:12px;">
     {% for article in articles_summary %}
 
-    <table>
-      <tr>
-        <td style="background: lightgray; width=4px"></td>
-        <td>
-          <div onMouseOver="showById('article_{{ article.no }}');" onMouseOut="hideById('article_{{ article.no }}');">
-            <a href="/{{ article.permalink }}" class="title">{{ article.title|escape }}</a>
-            {% if not article.is_public %} &nbsp;<font style="color: red;">private</font> {% endif %}
-            {% if is_admin %}&nbsp;
+    <div class="onenote">
+      <a href="/{{ article.permalink }}" class="title">{{ article.title|escape }}</a>
+      <span class="postmeta nowrap">
+        {{ article.published_on|date:"M d Y" }}
+        {% if article.tags_display %}
+         &bull; <a href="/tag/" class="taglink">Tags</a>: {{ article.tags_display }}
+        {% endif %}
+        {% if not article.is_public %} &nbsp;<font style="color: red;">private</font> {% endif %}
+        {% if is_admin %}
+          <span onMouseOver="showById('article_{{ article.no }}');" onMouseOut="hideById('article_{{ article.no }}');">
             <a id="article_{{ article.no }}" class="invisible" href="/app/edit?article_permalink={{ article.permalink }}">edit</a>
-            {% endif %}
-          </div>
-          <div class="postmeta nowrap">
-            {{ article.published_on|date:"M d Y" }}
-            {% if article.tags_display %}
-             &bull; <a href="/tag/" class="taglink">Tags</a>: {{ article.tags_display }}
-            {% endif %}
-          </div>
-        </td>
-      </tr>
-    </table>
+          </span>
+        {% endif %}
+      </span>
 
-
-    {{ article.html_body }}
-    <br>
+      {{ article.html_body }}
+    </div>
     {% endfor %}
   </div>
 
 <center class="postmeta" style="margin-bottom: 12px;">
 {% if newer_page %}
-<a title="page {{ newer_page.no }}" href="/articles/{{ newer_page.no }}">← newer</a>
+<a title="page {{ newer_page.no }}" href="/notes/{{ newer_page.no }}">← newer</a>
 {% else %}
 ← newer
 {% endif %}
@@ -187,7 +161,7 @@ $(document).ready(function(){
 &bull;
 
 {% if older_page %}
-<a title="page{{ older_page.no }}" href="/articles/{{ older_page.no }}">older →</a>
+<a title="page{{ older_page.no }}" href="/notes/{{ older_page.no }}">older →</a>
 {% else %}
 older →
 {% endif %}
