@@ -96,7 +96,7 @@ $(document).ready(function(){
             <td>
             <a href="/{{ article.permalink }}">{{ article.title }}</a>
             {% if article.tags_display %}
-              ({{ article.tags_display }})
+              <span class="taglink">tags:</span> {{ article.tags_display }}
             {% endif %}
 
             {% if article.is_deleted %}
