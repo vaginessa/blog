@@ -19,6 +19,9 @@ function myInit() {
 	var html = "<a href='" + sumLatestUrl + "'>" + sumLatestName + "</a>";
 	$("url").innerHTML = html;
 	$("buildtime").innerHTML = sumBuiltOn;
+	var name = sumLatestDbgUrl.split("/")[4];
+	html = "<a href='" + sumLatestDbgUrl + "'>" + name + "</a>";
+	$("urldbg").innerHTML = html;
 }
 window.onload = myInit;
 
@@ -34,6 +37,7 @@ not redistribute.
 <p>Latest SumatraPDF pre-release version is 
 <span id="url"></span>, built on <span id="buildtime"></span>.
 </p>
+<p>Debug build is: <span id="urldbg"></span>.
 
 <script type="text/javascript">
   var _gaq = _gaq || [];
