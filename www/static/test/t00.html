@@ -15,12 +15,14 @@ function draw() {
 	//ctx.strokeStyle = "rgb(0,255,0)";
 
 	ctx.beginPath();
-	ctx.arc(128,128,100,0,Math.PI*2,true);
-	ctx.fillStyle = "rgba(12,12,12,0.6)";
+
 	ctx.shadowOffsetX = 0.0;
 	ctx.shadowOffsetY = 4.0;
 	ctx.shadowBlur = 12.0;
 	ctx.shadowColor = "rgba(0,0,0,0.9)";
+
+	ctx.arc(128,128,100,0,Math.PI*2,true);
+	ctx.fillStyle = "rgba(12,12,12,1.0)";
 	ctx.fill();
 
 	//var lg1 = ctx.createLinearGradient();
