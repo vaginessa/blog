@@ -98,3 +98,5 @@ skip_files:
 - ^scripts/.*
 - ^extremeoptimizations/.*
 - ^(.*/)?todo\.txt
+- ^bulkloader-log*
+- ^bulkloader-progress*
