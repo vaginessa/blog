@@ -48,49 +48,70 @@ $(document).ready(function(){
 
 <div id="content">
 
-<div id="post" style="margin-top:16px;">
-  <table>
-  <tr>
-    <td valign=top>
-      <div class="postmeta" style="margin-left:12px; margin-right:12px">
-        <center class="nowrap">{{ article.published_on|date:"M d" }}</center>
-        <center>{{ article.published_on|date:"Y" }}</center>
-        <center>
-        {% if not is_admin %} <a id="login_id" class="invisible" onMouseOver="showById('login_id');" onMouseOut="hideById('login_id');" href="{{ login_out_url }}">login</a>
-        {% endif %}</center>
-        </div>
-    </td>
-
-    <td valign=top>
-      <table>
-        <tr>
-          <td style="background: lightgray; width=4px"></td>
-          <td>
-            <h1 style="display:inline;">
-              <span class="title" style="font-size:13pt;">
-              {{ article.title|escape }}
-              {% if not article.is_public %}
-                &nbsp;<font color="red">private</font>
-              {% endif %}
-              </span>
-            </h1>
-            {% if tags_display %}
-              <div><a href="/tag/" class="taglink">Tags</a>: {{ tags_display }}</div>
-            {% endif %}
-          </td>
-        </tr>
-      </table>
-
-      <div style="margin-right:48px;">
-      {{ article.html_body }}
+  {% if is_admin %}
+  <div style="float: right; margin-right: 12px; margin-left: 12px; font-size: 80%">
+    <div id="navarea" style="border: 1px solid #CCC; padding: 6px; margin-top: 0px;">
+      <div class="sidebarhdr">Admin actions</div>
+      <div style="margin-left: 6px">
+        <div><a href="{{ login_out_url }}">log out</a></div>
+        <div><a href="/app/edit?article_id={{ article.key.id }}">edit</a></div>
+        <div class="l"><a href="/app/edit">new blog post</a></div>
+        <div class="l"><a href="/app/edit?note=yes">new note</a></div>
+        {% if article.is_deleted %}
+        <div class="l"><a href="/app/undelete?article_id={{ article.key.id }}">undelete</a></div>
+        {% else %}
+        <div class="l"><a href="/app/delete?article_id={{ article.key.id }}">delete</a></div>
+        {% endif %}
+        <div class="l"><a href="/app/permanentdelete?article_id={{ article.key.id }}">permanent delete</a></div>
+        <div class="l"><a href="/app/showprivate">show private</a></div>
+        <div class="l"><a href="/app/showdeleted">show deleted</a></div>
       </div>
-    </td>
-  </tr>
-  </table>
+    </div>
+  </div>
+  {% endif %}
 
-</div>
+  <div id="post" style="margin-top:16px;">
+    <table>
+    <tr>
+      <td valign=top>
+        <div class="postmeta" style="margin-left:12px; margin-right:12px">
+          <center class="nowrap">{{ article.published_on|date:"M d" }}</center>
+          <center>{{ article.published_on|date:"Y" }}</center>
+          <center>
+          {% if not is_admin %} <a id="login_id" class="invisible" onMouseOver="showById('login_id');" onMouseOut="hideById('login_id');" href="{{ login_out_url }}">login</a>
+          {% endif %}</center>
+          </div>
+      </td>
 
-<center class="postmeta" style="margin-bottom: 12px;">
+      <td valign=top>
+        <table>
+          <tr>
+            <td style="background: lightgray; width=4px"></td>
+            <td>
+              <h1 style="display:inline;">
+                <span class="title" style="font-size:13pt;">
+                {{ article.title|escape }}
+                {% if not article.is_public %}
+                  &nbsp;<font color="red">private</font>
+                {% endif %}
+                </span>
+              </h1>
+              {% if tags_display %}
+                <div><a href="/tag/" class="taglink">Tags</a>: {{ tags_display }}</div>
+              {% endif %}
+            </td>
+          </tr>
+        </table>
+
+        <div style="margin-right:48px;">
+        {{ article.html_body }}
+        </div>
+      </td>
+    </tr>
+    </table>
+  </div>
+
+  <center class="postmeta" style="margin-bottom: 12px;">
     {% if next_article %}
     <a title="{{ next_article.title|escape }}" href="/{{ next_article.permalink}}">← newer</a>
     {% else %}
@@ -104,26 +125,7 @@ $(document).ready(function(){
     {% else %}
     older →
     {% endif %}
-</center>
-
-{% if is_admin %}
-    <center style="font-size: 90%; background: #ddd">
-        <a href="{{ login_out_url }}">Log out</a> &bull;
-        <a href="/app/edit?article_id={{ article.key.id }}">Edit</a> &bull;
-        <a href="/app/edit">New</a> &bull;
-        <a href="/app/edit?note=yes">New note</a> &bull;
-        {% if article.is_deleted %}
-         <a href="/app/undelete?article_id={{ article.key.id }}">Undelete</a> &bull;
-         {% else %}
-         <a href="/app/delete?article_id={{ article.key.id }}">Delete</a> &bull;
-        {% endif %}
-        <a href="/app/permanentdelete?article_id={{ article.key.id }}">Permanent delete</a> &bull;
-        Show:
-        <a href="/app/showprivate">private</a>&nbsp;
-        <a href="/app/showdeleted">deleted</a>
-    </center>
-    <br>
-{% endif %}
+  </center>
 
 <!--
 <center>
