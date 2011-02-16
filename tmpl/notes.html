@@ -16,8 +16,8 @@
 function articlesJsonLoaded(articlesJson) {
   articles_json = articlesJson;
 
-  //var html = genTagCloudHtml();
-  //$('#tagCloud').html(html);
+  var html = genTagCloudHtml2();
+  $('#tagCloud').html(html);
 }
 
 $(document).ready(function(){
@@ -70,6 +70,7 @@ $(document).ready(function(){
   border: 1px solid #ccc;
   border-radius: 3px;
   padding-left: 6px;
+  padding-right: 6px;
   background-color: #eee;
   margin-bottom: 8px;
   padding-top: 4px;
@@ -117,8 +118,8 @@ $(document).ready(function(){
     {% endif %}
   -->
 
+    <div id="navarea" style="border: 1px solid #CCC; padding: 6px; margin-top: 0px;">
     {% if is_admin %}
-    <div id="navarea" style="border: 1px solid #CCC; padding: 6px; margin-top: 8px;">
       <div class="sidebarhdr">Admin actions</div>
       <div style="margin-left: 6px">
         <div><a href="{{ login_out_url }}">log out</a></div>
@@ -126,8 +127,13 @@ $(document).ready(function(){
         <div class="l"><a href="/app/edit?note=yes">new note</a></div>
         <div class="l"><a href="/app/showprivate">show private</a></div>
       </div>
-    </div>
+      <br>
     {% endif %}  
+      <div class="sidebarhdr">Tags:</div>
+      <div style="margin-left: 6px; max-width:180px">
+        <span id="tagCloud"></span>
+      </div>
+    </div>
   </div>
 
   <div id="post" style="margin-left: 18px; margin-top:12px;">
