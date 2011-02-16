@@ -22,13 +22,13 @@ function tagUrl(url, tag, count) {
   return span(a(url, tag) + ' ' + span('(' + count + ')', "light"), "nowrap") + ' ';
 }
 
-function genTagCloudHtml() {
+function tagUrl2(url, tag, count) {
+  return span(a(url, tag) + ' ' + span(count, "light"), "nowrap") + ' ';
+}
+
+function build_tags_hash() {
   var all_tags = {};
-  var all_tags_arr = [];
-  var tag, tags;
-  var tag_count;
-  var i, j;
-  var lines = [];
+  var tags, i, j, tag_count;
 
   for (i=0; i < articles_json.length; i++) {
     tags = articles_json[i][TAGS_IDX];
@@ -43,6 +43,11 @@ function genTagCloudHtml() {
       all_tags[tag] = tag_count;
     }
   }
+  return all_tags;
+}
+
+function sort_tags(all_tags) {
+  var all_tags_arr = [], tag;
 
   for (tag in all_tags) {
     all_tags_arr.push(tag);
@@ -56,12 +61,36 @@ function genTagCloudHtml() {
       if (a < b) 
          return -1 
       return 0; 
-    });
+  });
+  return all_tags_arr;  
+}
+
+function genTagCloudHtml() {
+  var tag, tags, tag_count;
+  var tags = build_tags_hash();
+  var tags_arr = sort_tags(tags);
+
+  var lines = [];
   lines.push(tagUrl("/archives.html", "all", articles_json.length));
-  for (i = 0; i < all_tags_arr.length; i++) {
-    tag = all_tags_arr[i];
-    tag_count = all_tags[tag];
+  for (var i = 0; i < tags_arr.length; i++) {
+    tag = tags_arr[i];
+    tag_count = tags[tag];
     lines.push(tagUrl("/tag/" + tag, tag, tag_count));
+  }
+  return lines.join("");  
+}
+
+function genTagCloudHtml2() {
+  var tag, tags, tag_count;
+  var tags = build_tags_hash();
+  var tags_arr = sort_tags(tags);
+
+  var lines = [];
+  lines.push(tagUrl2("/archives.html", "all", articles_json.length));
+  for (i = 0; i < tags_arr.length; i++) {
+    tag = tags_arr[i];
+    tag_count = tags[tag];
+    lines.push(tagUrl2("/tag/" + tag, tag, tag_count));
   }
   return lines.join("");
 }
