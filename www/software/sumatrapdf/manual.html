@@ -62,6 +62,8 @@ table.shortcuts {
         <td valign="top">
           <table class="shortcuts">
             <tr><td colspan="2" align="center"><b>Navigation</b></td></tr>
+            <tr><td align="right"><b>right mouse button</b></td> 
+                <td>&nbsp;scroll</td></tr>
             <tr><td align="right"><b>j/k, Up/Down</b></td> 
                 <td>&nbsp;scroll up/down by line</td></tr>
             <tr><td align="right"><b>space</b></td>
@@ -157,8 +159,12 @@ table.shortcuts {
         <td>&nbsp;open PDF at a specified named destination</td></tr>
       <tr><td align="right"><b>-lang $language</b></td>
         <td>&nbsp;set user interface language. $language is a two-letter language code e.g. "en", "de"</td></tr>
+
+<!--
       <tr><td align="right"><b>-title $title</b></td>
         <td>&nbsp;set the window title</td></tr>
+-->
+
       <tr><td align="right"><b>-restrict</b></td>
         <td>&nbsp;run in <a href="#manual-restricted">restricted mode</a>.</td></tr>
       <tr><td align="right"><b>-reuse-instance</b></td>
@@ -200,6 +206,42 @@ table.shortcuts {
         to integrate with Sumatra's preview functionality.
     </p>
 
+    <h2 id="manual-browser-plugin">Browser plugin</h2>
+    <p>The "full installer" version includes a browser plugin for Firefox, Chrome
+      and Opera (Internet Explorer is not supported). It's not installed by default
+      so you have to use installer's options button to install it.</p>
+    <p>You might need to configure the browser too: enable Sumatra's PDF
+       plugin and disable PDF plugin from other programs.</p>
+
+    <p><b>Firefox</b></p>
+    <p>You need to disable PDF plugins from other programs (e.g. Adobe Reader
+      of Foxit) if you have them installed. Use <b>Tools/Add-ons</b> menu.
+      Switch to <b>Plugins</b> tab, enable Sumatra PDF plugin and disable
+      other PDF plugins.</p>
+
+    <p><b>Known issues with Firefox plugin</b></p>
+    <p>In some  cases (if Foxit plugin is also already installed) Sumatra's plugin
+    will not work even if other plugins are enabled. This issue was fixed
+    in Firefox 4.0</p>
+
+    <p><b>Chrome</b></p>
+    <p>Newer version of Chrome have a PDF plugin built-in. If you want to use
+    Sumatra's plugin, you need to disable Chrome's plugin (and potentially
+    plugins from other apps like Adobe Reader or FoxIt).<p>
+    <p>Type <b>about:plugins</b> in the address bar, make sure to enable
+    Sumatra PDF plugin and disable other PDF plugins.</p>
+
+    <p><b>Opera</b></p>
+    <ol>
+    <li>Run Opera and hit CTRL + F12</li>
+    <li>Choose Advanced tab</li>
+    <li>From the list on the left choose Downloading or so (that is between the Fonts and Programs - I my GUI is not in English)</li>
+    <li>In the middle box find "application/pdf" and Click "Edit" on the right</li>
+    <li>Enable "Use the plugin at the bottom" and choose "SumatraPDF Browser Plugin"</li>
+    <li>Click "OK" and then "OK". Restart Opera</li>
+    </ol>
+
+
     <h2 id="manual-restricted">Running in restricted mode</h2>
     <p>A restricted mode is useful if you want to use SumatraPDF as a bundled viewer
     for your program's documentation or in kiosk mode. In restricted mode some actions
@@ -233,6 +275,7 @@ table.shortcuts {
 
     <p>Editing interactive forms and adding comments is not implemented.</p>
 
+<!--
     <h2 id="manual-browser">Disable viewing PDF files directly in web browser (IE and Firefox)</h2>
     Adobe Acrobat also comes with Internet Explorer and Firefox plugin
     which makes it take over PDF files downloaded via browser and display
@@ -254,6 +297,7 @@ table.shortcuts {
     Clicking on links to PDF documents should no longer open the
     embedded viewer but pop up a dialog box. Select "Always perform this
     action..." checkbox if you want Sumatra to automatically open those PDF files.</p>
+-->
 <!-- link no longer seems to work
     <p>If those instructions don't work, you can always try <a href="http://howto.helpero.com/howto/Disable-PDF-Browser-Plugin-For-Firefox_29.html">this method.</a></p>
 -->
