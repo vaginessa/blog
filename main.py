@@ -1156,8 +1156,12 @@ class CrashDelete(webapp.RequestHandler):
         if not can_view_crash_reports():
             return require_login(self)
         report = db.get(db.Key.from_path('CrashReports', int(key)))
+        for_sumatra = (report.app_name == "SumatraPDF")
         report.delete()
-        self.redirect("/app/crashes/")
+        if for_sumatra:
+            self.redirect("/app/sumatracrashes/")
+        else:
+            self.redirect("/app/crashes/")
 
 class Crashes(webapp.RequestHandler):
     def list_recent(self, for_sumatra):
