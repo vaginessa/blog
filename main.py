@@ -1151,6 +1151,10 @@ class CrashSubmit(webapp.RequestHandler):
             subject=subject,
             body=body)
 
+def crash_list_url(for_sumatra):
+    if for_sumatra: return "/app/sumatracrashes/"
+    return "/app/crashes/"
+
 class CrashDelete(webapp.RequestHandler):
     def get(self, key):
         if not can_view_crash_reports():
@@ -1158,10 +1162,7 @@ class CrashDelete(webapp.RequestHandler):
         report = db.get(db.Key.from_path('CrashReports', int(key)))
         for_sumatra = (report.app_name == "SumatraPDF")
         report.delete()
-        if for_sumatra:
-            self.redirect("/app/sumatracrashes/")
-        else:
-            self.redirect("/app/crashes/")
+        self.redirect(crash_list_url(for_sumatra))
 
 class Crashes(webapp.RequestHandler):
     def list_recent(self, for_sumatra):
@@ -1182,11 +1183,12 @@ class Crashes(webapp.RequestHandler):
         }
         template_out(self.response, "tmpl/recent_crash_reports.html", tvals)
 
-    def show_report(self, report):
+    def show_report(self, report, for_sumatra):
         self.response.headers['Content-Type'] = 'text/html'
         self.response.out.write(CRASH_REPORT_HTML_START)
         s = unicode(report.data, 'utf-8-sig')
-        self.response.out.write("<h1>Crash report from %s</h1>" % report.app_name)
+        allurl = crash_list_url(for_sumatra)
+        self.response.out.write("<h1><a href='%s'>All</a> : Crash report for %s from ip %s</h1>" % (allurl, report.app_name, report.ip_addr))
         self.response.out.write('\n<pre>\n')
         s = cgi.escape(s.strip())
         self.response.out.write(s)
@@ -1202,7 +1204,7 @@ class Crashes(webapp.RequestHandler):
         ip_addr = os.environ['REMOTE_ADDR']
         if ip_addr != report.ip_addr and not can_view_crash_reports(for_sumatra):
             return require_login(self)
-        self.show_report(report)
+        self.show_report(report, for_sumatra)
 
 def main():
     mappings = [
