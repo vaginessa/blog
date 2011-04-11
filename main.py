@@ -1202,6 +1202,7 @@ class Crashes(webapp.RequestHandler):
         
         report = db.get(db.Key.from_path('CrashReports', int(key)))
         ip_addr = os.environ['REMOTE_ADDR']
+        if report.app_name == 'SumatraPDF': for_sumatra = True
         if ip_addr != report.ip_addr and not can_view_crash_reports(for_sumatra):
             return require_login(self)
         self.show_report(report, for_sumatra)
