@@ -1085,13 +1085,15 @@ class ForumRssRedirect(webapp.RequestHandler):
     def get(self):
         return self.redirect("", True)
 
-def user_is_admin():
-    user = users.get_current_user()
-    if user is None: return False
-    if users.is_current_user_admin(): return True
-    return False
+def user_is_admin(): return users.is_current_user_admin()
 
-def can_view_crash_reports(): return user_is_admin()
+def user_is_zeniko():
+    user = users.get_current_user()
+    return user != None and user.email() == "zeniko@gmail.com"
+
+def can_view_crash_reports(for_sumatra=False):
+    if user_is_admin(): return True
+    if for_sumatra: return user_is_zeniko()
 
 def require_login(handler):
     handler.response.headers['Content-Type'] = 'text/html'
@@ -1150,20 +1152,28 @@ class CrashSubmit(webapp.RequestHandler):
             subject=subject,
             body=body)
 
+def crash_list_url(for_sumatra):
+    if for_sumatra: return "/app/sumatracrashes/"
+    return "/app/crashes/"
+
 class CrashDelete(webapp.RequestHandler):
     def get(self, key):
         if not can_view_crash_reports():
             return require_login(self)
         report = db.get(db.Key.from_path('CrashReports', int(key)))
+        for_sumatra = (report.app_name == "SumatraPDF")
         report.delete()
-        self.redirect("/app/crashes/")
+        self.redirect(crash_list_url(for_sumatra))
 
 class Crashes(webapp.RequestHandler):
-    def list_recent(self):
-        if not can_view_crash_reports():
+    def list_recent(self, for_sumatra):
+        if not can_view_crash_reports(for_sumatra):
             return require_login(self)
-        MAX = 25
-        reports = CrashReports.gql("ORDER BY created_on DESC").fetch(MAX)
+        MAX = 50
+        if for_sumatra:
+            reports = CrashReports.gql("WHERE app_name = 'SumatraPDF' ORDER BY created_on DESC").fetch(MAX)
+        else:
+            reports = CrashReports.gql("WHERE app_name != 'SumatraPDF' ORDER BY app_name, created_on DESC").fetch(MAX)
         user_email = None
         user = users.get_current_user()
         if user: user_email = user.email()
@@ -1174,11 +1184,12 @@ class Crashes(webapp.RequestHandler):
         }
         template_out(self.response, "tmpl/recent_crash_reports.html", tvals)
 
-    def show_report(self, report):
+    def show_report(self, report, for_sumatra):
         self.response.headers['Content-Type'] = 'text/html'
         self.response.out.write(CRASH_REPORT_HTML_START)
         s = unicode(report.data, 'utf-8-sig')
-        self.response.out.write("<h1>Crash report from %s</h1>" % report.app_name)
+        allurl = crash_list_url(for_sumatra)
+        self.response.out.write("<h1><a href='%s'>All</a> : Crash report for %s from ip %s</h1>" % (allurl, report.app_name, report.ip_addr))
         self.response.out.write('\n<pre>\n')
         s = cgi.escape(s.strip())
         self.response.out.write(s)
@@ -1186,14 +1197,16 @@ class Crashes(webapp.RequestHandler):
         self.response.out.write("</body></html>")
 
     def get(self, key):
+        for_sumatra = (-1 != self.request.url.find("/app/sumatracrashes/"))
         if 0 == len(key):
-            return self.list_recent()
-
+            return self.list_recent(for_sumatra)
+        
         report = db.get(db.Key.from_path('CrashReports', int(key)))
         ip_addr = os.environ['REMOTE_ADDR']
-        if ip_addr != report.ip_addr and not can_view_crash_reports():
+        if report.app_name == 'SumatraPDF': for_sumatra = True
+        if ip_addr != report.ip_addr and not can_view_crash_reports(for_sumatra):
             return require_login(self)
-        self.show_report(report)
+        self.show_report(report, for_sumatra)
 
 def main():
     mappings = [
@@ -1224,6 +1237,7 @@ def main():
         ('/app/cleanhtml', CleanHtmlHandler),
         ('/app/clearmemcache', ClearMemcacheHandler),
         ('/app/crashsubmit', CrashSubmit),
+        ('/app/sumatracrashes/(.*)', Crashes),
         ('/app/crashes/(.*)', Crashes),
         ('/app/crashdelete/(.*)', CrashDelete),
         ('/(.*)', NotFoundHandler)
