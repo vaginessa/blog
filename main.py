@@ -105,6 +105,7 @@ def encode_code(text):
 def txt_cookie(txt): return sha.new(txt.encode("utf-8")).hexdigest()
 
 def my_hostname():
+    # TODO: handle https as well
     h = "http://" + os.environ["SERVER_NAME"];
     port = os.environ["SERVER_PORT"]
     if port != "80":
