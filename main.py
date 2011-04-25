@@ -1085,15 +1085,12 @@ class ForumRssRedirect(webapp.RequestHandler):
     def get(self):
         return self.redirect("", True)
 
-def user_is_admin(): return users.is_current_user_admin()
-
 def user_is_zeniko():
-    user = users.get_current_user()
-    return user != None and user.email() == "zeniko@gmail.com"
+    return users.get_current_user() and users.get_current_user().email() == "zeniko@gmail.com"
 
-def can_view_crash_reports(for_sumatra=False):
-    if user_is_admin(): return True
-    if for_sumatra: return user_is_zeniko()
+def can_view_crash_reports(app=""):
+    if users.is_current_user_admin(): return True
+    if app == "SumatraPDF": return user_is_zeniko()
 
 def require_login(handler):
     handler.response.headers['Content-Type'] = 'text/html'
@@ -1105,32 +1102,16 @@ def require_login(handler):
     else:
         handler.response.out.write("<html><body>You need to <a href=\"%s\">log in</a>. </body></html>" % users.create_login_url(url))
 
+crash_valid_apps = ["SumatraPDF", "VisualAck"]
+
 # Stores crash reports from apps
 class CrashReports(db.Model):
     created_on = db.DateTimeProperty(required=True, auto_now_add=True)
     ip_addr = db.StringProperty(required=True)
     app_name = db.StringProperty(required=True)
+    app_ver = db.StringProperty()
+    crashing_line = db.StringProperty()
     data = db.BlobProperty(required=True) # in utf-8 with signature
-
-CRASH_REPORT_HTML_START = """
-<html>
-<head>
-  <title>Crash reports</title>
-  <style type="text/css">
-    body {
-        font-family: verdana, arial, sans-serif;
-        font-size: 11px;
-        color: #2c3034;
-        background: #eee;
-        margin: 0;
-        padding: 30px;
-        border-top: 5px solid #117700;
-    }
-  </style>
-</head>
-
-<body>
-"""
 
 EMAIL_FROM = "kkowalczyk@gmail.com"
 CRASH_REPORT_NOTIFICATION_EMAIL_TO = ["kkowalczyk@gmail.com"]
@@ -1152,8 +1133,8 @@ class CrashSubmit(webapp.RequestHandler):
             subject=subject,
             body=body)
 
-def crash_list_url(for_sumatra):
-    if for_sumatra: return "/app/sumatracrashes/"
+def crash_list_url(app):
+    if app and len(app) > 0: return "/app/crashes/" + app
     return "/app/crashes/"
 
 class CrashDelete(webapp.RequestHandler):
@@ -1161,52 +1142,55 @@ class CrashDelete(webapp.RequestHandler):
         if not can_view_crash_reports():
             return require_login(self)
         report = db.get(db.Key.from_path('CrashReports', int(key)))
-        for_sumatra = (report.app_name == "SumatraPDF")
         report.delete()
-        self.redirect(crash_list_url(for_sumatra))
+        self.redirect(crash_list_url(report.app_name))
+
+class CrashShow(webapp.RequestHandler):
+    def get(self, key):
+        report = db.get(db.Key.from_path('CrashReports', int(key.strip())))
+        ip_addr = os.environ['REMOTE_ADDR']
+        if ip_addr != report.ip_addr and not can_view_crash_reports(report.app_name):
+            return require_login(self)
+        tvals = {
+            'all_url' : crash_list_url(report.app_name),
+            'report' : report,
+            'report_body' : unicode(report.data, 'utf-8-sig').strip()
+        }
+        template_out(self.response, "tmpl/crash_report.html", tvals)
 
 class Crashes(webapp.RequestHandler):
-    def list_recent(self, for_sumatra):
-        if not can_view_crash_reports(for_sumatra):
+    def show_index(self):
+        if not can_view_crash_reports(True):
+            return require_login(self)
+        tvals = {
+            'apps' : crash_valid_apps
+        }
+        template_out(self.response, "tmpl/crash_reports_index.html", tvals)
+
+    def list_recent(self, app_name):
+        if not can_view_crash_reports(app_name):
             return require_login(self)
         MAX = 50
-        if for_sumatra:
-            reports = CrashReports.gql("WHERE app_name = 'SumatraPDF' ORDER BY created_on DESC").fetch(MAX)
-        else:
-            reports = CrashReports.gql("WHERE app_name != 'SumatraPDF' ORDER BY app_name, created_on DESC").fetch(MAX)
+        reports = CrashReports.gql("WHERE app_name = '%s' ORDER BY created_on DESC" % app_name).fetch(MAX)
         user_email = None
         user = users.get_current_user()
         if user: user_email = user.email()
         tvals = {
             'reports' : reports,
             'user_email' : user_email,
-            'logout_url' : users.create_logout_url(self.request.url)
+            'logout_url' : users.create_logout_url(self.request.url),
+            'app_name' : app_name
         }
-        template_out(self.response, "tmpl/recent_crash_reports.html", tvals)
-
-    def show_report(self, report, for_sumatra):
-        self.response.headers['Content-Type'] = 'text/html'
-        self.response.out.write(CRASH_REPORT_HTML_START)
-        s = unicode(report.data, 'utf-8-sig')
-        allurl = crash_list_url(for_sumatra)
-        self.response.out.write("<h1><a href='%s'>All</a> : Crash report for %s from ip %s</h1>" % (allurl, report.app_name, report.ip_addr))
-        self.response.out.write('\n<pre>\n')
-        s = cgi.escape(s.strip())
-        self.response.out.write(s)
-        self.response.out.write("\n</pre>")
-        self.response.out.write("</body></html>")
+        template_out(self.response, "tmpl/crash_reports_list.html", tvals)
 
     def get(self, key):
-        for_sumatra = (-1 != self.request.url.find("/app/sumatracrashes/"))
-        if 0 == len(key):
-            return self.list_recent(for_sumatra)
-        
-        report = db.get(db.Key.from_path('CrashReports', int(key)))
-        ip_addr = os.environ['REMOTE_ADDR']
-        if report.app_name == 'SumatraPDF': for_sumatra = True
-        if ip_addr != report.ip_addr and not can_view_crash_reports(for_sumatra):
-            return require_login(self)
-        self.show_report(report, for_sumatra)
+        # redirect the old version of this url
+        if -1 != self.request.url.find("/app/sumatracrashes/"):
+            return self.redirect("/app/crashes/SumatraPDF")
+        app_name = key.strip()
+        if app_name not in crash_valid_apps:
+            return self.show_index()
+        self.list_recent(app_name)
 
 def main():
     mappings = [
@@ -1239,6 +1223,7 @@ def main():
         ('/app/crashsubmit', CrashSubmit),
         ('/app/sumatracrashes/(.*)', Crashes),
         ('/app/crashes/(.*)', Crashes),
+        ('/app/crashshow/(.*)', CrashShow),
         ('/app/crashdelete/(.*)', CrashDelete),
         ('/(.*)', NotFoundHandler)
     ]

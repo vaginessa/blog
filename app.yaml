@@ -100,3 +100,5 @@ skip_files:
 - ^(.*/)?todo\.txt
 - ^bulkloader-log*
 - ^bulkloader-progress*
+- ^blogdata.dat
+

@@ -1,0 +1,37 @@
+<html>
+<head>
+  <title>Recent diagnostic reports</title>
+  <style type="text/css">
+    body, a {
+        font-family: monospace;
+    }
+    td { padding-left: 4px; padding-right: 4px; }
+  </style>
+</head>
+
+<body>
+  {% if user_email %}
+  	<p>Logged in as {{ user_email }}. <a href="{{ logout_url }}">Log out</a>.</p>
+	{% endif %}
+  {% if reports %}
+  <a href="/app/crashes/">All</a> : recent diagnostic reports {% if app_name %} for <b>{{ app_name }}</b>{% endif %}:
+  <p>
+  <table>
+    {% for r in reports %}
+      <tr>
+        <td><a href="/app/crashshow/{{ r.key.id }}">{{ r.key.id }}</a></td>
+        {% if not app_name %}
+        <td>{{ r.app_name }} {% if r.app_ver %} {{ r.app_ver }} {% endif %}</td>
+        {% endif %}
+        <td>{{ r.ip_addr }}</td>
+        <td>{{ r.created_on|timesince }}</td>
+        <td><a href="/app/crashdelete/{{ r.key.id }}">delete</a></td>
+      </tr>
+    {% endfor %}
+  </table>
+  </p>
+  {% else %}
+    There are no recent crash reports.
+  {% endif %}
+</body>
+</html>
