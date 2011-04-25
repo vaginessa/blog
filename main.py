@@ -1213,7 +1213,7 @@ class CrashSubmit(webapp.RequestHandler):
         crashreport.app_ver = extract_app_ver(app_name, crash_data)
         crashreport.crashing_line = extract_crashing_line(app_name, crash_data)
         crashreport.put()
-        report_url = my_hostname() + "/app/crashes/" + str(crashreport.key().id())
+        report_url = my_hostname() + "/app/crashshow/" + str(crashreport.key().id())
         self.response.out.write(report_url)
         s = unicode(crash_data, 'utf-8-sig')
         body = report_url + "\n" + s
