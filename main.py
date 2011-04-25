@@ -1260,18 +1260,6 @@ def update_report(r):
     #logging.info("updated report %s with app_ver: '%s', crashing_line: '%s'" % (str(r.key().id()), r.app_ver, r.crashing_line))
     return True
 
-# This should be only needed temporarily, until existing crash reports are converted
-def update_app_ver_and_crash_line(reports, app_name):
-    any_changed = False
-    for r in reports:
-        changed = update_report(r)
-        if changed:
-            any_changed = True
-
-    if any_changed:
-        reports = CrashReports.gql("WHERE app_name = '%s' ORDER BY created_on DESC" % app_name).fetch(MAX_REPORTS)
-    return reports
-
 class Crashes(webapp.RequestHandler):
     def show_index(self):
         if not can_view_crash_reports(True):
@@ -1290,7 +1278,6 @@ class Crashes(webapp.RequestHandler):
         if not can_view_crash_reports(app_name):
             return require_login(self)
         reports = CrashReports.gql("WHERE app_name = '%s' ORDER BY created_on DESC" % app_name).fetch(MAX_REPORTS)
-        reports = update_app_ver_and_crash_line(reports, app_name)
         shorten_crashing_lines(reports)
         user_email = None
         user = users.get_current_user()
