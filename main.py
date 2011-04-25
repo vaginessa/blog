@@ -1102,7 +1102,8 @@ def require_login(handler):
     else:
         handler.response.out.write("<html><body>You need to <a href=\"%s\">log in</a>. </body></html>" % users.create_login_url(url))
 
-crash_valid_apps = ["SumatraPDF", "VisualAck"]
+mac_apps = ["VisualAck"]
+crash_valid_apps = ["SumatraPDF"] + mac_apps
 
 # Stores crash reports from apps
 class CrashReports(db.Model):
@@ -1116,12 +1117,101 @@ class CrashReports(db.Model):
 EMAIL_FROM = "kkowalczyk@gmail.com"
 CRASH_REPORT_NOTIFICATION_EMAIL_TO = ["kkowalczyk@gmail.com"]
 
+def extract_sumatra_crashing_line(s):
+    # match for crash reports from SumatraPDF before 1.5.1
+    match = re.search("Fault address: (.+)", s)
+    if None == match:
+        # match for crash reports from SumatraPDF since 1.5.1
+        match = re.search("Faulting IP: (.+)", s)
+    if match:
+        parts = match.group(1).split(" ", 2)
+        if len(parts) == 3:
+            s = parts[2].strip()
+            if len(s) > 0: return s
+    return None
+
+def extract_crashing_line(app_name, s):
+    ver = None
+    if app_name == "SumatraPDF":
+        ver = extract_sumatra_crashing_line(s)
+    if ver is None: ver = ""
+    return ver
+
+def extract_sumatra_version(s):
+    match = re.search("Ver: (.+)", s)
+    if match:
+        v = match.group(1).strip()
+        if len(v) > 0: return v
+    return None
+
+def extract_mac_version(s):
+    match = re.search("Version:(.+)", s)
+    if match:
+        v = match.group(1).strip()
+        if len(v) > 0:
+            return v.split(" ", 1)[0]
+    return None
+
+def extract_app_ver(app_name, s):
+    if app_name == "SumatraPDF":
+        ver = extract_sumatra_version(s)
+    elif app_name in mac_apps:
+        ver = extract_mac_version(s)
+    if ver is None: ver = ""
+    return ver
+
+def shorten_module(s):
+    if s.startswith("libmupdf.dll") or s.startswith("sumatrapdf"):
+        parts = s.split("!", 1)
+        if len(parts) == 2: return parts[1]
+    return s
+
+def shorten_src_line(s):
+    for src_top_level_dir in ["baseutils\\", "mupdf\\", "ext\\", "src\\"]:
+        pos = s.rfind(src_top_level_dir)
+        if -1 != pos:
+            return s[pos:]
+    return s
+
+# Shortens a fault line in format:
+# sumatrapdf.exe!BencDict::Encode+0x74 c:\kjk\src\sumatrapdf-1.5\baseutils\bencutil.cpp+201
+# by:
+# 1. removing sumatrapdf.exe! part if it's our module (sumatrapdf*.exe or libmupdf.dll)
+# 2. removing leading path to source code ("c:\kjk\src\sumatrapdf-1.5\")
+def shorten_crashing_line(r):
+    s = r.crashing_line
+    if r.app_name != "SumatraPDF":
+        r.short_crashing_line = s
+        return
+    parts = s.split(" ", 1)
+    if len(parts) != 2:
+        r.short_crashing_line = s
+        return
+    module = shorten_module(parts[0])
+    if module != parts[0]:
+        r.short_crashing_line = s
+    src_line = shorten_src_line(parts[1])
+    #logging.info("%s => %s" % (parts[1], src_line))
+    r.short_crashing_line = module + " " + src_line
+
+def shorten_version(r):
+    s = r.app_ver or ""
+    r.short_app_ver = s.replace("pre-release ", "pre")
+
+
+def shorten_crashing_lines(reports):
+    for r in reports:
+        shorten_crashing_line(r)
+        shorten_version(r)
+
 class CrashSubmit(webapp.RequestHandler):
     def post(self):
         ip_addr = os.environ['REMOTE_ADDR']
         app_name = self.request.get("appname")
         crash_data = self.request.get("file")
         crashreport = CrashReports(ip_addr=ip_addr, app_name=app_name, data=crash_data)
+        crashreport.app_ver = extract_app_ver(app_name, crash_data)
+        crashreport.crashing_line = extract_crashing_line(app_name, crash_data)
         crashreport.put()
         report_url = my_hostname() + "/app/crashes/" + str(crashreport.key().id())
         self.response.out.write(report_url)
@@ -1158,11 +1248,40 @@ class CrashShow(webapp.RequestHandler):
         }
         template_out(self.response, "tmpl/crash_report.html", tvals)
 
+MAX_REPORTS = 50
+
+def update_report(r):
+    if (r.app_ver is not None) and (r.crashing_line is not None):
+        return False
+    crash_data = r.data
+    r.app_ver = extract_app_ver(r.app_name, crash_data)
+    r.crashing_line = extract_crashing_line(r.app_name, crash_data)
+    r.put()
+    #logging.info("updated report %s with app_ver: '%s', crashing_line: '%s'" % (str(r.key().id()), r.app_ver, r.crashing_line))
+    return True
+
+# This should be only needed temporarily, until existing crash reports are converted
+def update_app_ver_and_crash_line(reports, app_name):
+    any_changed = False
+    for r in reports:
+        changed = update_report(r)
+        if changed:
+            any_changed = True
+
+    if any_changed:
+        reports = CrashReports.gql("WHERE app_name = '%s' ORDER BY created_on DESC" % app_name).fetch(MAX_REPORTS)
+    return reports
+
 class Crashes(webapp.RequestHandler):
     def show_index(self):
         if not can_view_crash_reports(True):
             return require_login(self)
+        user_email = None
+        user = users.get_current_user()
+        if user: user_email = user.email()
         tvals = {
+            'user_email' : user_email,
+            'logout_url' : users.create_logout_url(self.request.url),
             'apps' : crash_valid_apps
         }
         template_out(self.response, "tmpl/crash_reports_index.html", tvals)
@@ -1170,8 +1289,9 @@ class Crashes(webapp.RequestHandler):
     def list_recent(self, app_name):
         if not can_view_crash_reports(app_name):
             return require_login(self)
-        MAX = 50
-        reports = CrashReports.gql("WHERE app_name = '%s' ORDER BY created_on DESC" % app_name).fetch(MAX)
+        reports = CrashReports.gql("WHERE app_name = '%s' ORDER BY created_on DESC" % app_name).fetch(MAX_REPORTS)
+        reports = update_app_ver_and_crash_line(reports, app_name)
+        shorten_crashing_lines(reports)
         user_email = None
         user = users.get_current_user()
         if user: user_email = user.email()

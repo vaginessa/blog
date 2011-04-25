@@ -5,7 +5,7 @@
     body, a {
         font-family: monospace;
     }
-    td { padding-left: 4px; padding-right: 4px; }
+    td { font-size:85%; padding-left: 4px; padding-right: 4px; }
   </style>
 </head>
 
@@ -23,7 +23,9 @@
         {% if not app_name %}
         <td>{{ r.app_name }} {% if r.app_ver %} {{ r.app_ver }} {% endif %}</td>
         {% endif %}
+        <td>{% if r.short_crashing_line %} {{ r.short_crashing_line }} {% endif %}</span> </td>
         <td>{{ r.ip_addr }}</td>
+        <td>{% if r.short_app_ver %} {{ r.short_app_ver }} {% endif %}</td>
         <td>{{ r.created_on|timesince }}</td>
         <td><a href="/app/crashdelete/{{ r.key.id }}">delete</a></td>
       </tr>
