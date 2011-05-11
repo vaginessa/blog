@@ -1209,8 +1209,11 @@ class CrashSubmit(webapp.RequestHandler):
         ip_addr = os.environ['REMOTE_ADDR']
         app_name = self.request.get("appname")
         crash_data = self.request.get("file")
-        crashreport = CrashReports(ip_addr=ip_addr, app_name=app_name, data=crash_data)
-        crashreport.app_ver = extract_app_ver(app_name, crash_data)
+        app_ver = extract_app_ver(app_name, crash_data)
+        # we no longer care about crashes from older versions
+        if app_ver in ["1.5", "1.5.1"]:
+                return
+        crashreport = CrashReports(ip_addr=ip_addr, app_name=app_name, data=crash_data, app_ver=app_ver)
         crashreport.crashing_line = extract_crashing_line(app_name, crash_data)
         crashreport.put()
         report_url = my_hostname() + "/app/crashshow/" + str(crashreport.key().id())
