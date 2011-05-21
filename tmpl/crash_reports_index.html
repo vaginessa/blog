@@ -1,0 +1,23 @@
+<html>
+<head>
+  <title>Recent diagnostic reports</title>
+  <style type="text/css">
+    body, a {
+        font-family: monospace;
+    }
+  </style>
+</head>
+
+<body>
+  {% if user_email %}
+    <p>Logged in as {{ user_email }}. <a href="{{ logout_url }}">Log out</a>.</p>
+  {% endif %}
+
+  See crash reports for:
+  <ul>
+  {% for app in apps %}
+    <li><a href="/app/crashes/{{app}}">{{app}}</li>
+  {% endfor %}
+  </ul>
+</body>
+</html>
