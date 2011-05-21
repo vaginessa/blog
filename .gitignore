@@ -6,3 +6,7 @@ www/index.html
 www/archives.html
 www/atom.xml
 srcblog/evernote-utf8.txt
+books/go-cookbook/bin/*
+blog.iml
+blog.ipr
+blog.iws
