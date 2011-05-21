@@ -4,16 +4,28 @@
 <title>test 00</title>
 
 <script type="text/javascript">
-function draw() {
-	var c = document.getElementById('t00');
-	var ctx = c.getContext('2d');
-	ctx.strokeRect(0.5,0.5,255.5,255.5);
+
+function border(ctx, bgCol, strokeCol) {
+	bgCol = bgCol || "rgb(255,255,255)";
+	strokeCol = strokeCol || "rgb(255,0,0)";
+	var dx = ctx.canvas.width;
+	var dy = ctx.canvas.height;
+	ctx.fillStyle = bgCol;
+	ctx.fillRect(0,0,dx,dy);
+
+	ctx.strokeStyle = strokeCol;
+	ctx.strokeRect(0.5, 0.5, dx - 0.5, dy - 0.5);
+}
+
+function draw00() {
+	var ctx = document.getElementById("t00").getContext('2d');
+	border(ctx);
 
 	//ctx.fillStyle = "rgb(200,0,0)";
 	//ctx.fillRect(10,10,55,50);
 
 	//ctx.strokeStyle = "rgb(0,255,0)";
-
+	//ctx.translate(50,0);
 	ctx.beginPath();
 
 	ctx.shadowOffsetX = 0.0;
@@ -27,15 +39,37 @@ function draw() {
 
 	//var lg1 = ctx.createLinearGradient();
 }
+
+function draw01() {
+	var ctx = document.getElementById("t01").getContext('2d');
+	//border(ctx, "rgb(0,255,0)");
+	border(ctx);
+
+	var x = 20; var y = 10;
+	var dx = 80; var dy = 40;
+
+	var gradient = ctx.createLinearGradient(dx/2, 0, dx/2, dy);
+    gradient.addColorStop(0.0, "rgba(255, 0, 0, 0.4)");
+    gradient.addColorStop(1.0, "rgba(255, 0, 0, 0.1)");
+
+    ctx.fillStyle = gradient;
+    ctx.fillRect(x, y, dx, dy);
+}
+
+function init() {
+	draw00();
+	draw01();
+}
 </script>
 
 </head>
 
-<body onload="draw();">
+<body onload="init();">
 
 <p>Canvas drawing test trying to replicate <a href="http://cocoawithlove.com/2011/01/advanced-drawing-using-appkit.html">this Cocoa code</a>.</p>
 
-<canvas id="t00" width="256" height="256"></canvas>
+<canvas id="t00" width="256" height="256"></canvas>&nbsp;
+<canvas id="t01" width="256" height="256"></canvas>
 
 </body>
 
