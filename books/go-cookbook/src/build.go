@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
 	"io"
 	"os"
@@ -9,10 +10,32 @@ import (
 )
 
 func parse(r io.Reader) {
-	buf := make([]byte, 128)
-	_, err := io.ReadFull(r, buf)
+	r2, err := bufio.NewReaderSize(r, 2048)
 	if err != nil {
+		fmt.Printf("Error creating bufio.NewReaderSize()")
 		return
+	}
+	line := 0
+	for {
+		l, isPrefix, err := r2.ReadLine()
+		if l == nil {
+			fmt.Printf("We had %d lines\n", line)
+			break
+		}
+		if err != nil {
+			fmt.Printf("We had %d lines\n", line)
+			fmt.Printf("%+v", err)
+			break
+		}
+		line++
+		if isPrefix {
+			fmt.Printf("isPrefix on line %d\n", line)
+		} else {
+			fmt.Printf("%d: %s\n", line, string(l))
+		}
+		if line > 500 {
+			break
+		}
 	}
 }
 
@@ -24,11 +47,11 @@ func main() {
 		os.MkdirAll(dstdir, 0666)
 	}
 	srcname := "book.txt"
-	src, err := os.Open(srcname)
-	if src == nil {
+	f, err := os.Open(srcname)
+	if f == nil {
 		fmt.Printf("Can't open '%s'\n", srcname)
 		os.Exit(1)
 	}
-	defer src.Close()
-
+	defer f.Close()
+	parse(f)
 }
