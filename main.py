@@ -1211,7 +1211,7 @@ class CrashSubmit(webapp.RequestHandler):
         crash_data = self.request.get("file")
         app_ver = extract_app_ver(app_name, crash_data)
         # we no longer care about crashes from older versions
-        if app_ver in ["1.5", "1.5.1"]:
+        if app_ver in ["1.5", "1.5.1", "1.6"]:
                 return
         crashreport = CrashReports(ip_addr=ip_addr, app_name=app_name, data=crash_data, app_ver=app_ver)
         crashreport.crashing_line = extract_crashing_line(app_name, crash_data)
