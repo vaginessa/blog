@@ -38,11 +38,27 @@ var gJaTrans = {
 	"Forums" : "フォーラム"
 };
 
+var gEsTrans = {
+	"Home" : "Home",
+	"News" : "Noticias",
+	"Manual" : "Manual",
+	"Download" : "Descargar",
+	"Contribute" : "Contribuir",
+	"Translations" : "Traducciones",
+	"Forums" : "Foros"
+};
+
+var gDeTrans = {
+	
+};
+
+var gCnTrans = {
+	
+};
+
 var gTabTrans = {
-	"ru" : gRuTrans,
-	"ro" : gRoTrans,
-	"pt" : gPtTrans,
-	"ja" : gJaTrans
+	"ru" : gRuTrans, "ro" : gRoTrans, "pt" : gPtTrans, "ja" : gJaTrans,
+	"es" : gEsTrans, "de" : gDeTrans, "cn" : gCnTrans
 };
 
 // we also use the order of languages in this array
