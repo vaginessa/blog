@@ -1,4 +1,6 @@
 
+// we also use the order of languages in this array
+// to order links for translated pages
 var gLanguages = [
 	"en", ["English", "English"],
 	"de", ["Deutsch", "German"],
@@ -12,12 +14,23 @@ var gLanguages = [
 ];
 
 var gTransalatedPages = [
-	"download-free-pdf-viewer", ["cn", "de", "es", "fr", "ja", "pt", "ro"],
+	"download-free-pdf-viewer", ["ru", "cn", "de", "es", "fr", "ja", "pt", "ro", "ru"],
 	"download-prev", ["de", "es", "ja", "pt", "ro"],
 	"downloadafter", ["de", "es", "ja", "pt", "ro"],
-	"free-pdf-reader", ["cn", "de", "es", "ja", "pt", "ro"],
-	"manual", ["cn", "de", "es", "ja", "pt", "ro", "ru"]
+	"free-pdf-reader", ["cn", "de", "es", "ja", "pt", "ro", "ru"],
+	"manual", ["ru", "cn", "de", "es", "ja", "pt", "ro", "ru"]
 ];
+
+// return a list of langauges that a given page is translated into
+function translationsForPage(baseUrl) {
+	var i;
+	for (i=0; i<gTransalatedPages.length / 2; i++) {
+		if (gTransalatedPages[i*2] == baseUrl) {
+			return gTransalatedPages[i*2+1];
+		}
+	}
+	return [];
+}
 
 // A heuristic used to detect preffered language of the user
 // based on settings in navigator object.
@@ -33,6 +46,84 @@ function detectBrowserLang() {
 	var lang1 = n.userLanguage || n.browserLanguage || n.language || "en";
 	// we only care about "en" part of languages like "en-US"
 	return lang1.substring(0,2);
+}
+
+// sumatra urls are in format:
+// /software/sumatrapdf/${url}[-${lang}].html
+// return ${url} and ${lang} parts
+// ${lang} can be "" which means english (en)
+function getBaseUrlAndLang() {
+	var lang = "";
+	var url = location.pathname.split("/");
+	url = url[url.length-1];
+	url = url.split(".html")[0];
+	if (url[url.length-3] == '-') {
+		lang = url.substring(url.length-2)
+		url = url.substring(0, url.length-3);
+	}
+	//alert(url + "," + lang);
+	return [url, lang];	
+}
+
+function langNativeName(lang) {
+	if ("" == lang) { return "English" };
+	var i;
+	for (i=0; i<gLanguages.length / 2; i++) {
+		if (gLanguages[i*2] == lang) {
+			return gLanguages[i*2+1][0];
+		}
+	}
+	allert("No native name for lang '" + lang + "'");
+	return "";
+}
+
+function isEng(lang) {
+	return (lang == "") || (lang=="en");
+}
+
+// construct text like:
+// <span class="trans"><a href="free-pdf-reader-de.html">Deutsch</a></span>
+function langsLinkHtml(baseUrl, lang) {
+	var url = baseUrl;
+	if (!isEng(lang)) {
+		url = url + "-" + lang;
+	}
+	url += ".html";
+	return '<span class="trans"><a href="' + url + '">' + langNativeName(lang) + '</a></span>&nbsp;';
+}
+
+function sortByLang(l1, l2) {
+	var l1Idx = gLanguages.indexOf(l1);
+	var l2Idx = gLanguages.indexOf(l2);
+	return l1Idx - l2Idx;
+}
+
+function langsNavHtml() {
+	var i;
+	var urlLang = getBaseUrlAndLang();
+	var baseUrl = urlLang[0];
+	var lang = urlLang[1];
+	var translations = translationsForPage(baseUrl);
+	translations.sort(sortByLang);
+	if (0 == translations.length) {
+		// shouldn't happen becase should only be called from pages
+		// that were translated
+		alert("No translations for page " + baseUrl);
+	}
+	var s = '<span style="float: right;">';
+	var l;
+	if (!isEng(lang)) {
+		s += langsLinkHtml(baseUrl, "en");
+	}
+	for (i=0; i<translations.length; i++) {
+		l = translations[i];
+		if (l == lang) {
+			continue;
+		}
+		s += langsLinkHtml(baseUrl, l);
+	}
+	s += '</span>';
+	return s;
 }
 
 function installerHref(ver) {
@@ -62,4 +153,17 @@ function prevLanguagesList(installerStr, zipFileStr) {
 		s += zipFileStr + ': ' + zipHref(ver) + '</p>\n';
 	}
 	return s;        
+}
+
+function buttonsHtml() {
+return '<span style="position:relative; left: 22px; top: 6px;">\
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>\
+<g:plusone size="medium" href="http://blog.kowalczyk.info/software/sumatrapdf/"></g:plusone>\
+</span>\
+<span style="position:relative; left: 12px; top: 6px;">\
+<a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.kowalczyk.info/software/sumatrapdf/free-pdf-reader.html" data-text="SumatraPDF - free PDF reader for Windows" data-count="horizontal" data-via="kjk">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>\
+</span>\
+<span style="position:relative; top: 7px; left: 0px;">\
+<iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fblog.kowalczyk.info%2Fsoftware%2Fsumatrapdf%2F&amp;layout=button_count&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:88px; height:21px;" allowTransparency="true"></iframe>\
+</span>';
 }
