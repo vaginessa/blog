@@ -28,10 +28,21 @@ var gPtTrans = {
 	"Forums" : "Fóruns"
 };
 
+var gJaTrans = {
+	"Home" : "ホーム",
+	"News" : "ニュース",
+	"Manual" : "マニュアル",
+	"Download" : "ダウンロード",
+	"Contribute" : "開発",
+	"Translations" : "翻訳",
+	"Forums" : "フォーラム"
+};
+
 var gTabTrans = {
 	"ru" : gRuTrans,
 	"ro" : gRoTrans,
-	"pt" : gPtTrans
+	"pt" : gPtTrans,
+	"ja" : gJaTrans
 };
 
 // we also use the order of languages in this array
