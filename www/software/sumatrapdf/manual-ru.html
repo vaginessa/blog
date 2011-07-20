@@ -1,10 +1,8 @@
 <!DOCTYPE HTML>
-<html><head>
-
-
+<html>
+<head>
 <meta http-equiv="Content-Language" content="ru">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
 <title>Руководство пользователя Sumatra PDF</title>
 <link rel="stylesheet" href="sumatra.css" type="text/css">
 <style type="text/css">
@@ -13,35 +11,19 @@ table.shortcuts {
   border: 0px;
 }
 </style>
+</head>
+
+<body>
+  <script type="text/javascript" src="sumatra.js"></script>
 
 <div id="container">
 <div id="banner">
 
 <h1 style="display: inline;">Sumatra PDF</h1>
-
-<span style="float: right;">
-  <span class="trans"><a href="manual-de.html">Deutsch</a></span>
-  <span class="trans"><a href="manual.html">English</a></span>
-  <span class="trans"><a href="manual-es.html">Español</a></span>
-  <span class="trans"><a href="manual-pt.html">Português</a></span>
-  <span class="trans"><a href="manual-ro.html">Română</a></span>
-  <span class="trans"><a href="manual-ja.html">日本語</a></span>
-  <span class="trans"><a href="manual-cn.html">简体中文</a></span>
-</span>
+<script type="text/javascript">document.write(langsNavHtml());</script>
 <h2>Программа просмотра PDF для Windows</h2>
+<script type="text/javascript">document.write(navHtml());</script>
 
-<div id="ddcolortabs">
-    <ul>
-        <li><a href="http://blog.kowalczyk.info/software/sumatrapdf/free-pdf-reader.html" title="Home"><span>Начало</span></a></li>
-        <li><a href="http://blog.kowalczyk.info/software/sumatrapdf/news.html" title="News"><span>Новости</span></a></li>
-        <li id="current"><a href="http://blog.kowalczyk.info/software/sumatrapdf/manual.html" title="Manual"><span>Руководство пользователя</span></a></li>
-        <li><a href="http://blog.kowalczyk.info/software/sumatrapdf/download-free-pdf-viewer.html" title="Download"><span>Загрузка</span></a></li>
-        <li><a href="http://blog.kowalczyk.info/software/sumatrapdf/develop.html" title="Contribute"><span>Сотрудничество</span></a></li>
-        <li><a href="http://blog.kowalczyk.info/software/sumatrapdf/translations.html" title="Translations"><span>Переводы</span></a></li>
-        <li><a href="http://blog.kowalczyk.info/forum_sumatra/" title="Forums"><span>Форум</span></a></li>
-    </ul>
-</div>
-<div id="ddcolortabsline"> </div>
 </div>
 
 <div id="center">
@@ -319,19 +301,9 @@ table.shortcuts {
 </div>
 
 <hr>
+
 <center><a href="http://blog.kowalczyk.info/">Krzysztof Kowalczyk</a></center>
 </div>
-
-<script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-194516-1']);
-  _gaq.push(['_trackPageview']);
-
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
-  })();
-</script>
-
-<sfdocready id="sfDocReady"></sfdocready></body></html>
+<script type="text/javascript">googleAnalytics()</script>
+</body>
+</html>

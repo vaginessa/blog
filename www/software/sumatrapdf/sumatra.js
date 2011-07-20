@@ -1,3 +1,16 @@
+var gRuTrans = {
+	"Home" : "Начало",
+	"News" : "Новости",
+	"Manual" : "Руководство пользователя",
+	"Download" : "Загрузка",
+	"Contribute" : "Сотрудничество",
+	"Translations" : "Переводы",
+	"Forums" : "Форум"
+};
+
+var gTabTrans = {
+	"ru" : gRuTrans
+};
 
 // we also use the order of languages in this array
 // to order links for translated pages
@@ -30,6 +43,10 @@ function translationsForPage(baseUrl) {
 		}
 	}
 	return [];
+}
+
+function hasTranslation(baseUrl, lang) {
+	return -1 != translationsForPage(baseUrl).indexOf(lang);
 }
 
 // A heuristic used to detect preffered language of the user
@@ -99,10 +116,10 @@ function sortByLang(l1, l2) {
 }
 
 function langsNavHtml() {
-	var i;
-	var urlLang = getBaseUrlAndLang();
-	var baseUrl = urlLang[0];
-	var lang = urlLang[1];
+	var i, baseUrl, lang;
+	var tmp = getBaseUrlAndLang();
+	baseUrl = tmp[0];
+	lang = tmp[1];
 	var translations = translationsForPage(baseUrl);
 	translations.sort(sortByLang);
 	if (0 == translations.length) {
@@ -123,6 +140,68 @@ function langsNavHtml() {
 		s += langsLinkHtml(baseUrl, l);
 	}
 	s += '</span>';
+	return s;
+}
+
+function translateTabText(lang, s) {
+	if (!gTabTrans[lang]) { return s; }
+	return gTabTrans[lang][s] || s;
+}
+
+function urlFromBaseUrlLang(baseUrl, lang) {
+	if (baseUrl == "/forum_sumatra/") {
+		return baseUrl;
+	}
+	if (hasTranslation(baseUrl, lang)) {
+		return baseUrl + "-" + lang + ".html";
+	}
+	return baseUrl + ".html";
+}
+
+/*
+	Construct html as below, filling the apropriate inter-language links.
+	<div id="ddcolortabs">
+		<ul>
+			<li id="current"><a href="free-pdf-reader.html" title="Home"><span>Начало</span></a></li>
+			<li><a href="news.html" title="News"><span>Новости</span></a></li>
+			<li><a href="manual.html" title="Manual"><span>Руководство пользователя</span></a></li>
+			<li><a href="download-free-pdf-viewer.html" title="Download"><span>Загрузка</span></a></li>
+			<li><a href="develop.html" title="Contribute"><span>Сотрудничество</span></a></li>
+			<li><a href="translations.html" title="Translations"><span>Переводы</span></a></li>
+			<li><a href="/forum_sumatra/" title="Forums"><span>Форум</span></a></li>
+		</ul>
+	</div>
+	<div id="ddcolortabsline"> </div>
+*/
+function navHtml() {
+	var i, baseUrl, lang, currUrl, txt, url;
+	var tmp = getBaseUrlAndLang();
+	baseUrl = tmp[0];
+	lang = tmp[1];
+
+	var s = '<div id="ddcolortabs"><ul>';
+	var baseUrls = [
+		["free-pdf-reader", "Home"],
+		["news", "News"],
+		["manual", "Manual"],
+		["download-free-pdf-viewer", "Download"], 
+		["develop", "Contribute"],
+		["translations", "Translations"],
+		["/forum_sumatra/", "Forums"]];
+
+	for (i=0; i<baseUrls.length; i++) {
+		currUrl = baseUrls[i][0];
+		if (currUrl == baseUrl) {
+			s += '<li id="current">';
+		} else {
+			s += '<li>';
+		}
+		txt = translateTabText(lang, baseUrls[i][1]);
+		url = urlFromBaseUrlLang(currUrl, lang);
+		s += '<a href="' + url + '" title="' + txt + '"><span>' + txt + '</span></a></li>';
+	}
+	
+	s += '</ul></div><div id="ddcolortabsline"> </div>';
 	return s;
 }
 
