@@ -18,9 +18,20 @@ var gRoTrans = {
 	"Forums" : "Forum"
 };
 
+var gPtTrans = {
+	"Home" : "Página inicial",
+	"News" : "Novidades",
+	"Manual" : "Manual",
+	"Download" : "Transferências",
+	"Contribute" : "Participar",
+	"Translations" : "Traduções",
+	"Forums" : "Fóruns"
+};
+
 var gTabTrans = {
 	"ru" : gRuTrans,
-	"ro" : gRoTrans
+	"ro" : gRoTrans,
+	"pt" : gPtTrans
 };
 
 // we also use the order of languages in this array
@@ -42,7 +53,8 @@ var gTransalatedPages = [
 	"download-prev", ["de", "es", "ja", "pt", "ro"],
 	"downloadafter", ["de", "es", "ja", "pt", "ro"],
 	"free-pdf-reader", ["cn", "de", "es", "ja", "pt", "ro", "ru"],
-	"manual", ["ru", "cn", "de", "es", "ja", "pt", "ro", "ru"]
+	"manual", ["ru", "cn", "de", "es", "ja", "pt", "ro", "ru"],
+	"news", ["pt"]
 ];
 
 // return a list of langauges that a given page is translated into
