@@ -73,19 +73,37 @@ var gTabTrans = {
 	"es" : gEsTrans, "de" : gDeTrans, "cn" : gCnTrans
 };
 
+var gLangCookieName = "forceSumLang";
+
 // we also use the order of languages in this array
 // to order links for translated pages
 var gLanguages = [
 	"en", ["English", "English"],
 	"de", ["Deutsch", "German"],
 	"es", ["Español", "Spanish"],
-	"fr", ["Français", "French"],
+	//"fr", ["Français", "French"],
 	"pt", ["Português", "Portuguese"],
 	"ru", ["Pусский", "Russian"],
 	"ro", ["Română", "Romanian"],
 	"ja", ["日本語", "Japanese"],
 	"cn", ["简体中文", "Chinese"]
 ];
+
+function isValidLang(lang) {
+	return -1 != gLanguages.indexOf(lang);
+}
+
+function langNativeName(lang) {
+	if ("" == lang) { return "English" };
+	var i;
+	for (i=0; i<gLanguages.length / 2; i++) {
+		if (gLanguages[i*2] == lang) {
+			return gLanguages[i*2+1][0];
+		}
+	}
+	allert("No native name for lang '" + lang + "'");
+	return "";
+}
 
 var gTransalatedPages = [
 	"download-free-pdf-viewer", ["ru", "cn", "de", "es", "fr", "ja", "pt", "ro", "ru"],
@@ -111,6 +129,43 @@ function hasTranslation(baseUrl, lang) {
 	return -1 != translationsForPage(baseUrl).indexOf(lang);
 }
 
+function setCookie(name,val,expireInDays) {
+    var d=new Date();
+    d.setDate(d.getDate()+expireInDays);
+    document.cookie=name+"="+escape(val)+
+    ((expireInDays==null) ? "" : ";expires="+d.toGMTString());
+}
+
+function getCookie(name) {
+	var c = document.cookie;
+	var start = c.indexOf(name + "=");
+	if (-1 == start) { return null; }
+    start += name.length+1;
+    var end = c.indexOf(";", start);
+    if (-1 == end) { end = c.length };
+    return unescape(c.substring(start,end));
+}
+
+function deleteCookie(name) {
+	setCookie(name, "", 0);
+}
+
+function langFromCookie() {
+	var lang = getCookie(gLangCookieName);
+	if (isValidLang(lang)) {
+		return lang;
+	}
+	return null;
+}
+
+function deleteLangCookie() {
+	deleteCookie(gLangCookieName);
+}
+
+function setLangCookie(lang) {
+	setCookie(gLangCookieName, lang, 365);
+}
+
 // A heuristic used to detect preffered language of the user
 // based on settings in navigator object.
 // TODO: we should also look at Accept-Language header, which might look like:
@@ -118,13 +173,49 @@ function hasTranslation(baseUrl, lang) {
 // but headers are not available from JavaScript so I would have to
 // pass this data somehow from the server to html or use additional
 // request from javascript as described at http://stackoverflow.com/questions/1043339/javascript-for-detecting-browser-language-preference
-function detectBrowserLang() {
+function detectUserLang() {
 	var n = window.navigator;
 	// a heuristic: userLanguage and browserLanguage are for ie
 	// language is for FireFox and Chrome
 	var lang1 = n.userLanguage || n.browserLanguage || n.language || "en";
 	// we only care about "en" part of languages like "en-US"
 	return lang1.substring(0,2);
+}
+
+function forceRedirectToLang(lang) {
+	var tmp = getBaseUrlAndLang();
+	var baseUrl = tmp[0];
+	if (!hasTranslation(baseUrl, lang)) { lang = "en"; }
+	window.location = urlFromBaseUrlLang(baseUrl, lang);
+}
+
+// TODO: should also redirect from non-english pages for consistency?
+function autoRedirectToTranslated() {
+	var tmp = getBaseUrlAndLang();
+	var baseUrl = tmp[0];
+	var pageLang = tmp[1];
+	// only redirect if we
+	if (!isEng(pageLang)) {
+		alert("autoRedirectToTranslated() called from non-english page");
+		return;
+	}
+	var cookieLang = langFromCookie();
+	if (cookieLang) {
+		if (cookieLang == pageLang) { return; }
+		if (hasTranslation(baseUrl, cookieLang)) {
+			window.location = urlFromBaseUrlLang(baseUrl, cookieLang);
+		}
+		return;
+	}
+
+	var userLang = detectUserLang();
+	if (userLang == pageLang) { return; }
+	if (!hasTranslation(baseUrl, userLang)) { return; }
+	window.location = urlFromBaseUrlLang(baseUrl, userLang);
+}
+
+function cookieOrUserLang() {
+	return langFromCookie() || detectUserLang();
 }
 
 // sumatra urls are in format:
@@ -142,18 +233,6 @@ function getBaseUrlAndLang() {
 	}
 	//alert(url + "," + lang);
 	return [url, lang];	
-}
-
-function langNativeName(lang) {
-	if ("" == lang) { return "English" };
-	var i;
-	for (i=0; i<gLanguages.length / 2; i++) {
-		if (gLanguages[i*2] == lang) {
-			return gLanguages[i*2+1][0];
-		}
-	}
-	allert("No native name for lang '" + lang + "'");
-	return "";
 }
 
 function isEng(lang) {
@@ -177,8 +256,8 @@ function sortByLang(l1, l2) {
 	return l1Idx - l2Idx;
 }
 
-function langsNavHtml() {
-	var i, baseUrl, lang;
+function langsNavHtmlOld() {
+	var i, l, baseUrl, lang;
 	var tmp = getBaseUrlAndLang();
 	baseUrl = tmp[0];
 	lang = tmp[1];
@@ -204,6 +283,38 @@ function langsNavHtml() {
 	s += '</span>';
 	return s;
 }
+
+// Generate this html:
+/*
+<span style="float: right; color: black; font-size: 80%;">
+Language:
+<select id=langSelect onchange="langChanged();">
+  <option value="en">English</option>
+  <option selected="selected" value="de">Deutsh</option>
+  <option value="default">Default</option>
+</select>
+</span>
+*/
+function langsNavHtml() {
+	var i, userLang, langName, issel;
+	var userLang = cookieOrUserLang();
+	var s = '<span style="float: right; color: black; font-size: 80%;">\
+Language:\
+<select id=langSelect onchange="langChanged();">'
+
+	for (i=0; i<gLanguages.length / 2; i++) {
+		issel = "";
+		lang = gLanguages[i*2];
+		if (userLang == lang) {
+			issel = 'selected="selected" ';
+		}
+		langName = gLanguages[i*2+1][0];
+		s += '<option ' + issel + 'value="' + lang + '">' + langName + '</option>';
+	}
+	s += '<option value="default">Default</option>';
+	s += '</select></span>';
+	return s;
+};
 
 function translateTabText(lang, s) {
 	if (!gTabTrans[lang]) { return s; }
@@ -295,6 +406,21 @@ function prevLanguagesList(installerStr, zipFileStr) {
 	}
 	return s;        
 }
+
+function langChanged() {
+	var dd = document.getElementById("langSelect");
+    var idx  = dd.selectedIndex;
+    var lang = dd.options[idx].value;
+    //alert("Selected value: " + lang);
+    if (lang == "default") {
+    	deleteLangCookie();
+	    forceRedirectToLang(detectUserLang());
+    	return true;
+    }
+    setLangCookie(lang);
+    forceRedirectToLang(lang);
+    return true;
+};
 
 function buttonsHtml() {
 return '<span style="position:relative; left: 22px; top: 6px;">\
