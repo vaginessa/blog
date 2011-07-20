@@ -49,11 +49,23 @@ var gEsTrans = {
 };
 
 var gDeTrans = {
-	
+	"Home" : "Home",
+	"News" : "Neuigkeiten",
+	"Manual" : "Handbuch",
+	"Download" : "Download",
+	"Contribute" : "Helfen",
+	"Translations" : "Übersetzungen",
+	"Forums" : "Forum"	
 };
 
 var gCnTrans = {
-	
+	"Home" : "主页",
+	"News" : "新闻",
+	"Manual" : "手册",
+	"Download" : "下载",
+	"Contribute" : "参与贡献",
+	"Translations" : "翻译",
+	"Forums" : "论坛"	
 };
 
 var gTabTrans = {
