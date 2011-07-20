@@ -8,8 +8,19 @@ var gRuTrans = {
 	"Forums" : "Форум"
 };
 
+var gRoTrans = {
+	"Home" : "Acasă",
+	"News" : "Ştiri",
+	"Manual" : "Manual",
+	"Download" : "Descarcă",
+	"Contribute" : "Contribuie",
+	"Translations" : "Traduceri",
+	"Forums" : "Forum"
+};
+
 var gTabTrans = {
-	"ru" : gRuTrans
+	"ru" : gRuTrans,
+	"ro" : gRoTrans
 };
 
 // we also use the order of languages in this array
@@ -245,6 +256,20 @@ return '<span style="position:relative; left: 22px; top: 6px;">\
 <span style="position:relative; top: 7px; left: 0px;">\
 <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fblog.kowalczyk.info%2Fsoftware%2Fsumatrapdf%2F&amp;layout=button_count&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:88px; height:21px;" allowTransparency="true"></iframe>\
 </span>';
+}
+
+function yepiAdHtml() {
+return '<center>\
+<table class="ad" cellspacing=0 cellpadding=0>\
+<tr><td>\
+  <a href="http://www.yepi.ws/fotofi/free-stock-photos"><b>Free stock photos</b></a>\
+</td></tr>\
+<tr><td>\
+<span style="font-size: 80%"><span class="adl">www.yepi.ws</span>&nbsp;&nbsp;&nbsp;&nbsp;\
+Find free stock photos with Fotofi. More than 100 million photos available.</span>\
+</td></tr>\
+</table>\
+</center>';
 }
 
 function googleAnalytics() {
