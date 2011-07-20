@@ -179,3 +179,11 @@ function googleAnalytics() {
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
     })();
 }
+
+function adData() {
+	google_ad_client = "pub-8305375090017172";
+	/* sumatra */
+	google_ad_slot = "5091334157";
+	google_ad_width = 728;
+	google_ad_height = 90;
+}
