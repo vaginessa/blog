@@ -9,7 +9,7 @@ San Francisco, CA, 94110
 e-mail: kkowalczyk@gmail.com
 web:    http://blog.kowalczyk.info
 
-* My open-source projects: http://github.com/kjk and http://code.google.com/u/kkowalczyk/
+* My open-source projects: http://github.com/kjk and http://code.google.com/u/@UxJfQFJRABhHWQN6/
 
 * Software I wrote or contributed to, chronological order:
 
