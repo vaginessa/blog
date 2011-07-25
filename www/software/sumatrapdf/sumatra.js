@@ -89,12 +89,12 @@ var gLangCookieName = "forceSumLang";
 // to order links for translated pages
 var gLanguages = [
 	"en", ["English", "English"],
+	"bg", ["Български", "Bulgarian"],
 	"de", ["Deutsch", "German"],
 	"es", ["Español", "Spanish"],
 	//"fr", ["Français", "French"],
 	"pt", ["Português", "Portuguese"],
 	"ru", ["Pусский", "Russian"],
-	"bg", ["Български", "Bulgarian"],
 	"ro", ["Română", "Romanian"],
 	"ja", ["日本語", "Japanese"],
 	"cn", ["简体中文", "Chinese"]
