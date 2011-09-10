@@ -41,6 +41,9 @@ NOTE_TAG = "note"
 # e.g. "http://localhost:8081" or "http://blog.kowalczyk.info"
 g_root_url = None
 
+# We no longer log crashes from those versions of Sumatra:
+SUMATRA_VER_CRASH_BLACKLIST = ["1.5", "1.5.1", "1.6", "1.7"]
+
 HTTP_NOT_ACCEPTABLE = 406
 
 (POST_DATE, POST_FORMAT, POST_BODY, POST_TITLE, POST_TAGS, POST_URL, POST_PRIVATE) = ("date", "format", "body", "title", "tags", "url", "private")
@@ -1211,7 +1214,7 @@ class CrashSubmit(webapp.RequestHandler):
         crash_data = self.request.get("file")
         app_ver = extract_app_ver(app_name, crash_data)
         # we no longer care about crashes from older versions
-        if app_ver in ["1.5", "1.5.1", "1.6"]:
+        if app_ver in SUMATRA_VER_CRASH_BLACKLIST:
                 return
         crashreport = CrashReports(ip_addr=ip_addr, app_name=app_name, data=crash_data, app_ver=app_ver)
         crashreport.crashing_line = extract_crashing_line(app_name, crash_data)
