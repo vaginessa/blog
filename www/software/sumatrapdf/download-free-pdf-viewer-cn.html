@@ -41,16 +41,7 @@ function SetupRedirect()
 
       <h2 id="download">下载</h2>
 
-      <table>
-        <tr>
-          <td>安装包:&nbsp;&nbsp;</td>
-          <td><a href="https://kjkpub.s3.amazonaws.com/sumatrapdf/rel/SumatraPDF-1.8-install.exe" onclick="return SetupRedirect()">SumatraPDF-1.8-install.exe</a></td>
-        </tr>
-        <tr>
-          <td>绿色版:&nbsp;&nbsp;</td>
-          <td><a href="https://kjkpub.s3.amazonaws.com/sumatrapdf/rel/SumatraPDF-1.8.zip" onclick="return SetupRedirect()">SumatraPDF-1.8.zip</a></td>
-        </tr>
-      </table>
+      <script>document.write(dlHtml("安装包:", "绿色版:"));</script>
 
       <p>
       你还可以<a href="develop.html">下载源代码</a>并为Sumatra PDF贡献你的代码.

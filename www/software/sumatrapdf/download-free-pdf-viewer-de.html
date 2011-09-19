@@ -41,16 +41,7 @@ function SetupRedirect()
 
       <h2 id="download">Download</h2>
 
-      <table>
-        <tr>
-          <td>Installationsprogramm:&nbsp;&nbsp;</td>
-          <td><a href="https://kjkpub.s3.amazonaws.com/sumatrapdf/rel/SumatraPDF-1.8-install.exe" onclick="return SetupRedirect()">SumatraPDF-1.8-install.exe</a></td>
-        </tr>
-        <tr>
-          <td>Portable Version:&nbsp;&nbsp;</td>
-          <td><a href="https://kjkpub.s3.amazonaws.com/sumatrapdf/rel/SumatraPDF-1.8.zip" onclick="return SetupRedirect()">SumatraPDF-1.8.zip</a></td>
-        </tr>
-      </table>
+      <script>document.write(dlHtml("Installationsprogramm:", "Portable Version:"));</script>
 
       <p>
       Man kann auch <a href="develop.html">den Quellcode herunterladen</a> und seinen Code zum Sumatra PDF Projekt beisteuern.

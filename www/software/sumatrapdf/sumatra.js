@@ -1,5 +1,26 @@
-// used by download-prev* pages
-// Update after releasing a new version
+
+// update after releasing a new version
+var gSumZipUrl = "https://kjkpub.s3.amazonaws.com/sumatrapdf/rel/SumatraPDF-1.8.zip";
+var gSumExeUrl = "https://kjkpub.s3.amazonaws.com/sumatrapdf/rel/SumatraPDF-1.8-install.exe";
+var gSumZipName = "SumatraPDF-1.8.zip";
+var gSumExeName = "SumatraPDF-1.8-install.exe";
+
+// used by download-free-pdf-viewer*.html pages
+function dlHtml(s1,s2) {
+	return '<table><tr><td>' + s1 + '&nbsp;&nbsp;</td><td><a href="' +
+	gSumExeUrl + '" onclick="return SetupRedirect()">' + gSumExeName + 
+	'</a></td></tr><tr><td>' + s2 + '&nbsp;&nbsp;</td><td><a href="' + 
+	gSumZipUrl + '" onclick="return SetupRedirect()">' + gSumZipName +
+	'</a></td></tr></table>';
+}
+
+// used by downloadafter*.html pages
+function dlAfterHtml(s1,s2,s3,s4) {
+    return '<a href="' + gSumExeUrl + '">' + s1 + '</a>' + s2 +
+    '<a href="' + gSumZipUrl + '">' + s3 + '</a>' + s4;	
+}
+
+// used by download-prev* pages, update after releasing a new version
 var gPrevSumatraVersion = [
 	"1.7", "1.6", 
 	"1.5.1", "1.5", "1.4", "1.3", "1.2", "1.1", "1.0.1",
