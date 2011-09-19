@@ -1,3 +1,12 @@
+// used by download-prev* pages
+// Update after releasing a new version
+var gPrevSumatraVersion = [
+	"1.7", "1.6", 
+	"1.5.1", "1.5", "1.4", "1.3", "1.2", "1.1", "1.0.1",
+	"1.0", "0.9.4", "0.9.3", "0.9.1", "0.9", "0.8.1", 
+	"0.8", "0.7", "0.6", "0.5", "0.4", "0.3", "0.2"
+];
+
 var gRuTrans = {
 	"Home" : "Начало",
 	"News" : "Новости",
@@ -395,15 +404,6 @@ function installerHref(ver) {
 function zipHref(ver) {
 	return '<a href="http://kjkpub.s3.amazonaws.com/sumatrapdf/rel/SumatraPDF-' + ver + '.zip">SumatraPDF-' + ver + '.zip</a>';
 }
-
-// used by download-prev* pages
-// Update after releasing a new version
-var gPrevSumatraVersion = [
-	"1.6", 
-	"1.5.1", "1.5", "1.4", "1.3", "1.2", "1.1", "1.0.1",
-	"1.0", "0.9.4", "0.9.3", "0.9.1", "0.9", "0.8.1", 
-	"0.8", "0.7", "0.6", "0.5", "0.4", "0.3", "0.2"
-];
 
 // used by download-prev* pages
 function prevLanguagesList(installerStr, zipFileStr) {
