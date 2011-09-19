@@ -1,0 +1,215 @@
+<!doctype HTML> 
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Getting started with Volante</title>
+
+	<link href="main.css" type="text/css" rel="stylesheet">
+	<link  href="http://blog.kowalczyk.info/js/prettify.css" type="text/css" rel="stylesheet"> 
+	<script src="http://blog.kowalczyk.info/js/prettify.js" type="text/javascript"></script>
+</head>
+<body onload="prettyPrint()">
+<div id=left-bar>
+	<div id=sections>
+		<center><div><a href="index.html">Volante</a></div></center>
+	</div>
+</div>
+
+<div class=content>
+	<p><a href=index.html>Volante</a> : <a href=devguideindex.html>Volante Developer's Guide</a> : Getting started with Volante</p>
+
+	<p>This tutorial will show basics of working with Volante. We'll develop an application that stores information about files on a given volume in the database and uses this information to show the largest files, files with duplicate names and most recently modified files. You can read the whole code <a href="https://github.com/kjk/volante/blob/master/csharp/examples/DirectoryScan/DirectoryScan.cs">here</a>.</p>
+
+	<p>The first thing you need to do is to <a href="download.html">download</a> Volante and add Volante.dll to your project</p>
+
+	<p>The most important part of writing a database application is designing the right database schema. Volante stores .NET objects and uses indexes for quickly finding objects we're interested in. Designing database schema involves:
+	<ul>
+		<li>designing shape of objects to store</li>
+		<li>designing indexes based on what kind of information needs to be located efficiently</li>
+	</ul>
+	</p>
+
+	<h3>Defining objects to be stored</h3>
+
+	<p>Since we need to store information about files, we'll define <code>FileEntry</code> class with information about the file.</p>
+
+	<p>It's a simplification of reality, but for the purpose of this tutorial let's say that persisted objects must implement <code>IPersistent</code> interface. The simplest way to satisfy this is to derive our objects from <code>Persistent</code> class, and that's what we'll do:</p>
+
+	<pre class="prettyprint lang-cs">using Volante;
+class FileEntry : Persistent
+{
+    public string Path;
+    public Int64 Size;
+    public DateTime CreationTimeUtc;
+    public DateTime LastAccessTimeUtc;
+    public DateTime LastWriteTimeUtc;
+}</pre>
+
+	<h3>Defining indexes</h3>
+
+	<p>Just storing <code>FileEntry</code> objects in the database is not sufficient. We need to quickly locate <code>FileEntry</code> objects of desired properties. This is a job of indexes. Volante has several kinds of indexes but in this program we'll only need the most frequently used B-Tree index which offers an ordered access to objects. An index is like a C# <code>Dictionary&lt;Key,Value&gt;</code>. There are many types of supported keys (integers, strings, DateTime etc.). A value is a persisted object.</p>
+
+	<p>Everything that we want to do (list largest files, files with duplicate name and most recently modified files) can be done efficiently if we can enumerate objects in order (respectively by file size, file name and file last write time). Therefore we'll build 3 indexes:
+	<ul>
+		<li>index whose key is Int64 (file size)</li>
+		<li>index whose key is DateTime (file last write time)</li>
+		<li>index whose key is string (file name)</li>
+	</ul>
+	All those indexes will point to persisted objects of <code>FileEntry</code> type.
+	</p>
+
+	<h3>Defining database root object</h3>
+
+	<p>As mentioned in the <a href="intro.html">introduction</a>, a database has a special root object. All other objects have to be reachable from root object. Root object is usually the place where we define our indexes:</p>
+
+	<pre class="prettyprint lang-cs">class DatabaseRoot : Persistent
+{
+    public Index&lt;Int64, FileEntry&gt; FileSizeIndex;
+    public Index&lt;string, FileEntry&gt; FileNameIndex;
+    public Index&lt;DateTime, FileEntry&gt; FileLastWriteTimeIndex;
+}</pre>	
+
+	<p>Notice that our root object is also a persisted object (i.e. implements <code>IPersistent</code> interface). Index is a class implementing an interface <code>IIndex&lt;K,V&gt;</code> whose V type is a persisted object (another simplification of reality). Index is also a persisted object. That way every V object that is part of the index satisfies reachability requirement.</p> 
+
+	<h3>Opening the database and creating root object</h3>
+
+	<p>First, we open the database. In the simplest case a database is a file on disk:<p>
+
+	<pre class="prettyprint lang-cs">IDatabase db = DatabaseFactory.CreateDatabase();
+db.Open("fileinfo.dbs");</pre>
+
+  <p><code>IDatabase.Open()</code> will either open an existing database (if it exists) or create a new database. We then need to create a <code>IDatabase.Root</code> object, but only if it doesn't exist:</p>
+
+	<pre class="prettyprint lang-cs">DatabaseRoot dbRoot = null;
+if (null != db.Root)
+{
+  dbRoot = (DatabaseRoot)db.Root;
+}
+else
+{
+  // only create root once
+  dbRoot = new DatabaseRoot();
+  dbRoot.FileSizeIndex = db.CreateIndex&lt;Int64, FileEntry&gt;(IndexType.NonUnique);
+  dbRoot.FileNameIndex = db.CreateIndex&lt;string, FileEntry&gt;(IndexType.NonUnique);
+  dbRoot.FileLastWriteTimeIndex = db.CreateIndex&lt;DateTime, FileEntry&gt;(IndexType.NonUnique);
+  db.Root = dbRoot;
+  // changing the root marks database as modified but it's
+  // only modified in memory. Commit to persist changes to disk.
+  db.Commit();
+}</pre>
+
+	<p>An index can be either unique (inserting a key that already exists will throw <code>DatabaseError</code> exception with <code>KEY_NOT_UNIQUE</code> code) or one that allows duplicate keys. This is controlled at creation time by the bool argument to <code>IDatabase.CreateIndex(IndexType indexType)</code> call. In our case all indexes can contain duplicate values.</p>
+
+	<h3>Inserting objects into database</h3>
+
+	<p>Now we'll scan the whole directory and insert information about files found into a database. You can <a href="https://github.com/kjk/volante/blob/master/csharp/examples/DirectoryScan/DirectoryScan.cs#L61">read the details</a> but here's the important part:
+
+	<pre class="prettyprint lang-cs">var fe = new FileEntry();
+// ... construct fe object
+dbRoot.FileSizeIndex.Put(fe.Size, fe);
+dbRoot.FileNameIndex.Put(fi.Name, fe);
+dbRoot.FileLastWriteTimeIndex.Put(fe.LastWriteTimeUtc, fe);</pre>
+
+	<p>Things to note in the above code:
+	<ul>
+		<li>the index key can be of any value, it's completely independent of the persisted object. The key of FileNameIndex is name of the file even though the name is not part of <code>FileEntry</code> object. That being said, most of the time the key would also be part of persisted object.</li>
+		<li>the indexes all point to the same <code>FileEntry</code> object - it's not duplicated. Internally the indexes store only 32-bit oid, which is a unique identifier of the object. Oid is enough information to load the object from database into memory.</li>
+	</ul>
+	</p>
+
+	<p>There's one more interesting part of the database creation code:
+	<pre class="prettyprint lang-cs">if (insertedCount % 10000 == 0)
+    db.Commit();</pre>
+	</p>
+
+	<p>When we add objects to an index, the values are not immediately saved to disk but buffered in memory. To persist data on disk, we must explicitly call <code>IDatabase.Commit()</code>. The frequency with which we commit is a trade off between speed and safety.</p>
+
+	<p>If we don't commit and the application crashes, the data buffered in memory will be lost. The longer we go between commits, the higher chance of that happening.</p>
+	
+	<p>On the other hand, the more often we commit, the slower the process is (because it requires more overall disk i/o).</p>
+
+	<h3>Querying the database</h3>
+
+	<p>Now that the objects are in the database we can use indexes to quickly locate objects we're interested in. B-Tree index is an ordered collection of keys. We can traverse the whole index or just part of it that falls within a specified range.</p>
+
+	<p>An index can be traversed in ascending (small values first, the default order) or descending order.</p>
+
+	<p>To list the smallest files we traverse <code>FileSizeIndex</code> in default, ascending order. <code>IIndex</code> implements <code>GetEnumerator()</code> function which we can use in <code>foreach</code> loop:
+	<pre class="prettyprint lang-cs">foreach (var fe in dbRoot.FileSizeIndex)
+{
+    Console.WriteLine(String.Format("{0}: {1} bytes", fe.Path, fe.Size));
+    if (--limit == 0)
+        break;
+}</pre>
+	</p>
+
+	<p>To list the biggest files we traverse the same index in descending order, easily done thanks to <code>IIndex.Reverse()</code> method:
+	<pre class="prettyprint lang-cs">foreach (var fe in dbRoot.FileSizeIndex.Reverse())
+{
+    Console.WriteLine(String.Format("{0}: {1} bytes", fe.Path, fe.Size));
+    if (--limit == 0)
+        break;
+}</pre>
+	We use <code>Reverse()</code> to also list the most recently written to files, this time using <code>FileLastWriteTimeIndex</code> index.</p>
+
+	<p>To list files with duplicate names we traverse the whole <code>FileNameIndex</code> and we detect duplicate names by comparing current file name with previous name.</p>
+
+	<p>Name of the file is not part of the stored object but it is stored in the index. We can access both key and value using <code>GetDictionaryEnumerator()</code> which returns <code>IDictionaryEnumerator</code>:
+	<pre class="prettyprint lang-cs">IDictionaryEnumerator de = dbRoot.FileNameIndex.GetDictionaryEnumerator();
+string name = "";
+// not totally correct: doesn't show the first duplicate file
+while (de.MoveNext())
+{
+    string name = (string)de.Key;
+    if (name == prevName)
+    {
+        FileEntry fe = (FileEntry)de.Value;
+        Console.WriteLine(" " + fe.Path);
+        if (--limit == 0)
+            break;
+    }
+    prevName = name;
+}
+</pre>
+	<h3>Removing the data</h3>
+
+	<p>Volante will automatically remove all objects that are no longer reachable from root object during database garbate collection.</p>
+
+	<p>In our case the root object points to 3 indexes, each index points to many objects. To remove an object from the database, we need to remove it from all three indexes.</p>
+
+	<p>To remove an object from the index, we use <code>IIndex.Remove(K key, V obj)</code> method. There's also <code>IIndex.Remove(K key)</code> but it only works on unique indexes (it throws <code>DatabaseError</code> exception when used on non-unique index). In our case all indexes are non-unique i.e. the same key can point to multiple objects, so we have pass the exact object to be removed to disambiguate.</p>
+
+	<p>The changes are not reflected in the database until we <code>IDatabase.Commit()</code></p>
+
+	<p>You can see complete code for removal <a href="https://github.com/kjk/volante/blob/master/csharp/examples/DirectoryScan/DirectoryScan.cs#L62">here</a>. If you change <code>showMemoryStats</code> to <code>true</code> you'll be able to see that the object has indeed been removed from the database by comparing the number of <code>FileEntry</code> instances before and after removal.</p>
+
+	<h3>Updating the data</h3>
+
+	<p>This is not something we do in the sample program, but we can change the objects. After changing the object in memory we need to call <code>IPersistent.Modify()</code> on the object to notify the database engine that the object has changed and <code>IDatabase.Commit()</code> to persist all the changes.</p>
+
+	<p>It might seem inconvenient to explicitly tell the database about object changes. It's done that way for efficiency: there is no fast way to intercept generic object state changes.</p>
+
+	<p>Even though the indexes also implement <code>IPersistent</code> interface, you don't need to call <code>IPersistent.Modify()</code> after e.g. adding new values to the index. This is because the index classes provided by Volante take care of calling <code>Modify()</code> internally.</p>
+
+	<p>You can do the same in your own objects e.g. you could implement all your object state as properties and call <code>Modify()</code> in the property setter.</p>
+
+	<p>It's worth repeating that every object (as identified by its oid) has only one copy in the database even if they're referenced by multiple other objects (in our case a single <code>FileEntry</code> object is referenced from 3 indexes). Changing that object will affect references from all 3 indexes.</p>
+
+	<h3>Closing the database</h3>
+
+	<p>When we're done, we should close the database:
+	<pre class="prettyprint lang-cs">db.Close();</pre>
+	</p>
+
+	<p>Closing the database also commits the changes.</p>
+
+	<center><a href=intro.html>← introduction</a> &nbsp;&bull;&nbsp; <a href=persistent_in_depth.html>persistent objects in depth →</a></center>
+
+	<hr style="margin-top:28px">
+	<center style="font-size:10pt;color:gray">Volante is maintained by <a href="http://blog.kowalczyk.info">Krzysztof Kowalczyk</a></center>
+
+</div>
+
+<span id=adsense></span>
+</body>
+</html>
