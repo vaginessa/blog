@@ -1077,6 +1077,8 @@ class NotFoundHandler(webapp.RequestHandler):
 
 class AddIndexHandler(webapp.RequestHandler):
     def get(self, sub=None):
+        new_path = get_redirect(self.request.path)
+        if new_path: return self.redirect(new_path)        
         return self.redirect(self.request.url + "index.html")
 
 class ForumRedirect(webapp.RequestHandler):
