@@ -10,6 +10,15 @@ handlers:
 - url: /.*/
   script: main.py
 
+- url: /software
+  script: main.py
+
+- url: /software/
+  script: main.py
+
+- url: /software/index.html
+  script: main.py
+
 - url: /software/sumatra
   script: main.py
 

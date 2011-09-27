@@ -580,10 +580,23 @@ class PageHandler(webapp.RequestHandler):
     def get(self, pageno):
         self.do_page(int(pageno))
 
-# responds to /
-class IndexHandler(PageHandler):
+# responds to /blog
+class BlogMainHandler(PageHandler):
     def get(self):
         self.do_page(1)
+
+# responds to /
+class MainHandler(webapp.RequestHandler):
+    def get(self):
+        articles = get_articles_summary()[:10]
+        articles_summary_set_tags_display(articles, to_exclude=[NOTE_TAG])
+        vals = {
+            'login_out_url' : get_login_logut_url("/"),
+            'is_admin' : users.is_current_user_admin(),
+            'articles' : articles,
+            'articles_count' : len(articles)
+        }
+        template_out(self.response, "tmpl/mainpage.html", vals)
 
 NOTES_PER_PAGE = 10
 # responds to /notes/(.*)
@@ -992,6 +1005,11 @@ class SitemapHandler(webapp.RequestHandler):
         }
         template_out(self.response, "tmpl/sitemap.xml", vals)
 
+# responds to /software, /software/, /software/index.html
+class SoftwareIndexHandler(webapp.RequestHandler):
+    def get(self):
+        template_out(self.response, "www/static/software.html", {})
+
 # responds to /app/articlesjson and /djs/
 class ArticlesJsonHandler(webapp.RequestHandler):
     def get(self):
@@ -1309,8 +1327,9 @@ class Crashes(webapp.RequestHandler):
 
 def main():
     mappings = [
-        ('/', IndexHandler),
-        ('/index.html', IndexHandler),
+        ('/', MainHandler),
+        ('/blog', BlogMainHandler),
+        ('/index.html', BlogMainHandler),
         ('/archives.html', ArchivesHandler),
         ('/article/(.*)', ArticleHandler),
         ('/notes/(.*)', NotesHandler),
@@ -1323,6 +1342,9 @@ def main():
         ('/atom-all.xml', AtomAllHandler),
         ('/feedburner.xml', AtomHandler),
         ('/sitemap.xml', SitemapHandler),
+        ('/software', SoftwareIndexHandler),
+        ('/software/', SoftwareIndexHandler),
+        ('/software/index.html', SoftwareIndexHandler),
         ('/software/(.+)/', AddIndexHandler),
         ('/forum_sumatra/(.*)', ForumRedirect),
         ('/app/edit', EditHandler),

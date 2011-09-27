@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Krzysztof Kowalczyk</title>
+{% include "inline_css.html" %}
+
+<style type="text/css">
+body {
+    font-size: 9pt;
+}
+
+.bigtxt {
+  font-size: 160%;
+  font-weight: bold;
+}
+
+.softbox {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  padding: 8px; max-width: 320px;
+}
+
+.softbox .title {
+  font-size:160%;
+  font-weight: bold;
+  color: #008AC0;
+}
+
+.softbox .desc {
+  padding-top: 4px;
+}
+
+.softbox a {
+  text-decoration: none;
+  color: #008AC0;
+}
+
+.softbox a:hover {
+  color: white;
+  background: #008AC0;
+}
+</style>
+
+<script type="text/javascript" src="{{ jquery_url }}"></script>
+
+{% include "tagcloud.js" %}
+
+<script type="text/javascript">
+function articlesJsonLoaded(articlesJson) {
+  articles_json = articlesJson;
+  var html = genTagCloudHtml2();
+  $('#tagCloud').html(html);
+}
+
+$(document).ready(function(){
+});
+</script>
+
+</head>
+<body>
+
+<div id="tophdr">
+  <h1 style="padding-left:12px">
+    <a class="namelink" href="/">Krzysztof Kowalczyk</a>&nbsp;&nbsp;&nbsp;
+    <span style="float:right; font-size:80%; font-weight:normal;  margin-right: 12px;">
+      <a class="hdrlink" href="/blog">Blog</a>
+      <span style="color:gray">&nbsp;&bull;&nbsp;</span>
+      <a class="hdrlink" href="/notes/">Notes</a>
+      <span style="color:gray">&nbsp;&bull;&nbsp;</span>
+      <a href="/static/software.html" class="hdrlink">My Software</a>
+      <span style="color:gray">&nbsp;&bull;&nbsp;</span>
+      <a class="hdrlink" href="/static/documents.html">My Documents</a>
+    </span>
+  </h1>
+</div>
+
+<center>
+<div id="content">
+
+<table style="padding-top: 12px">
+<tr>
+  <td valign=top style="padding-right: 16px;">
+    <table valign=top>
+      <tr>
+        <td valign=top colspan=2>
+        <span class="bigtxt">Krzysztof Kowalczyk</span>
+        </td>
+      </tr>
+      <tr>
+        <td valign=top style="padding-right: 14px;">
+          <a href="/static/resume.html">
+          <img src="https://kjkpub.s3.amazonaws.com/blog/img/head-big.jpg" border=0></a>
+        </td>
+
+        <td valign=top>
+          <script>
+            var email = "";
+            email += "kkowalczyk";
+            email += "@";
+            email += "gmail.com"
+            hyperlink = "<a href='mailto:email'>email</a>";
+            hyperlink = hyperlink.replace(/email/g, email);
+            document.write(hyperlink);
+          </script>
+          <br><a href="/static/resume.html">resume</a>
+
+          <br>
+          <br><a href="http://github.com/kjk">github.com/kjk</a>
+          <br><a href="http://code.google.com/u/@UxJfQFJRABhHWQN6/">code.google.com/u/kkowalczyk</a>
+          <br>
+
+          <br><a href="https://plus.google.com/112100039263959533932">Google+</a>
+          <br><a href="http://twitter.com/kjk">twitter.com/kjk</a>
+        </td>
+      </tr>
+      <tr>
+        <td colspan=2>
+          <br>
+          <div style="font-size:130%; font-weight: bold;">Recent blog posts:</div>
+        </td>
+      </tr>
+      {% for article in articles %}
+      <tr>
+        <td colspan=2 style="padding-top:2px; max-width:380px">
+          <a href="/{{ article.permalink }}">
+            {% if article.title %} {{ article.title|escape }} {% else %} no title {% endif %}</a>
+          {% if article.tags_display %}&nbsp;
+            <span style="font-size:80%">
+            <span class="taglink">tags:</span> {{ article.tags_display }}</span>
+          {% endif %}
+
+          {% if article.is_deleted %}
+          &nbsp;<font color="red">deleted</font>
+          {% endif %}
+          {% if not article.is_public %}
+          &nbsp;<font color="red">private</font>
+          {% endif %}
+          {% if is_admin %}&nbsp;
+          <a id="article_edit" href="/app/edit?article_permalink={{ article.permalink }}">edit</a>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+      <tr>
+        <td colspan=2 style="padding-top:12px; max-width:380px">
+          <span class="light">Tags:</span> <span id="tagCloud"></span>
+        </td>
+      </tr>
+    </table>
+  </td>
+
+  <td valign=top>
+    <table>
+      <tr>
+        <td valign=top colspan=3>
+        <span class="bigtxt">My software</span>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <div class="softbox">
+            <span class="title"><a href=/software/volante/>Volante</a></span>
+            <div class="desc">
+            Fast, small, object-oriented, embedded database engine for C#/.NET.
+            </div>
+          </div>
+          <br>
+        </td>
+
+      <tr>
+        <td>
+          <div class="softbox">
+            <span class="title"><a href="/software/sumatrapdf/">SumatraPDF</a></span>
+            <div class="desc">
+            Small, fast, free PDF, XPS, DjVu, CBZ and CBR reader for Windows.
+            </div>
+          </div>
+          <br>
+        </td>
+      </tr>
+      </tr>
+
+      <tr>
+        <td>
+          <div class="softbox">
+            <span class="title"><a href="software/vack/">VisualAck</a></span>
+            <div class="desc">
+            Visual grep for Mac OS X.
+            </div>
+          </div>
+          <br>
+        </td>
+
+      <tr>
+        <td>
+          <div class="softbox">
+            <span class="title"><a href="http://www.yepi.ws/fotofi/free-stock-photos">Fotofi</a></span>
+            <div class="desc">
+            Find free stock photos, a Windows application.
+            </div>
+          </div>
+          <br>
+        </td>
+      </tr>
+    </table>
+  </td>
+</tr>
+
+</table>
+
+</center>
+<br>
+
+</div>
+
+<hr>
+
+{% include "analytics.html" %}
+
+<script charset="utf-8" type="text/javascript" src="{{ articles_js_url }}"></script>
+
+</body>
+</html>
