@@ -42,6 +42,17 @@ body {
   color: white;
   background: #008AC0;
 }
+
+.onHoverVisible a {
+  color: white;
+}
+
+.onHoverVisible a:hover {
+  color: gray;
+}
+
+}
+
 </style>
 
 <script type="text/javascript" src="{{ jquery_url }}"></script>
@@ -158,7 +169,17 @@ $(document).ready(function(){
       <tr>
         <td valign=top colspan=3>
         <span class="bigtxt">My software</span>
-        <br><br>
+          {% if is_admin %}
+            <div style="float: right; margin-right: 12px; margin-left: 12px; font-size: 80%; border: 1px solid #CCC; padding: 6px;">
+              <a href="{{ login_out_url }}">log out</a><br>
+              <a href="/app/edit">new blog post</a><br>
+              <a href="/app/edit?note=yes">new note</a><br>
+              <a href="/app/showprivate">show private</a><br>
+            </div>
+          {% else %}
+            &nbsp;<span class="onHoverVisible"><a href="{{ login_out_url }}">log in</a></span>
+            <br><br>
+          {% endif %}
         </td>
       </tr>
 
