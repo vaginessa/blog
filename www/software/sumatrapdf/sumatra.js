@@ -118,10 +118,20 @@ var gSrTrans = {
 	"Forums" : "Форум"	
 };
 
+var gKaTrans = {
+	"Home" : "მთავარი",
+	"News" : "სიახლეები",
+	"Manual" : "სახელმძღვანელო",
+	"Download" : "ჩამოტვირთვა",
+	"Contribute" : "მონაწილეობა",
+	"Translations" : "თარგმნები",
+	"Forums" : "ფორუმები"	
+};
+
 var gTabTrans = {
 	"ru" : gRuTrans, "ro" : gRoTrans, "pt" : gPtTrans, "ja" : gJaTrans,
 	"es" : gEsTrans, "de" : gDeTrans, "cn" : gCnTrans, "bg" : gBgTrans,
-	"sr" : gSrTrans
+	"sr" : gSrTrans, "ka" : gKaTrans
 };
 
 var gLangCookieName = "forceSumLang";
@@ -139,7 +149,8 @@ var gLanguages = [
 	"ro", ["Română", "Romanian"],
 	"sr", ["Српски", "Serbian"],
 	"ja", ["日本語", "Japanese"],
-	"cn", ["简体中文", "Chinese"]
+	"cn", ["简体中文", "Chinese"],
+	"ka", ["ქართული ენა", "Georgian"]
 ];
 
 // For ie compat, from https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/Array/indexOf
@@ -193,11 +204,11 @@ function langNativeName(lang) {
 }
 
 var gTransalatedPages = [
-	"download-free-pdf-viewer", ["ru", "cn", "de", "es", "fr", "ja", "pt", "ro", "ru", "bg", "sr"],
-	"download-prev", ["de", "es", "ja", "pt", "ro", "sr"],
-	"downloadafter", ["de", "es", "ja", "pt", "ro", "bg", "sr"],
-	"free-pdf-reader", ["cn", "de", "es", "ja", "pt", "ro", "ru", "bg", "sr"],
-	"manual", ["ru", "cn", "de", "es", "ja", "pt", "ro", "ru", "bg", "sr"],
+	"download-free-pdf-viewer", ["ka", "ru", "cn", "de", "es", "fr", "ja", "pt", "ro", "ru", "bg", "sr"],
+	"download-prev", ["ka", "de", "es", "ja", "pt", "ro", "sr"],
+	"downloadafter", ["ka", "de", "es", "ja", "pt", "ro", "bg", "sr"],
+	"free-pdf-reader", ["ka", "cn", "de", "es", "ja", "pt", "ro", "ru", "bg", "sr"],
+	"manual", ["ka", "ru", "cn", "de", "es", "ja", "pt", "ro", "ru", "bg", "sr"],
 	"news", ["pt"]
 ];
 
