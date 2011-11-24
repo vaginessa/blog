@@ -1,9 +1,17 @@
-
 // update after releasing a new version
-var gSumZipUrl = "https://kjkpub.s3.amazonaws.com/sumatrapdf/rel/SumatraPDF-1.8.zip";
-var gSumExeUrl = "https://kjkpub.s3.amazonaws.com/sumatrapdf/rel/SumatraPDF-1.8-install.exe";
-var gSumZipName = "SumatraPDF-1.8.zip";
-var gSumExeName = "SumatraPDF-1.8-install.exe";
+var gSumVer = "1.9";
+var gSumZipUrl = "https://kjkpub.s3.amazonaws.com/sumatrapdf/rel/SumatraPDF-" + gSumVer + ".zip";
+var gSumExeUrl = "https://kjkpub.s3.amazonaws.com/sumatrapdf/rel/SumatraPDF-" + gSumVer + "-install.exe";
+var gSumZipName = "SumatraPDF-" + gSumVer + ".zip";
+var gSumExeName = "SumatraPDF-" + gSumVer + "-install.exe";
+
+// used by download-prev* pages, update after releasing a new version
+var gPrevSumatraVersion = [
+	"1.8", "1.7", "1.6", 
+	"1.5.1", "1.5", "1.4", "1.3", "1.2", "1.1", "1.0.1",
+	"1.0", "0.9.4", "0.9.3", "0.9.1", "0.9", "0.8.1", 
+	"0.8", "0.7", "0.6", "0.5", "0.4", "0.3", "0.2"
+];
 
 // used by download-free-pdf-viewer*.html pages
 function dlHtml(s1,s2) {
@@ -19,14 +27,6 @@ function dlAfterHtml(s1,s2,s3,s4) {
     return '<a href="' + gSumExeUrl + '">' + s1 + '</a>' + s2 +
     '<a href="' + gSumZipUrl + '">' + s3 + '</a>' + s4;	
 }
-
-// used by download-prev* pages, update after releasing a new version
-var gPrevSumatraVersion = [
-	"1.7", "1.6", 
-	"1.5.1", "1.5", "1.4", "1.3", "1.2", "1.1", "1.0.1",
-	"1.0", "0.9.4", "0.9.3", "0.9.1", "0.9", "0.8.1", 
-	"0.8", "0.7", "0.6", "0.5", "0.4", "0.3", "0.2"
-];
 
 var gRuTrans = {
 	"Home" : "Начало",
