@@ -1008,7 +1008,7 @@ class SitemapHandler(webapp.RequestHandler):
 # responds to /software, /software/, /software/index.html
 class SoftwareIndexHandler(webapp.RequestHandler):
     def get(self):
-        template_out(self.response, "www/static/software.html", {})
+        template_out(self.response, "tmpl/software.html", {})
 
 # responds to /app/articlesjson and /djs/
 class ArticlesJsonHandler(webapp.RequestHandler):
