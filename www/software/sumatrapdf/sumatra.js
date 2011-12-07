@@ -453,9 +453,9 @@ function navHtml() {
 	var s = '<div id="ddcolortabs"><ul>';
 	var baseUrls = [
 		["free-pdf-reader", "Home"],
+		["download-free-pdf-viewer", "Download"], 
 		["news", "News"],
 		["manual", "Manual"],
-		["download-free-pdf-viewer", "Download"], 
 		["develop", "Contribute"],
 		["translations", "Translations"],
 		["/forum_sumatra/", "Forums"]];
