@@ -14,12 +14,17 @@ var gPrevSumatraVersion = [
 ];
 
 // used by download-free-pdf-viewer*.html pages
-function dlHtml(s1,s2) {
+function dlHtml(s1,s2, s3) {
+	if (!s3) {
+		s3 = "";
+	} else {
+		s3 = " <span style='font-size:90%; color:gray'>" + s3 + "</span>";
+	}
 	return '<table><tr><td>' + s1 + '&nbsp;&nbsp;</td><td><a href="' +
 	gSumExeUrl + '" onclick="return SetupRedirect()">' + gSumExeName + 
 	'</a></td></tr><tr><td>' + s2 + '&nbsp;&nbsp;</td><td><a href="' + 
 	gSumZipUrl + '" onclick="return SetupRedirect()">' + gSumZipName +
-	'</a></td></tr></table>';
+	'</a>' + s3 + '</td></tr></table>';
 }
 
 // used by downloadafter*.html pages
