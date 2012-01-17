@@ -459,8 +459,8 @@ function navHtml() {
 	var baseUrls = [
 		["free-pdf-reader", "Home"],
 		["download-free-pdf-viewer", "Download"], 
-		["news", "News"],
 		["manual", "Manual"],
+		["news", "News"],
 		["develop", "Contribute"],
 		["translations", "Translations"],
 		["/forum_sumatra/", "Forums"]];
