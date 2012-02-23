@@ -35,7 +35,7 @@ function dlAfterHtml(s1,s2,s3,s4) {
 
 var gRuTrans = {
 	"Home" : "Начало",
-	"News" : "Новости",
+	"Version History" : "Новости",
 	"Manual" : "Руководство пользователя",
 	"Download" : "Загрузка",
 	"Contribute" : "Сотрудничество",
@@ -45,7 +45,7 @@ var gRuTrans = {
 
 var gBgTrans = {
 	"Home" : "Начало",
-	"News" : "Новини",
+	"Version History" : "Новини",
 	"Manual" : "Ръководство",
 	"Download" : "Сваляне",
 	"Contribute" : "Допринесете",
@@ -55,7 +55,7 @@ var gBgTrans = {
 
 var gRoTrans = {
 	"Home" : "Acasă",
-	"News" : "Ştiri",
+	"Version History" : "Ştiri",
 	"Manual" : "Manual",
 	"Download" : "Descarcă",
 	"Contribute" : "Contribuie",
@@ -65,7 +65,7 @@ var gRoTrans = {
 
 var gPtTrans = {
 	"Home" : "Página inicial",
-	"News" : "Novidades",
+	"Version History" : "Novidades",
 	"Manual" : "Manual",
 	"Download" : "Transferências",
 	"Contribute" : "Participar",
@@ -75,7 +75,7 @@ var gPtTrans = {
 
 var gJaTrans = {
 	"Home" : "ホーム",
-	"News" : "ニュース",
+	"Version History" : "ニュース",
 	"Manual" : "マニュアル",
 	"Download" : "ダウンロード",
 	"Contribute" : "開発",
@@ -85,7 +85,7 @@ var gJaTrans = {
 
 var gEsTrans = {
 	"Home" : "Home",
-	"News" : "Noticias",
+	"Version History" : "Noticias",
 	"Manual" : "Manual",
 	"Download" : "Descargar",
 	"Contribute" : "Contribuir",
@@ -95,7 +95,7 @@ var gEsTrans = {
 
 var gDeTrans = {
 	"Home" : "Home",
-	"News" : "Neuigkeiten",
+	"Version History" : "Neuigkeiten",
 	"Manual" : "Handbuch",
 	"Download" : "Download",
 	"Contribute" : "Helfen",
@@ -105,7 +105,7 @@ var gDeTrans = {
 
 var gCnTrans = {
 	"Home" : "主页",
-	"News" : "新闻",
+	"Version History" : "新闻",
 	"Manual" : "手册",
 	"Download" : "下载",
 	"Contribute" : "参与贡献",
@@ -115,7 +115,7 @@ var gCnTrans = {
 
 var gSrTrans = {
 	"Home" : "Почетак",
-	"News" : "Новости",
+	"Version History" : "Новости",
 	"Manual" : "Упутство",
 	"Download" : "Преузимање",
 	"Contribute" : "Допринос",
@@ -125,7 +125,7 @@ var gSrTrans = {
 
 var gKaTrans = {
 	"Home" : "მთავარი",
-	"News" : "სიახლეები",
+	"Version History" : "სიახლეები",
 	"Manual" : "სახელმძღვანელო",
 	"Download" : "ჩამოტვირთვა",
 	"Contribute" : "მონაწილეობა",
@@ -460,9 +460,9 @@ function navHtml() {
 		["free-pdf-reader", "Home"],
 		["download-free-pdf-viewer", "Download"], 
 		["manual", "Manual"],
-		["news", "News"],
-		["develop", "Contribute"],
-		["translations", "Translations"],
+		["news", "Version History"],
+		//["develop", "Contribute"],
+		//["translations", "Translations"],
 		["/forum_sumatra/", "Forums"]];
 
 	for (i=0; i<baseUrls.length; i++) {
