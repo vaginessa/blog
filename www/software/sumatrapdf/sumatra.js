@@ -520,6 +520,13 @@ function buttonsHtml() {
 return '<span style="position:relative; left: 22px; top: 6px;">\
 <script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>\
 <g:plusone size="medium" href="http://blog.kowalczyk.info/software/sumatrapdf/"></g:plusone>\
+</span>';
+}
+
+function buttonsOldHtml() {
+return '<span style="position:relative; left: 22px; top: 6px;">\
+<script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>\
+<g:plusone size="medium" href="http://blog.kowalczyk.info/software/sumatrapdf/"></g:plusone>\
 </span>\
 <span style="position:relative; left: 12px; top: 6px;">\
 <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.kowalczyk.info/software/sumatrapdf/free-pdf-reader.html" data-text="SumatraPDF - free PDF reader for Windows" data-count="horizontal" data-via="kjk">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>\
