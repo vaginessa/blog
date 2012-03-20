@@ -42,7 +42,7 @@ NOTE_TAG = "note"
 g_root_url = None
 
 # We no longer log crashes from those versions of Sumatra:
-SUMATRA_VER_CRASH_BLACKLIST = ["1.5", "1.5.1", "1.6", "1.7"]
+SUMATRA_VER_CRASH_BLACKLIST = ["1.5", "1.5.1", "1.6", "1.7", "1.8", "1.9"]
 
 HTTP_NOT_ACCEPTABLE = 406
 
