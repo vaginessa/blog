@@ -133,10 +133,20 @@ var gKaTrans = {
 	"Forums" : "ფორუმები"	
 };
 
+var gEuTrans = {
+	"Home" : "Hasiera",
+	"Version History" : "Bertsio Historia",
+	"Manual" : "Eskuliburua",
+	"Download" : "Jeisketa",
+	"Contribute" : "Ekarpenak",
+	"Translations" : "Itzulpenak",
+	"Forums" : "Foroak"
+};
+
 var gTabTrans = {
 	"ru" : gRuTrans, "ro" : gRoTrans, "pt" : gPtTrans, "ja" : gJaTrans,
 	"es" : gEsTrans, "de" : gDeTrans, "cn" : gCnTrans, "bg" : gBgTrans,
-	"sr" : gSrTrans, "ka" : gKaTrans
+	"sr" : gSrTrans, "ka" : gKaTrans, "eu" : gEuTrans
 };
 
 var gLangCookieName = "forceSumLang";
@@ -145,6 +155,7 @@ var gLangCookieName = "forceSumLang";
 // to order links for translated pages
 var gLanguages = [
 	"en", ["English", "English"],
+	"eu", ["Basque", "Basque"],
 	"bg", ["Български", "Bulgarian"],
 	"de", ["Deutsch", "German"],
 	"es", ["Español", "Spanish"],
@@ -209,11 +220,11 @@ function langNativeName(lang) {
 }
 
 var gTransalatedPages = [
-	"download-free-pdf-viewer", ["ka", "ru", "cn", "de", "es", "fr", "ja", "pt", "ro", "ru", "bg", "sr"],
-	"download-prev", ["ka", "de", "es", "ja", "pt", "ro", "sr"],
-	"downloadafter", ["ka", "de", "es", "ja", "pt", "ro", "bg", "sr"],
-	"free-pdf-reader", ["ka", "cn", "de", "es", "ja", "pt", "ro", "ru", "bg", "sr"],
-	"manual", ["ka", "ru", "cn", "de", "es", "ja", "pt", "ro", "ru", "bg", "sr"],
+	"download-free-pdf-viewer", ["ka", "ru", "cn", "de", "es", "fr", "ja", "pt", "ro", "ru", "bg", "sr", "eu"],
+	"download-prev", ["ka", "de", "es", "ja", "pt", "ro", "sr", "eu"],
+	"downloadafter", ["ka", "de", "es", "ja", "pt", "ro", "bg", "sr", "eu"],
+	"free-pdf-reader", ["ka", "cn", "de", "es", "ja", "pt", "ro", "ru", "bg", "sr", "eu"],
+	"manual", ["ka", "ru", "cn", "de", "es", "ja", "pt", "ro", "ru", "bg", "sr", "eu"],
 	"news", ["pt"]
 ];
 
