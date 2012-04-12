@@ -155,10 +155,10 @@ var gLangCookieName = "forceSumLang";
 // to order links for translated pages
 var gLanguages = [
 	"en", ["English", "English"],
-	"eu", ["Basque", "Basque"],
 	"bg", ["Български", "Bulgarian"],
 	"de", ["Deutsch", "German"],
 	"es", ["Español", "Spanish"],
+	"eu", ["Euskara", "Basque"],
 	//"fr", ["Français", "French"],
 	"pt", ["Português", "Portuguese"],
 	"ru", ["Pусский", "Russian"],
