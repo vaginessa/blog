@@ -156,6 +156,7 @@ var gLangCookieName = "forceSumLang";
 var gLanguages = [
 	"en", ["English", "English"],
 	"bg", ["Български", "Bulgarian"],
+	"sr", ["Српски", "Serbian"],
 	"de", ["Deutsch", "German"],
 	"es", ["Español", "Spanish"],
 	"eu", ["Euskara", "Basque"],
@@ -163,7 +164,6 @@ var gLanguages = [
 	"pt", ["Português", "Portuguese"],
 	"ru", ["Pусский", "Russian"],
 	"ro", ["Română", "Romanian"],
-	"sr", ["Српски", "Serbian"],
 	"ja", ["日本語", "Japanese"],
 	"cn", ["简体中文", "Chinese"],
 	"ka", ["ქართული ენა", "Georgian"]
