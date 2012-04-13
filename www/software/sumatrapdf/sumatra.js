@@ -303,12 +303,11 @@ function forceRedirectToLang(lang) {
 	window.location = urlFromBaseUrlLang(baseUrl, lang);
 }
 
-// TODO: should also redirect from non-english pages for consistency?
 function autoRedirectToTranslated() {
 	var tmp = getBaseUrlAndLang();
 	var baseUrl = tmp[0];
 	var pageLang = tmp[1];
-	// only redirect if we
+	// only redirect if we're on an english page
 	if (!isEng(pageLang)) {
 		alert("autoRedirectToTranslated() called from non-english page");
 		return;
