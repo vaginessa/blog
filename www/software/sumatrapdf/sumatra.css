@@ -116,3 +116,17 @@ background-color: #fff;
 
 .trans a {
 }
+
+.gooad {
+  margin-top: 4px;
+  margin-bottom: 6px;
+  margin-left:auto;
+  margin-right:auto;
+  width: 748px; /* seems to be 728 really, adding margin for safety */
+}
+
+.goodadtxt {
+  color:gray;
+  font-size:70%;
+  margin:0px;
+}
