@@ -2,9 +2,9 @@
 
 1.1. Introduction: string, []byte, immutability, UTF-8, unicode [DONE]
 
-There are few important aspects of Go strings that you need to understand.
+There are some fundamental aspects of Go strings that you need to understand.
 
-Strings are immutable - after you create one, you can't modify it.
+Strings are immutable - after you create it, you can't modify it.
 
 Unlike most recent languages (Java, C#, Python) that represent strings internally
 in UCS-2 encoding, strings in Go are internally an immutable array of bytes ([]byte)
