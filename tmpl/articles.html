@@ -153,29 +153,23 @@ $(document).ready(function(){
   </div>
   -->
 
-  <div id="post" style="margin-left: 18px; margin-top:12px;">
+  <div id="post" style="margin-left: auto; margin-right:auto; margin-top:2em;">
     {% for article in articles_summary %}
-      <table>
-        <tr>
-          <td style="background: lightgray; width=4px"></td>
-          <td>
-            <div onMouseOver="showById('article_{{ article.no }}');" onMouseOut="hideById('article_{{ article.no }}');">
-              <a href="/{{ article.permalink }}" class="title">{{ article.title|escape }}</a>
-              {% if not article.is_public %} &nbsp;<font style="color: red;">private</font> {% endif %}
-              {% if is_admin %}&nbsp;
-              <a id="article_{{ article.no }}" class="invisible" href="/app/edit?article_permalink={{ article.permalink }}">edit</a>
-              {% endif %}
-            </div>
-            <div class="postmeta nowrap">
-              {{ article.published_on|date:"M d Y" }}
-              {% if article.tags_display %}
-               &bull; <a href="/tag/" class="taglink">Tags</a>: {{ article.tags_display }}
-              {% endif %}
-            </div>
-          </td>
-        </tr>
-      </table>
+      <div onMouseOver="showById('article_{{ article.no }}');" onMouseOut="hideById('article_{{ article.no }}');">
+        <a href="/{{ article.permalink }}" class="title">{{ article.title|escape }}</a>
+        {% if not article.is_public %} &nbsp;<font style="color: red;">private</font> {% endif %}
+        {% if is_admin %}&nbsp;
+        <a id="article_{{ article.no }}" class="invisible" href="/app/edit?article_permalink={{ article.permalink }}">edit</a>
+        {% endif %}
+      </div>
       {{ article.html_body }}
+      <div class="postmeta nowrap">
+        Posted on {{ article.published_on|date:"M d Y" }}
+        {% if article.tags_display %}
+         <a href="/tag/" class="taglink">in</a>: {{ article.tags_display }}
+        {% endif %}
+      </div>
+      <br>
       <br>
     {% endfor %}
   </div>
