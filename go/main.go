@@ -245,13 +245,13 @@ func main() {
 	}
 
 	r := mux.NewRouter()
-	r.HandleFunc("/", makeTimingHandler(handleMain))
 	r.HandleFunc("/blog", makeTimingHandler(handleBlogMain))
 
-	http.Handle("/", r)
+	http.Handle("/", makeTimingHandler(handleMain))
 	http.Handle("/software", makeTimingHandler(handleSoftware))
 	http.Handle("/software/", makeTimingHandler(handleSoftware))
 	http.Handle("/static/", makeTimingHandler(handleStatic))
+	http.Handle("/blog", r)
 
 	backupConfig := &BackupConfig{
 		AwsAccess: *config.AwsAccess,
