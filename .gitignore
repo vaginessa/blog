@@ -10,3 +10,4 @@ books/go-cookbook/bin/*
 blog.iml
 blog.ipr
 blog.iws
+config.json
