@@ -141,7 +141,7 @@ func isTopLevelUrl(url string) bool {
 }
 
 func serve404(w http.ResponseWriter, r *http.Request) {
-	//fmt.Fprint(w, `<html><body>Page Not Found!</body></html>`)
+	logger.Noticef("Not found: %s", r.URL.Path)
 	http.NotFound(w, r)
 }
 
@@ -185,6 +185,10 @@ func readConfig(configFile string) error {
 	return err
 }
 
+func getReferer(r *http.Request) string {
+	return r.Header.Get("Referer")
+}
+
 func makeTimingHandler(fn func(http.ResponseWriter, *http.Request)) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 
@@ -207,9 +211,9 @@ func makeTimingHandler(fn func(http.ResponseWriter, *http.Request)) http.Handler
 	}
 }
 
-// responds to /
+// url: /
 func handleMain(w http.ResponseWriter, r *http.Request) {
-	fmt.Printf("handleMain() %s\n", r.URL.Path)
+	logger.Noticef("handleMain() %s", r.URL.Path)
 	if !isTopLevelUrl(r.URL.Path) {
 		serve404(w, r)
 		return
@@ -217,9 +221,9 @@ func handleMain(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, "This is /")
 }
 
-// responds to /blog
+// url: /blog
 func handleBlogMain(w http.ResponseWriter, r *http.Request) {
-	fmt.Printf("handleBlogMain()\n")
+	logger.Notice("handleBlogMain()")
 }
 
 func main() {
@@ -241,9 +245,18 @@ func main() {
 	}
 
 	r := mux.NewRouter()
-
 	r.HandleFunc("/", makeTimingHandler(handleMain))
 	r.HandleFunc("/blog", makeTimingHandler(handleBlogMain))
+	r.HandleFunc("/software", makeTimingHandler(handleSoftwareIndex))
+	r.HandleFunc("/software/", makeTimingHandler(handleSoftwareIndex))
+	r.HandleFunc("/software/index.html", makeTimingHandler(handleSoftwareIndex))
+	// TODO: is there a better to register for everything under /software* ?
+	r.HandleFunc("/software/{program}/", makeTimingHandler(handleSoftware))
+	r.HandleFunc("/software/{program}/{r}", makeTimingHandler(handleSoftware))
+	r.HandleFunc("/software/{program}/{r}/{r2}", makeTimingHandler(handleSoftware))
+	r.HandleFunc("/software/{program}/{r}/{r2}/{r3}", makeTimingHandler(handleSoftware))
+	r.HandleFunc("/software/{program}/{r}/{r2}/{r3}/{r4}", makeTimingHandler(handleSoftware))
+	r.HandleFunc("/software/{program}/{r}/{r2}/{r3}/{r4}/{r5}", makeTimingHandler(handleSoftware))
 
 	http.Handle("/", r)
 
