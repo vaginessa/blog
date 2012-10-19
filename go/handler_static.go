@@ -1,11 +1,20 @@
 package main
 
 import (
-	_ "code.google.com/p/gorilla/mux"
 	"net/http"
 	"path/filepath"
-	"strings"
 )
+
+func getStaticDir() string {
+	// when running locally
+	d := filepath.Join("..", "appengine", "www", "static")
+	if PathExists(d) {
+		return d
+	}
+	// TODO: this will probably be different on the server
+	logger.Errorf("getStaticDir(): '%s' dir doesn't exist", d)
+	return ""
+}
 
 func getSoftwareDir() string {
 	// when running locally
@@ -38,22 +47,22 @@ func serveFileFromDir(w http.ResponseWriter, r *http.Request, dir, fileName stri
 	http.ServeFile(w, r, filePath)
 }
 
-// url: /software, /software/, /software/index.html
-func handleSoftwareIndex(w http.ResponseWriter, r *http.Request) {
-	if redirectIfNeeded(w, r) {
-		return
-	}
-	serveFileFromDir(w, r, getAppEngineTmplDir(), "software.html")
+// url: /static/*
+func handleStatic(w http.ResponseWriter, r *http.Request) {
+	file := r.URL.Path[len("/static/"):]
+	serveFileFromDir(w, r, getStaticDir(), file)
 }
 
-// url: /software/{program}[/{rest}]
+// url: /software*
 func handleSoftware(w http.ResponseWriter, r *http.Request) {
+	url := r.URL.Path
+	if url == "/software" || url == "/software/" || url == "/software/index.html" {
+		serveFileFromDir(w, r, getAppEngineTmplDir(), "software.html")
+		return
+	}
 	if redirectIfNeeded(w, r) {
 		return
 	}
 	file := r.URL.Path[len("/software/"):]
-	if strings.HasSuffix(file, "/") {
-		file += "index.html"
-	}
 	serveFileFromDir(w, r, getSoftwareDir(), file)
 }

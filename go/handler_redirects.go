@@ -7,11 +7,10 @@ import (
 var redirects = map[string]string{
 	"/kb/serialization-in-c#.html":        "/article/Serialization-in-C.html",
 	"/articles/":                          "/articles/index.html",
-	"/software/":                          "/software/index.html",
 	"/software/fofou":                     "/software/fofou/index.html",
 	"/software/sumatra":                   "/software/sumatrapdf/free-pdf-reader.html",
 	"/software/sumatrapdf":                "/software/sumatrapdf/free-pdf-reader.html",
-    "/software/sumatrapdf/":               "/software/sumatrapdf/free-pdf-reader.html",
+	"/software/sumatrapdf/":               "/software/sumatrapdf/free-pdf-reader.html",
 	"/software/sumatrapdf/index.html":     "/software/sumatrapdf/free-pdf-reader.html",
 	"/software/sumatrapdf/download.html":  "/software/sumatrapdf/download-free-pdf-viewer.html",
 	"/software/sumatrapdf/prerelase.html": "/software/sumatrapdf/prerelease.html",
@@ -39,7 +38,7 @@ var redirects = map[string]string{
 
 func redirectIfNeeded(w http.ResponseWriter, r *http.Request) bool {
 	url := r.URL.Path
-    //logger.Noticef("redirectIfNeeded(): '%s'", url)
+	//logger.Noticef("redirectIfNeeded(): '%s'", url)
 	if redirUrl, ok := redirects[url]; ok {
 		logger.Noticef("Redirecting '%s' => '%s'", url, redirUrl)
 		http.Redirect(w, r, redirUrl, 302)

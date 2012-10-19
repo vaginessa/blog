@@ -247,18 +247,11 @@ func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/", makeTimingHandler(handleMain))
 	r.HandleFunc("/blog", makeTimingHandler(handleBlogMain))
-	r.HandleFunc("/software", makeTimingHandler(handleSoftwareIndex))
-	r.HandleFunc("/software/", makeTimingHandler(handleSoftwareIndex))
-	r.HandleFunc("/software/index.html", makeTimingHandler(handleSoftwareIndex))
-	// TODO: is there a better to register for everything under /software* ?
-	r.HandleFunc("/software/{program}/", makeTimingHandler(handleSoftware))
-	r.HandleFunc("/software/{program}/{r}", makeTimingHandler(handleSoftware))
-	r.HandleFunc("/software/{program}/{r}/{r2}", makeTimingHandler(handleSoftware))
-	r.HandleFunc("/software/{program}/{r}/{r2}/{r3}", makeTimingHandler(handleSoftware))
-	r.HandleFunc("/software/{program}/{r}/{r2}/{r3}/{r4}", makeTimingHandler(handleSoftware))
-	r.HandleFunc("/software/{program}/{r}/{r2}/{r3}/{r4}/{r5}", makeTimingHandler(handleSoftware))
 
 	http.Handle("/", r)
+	http.Handle("/software", makeTimingHandler(handleSoftware))
+	http.Handle("/software/", makeTimingHandler(handleSoftware))
+	http.Handle("/static/", makeTimingHandler(handleStatic))
 
 	backupConfig := &BackupConfig{
 		AwsAccess: *config.AwsAccess,
