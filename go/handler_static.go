@@ -5,26 +5,43 @@ import (
 	"path/filepath"
 )
 
-func getStaticDir() string {
+func getWwwDir() string {
 	// when running locally
-	d := filepath.Join("..", "appengine", "www", "static")
+	d := filepath.Join("..", "appengine", "www")
 	if PathExists(d) {
 		return d
 	}
 	// TODO: this will probably be different on the server
-	logger.Errorf("getStaticDir(): '%s' dir doesn't exist", d)
+	logger.Errorf("getWwwDir(): '%s' dir doesn't exist", d)
 	return ""
 }
 
+func getCssDir() string {
+	return filepath.Join(getWwwDir(), "css")
+}
+
+func getJsDir() string {
+	return filepath.Join(getWwwDir(), "js")
+}
+
+func getGfxDir() string {
+	return filepath.Join(getWwwDir(), "gfx")
+}
+
+func getMarkitupDir() string {
+	return filepath.Join(getWwwDir(), "markitup")
+}
+
+func getStaticDir() string {
+	return filepath.Join(getWwwDir(), "static")
+}
+
 func getSoftwareDir() string {
-	// when running locally
-	d := filepath.Join("..", "appengine", "www", "software")
-	if PathExists(d) {
-		return d
-	}
-	// TODO: this will probably be different on the server
-	logger.Errorf("getSoftwareDir(): '%s' dir doesn't exist", d)
-	return ""
+	return filepath.Join(getWwwDir(), "software")
+}
+
+func getArticlesDir() string {
+	return filepath.Join(getWwwDir(), "articles")
 }
 
 func getAppEngineTmplDir() string {
@@ -53,6 +70,18 @@ func handleStatic(w http.ResponseWriter, r *http.Request) {
 	serveFileFromDir(w, r, getStaticDir(), file)
 }
 
+// url: /css/*
+func handleCss(w http.ResponseWriter, r *http.Request) {
+	file := r.URL.Path[len("/css/"):]
+	serveFileFromDir(w, r, getCssDir(), file)
+}
+
+// url: /js/*
+func handleJs(w http.ResponseWriter, r *http.Request) {
+	file := r.URL.Path[len("/js/"):]
+	serveFileFromDir(w, r, getJsDir(), file)
+}
+
 // url: /software*
 func handleSoftware(w http.ResponseWriter, r *http.Request) {
 	url := r.URL.Path
@@ -70,4 +99,23 @@ func handleSoftware(w http.ResponseWriter, r *http.Request) {
 // url: /favicon.ico
 func handleFavicon(w http.ResponseWriter, r *http.Request) {
 	serveFileFromDir(w, r, getStaticDir(), "favicon.ico")
+}
+
+// url: /robots.txt
+func handleRobotsTxt(w http.ResponseWriter, r *http.Request) {
+	serveFileFromDir(w, r, getWwwDir(), "robots.txt")
+}
+
+// url: /articles/*
+func handleArticles(w http.ResponseWriter, r *http.Request) {
+	if redirectIfNeeded(w, r) {
+		return
+	}
+	url := r.URL.Path
+	if url == "/articles/" || url == "/articles/index.html" {
+		serveFileFromDir(w, r, getStaticDir(), "documents.html")
+		return
+	}
+	file := r.URL.Path[len("/articles/"):]
+	serveFileFromDir(w, r, getArticlesDir(), file)
 }

@@ -6,7 +6,6 @@ import (
 
 var redirects = map[string]string{
 	"/kb/serialization-in-c#.html":        "/article/Serialization-in-C.html",
-	"/articles/":                          "/articles/index.html",
 	"/software/fofou":                     "/software/fofou/index.html",
 	"/software/sumatra":                   "/software/sumatrapdf/free-pdf-reader.html",
 	"/software/sumatrapdf":                "/software/sumatrapdf/free-pdf-reader.html",

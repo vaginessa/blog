@@ -249,9 +249,13 @@ func main() {
 
 	http.Handle("/", makeTimingHandler(handleMain))
 	http.HandleFunc("/favicon.ico", handleFavicon)
+	http.HandleFunc("/robots.txt", handleRobotsTxt)
 	http.Handle("/software", makeTimingHandler(handleSoftware))
 	http.Handle("/software/", makeTimingHandler(handleSoftware))
+	http.Handle("/articles/", makeTimingHandler(handleArticles))
 	http.Handle("/static/", makeTimingHandler(handleStatic))
+	http.Handle("/css/", makeTimingHandler(handleCss))
+	http.Handle("/js/", makeTimingHandler(handleJs))
 	http.Handle("/blog", r)
 
 	backupConfig := &BackupConfig{
