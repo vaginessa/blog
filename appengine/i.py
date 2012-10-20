@@ -166,9 +166,17 @@ def texts(count=-1, batch_size=501):
 		print("New last text key id: %d" % last_key.id())
 		write_str_to_file(last_key_filepath, str(last_key.id()))
 
+BASE_36_LETTERS = "0123456789abcdefghijklmnopqrstuvwxyz"
+def baseN(n, b, numerals=BASE_36_LETTERS):
+    return ((n == 0) and  "0" ) or ( baseN(n // b, b, numerals).lstrip("0") + numerals[n % b])
+
+def shortenId(n): return baseN(n, 36)
+
 def serarticle(e):
 	keys = [str(k.id()) for k in e.previous_versions]
 	lines = [
+		kv("I", str(e.key().id())),
+		kv("IS", shortenId(e.key().id())),
 		kv("P1", e.permalink),
 		kv("P2", e.permalink2),
 		kv("P?", e.is_public),
