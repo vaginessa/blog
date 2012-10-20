@@ -248,6 +248,7 @@ func main() {
 	r.HandleFunc("/blog", makeTimingHandler(handleBlogMain))
 
 	http.Handle("/", makeTimingHandler(handleMain))
+	http.HandleFunc("/favicon.ico", handleFavicon)
 	http.Handle("/software", makeTimingHandler(handleSoftware))
 	http.Handle("/software/", makeTimingHandler(handleSoftware))
 	http.Handle("/static/", makeTimingHandler(handleStatic))

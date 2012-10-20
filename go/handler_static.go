@@ -66,3 +66,8 @@ func handleSoftware(w http.ResponseWriter, r *http.Request) {
 	file := r.URL.Path[len("/software/"):]
 	serveFileFromDir(w, r, getSoftwareDir(), file)
 }
+
+// url: /favicon.ico
+func handleFavicon(w http.ResponseWriter, r *http.Request) {
+	serveFileFromDir(w, r, getStaticDir(), "favicon.ico")
+}
