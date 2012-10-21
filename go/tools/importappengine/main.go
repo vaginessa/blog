@@ -121,7 +121,58 @@ func serText(t *Text) string {
 	s1 := fmt.Sprintf("%d", t.CreatedOn.Unix())
 	s2 := base64.StdEncoding.EncodeToString(t.Sha1[:])
 	s2 = s2[:len(s2)-1] // remove '=' from the end
-	return fmt.Sprintf("T%d|%s|%d|%s|\n", t.Id, s1, t.Format, s2)
+	return fmt.Sprintf("T%d|%s|%d|%s\n", t.Id, s1, t.Format, s2)
+}
+
+func serAll(texts []*Text) []string {
+	res := make([]string, 0)
+	for _, t := range texts {
+		res = append(res, serText(t))
+	}
+	return res
+}
+
+func blobPath(dir, sha1 string) string {
+	d1 := sha1[:2]
+	d2 := sha1[2:4]
+	return filepath.Join(dir, "blobs", d1, d2, sha1)
+}
+
+func copyBlobs(texts []*Text) error {
+	for _, t := range texts {
+		sha1 := t.Sha1Str
+		srcPath := blobPath(srcDataDir, sha1)
+		dstPath := blobPath(dstDataDir, sha1)
+		if !PathExists(srcPath) {
+			panic("srcPath doesn't exist")
+		}
+		if !PathExists(dstPath) {
+			if err := CreateDirIfNotExists(filepath.Dir(dstPath)); err != nil {
+				panic("failed to create dir for dstPath")
+			}
+			if err := CopyFile(dstPath, srcPath); err != nil {
+				fmt.Printf("CopyFile('%s', '%s') failed with %s", dstPath, srcPath, err)
+				return err
+			}
+			fmt.Sprintf("%s=>%s\n", srcPath, dstPath)
+		}
+	}
+	return nil
+}
+
+func saveConverted(strs []string) {
+	f, err := os.Create(filepath.Join(dstDataDir, "blogdata.txt"))
+	if err != nil {
+		log.Fatalf("os.Create() failed with %s", err.Error())
+	}
+	defer f.Close()
+	for _, s := range strs {
+		_, err = f.WriteString(s)
+		if err != nil {
+			log.Fatalf("WriteFile() failed with %s", err.Error())
+		}
+	}
+
 }
 
 func main() {
@@ -132,5 +183,9 @@ func main() {
 		panic("dstDataDir doesn't exist")
 	}
 	texts := loadTexts()
+	saveConverted(serAll(texts))
+	if err := copyBlobs(texts); err != nil {
+		panic("copyBlobs() failed")
+	}
 	fmt.Printf("%d texts\n", len(texts))
 }
