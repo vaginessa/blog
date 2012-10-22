@@ -263,7 +263,7 @@ func blobPath(dir, sha1 string) string {
 	return filepath.Join(dir, "blobs", d1, d2, sha1)
 }
 
-func copyBlobs(texts []*Text) error {
+func copyBlobs(texts []*Text) {
 	for _, t := range texts {
 		sha1 := t.Sha1Str
 		srcPath := blobPath(srcDataDir, sha1)
@@ -276,13 +276,11 @@ func copyBlobs(texts []*Text) error {
 				panic("failed to create dir for dstPath")
 			}
 			if err := CopyFile(dstPath, srcPath); err != nil {
-				fmt.Printf("CopyFile('%s', '%s') failed with %s", dstPath, srcPath, err)
-				return err
+				log.Fatalf("CopyFile('%s', '%s') failed with %s", dstPath, srcPath, err)
 			}
 			fmt.Sprintf("%s=>%s\n", srcPath, dstPath)
 		}
 	}
-	return nil
 }
 
 func verifyData(texts []*Text, articles []*Article) {
@@ -300,8 +298,8 @@ func verifyData(texts []*Text, articles []*Article) {
 	fmt.Printf("verifyData(): ok!\n")
 }
 
-func saveConverted(strs []string) {
-	f, err := os.Create(filepath.Join(dstDataDir, "blogdata.txt"))
+func saveStringsToFile(filePath string, strs []string) {
+	f, err := os.Create(filePath)
 	if err != nil {
 		log.Fatalf("os.Create() failed with %s", err.Error())
 	}
@@ -324,9 +322,8 @@ func main() {
 	texts := loadTexts()
 	articles := loadArticles()
 	verifyData(texts, articles)
-	saveConverted(serAll(texts, articles))
-	if err := copyBlobs(texts); err != nil {
-		panic("copyBlobs() failed")
-	}
+	strs := serAll(texts, articles)
+	saveStringsToFile(filepath.Join(dstDataDir, "blogdata.txt"), strs)
+	copyBlobs(texts)
 	fmt.Printf("%d texts, %d articles\n", len(texts), len(articles))
 }

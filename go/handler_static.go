@@ -11,8 +11,25 @@ func getWwwDir() string {
 	if PathExists(d) {
 		return d
 	}
-	// TODO: this will probably be different on the server
+	d = "www"
+	if PathExists(d) {
+		return d
+	}
 	logger.Errorf("getWwwDir(): '%s' dir doesn't exist", d)
+	return ""
+}
+
+func getAppEngineTmplDir() string {
+	// when running locally
+	d := filepath.Join("..", "appengine", "tmpl")
+	if PathExists(d) {
+		return d
+	}
+	d = "tmpl"
+	if PathExists(d) {
+		return d
+	}
+	logger.Errorf("getAppEngineTmplDir(): '%s' dir doesn't exist", d)
 	return ""
 }
 
@@ -42,17 +59,6 @@ func getSoftwareDir() string {
 
 func getArticlesDir() string {
 	return filepath.Join(getWwwDir(), "articles")
-}
-
-func getAppEngineTmplDir() string {
-	// when running locally
-	d := filepath.Join("..", "appengine", "tmpl")
-	if PathExists(d) {
-		return d
-	}
-	// TODO: this will probably be different on the server
-	logger.Errorf("getAppEngineTmplDir(): '%s' dir doesn't exist", d)
-	return ""
 }
 
 func serveFileFromDir(w http.ResponseWriter, r *http.Request, dir, fileName string) {
