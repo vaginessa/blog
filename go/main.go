@@ -63,6 +63,7 @@ var (
 	templatePaths []string
 	templates     *template.Template
 
+	store           *Store
 	reloadTemplates = true
 	alwaysLogTime   = true
 )
@@ -262,6 +263,8 @@ func handleBlogMain(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	var err error
+
 	runtime.GOMAXPROCS(runtime.NumCPU())
 	flag.Parse()
 
@@ -277,6 +280,10 @@ func main() {
 
 	if err := readConfig(*configPath); err != nil {
 		log.Fatalf("Failed reading config file %s. %s\n", *configPath, err.Error())
+	}
+
+	if store, err = NewStore(getDataDir()); err != nil {
+		log.Fatalf("NewStore() failed with %s", err.Error())
 	}
 
 	r := mux.NewRouter()

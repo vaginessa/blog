@@ -147,24 +147,12 @@ func parseText(d []byte) *Text {
 	return res
 }
 
-func loadFile(filePath string) []byte {
-	f, err := os.Open(filePath)
-	if err != nil {
-		log.Fatalf("failed to open %s, error: %s", filePath, err.Error())
-	} else {
-		defer f.Close()
-		data, err := ioutil.ReadAll(f)
-		if err != nil {
-			log.Fatalf("loadFile(%s): ioutil.ReadAll() failed with error: %s", filePath, err.Error())
-		} else {
-			return data
-		}
-	}
-	return nil
-}
-
 func loadTexts() []*Text {
-	d := loadFile(filepath.Join(srcDataDir, "texts.txt"))
+	filePath := filepath.Join(srcDataDir, "texts.txt")
+	d, err := ReadFileAll(filePath)
+	if err != nil {
+		log.Fatalf("loadTexts(): failed to load %s, error: %s", filePath, err.Error())
+	}
 	res := make([]*Text, 0)
 	for len(d) > 0 {
 		idx := bytes.Index(d, newlines)
