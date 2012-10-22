@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<title>Logs</title>
+</head>
+<body>
+
+<h2><a href="/">Home</a> : server logs <font size=-1>{{if not .Header}}<a href="/logs?show=true">show headers</a>{{else}}<a href="/logs">hide headers</a>{{end}}</font></h2>
+
+{{if not .UserIsAdmin}}No logs for you!!!{{end}}
+
+{{ if .Header }}
+<pre style="font-size: 80%">
+<table>
+{{ range $k, $v := .Header }}
+	<tr>
+		<td><nobr>{{$k}}:</nobr></td>
+		<td>{{$v}}</td>
+	</tr>
+{{ end }}
+</table>
+</pre>
+{{ end }}
+
+{{if len .Errors}}
+	<div style="color:red">Errors:</div>
+	{{range .Errors}}
+		<div><font style="color:gray;">{{.Time.Format "2006-01-02 15:04:05"}}</font> {{.Msg}}</div>
+	{{end}}
+{{end}}
+
+{{if len .Notices}}
+	<div>Notices:</div>
+	{{range .Notices}}
+		<div><font style="color:gray;">{{.Time.Format "2006-01-02 15:04:05"}}</font> {{.Msg}}</div>
+	{{end}}
+{{end}}
+
+</body>
+</html>

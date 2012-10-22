@@ -11,6 +11,7 @@ func getWwwDir() string {
 	if PathExists(d) {
 		return d
 	}
+	// when running on a server
 	d = "www"
 	if PathExists(d) {
 		return d
@@ -25,7 +26,8 @@ func getAppEngineTmplDir() string {
 	if PathExists(d) {
 		return d
 	}
-	d = "tmpl"
+	// when running on a server
+	d = "appengtmpl"
 	if PathExists(d) {
 		return d
 	}

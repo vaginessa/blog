@@ -17,6 +17,7 @@ import (
 	_ "net/url"
 	"path/filepath"
 	"runtime"
+	"strings"
 	"time"
 )
 
@@ -57,7 +58,8 @@ var (
 
 	dataDir string
 
-	templateNames = [...]string{}
+	tmplLogs      = "logs.html"
+	templateNames = [...]string{tmplLogs}
 	templatePaths []string
 	templates     *template.Template
 
@@ -145,6 +147,10 @@ func serve404(w http.ResponseWriter, r *http.Request) {
 	http.NotFound(w, r)
 }
 
+func serveErrorMsg(w http.ResponseWriter, msg string) {
+	http.Error(w, msg, http.StatusBadRequest)
+}
+
 func userIsAdmin(cookie *SecureCookieValue) bool {
 	return cookie.TwitterUser == "kjk"
 }
@@ -187,6 +193,35 @@ func readConfig(configFile string) error {
 
 func getReferer(r *http.Request) string {
 	return r.Header.Get("Referer")
+}
+
+// Request.RemoteAddress contains port, which we want to remove i.e.:
+// "[::1]:58292" => "[::1]"
+func ipAddrFromRemoteAddr(s string) string {
+	idx := strings.LastIndex(s, ":")
+	if idx == -1 {
+		return s
+	}
+	return s[:idx]
+}
+
+func getIpAddress(r *http.Request) string {
+	hdr := r.Header
+	hdrRealIp := hdr.Get("X-Real-Ip")
+	hdrForwardedFor := hdr.Get("X-Forwarded-For")
+	if hdrRealIp == "" && hdrForwardedFor == "" {
+		return ipAddrFromRemoteAddr(r.RemoteAddr)
+	}
+	if hdrForwardedFor != "" {
+		// X-Forwarded-For is potentially a list of addresses separated with ","
+		parts := strings.Split(hdrForwardedFor, ",")
+		for i, p := range parts {
+			parts[i] = strings.TrimSpace(p)
+		}
+		// TODO: should return first non-local address
+		return parts[0]
+	}
+	return hdrRealIp
 }
 
 func makeTimingHandler(fn func(http.ResponseWriter, *http.Request)) http.HandlerFunc {
@@ -250,6 +285,7 @@ func main() {
 	http.Handle("/", makeTimingHandler(handleMain))
 	http.HandleFunc("/favicon.ico", handleFavicon)
 	http.HandleFunc("/robots.txt", handleRobotsTxt)
+	http.HandleFunc("/logs", handleLogs)
 	http.Handle("/software", makeTimingHandler(handleSoftware))
 	http.Handle("/software/", makeTimingHandler(handleSoftware))
 	http.Handle("/articles/", makeTimingHandler(handleArticles))

@@ -57,7 +57,7 @@ def zip_files(zip_path):
 	add_dir_files(zf, "ext")
 	add_dir_files(zf, "scripts")
 	add_dir_files(zf, os.path.join("..", "appengine", "www"), "www")
-	add_dir_files(zf, os.path.join("..", "appengine", "tmpl"), "tmpl")
+	add_dir_files(zf, os.path.join("..", "appengine", "tmpl"), "appengtmpl")
 	zf.close()
 
 def delete_old_deploys(to_keep=5):
