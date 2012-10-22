@@ -5,7 +5,6 @@ import (
 	"encoding/base64"
 	"encoding/hex"
 	"fmt"
-	"io/ioutil"
 	"log"
 	"os"
 	"path/filepath"
@@ -165,15 +164,29 @@ func loadTexts() []*Text {
 	return res
 }
 
+func verifyArticle(a *Article) {
+	url := Urlify(a.Title) + ".html"
+	parts := strings.Split(a.Permalink1, "/")
+	perma := parts[len(parts)-1]
+	if url != perma {
+		fmt.Printf("'%s' is not equal to:\n'%s'\n\n", url, perma)
+	}
+}
+
 func loadArticles() []*Article {
-	d := loadFile(filepath.Join(srcDataDir, "articles.txt"))
+	d, err := ReadFileAll(filepath.Join(srcDataDir, "articles.txt"))
+	if err != nil {
+		log.Fatalf("Failed to load file")
+	}
 	res := make([]*Article, 0)
 	for len(d) > 0 {
 		idx := bytes.Index(d, newlines)
 		if idx == -1 {
 			break
 		}
-		res = append(res, parseArticle(d[:idx]))
+		a := parseArticle(d[:idx])
+		verifyArticle(a)
+		res = append(res, a)
 		d = d[idx+2:]
 	}
 	return res

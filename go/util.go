@@ -9,6 +9,8 @@ import (
 	"io/ioutil"
 	"os"
 	"path/filepath"
+	"regexp"
+	"strings"
 )
 
 func PathExists(path string) bool {
@@ -105,6 +107,22 @@ func CreateDirIfNotExists(path string) error {
 		return os.MkdirAll(path, 0777)
 	}
 	return nil
+}
+
+var patWs = regexp.MustCompile(`\s+`)
+var patNonAlpha = regexp.MustCompile(`[^\w-]`)
+var patMultipleMinus = regexp.MustCompile("-+")
+
+// given an article title, generate a url
+func Urlify(title string) string {
+	s := strings.TrimSpace(title)
+	s = patWs.ReplaceAllString(s, "-")
+	s = patNonAlpha.ReplaceAllString(s, "")
+	s = patMultipleMinus.ReplaceAllString(s, "-")
+	if len(s) > 48 {
+		s = s[:48]
+	}
+	return s
 }
 
 // the names of files inside the zip file are relatitve to dirToZip e.g.
