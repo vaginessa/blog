@@ -15,6 +15,18 @@ type SecureCookieValue struct {
 	TwitterTemp string
 }
 
+func IsAdmin(r *http.Request) bool {
+	return getSecureCookie(r).TwitterUser == "kjk"
+}
+
+func getLogInOutUrl(r *http.Request) string {
+	url := r.URL.Path
+	if IsAdmin(r) {
+		return "/logout?redirect=" + url
+	}
+	return "/login?redirect=" + url
+}
+
 func setSecureCookie(w http.ResponseWriter, cookieVal *SecureCookieValue) {
 	val := make(map[string]string)
 	val["twuser"] = cookieVal.TwitterUser

@@ -12,9 +12,8 @@ func handleMainPage(w http.ResponseWriter, r *http.Request) {
 		serve404(w, r)
 		return
 	}
+	isAdmin := IsAdmin(r)
 
-	cookie := getSecureCookie(r)
-	isAdmin := cookie.TwitterUser == "kjk"
 	model := struct {
 		IsAdmin       bool
 		AnalyticsCode string
@@ -23,8 +22,10 @@ func handleMainPage(w http.ResponseWriter, r *http.Request) {
 		LogInOutUrl   string
 		ArticlesJsUrl string
 	}{
-		IsAdmin:   isAdmin,
-		JqueryUrl: "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js",
+		IsAdmin:     isAdmin,
+		JqueryUrl:   "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js",
+		LogInOutUrl: getLogInOutUrl(r),
+		Articles:    store.GetRecentArticles(10, isAdmin),
 	}
 
 	ExecTemplate(w, tmplMainPage, model)

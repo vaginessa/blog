@@ -284,6 +284,10 @@ func main() {
 	http.HandleFunc("/favicon.ico", handleFavicon)
 	http.HandleFunc("/robots.txt", handleRobotsTxt)
 	http.HandleFunc("/logs", handleLogs)
+	http.HandleFunc("/oauthtwittercb", handleOauthTwitterCallback)
+	http.HandleFunc("/login", handleLogin)
+	http.HandleFunc("/logout", handleLogout)
+
 	http.Handle("/software", makeTimingHandler(handleSoftware))
 	http.Handle("/software/", makeTimingHandler(handleSoftware))
 	http.Handle("/articles/", makeTimingHandler(handleArticles))

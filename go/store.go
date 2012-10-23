@@ -6,6 +6,7 @@ import (
 	"encoding/hex"
 	_ "errors"
 	"fmt"
+	"html/template"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -44,9 +45,22 @@ func (a *Article) Permalink() string {
 	return "article/" + ShortenId(a.Id) + "/" + Urlify(a.Title) + ".html"
 }
 
-func (a *Article) TagsDisplay() string {
-	// TODO: write me
-	return ""
+func urlForTag(tag string) string {
+	// TODO: url-quote the first tag
+	return fmt.Sprintf(`<a href="/tag/%s" class="taglink">%s</a>`, tag, tag)
+}
+
+func (a *Article) TagsDisplay() template.HTML {
+	n := len(a.Tags)
+	if n == 0 {
+		return ""
+	}
+	arr := make([]string, n, n)
+	for i, t := range a.Tags {
+		arr[i] = urlForTag(t)
+	}
+	s := strings.Join(arr, ", ")
+	return template.HTML(s)
 }
 
 type Store struct {
@@ -286,4 +300,22 @@ func (s *Store) writeMessageAsSha1(msg []byte, sha1 [20]byte) error {
 		logger.Errorf("Store.writeMessageAsSha1(): failed to write %s with error %s", path, err.Error())
 	}
 	return err
+}
+
+func (s *Store) GetRecentArticles(max int, isAdmin bool) []*Article {
+	s.Lock()
+	defer s.Unlock()
+
+	left := max
+	res := make([]*Article, 0)
+	idx := len(s.articles) - 1
+	for left > 0 && idx >= 0 {
+		a := &s.articles[idx]
+		if (!a.IsPrivate && !a.IsDeleted) || isAdmin {
+			res = append(res, a)
+			left -= 1
+		}
+		idx -= 1
+	}
+	return res
 }

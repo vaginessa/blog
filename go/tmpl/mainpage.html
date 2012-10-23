@@ -73,6 +73,8 @@ $(document).ready(function(){
 </head>
 <body>
 
+{{ $isAdmin := .IsAdmin }}
+
 <div id="tophdr">
   <h1 style="padding-left:12px">
     <a class="namelink" href="/">Krzysztof Kowalczyk</a>&nbsp;&nbsp;&nbsp;
@@ -151,7 +153,7 @@ $(document).ready(function(){
           {{ if .IsPrivate }}
           &nbsp;<font color="red">private</font>
           {{ end }}
-          {{ if .IsAdmin }}&nbsp;
+          {{ if $isAdmin }}&nbsp;
           <a id="article_edit" href="/app/edit?article_id={{ .Id }}">edit</a>
           {{ end }}
         </td>
@@ -170,7 +172,7 @@ $(document).ready(function(){
       <tr>
         <td valign=top colspan=3>
         <span class="bigtxt">My software</span>
-          {{ if .IsAdmin }}
+          {{ if $isAdmin }}
             <div style="float: right; margin-right: 12px; margin-left: 12px; font-size: 80%; border: 1px solid #CCC; padding: 6px;">
               <a href="{{ .LogInOutUrl }}">log out</a><br>
               <a href="/app/edit">new blog post</a><br>
