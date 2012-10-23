@@ -54,6 +54,7 @@ def zip_files(zip_path):
 	for f in files:
 		zf.write(f)
 	zf.write("config.json")
+	add_dir_files(zf, "tmpl")
 	add_dir_files(zf, "ext")
 	add_dir_files(zf, "scripts")
 	add_dir_files(zf, os.path.join("..", "appengine", "www"), "www")
