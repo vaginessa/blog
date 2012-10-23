@@ -125,6 +125,29 @@ func Urlify(title string) string {
 	return s
 }
 
+const base64Chars = "0123456789abcdefghijklmnopqrstuvwxyz"
+
+func ShortenId(n int) string {
+	var buf [16]byte
+	size := 0
+	for {
+		buf[size] = base64Chars[n%36]
+		size += 1
+		if n < 36 {
+			break
+		}
+		n /= 36
+	}
+	end := size - 1
+	for i := 0; i < end; i++ {
+		b := buf[i]
+		buf[i] = buf[end]
+		buf[end] = b
+		end -= 1
+	}
+	return string(buf[:size])
+}
+
 // the names of files inside the zip file are relatitve to dirToZip e.g.
 // if dirToZip is foo and there is a file foo/bar.txt, the name in the zip
 // will be bar.txt

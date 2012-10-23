@@ -164,16 +164,29 @@ func loadTexts() []*Text {
 	return res
 }
 
-func verifyArticle(a *Article) {
-	url := Urlify(a.Title) + ".html"
-	parts := strings.Split(a.Permalink1, "/")
-	perma := parts[len(parts)-1]
-	if url != perma {
-		fmt.Printf("'%s' is not equal to:\n'%s'\n\n", url, perma)
+func addRedirectIfNeeded(a *Article, redirects *[]ArticleRedirect) {
+	realUrl := "article/" + ShortenId(a.Id) + "/" + Urlify(a.Title) + ".html"
+	if a.Permalink1 != "" && realUrl != a.Permalink1 {
+		//fmt.Printf("'%s' is not equal to permalink1:\n'%s'\n\n", realUrl, a.Permalink1)
+		r := ArticleRedirect{a.Permalink1, a.Id}
+		*redirects = append(*redirects, r)
 	}
+	if a.Permalink2 != "" && realUrl != a.Permalink2 {
+		//fmt.Printf("'%s' is not equal to permalink2:\n'%s'\n\n", realUrl, a.Permalink2)
+		r := ArticleRedirect{a.Permalink2, a.Id}
+		*redirects = append(*redirects, r)
+	}
+
 }
 
-func loadArticles() []*Article {
+type ArticleRedirect struct {
+	Url       string
+	ArticleId int
+}
+
+func loadArticles() ([]*Article, []ArticleRedirect) {
+	redirects := make([]ArticleRedirect, 0)
+
 	d, err := ReadFileAll(filepath.Join(srcDataDir, "articles.txt"))
 	if err != nil {
 		log.Fatalf("Failed to load file")
@@ -185,11 +198,12 @@ func loadArticles() []*Article {
 			break
 		}
 		a := parseArticle(d[:idx])
-		verifyArticle(a)
+
+		addRedirectIfNeeded(a, &redirects)
 		res = append(res, a)
 		d = d[idx+2:]
 	}
-	return res
+	return res, redirects
 }
 
 // space saving: false values are empty strings, true is "1"
@@ -230,14 +244,12 @@ func serVersions(vers []int) string {
 
 func serArticle(a *Article) string {
 	s1 := fmt.Sprintf("%d", a.Id)
-	s2 := a.Permalink1
-	s3 := a.Permalink2
-	s4 := boolToStr(a.IsPrivate)
-	s5 := boolToStr(a.IsDeleted)
-	s6 := a.Title
-	s7 := serTags(a.Tags)
-	s8 := serVersions(a.Versions)
-	return fmt.Sprintf("A%s|%s|%s|%s|%s|%s|%s|%s\n", s1, s2, s3, s4, s5, s6, s7, s8)
+	s2 := a.Title
+	s3 := boolToStr(a.IsPrivate)
+	s4 := boolToStr(a.IsDeleted)
+	s5 := serTags(a.Tags)
+	s6 := serVersions(a.Versions)
+	return fmt.Sprintf("A%s|%s|%s|%s|%s|%s\n", s1, s2, s3, s4, s5, s6)
 }
 
 func serText(t *Text) string {
@@ -299,7 +311,7 @@ func verifyData(texts []*Text, articles []*Article) {
 	fmt.Printf("verifyData(): ok!\n")
 }
 
-func saveStringsToFile(filePath string, strs []string) {
+func saveStrings(filePath string, strs []string) {
 	f, err := os.Create(filePath)
 	if err != nil {
 		log.Fatalf("os.Create() failed with %s", err.Error())
@@ -313,6 +325,21 @@ func saveStringsToFile(filePath string, strs []string) {
 	}
 }
 
+func saveArticleRedirects(filePath string, redirects []ArticleRedirect) {
+	f, err := os.Create(filePath)
+	if err != nil {
+		log.Fatalf("os.Create() failed with %s", err.Error())
+	}
+	defer f.Close()
+	for _, r := range redirects {
+		s := fmt.Sprintf("%d|%s\n", r.ArticleId, r.Url)
+		_, err = f.WriteString(s)
+		if err != nil {
+			log.Fatalf("WriteString() failed with %s", err.Error())
+		}
+	}
+}
+
 func main() {
 	if !PathExists(srcDataDir) {
 		panic("srcDataDir doesn't exist")
@@ -321,10 +348,11 @@ func main() {
 		panic("dstDataDir doesn't exist")
 	}
 	texts := loadTexts()
-	articles := loadArticles()
+	articles, redirects := loadArticles()
 	verifyData(texts, articles)
 	strs := serAll(texts, articles)
-	saveStringsToFile(filepath.Join(dstDataDir, "blogdata.txt"), strs)
+	saveStrings(filepath.Join(dstDataDir, "blogdata.txt"), strs)
+	saveArticleRedirects(filepath.Join(dstDataDir, "article_redirects.txt"), redirects)
 	copyBlobs(texts)
-	fmt.Printf("%d texts, %d articles\n", len(texts), len(articles))
+	fmt.Printf("%d texts, %d articles, %d redirects\n", len(texts), len(articles), len(redirects))
 }

@@ -32,14 +32,12 @@ type Text struct {
 }
 
 type Article struct {
-	Id         int
-	Permalink1 string
-	Permalink2 string
-	IsPrivate  bool
-	IsDeleted  bool
-	Title      string
-	Tags       []string
-	Versions   []*Text
+	Id        int
+	Title     string
+	IsPrivate bool
+	IsDeleted bool
+	Tags      []string
+	Versions  []*Text
 }
 
 type Store struct {
@@ -123,20 +121,18 @@ func strToBool(s string) bool {
 }
 
 // parse:
-// A582|$permalink1|$permalink2|$isPublic|$isDeleted|$title|$tags|$versions
+// A582|$title|$isPublic|$isDeleted|$tags|$versions
 func (s *Store) parseArticle(line []byte) {
 	parts := strings.Split(string(line[1:]), "|")
-	if len(parts) != 8 {
-		panic("len(parts) != 8")
+	if len(parts) != 6 {
+		panic("len(parts) != 6")
 	}
 	idStr := parts[0]
-	permalink1 := parts[1]
-	permalink2 := parts[2]
-	isPublicStr := parts[3]
-	isDeletedStr := parts[4]
-	title := parts[5]
-	tagsStr := parts[6]
-	versionIdsStr := parts[7]
+	title := parts[1]
+	isPrivateStr := parts[2]
+	isDeletedStr := parts[3]
+	tagsStr := parts[4]
+	versionIdsStr := parts[5]
 
 	id, err := strconv.Atoi(idStr)
 	if err != nil {
@@ -145,7 +141,7 @@ func (s *Store) parseArticle(line []byte) {
 	if _, ok := s.articleIdToArticle[id]; ok {
 		panic("duplicate Article id")
 	}
-	isPublic := strToBool(isPublicStr)
+	isPrivate := strToBool(isPrivateStr)
 	isDeleted := strToBool(isDeletedStr)
 	tags := strings.Split(tagsStr, ",")
 
@@ -156,14 +152,12 @@ func (s *Store) parseArticle(line []byte) {
 	}
 
 	a := Article{
-		Id:         id,
-		Permalink1: permalink1,
-		Permalink2: permalink2,
-		IsPrivate:  !isPublic,
-		IsDeleted:  isDeleted,
-		Title:      title,
-		Tags:       tags,
-		Versions:   make([]*Text, nVersions, nVersions),
+		Id:        id,
+		IsPrivate: isPrivate,
+		IsDeleted: isDeleted,
+		Title:     title,
+		Tags:      tags,
+		Versions:  make([]*Text, nVersions, nVersions),
 	}
 
 	for i, verStr := range versionsStr {
