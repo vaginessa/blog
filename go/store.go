@@ -40,6 +40,15 @@ type Article struct {
 	Versions  []*Text
 }
 
+func (a *Article) Permalink() string {
+	return "article/" + ShortenId(a.Id) + "/" + Urlify(a.Title) + ".html"
+}
+
+func (a *Article) TagsDisplay() string {
+	// TODO: write me
+	return ""
+}
+
 type Store struct {
 	sync.Mutex
 	dataDir string

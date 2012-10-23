@@ -59,7 +59,8 @@ var (
 	dataDir string
 
 	tmplLogs      = "logs.html"
-	templateNames = [...]string{tmplLogs}
+	tmplMainPage  = "mainpage.html"
+	templateNames = [...]string{tmplLogs, tmplMainPage, "analytics.html", "inline_css.html", "tagcloud.js"}
 	templatePaths []string
 	templates     *template.Template
 
@@ -247,16 +248,6 @@ func makeTimingHandler(fn func(http.ResponseWriter, *http.Request)) http.Handler
 	}
 }
 
-// url: /
-func handleMain(w http.ResponseWriter, r *http.Request) {
-	logger.Noticef("handleMain() %s", r.URL.Path)
-	if !isTopLevelUrl(r.URL.Path) {
-		serve404(w, r)
-		return
-	}
-	fmt.Fprint(w, "This is /")
-}
-
 // url: /blog
 func handleBlogMain(w http.ResponseWriter, r *http.Request) {
 	logger.Notice("handleBlogMain()")
@@ -289,7 +280,7 @@ func main() {
 	r := mux.NewRouter()
 	r.HandleFunc("/blog", makeTimingHandler(handleBlogMain))
 
-	http.Handle("/", makeTimingHandler(handleMain))
+	http.Handle("/", makeTimingHandler(handleMainPage))
 	http.HandleFunc("/favicon.ico", handleFavicon)
 	http.HandleFunc("/robots.txt", handleRobotsTxt)
 	http.HandleFunc("/logs", handleLogs)
