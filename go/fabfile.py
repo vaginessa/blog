@@ -88,6 +88,7 @@ def deploy():
 	if not os.path.exists("config.json"): abort("config.json doesn't exist locally")
 	git_ensure_clean()
 	local("./scripts/build.sh")
+	local("./scripts/tests.sh")
 	ensure_remote_dir_exists(app_dir)
 	ensure_remote_file_exists('www/data')
 	sha1 = git_trunk_sha1()

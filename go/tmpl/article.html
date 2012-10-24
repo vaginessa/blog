@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+<title>{{ .PageTitle }}</title>
+
+<link rel="alternate" type="application/atom+xml" title="RSS 2.0" href="/atom.xml">
+<link  href="{{ .PrettifyCssUrl }}" type="text/css" rel="stylesheet">
+{{ template "inline_css.html" }}
+
+<script type="text/javascript" src="{{ .JqueryUrl }}"></script>
+
+{{ template "tagcloud.js" }}
+
+<script type="text/javascript">
+function articlesJsonLoaded(articlesJson) {
+  articles_json = articlesJson;
+  /* no need to do anything */
+}
+
+$(document).ready(function(){
+});
+</script>
+
+<script src="{{ .PrettifyJsUrl }}" type="text/javascript"></script>
+
+</head>
+
+<body onload="prettyPrint()">
+
+<div id="tophdr">
+  <h1 style="padding-left:12px">
+    <a href="/" class="namelink">Krzysztof Kowalczyk</a>
+    <span style="float:right; font-size:80%; font-weight:normal; margin-right: 12px;">
+      <a class="hdrlink" href="/blog">Blog</a>
+      <span style="color:gray">&nbsp;&bull;&nbsp;</span>
+      <a class="hdrlink" href="/notes/">Notes</a>
+      <span style="color:gray">&nbsp;&bull;&nbsp;</span>
+      <a class="hdrlink" href="/software/">My Software</a>
+      <span style="color:gray">&nbsp;&bull;&nbsp;</span>
+      <a class="hdrlink" href="/static/documents.html">My Documents</a>
+    </span>
+  </h1>
+</div>
+
+<div id="content">
+
+  {{ if .IsAdmin }}
+  <div style="float: right; margin-right: 12px; margin-left: 12px; font-size: 80%">
+    <div id="navarea" style="border: 1px solid #CCC; padding: 6px; margin-top: 0px;">
+      <div class="sidebarhdr">Admin actions</div>
+      <div style="margin-left: 6px">
+        <div><a href="{{ .LogInOutUrl }}">log out</a></div>
+        <div><a href="/app/edit?article_id={{ .Article.Id }}">edit</a></div>
+        <div class="l"><a href="/app/edit">new blog post</a></div>
+        <div class="l"><a href="/app/edit?note=yes">new note</a></div>
+        {{ if .Article.IsDeleted }}
+        <div class="l"><a href="/app/undelete?article_id={{ .Article.Id }}">undelete</a></div>
+        {{ else }}
+        <div class="l"><a href="/app/delete?article_id={{ .Article.Id }}">delete</a></div>
+        {{ end }}
+        <div class="l"><a href="/app/permanentdelete?article_id={{ .Article.Id  }}">permanent delete</a></div>
+        <div class="l"><a href="/app/showprivate">show private</a></div>
+        <div class="l"><a href="/app/showdeleted">show deleted</a></div>
+      </div>
+    </div>
+  </div>
+  {{ end }}
+
+  <div id="post" style="margin-left:auto;margin-right:auto;margin-top:3em;">
+      <h1 style="display:inline;">
+        <span class="title" style="font-size:13pt;">
+        {{ .Article.Title }}
+        {{ if .Article.IsPrivate }}
+          &nbsp;<font color="red">private</font>
+        {{ end }}
+        </span>
+        {{ if not .IsAdmin }} <a id="login_id" class="invisible" onMouseOver="showById('login_id');" 
+        onMouseOut="hideById('login_id');" href="{{ .LogInOutUrl }}">login</a>
+        {{ end }}
+    </h1>
+
+    <div style="margin-right:48px;">
+    {{ .Article.HtmlBody }}
+    </div>
+
+    <div class="postmeta">Posted on {{ .Article.PublishedOn }}
+      {{ if .TagsDisplay }}
+        <a href="/tag/" class="taglink">in</a>: {{ .TagsDisplay }}
+      {{ end }}
+    </div>
+  </div>
+
+  <center class="postmeta" style="margin-bottom: 12px;">
+    {{ if .NextArticle }}
+    <a title="{{ .NextArticle.Title }}" href="/{{ .NextArticle.Permalink}}">← newer</a>
+    {{ else }}
+    ← newer
+    {{ end }}
+    &bull;
+    {{ .ArticleNo }} of <a href="/archives.html">{{ .ArticlesCount }}</a>
+    &bull;
+    {{ if .PrevArticle }}
+    <a title="{{ .PrevArticle.Title }}" href="/{{ .PrevArticle.Permalink }}">older →</a>
+    {{ else }}
+    older →
+    {{ end }}
+  </center>
+
+<!--
+<center>
+<table class="ad" style="visibility:hidden;" cellspacing=0 cellpadding=0>
+<tr><td>
+  <a href="http://www.yepi.ws/fotofi/free-stock-photos"><b>Free stock photos</b></a>
+</td></tr>
+<tr><td>
+<span style="font-size: 80%"><span class="adl">www.yepi.ws</span>&nbsp;&nbsp;&nbsp;&nbsp;
+Find free stock photos with <a href="http://www.yepi.ws/fotofi/free-stock-photos">Fotofi</a>. More than 100 million photos available.</span>
+</td></tr>
+</table>
+</center>
+-->
+
+</div>
+
+{{ template "analytics.html" . }}
+
+<script charset="utf-8" type="text/javascript" src="{{ .ArticlesJsUrl }}"></script>
+
+</body>
+</html>

@@ -60,7 +60,8 @@ var (
 
 	tmplLogs      = "logs.html"
 	tmplMainPage  = "mainpage.html"
-	templateNames = [...]string{tmplLogs, tmplMainPage, "analytics.html", "inline_css.html", "tagcloud.js"}
+	tmplArticle   = "article.html"
+	templateNames = [...]string{tmplLogs, tmplMainPage, tmplArticle, "analytics.html", "inline_css.html", "tagcloud.js"}
 	templatePaths []string
 	templates     *template.Template
 
@@ -290,6 +291,7 @@ func main() {
 
 	http.Handle("/software", makeTimingHandler(handleSoftware))
 	http.Handle("/software/", makeTimingHandler(handleSoftware))
+	http.Handle("/article/", makeTimingHandler(handleArticle))
 	http.Handle("/articles/", makeTimingHandler(handleArticles))
 	http.Handle("/static/", makeTimingHandler(handleStatic))
 	http.Handle("/css/", makeTimingHandler(handleCss))

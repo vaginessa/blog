@@ -45,6 +45,15 @@ func (a *Article) Permalink() string {
 	return "article/" + ShortenId(a.Id) + "/" + Urlify(a.Title) + ".html"
 }
 
+func (a *Article) PublishedOn() string {
+	// TODO: write me
+	return "published on"
+}
+
+func (a *Article) HtmlBody() template.HTML {
+	return template.HTML("")
+}
+
 func urlForTag(tag string) string {
 	// TODO: url-quote the first tag
 	return fmt.Sprintf(`<a href="/tag/%s" class="taglink">%s</a>`, tag, tag)
@@ -157,11 +166,11 @@ func (s *Store) parseArticle(line []byte) {
 	tagsStr := parts[4]
 	versionIdsStr := parts[5]
 
-	id, err := strconv.Atoi(idStr)
+	articleId, err := strconv.Atoi(idStr)
 	if err != nil {
 		panic("idStr not a number")
 	}
-	if _, ok := s.articleIdToArticle[id]; ok {
+	if _, ok := s.articleIdToArticle[articleId]; ok {
 		panic("duplicate Article id")
 	}
 	isPrivate := strToBool(isPrivateStr)
@@ -175,7 +184,7 @@ func (s *Store) parseArticle(line []byte) {
 	}
 
 	a := Article{
-		Id:        id,
+		Id:        articleId,
 		IsPrivate: isPrivate,
 		IsDeleted: isDeleted,
 		Title:     title,
@@ -184,11 +193,11 @@ func (s *Store) parseArticle(line []byte) {
 	}
 
 	for i, verStr := range versionsStr {
-		id, err = strconv.Atoi(verStr)
+		textId, err := strconv.Atoi(verStr)
 		if err != nil {
 			panic("verStr not a number")
 		}
-		if txt, ok := s.textIdToText[id]; !ok {
+		if txt, ok := s.textIdToText[textId]; !ok {
 			panic("non-existent verStr")
 		} else {
 			a.Versions[i] = txt
@@ -196,7 +205,7 @@ func (s *Store) parseArticle(line []byte) {
 	}
 
 	s.articles = append(s.articles, a)
-	s.articleIdToArticle[id] = &s.articles[len(s.articles)-1]
+	s.articleIdToArticle[articleId] = &s.articles[len(s.articles)-1]
 }
 
 func (s *Store) readExistingBlogData(fileDataPath string) error {
@@ -318,4 +327,13 @@ func (s *Store) GetRecentArticles(max int, isAdmin bool) []*Article {
 		idx -= 1
 	}
 	return res
+}
+
+func (s *Store) GetArticleById(id int) *Article {
+	s.Lock()
+	defer s.Unlock()
+	if article, ok := s.articleIdToArticle[id]; ok {
+		return article
+	}
+	return nil
 }

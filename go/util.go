@@ -148,6 +148,17 @@ func ShortenId(n int) string {
 	return string(buf[:size])
 }
 
+func UnshortenId(s string) int {
+	n := 0
+	for _, c := range s {
+		n *= 36
+		i := strings.IndexRune(base64Chars, c)
+		// TODO: return an error if i == -1
+		n += i
+	}
+	return n
+}
+
 // the names of files inside the zip file are relatitve to dirToZip e.g.
 // if dirToZip is foo and there is a file foo/bar.txt, the name in the zip
 // will be bar.txt
