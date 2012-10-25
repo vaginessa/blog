@@ -15,7 +15,7 @@ type DisplayArticle struct {
 	HtmlBody template.HTML
 }
 
-// TODO: this is simplistic but work for me, http://net.tutsplus.com/tutorials/other/8-regular-expressions-you-should-know/
+// TODO: this is simplistic but works for me, http://net.tutsplus.com/tutorials/other/8-regular-expressions-you-should-know/
 // has more elaborate regex for extracting urls
 var urlRx = regexp.MustCompile(`https?://[[:^space:]]+`)
 var notUrlEndChars = []byte(".),")
@@ -139,11 +139,12 @@ func handleArticle(w http.ResponseWriter, r *http.Request) {
 		ArticlesCount  int
 	}{
 		IsAdmin:       isAdmin,
-		JqueryUrl:     "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js",
+		JqueryUrl:     jQueryUrl(),
 		LogInOutUrl:   getLogInOutUrl(r),
 		Article:       displayArticle,
 		PageTitle:     article.Title,
 		ArticlesCount: store.ArticlesCount(),
+		ArticlesJsUrl: getArticlesJsUrl(isAdmin),
 	}
 
 	ExecTemplate(w, tmplArticle, model)

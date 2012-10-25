@@ -9,6 +9,7 @@ import (
 	"html/template"
 	"os"
 	"path/filepath"
+	"sort"
 	"strconv"
 	"strings"
 	"sync"
@@ -41,13 +42,41 @@ type Article struct {
 	Versions  []*Text
 }
 
+type Store struct {
+	sync.Mutex
+	dataDir            string
+	texts              []Text
+	textIdToText       map[int]*Text
+	articles           []Article
+	articleIdToArticle map[int]*Article
+	dataFile           *os.File
+	// cached data, returning full objects, not just pointers, to make them
+	// read-only and therefore thread safe
+	articlesCacheId int // increment when we do something that changes articles
+	articlesCache   []Article
+}
+
+type ArticlesByTime []Article
+
+func (s ArticlesByTime) Len() int {
+	return len(s)
+}
+
+func (s ArticlesByTime) Swap(i, j int) {
+	s[i], s[j] = s[j], s[i]
+}
+
+func (s ArticlesByTime) Less(i, j int) bool {
+	return s[i].PublishedOn().Before(s[j].PublishedOn())
+}
+
 func (a *Article) Permalink() string {
 	return "article/" + ShortenId(a.Id) + "/" + Urlify(a.Title) + ".html"
 }
 
-func (a *Article) PublishedOn() string {
-	// TODO: write me
-	return "published on"
+func (a *Article) PublishedOn() time.Time {
+	vers := a.Versions
+	return vers[len(vers)-1].CreatedOn
 }
 
 func (a *Article) HtmlBody() template.HTML {
@@ -70,18 +99,6 @@ func (a *Article) TagsDisplay() template.HTML {
 	}
 	s := strings.Join(arr, ", ")
 	return template.HTML(s)
-}
-
-type Store struct {
-	sync.Mutex
-	dataDir string
-
-	texts        []Text
-	textIdToText map[int]*Text
-
-	articles           []Article
-	articleIdToArticle map[int]*Article
-	dataFile           *os.File
 }
 
 func validFormat(format int) bool {
@@ -243,6 +260,7 @@ func NewStore(dataDir string) (*Store, error) {
 		articles:           make([]Article, 0),
 		articleIdToArticle: make(map[int]*Article),
 		textIdToText:       make(map[int]*Text),
+		articlesCacheId:    1,
 	}
 	var err error
 	if PathExists(dataFilePath) {
@@ -309,6 +327,25 @@ func (s *Store) writeMessageAsSha1(msg []byte, sha1 [20]byte) error {
 		logger.Errorf("Store.writeMessageAsSha1(): failed to write %s with error %s", path, err.Error())
 	}
 	return err
+}
+
+func (s *Store) GetArticles(lastId int) (int, []Article) {
+	s.Lock()
+	defer s.Unlock()
+	if s.articlesCache != nil && s.articlesCacheId == lastId {
+		logger.Noticef("Store.GetArticles(): returning articles cache with id=%d", lastId)
+		return s.articlesCacheId, s.articlesCache
+	}
+
+	logger.Noticef("Store.GetArticles(): regenerating articles cache, lastId=%d", lastId)
+	n := len(s.articles)
+	articles := make([]Article, n, n)
+	for i, a := range s.articles {
+		articles[i] = a
+	}
+	sort.Sort(ArticlesByTime(articles))
+	s.articlesCache = articles
+	return s.articlesCacheId, s.articlesCache
 }
 
 func (s *Store) GetRecentArticles(max int, isAdmin bool) []*Article {

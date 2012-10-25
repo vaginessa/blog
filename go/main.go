@@ -227,6 +227,10 @@ func getIpAddress(r *http.Request) string {
 	return hdrRealIp
 }
 
+func jQueryUrl() string {
+	return "http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"
+}
+
 func makeTimingHandler(fn func(http.ResponseWriter, *http.Request)) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 
@@ -296,6 +300,7 @@ func main() {
 	http.Handle("/static/", makeTimingHandler(handleStatic))
 	http.Handle("/css/", makeTimingHandler(handleCss))
 	http.Handle("/js/", makeTimingHandler(handleJs))
+	http.Handle("/djs/", makeTimingHandler(handleDjs))
 	http.Handle("/blog", r)
 
 	backupConfig := &BackupConfig{
