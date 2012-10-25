@@ -192,7 +192,12 @@ func (s *Store) parseArticle(line []byte) {
 	}
 	isPrivate := strToBool(isPrivateStr)
 	isDeleted := strToBool(isDeletedStr)
-	tags := strings.Split(tagsStr, ",")
+	var tags []string
+	if tagsStr == "" {
+		tags = make([]string, 0)
+	} else {
+		tags = strings.Split(tagsStr, ",")
+	}
 
 	versionsStr := strings.Split(versionIdsStr, ",")
 	nVersions := len(versionsStr)

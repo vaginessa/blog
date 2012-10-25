@@ -31,22 +31,24 @@ func appendJsonMarshalled(buf *bytes.Buffer, val interface{}) {
 
 func buildArticlesJson(articles []*Article) ([]byte, string) {
 	var buf bytes.Buffer
-	buf.WriteString("var __articles_json = [")
-	vals := make([]interface{}, 6, 6)
+	buf.WriteString("var __articles_json = ")
+	n := len(articles)
+	vals := make([]interface{}, n, n)
+	n = 0
 	for i := len(articles) - 1; i >= 0; i-- {
 		a := articles[i]
-		vals[0] = "2012-10-22"
-		vals[1] = "article/url.html"
-		vals[2] = a.Title
-		vals[3] = a.Tags
-		vals[4] = !a.IsPrivate
-		vals[5] = a.IsDeleted
-		appendJsonMarshalled(&buf, vals)
-		if i != 0 {
-			buf.WriteString(",")
-		}
+		val := make([]interface{}, 6, 6)
+		val[0] = a.PublishedOn().Format("2006-01-02")
+		val[1] = a.Permalink()
+		val[2] = a.Title
+		val[3] = a.Tags
+		val[4] = !a.IsPrivate
+		val[5] = a.IsDeleted
+		vals[n] = val
+		n += 1
 	}
-	buf.WriteString("]; articlesJsonLoaded(__articles_json);")
+	appendJsonMarshalled(&buf, vals)
+	buf.WriteString("; articlesJsonLoaded(__articles_json);")
 	jsData := buf.Bytes()
 	sha1 := Sha1StringOfBytes(jsData)
 	logger.Noticef("buildArticlesJson(): len(jsData)=%d, sha1=%s", len(jsData), sha1)
