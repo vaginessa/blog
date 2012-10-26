@@ -12,7 +12,7 @@ type DisplayArticle struct {
 }
 
 func (a *DisplayArticle) PublishedOnShort() string {
-	return a.PublishedOn().Format("Jan 2 2006")
+	return a.PublishedOn.Format("Jan 2 2006")
 }
 
 // url: /article/*

@@ -25,7 +25,7 @@ func handleAtom(w http.ResponseWriter, r *http.Request, excludeNotes bool) {
 
 	pubTime := time.Now()
 	if len(articles) > 0 {
-		pubTime = articles[0].PublishedOn()
+		pubTime = articles[0].PublishedOn
 	}
 
 	feed := &atom.Feed{
@@ -45,7 +45,7 @@ func handleAtom(w http.ResponseWriter, r *http.Request, excludeNotes bool) {
 			Title:       a.Title,
 			Link:        "http://blog.kowalczyk.info/" + a.Permalink(),
 			ContentHtml: msgHtml,
-			PubDate:     a.PublishedOn(),
+			PubDate:     a.PublishedOn,
 		}
 		feed.AddEntry(e)
 	}

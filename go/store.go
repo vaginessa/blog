@@ -34,12 +34,13 @@ type Text struct {
 }
 
 type Article struct {
-	Id        int
-	Title     string
-	IsPrivate bool
-	IsDeleted bool
-	Tags      []string
-	Versions  []*Text
+	Id          int
+	PublishedOn time.Time
+	Title       string
+	IsPrivate   bool
+	IsDeleted   bool
+	Tags        []string
+	Versions    []*Text
 }
 
 type Store struct {
@@ -67,7 +68,7 @@ func (s ArticlesByTime) Swap(i, j int) {
 }
 
 func (s ArticlesByTime) Less(i, j int) bool {
-	return s[i].PublishedOn().Before(s[j].PublishedOn())
+	return s[i].PublishedOn.Before(s[j].PublishedOn)
 }
 
 func (a *Article) Permalink() string {
@@ -77,10 +78,6 @@ func (a *Article) Permalink() string {
 func (a *Article) CurrVersion() *Text {
 	vers := a.Versions
 	return vers[len(vers)-1]
-}
-
-func (a *Article) PublishedOn() time.Time {
-	return a.CurrVersion().CreatedOn
 }
 
 func urlForTag(tag string) string {
@@ -176,18 +173,19 @@ func strToBool(s string) bool {
 }
 
 // parse:
-// A582|$title|$isPublic|$isDeleted|$tags|$versions
+// A582|$time|$title|$isPublic|$isDeleted|$tags|$versions
 func (s *Store) parseArticle(line []byte) {
 	parts := strings.Split(string(line[1:]), "|")
-	if len(parts) != 6 {
-		panic("len(parts) != 6")
+	if len(parts) != 7 {
+		panic("len(parts) != 7")
 	}
 	idStr := parts[0]
-	title := parts[1]
-	isPrivateStr := parts[2]
-	isDeletedStr := parts[3]
-	tagsStr := parts[4]
-	versionIdsStr := parts[5]
+	publishedOnStr := parts[1]
+	title := parts[2]
+	isPrivateStr := parts[3]
+	isDeletedStr := parts[4]
+	tagsStr := parts[5]
+	versionIdsStr := parts[6]
 
 	articleId, err := strconv.Atoi(idStr)
 	if err != nil {
@@ -196,6 +194,13 @@ func (s *Store) parseArticle(line []byte) {
 	if _, ok := s.articleIdToArticle[articleId]; ok {
 		panic("duplicate Article id")
 	}
+
+	publishedOnSeconds, err := strconv.Atoi(publishedOnStr)
+	if err != nil {
+		panic("publishedOnSeconds not a number")
+	}
+	publishedOn := time.Unix(int64(publishedOnSeconds), 0)
+
 	isPrivate := strToBool(isPrivateStr)
 	isDeleted := strToBool(isDeletedStr)
 	var tags []string
@@ -212,12 +217,13 @@ func (s *Store) parseArticle(line []byte) {
 	}
 
 	a := Article{
-		Id:        articleId,
-		IsPrivate: isPrivate,
-		IsDeleted: isDeleted,
-		Title:     title,
-		Tags:      tags,
-		Versions:  make([]*Text, nVersions, nVersions),
+		Id:          articleId,
+		PublishedOn: publishedOn,
+		IsPrivate:   isPrivate,
+		IsDeleted:   isDeleted,
+		Title:       title,
+		Tags:        tags,
+		Versions:    make([]*Text, nVersions, nVersions),
 	}
 
 	for i, verStr := range versionsStr {

@@ -43,7 +43,7 @@ func buildYearsFromArticles(articles []*Article) []Year {
 	n := len(articles)
 	for i := n - 1; i >= 0; i-- {
 		a := articles[i]
-		yearName := a.PublishedOn().Format("2006")
+		yearName := a.PublishedOn.Format("2006")
 		if currYear == nil || currYear.Name != yearName {
 			if currYear != nil {
 				res = append(res, *currYear)
@@ -52,11 +52,11 @@ func buildYearsFromArticles(articles []*Article) []Year {
 			currMonthName = ""
 		}
 		ma := MonthArticle{Article: a}
-		monthName := a.PublishedOn().Format("01")
+		monthName := a.PublishedOn.Format("01")
 		if monthName != currMonthName {
-			ma.DisplayMonth = a.PublishedOn().Format("January 2")
+			ma.DisplayMonth = a.PublishedOn.Format("January 2")
 		} else {
-			ma.DisplayMonth = a.PublishedOn().Format("2")
+			ma.DisplayMonth = a.PublishedOn.Format("2")
 		}
 		currMonthName = monthName
 		currYear.Articles = append(currYear.Articles, ma)

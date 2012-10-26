@@ -44,7 +44,7 @@ func buildArticlesJson(articles []*Article) ([]byte, string) {
 		a := articles[i]
 		/*
 			val := make([]interface{}, 6, 6)		
-			val[0] = a.PublishedOn().Format("2006-01-02")
+			val[0] = a.PublishedOn.Format("2006-01-02")
 			val[1] = a.Permalink()
 			val[2] = a.Title
 			val[3] = a.Tags

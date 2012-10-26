@@ -49,14 +49,15 @@ func parseTime(s string) time.Time {
 }
 
 type Article struct {
-	Id         int
-	Permalink1 string
-	Permalink2 string
-	IsPrivate  bool
-	IsDeleted  bool
-	Title      string
-	Tags       []string
-	Versions   []int
+	Id          int
+	PublishedOn time.Time
+	Permalink1  string
+	Permalink2  string
+	IsPrivate   bool
+	IsDeleted   bool
+	Title       string
+	Tags        []string
+	Versions    []int
 }
 
 func parseArticle(d []byte) *Article {
@@ -71,6 +72,8 @@ func parseArticle(d []byte) *Article {
 			if res.Id, err = strconv.Atoi(val); err != nil {
 				log.Fatalf("invalid I val: '%s', err: %s\n", val, err.Error())
 			}
+		} else if name == "On" {
+			res.PublishedOn = parseTime(val)
 		} else if name == "IS" {
 			// do nothing
 		} else if name == "P1" {
@@ -244,12 +247,13 @@ func serVersions(vers []int) string {
 
 func serArticle(a *Article) string {
 	s1 := fmt.Sprintf("%d", a.Id)
-	s2 := a.Title
-	s3 := boolToStr(a.IsPrivate)
-	s4 := boolToStr(a.IsDeleted)
-	s5 := serTags(a.Tags)
-	s6 := serVersions(a.Versions)
-	return fmt.Sprintf("A%s|%s|%s|%s|%s|%s\n", s1, s2, s3, s4, s5, s6)
+	s2 := fmt.Sprintf("%d", a.PublishedOn.Unix())
+	s3 := a.Title
+	s4 := boolToStr(a.IsPrivate)
+	s5 := boolToStr(a.IsDeleted)
+	s6 := serTags(a.Tags)
+	s7 := serVersions(a.Versions)
+	return fmt.Sprintf("A%s|%s|%s|%s|%s|%s|%s\n", s1, s2, s3, s4, s5, s6, s7)
 }
 
 func serText(t *Text) string {

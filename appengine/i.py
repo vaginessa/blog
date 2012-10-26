@@ -176,6 +176,7 @@ def serarticle(e):
 	keys = [str(k.id()) for k in e.previous_versions]
 	lines = [
 		kv("I", str(e.key().id())),
+		kv("On", e.published_on),
 		kv("IS", shortenId(e.key().id())),
 		kv("P1", e.permalink),
 		kv("P2", e.permalink2),
