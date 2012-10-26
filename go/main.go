@@ -303,6 +303,8 @@ func main() {
 	http.HandleFunc("/login", handleLogin)
 	http.HandleFunc("/logout", handleLogout)
 
+	http.Handle("/feedburner.xml", makeTimingHandler(handleFeedburnerAtom))
+	http.Handle("/atom-all.xml", makeTimingHandler(handleAtomAll))
 	http.Handle("/archives.html", makeTimingHandler(handleArchives))
 	http.Handle("/software", makeTimingHandler(handleSoftware))
 	http.Handle("/software/", makeTimingHandler(handleSoftware))

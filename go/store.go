@@ -83,10 +83,6 @@ func (a *Article) PublishedOn() time.Time {
 	return a.CurrVersion().CreatedOn
 }
 
-func (a *Article) HtmlBody() template.HTML {
-	return template.HTML("")
-}
-
 func urlForTag(tag string) string {
 	// TODO: url-quote the first tag
 	return fmt.Sprintf(`<a href="/tag/%s" class="taglink">%s</a>`, tag, tag)

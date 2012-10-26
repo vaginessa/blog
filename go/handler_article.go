@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"regexp"
 	"strings"
+	"sync"
 )
 
 type DisplayArticle struct {
@@ -90,6 +91,54 @@ func msgToHtml(msg string, format int) string {
 	return ""
 }
 
+type ArticleBodyCacheEntry struct {
+	sha1    [20]byte
+	msgHtml string
+}
+
+type ArticleBodyCache struct {
+	sync.Mutex
+	entries      [64]ArticleBodyCacheEntry
+	entriesCount int
+	curr         int
+}
+
+func (c *ArticleBodyCache) GetHtml(sha1 [20]byte, format int) string {
+	c.Lock()
+	defer c.Unlock()
+
+	for i := 0; i < c.entriesCount; i++ {
+		if c.entries[i].sha1 == sha1 {
+			return c.entries[i].msgHtml
+		}
+	}
+
+	msgFilePath := store.MessageFilePath(sha1)
+	msg, err := ioutil.ReadFile(msgFilePath)
+	var msgHtml string
+	if err != nil {
+		msgHtml = fmt.Sprintf("Error: failed to fetch a message with sha1 %x, file: %s", sha1[:], msgFilePath)
+	} else {
+		msgHtml = msgToHtml(string(msg), format)
+	}
+
+	var entry *ArticleBodyCacheEntry
+	if c.entriesCount < len(c.entries) {
+		entry = &c.entries[c.entriesCount]
+		c.entriesCount += 1
+	} else {
+		entry = &c.entries[c.curr]
+		c.curr += 1
+		c.curr = c.curr % len(c.entries)
+	}
+
+	entry.sha1 = sha1
+	entry.msgHtml = msgHtml
+	return msgHtml
+}
+
+var articleBodyCache ArticleBodyCache
+
 // url: /article/*
 func handleArticle(w http.ResponseWriter, r *http.Request) {
 	logger.Noticef("handleArticle(): %s", r.URL.Path)
@@ -116,16 +165,8 @@ func handleArticle(w http.ResponseWriter, r *http.Request) {
 
 	displayArticle := &DisplayArticle{Article: article}
 
-	ver := article.Versions[len(article.Versions)-1]
-	msgFilePath := store.MessageFilePath(ver.Sha1)
-	msg, err := ioutil.ReadFile(msgFilePath)
-	msgHtml := ""
-	if err != nil {
-		msgHtml = fmt.Sprintf("Error: failed to fetch a message with sha1 %x, file: %s", ver.Sha1[:], msgFilePath)
-	} else {
-		msgHtml = msgToHtml(string(msg), ver.Format)
-	}
-
+	ver := article.CurrVersion()
+	msgHtml := articleBodyCache.GetHtml(ver.Sha1, ver.Format)
 	displayArticle.HtmlBody = template.HTML(msgHtml)
 
 	model := struct {
