@@ -34,6 +34,7 @@ func appendJsonMarshalled(buf *bytes.Buffer, val interface{}) {
 	}
 }
 
+// TODO: I only use it for tag cloud, could just send info about tags directly
 func buildArticlesJson(articles []*Article) ([]byte, string) {
 	var buf bytes.Buffer
 	buf.WriteString("var __articles_json = ")
