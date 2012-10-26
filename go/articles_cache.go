@@ -69,7 +69,6 @@ func buildArticlesCache(articlesCacheId int, articles []Article) {
 	articlesCache.articlesCacheId = articlesCacheId
 	articlesCache.adminArticles = adminArticles
 	articlesCache.nonAdminArticles = nonAdminArticles
-	logger.Noticef("buildArticlesCache(): %d admin articles, %d non admin", len(articlesCache.adminArticles), len(articlesCache.nonAdminArticles))
 
 	js, sha1 := buildArticlesJson(adminArticles)
 	articlesCache.adminArticlesJs, articlesCache.adminArticlesJsSha1 = js, sha1
@@ -78,17 +77,18 @@ func buildArticlesCache(articlesCacheId int, articles []Article) {
 	articlesCache.nonAdminArticlesJs, articlesCache.nonAdminArticlesJsSha1 = js, sha1
 }
 
+func rebuildArticlesCacheIfNeededUnlocked() {
+	articlesCacheId, articles := store.GetArticles(articlesCache.articlesCacheId)
+	if articlesCacheId != articlesCache.articlesCacheId {
+		buildArticlesCache(articlesCacheId, articles)
+	}
+}
+
 func getArticlesJsUrl(isAdmin bool) string {
 	articlesCache.Lock()
 	defer articlesCache.Unlock()
 
-	articlesCacheId, articles := store.GetArticles(articlesCache.articlesCacheId)
-	if articlesCacheId != articlesCache.articlesCacheId {
-		logger.Notice("getArticlesJsUrl(): rebuilding articlesCache")
-		buildArticlesCache(articlesCacheId, articles)
-	} else {
-		logger.Notice("getArticlesJsUrl(): articlesCache unchanged")
-	}
+	rebuildArticlesCacheIfNeededUnlocked()
 	var sha1 string
 	if isAdmin {
 		sha1 = articlesCache.adminArticlesJsSha1
@@ -102,6 +102,7 @@ func getArticlesJsData(isAdmin bool) ([]byte, string) {
 	articlesCache.Lock()
 	defer articlesCache.Unlock()
 
+	rebuildArticlesCacheIfNeededUnlocked()
 	if isAdmin {
 		return articlesCache.adminArticlesJs, articlesCache.adminArticlesJsSha1
 	}
@@ -112,9 +113,24 @@ func getCachedArticles(isAdmin bool) []*Article {
 	articlesCache.Lock()
 	defer articlesCache.Unlock()
 
-	logger.Noticef("getCachedArticles(): %d admin articles, %d non admin", len(articlesCache.adminArticles), len(articlesCache.nonAdminArticles))
+	rebuildArticlesCacheIfNeededUnlocked()
 	if isAdmin {
 		return articlesCache.adminArticles
 	}
 	return articlesCache.nonAdminArticles
+}
+
+func getCachedArticlesById(articleId int, isAdmin bool) (*Article, *Article, *Article, int) {
+	articles := getCachedArticles(isAdmin)
+	var prev, next *Article
+	for i, curr := range articles {
+		if curr.Id == articleId {
+			if i != len(articles)-1 {
+				next = articles[i+1]
+			}
+			return prev, curr, next, i
+		}
+		prev = curr
+	}
+	return nil, nil, nil, 0
 }

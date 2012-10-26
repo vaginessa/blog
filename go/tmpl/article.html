@@ -85,7 +85,7 @@ $(document).ready(function(){
     {{ .Article.HtmlBody }}
     </div>
 
-    <div class="postmeta">Posted on {{ .Article.PublishedOn }}
+    <div class="postmeta">Posted on {{ .Article.PublishedOnShort }}
       {{ if .TagsDisplay }}
         <a href="/tag/" class="taglink">in</a>: {{ .TagsDisplay }}
       {{ end }}
@@ -94,7 +94,7 @@ $(document).ready(function(){
 
   <center class="postmeta" style="margin-bottom: 12px;">
     {{ if .NextArticle }}
-    <a title="{{ .NextArticle.Title }}" href="/{{ .NextArticle.Permalink}}">← newer</a>
+    <a title="{{ .NextArticle.Title }}" href="/{{ .NextArticle.Permalink }}">← newer</a>
     {{ else }}
     ← newer
     {{ end }}

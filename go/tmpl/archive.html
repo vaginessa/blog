@@ -104,6 +104,7 @@ $(document).ready(function(){
               <span class="taglink">tags:</span> {{ .TagsDisplay }}</span>
             {{ end }}
 
+            {{ if $isAdmin }}{{ .FormatName }}{{ end }}
             {{ if .IsDeleted }}
             &nbsp;<font color="red">deleted</font>
             {{ end }}

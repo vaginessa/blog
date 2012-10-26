@@ -15,6 +15,10 @@ type DisplayArticle struct {
 	HtmlBody template.HTML
 }
 
+func (a *DisplayArticle) PublishedOnShort() string {
+	return a.PublishedOn().Format("Jan 2 2006")
+}
+
 // TODO: this is simplistic but works for me, http://net.tutsplus.com/tutorials/other/8-regular-expressions-you-should-know/
 // has more elaborate regex for extracting urls
 var urlRx = regexp.MustCompile(`https?://[[:^space:]]+`)
@@ -102,11 +106,13 @@ func handleArticle(w http.ResponseWriter, r *http.Request) {
 
 	articleId := UnshortenId(parts[0])
 	logger.Noticef("article id: %d", articleId)
-	article := store.GetArticleById(articleId)
+	prev, article, next, pos := getCachedArticlesById(articleId, isAdmin)
 	if nil == article {
 		serve404(w, r)
 		return
 	}
+
+	logger.Noticef("%v, %v, %v, %d", prev, article, next, pos)
 
 	displayArticle := &DisplayArticle{Article: article}
 
@@ -128,8 +134,8 @@ func handleArticle(w http.ResponseWriter, r *http.Request) {
 		JqueryUrl      string
 		PageTitle      string
 		Article        *DisplayArticle
-		NextArticle    *DisplayArticle
-		PrevArticle    *DisplayArticle
+		NextArticle    *Article
+		PrevArticle    *Article
 		LogInOutUrl    string
 		ArticlesJsUrl  string
 		PrettifyJsUrl  string
@@ -142,8 +148,11 @@ func handleArticle(w http.ResponseWriter, r *http.Request) {
 		JqueryUrl:     jQueryUrl(),
 		LogInOutUrl:   getLogInOutUrl(r),
 		Article:       displayArticle,
+		NextArticle:   next,
+		PrevArticle:   prev,
 		PageTitle:     article.Title,
 		ArticlesCount: store.ArticlesCount(),
+		ArticleNo:     pos + 1,
 		ArticlesJsUrl: getArticlesJsUrl(isAdmin),
 	}
 

@@ -74,9 +74,13 @@ func (a *Article) Permalink() string {
 	return "article/" + ShortenId(a.Id) + "/" + Urlify(a.Title) + ".html"
 }
 
-func (a *Article) PublishedOn() time.Time {
+func (a *Article) CurrVersion() *Text {
 	vers := a.Versions
-	return vers[len(vers)-1].CreatedOn
+	return vers[len(vers)-1]
+}
+
+func (a *Article) PublishedOn() time.Time {
+	return a.CurrVersion().CreatedOn
 }
 
 func (a *Article) HtmlBody() template.HTML {
@@ -86,6 +90,12 @@ func (a *Article) HtmlBody() template.HTML {
 func urlForTag(tag string) string {
 	// TODO: url-quote the first tag
 	return fmt.Sprintf(`<a href="/tag/%s" class="taglink">%s</a>`, tag, tag)
+}
+
+var formatNames []string = []string{"Html", "Textile", "Markdown", "Text"}
+
+func (a *Article) FormatName() string {
+	return formatNames[a.CurrVersion().Format]
 }
 
 func (a *Article) TagsDisplay() template.HTML {
@@ -338,11 +348,9 @@ func (s *Store) GetArticles(lastId int) (int, []Article) {
 	s.Lock()
 	defer s.Unlock()
 	if s.articlesCache != nil && s.articlesCacheId == lastId {
-		logger.Noticef("Store.GetArticles(): returning articles cache with id=%d", lastId)
 		return s.articlesCacheId, s.articlesCache
 	}
 
-	logger.Noticef("Store.GetArticles(): regenerating articles cache, lastId=%d", lastId)
 	n := len(s.articles)
 	articles := make([]Article, n, n)
 	for i, a := range s.articles {
