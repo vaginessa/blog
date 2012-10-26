@@ -262,6 +262,8 @@ func handleBlogMain(w http.ResponseWriter, r *http.Request) {
 	logger.Notice("handleBlogMain()")
 }
 
+var emptyString = ""
+
 func main() {
 	var err error
 
@@ -280,6 +282,10 @@ func main() {
 
 	if err := readConfig(*configPath); err != nil {
 		log.Fatalf("Failed reading config file %s. %s\n", *configPath, err.Error())
+	}
+
+	if !*inProduction {
+		config.AnalyticsCode = &emptyString
 	}
 
 	if store, err = NewStore(getDataDir()); err != nil {
