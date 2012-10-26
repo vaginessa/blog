@@ -9,7 +9,7 @@ function hideById(id) {
 }
 
 var articles_json = null;
-var TAGS_IDX = 3;
+var TAGS_IDX = 0;
 
 function a(url, txt) {
   return '<a href="' + url + '">' + txt + "</a>";

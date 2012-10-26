@@ -35,13 +35,17 @@ func buildArticlesJson(articles []*Article) ([]byte, string) {
 	n = 0
 	for i := len(articles) - 1; i >= 0; i-- {
 		a := articles[i]
-		val := make([]interface{}, 6, 6)
-		val[0] = a.PublishedOn().Format("2006-01-02")
-		val[1] = a.Permalink()
-		val[2] = a.Title
-		val[3] = a.Tags
-		val[4] = !a.IsPrivate
-		val[5] = a.IsDeleted
+		/*
+			val := make([]interface{}, 6, 6)		
+			val[0] = a.PublishedOn().Format("2006-01-02")
+			val[1] = a.Permalink()
+			val[2] = a.Title
+			val[3] = a.Tags
+			val[4] = !a.IsPrivate
+			val[5] = a.IsDeleted
+		*/
+		val := make([]interface{}, 1, 1)
+		val[0] = a.Tags
 		vals[n] = val
 		n += 1
 	}
