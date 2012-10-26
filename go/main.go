@@ -17,9 +17,9 @@ import (
 	_ "net/url"
 	"path/filepath"
 	"runtime"
+	"strconv"
 	"strings"
 	"time"
-	"strconv"
 )
 
 var (
@@ -62,8 +62,8 @@ var (
 	tmplLogs      = "logs.html"
 	tmplMainPage  = "mainpage.html"
 	tmplArticle   = "article.html"
-	tmplArchive = "archive.html"
-	templateNames = [...]string{tmplLogs, tmplMainPage, tmplArticle, 
+	tmplArchive   = "archive.html"
+	templateNames = [...]string{tmplLogs, tmplMainPage, tmplArticle,
 		tmplArchive, "analytics.html", "inline_css.html", "tagcloud.js"}
 	templatePaths []string
 	templates     *template.Template
