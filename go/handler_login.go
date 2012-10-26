@@ -70,7 +70,7 @@ func getSecureCookie(r *http.Request) *SecureCookieValue {
 			// most likely expired cookie, so ignore. Ideally should delete the
 			// cookie, but that requires access to http.ResponseWriter, so not
 			// convenient for us
-			logger.Noticef("Error decoding cookie '%s', error: %s", cookie.Value, err.Error())
+			//logger.Noticef("Error decoding cookie '%s', error: %s", cookie.Value, err.Error())
 			return new(SecureCookieValue)
 		}
 		var ok bool

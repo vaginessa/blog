@@ -67,16 +67,29 @@ func buildYearsFromArticles(articles []*Article) []Year {
 	return res
 }
 
-// url: /archives.html
-func handleArchives(w http.ResponseWriter, r *http.Request) {
+func filterArticlesByTag(articles []*Article, tag string) []*Article {
+	res := make([]*Article, 0)
+	for _, a := range articles {
+		for _, t := range a.Tags {
+			if tag == t {
+				res = append(res, a)
+				break
+			}
+		}
+	}
+	return res
+}
 
+func showArchivePage(w http.ResponseWriter, r *http.Request, tag string) {
 	isAdmin := IsAdmin(r)
-
 	// must be called first as it builds the cache if needed
 	articlesJsUrl := getArticlesJsUrl(isAdmin)
 	articles := getCachedArticles(isAdmin)
 
-	logger.Noticef("handleArchives(): %s, %d articles", r.URL.Path, len(articles))
+	if tag != "" {
+		articles = filterArticlesByTag(articles, tag)
+	}
+
 	model := ArticlesIndexModel{
 		IsAdmin:       isAdmin,
 		JqueryUrl:     jQueryUrl(),
@@ -84,7 +97,19 @@ func handleArchives(w http.ResponseWriter, r *http.Request) {
 		ArticlesJsUrl: articlesJsUrl,
 		PostsCount:    len(articles),
 		Years:         buildYearsFromArticles(articles),
+		Tag:           tag,
 	}
 
 	ExecTemplate(w, tmplArchive, model)
+}
+
+// url: /tag/${tag}
+func handleTag(w http.ResponseWriter, r *http.Request) {
+	tag := r.URL.Path[len("/tag/"):]
+	showArchivePage(w, r, tag)
+}
+
+// url: /archives.html
+func handleArchives(w http.ResponseWriter, r *http.Request) {
+	showArchivePage(w, r, "")
 }
