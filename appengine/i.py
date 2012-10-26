@@ -55,15 +55,15 @@ def save_msg_sha1_to_dir(msg, dir):
 def save_msg_sha1(msg):
 	return save_msg_sha1_to_dir(msg, "blobs")
 
-def save_msg_tmp_sha1(msg):
-	return save_msg_sha1_to_dir(msg, "blobs_tmp")
+def save_crash_blob_sha1(msg):
+	return save_msg_sha1_to_dir(msg, "blobs_crashes")
 
 def sercrash(e):
 	try:
 		s = touni(e.data)
 	except:
 		return ""
-	sha1 = save_msg_tmp_sha1(s)
+	sha1 = save_crash_blob_sha1(s)
 	lines = [
 		kv("M", sha1),
 		kv("On", e.created_on),
