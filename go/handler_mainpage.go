@@ -57,6 +57,7 @@ func handleMainPage(w http.ResponseWriter, r *http.Request) {
 		ArticlesJsUrl string
 	}{
 		IsAdmin:       isAdmin,
+		AnalyticsCode: *config.AnalyticsCode,
 		JqueryUrl:     jQueryUrl(),
 		LogInOutUrl:   getLogInOutUrl(r),
 		Articles:      store.GetRecentArticles(10, isAdmin),

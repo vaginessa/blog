@@ -145,6 +145,7 @@ func handleArticle(w http.ResponseWriter, r *http.Request) {
 		ArticlesCount  int
 	}{
 		IsAdmin:       isAdmin,
+		AnalyticsCode: *config.AnalyticsCode,
 		JqueryUrl:     jQueryUrl(),
 		LogInOutUrl:   getLogInOutUrl(r),
 		Article:       displayArticle,

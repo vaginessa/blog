@@ -92,6 +92,7 @@ func showArchivePage(w http.ResponseWriter, r *http.Request, tag string) {
 
 	model := ArticlesIndexModel{
 		IsAdmin:       isAdmin,
+		AnalyticsCode: *config.AnalyticsCode,
 		JqueryUrl:     jQueryUrl(),
 		LogInOutUrl:   getLogInOutUrl(r),
 		ArticlesJsUrl: articlesJsUrl,
