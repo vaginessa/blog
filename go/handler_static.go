@@ -63,6 +63,10 @@ func getArticlesDir() string {
 	return filepath.Join(getWwwDir(), "articles")
 }
 
+func getExtremeOptDir() string {
+	return filepath.Join(getWwwDir(), "extremeoptimizations")
+}
+
 func serveFileFromDir(w http.ResponseWriter, r *http.Request, dir, fileName string) {
 	filePath := filepath.Join(dir, fileName)
 	logger.Noticef("serveFileFromDir(): '%s'", filePath)
@@ -112,6 +116,15 @@ func handleFavicon(w http.ResponseWriter, r *http.Request) {
 // url: /robots.txt
 func handleRobotsTxt(w http.ResponseWriter, r *http.Request) {
 	serveFileFromDir(w, r, getWwwDir(), "robots.txt")
+}
+
+// url: /extremeoptimizations/
+func handleExtremeOpt(w http.ResponseWriter, r *http.Request) {
+	file := r.URL.Path[len("/extremeoptimizations/"):]
+	if file == "" {
+		file = "index.html"
+	}
+	serveFileFromDir(w, r, getExtremeOptDir(), file)
 }
 
 // url: /articles/*

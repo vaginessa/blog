@@ -308,6 +308,7 @@ func main() {
 	http.Handle("/archives.html", makeTimingHandler(handleArchives))
 	http.Handle("/software", makeTimingHandler(handleSoftware))
 	http.Handle("/software/", makeTimingHandler(handleSoftware))
+	http.Handle("/extremeoptimizations/", makeTimingHandler(handleExtremeOpt))
 	http.Handle("/article/", makeTimingHandler(handleArticle))
 	http.Handle("/articles/", makeTimingHandler(handleArticles))
 	http.Handle("/tag/", makeTimingHandler(handleTag))
