@@ -8,7 +8,6 @@ import (
 
 // url is in the form: $sha1.js
 func handleArticlesJs(w http.ResponseWriter, r *http.Request, url string) {
-
 	sha1 := url[:len(url)-len(".js")]
 	if len(sha1) != 40 {
 		logger.Errorf("handleArticlesJs(): invalid sha1='%s', url='%s", sha1, url)
@@ -33,7 +32,6 @@ func handleArticlesJs(w http.ResponseWriter, r *http.Request, url string) {
 
 // url: /djs/$url
 func handleDjs(w http.ResponseWriter, r *http.Request) {
-	logger.Noticef("handleDjs(): %s", r.URL.Path)
 	url := r.URL.Path[len("/djs/"):]
 	if strings.HasPrefix(url, "articles-") {
 		handleArticlesJs(w, r, url[len("articles-"):])
@@ -44,8 +42,6 @@ func handleDjs(w http.ResponseWriter, r *http.Request) {
 
 // url: /
 func handleMainPage(w http.ResponseWriter, r *http.Request) {
-	logger.Noticef("handleMainPage(): %s", r.URL.Path)
-
 	if !isTopLevelUrl(r.URL.Path) {
 		serve404(w, r)
 		return
