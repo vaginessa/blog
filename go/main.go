@@ -19,6 +19,7 @@ import (
 	"runtime"
 	"strings"
 	"time"
+	"strconv"
 )
 
 var (
@@ -61,7 +62,9 @@ var (
 	tmplLogs      = "logs.html"
 	tmplMainPage  = "mainpage.html"
 	tmplArticle   = "article.html"
-	templateNames = [...]string{tmplLogs, tmplMainPage, tmplArticle, "analytics.html", "inline_css.html", "tagcloud.js"}
+	tmplArchive = "archive.html"
+	templateNames = [...]string{tmplLogs, tmplMainPage, tmplArticle, 
+		tmplArchive, "analytics.html", "inline_css.html", "tagcloud.js"}
 	templatePaths []string
 	templates     *template.Template
 
@@ -136,6 +139,7 @@ func ExecTemplate(w http.ResponseWriter, templateName string, model interface{})
 		return false
 	} else {
 		// at this point we ignore error
+		w.Header().Set("Content-Length", strconv.Itoa(len(buf.Bytes())))
 		w.Write(buf.Bytes())
 	}
 	return true
@@ -293,6 +297,7 @@ func main() {
 	http.HandleFunc("/login", handleLogin)
 	http.HandleFunc("/logout", handleLogout)
 
+	http.Handle("/archives.html", makeTimingHandler(handleArchives))
 	http.Handle("/software", makeTimingHandler(handleSoftware))
 	http.Handle("/software/", makeTimingHandler(handleSoftware))
 	http.Handle("/article/", makeTimingHandler(handleArticle))

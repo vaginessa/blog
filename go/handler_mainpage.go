@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"strings"
 	"sync"
+	"strconv"
 )
 
 type ArticlesCache struct {
@@ -104,16 +105,12 @@ func handleArticlesJs(w http.ResponseWriter, r *http.Request, url string) {
 	}
 
 	w.Header().Set("Content-Type", "text/javascript")
-
-	// TODO: set expiration in the future
-	/*
-	   # must over-ride Cache-Control (is 'no-cache' by default)
-	   self.response.headers['Cache-Control'] = 'public, max-age=31536000'
-	   now = datetime.datetime.now()
-	   expires_date_txt = httpdate(now + datetime.timedelta(days=365))
-	   self.response.headers.add_header("Expires", expires_date_txt)
-	*/
-
+	// cache non-admin version by setting max age 1 year into the future
+	// http://betterexplained.com/articles/how-to-optimize-your-site-with-http-caching/
+	if !IsAdmin(r) {
+		w.Header().Set("Cache-Control", "max-age=31536000, public")
+	}
+	w.Header().Set("Content-Length", strconv.Itoa(len(jsData)))
 	w.Write(jsData)
 }
 
