@@ -4,7 +4,8 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/kjk/blackfriday"
+	"github.com/russross/blackfriday"
+	"github.com/kjk/textiler"
 	"html/template"
 	"io/ioutil"
 	"regexp"
@@ -250,8 +251,8 @@ func msgToHtml(msg []byte, format int) string {
 		return string(msg)
 	}
 	if format == FormatTextile {
-		// TODO: convert textile to html
-		return string(msg)
+		s := textiler.ToHtml(msg, false, false)
+		return string(s)
 	}
 	if format == FormatMarkdown {
 		renderer := blackfriday.HtmlRenderer(0, "", "")
