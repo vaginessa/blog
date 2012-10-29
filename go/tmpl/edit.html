@@ -1,0 +1,308 @@
+<!doctype html>
+<html>
+<head>
+
+<meta http-equiv="Content-type" content="text/html; charset=utf-8"> 
+<link rel="stylesheet" type="text/css" href="/markitup/skins/simple/style.css">
+<link rel="stylesheet" type="text/css" href="/markitup/sets/html/style.css">
+<link rel="stylesheet" type="text/css" href="/markitup/sets/textile/style.css">
+<link rel="stylesheet" type="text/css" href="/markitup/sets/markdown/style.css">
+
+<link  href="{{ .PrettifyCssUrl }}" type="text/css" rel="stylesheet">
+<title>Create or edit a post</title>
+
+{{ template "inline_css.html" }}
+
+<style type="text/css">
+
+body {
+  margin-left: 12px;
+  margin-right: 12px;
+  margin-top: 8px;
+}
+
+#header.private {
+  background-color: #F2D0DC;
+  font-size: 120%;
+  font-weight: bold;
+}
+
+#preview, #note {
+  border: 1px solid #adadad !important;
+  overflow: auto;
+}
+
+#titleHelp, #tagsHelp {
+  color: gray;
+}
+
+textarea {
+  font-family: Georgia;
+  font-size: 14px;
+}
+
+</style>
+
+<script type="text/javascript" src="{{ .JqueryUrl }}"></script>
+<script type="text/javascript" src="{{ .PrettifyJsUrl }}"></script>
+<script type="text/javascript" src="/markitup/jquery.markitup.js"></script>
+
+<script type="text/javascript">
+
+var previewTimerId = 0;
+// true if we started the ajax call to do the preview
+var previewInProgress = false;
+
+myTextileSettings = {
+    nameSpace:           "textile", // Useful to prevent multi-instances CSS conflict
+    onShiftEnter:        {keepDefault:false, replaceWith:'\n\n'},
+    markupSet: [
+        {name:'Heading 1', key:'1', openWith:'h1(!(([![Class]!]))!). ', placeHolder:'Your title here...' },
+        {name:'Heading 2', key:'2', openWith:'h2(!(([![Class]!]))!). ', placeHolder:'Your title here...' },
+        {name:'Heading 3', key:'3', openWith:'h3(!(([![Class]!]))!). ', placeHolder:'Your title here...' },
+        {name:'Heading 4', key:'4', openWith:'h4(!(([![Class]!]))!). ', placeHolder:'Your title here...' },
+        {name:'Paragraph', key:'P', openWith:'p(!(([![Class]!]))!). '}, 
+        {name:'Bold', key:'B', closeWith:'*', openWith:'*'}, 
+        {separator:'---------------' },
+        {name:'Bulleted list', openWith:'(!(* |!|*)!)'}, 
+        {name:'Numeric list', openWith:'(!(# |!|#)!)'}, 
+        {separator:'---------------' },
+        {name:'Picture', replaceWith:'![![Source:!:http://]!]([![Alternative text]!])!'}, 
+        {name:'Link', openWith:'"', closeWith:'([![Title]!])":[![Link:!:http://]!]', placeHolder:'Your text to link here...' },
+        {separator:'---------------' },
+        {name:'Quotes', openWith:'bq(!(([![Class]!]))!). '}, 
+        {name:'Code', openWith:'@', closeWith:'@'}, 
+    ]
+}
+
+myMarkdownSettings = {
+    nameSpace:          'markdown', // Useful to prevent multi-instances CSS conflict
+    onShiftEnter:       {keepDefault:false, openWith:'\n\n'},
+    markupSet: [
+        {name:'First Level Heading', key:"1", placeHolder:'Your title here...', closeWith:function(markItUp) { return miu.markdownTitle(markItUp, '=') } },
+        {name:'Second Level Heading', key:"2", placeHolder:'Your title here...', closeWith:function(markItUp) { return miu.markdownTitle(markItUp, '-') } },
+        {name:'Heading 3', key:"3", openWith:'### ', placeHolder:'Your title here...' },
+        {name:'Heading 4', key:"4", openWith:'#### ', placeHolder:'Your title here...' },
+        {name:'Bold', key:"B", openWith:'**', closeWith:'**'},
+        {separator:'---------------' },
+        {name:'Bulleted List', openWith:'- ' },
+        {name:'Numeric List', openWith:function(markItUp) {
+            return markItUp.line+'. ';
+        }},
+        {separator:'---------------' },
+        {name:'Picture', key:"P", replaceWith:'![[![Alternative text]!]]([![Url:!:http://]!] "[![Title]!]")'},
+        {name:'Link', key:"L", openWith:'[', closeWith:']([![Url:!:http://]!] "[![Title]!]")', placeHolder:'Your text to link here...' },
+        {separator:'---------------'},    
+        {name:'Quotes', openWith:'> '},
+        {name:'Code Block / Code', openWith:'(!(\t|!|`)!)', closeWith:'(!(`)!)'},
+    ]
+}
+
+// mIu nameSpace to avoid conflict.
+miu = {
+    markdownTitle: function(markItUp, char) {
+        heading = '';
+        n = $.trim(markItUp.selection||markItUp.placeHolder).length;
+        for(i = 0; i < n; i++) {
+            heading += char;
+        }
+        return '\n'+heading+'\n';
+    }
+}
+
+myHtmlSettings = {
+    nameSpace:       "html", // Useful to prevent multi-instances CSS conflict
+    onShiftEnter:    {keepDefault:false, replaceWith:'<br />\n'},
+    onCtrlEnter:     {keepDefault:false, openWith:'\n<p>', closeWith:'</p>\n'},
+    onTab:           {keepDefault:false, openWith:'     '},
+    markupSet:  [
+        {name:'Heading 1', key:'1', openWith:'<h1(!( class="[![Class]!]")!)>', closeWith:'</h1>', placeHolder:'Your title here...' },
+        {name:'Heading 2', key:'2', openWith:'<h2(!( class="[![Class]!]")!)>', closeWith:'</h2>', placeHolder:'Your title here...' },
+        {name:'Heading 3', key:'3', openWith:'<h3(!( class="[![Class]!]")!)>', closeWith:'</h3>', placeHolder:'Your title here...' },
+        {name:'Heading 4', key:'4', openWith:'<h4(!( class="[![Class]!]")!)>', closeWith:'</h4>', placeHolder:'Your title here...' },
+        {name:'Paragraph', openWith:'<p(!( class="[![Class]!]")!)>', closeWith:'</p>'  },
+        {name:'Bold', key:'B', openWith:'<strong>', closeWith:'</strong>' },
+        {separator:'---------------' },
+        {name:'Ul', openWith:'<ul>\n', closeWith:'</ul>\n' },
+        {name:'Ol', openWith:'<ol>\n', closeWith:'</ol>\n' },
+        {name:'Li', openWith:'<li>', closeWith:'</li>' },
+        {separator:'---------------' },
+        {name:'Picture', key:'P', replaceWith:'<img src="[![Source:!:http://]!]" alt="[![Alternative text]!]" />' },
+        {name:'Link', key:'L', openWith:'<a href="[![Link:!:http://]!]"(!( title="[![Title]!]")!)>', closeWith:'</a>', placeHolder:'Your text to link...' },
+        {separator:'---------------' },
+        {name:'Clean', replaceWith:function(h) { return h.selection.replace(/<(.*?)>/g, "") } },
+    ]
+}
+
+function cleanHtml() {
+  function cleanCallback(data, status) {
+    $("#note").val(data);
+    $("#format").val("textile");
+  }
+  var data = { "note" : $("#note").val() };
+  $.post("/app/cleanhtml", data, cleanCallback, "html");
+  return false;
+}
+
+function noteFormat() { return $("#format").val(); }
+
+function markitUpSettingsForFormat(format) {
+  if ("html" == format) { return myHtmlSettings; }
+  if ("textile" == format) { return myTextileSettings; }
+  if ("markdown" == format) { return myMarkdownSettings; }
+  return null;
+}
+
+function onFormatChanged() {
+  if (noteFormat() == "html") { $("#cleanHtml").show(); }
+  else                        { $("#cleanHtml").hide(); }
+  preview();
+
+  $('#note').markItUpRemove();
+  var settings = markitUpSettingsForFormat(noteFormat());
+  if (null == settings) { return; }
+  $('#note').markItUp(settings);
+  onWndResize();
+}
+
+function updatePrivateStatus() {
+  if ($('input[name=private_checkbox]').is(':checked')) {
+    $("#header").show();
+  } else {
+    $("#header").hide();
+  }
+}
+
+function schedulePreview() {
+  // reschedule the timer for doing the preview
+  clearTimeout(previewTimerId);
+  previewTimerId = setTimeout(preview, 2000);
+}
+
+function startInProgress() {
+  previewInProgress = true;
+  $("#progress2").show();
+}
+
+function stopInProgress() {
+  previewInProgress = false;
+  $("#progress2").hide();
+}
+
+function previewAllButHtml() {
+  function preview_callback(data, status) {
+    data = data.replace(/<p>(.*)<\/p>/, "$1");
+    $("#preview").html(data);
+    stopInProgress();
+    prettyPrint();
+  }
+
+  var note = $("#note").val();
+  var t = $.trim(note);
+  if (0 == t.length) { return; }
+  var data = { "format" : noteFormat(), "note" : note };
+  $.post("/app/preview", data, preview_callback, "html");
+  startInProgress();
+}
+
+function preview()  {
+  if (previewInProgress) { schedulePreview(); return; }
+  if (noteFormat() == "html") {
+    $("#preview").html($("#note").val());
+  } else {
+    previewAllButHtml();
+  }
+  return false;
+}
+
+function onWndResize() {
+  var dy = $(window).height() - 122;
+  var dx = $(window).width() - 44;
+
+  $('#note').width(dx/2).height(dy-38);
+  $('#sep').width(8);
+  var hdrDy = 22;
+  $('#previewSpacer').height(hdrDy);
+  $('#preview').width(dx/2).height(dy-6-hdrDy);
+  // don't understand why I need this, but I do
+  $('#markItUpNote').width(dx/2+8);
+
+  var titleTagMaxDx = Math.max($('#titleHelp').width(), $('#tagsHelp').width());
+  $('#title').width(dx/2 - titleTagMaxDx);
+  $('#tags').width(dx/2 - titleTagMaxDx);
+  $('#sep2').width(8);
+  $('#progress').width(dx/2);
+}
+
+$(document).ready(function() {
+  $("#title").focus();
+  $(window).resize(onWndResize);
+  updatePrivateStatus();
+  onFormatChanged();
+  $("#private_checkbox").change(updatePrivateStatus);
+  $("#format").change(onFormatChanged);
+  $('#note').keyup(schedulePreview);
+  stopInProgress();
+});
+
+</script>
+
+</head>
+
+<body>
+  <form action="/app/edit" method="post" id="myform">
+
+  <input name="article_id" type="hidden" value="{{ .ArticleId }}">
+
+  <table cellspacing=0 cellpadding=0>
+  <tr>
+    <td id="title2">
+      <input id="title" tabindex=1 type="text" width=100% maxlength="1024" name="title" value = "{{ .ArticleTitle }}">
+      <span id="titleHelp">title</span><br>
+
+      <input id="tags" tabindex=2 type="text" width=100%  maxlength="1024" name="tags" value = "{{ .Tags }}">
+      <span id="tagsHelp">tags</span>
+   </td>
+   <td id="sep2"></td>
+   <td id="progress" valign=bottom>
+      <span id="progress2"><img src="/gfx/in-progress.gif"></span>
+   <td>
+  </tr>
+  </table>
+
+  <table cellspacing=0 cellpadding=0>
+  <tbody>
+    <tr>
+      <td id="input" >
+       <textarea id="note" tabindex=3 name="note" wrap="soft">{{ .ArticleBody }}</textarea>
+     </td>
+     <td id="sep"></td>
+     <td>
+       <div id="previewSpacer"></div>
+       <div id="preview"></div>
+     </td>
+    </tr>
+  </tbody>
+  </table>
+
+  <input type="submit" value="{{ .SubmitButtonText }}"/>
+
+  <select id="format" name="format">
+    <option value="textile" {{ .FormatTextileChecked }}>Textile</option>
+    <option value="markdown" {{ .FormatMarkdownChecked }}>Markdown</option>
+    <option value="html" {{ .FormatHtmlChecked }}>Html</option>
+    <option value="text" {{ .FormatTextChecked }}>Text</option>
+  </select>
+  &bull;
+  <input type="checkbox" name="private_checkbox" id="private_checkbox" {{ .PrivateCheckboxChecked }}>Private &bull;
+  <input type="checkbox" name="update_published_on">
+   update published on 
+   <span id="cleanHtml">&bull; <a onclick="cleanHtml(); return false;" href="#">clean html</a></span>
+  &bull; <a href="/">cancel</a> 
+  </form>
+
+  <div id="header" class="private" width=100%>
+  <center>This post is private!</center>
+  </div>
+</body>
+</html>
