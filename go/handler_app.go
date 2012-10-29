@@ -93,7 +93,9 @@ func handleAppEdit(w http.ResponseWriter, r *http.Request) {
 		ArticleBody            template.HTML
 		Tags                   string
 	}{
-		JqueryUrl: jQueryUrl(),
+		JqueryUrl:      jQueryUrl(),
+		PrettifyJsUrl:  prettifyJsUrl(),
+		PrettifyCssUrl: prettifyCssUrl(),
 	}
 
 	if article == nil {

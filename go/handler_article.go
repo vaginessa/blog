@@ -45,29 +45,31 @@ func handleArticle(w http.ResponseWriter, r *http.Request) {
 		IsAdmin        bool
 		AnalyticsCode  string
 		JqueryUrl      string
+		PrettifyJsUrl  string
+		PrettifyCssUrl string
 		PageTitle      string
 		Article        *DisplayArticle
 		NextArticle    *Article
 		PrevArticle    *Article
 		LogInOutUrl    string
 		ArticlesJsUrl  string
-		PrettifyJsUrl  string
-		PrettifyCssUrl string
 		TagsDisplay    string
 		ArticleNo      int
 		ArticlesCount  int
 	}{
-		IsAdmin:       isAdmin,
-		AnalyticsCode: *config.AnalyticsCode,
-		JqueryUrl:     jQueryUrl(),
-		LogInOutUrl:   getLogInOutUrl(r),
-		Article:       displayArticle,
-		NextArticle:   next,
-		PrevArticle:   prev,
-		PageTitle:     article.Title,
-		ArticlesCount: store.ArticlesCount(),
-		ArticleNo:     pos + 1,
-		ArticlesJsUrl: getArticlesJsUrl(isAdmin),
+		IsAdmin:        isAdmin,
+		AnalyticsCode:  *config.AnalyticsCode,
+		JqueryUrl:      jQueryUrl(),
+		PrettifyJsUrl:  prettifyJsUrl(),
+		PrettifyCssUrl: prettifyCssUrl(),
+		LogInOutUrl:    getLogInOutUrl(r),
+		Article:        displayArticle,
+		NextArticle:    next,
+		PrevArticle:    prev,
+		PageTitle:      article.Title,
+		ArticlesCount:  store.ArticlesCount(),
+		ArticleNo:      pos + 1,
+		ArticlesJsUrl:  getArticlesJsUrl(isAdmin),
 	}
 
 	ExecTemplate(w, tmplArticle, model)

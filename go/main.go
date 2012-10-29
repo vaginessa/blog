@@ -236,6 +236,14 @@ func jQueryUrl() string {
 	return "http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"
 }
 
+func prettifyJsUrl() string {
+	return "/js/prettify.js"
+}
+
+func prettifyCssUrl() string {
+	return "/js/prettify.css"
+}
+
 func makeTimingHandler(fn func(http.ResponseWriter, *http.Request)) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 

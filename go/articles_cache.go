@@ -248,18 +248,20 @@ func strToHtml(s string) string {
 }
 
 func msgToHtml(msg []byte, format int) string {
-	if format == FormatHtml {
+	switch format {
+	case FormatHtml:
+		fmt.Printf("msgToHtml(): html\n")
 		return string(msg)
-	}
-	if format == FormatTextile {
+	case FormatTextile:
+		fmt.Printf("msgToHtml(): textile\n")
 		s := textiler.ToHtml(msg, false, false)
 		return string(s)
-	}
-	if format == FormatMarkdown {
+	case FormatMarkdown:
+		fmt.Printf("msgToHtml(): markdown\n")
 		renderer := blackfriday.HtmlRenderer(0, "", "")
 		return string(blackfriday.Markdown(msg, renderer, 0))
-	}
-	if format == FormatText {
+	case FormatText:
+		fmt.Printf("msgToHtml(): text\n")
 		return strToHtml(string(msg))
 	}
 	panic("unknown format")
