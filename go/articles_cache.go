@@ -255,6 +255,7 @@ func msgToHtml(msg []byte, format int) string {
 	case FormatTextile:
 		fmt.Printf("msgToHtml(): textile\n")
 		s := textiler.ToHtml(msg, false, false)
+		//textiler.ToHtml(msg, false, true)
 		return string(s)
 	case FormatMarkdown:
 		fmt.Printf("msgToHtml(): markdown\n")
