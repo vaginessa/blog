@@ -63,8 +63,9 @@ var (
 	tmplMainPage  = "mainpage.html"
 	tmplArticle   = "article.html"
 	tmplArchive   = "archive.html"
+	tmplEdit      = "edit.html"
 	templateNames = [...]string{tmplLogs, tmplMainPage, tmplArticle,
-		tmplArchive, "analytics.html", "inline_css.html", "tagcloud.js"}
+		tmplArchive, tmplEdit, "analytics.html", "inline_css.html", "tagcloud.js"}
 	templatePaths []string
 	templates     *template.Template
 
@@ -260,6 +261,7 @@ func makeTimingHandler(fn func(http.ResponseWriter, *http.Request)) http.Handler
 // url: /blog
 func handleBlogMain(w http.ResponseWriter, r *http.Request) {
 	logger.Notice("handleBlogMain()")
+	serve404(w, r)
 }
 
 var emptyString = ""
@@ -303,6 +305,8 @@ func main() {
 	http.HandleFunc("/login", handleLogin)
 	http.HandleFunc("/logout", handleLogout)
 
+	http.Handle("/app/edit", makeTimingHandler(handleAppEdit))
+	http.Handle("/app/preview", makeTimingHandler(handleAppPreview))
 	http.Handle("/feedburner.xml", makeTimingHandler(handleFeedburnerAtom))
 	http.Handle("/atom-all.xml", makeTimingHandler(handleAtomAll))
 	http.Handle("/archives.html", makeTimingHandler(handleArchives))
@@ -315,6 +319,8 @@ func main() {
 	http.Handle("/static/", makeTimingHandler(handleStatic))
 	http.Handle("/css/", makeTimingHandler(handleCss))
 	http.Handle("/js/", makeTimingHandler(handleJs))
+	http.Handle("/gfx/", makeTimingHandler(handleGfx))
+	http.Handle("/markitup/", makeTimingHandler(handleMarkitup))
 	http.Handle("/djs/", makeTimingHandler(handleDjs))
 	http.Handle("/blog", r)
 

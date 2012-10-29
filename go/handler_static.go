@@ -94,6 +94,18 @@ func handleJs(w http.ResponseWriter, r *http.Request) {
 	serveFileFromDir(w, r, getJsDir(), file)
 }
 
+// url: /gfx/*
+func handleGfx(w http.ResponseWriter, r *http.Request) {
+	file := r.URL.Path[len("/gfx/"):]
+	serveFileFromDir(w, r, getGfxDir(), file)
+}
+
+// url: /markitup/*
+func handleMarkitup(w http.ResponseWriter, r *http.Request) {
+	file := r.URL.Path[len("/markitup/"):]
+	serveFileFromDir(w, r, getMarkitupDir(), file)
+}
+
 // url: /software*
 func handleSoftware(w http.ResponseWriter, r *http.Request) {
 	url := r.URL.Path

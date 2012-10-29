@@ -22,8 +22,9 @@ const (
 	FormatMarkdown = 2
 	FormatText     = 3
 
-	FormatFirst = 0
-	FormatLast  = 3
+	FormatFirst   = 0
+	FormatLast    = 3
+	FormatUnknown = -1
 )
 
 type Text struct {

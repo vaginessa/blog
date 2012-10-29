@@ -4,8 +4,8 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/russross/blackfriday"
 	"github.com/kjk/textiler"
+	"github.com/russross/blackfriday"
 	"html/template"
 	"io/ioutil"
 	"regexp"
@@ -149,7 +149,8 @@ func getCachedArticlesById(articleId int, isAdmin bool) (*Article, *Article, *Ar
 }
 
 type ArticleBodyCacheEntry struct {
-	sha1    [20]byte
+	sha1 [20]byte
+
 	msgHtml string
 }
 
