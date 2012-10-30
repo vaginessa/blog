@@ -237,6 +237,7 @@ func strToHtml(s string) string {
 		ns += placeHolder
 		prevEnd = end
 	}
+	ns += s[prevEnd:len(s)]
 
 	ns = template.HTMLEscapeString(ns)
 	for url, placeHolder := range urlMap {
