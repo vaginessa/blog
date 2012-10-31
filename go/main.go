@@ -65,7 +65,8 @@ var (
 	tmplArchive   = "archive.html"
 	tmplEdit      = "edit.html"
 	templateNames = [...]string{tmplLogs, tmplMainPage, tmplArticle,
-		tmplArchive, tmplEdit, "analytics.html", "inline_css.html", "tagcloud.js"}
+		tmplArchive, tmplEdit, "analytics.html", "inline_css.html", "tagcloud.js",
+		"page_navbar.html"}
 	templatePaths []string
 	templates     *template.Template
 
