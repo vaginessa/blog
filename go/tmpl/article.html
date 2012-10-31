@@ -87,7 +87,7 @@ $(document).ready(function(){
     {{ .Article.HtmlBody }}
     </div>
 
-    <div class="postmeta">Posted on {{ .Article.PublishedOnShort }}
+    <div class="postmeta">Written on {{ .Article.PublishedOnShort }}
       {{ if .TagsDisplay }}
         <a href="/tag/" class="taglink">in</a>: {{ .TagsDisplay }}
       {{ end }}

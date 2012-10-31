@@ -80,16 +80,9 @@ func filterArticlesByTag(articles []*Article, tag string) []*Article {
 	return res
 }
 
-func showArchivePage(w http.ResponseWriter, r *http.Request, tag string) {
+func showArchiveArticles(w http.ResponseWriter, r *http.Request, articles []*Article, tag string) {
 	isAdmin := IsAdmin(r)
-	// must be called first as it builds the cache if needed
 	articlesJsUrl := getArticlesJsUrl(isAdmin)
-	articles := getCachedArticles(isAdmin)
-
-	if tag != "" {
-		articles = filterArticlesByTag(articles, tag)
-	}
-
 	model := ArticlesIndexModel{
 		IsAdmin:       isAdmin,
 		AnalyticsCode: *config.AnalyticsCode,
@@ -102,6 +95,14 @@ func showArchivePage(w http.ResponseWriter, r *http.Request, tag string) {
 	}
 
 	ExecTemplate(w, tmplArchive, model)
+}
+
+func showArchivePage(w http.ResponseWriter, r *http.Request, tag string) {
+	articles := getCachedArticles(IsAdmin(r))
+	if tag != "" {
+		articles = filterArticlesByTag(articles, tag)
+	}
+	showArchiveArticles(w, r, articles, tag)
 }
 
 // url: /tag/${tag}

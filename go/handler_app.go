@@ -243,11 +243,33 @@ func handleAppUndelete(w http.ResponseWriter, r *http.Request) {
 // url: app/showdeleted
 func handleAppShowDeleted(w http.ResponseWriter, r *http.Request) {
 	logger.Notice("handleAppShowDeleted()")
-	serve404(w, r)
+	isAdmin := IsAdmin(r)
+	if !isAdmin {
+		serve404(w, r)
+		return
+	}
+	articles := make([]*Article, 0)
+	for _, a := range getCachedArticles(isAdmin) {
+		if a.IsDeleted {
+			articles = append(articles, a)
+		}
+	}
+	showArchiveArticles(w, r, articles, "")
 }
 
 // url: app/showprivate 
 func handleAppShowPrivate(w http.ResponseWriter, r *http.Request) {
 	logger.Notice("handleAppShowPrivate()")
-	serve404(w, r)
+	isAdmin := IsAdmin(r)
+	if !isAdmin {
+		serve404(w, r)
+		return
+	}
+	articles := make([]*Article, 0)
+	for _, a := range getCachedArticles(isAdmin) {
+		if a.IsPrivate {
+			articles = append(articles, a)
+		}
+	}
+	showArchiveArticles(w, r, articles, "")
 }

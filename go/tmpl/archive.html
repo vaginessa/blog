@@ -22,7 +22,7 @@
 }
 
 .year th {
-  background: #dfdfdf;
+  //background: #dfdfdf;
   color: black;
 }
 </style>
@@ -70,6 +70,7 @@ $(document).ready(function(){
     <a href="/app/edit">new blog post</a><br>
     <a href="/app/edit?note=yes">new note</a><br>
     <a href="/app/showprivate">show private</a><br>
+    <a href="/app/showdeleted">show deleted</a><br>
     <br>
   {{ end }}
     <div class="sidebarhdr">Tags:</div>
@@ -82,9 +83,9 @@ $(document).ready(function(){
   {{ if .PostsCount }}
     <div style="font-size: 110%; font-weight: bold;">
       {{ if .Tag }}
-        {{ .PostsCount }} posts tagged as '{{ .Tag }}':
+        &nbsp; {{ .PostsCount }} posts in '{{ .Tag }}':
       {{ else }}
-        {{ .PostsCount }} posts:
+        &nbsp; {{ .PostsCount }} posts:
       {{ end }} 
       {{ if not .IsAdmin }}
       <a id="login" class="invisible" onMouseOver="showById('login');" onMouseOut="hideById('login');" href="{{ .LogInOutUrl }}">login</a>
@@ -101,7 +102,7 @@ $(document).ready(function(){
             <a href="/{{ .Permalink }}">{{ .DisplayTitle }}</a>
             {{ if .TagsDisplay }}&nbsp;
               <span style="font-size:80%">
-              <span class="taglink">tags:</span> {{ .TagsDisplay }}</span>
+              <span class="taglink">in:</span> {{ .TagsDisplay }}</span>
             {{ end }}
 
             {{ if $isAdmin }}{{ .FormatName }}{{ end }}
