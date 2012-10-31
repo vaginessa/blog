@@ -69,9 +69,9 @@ $(document).ready(function(){
   {{ if .PostsCount }}
     <div style="font-size: 110%; font-weight: bold;">
       {{ if .Tag }}
-        &nbsp; {{ .PostsCount }} posts in '{{ .Tag }}':
+        &nbsp; {{ .PostsCount }} articles in '{{ .Tag }}':
       {{ else }}
-        &nbsp; {{ .PostsCount }} posts:
+        &nbsp; {{ .PostsCount }} articles:
       {{ end }} 
       {{ if not .IsAdmin }}
       <a id="login" class="invisible" onMouseOver="showById('login');" onMouseOut="hideById('login');" href="{{ .LogInOutUrl }}">login</a>
