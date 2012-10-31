@@ -60,7 +60,6 @@ $(document).ready(function(){
         {{ else }}
         <div class="l"><a href="/app/delete?article_id={{ .Article.Id }}">delete</a></div>
         {{ end }}
-        <div class="l"><a href="/app/permanentdelete?article_id={{ .Article.Id  }}">permanent delete</a></div>
         <div class="l"><a href="/app/showprivate">show private</a></div>
         <div class="l"><a href="/app/showdeleted">show deleted</a></div>
       </div>
@@ -72,6 +71,9 @@ $(document).ready(function(){
       <h1 style="display:inline;">
         <span class="title" style="font-size:13pt;">
         {{ .Article.Title }}
+        {{ if .Article.IsDeleted }}
+          &nbsp;<font color="red">deleted</font>
+        {{ end }}
         {{ if .Article.IsPrivate }}
           &nbsp;<font color="red">private</font>
         {{ end }}

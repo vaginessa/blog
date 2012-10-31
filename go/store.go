@@ -354,7 +354,7 @@ func (s *Store) MessageFileExists(sha1 []byte) bool {
 func (s *Store) appendString(str string) error {
 	_, err := s.dataFile.WriteString(str)
 	if err != nil {
-		fmt.Printf("appendString() error: %s\n", err.Error())
+		logger.Errorf("Store.appendString() error: %s\n", err.Error())
 	}
 	return err
 }
@@ -521,4 +521,16 @@ func (s *Store) CreateOrUpdateArticle(article *Article) (*Article, error) {
 		s.articleIdToArticle[article.Id] = article
 	}
 	return article, nil
+}
+
+func (s *Store) UpdateArticle(article *Article) (*Article, error) {
+	s.Lock()
+	defer s.Unlock()
+
+	tmp := s.articleIdToArticle[article.Id]
+	if tmp != article {
+		panic("invalid article object")
+	}
+	err := s.appendString(serArticle(article))
+	return article, err
 }

@@ -316,6 +316,10 @@ func main() {
 
 	http.Handle("/app/edit", makeTimingHandler(handleAppEdit))
 	http.Handle("/app/preview", makeTimingHandler(handleAppPreview))
+	http.Handle("/app/delete", makeTimingHandler(handleAppDelete))
+	http.Handle("/app/undelete", makeTimingHandler(handleAppUndelete))
+	http.Handle("/app/showdeleted", makeTimingHandler(handleAppShowDeleted))
+	http.Handle("/app/showprivate", makeTimingHandler(handleAppShowPrivate))
 	http.Handle("/feedburner.xml", makeTimingHandler(handleFeedburnerAtom))
 	http.Handle("/atom-all.xml", makeTimingHandler(handleAtomAll))
 	http.Handle("/archives.html", makeTimingHandler(handleArchives))

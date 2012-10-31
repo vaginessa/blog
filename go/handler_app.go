@@ -179,3 +179,75 @@ func handleAppEdit(w http.ResponseWriter, r *http.Request) {
 
 	ExecTemplate(w, tmplEdit, model)
 }
+
+func findArticleMustBeAdmin(w http.ResponseWriter, r *http.Request) *Article {
+	if !IsAdmin(r) {
+		serve404(w, r)
+		return nil
+	}
+
+	var article *Article
+	idStr := getTrimmedFormValue(r, "article_id")
+	if articleId, err := strconv.Atoi(idStr); err == nil {
+		article = store.GetArticleById(articleId)
+	}
+	if article == nil {
+		logger.Errorf("findArticleMustBeAdmin(): no article with article_id '%s'", idStr)
+		serveErrorMsg(w, "invalid article")
+	}
+	return article
+}
+
+// url: app/delete?article_id=${id}
+func handleAppDelete(w http.ResponseWriter, r *http.Request) {
+	logger.Notice("handleAppDelete()")
+	article := findArticleMustBeAdmin(w, r)
+	if article == nil {
+		return
+	}
+
+	if article.IsDeleted {
+		logger.Errorf("handleAppDelete(): article %d already deleted", article.Id)
+		serveErrorMsg(w, "article already deleted")
+		return
+	}
+
+	article.IsDeleted = true
+	store.UpdateArticle(article)
+	clearArticlesCache()
+	url := "/" + article.Permalink()
+	http.Redirect(w, r, url, 301)
+}
+
+// url: app/undelete?article_id=${id}
+func handleAppUndelete(w http.ResponseWriter, r *http.Request) {
+	logger.Notice("handleAppUndelete()")
+	article := findArticleMustBeAdmin(w, r)
+	if article == nil {
+		return
+	}
+
+	if !article.IsDeleted {
+		logger.Errorf("handleAppUndelete(): article %d not deleted", article.Id)
+		serveErrorMsg(w, "article not deleted")
+		return
+	}
+
+	article.IsDeleted = false
+	store.UpdateArticle(article)
+	clearArticlesCache()
+	url := "/" + article.Permalink()
+	http.Redirect(w, r, url, 301)
+}
+
+// url: app/showdeleted
+func handleAppShowDeleted(w http.ResponseWriter, r *http.Request) {
+	logger.Notice("handleAppShowDeleted()")
+	serve404(w, r)
+}
+
+// url: app/showprivate 
+func handleAppShowPrivate(w http.ResponseWriter, r *http.Request) {
+	logger.Notice("handleAppShowPrivate()")
+	serve404(w, r)
+}
