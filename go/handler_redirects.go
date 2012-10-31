@@ -1,7 +1,13 @@
 package main
 
 import (
+	"bytes"
+	"fmt"
 	"net/http"
+	"path/filepath"
+	"strconv"
+	"strings"
+	"sync"
 )
 
 var redirects = map[string]string{
@@ -35,6 +41,52 @@ var redirects = map[string]string{
 	"/software/sumatrapdf/SumatraSplash.png":        "http://kjkpub.s3.amazonaws.com/blog/sumatra/SumatraSplash.png",
 }
 
+var articleRedirects = make(map[string]int)
+var articleRedirectsMutex sync.Mutex
+
+func readRedirects() {
+	fname := filepath.Join(getDataDir(), "article_redirects.txt")
+	d, err := ReadFileAll(fname)
+	if err != nil {
+		return
+	}
+	lines := bytes.Split(d, []byte{'\n'})
+	for _, l := range lines {
+		if 0 == len(l) {
+			continue
+		}
+		parts := strings.Split(string(l), "|")
+		if len(parts) != 2 {
+			panic("malformed article_redirects.txt")
+		}
+		idStr := parts[0]
+		url := strings.TrimSpace(parts[1])
+		if id, err := strconv.Atoi(idStr); err != nil {
+			panic("malformed line in article_redirects.txt")
+		} else {
+			a := store.GetArticleById(id)
+			if a == nil {
+				panic("bad article id article_redirects.txt")
+			}
+			articleRedirects[url] = id
+		}
+	}
+	fmt.Printf("loaded %d article redirects\n", len(articleRedirects))
+}
+
+// return -1 if there's no redirect for this urls
+func getRedirectArticleId(url string) int {
+	url = url[1:] // remove '/' from the beginning
+	articleRedirectsMutex.Lock()
+	defer articleRedirectsMutex.Unlock()
+	if articleId, ok := articleRedirects[url]; ok {
+		fmt.Printf("getRedirectArticleId(): found redirect %d for '%s'\n", articleId, url)
+		return articleId
+	}
+	fmt.Printf("getRedirectArticleId(): didn't find '%s'\n", url)
+	return -1
+}
+
 func redirectIfNeeded(w http.ResponseWriter, r *http.Request) bool {
 	url := r.URL.Path
 	//logger.Noticef("redirectIfNeeded(): '%s'", url)
@@ -43,5 +95,18 @@ func redirectIfNeeded(w http.ResponseWriter, r *http.Request) bool {
 		http.Redirect(w, r, redirUrl, 302)
 		return true
 	}
+
+	redirectArticleId := getRedirectArticleId(url)
+	if redirectArticleId == -1 {
+		return false
+	}
+	article := store.GetArticleById(redirectArticleId)
+	if article != nil {
+		redirUrl := "/" + article.Permalink()
+		logger.Noticef("Redirecting '%s' => '%s'", url, redirUrl)
+		http.Redirect(w, r, redirUrl, 302)
+		return true
+	}
+
 	return false
 }

@@ -15,9 +15,19 @@ func (a *DisplayArticle) PublishedOnShort() string {
 	return a.PublishedOn.Format("Jan 2 2006")
 }
 
-// url: /article/*
+// url: /article/*, /blog/*, /kb/*
 func handleArticle(w http.ResponseWriter, r *http.Request) {
+	if redirectIfNeeded(w, r) {
+		return
+	}
+
+	// /blog/ and /kb/ are only for redirects, we only handle /article/
+	// at this point
 	url := r.URL.Path
+	if !strings.HasPrefix(url, "/article/") {
+		serve404(w, r)
+		return
+	}
 	isAdmin := IsAdmin(r)
 
 	// we expect /article/$shortId/$url

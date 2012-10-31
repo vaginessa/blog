@@ -304,6 +304,8 @@ func main() {
 		log.Fatalf("NewStore() failed with %s", err.Error())
 	}
 
+	readRedirects()
+
 	r := mux.NewRouter()
 	r.HandleFunc("/blog", makeTimingHandler(handleBlogMain))
 
@@ -328,6 +330,8 @@ func main() {
 	http.Handle("/software/", makeTimingHandler(handleSoftware))
 	http.Handle("/extremeoptimizations/", makeTimingHandler(handleExtremeOpt))
 	http.Handle("/article/", makeTimingHandler(handleArticle))
+	http.Handle("/kb/", makeTimingHandler(handleArticle))
+	http.Handle("/blog/", makeTimingHandler(handleArticle))
 	http.Handle("/articles/", makeTimingHandler(handleArticles))
 	http.Handle("/tag/", makeTimingHandler(handleTag))
 	http.Handle("/static/", makeTimingHandler(handleStatic))
