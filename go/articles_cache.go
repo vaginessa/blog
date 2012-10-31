@@ -223,7 +223,7 @@ func strToHtml(s string) string {
 	if nil == matches || disableUrlization {
 		s = template.HTMLEscapeString(s)
 		s = strings.Replace(s, "\n", "<br>", -1)
-		return s
+		return "<p>" + s + "</p>"
 	}
 
 	urlMap := make(map[string]string)
@@ -257,7 +257,7 @@ func strToHtml(s string) string {
 		ns = strings.Replace(ns, placeHolder, url, -1)
 	}
 	ns = strings.Replace(ns, "\n", "<br>", -1)
-	return ns
+	return "<p>" + ns + "</p>"
 }
 
 func msgToHtml(msg []byte, format int) string {
