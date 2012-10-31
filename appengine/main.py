@@ -298,15 +298,9 @@ def urlify(title):
                          re.sub('\s+', '-', title.strip())))
     return url[:48]
 
-def tags_from_string_iter(tags_string):
-  for t in tags_string.split(","):
-      t = t.strip()
-      if t:
-          yield t
-
 # given e.g. "a, b  c , ho", returns ["a", "b", "c", "ho"]
 def tags_from_string(tags_string):
-    return [t for t in tags_from_string_iter(tags_string)]
+    return [t.strip() for t in tags_string.split(",")]
 
 def checkbox_to_bool(checkbox_val): return "on" == checkbox_val.strip()
 

@@ -248,7 +248,7 @@ func serVersions(vers []int) string {
 func serArticle(a *Article) string {
 	s1 := fmt.Sprintf("%d", a.Id)
 	s2 := fmt.Sprintf("%d", a.PublishedOn.Unix())
-	s3 := a.Title
+	s3 := remSep(a.Title)
 	s4 := boolToStr(a.IsPrivate)
 	s5 := boolToStr(a.IsDeleted)
 	s6 := serTags(a.Tags)

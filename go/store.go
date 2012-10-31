@@ -109,6 +109,29 @@ func validFormat(format int) bool {
 	return format >= FormatFirst && format <= FormatLast
 }
 
+// space saving: false values are empty strings, true is "1"
+func strToBool(s string) bool {
+	if s == "" {
+		return false
+	}
+	if s == "1" {
+		return true
+	}
+	panic("invalid bool string")
+}
+
+// space saving: false values are empty strings, true is "1"
+func boolToStr(b bool) string {
+	if b {
+		return "1"
+	}
+	return ""
+}
+
+func remSep(s string) string {
+	return strings.Replace(s, "|", "", -1)
+}
+
 // parse:
 // T1|1234860514|0|OiKDjvc+iyv4UXxVxLO91ozXwaU
 func (s *Store) parseText(line []byte) {
@@ -155,22 +178,12 @@ func (s *Store) parseText(line []byte) {
 		Format:    format,
 	}
 	copy(t.Sha1[:], msgSha1)
-	if !s.MessageFileExists(t.Sha1) {
+	if !s.MessageFileExists(t.Sha1[:]) {
 		panic("message file doesn't exist")
 	}
 
 	s.texts = append(s.texts, t)
 	s.textIdToText[id] = &s.texts[len(s.texts)-1]
-}
-
-func strToBool(s string) bool {
-	if s == "" {
-		return false
-	}
-	if s == "1" {
-		return true
-	}
-	panic("invalid bool string")
 }
 
 // parse:
@@ -316,12 +329,12 @@ func blobPath(dir, sha1 string) string {
 	return filepath.Join(dir, "blobs", d1, d2, sha1)
 }
 
-func (s *Store) MessageFilePath(sha1 [20]byte) string {
-	sha1Str := hex.EncodeToString(sha1[:])
+func (s *Store) MessageFilePath(sha1 []byte) string {
+	sha1Str := hex.EncodeToString(sha1)
 	return blobPath(s.dataDir, sha1Str)
 }
 
-func (s *Store) MessageFileExists(sha1 [20]byte) bool {
+func (s *Store) MessageFileExists(sha1 []byte) bool {
 	p := s.MessageFilePath(sha1)
 	return PathExists(p)
 }
@@ -334,11 +347,7 @@ func (s *Store) appendString(str string) error {
 	return err
 }
 
-func remSep(s string) string {
-	return strings.Replace(s, "|", "", -1)
-}
-
-func (s *Store) writeMessageAsSha1(msg []byte, sha1 [20]byte) error {
+func (s *Store) writeMessageAsSha1(msg []byte, sha1 []byte) error {
 	path := s.MessageFilePath(sha1)
 	err := WriteBytesToFile(msg, path)
 	if err != nil {
@@ -389,4 +398,117 @@ func (s *Store) GetArticleById(id int) *Article {
 		return article
 	}
 	return nil
+}
+
+func (s *Store) newArticleId() int {
+	i := len(s.articles) - 1
+	if i < 0 {
+		return 1
+	}
+	return s.articles[i].Id + 1	
+}
+
+func (s *Store) newTextId() int {
+	i := len(s.texts) - 1
+	if i < 0 {
+		return 1
+	}
+	return s.texts[i].Id + 1
+}
+
+func serText(t *Text) string {
+	s1 := fmt.Sprintf("%d", t.CreatedOn.Unix())
+	s2 := base64.StdEncoding.EncodeToString(t.Sha1[:])
+	s2 = s2[:len(s2)-1] // remove '=' from the end
+	return fmt.Sprintf("T%d|%s|%d|%s\n", t.Id, s1, t.Format, s2)
+}
+
+func (s *Store) CreateNewText(format int, txt string) (*Text, error) {
+	if !validFormat(format) {
+		panic("invalid format")
+	}
+
+	s.Lock()
+	defer s.Unlock()
+
+	data := []byte(txt)
+	sha1 := Sha1OfBytes(data)
+	if err := s.writeMessageAsSha1(data, sha1); err != nil {
+		return nil, err
+	}
+	t := Text{
+		Id: s.newTextId(),
+		CreatedOn: time.Now(),
+		Format: format,
+	}
+	copy(t.Sha1[:], sha1)
+	if err := s.appendString(serText(&t)); err != nil {
+		return nil, err
+	}
+	s.texts = append(s.texts, t)
+	return &s.texts[len(s.texts)-1], nil
+}
+
+func serVersions(vers []int) string {
+	s := ""
+	lastIdx := len(vers) - 1
+	for i, ver := range vers {
+		s += fmt.Sprintf("%d", ver)
+		if i != lastIdx {
+			s += ","
+		}
+	}
+	return s
+}
+
+func sanitizeTag(tag string) string {
+	return strings.Replace(tag, ",", "", -1)
+}
+
+func serTags(tags []string) string {
+	s := ""
+	lastIdx := len(tags) - 1
+	for i, tag := range tags {
+		s += sanitizeTag(tag)
+		if i != lastIdx {
+			s += ","
+		}
+	}
+	return s
+}
+
+func serArticle(a *Article) string {
+	s1 := fmt.Sprintf("%d", a.Id)
+	s2 := fmt.Sprintf("%d", a.PublishedOn.Unix())
+	s3 := remSep(a.Title)
+	s4 := boolToStr(a.IsPrivate)
+	s5 := boolToStr(a.IsDeleted)
+	s6 := serTags(a.Tags)
+	vers := make([]int, len(a.Versions), len(a.Versions))
+	for i, ver := range a.Versions {
+		vers[i] = ver.Id
+	}
+	s7 := serVersions(vers)
+	return fmt.Sprintf("A%s|%s|%s|%s|%s|%s|%s\n", s1, s2, s3, s4, s5, s6, s7)
+}
+
+func (s *Store) CreateOrUpdateArticle(article *Article) (*Article, error) {
+	s.Lock()
+	defer s.Unlock()
+
+	newArticle := false
+	if article.Id == 0 {
+		article.Id = s.newArticleId()
+		newArticle = true
+	}
+	if err := s.appendString(serArticle(article)); err != nil {
+		return nil, err
+	}
+
+	if newArticle {
+		s.articles = append(s.articles, *article)
+		article = &s.articles[len(s.articles)-1]
+		s.articleIdToArticle[article.Id] = article
+	}
+	return article, nil
 }

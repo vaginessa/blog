@@ -171,7 +171,7 @@ func (c *ArticleBodyCache) GetHtml(sha1 [20]byte, format int) string {
 		}
 	}
 
-	msgFilePath := store.MessageFilePath(sha1)
+	msgFilePath := store.MessageFilePath(sha1[:])
 	msg, err := ioutil.ReadFile(msgFilePath)
 	var msgHtml string
 	if err != nil {
@@ -193,6 +193,18 @@ func (c *ArticleBodyCache) GetHtml(sha1 [20]byte, format int) string {
 	entry.sha1 = sha1
 	entry.msgHtml = msgHtml
 	return msgHtml
+}
+
+func (c *ArticleBodyCache) Clear() {
+	c.Lock()
+	defer c.Unlock()
+	c.entriesCount = 0
+	c.curr = 0
+}
+
+func clearArticlesCache() {
+	articlesCache.articlesCacheId = 0
+	articleBodyCache.Clear()
 }
 
 // TODO: this is simplistic but works for me, http://net.tutsplus.com/tutorials/other/8-regular-expressions-you-should-know/

@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"strconv"
 	"strings"
+	"time"
 )
 
 const (
@@ -41,12 +42,71 @@ func handleAppPreview(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte(s))
 }
 
-// url: POST /app/edit
-func createNewOrUpdatePost(w http.ResponseWriter, r *http.Request, article *Article) {
-
+func checkboxToBool(checkboxVal string) bool {
+	return "on" == checkboxVal;
 }
 
-func GetArticleVersionBody(sha1 [20]byte) (string, error) {
+func tagsFromString(s string) []string {
+	tags := strings.Split(s, ",")
+	for i, tag := range tags {
+		tags[i] = strings.TrimSpace(tag)
+	}
+	return tags
+}
+
+// url: POST /app/edit
+func createNewOrUpdatePost(w http.ResponseWriter, r *http.Request, article *Article) {
+	format := formatNameToId(getTrimmedFormValue(r, "format"))
+	if !validFormat(format) {
+		serveErrorMsg(w, "invalid format")
+		return
+	}
+	title := getTrimmedFormValue(r, "title")
+	if title == "" {
+		serveErrorMsg(w, "empty title not valid")
+		return
+	}
+	body := getTrimmedFormValue(r, "note")
+	if len(body) < 10 {
+		serveErrorMsg(w, "body too small")
+		return
+	}
+	isPrivate := checkboxToBool(getTrimmedFormValue(r, "private_checkbox"))
+	tags := tagsFromString(getTrimmedFormValue(r, "tags"))
+
+	text, err := store.CreateNewText(format, body)
+	if err != nil {
+		logger.Errorf("createNewOrUpdatePost(): store.CreateNewText() failed with %s", err.Error())
+		serveErrorMsg(w, "error creating text")
+		return
+	}
+	if article == nil {
+		article = &Article{
+			Id: 0,
+			PublishedOn: time.Now(),
+			Versions: make([]*Text, 0),
+		}
+	}
+	article.Versions = append(article.Versions, text)
+	updatePublishedOn := checkboxToBool(getTrimmedFormValue(r, "update_published_on"))
+	if updatePublishedOn {
+		article.PublishedOn = time.Now()
+	}
+	article.Title = title
+	article.IsPrivate = isPrivate
+	article.IsDeleted = false
+	article.Tags = tags
+	if article, err = store.CreateOrUpdateArticle(article); err != nil {
+		logger.Errorf("createNewOrUpdatePost(): store.CreateNewArticle() failed with %s", err.Error())
+		serveErrorMsg(w, "error creating article")
+		return
+	}
+	clearArticlesCache()
+	url := "/" + article.Permalink()
+	http.Redirect(w, r, url, 301)
+}
+
+func GetArticleVersionBody(sha1 []byte) (string, error) {
 	msgFilePath := store.MessageFilePath(sha1)
 	msg, err := ioutil.ReadFile(msgFilePath)
 	if err != nil {
@@ -107,7 +167,7 @@ func handleAppEdit(w http.ResponseWriter, r *http.Request) {
 		model.ArticleId = article.Id
 		model.ArticleTitle = article.Title
 		ver := article.CurrVersion()
-		if body, err := GetArticleVersionBody(ver.Sha1); err != nil {
+		if body, err := GetArticleVersionBody(ver.Sha1[:]); err != nil {
 			panic("GetArticleVersionBody() failed")
 		} else {
 			model.ArticleBody = template.HTML(body)
