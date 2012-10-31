@@ -413,11 +413,13 @@ func (s *Store) GetArticleById(id int) *Article {
 }
 
 func (s *Store) newArticleId() int {
-	i := len(s.articles) - 1
-	if i < 0 {
-		return 1
+	id := 1
+	for {
+		if _, ok := s.articleIdToArticle[id]; !ok {
+			return id
+		}
 	}
-	return s.articles[i].Id + 1
+	return id
 }
 
 func (s *Store) newTextId() int {
