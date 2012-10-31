@@ -40,7 +40,7 @@ func setSecureCookie(w http.ResponseWriter, cookieVal *SecureCookieValue) {
 		}
 		http.SetCookie(w, cookie)
 	} else {
-		fmt.Printf("setSecureCookie(): error encoding secure cookie %s\n", err.Error())
+		logger.Errorf("setSecureCookie(): error encoding secure cookie %s\n", err.Error())
 	}
 }
 

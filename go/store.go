@@ -309,20 +309,20 @@ func NewStore(dataDir string) (*Store, error) {
 	if PathExists(dataFilePath) {
 		err = store.readExistingBlogData(dataFilePath)
 		if err != nil {
-			fmt.Printf("NewStore(): readExistingBlogData() failed with %s\n", err.Error())
+			logger.Errorf("NewStore(): readExistingBlogData() failed with %s\n", err.Error())
 			return nil, err
 		}
 	} else {
 		f, err := os.Create(dataFilePath)
 		if err != nil {
-			fmt.Printf("NewStore(): os.Create(%s) failed with %s", dataFilePath, err.Error())
+			logger.Errorf("NewStore(): os.Create(%s) failed with %s", dataFilePath, err.Error())
 			return nil, err
 		}
 		f.Close()
 	}
 	store.dataFile, err = os.OpenFile(dataFilePath, os.O_APPEND|os.O_RDWR, 0666)
 	if err != nil {
-		fmt.Printf("NewStore(): os.OpenFile(%s) failed with %s", dataFilePath, err.Error())
+		logger.Errorf("NewStore(): os.OpenFile(%s) failed with %s", dataFilePath, err.Error())
 		return nil, err
 	}
 	logger.Noticef("texts: %d, articles: %d", len(store.texts), len(store.articles))

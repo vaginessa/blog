@@ -2,7 +2,6 @@ package main
 
 import (
 	"bytes"
-	"fmt"
 	"net/http"
 	"path/filepath"
 	"strconv"
@@ -71,7 +70,7 @@ func readRedirects() {
 			articleRedirects[url] = id
 		}
 	}
-	fmt.Printf("loaded %d article redirects\n", len(articleRedirects))
+	logger.Noticef("loaded %d article redirects\n", len(articleRedirects))
 }
 
 // return -1 if there's no redirect for this urls
@@ -80,10 +79,8 @@ func getRedirectArticleId(url string) int {
 	articleRedirectsMutex.Lock()
 	defer articleRedirectsMutex.Unlock()
 	if articleId, ok := articleRedirects[url]; ok {
-		fmt.Printf("getRedirectArticleId(): found redirect %d for '%s'\n", articleId, url)
 		return articleId
 	}
-	fmt.Printf("getRedirectArticleId(): didn't find '%s'\n", url)
 	return -1
 }
 
