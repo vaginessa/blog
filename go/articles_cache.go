@@ -263,19 +263,19 @@ func strToHtml(s string) string {
 func msgToHtml(msg []byte, format int) string {
 	switch format {
 	case FormatHtml:
-		fmt.Printf("msgToHtml(): html\n")
+		//fmt.Printf("msgToHtml(): html\n")
 		return string(msg)
 	case FormatTextile:
-		fmt.Printf("msgToHtml(): textile\n")
+		//fmt.Printf("msgToHtml(): textile\n")
 		s := textiler.ToHtml(msg, false, false)
 		//textiler.ToHtml(msg, false, true)
 		return string(s)
 	case FormatMarkdown:
-		fmt.Printf("msgToHtml(): markdown\n")
+		//fmt.Printf("msgToHtml(): markdown\n")
 		renderer := blackfriday.HtmlRenderer(0, "", "")
 		return string(blackfriday.Markdown(msg, renderer, 0))
 	case FormatText:
-		fmt.Printf("msgToHtml(): text\n")
+		//fmt.Printf("msgToHtml(): text\n")
 		return strToHtml(string(msg))
 	}
 	panic("unknown format")

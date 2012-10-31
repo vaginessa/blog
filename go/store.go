@@ -27,6 +27,9 @@ const (
 	FormatUnknown = -1
 )
 
+// same format as Format* constants
+var formatNames []string = []string{"Html", "Textile", "Markdown", "Text"}
+
 type Text struct {
 	Id        int
 	CreatedOn time.Time
@@ -86,7 +89,14 @@ func urlForTag(tag string) string {
 	return fmt.Sprintf(`<a href="/tag/%s" class="taglink">%s</a>`, tag, tag)
 }
 
-var formatNames []string = []string{"Html", "Textile", "Markdown", "Text"}
+func FormatNameToId(name string) int {
+	for i, formatName := range formatNames {
+		if strings.EqualFold(name, formatName) {
+			return i
+		}
+	}
+	return FormatUnknown
+}
 
 func (a *Article) FormatName() string {
 	return formatNames[a.CurrVersion().Format]

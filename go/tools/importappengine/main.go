@@ -344,6 +344,23 @@ func saveArticleRedirects(filePath string, redirects []ArticleRedirect) {
 	}
 }
 
+func renumberTexts(texts []*Text, articles []*Article) {
+	oldToNewId := make(map[int]int)
+	for i, t := range texts {
+		oldToNewId[t.Id] = i+1
+		t.Id = i+1
+	}
+	for _, a := range articles {
+		for i, verId := range a.Versions {
+			if newId, ok := oldToNewId[verId]; ok {
+				a.Versions[i] = newId
+			} else {
+				panic("unknown text version id")
+			}
+		}
+	}
+}
+
 func main() {
 	if !PathExists(srcDataDir) {
 		panic("srcDataDir doesn't exist")
@@ -354,6 +371,7 @@ func main() {
 	texts := loadTexts()
 	articles, redirects := loadArticles()
 	verifyData(texts, articles)
+	renumberTexts(texts, articles)
 	strs := serAll(texts, articles)
 	saveStrings(filepath.Join(dstDataDir, "blogdata.txt"), strs)
 	saveArticleRedirects(filepath.Join(dstDataDir, "article_redirects.txt"), redirects)

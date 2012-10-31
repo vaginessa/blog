@@ -17,24 +17,11 @@ func getTrimmedFormValue(r *http.Request, name string) string {
 	return strings.TrimSpace(r.FormValue(name))
 }
 
-func formatNameToId(name string) int {
-	switch name {
-	case "html":
-		return FormatHtml
-	case "textile":
-		return FormatTextile
-	case "markdown":
-		return FormatMarkdown
-	case "text":
-		return FormatText
-	}
-	return FormatUnknown
-}
 
 // url: /app/preview
 func handleAppPreview(w http.ResponseWriter, r *http.Request) {
 	format := getTrimmedFormValue(r, "format")
-	formatInt := formatNameToId(format)
+	formatInt := FormatNameToId(format)
 	// TODO: what to do on error?
 	msg := getTrimmedFormValue(r, "note")
 	s := msgToHtml([]byte(msg), formatInt)
@@ -56,7 +43,7 @@ func tagsFromString(s string) []string {
 
 // url: POST /app/edit
 func createNewOrUpdatePost(w http.ResponseWriter, r *http.Request, article *Article) {
-	format := formatNameToId(getTrimmedFormValue(r, "format"))
+	format := FormatNameToId(getTrimmedFormValue(r, "format"))
 	if !validFormat(format) {
 		serveErrorMsg(w, "invalid format")
 		return
