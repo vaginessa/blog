@@ -51,7 +51,6 @@ type Store struct {
 	sync.Mutex
 	dataDir            string
 	texts              []Text
-	textIdToText       map[int]*Text
 	articles           []Article
 	articleIdToArticle map[int]*Article
 	dataFile           *os.File
@@ -158,8 +157,8 @@ func (s *Store) parseText(line []byte) {
 	if err != nil {
 		panic("idStr not a number")
 	}
-	if _, ok := s.textIdToText[id]; ok {
-		panic("parseText(): duplicate Text id")
+	if id != len(s.texts) {
+		panic("parseText(): invalid Text id")
 	}
 
 	createdOnSeconds, err := strconv.Atoi(createdOnSecondsStr)
@@ -193,7 +192,6 @@ func (s *Store) parseText(line []byte) {
 	}
 
 	s.texts = append(s.texts, t)
-	s.textIdToText[id] = &s.texts[len(s.texts)-1]
 }
 
 // parse:
@@ -214,9 +212,6 @@ func (s *Store) parseArticle(line []byte) {
 	articleId, err := strconv.Atoi(idStr)
 	if err != nil {
 		panic("idStr not a number")
-	}
-	if _, ok := s.articleIdToArticle[articleId]; ok {
-		panic("duplicate Article id")
 	}
 
 	publishedOnSeconds, err := strconv.Atoi(publishedOnStr)
@@ -240,29 +235,37 @@ func (s *Store) parseArticle(line []byte) {
 		panic("We need some versions")
 	}
 
-	a := Article{
-		Id:          articleId,
-		PublishedOn: publishedOn,
-		IsPrivate:   isPrivate,
-		IsDeleted:   isDeleted,
-		Title:       title,
-		Tags:        tags,
-		Versions:    make([]*Text, nVersions, nVersions),
-	}
-
+	versions := make([]*Text, nVersions, nVersions)
 	for i, verStr := range versionsStr {
 		textId, err := strconv.Atoi(verStr)
 		if err != nil {
 			panic("verStr not a number")
 		}
-		if txt, ok := s.textIdToText[textId]; !ok {
+		if textId > len(s.texts) {
 			panic("non-existent verStr")
 		} else {
-			a.Versions[i] = txt
+			versions[i] = &s.texts[textId]
 		}
 	}
 
-	s.articles = append(s.articles, a)
+	var a *Article
+	var existingArticle bool
+	if a, existingArticle = s.articleIdToArticle[articleId]; !existingArticle {
+		a = &Article{Id: articleId}
+	}
+
+	a.PublishedOn = publishedOn
+	a.IsPrivate = isPrivate
+	a.IsDeleted = isDeleted
+	a.Title = title
+	a.Tags = tags
+	a.Versions = versions
+
+	if existingArticle {
+		return
+	}
+
+	s.articles = append(s.articles, *a)
 	s.articleIdToArticle[articleId] = &s.articles[len(s.articles)-1]
 }
 
@@ -300,7 +303,6 @@ func NewStore(dataDir string) (*Store, error) {
 		texts:              make([]Text, 0),
 		articles:           make([]Article, 0),
 		articleIdToArticle: make(map[int]*Article),
-		textIdToText:       make(map[int]*Text),
 		articlesCacheId:    1,
 	}
 	var err error
@@ -415,15 +417,11 @@ func (s *Store) newArticleId() int {
 	if i < 0 {
 		return 1
 	}
-	return s.articles[i].Id + 1	
+	return s.articles[i].Id + 1
 }
 
 func (s *Store) newTextId() int {
-	i := len(s.texts) - 1
-	if i < 0 {
-		return 1
-	}
-	return s.texts[i].Id + 1
+	return len(s.texts)
 }
 
 func serText(t *Text) string {
@@ -447,9 +445,9 @@ func (s *Store) CreateNewText(format int, txt string) (*Text, error) {
 		return nil, err
 	}
 	t := Text{
-		Id: s.newTextId(),
+		Id:        s.newTextId(),
 		CreatedOn: time.Now(),
-		Format: format,
+		Format:    format,
 	}
 	copy(t.Sha1[:], sha1)
 	if err := s.appendString(serText(&t)); err != nil {

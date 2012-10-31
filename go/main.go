@@ -233,7 +233,8 @@ func getIpAddress(r *http.Request) string {
 }
 
 func jQueryUrl() string {
-	return "http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"
+	//return "http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"
+	return "/js/jquery-1.4.2.js"
 }
 
 func prettifyJsUrl() string {

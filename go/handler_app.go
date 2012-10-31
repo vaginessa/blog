@@ -17,7 +17,6 @@ func getTrimmedFormValue(r *http.Request, name string) string {
 	return strings.TrimSpace(r.FormValue(name))
 }
 
-
 // url: /app/preview
 func handleAppPreview(w http.ResponseWriter, r *http.Request) {
 	format := getTrimmedFormValue(r, "format")
@@ -30,7 +29,7 @@ func handleAppPreview(w http.ResponseWriter, r *http.Request) {
 }
 
 func checkboxToBool(checkboxVal string) bool {
-	return "on" == checkboxVal;
+	return "on" == checkboxVal
 }
 
 func tagsFromString(s string) []string {
@@ -69,9 +68,9 @@ func createNewOrUpdatePost(w http.ResponseWriter, r *http.Request, article *Arti
 	}
 	if article == nil {
 		article = &Article{
-			Id: 0,
+			Id:          0,
 			PublishedOn: time.Now(),
-			Versions: make([]*Text, 0),
+			Versions:    make([]*Text, 0),
 		}
 	}
 	article.Versions = append(article.Versions, text)

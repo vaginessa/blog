@@ -347,8 +347,8 @@ func saveArticleRedirects(filePath string, redirects []ArticleRedirect) {
 func renumberTexts(texts []*Text, articles []*Article) {
 	oldToNewId := make(map[int]int)
 	for i, t := range texts {
-		oldToNewId[t.Id] = i+1
-		t.Id = i+1
+		oldToNewId[t.Id] = i
+		t.Id = i
 	}
 	for _, a := range articles {
 		for i, verId := range a.Versions {
