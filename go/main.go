@@ -71,6 +71,7 @@ var (
 	templates     *template.Template
 
 	store           *Store
+	storeCrashes    *StoreCrashes
 	reloadTemplates = true
 	alwaysLogTime   = true
 )
@@ -302,6 +303,10 @@ func main() {
 
 	if store, err = NewStore(getDataDir()); err != nil {
 		log.Fatalf("NewStore() failed with %s", err.Error())
+	}
+
+	if storeCrashes, err = NewStoreCrashes(getDataDir()); err != nil {
+		log.Fatalf("NewStoreCrashes() failed with %s", err.Error())
 	}
 
 	readRedirects()

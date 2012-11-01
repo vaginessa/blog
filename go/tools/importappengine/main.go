@@ -188,6 +188,7 @@ func ip2str(s string) uint32 {
 
 func serCrash(c *Crash) string {
 	s1 := base64.StdEncoding.EncodeToString(c.Sha1[:])
+	s1 = s1[:len(s1)-1] // remove '=' from the end
 	s2 := fmt.Sprintf("%d", c.CreatedOn.Unix())
 	s3 := remSep(c.ProgramName)
 	s4 := remSep(c.ProgramVersion)
@@ -381,6 +382,32 @@ func copyBlobs(texts []*Text) {
 	}
 }
 
+func blobCrahesPath(dir, sha1 string) string {
+	d1 := sha1[:2]
+	d2 := sha1[2:4]
+	return filepath.Join(dir, "blobs_crashes", d1, d2, sha1)
+}
+
+func copyCrashesBlobs(crashes []*Crash) {
+	for _, c := range crashes {
+		sha1 := c.Sha1Str
+		srcPath := blobCrahesPath(srcDataDir, sha1)
+		dstPath := blobCrahesPath(dstDataDir, sha1)
+		if !PathExists(srcPath) {
+			panic("srcPath doesn't exist")
+		}
+		if !PathExists(dstPath) {
+			if err := CreateDirIfNotExists(filepath.Dir(dstPath)); err != nil {
+				panic("failed to create dir for dstPath")
+			}
+			if err := CopyFile(dstPath, srcPath); err != nil {
+				log.Fatalf("CopyFile('%s', '%s') failed with %s", dstPath, srcPath, err)
+			}
+			fmt.Sprintf("%s=>%s\n", srcPath, dstPath)
+		}
+	}
+}
+
 func verifyData(texts []*Text, articles []*Article) {
 	textIdToText := make(map[int]*Text)
 	for _, t := range texts {
@@ -460,5 +487,6 @@ func main() {
 	saveArticleRedirects(filepath.Join(dstDataDir, "article_redirects.txt"), redirects)
 	saveStrings(filepath.Join(dstDataDir, "crashesdata.txt"), strCrashes)
 	copyBlobs(texts)
+	copyCrashesBlobs(crashes)
 	fmt.Printf("%d texts, %d articles, %d redirects, %d crashes\n", len(texts), len(articles), len(redirects), len(crashes))
 }
