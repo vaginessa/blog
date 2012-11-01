@@ -33,7 +33,7 @@ type StoreCrashes struct {
 	crashes       []Crash
 	appCrashInfos []*AppCrashInfo
 	versions      []*string
-	ips           []*string
+	ips           map[string]*string
 	dataFile      *os.File
 }
 
@@ -70,14 +70,11 @@ func (s *StoreCrashes) FindOrCreateVersion(ver string) *string {
 	return &ver
 }
 
-// TODO: use map[string]int for ips
 func (s *StoreCrashes) FindOrCreateIp(ip string) *string {
-	for _, ipStr := range s.ips {
-		if ip == *ipStr {
-			return ipStr
-		}
+	if ip, ok := s.ips[ip]; ok {
+		return ip
 	}
-	s.ips = append(s.ips, &ip)
+	s.ips[ip] = &ip
 	return &ip
 }
 
@@ -190,7 +187,7 @@ func NewStoreCrashes(dataDir string) (*StoreCrashes, error) {
 		crashes:       make([]Crash, 0),
 		appCrashInfos: make([]*AppCrashInfo, 0),
 		versions:      make([]*string, 0),
-		ips:           make([]*string, 0),
+		ips:           make(map[string]*string),
 	}
 
 	var err error
@@ -213,7 +210,8 @@ func NewStoreCrashes(dataDir string) (*StoreCrashes, error) {
 		logger.Errorf("NewStoreCrashes(): os.OpenFile(%s) failed with %s", dataFilePath, err.Error())
 		return nil, err
 	}
-	logger.Noticef("crashes: %d", len(store.crashes))
+	logger.Noticef("crashes: %d, versions: %d, ips: %d", len(store.crashes), len(store.versions), len(store.ips))
+
 	return store, nil
 }
 
@@ -297,4 +295,13 @@ func (s *StoreCrashes) GetCrashesForApp(appName string) []*Crash {
 		}
 	}
 	return res
+}
+
+func (s *StoreCrashes) GetCrashById(id int) *Crash {
+	s.Lock()
+	defer s.Unlock()
+	if id < 0 || id > len(s.crashes) {
+		return nil
+	}
+	return &s.crashes[id]
 }

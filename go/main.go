@@ -66,8 +66,10 @@ var (
 	tmplEdit                 = "edit.html"
 	tmplCrashReportsIndex    = "crash_reports_index.html"
 	tmplCrashReportsAppIndex = "crash_reports_app_index.html"
+	tmplCrashReport          = "crash_report.html"
 	templateNames            = [...]string{tmplLogs, tmplMainPage, tmplArticle,
 		tmplArchive, tmplEdit, tmplCrashReportsIndex, tmplCrashReportsAppIndex,
+		tmplCrashReport,
 		"analytics.html", "inline_css.html", "tagcloud.js", "page_navbar.html"}
 	templatePaths []string
 	templates     *template.Template
