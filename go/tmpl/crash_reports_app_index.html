@@ -1,0 +1,27 @@
+<html>
+<head>
+  <title>Recent diagnostic reports</title>
+  <style type="text/css">
+    body, a {
+        font-family: monospace;
+    }
+    td { font-size:85%; padding-left: 4px; padding-right: 4px; }
+  </style>
+</head>
+
+<body>
+  <a href="/app/crashes">All</a> : {{ len .Crashes }} diagnostic reports for <b>{{ .AppName }}</b>:
+  <p>
+  <table>
+    {{ range .Crashes }}
+      <tr>
+        <td><a href="/app/crashshow/{{ .Id }}">{{ .ProgramVersion }}</a></td>
+        <td>{{ .ShortCrashingLine }}</span> </td>
+        <td>{{ .IpAddress }}</td>
+        <td>{{ .CreatedOnSince }}</td>
+      </tr>
+    {{ end }}
+  </table>
+  </p>
+</body>
+</html>

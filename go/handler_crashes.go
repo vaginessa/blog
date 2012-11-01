@@ -23,6 +23,16 @@ func showCrashesIndex(w http.ResponseWriter, r *http.Request) {
 	ExecTemplate(w, tmplCrashReportsIndex, model)
 }
 
+type CrashDisplay struct {
+	Crash
+	ShortCrashingLine string
+}
+
+// TODO: write me
+func (c *CrashDisplay) CreatedOnSince() string {
+	return ""
+}
+
 // url: /app/crashes[?app_name=${app_name}]
 func handleCrashes(w http.ResponseWriter, r *http.Request) {
 	if !IsAdmin(r) {
@@ -34,6 +44,18 @@ func handleCrashes(w http.ResponseWriter, r *http.Request) {
 		showCrashesIndex(w, r)
 		return
 	}
-
-	serve404(w, r)
+	crashes := storeCrashes.GetCrashesForApp(appName)
+	n := len(crashes)
+	dispCrashes := make([]CrashDisplay, n, n)
+	for i, c := range crashes {
+		dispCrashes[i] = CrashDisplay{Crash: *c}
+	}
+	model := struct {
+		AppName string
+		Crashes []CrashDisplay
+	}{
+		AppName: appName,
+		Crashes: dispCrashes,
+	}
+	ExecTemplate(w, tmplCrashReportsAppIndex, model)
 }

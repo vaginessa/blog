@@ -59,15 +59,16 @@ var (
 
 	dataDir string
 
-	tmplLogs              = "logs.html"
-	tmplMainPage          = "mainpage.html"
-	tmplArticle           = "article.html"
-	tmplArchive           = "archive.html"
-	tmplEdit              = "edit.html"
-	tmplCrashReportsIndex = "crash_reports_index.html"
-	templateNames         = [...]string{tmplLogs, tmplMainPage, tmplArticle,
-		tmplArchive, tmplEdit, tmplCrashReportsIndex, "analytics.html",
-		"inline_css.html", "tagcloud.js", "page_navbar.html"}
+	tmplLogs                 = "logs.html"
+	tmplMainPage             = "mainpage.html"
+	tmplArticle              = "article.html"
+	tmplArchive              = "archive.html"
+	tmplEdit                 = "edit.html"
+	tmplCrashReportsIndex    = "crash_reports_index.html"
+	tmplCrashReportsAppIndex = "crash_reports_app_index.html"
+	templateNames            = [...]string{tmplLogs, tmplMainPage, tmplArticle,
+		tmplArchive, tmplEdit, tmplCrashReportsIndex, tmplCrashReportsAppIndex,
+		"analytics.html", "inline_css.html", "tagcloud.js", "page_navbar.html"}
 	templatePaths []string
 	templates     *template.Template
 
