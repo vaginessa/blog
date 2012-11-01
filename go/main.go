@@ -340,6 +340,7 @@ func main() {
 	http.Handle("/article/", makeTimingHandler(handleArticle))
 	http.Handle("/kb/", makeTimingHandler(handleArticle))
 	http.Handle("/blog/", makeTimingHandler(handleArticle))
+	http.Handle("/forum_sumatra/", makeTimingHandler(forumRedirect))
 	http.Handle("/articles/", makeTimingHandler(handleArticles))
 	http.Handle("/tag/", makeTimingHandler(handleTag))
 	http.Handle("/static/", makeTimingHandler(handleStatic))
