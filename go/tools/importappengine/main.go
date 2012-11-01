@@ -167,6 +167,87 @@ func loadTexts() []*Text {
 	return res
 }
 
+type Crash struct {
+	CreatedOn      time.Time
+	ProgramName    string
+	ProgramVersion string
+	IpAddrStr      string
+	Sha1Str        string
+	Sha1           [20]byte
+}
+
+func ip2str(s string) uint32 {
+	var nums [4]uint32
+	parts := strings.Split(s, ".")
+	for n, p := range parts {
+		num, _ := strconv.Atoi(p)
+		nums[n] = uint32(num)
+	}
+	return (nums[0] << 24) | (nums[1] << 16) + (nums[2] << 8) | nums[3]
+}
+
+func serCrash(c *Crash) string {
+	s1 := base64.StdEncoding.EncodeToString(c.Sha1[:])
+	s2 := fmt.Sprintf("%d", c.CreatedOn.Unix())
+	s3 := remSep(c.ProgramName)
+	s4 := remSep(c.ProgramVersion)
+	s5 := fmt.Sprintf("%x", ip2str(c.IpAddrStr))
+	return fmt.Sprintf("C%s|%s|%s|%s|%s\n", s1, s2, s3, s4, s5)
+}
+
+func parseCrash(d []byte) *Crash {
+	parts := bytes.Split(d, newline)
+	res := &Crash{}
+	for _, p := range parts {
+		lp := bytes.SplitN(p, []byte{':', ' '}, 2)
+		name := string(lp[0])
+		val := string(lp[1])
+		if name == "M" {
+			res.Sha1Str = val
+			sha1, err := hex.DecodeString(val)
+			if err != nil || len(sha1) != 20 {
+				log.Fatalf("error decoding M")
+			}
+			copy(res.Sha1[:], sha1)
+		} else if name == "On" {
+			res.CreatedOn = parseTime(val)
+		} else if name == "Ip" {
+			res.IpAddrStr = val
+		} else if name == "N" {
+			res.ProgramName = val
+		} else if name == "V" {
+			res.ProgramVersion = val
+		}
+	}
+	return res
+}
+
+func serCrashes(crashes []*Crash) []string {
+	res := make([]string, 0)
+	for _, c := range crashes {
+		res = append(res, serCrash(c))
+	}
+	return res
+}
+
+func loadCrashes() []*Crash {
+	filePath := filepath.Join(srcDataDir, "crashes.txt")
+	d, err := ReadFileAll(filePath)
+	if err != nil {
+		log.Fatalf("loadCrashes(): failed to load %s, error: %s", filePath, err.Error())
+	}
+	res := make([]*Crash, 0)
+	for len(d) > 0 {
+		idx := bytes.Index(d, newlines)
+		if idx == -1 {
+			break
+		}
+		res = append(res, parseCrash(d[:idx]))
+		d = d[idx+2:]
+	}
+	return res
+}
+
 func addRedirectIfNeeded(a *Article, redirects *[]ArticleRedirect) {
 	realUrl := "article/" + ShortenId(a.Id) + "/" + Urlify(a.Title) + ".html"
 	if a.Permalink1 != "" && realUrl != a.Permalink1 {
@@ -263,7 +344,7 @@ func serText(t *Text) string {
 	return fmt.Sprintf("T%d|%s|%d|%s\n", t.Id, s1, t.Format, s2)
 }
 
-func serAll(texts []*Text, articles []*Article) []string {
+func serTextsAndArticles(texts []*Text, articles []*Article) []string {
 	res := make([]string, 0)
 	for _, t := range texts {
 		res = append(res, serText(t))
@@ -370,11 +451,14 @@ func main() {
 	}
 	texts := loadTexts()
 	articles, redirects := loadArticles()
+	crashes := loadCrashes()
 	verifyData(texts, articles)
 	renumberTexts(texts, articles)
-	strs := serAll(texts, articles)
+	strs := serTextsAndArticles(texts, articles)
+	strCrashes := serCrashes(crashes)
 	saveStrings(filepath.Join(dstDataDir, "blogdata.txt"), strs)
 	saveArticleRedirects(filepath.Join(dstDataDir, "article_redirects.txt"), redirects)
+	saveStrings(filepath.Join(dstDataDir, "crashesdata.txt"), strCrashes)
 	copyBlobs(texts)
-	fmt.Printf("%d texts, %d articles, %d redirects\n", len(texts), len(articles), len(redirects))
+	fmt.Printf("%d texts, %d articles, %d redirects, %d crashes\n", len(texts), len(articles), len(redirects), len(crashes))
 }
