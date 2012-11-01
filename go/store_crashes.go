@@ -16,23 +16,97 @@ import (
 // TODO: use an int for ProgramName and ProgramVersion and ip addr
 // to use less memory and make linear scan faster
 type Crash struct {
-	Id             int
-	CreatedOn      time.Time
-	ProgramName    string
-	ProgramVersion string
-	IpAddrInternal string
-	Sha1           [20]byte
+	Id               int
+	CreatedOn        time.Time
+	AppInfoId        int
+	ProgramVersionId int
+	IpAddrId         int
+	Sha1             [20]byte
+}
+
+type AppCrashInfo struct {
+	Name         string
+	CrashesCount int
 }
 
 type StoreCrashes struct {
 	sync.Mutex
-	dataDir  string
-	crashes  []Crash
-	dataFile *os.File
+	dataDir       string
+	crashes       []Crash
+	appCrashInfos []*AppCrashInfo
+	versions      []string
+	ips           []string
+	dataFile      *os.File
 }
 
 func (c *Crash) IpAddress() string {
-	return ipAddrInternalToOriginal(c.IpAddrInternal)
+	s := storeCrashes.IpAddrInternalById(c.IpAddrId)
+	return ipAddrInternalToOriginal(s)
+}
+
+func (s *StoreCrashes) IpAddrInternalById(id int) string {
+	s.Lock()
+	defer s.Unlock()
+	return s.ips[id]
+}
+
+func (s *StoreCrashes) VersionById(id int) string {
+	s.Lock()
+	defer s.Unlock()
+	return s.versions[id]
+}
+
+func (s *StoreCrashes) AppInfoById(id int) *AppCrashInfo {
+	s.Lock()
+	defer s.Unlock()
+	return s.appCrashInfos[id]
+}
+
+func (s *StoreCrashes) AppInfoByName(appName string) *AppCrashInfo {
+	for _, info := range s.appCrashInfos {
+		if appName == info.Name {
+			return info
+		}
+	}
+	return nil
+}
+
+func (s *StoreCrashes) FindOrCreateAppInfoId(appName string) int {
+	for i, info := range s.appCrashInfos {
+		if appName == info.Name {
+			return i
+		}
+	}
+
+	info := &AppCrashInfo{Name: appName}
+	s.appCrashInfos = append(s.appCrashInfos, info)
+	return len(s.appCrashInfos) - 1
+}
+
+func (s *StoreCrashes) FindOrCreateAppInfo(appName string) *AppCrashInfo {
+	idx := s.FindOrCreateAppInfoId(appName)
+	return s.appCrashInfos[idx]
+}
+
+func (s *StoreCrashes) FindOrCreateVersionId(ver string) int {
+	for i, v := range s.versions {
+		if v == ver {
+			return i
+		}
+	}
+	s.versions = append(s.versions, ver)
+	return len(s.versions) - 1
+}
+
+// TODO: use map[string]int for ips
+func (s *StoreCrashes) FindOrCreateIpId(ip string) int {
+	for i, ipStr := range s.ips {
+		if ip == ipStr {
+			return i
+		}
+	}
+	s.ips = append(s.ips, ip)
+	return len(s.ips) - 1
 }
 
 func ipAddrInternalToOriginal(s string) string {
@@ -90,18 +164,24 @@ func (s *StoreCrashes) parseCrash(line []byte) {
 		panic("len(msgSha1) != 20")
 	}
 
+	appInfoId := s.FindOrCreateAppInfoId(programName)
+	programVersionId := s.FindOrCreateVersionId(programVersion)
+	ipAddrId := s.FindOrCreateIpId(ipAddrInternal)
+
 	c := Crash{
-		Id:             len(s.crashes),
-		CreatedOn:      createdOn,
-		ProgramName:    programName,
-		ProgramVersion: programVersion,
-		IpAddrInternal: ipAddrInternal,
+		Id:               len(s.crashes),
+		CreatedOn:        createdOn,
+		AppInfoId:        appInfoId,
+		ProgramVersionId: programVersionId,
+		IpAddrId:         ipAddrId,
 	}
 	copy(c.Sha1[:], msgSha1)
+
 	if !s.MessageFileExists(c.Sha1[:]) {
 		panic("message file doesn't exist")
 	}
 	s.crashes = append(s.crashes, c)
+	s.appCrashInfos[appInfoId].CrashesCount += 1
 }
 
 func (s *StoreCrashes) readExistingCrashesData(fileDataPath string) error {
@@ -133,8 +213,9 @@ func (s *StoreCrashes) readExistingCrashesData(fileDataPath string) error {
 func NewStoreCrashes(dataDir string) (*StoreCrashes, error) {
 	dataFilePath := filepath.Join(dataDir, "crashesdata.txt")
 	store := &StoreCrashes{
-		dataDir: dataDir,
-		crashes: make([]Crash, 0),
+		dataDir:       dataDir,
+		crashes:       make([]Crash, 0),
+		appCrashInfos: make([]*AppCrashInfo, 0),
 	}
 	var err error
 	if PathExists(dataFilePath) {
@@ -217,8 +298,17 @@ func serCrash(c *Crash) string {
 	s1 := base64.StdEncoding.EncodeToString(c.Sha1[:])
 	s1 = s1[:len(s1)-1] // remove '=' from the end
 	s2 := fmt.Sprintf("%d", c.CreatedOn.Unix())
-	s3 := remSep(c.ProgramName)
-	s4 := remSep(c.ProgramVersion)
-	s5 := c.IpAddrInternal
+	programName := storeCrashes.appCrashInfos[c.AppInfoId].Name
+	ver := storeCrashes.versions[c.ProgramVersionId]
+	s3 := remSep(programName)
+	s4 := remSep(ver)
+	ipAddr := storeCrashes.ips[c.IpAddrId]
+	s5 := ipAddr
 	return fmt.Sprintf("C%s|%s|%s|%s|%s\n", s1, s2, s3, s4, s5)
+}
+
+func (s *StoreCrashes) GetAppCrashInfos() []*AppCrashInfo {
+	s.Lock()
+	defer s.Unlock()
+	return s.appCrashInfos
 }

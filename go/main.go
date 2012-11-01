@@ -59,14 +59,15 @@ var (
 
 	dataDir string
 
-	tmplLogs      = "logs.html"
-	tmplMainPage  = "mainpage.html"
-	tmplArticle   = "article.html"
-	tmplArchive   = "archive.html"
-	tmplEdit      = "edit.html"
-	templateNames = [...]string{tmplLogs, tmplMainPage, tmplArticle,
-		tmplArchive, tmplEdit, "analytics.html", "inline_css.html", "tagcloud.js",
-		"page_navbar.html"}
+	tmplLogs              = "logs.html"
+	tmplMainPage          = "mainpage.html"
+	tmplArticle           = "article.html"
+	tmplArchive           = "archive.html"
+	tmplEdit              = "edit.html"
+	tmplCrashReportsIndex = "crash_reports_index.html"
+	templateNames         = [...]string{tmplLogs, tmplMainPage, tmplArticle,
+		tmplArchive, tmplEdit, tmplCrashReportsIndex, "analytics.html",
+		"inline_css.html", "tagcloud.js", "page_navbar.html"}
 	templatePaths []string
 	templates     *template.Template
 
@@ -328,6 +329,8 @@ func main() {
 	http.Handle("/app/undelete", makeTimingHandler(handleAppUndelete))
 	http.Handle("/app/showdeleted", makeTimingHandler(handleAppShowDeleted))
 	http.Handle("/app/showprivate", makeTimingHandler(handleAppShowPrivate))
+	http.Handle("/app/crashes", makeTimingHandler(handleCrashes))
+	http.Handle("/app/crashshow", makeTimingHandler(handleCrashShow))
 	http.Handle("/feedburner.xml", makeTimingHandler(handleFeedburnerAtom))
 	http.Handle("/atom-all.xml", makeTimingHandler(handleAtomAll))
 	http.Handle("/archives.html", makeTimingHandler(handleArchives))
