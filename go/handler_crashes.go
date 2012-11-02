@@ -40,10 +40,6 @@ func (c *Crash) CreatedOnSince() string {
 	return TimeSinceNowAsString(c.CreatedOn)
 }
 
-func (c *Crash) ShortCrashingLine() string {
-	return ""
-}
-
 type CrashesForDay struct {
 	Day     string
 	Crashes []*Crash
@@ -71,10 +67,16 @@ func (r Reverse) Less(i, j int) bool {
 	return r.Interface.Less(j, i)
 }
 
-func NewAppDisplay(app *App) *AppDisplay {
+func NewAppDisplay(app *App, addCrashesPerDay bool) *AppDisplay {
 	res := &AppDisplay{App: app}
+	if !addCrashesPerDay {
+		res.Days = make([]CrashesForDay, 0)
+		return res
+	}
+
 	n := len(app.PerDayCrashes)
 	res.Days = make([]CrashesForDay, n, n)
+
 	days := make([]string, n)
 	i := 0
 	for day, _ := range app.PerDayCrashes {
@@ -101,7 +103,7 @@ func showCrashesIndex(w http.ResponseWriter, r *http.Request) {
 }
 
 func showCrashesByIp(w http.ResponseWriter, r *http.Request, app *App, ipAddrInternal string) {
-	appDisplay := NewAppDisplay(app)
+	appDisplay := NewAppDisplay(app, false)
 	crashes := storeCrashes.GetCrashesForIpAddrInternal(app, ipAddrInternal)
 	model := struct {
 		App         *AppDisplay
@@ -141,7 +143,7 @@ func handleCrashes(w http.ResponseWriter, r *http.Request) {
 
 	day := getTrimmedFormValue(r, "day")
 
-	appDisplay := NewAppDisplay(app)
+	appDisplay := NewAppDisplay(app, true)
 	var crashes []*Crash
 	for _, forDay := range appDisplay.Days {
 		if day == forDay.Day {

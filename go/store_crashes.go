@@ -20,6 +20,7 @@ type Crash struct {
 	ProgramVersion *string
 	IpAddrInternal *string
 	Sha1           [20]byte
+	CrashingLine   *string
 }
 
 type App struct {
@@ -34,12 +35,13 @@ func (a *App) CrashesCount() int {
 
 type StoreCrashes struct {
 	sync.Mutex
-	dataDir  string
-	crashes  []Crash
-	apps     []*App
-	versions []*string
-	ips      map[string]*string
-	dataFile *os.File
+	dataDir       string
+	crashes       []Crash
+	apps          []*App
+	versions      []*string
+	ips           map[string]*string
+	crashingLines map[string]*string
+	dataFile      *os.File
 }
 
 func (c *Crash) IpAddress() string {
@@ -83,12 +85,20 @@ func (s *StoreCrashes) FindOrCreateVersion(ver string) *string {
 	return &ver
 }
 
-func (s *StoreCrashes) FindOrCreateIp(ip string) *string {
-	if ip, ok := s.ips[ip]; ok {
-		return ip
+func (s *StoreCrashes) FindOrCreateCrashingLine(str string) *string {
+	if s2, ok := s.crashingLines[str]; ok {
+		return s2
 	}
-	s.ips[ip] = &ip
-	return &ip
+	s.crashingLines[str] = &str
+	return &str
+}
+
+func (s *StoreCrashes) FindOrCreateIp(str string) *string {
+	if s2, ok := s.ips[str]; ok {
+		return s2
+	}
+	s.ips[str] = &str
+	return &str
 }
 
 func ipAddrInternalToOriginal(s string) string {
@@ -124,14 +134,15 @@ func ipAddrToInternal(ipAddr string) string {
 // C/vs1mJI02u0HBsHPceGfxy/Q+JE|1351741403|SumatraPDF|2.1.1|6e8e602f
 func (s *StoreCrashes) parseCrash(line []byte) {
 	parts := strings.Split(string(line[1:]), "|")
-	if len(parts) != 5 {
-		panic("len(parts) != 5")
+	if len(parts) != 6 {
+		panic("len(parts) != 6")
 	}
 	msgSha1b64 := parts[0] + "="
 	createdOnSecondsStr := parts[1]
 	programName := parts[2]
 	programVersion := parts[3]
 	ipAddrInternal := parts[4]
+	crashingLineTmp := parts[5]
 
 	createdOnSeconds, err := strconv.Atoi(createdOnSecondsStr)
 	if err != nil {
@@ -150,13 +161,14 @@ func (s *StoreCrashes) parseCrash(line []byte) {
 	programVersionInterned := s.FindOrCreateVersion(programVersion)
 	ipAddr := s.FindOrCreateIp(ipAddrInternal)
 	app := s.FindOrCreateApp(programName)
-
+	crashingLine := s.FindOrCreateCrashingLine(crashingLineTmp)
 	c := Crash{
 		Id:             len(s.crashes),
 		App:            app,
 		CreatedOn:      createdOn,
 		ProgramVersion: programVersionInterned,
 		IpAddrInternal: ipAddr,
+		CrashingLine:   crashingLine,
 	}
 	copy(c.Sha1[:], msgSha1)
 
@@ -207,11 +219,12 @@ func (s *StoreCrashes) readExistingCrashesData(fileDataPath string) error {
 func NewStoreCrashes(dataDir string) (*StoreCrashes, error) {
 	dataFilePath := filepath.Join(dataDir, "crashesdata.txt")
 	store := &StoreCrashes{
-		dataDir:  dataDir,
-		crashes:  make([]Crash, 0),
-		apps:     make([]*App, 0),
-		versions: make([]*string, 0),
-		ips:      make(map[string]*string),
+		dataDir:       dataDir,
+		crashes:       make([]Crash, 0),
+		apps:          make([]*App, 0),
+		versions:      make([]*string, 0),
+		ips:           make(map[string]*string),
+		crashingLines: make(map[string]*string),
 	}
 
 	var err error
@@ -299,7 +312,8 @@ func serCrash(c *Crash, appName string) string {
 	s3 := remSep(appName)
 	s4 := remSep(*c.ProgramVersion)
 	s5 := *c.IpAddrInternal
-	return fmt.Sprintf("C%s|%s|%s|%s|%s\n", s1, s2, s3, s4, s5)
+	s6 := *c.CrashingLine
+	return fmt.Sprintf("C%s|%s|%s|%s|%s|%s\n", s1, s2, s3, s4, s5, s6)
 }
 
 func (s *StoreCrashes) GetApps() []*App {

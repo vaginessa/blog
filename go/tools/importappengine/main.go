@@ -5,6 +5,7 @@ import (
 	"encoding/base64"
 	"encoding/hex"
 	"fmt"
+	"io"
 	"log"
 	"os"
 	"path/filepath"
@@ -172,18 +173,27 @@ type Crash struct {
 	ProgramName    string
 	ProgramVersion string
 	IpAddrStr      string
+	IpAddrInternal string
 	Sha1Str        string
 	Sha1           [20]byte
+	CrashedLine    string
 }
 
-func ip2str(s string) uint32 {
+// if it's ipv4 ("a.b.c.d"), convert to number as hex
+// otherwise leave alone
+func compactIpStr(s string) string {
 	var nums [4]uint32
 	parts := strings.Split(s, ".")
+	if len(parts) != 4 {
+		// most likely ipv6
+		return s
+	}
 	for n, p := range parts {
 		num, _ := strconv.Atoi(p)
 		nums[n] = uint32(num)
 	}
-	return (nums[0] << 24) | (nums[1] << 16) + (nums[2] << 8) | nums[3]
+	n := (nums[0] << 24) | (nums[1] << 16) + (nums[2] << 8) | nums[3]
+	return fmt.Sprintf("%x", n)
 }
 
 func serCrash(c *Crash) string {
@@ -192,8 +202,9 @@ func serCrash(c *Crash) string {
 	s2 := fmt.Sprintf("%d", c.CreatedOn.Unix())
 	s3 := remSep(c.ProgramName)
 	s4 := remSep(c.ProgramVersion)
-	s5 := fmt.Sprintf("%x", ip2str(c.IpAddrStr))
-	return fmt.Sprintf("C%s|%s|%s|%s|%s\n", s1, s2, s3, s4, s5)
+	s5 := c.IpAddrInternal
+	s6 := remSep(c.CrashedLine)
+	return fmt.Sprintf("C%s|%s|%s|%s|%s|%s\n", s1, s2, s3, s4, s5, s6)
 }
 
 func parseCrash(d []byte) *Crash {
@@ -214,6 +225,7 @@ func parseCrash(d []byte) *Crash {
 			res.CreatedOn = parseTime(val)
 		} else if name == "Ip" {
 			res.IpAddrStr = val
+			res.IpAddrInternal = compactIpStr(val)
 		} else if name == "N" {
 			res.ProgramName = val
 		} else if name == "V" {
@@ -388,23 +400,55 @@ func blobCrahesPath(dir, sha1 string) string {
 	return filepath.Join(dir, "blobs_crashes", d1, d2, sha1)
 }
 
+func copyFileAddText(dst, src string, s string) error {
+	fsrc, err := os.Open(src)
+	if err != nil {
+		return err
+	}
+	defer fsrc.Close()
+	fdst, err := os.Create(dst)
+	if err != nil {
+		return err
+	}
+	defer fdst.Close()
+	fdst.WriteString(s)
+	if _, err = io.Copy(fdst, fsrc); err != nil {
+		return err
+	}
+	return nil
+}
+
+func getCrashPrefixData(crash *Crash) []byte {
+	s := fmt.Sprintf("App: %s\n", crash.ProgramName)
+	s += fmt.Sprintf("Ip: %s\n", crash.IpAddrStr)
+	s += fmt.Sprintf("On: %s\n", crash.CreatedOn.Format(time.RFC3339))
+	return []byte(s)
+}
+
 func copyCrashesBlobs(crashes []*Crash) {
 	for _, c := range crashes {
-		sha1 := c.Sha1Str
-		srcPath := blobCrahesPath(srcDataDir, sha1)
-		dstPath := blobCrahesPath(dstDataDir, sha1)
-		if !PathExists(srcPath) {
-			panic("srcPath doesn't exist")
+		srcPath := blobCrahesPath(srcDataDir, c.Sha1Str)
+		srcData, err := ReadFileAll(srcPath)
+		if err != nil {
+			panic("ReadFileAll() failed")
+		}
+		var buf bytes.Buffer
+		buf.Write(getCrashPrefixData(c))
+		buf.Write(srcData)
+		dstData := buf.Bytes()
+		sha1 := Sha1OfBytes(dstData)
+		copy(c.Sha1[:], sha1)
+		c.Sha1Str = fmt.Sprintf("%x", c.Sha1)
+
+		dstPath := blobCrahesPath(dstDataDir, c.Sha1Str)
+		if err := CreateDirIfNotExists(filepath.Dir(dstPath)); err != nil {
+			panic("failed to create dir for dstPath")
 		}
 		if !PathExists(dstPath) {
-			if err := CreateDirIfNotExists(filepath.Dir(dstPath)); err != nil {
-				panic("failed to create dir for dstPath")
-			}
-			if err := CopyFile(dstPath, srcPath); err != nil {
-				log.Fatalf("CopyFile('%s', '%s') failed with %s", dstPath, srcPath, err)
-			}
-			fmt.Sprintf("%s=>%s\n", srcPath, dstPath)
+			WriteBytesToFile(dstData, dstPath)
 		}
+		c.CrashedLine = ExtractSumatraCrashingLine(dstData)
+		fmt.Sprintf("%s=>%s\n", srcPath, dstPath)
 	}
 }
 
@@ -482,11 +526,12 @@ func main() {
 	verifyData(texts, articles)
 	renumberTexts(texts, articles)
 	strs := serTextsAndArticles(texts, articles)
+	// must copy before serializing because it updates some values
+	copyCrashesBlobs(crashes)
 	strCrashes := serCrashes(crashes)
 	saveStrings(filepath.Join(dstDataDir, "blogdata.txt"), strs)
 	saveArticleRedirects(filepath.Join(dstDataDir, "article_redirects.txt"), redirects)
 	saveStrings(filepath.Join(dstDataDir, "crashesdata.txt"), strCrashes)
 	copyBlobs(texts)
-	copyCrashesBlobs(crashes)
 	fmt.Printf("%d texts, %d articles, %d redirects, %d crashes\n", len(texts), len(articles), len(redirects), len(crashes))
 }
