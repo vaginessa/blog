@@ -3,6 +3,7 @@ package main
 
 import (
 	"archive/zip"
+	"bytes"
 	"crypto/sha1"
 	"fmt"
 	"io"
@@ -109,6 +110,28 @@ func CreateDirIfNotExists(path string) error {
 	return nil
 }
 
+func ListFilesInDir(dir string, recursive bool) []string {
+	files := make([]string, 0)
+	filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
+		if err != nil {
+			return err
+		}
+		isDir, err := PathIsDir(path)
+		if err != nil {
+			return err
+		}
+		if isDir {
+			if recursive {
+				return nil
+			}
+			return filepath.SkipDir
+		}
+		files = append(files, path)
+		return nil
+	})
+	return files
+}
+
 var patWs = regexp.MustCompile(`\s+`)
 var patNonAlpha = regexp.MustCompile(`[^\w-]`)
 var patMultipleMinus = regexp.MustCompile("-+")
@@ -123,6 +146,56 @@ func Urlify(title string) string {
 		s = s[:48]
 	}
 	return s
+}
+
+const (
+	cr = 0xd
+	lf = 0xa
+)
+
+// find a end of line (cr, lf or crlf). Return the line
+// and the remaining of data (without the end-of-line character(s))
+func ExtractLine(d []byte) ([]byte, []byte) {
+	if d == nil || len(d) == 0 {
+		return nil, nil
+	}
+	wasCr := false
+	pos := -1
+	for i := 0; i < len(d); i++ {
+		if d[i] == cr || d[i] == lf {
+			wasCr = (d[i] == cr)
+			pos = i
+			break
+		}
+	}
+	if pos == -1 {
+		return d, nil
+	}
+	line := d[:pos]
+	rest := d[pos+1:]
+	if wasCr && len(rest) > 0 && rest[0] == lf {
+		rest = rest[1:]
+	}
+	return line, rest
+}
+
+func SkipPastLine(d *[]byte, lineToFind string) bool {
+	lb := []byte(lineToFind)
+	rest := *d
+	var l []byte
+	for {
+		l, rest = ExtractLine(rest)
+		if l == nil {
+			*d = rest
+			return false
+		}
+		if bytes.Equal(l, lb) {
+			*d = rest
+			return true
+		}
+	}
+	panic("")
+	return false
 }
 
 const base64Chars = "0123456789abcdefghijklmnopqrstuvwxyz"
