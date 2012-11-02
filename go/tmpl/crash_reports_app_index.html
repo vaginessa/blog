@@ -12,7 +12,7 @@
 <body>
   <a href="/app/crashes">All</a> : <a href="/app/crashes?app_name={{.App.Name}}">{{.App.Name}}</a> : {{ .App.CrashesCount }} diagnostic reports for <b>{{ .App.Name }}</b>:
   {{ $appName := .App.Name }}
-
+  {{ $showSince := .ShowSince }}
 
   <p>{{ len .Crashes }} crashes for {{ .DayOrIpAddr }}:</p>
   <table>
@@ -22,6 +22,9 @@
         <td>{{ .Version }}</td>
         <td><a href="/app/crashes?app_name={{$appName}}&crashing_line={{.CrashingLine}}">{{ .ShortCrashingLine }}</a></td>
         <td><a href="/app/crashes?app_name={{$appName}}&ip_addr={{.IpAddrInternal}}">{{ .ShortIpAddr }}</a></td>
+        {{ if $showSince }}
+        <td>{{ .CreatedOnSince }}
+        {{ end }}
       </tr>
     {{ end }}
   </table>

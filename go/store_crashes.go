@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"sort"
 	"strconv"
 	"strings"
 	"sync"
@@ -50,6 +51,20 @@ func (c *Crash) IpAddress() string {
 
 func (c *Crash) CreatedOnDay() string {
 	return c.CreatedOn.Format("2006-01-02")
+}
+
+type CrashesByCreatedOn []*Crash
+
+func (s CrashesByCreatedOn) Len() int {
+	return len(s)
+}
+func (s CrashesByCreatedOn) Swap(i, j int) {
+	s[i], s[j] = s[j], s[i]
+}
+func (s CrashesByCreatedOn) Less(i, j int) bool {
+	t1 := s[i].CreatedOn
+	t2 := s[j].CreatedOn
+	return t1.After(t2)
 }
 
 func (s *StoreCrashes) GetAppByName(appName string) *App {
@@ -340,6 +355,7 @@ func (s *StoreCrashes) GetCrashesForIpAddrInternal(app *App, ipAddrInternal stri
 			res = append(res, &s.crashes[i])
 		}
 	}
+	sort.Sort(CrashesByCreatedOn(res))
 	return res
 }
 
@@ -354,6 +370,7 @@ func (s *StoreCrashes) GetCrashesForCrashingLine(app *App, crashingLine string) 
 			res = append(res, &s.crashes[i])
 		}
 	}
+	sort.Sort(CrashesByCreatedOn(res))
 	return res
 }
 

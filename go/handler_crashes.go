@@ -42,10 +42,10 @@ func (c *Crash) CreatedOnSince() string {
 
 func (c *Crash) ShortCrashingLine() string {
 	s := *c.CrashingLine
-	if len(s) <= 66 {
+	if len(s) <= 60 {
 		return s
 	}
-	return s[:60] + " ..."
+	return s[:56] + "..."
 }
 
 func (c *Crash) ShortIpAddr() string {
@@ -53,7 +53,7 @@ func (c *Crash) ShortIpAddr() string {
 	if len(s) <= 16 {
 		return s
 	}
-	return s[:10] + " ..."
+	return s[:13] + "..."
 }
 
 type CrashesForDay struct {
@@ -123,10 +123,12 @@ func showCrashesByIp(w http.ResponseWriter, r *http.Request, app *App, ipAddrInt
 	crashes := storeCrashes.GetCrashesForIpAddrInternal(app, ipAddrInternal)
 	model := struct {
 		App         *AppDisplay
+		ShowSince   bool
 		Crashes     []*Crash
 		DayOrIpAddr string
 	}{
 		App:         appDisplay,
+		ShowSince:   true,
 		Crashes:     crashes,
 		DayOrIpAddr: crashes[0].IpAddress(),
 	}
@@ -138,10 +140,12 @@ func showCrashesByCrashingLine(w http.ResponseWriter, r *http.Request, app *App,
 	crashes := storeCrashes.GetCrashesForCrashingLine(app, crashingLine)
 	model := struct {
 		App         *AppDisplay
+		ShowSince   bool
 		Crashes     []*Crash
 		DayOrIpAddr string
 	}{
 		App:         appDisplay,
+		ShowSince:   true,
 		Crashes:     crashes,
 		DayOrIpAddr: crashingLine,
 	}
@@ -194,10 +198,12 @@ func handleCrashes(w http.ResponseWriter, r *http.Request) {
 	}
 	model := struct {
 		App         *AppDisplay
+		ShowSince   bool
 		Crashes     []*Crash
 		DayOrIpAddr string
 	}{
 		App:         appDisplay,
+		ShowSince:   false,
 		Crashes:     crashes,
 		DayOrIpAddr: day,
 	}
