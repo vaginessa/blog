@@ -100,7 +100,22 @@ func showCrashesIndex(w http.ResponseWriter, r *http.Request) {
 	ExecTemplate(w, tmplCrashReportsIndex, model)
 }
 
-// url: /app/crashes[?app_name=${app_name}][&day=${day}]
+func showCrashesByIp(w http.ResponseWriter, r *http.Request, app *App, ipAddrInternal string) {
+	appDisplay := NewAppDisplay(app)
+	crashes := storeCrashes.GetCrashesForIpAddrInternal(app, ipAddrInternal)
+	model := struct {
+		App         *AppDisplay
+		Crashes     []*Crash
+		DayOrIpAddr string
+	}{
+		App:         appDisplay,
+		Crashes:     crashes,
+		DayOrIpAddr: crashes[0].IpAddress(),
+	}
+	ExecTemplate(w, tmplCrashReportsAppIndex, model)
+}
+
+// url: /app/crashes[?app_name=${appName}][&day=${day}][&ip_addr=${ipAddrInternal}]
 func handleCrashes(w http.ResponseWriter, r *http.Request) {
 	if !IsAdmin(r) {
 		serve404(w, r)
@@ -111,15 +126,21 @@ func handleCrashes(w http.ResponseWriter, r *http.Request) {
 		showCrashesIndex(w, r)
 		return
 	}
-	day := getTrimmedFormValue(r, "day")
-
-	// TODO: locking
 	app := storeCrashes.GetAppByName(appName)
 	if app == nil {
 		logger.Errorf("handleCrashes(): invalid app '%s'", appName)
 		serve404(w, r)
 		return
 	}
+
+	ipAddrInternal := getTrimmedFormValue(r, "ip_addr")
+	if ipAddrInternal != "" {
+		showCrashesByIp(w, r, app, ipAddrInternal)
+		return
+	}
+
+	day := getTrimmedFormValue(r, "day")
+
 	appDisplay := NewAppDisplay(app)
 	var crashes []*Crash
 	for _, forDay := range appDisplay.Days {
@@ -133,13 +154,13 @@ func handleCrashes(w http.ResponseWriter, r *http.Request) {
 		day = appDisplay.Days[0].Day
 	}
 	model := struct {
-		App      *AppDisplay
-		Crashes  []*Crash
-		ShownDay string
+		App         *AppDisplay
+		Crashes     []*Crash
+		DayOrIpAddr string
 	}{
-		App:      appDisplay,
-		Crashes:  crashes,
-		ShownDay: day,
+		App:         appDisplay,
+		Crashes:     crashes,
+		DayOrIpAddr: day,
 	}
 	ExecTemplate(w, tmplCrashReportsAppIndex, model)
 }

@@ -315,6 +315,18 @@ func (s *StoreCrashes) GetCrashesForApp(appName string) []*Crash {
 	return app.Crashes
 }
 
+func (s *StoreCrashes) GetCrashesForIpAddrInternal(app *App, ipAddrInternal string) []*Crash {
+	s.Lock()
+	defer s.Unlock()
+	res := make([]*Crash, 0)
+	for _, c := range s.crashes {
+		if *c.IpAddrInternal == ipAddrInternal && c.App == app {
+			res = append(res, &c)
+		}
+	}
+	return res
+}
+
 func (s *StoreCrashes) GetCrashById(id int) *Crash {
 	s.Lock()
 	defer s.Unlock()
