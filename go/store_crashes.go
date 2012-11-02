@@ -247,7 +247,7 @@ func NewStoreCrashes(dataDir string) (*StoreCrashes, error) {
 		logger.Errorf("NewStoreCrashes(): os.OpenFile(%s) failed with %s", dataFilePath, err.Error())
 		return nil, err
 	}
-	logger.Noticef("crashes: %d, versions: %d, ips: %d", len(store.crashes), len(store.versions), len(store.ips))
+	logger.Noticef("crashes: %d, versions: %d, ips: %d, crashing lines: %d", len(store.crashes), len(store.versions), len(store.ips), len(store.crashingLines))
 
 	return store, nil
 }
@@ -329,13 +329,29 @@ func (s *StoreCrashes) GetCrashesForApp(appName string) []*Crash {
 	return app.Crashes
 }
 
+// TODO: could be faster if we internalize ipAddrInternal and compare pointers,
+// not strings
 func (s *StoreCrashes) GetCrashesForIpAddrInternal(app *App, ipAddrInternal string) []*Crash {
 	s.Lock()
 	defer s.Unlock()
 	res := make([]*Crash, 0)
-	for _, c := range s.crashes {
-		if *c.IpAddrInternal == ipAddrInternal && c.App == app {
-			res = append(res, &c)
+	for i, c := range s.crashes {
+		if c.App == app && *c.IpAddrInternal == ipAddrInternal {
+			res = append(res, &s.crashes[i])
+		}
+	}
+	return res
+}
+
+// TODO: could be faster if we internalize crashingLine and compare pointers,
+// not strings
+func (s *StoreCrashes) GetCrashesForCrashingLine(app *App, crashingLine string) []*Crash {
+	s.Lock()
+	defer s.Unlock()
+	res := make([]*Crash, 0)
+	for i, c := range s.crashes {
+		if c.App == app && *c.CrashingLine == crashingLine {
+			res = append(res, &s.crashes[i])
 		}
 	}
 	return res

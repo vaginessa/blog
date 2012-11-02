@@ -12,27 +12,28 @@
 <body>
   <a href="/app/crashes">All</a> : <a href="/app/crashes?app_name={{.App.Name}}">{{.App.Name}}</a> : {{ .App.CrashesCount }} diagnostic reports for <b>{{ .App.Name }}</b>:
   {{ $appName := .App.Name }}
-  <p>
-  {{ len .Crashes }} crashes for {{ .DayOrIpAddr }}:
+
+
+  <p>{{ len .Crashes }} crashes for {{ .DayOrIpAddr }}:</p>
   <table>
     {{ range .Crashes }}
       <tr>
-        <td><a href="/app/crashshow?crash_id={{ .Id }}">{{ .Version }}</a></td>
-        <td>{{ .CrashingLine }}</span> </td>
-        <td><a href="/app/crashes?app_name={{$appName}}&ip_addr={{.IpAddrInternal}}">{{ .IpAddress }}</a></td>
+        <td><a href="/app/crashshow?crash_id={{ .Id }}">{{ .Id }}</a></td>
+        <td>{{ .Version }}</td>
+        <td><a href="/app/crashes?app_name={{$appName}}&crashing_line={{.CrashingLine}}">{{ .ShortCrashingLine }}</a></td>
+        <td><a href="/app/crashes?app_name={{$appName}}&ip_addr={{.IpAddrInternal}}">{{ .ShortIpAddr }}</a></td>
       </tr>
     {{ end }}
   </table>
-  </p>
-  <p>
+
   <table>
     {{ range .App.Days }}
       <tr>
-          <td><a href="/app/crashes?app_name={{$appName}}&day={{.Day}}">{{.Day}}</a></td>
-          <td>{{ .CrashesCount }} crashes</td>
+          <td>{{.Day}}:</td>
+          <td><a href="/app/crashes?app_name={{$appName}}&day={{.Day}}">{{ .CrashesCount }} crashes</a></td>
       </tr>
     {{ end }}
   </table>
-  </p>
+
 </body>
 </html>

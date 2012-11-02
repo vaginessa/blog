@@ -40,6 +40,22 @@ func (c *Crash) CreatedOnSince() string {
 	return TimeSinceNowAsString(c.CreatedOn)
 }
 
+func (c *Crash) ShortCrashingLine() string {
+	s := *c.CrashingLine
+	if len(s) <= 66 {
+		return s
+	}
+	return s[:60] + " ..."
+}
+
+func (c *Crash) ShortIpAddr() string {
+	s := c.IpAddress()
+	if len(s) <= 16 {
+		return s
+	}
+	return s[:10] + " ..."
+}
+
 type CrashesForDay struct {
 	Day     string
 	Crashes []*Crash
@@ -117,7 +133,23 @@ func showCrashesByIp(w http.ResponseWriter, r *http.Request, app *App, ipAddrInt
 	ExecTemplate(w, tmplCrashReportsAppIndex, model)
 }
 
+func showCrashesByCrashingLine(w http.ResponseWriter, r *http.Request, app *App, crashingLine string) {
+	appDisplay := NewAppDisplay(app, false)
+	crashes := storeCrashes.GetCrashesForCrashingLine(app, crashingLine)
+	model := struct {
+		App         *AppDisplay
+		Crashes     []*Crash
+		DayOrIpAddr string
+	}{
+		App:         appDisplay,
+		Crashes:     crashes,
+		DayOrIpAddr: crashingLine,
+	}
+	ExecTemplate(w, tmplCrashReportsAppIndex, model)
+}
+
 // url: /app/crashes[?app_name=${appName}][&day=${day}][&ip_addr=${ipAddrInternal}]
+// [&crashing_line=${crashingLine}a]
 func handleCrashes(w http.ResponseWriter, r *http.Request) {
 	if !IsAdmin(r) {
 		serve404(w, r)
@@ -138,6 +170,11 @@ func handleCrashes(w http.ResponseWriter, r *http.Request) {
 	ipAddrInternal := getTrimmedFormValue(r, "ip_addr")
 	if ipAddrInternal != "" {
 		showCrashesByIp(w, r, app, ipAddrInternal)
+		return
+	}
+	crashingLine := getTrimmedFormValue(r, "crashing_line")
+	if crashingLine != "" {
+		showCrashesByCrashingLine(w, r, app, crashingLine)
 		return
 	}
 
