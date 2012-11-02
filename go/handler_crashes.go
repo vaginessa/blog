@@ -5,6 +5,8 @@ import (
 	"html/template"
 	"net/http"
 	"strconv"
+	"strings"
+	"time"
 )
 
 func showCrashesIndex(w http.ResponseWriter, r *http.Request) {
@@ -22,9 +24,34 @@ type CrashDisplay struct {
 	ShortCrashingLine string
 }
 
-// TODO: write me
+func (c *CrashDisplay) Version() string {
+	ver := *c.ProgramVersion
+	if ver == "" {
+		return "no ver"
+	}
+	if strings.HasSuffix(ver, " pre-release") {
+		return ver[:len(ver)-1-len(" pre-release")]
+	}
+	return ver
+}
+
+func TimeSinceNowAsString(t time.Time) string {
+	d := time.Now().Sub(t)
+	minutes := int(d.Minutes()) % 60
+	hours := int(d.Hours())
+	days := hours / 24
+	hours = hours % 24
+	if days > 0 {
+		return fmt.Sprintf("%dd %dhr", days, hours)
+	}
+	if hours > 0 {
+		return fmt.Sprintf("%dhr %dm", hours, minutes)
+	}
+	return fmt.Sprintf("%dm", minutes)
+}
+
 func (c *CrashDisplay) CreatedOnSince() string {
-	return ""
+	return TimeSinceNowAsString(c.CreatedOn)
 }
 
 // url: /app/crashes[?app_name=${app_name}]

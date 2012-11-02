@@ -15,7 +15,7 @@
   <table>
     {{ range .Crashes }}
       <tr>
-        <td><a href="/app/crashshow?crash_id={{ .Id }}">{{ .ProgramVersion }}</a></td>
+        <td><a href="/app/crashshow?crash_id={{ .Id }}">{{ .Version }}</a></td>
         <td>{{ .ShortCrashingLine }}</span> </td>
         <td>{{ .IpAddress }}</td>
         <td>{{ .CreatedOnSince }}</td>
