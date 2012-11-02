@@ -4,27 +4,13 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
+	"sort"
 	"strconv"
 	"strings"
 	"time"
 )
 
-func showCrashesIndex(w http.ResponseWriter, r *http.Request) {
-	apps := storeCrashes.GetAppCrashInfos()
-	model := struct {
-		Apps []*AppCrashInfo
-	}{
-		Apps: apps,
-	}
-	ExecTemplate(w, tmplCrashReportsIndex, model)
-}
-
-type CrashDisplay struct {
-	Crash
-	ShortCrashingLine string
-}
-
-func (c *CrashDisplay) Version() string {
+func (c *Crash) Version() string {
 	ver := *c.ProgramVersion
 	if ver == "" {
 		return "no ver"
@@ -50,11 +36,71 @@ func TimeSinceNowAsString(t time.Time) string {
 	return fmt.Sprintf("%dm", minutes)
 }
 
-func (c *CrashDisplay) CreatedOnSince() string {
+func (c *Crash) CreatedOnSince() string {
 	return TimeSinceNowAsString(c.CreatedOn)
 }
 
-// url: /app/crashes[?app_name=${app_name}]
+func (c *Crash) ShortCrashingLine() string {
+	return ""
+}
+
+type CrashesForDay struct {
+	Day     string
+	Crashes []*Crash
+}
+
+func (c *CrashesForDay) CrashesCount() int {
+	return len(c.Crashes)
+}
+
+type AppDisplay struct {
+	*App
+	Days []CrashesForDay
+}
+
+// Reverse embeds a sort.Interface value and implements a reverse sort over
+// that value.
+type Reverse struct {
+	// This embedded Interface permits Reverse to use the methods of
+	// another Interface implementation.
+	sort.Interface
+}
+
+// Less returns the opposite of the embedded implementation's Less method.
+func (r Reverse) Less(i, j int) bool {
+	return r.Interface.Less(j, i)
+}
+
+func NewAppDisplay(app *App) *AppDisplay {
+	res := &AppDisplay{App: app}
+	n := len(app.PerDayCrashes)
+	res.Days = make([]CrashesForDay, n, n)
+	days := make([]string, n)
+	i := 0
+	for day, _ := range app.PerDayCrashes {
+		days[i] = day
+		i += 1
+	}
+	sort.Sort(Reverse{sort.StringSlice(days)})
+	for i, day := range days {
+		crashesForDay := CrashesForDay{Day: day}
+		crashesForDay.Crashes = app.PerDayCrashes[day]
+		res.Days[i] = crashesForDay
+	}
+	return res
+}
+
+func showCrashesIndex(w http.ResponseWriter, r *http.Request) {
+	apps := storeCrashes.GetApps()
+	model := struct {
+		Apps []*App
+	}{
+		Apps: apps,
+	}
+	ExecTemplate(w, tmplCrashReportsIndex, model)
+}
+
+// url: /app/crashes[?app_name=${app_name}][&day=${day}]
 func handleCrashes(w http.ResponseWriter, r *http.Request) {
 	if !IsAdmin(r) {
 		serve404(w, r)
@@ -65,18 +111,35 @@ func handleCrashes(w http.ResponseWriter, r *http.Request) {
 		showCrashesIndex(w, r)
 		return
 	}
-	crashes := storeCrashes.GetCrashesForApp(appName)
-	n := len(crashes)
-	dispCrashes := make([]CrashDisplay, n, n)
-	for i, c := range crashes {
-		dispCrashes[i] = CrashDisplay{Crash: *c}
+	day := getTrimmedFormValue(r, "day")
+
+	// TODO: locking
+	app := storeCrashes.GetAppByName(appName)
+	if app == nil {
+		logger.Errorf("handleCrashes(): invalid app '%s'", appName)
+		serve404(w, r)
+		return
+	}
+	appDisplay := NewAppDisplay(app)
+	var crashes []*Crash
+	for _, forDay := range appDisplay.Days {
+		if day == forDay.Day {
+			crashes = forDay.Crashes
+			break
+		}
+	}
+	if crashes == nil {
+		crashes = appDisplay.Days[0].Crashes
+		day = appDisplay.Days[0].Day
 	}
 	model := struct {
-		AppName string
-		Crashes []CrashDisplay
+		App      *AppDisplay
+		Crashes  []*Crash
+		ShownDay string
 	}{
-		AppName: appName,
-		Crashes: dispCrashes,
+		App:      appDisplay,
+		Crashes:  crashes,
+		ShownDay: day,
 	}
 	ExecTemplate(w, tmplCrashReportsAppIndex, model)
 }
@@ -102,13 +165,12 @@ func handleCrashShow(w http.ResponseWriter, r *http.Request) {
 		serve404(w, r)
 		return
 	}
-	appName := crash.AppCrashInfo.Name
 	crashData, err := readCrashReport(crash.Sha1[:])
 	if err != nil {
 		serve404(w, r)
 		return
 	}
-
+	appName := crash.App.Name
 	crashBody := string(crashData)
 	model := struct {
 		IndexUrl  string

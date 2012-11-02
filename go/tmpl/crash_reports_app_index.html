@@ -10,15 +10,26 @@
 </head>
 
 <body>
-  <a href="/app/crashes">All</a> : {{ len .Crashes }} diagnostic reports for <b>{{ .AppName }}</b>:
+  <a href="/app/crashes">All</a> : {{ .App.CrashesCount }} diagnostic reports for <b>{{ .App.Name }}</b>:
   <p>
+  {{ len .Crashes }} crashes for {{ .ShownDay }}:
   <table>
     {{ range .Crashes }}
       <tr>
         <td><a href="/app/crashshow?crash_id={{ .Id }}">{{ .Version }}</a></td>
         <td>{{ .ShortCrashingLine }}</span> </td>
         <td>{{ .IpAddress }}</td>
-        <td>{{ .CreatedOnSince }}</td>
+      </tr>
+    {{ end }}
+  </table>
+  </p>
+  <p>
+  <table>
+    {{ $appName := .App.Name }}
+    {{ range .App.Days }}
+      <tr>
+          <td><a href="/app/crashes?app_name={{$appName}}&day={{.Day}}">{{.Day}}</a></td>
+          <td>{{ .CrashesCount }} crashes</td>
       </tr>
     {{ end }}
   </table>

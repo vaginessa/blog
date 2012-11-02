@@ -16,48 +16,61 @@ import (
 type Crash struct {
 	Id             int
 	CreatedOn      time.Time
-	AppCrashInfo   *AppCrashInfo
+	App            *App
 	ProgramVersion *string
 	IpAddrInternal *string
 	Sha1           [20]byte
 }
 
-type AppCrashInfo struct {
-	Name         string
-	CrashesCount int
+type App struct {
+	Name          string
+	Crashes       []*Crash
+	PerDayCrashes map[string][]*Crash
+}
+
+func (a *App) CrashesCount() int {
+	return len(a.Crashes)
 }
 
 type StoreCrashes struct {
 	sync.Mutex
-	dataDir       string
-	crashes       []Crash
-	appCrashInfos []*AppCrashInfo
-	versions      []*string
-	ips           map[string]*string
-	dataFile      *os.File
+	dataDir  string
+	crashes  []Crash
+	apps     []*App
+	versions []*string
+	ips      map[string]*string
+	dataFile *os.File
 }
 
 func (c *Crash) IpAddress() string {
 	return ipAddrInternalToOriginal(*c.IpAddrInternal)
 }
 
-func (s *StoreCrashes) AppInfoByName(appName string) *AppCrashInfo {
-	for _, info := range s.appCrashInfos {
-		if appName == info.Name {
-			return info
+func (c *Crash) CreatedOnDay() string {
+	return c.CreatedOn.Format("2006-01-02")
+}
+
+func (s *StoreCrashes) GetAppByName(appName string) *App {
+	for _, app := range s.apps {
+		if appName == app.Name {
+			return app
 		}
 	}
 	return nil
 }
 
-func (s *StoreCrashes) FindOrCreateAppInfo(appName string) *AppCrashInfo {
-	if info := s.AppInfoByName(appName); info != nil {
-		return info
+func (s *StoreCrashes) FindOrCreateApp(appName string) *App {
+	if app := s.GetAppByName(appName); app != nil {
+		return app
 	}
 
-	info := &AppCrashInfo{Name: appName}
-	s.appCrashInfos = append(s.appCrashInfos, info)
-	return info
+	app := &App{
+		Name:          appName,
+		Crashes:       make([]*Crash, 0),
+		PerDayCrashes: make(map[string][]*Crash),
+	}
+	s.apps = append(s.apps, app)
+	return app
 }
 
 func (s *StoreCrashes) FindOrCreateVersion(ver string) *string {
@@ -134,14 +147,14 @@ func (s *StoreCrashes) parseCrash(line []byte) {
 		panic("len(msgSha1) != 20")
 	}
 
-	appInfo := s.FindOrCreateAppInfo(programName)
 	programVersionInterned := s.FindOrCreateVersion(programVersion)
 	ipAddr := s.FindOrCreateIp(ipAddrInternal)
+	app := s.FindOrCreateApp(programName)
 
 	c := Crash{
 		Id:             len(s.crashes),
+		App:            app,
 		CreatedOn:      createdOn,
-		AppCrashInfo:   appInfo,
 		ProgramVersion: programVersionInterned,
 		IpAddrInternal: ipAddr,
 	}
@@ -151,7 +164,18 @@ func (s *StoreCrashes) parseCrash(line []byte) {
 		panic("message file doesn't exist")
 	}
 	s.crashes = append(s.crashes, c)
-	appInfo.CrashesCount += 1
+
+	n := len(s.crashes)
+	crash := &s.crashes[n-1]
+	app.Crashes = append(app.Crashes, crash)
+
+	day := c.CreatedOnDay()
+	perDay, ok := app.PerDayCrashes[day]
+	if !ok {
+		perDay = make([]*Crash, 0)
+	}
+	perDay = append(perDay, crash)
+	app.PerDayCrashes[day] = perDay
 }
 
 func (s *StoreCrashes) readExistingCrashesData(fileDataPath string) error {
@@ -183,11 +207,11 @@ func (s *StoreCrashes) readExistingCrashesData(fileDataPath string) error {
 func NewStoreCrashes(dataDir string) (*StoreCrashes, error) {
 	dataFilePath := filepath.Join(dataDir, "crashesdata.txt")
 	store := &StoreCrashes{
-		dataDir:       dataDir,
-		crashes:       make([]Crash, 0),
-		appCrashInfos: make([]*AppCrashInfo, 0),
-		versions:      make([]*string, 0),
-		ips:           make(map[string]*string),
+		dataDir:  dataDir,
+		crashes:  make([]Crash, 0),
+		apps:     make([]*App, 0),
+		versions: make([]*string, 0),
+		ips:      make(map[string]*string),
 	}
 
 	var err error
@@ -268,33 +292,27 @@ func ip2str(s string) uint32 {
 	return (nums[0] << 24) | (nums[1] << 16) + (nums[2] << 8) | nums[3]
 }
 
-func serCrash(c *Crash) string {
+func serCrash(c *Crash, appName string) string {
 	s1 := base64.StdEncoding.EncodeToString(c.Sha1[:])
 	s1 = s1[:len(s1)-1] // remove '=' from the end
 	s2 := fmt.Sprintf("%d", c.CreatedOn.Unix())
-	s3 := remSep(c.AppCrashInfo.Name)
+	s3 := remSep(appName)
 	s4 := remSep(*c.ProgramVersion)
 	s5 := *c.IpAddrInternal
 	return fmt.Sprintf("C%s|%s|%s|%s|%s\n", s1, s2, s3, s4, s5)
 }
 
-func (s *StoreCrashes) GetAppCrashInfos() []*AppCrashInfo {
+func (s *StoreCrashes) GetApps() []*App {
 	s.Lock()
 	defer s.Unlock()
-	return s.appCrashInfos
+	return s.apps
 }
 
 func (s *StoreCrashes) GetCrashesForApp(appName string) []*Crash {
 	s.Lock()
 	defer s.Unlock()
-	res := make([]*Crash, 0)
-	for i := len(s.crashes) - 1; i >= 0; i-- {
-		c := &s.crashes[i]
-		if c.AppCrashInfo.Name == appName {
-			res = append(res, c)
-		}
-	}
-	return res
+	app := s.FindOrCreateApp(appName)
+	return app.Crashes
 }
 
 func (s *StoreCrashes) GetCrashById(id int) *Crash {
