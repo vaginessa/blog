@@ -383,7 +383,7 @@ func (s *StoreCrashes) GetCrashById(id int) *Crash {
 	return &s.crashes[id]
 }
 
-func (s *StoreCrashes) SaveCrash(appName, appVer, ipAddr, crashData string) error {
+func (s *StoreCrashes) SaveCrash(appName, appVer, ipAddr string, crashData []byte) error {
 	s.Lock()
 	defer s.Unlock()
 	// TODO: write me

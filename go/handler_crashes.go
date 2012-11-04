@@ -8,6 +8,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"io/ioutil"
 )
 
 func (c *Crash) Version() string {
@@ -254,8 +255,8 @@ func handleCrashShow(w http.ResponseWriter, r *http.Request) {
 
 // Version is in the format:
 // "Ver: 2.1.1"
-func extractSumatraVersion(crashData string) string {
-	l := FindLineWithPrefix([]byte(crashData), "Ver: ")
+func extractSumatraVersion(crashData []byte) string {
+	l := FindLineWithPrefix(crashData, "Ver: ")
 	if l == nil {
 		return ""
 	}
@@ -264,8 +265,8 @@ func extractSumatraVersion(crashData string) string {
 
 // Version is in the format:
 // "Version:         0.3.3 (0.3.3)"
-func extractMacVersion(crashData string) string {
-	l := FindLineWithPrefix([]byte(crashData), "Version:")
+func extractMacVersion(crashData []byte) string {
+	l := FindLineWithPrefix(crashData, "Version:")
 	if l == nil {
 		return ""
 	}
@@ -287,7 +288,7 @@ func isMacApp(name string) bool {
 	return false
 }
 
-func extractAppVer(appName, crashData string) string {
+func extractAppVer(appName string, crashData []byte) string {
 	if appName == "SumatraPDF" {
 		return extractSumatraVersion(crashData)
 	}
@@ -310,11 +311,18 @@ func handleCrashSubmit(w http.ResponseWriter, r *http.Request) {
 		logger.Noticef("handleCrashSubmit(): 'appName' is not defined")
 		return
 	}
-	crashData := r.FormValue("file")
-	if crashData == "" {
-		logger.Noticef("handleCrashSubmit(): 'file' is not defined")
+	crashDataFile, _, err := r.FormFile("file")
+	if err != nil {
+		logger.Noticef("handleCrashSubmit(): 'file' is not defined, err = %s", err.Error())
 		return
 	}
+
+	crashData, err := ioutil.ReadAll(crashDataFile)
+	if err != nil {
+		logger.Noticef("handleCrashSubmit(): ioutil.ReadAll() failed with %s", err.Error())
+		return
+	}
+
 	appVer := extractAppVer(appName, crashData)
 	storeCrashes.SaveCrash(appName, appVer, ipAddr, crashData)
 	s := fmt.Sprintf("")
