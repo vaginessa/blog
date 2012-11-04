@@ -3,12 +3,12 @@ package main
 import (
 	"fmt"
 	"html/template"
+	"io/ioutil"
 	"net/http"
 	"sort"
 	"strconv"
 	"strings"
 	"time"
-	"io/ioutil"
 )
 
 func (c *Crash) Version() string {

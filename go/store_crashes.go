@@ -100,12 +100,26 @@ func (s *StoreCrashes) FindOrCreateVersion(ver string) *string {
 	return &ver
 }
 
+func (s *StoreCrashes) FindCrashingLine(str string) *string {
+	if s2, ok := s.crashingLines[str]; ok {
+		return s2
+	}
+	return nil
+}
+
 func (s *StoreCrashes) FindOrCreateCrashingLine(str string) *string {
 	if s2, ok := s.crashingLines[str]; ok {
 		return s2
 	}
 	s.crashingLines[str] = &str
 	return &str
+}
+
+func (s *StoreCrashes) FindIp(str string) *string {
+	if s2, ok := s.ips[str]; ok {
+		return s2
+	}
+	return nil
 }
 
 func (s *StoreCrashes) FindOrCreateIp(str string) *string {
@@ -344,14 +358,16 @@ func (s *StoreCrashes) GetCrashesForApp(appName string) []*Crash {
 	return app.Crashes
 }
 
-// TODO: could be faster if we internalize ipAddrInternal and compare pointers,
-// not strings
 func (s *StoreCrashes) GetCrashesForIpAddrInternal(app *App, ipAddrInternal string) []*Crash {
 	s.Lock()
 	defer s.Unlock()
 	res := make([]*Crash, 0)
+	ipAddrPtr := s.FindIp(ipAddrInternal)
+	if ipAddrPtr == nil {
+		return res
+	}
 	for i, c := range s.crashes {
-		if c.App == app && *c.IpAddrInternal == ipAddrInternal {
+		if c.App == app && c.IpAddrInternal == ipAddrPtr {
 			res = append(res, &s.crashes[i])
 		}
 	}
@@ -359,14 +375,16 @@ func (s *StoreCrashes) GetCrashesForIpAddrInternal(app *App, ipAddrInternal stri
 	return res
 }
 
-// TODO: could be faster if we internalize crashingLine and compare pointers,
-// not strings
 func (s *StoreCrashes) GetCrashesForCrashingLine(app *App, crashingLine string) []*Crash {
 	s.Lock()
 	defer s.Unlock()
 	res := make([]*Crash, 0)
+	crashingLinePtr := s.FindCrashingLine(crashingLine)
+	if crashingLinePtr == nil {
+		return res
+	}
 	for i, c := range s.crashes {
-		if c.App == app && *c.CrashingLine == crashingLine {
+		if c.App == app && c.CrashingLine == crashingLinePtr {
 			res = append(res, &s.crashes[i])
 		}
 	}
