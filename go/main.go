@@ -332,6 +332,7 @@ func main() {
 	http.Handle("/app/undelete", makeTimingHandler(handleAppUndelete))
 	http.Handle("/app/showdeleted", makeTimingHandler(handleAppShowDeleted))
 	http.Handle("/app/showprivate", makeTimingHandler(handleAppShowPrivate))
+	http.Handle("/app/crashsubmit", makeTimingHandler(handleCrashSubmit))
 	http.Handle("/app/crashes", makeTimingHandler(handleCrashes))
 	http.Handle("/app/crashshow", makeTimingHandler(handleCrashShow))
 	http.Handle("/feedburner.xml", makeTimingHandler(handleFeedburnerAtom))

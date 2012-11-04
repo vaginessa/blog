@@ -30,7 +30,7 @@ func handleArticlesJs(w http.ResponseWriter, r *http.Request, url string) {
 	w.Write(jsData)
 }
 
-// url: /djs/$url
+// /djs/$url
 func handleDjs(w http.ResponseWriter, r *http.Request) {
 	url := r.URL.Path[len("/djs/"):]
 	if strings.HasPrefix(url, "articles-") {
@@ -40,7 +40,7 @@ func handleDjs(w http.ResponseWriter, r *http.Request) {
 	serve404(w, r)
 }
 
-// url: /
+// /
 func handleMainPage(w http.ResponseWriter, r *http.Request) {
 	if !isTopLevelUrl(r.URL.Path) {
 		serve404(w, r)

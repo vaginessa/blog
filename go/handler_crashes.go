@@ -152,7 +152,7 @@ func showCrashesByCrashingLine(w http.ResponseWriter, r *http.Request, app *App,
 	ExecTemplate(w, tmplCrashReportsAppIndex, model)
 }
 
-// url: /app/crashes[?app_name=${appName}][&day=${day}][&ip_addr=${ipAddrInternal}]
+// /app/crashes[?app_name=${appName}][&day=${day}][&ip_addr=${ipAddrInternal}]
 // [&crashing_line=${crashingLine}a]
 func handleCrashes(w http.ResponseWriter, r *http.Request) {
 	if !IsAdmin(r) {
@@ -214,7 +214,7 @@ func readCrashReport(sha1 []byte) ([]byte, error) {
 	return ReadFileAll(storeCrashes.MessageFilePath(sha1))
 }
 
-// url: /app/crashshow?crash_id=${crash_id}
+// /app/crashshow?crash_id=${crash_id}
 func handleCrashShow(w http.ResponseWriter, r *http.Request) {
 	if !IsAdmin(r) {
 		serve404(w, r)
@@ -250,4 +250,66 @@ func handleCrashShow(w http.ResponseWriter, r *http.Request) {
 		CrashBody: template.HTML(crashBody),
 	}
 	ExecTemplate(w, tmplCrashReport, model)
+}
+
+// Version is in the format:
+// "Ver: 2.1.1"
+func extractSumatraVersion(crashData string) string {
+	l := FindLineWithPrefix([]byte(crashData), "Ver: ")
+	if l == nil {
+		return ""
+	}
+	return string(l[5:])
+}
+
+// Version is in the format:
+// "Version:         0.3.3 (0.3.3)"
+func extractMacVersion(crashData string) string {
+	l := FindLineWithPrefix([]byte(crashData), "Version:")
+	if l == nil {
+		return ""
+	}
+	s := string(l)
+	parts := strings.Split(s, ":", 2)
+	ver := strings.TrimSpace(parts[1])
+	parts = strings.Split(s, " ")
+	return parts[0]
+}
+
+var macApps = []string{"VisualAck"}
+
+func isMacApp(name string) bool {
+	for _, n := range macApps {
+		if n == name {
+			return true
+		}
+	}
+	return false
+}
+
+func extractAppVer(appName, crashData string) string {
+	if appName == "SumatraPDF" {
+		return extractSumatraVersion(crashData)
+	}
+
+	if isMacApp(appName) {
+		return extractMacVersion(crashData)
+	}
+	return ""
+}
+
+// POST /app/crashsubmit?appname=${appName}&file=${crashData}
+func handleCrashSubmit(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "POST" {
+		serveErrorMsg(w, "GET not supported")
+		return
+	}
+	ipAddr := getIpAddress(r)
+	appName := getTrimmedFormValue(r, "appname")
+	crashData := r.FormValue("file")
+	appVer := extractAppVer(appName, crashData)
+	storeCrashes.SaveCrash(appName, appVer, ipAddr, crashData)
+	s := fmt.Sprintf("")
+	w.Write([]byte(s))
+	logger.Noticef("handleCrashSubmit(): %s %s %s", appName, appVer, ipAddr)
 }

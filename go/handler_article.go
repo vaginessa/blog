@@ -15,7 +15,7 @@ func (a *DisplayArticle) PublishedOnShort() string {
 	return a.PublishedOn.Format("Jan 2 2006")
 }
 
-// url: /article/*, /blog/*, /kb/*
+// /article/*, /blog/*, /kb/*
 func handleArticle(w http.ResponseWriter, r *http.Request) {
 	if redirectIfNeeded(w, r) {
 		return

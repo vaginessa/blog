@@ -179,23 +179,36 @@ func ExtractLine(d []byte) ([]byte, []byte) {
 	return line, rest
 }
 
-func SkipPastLine(d *[]byte, lineToFind string) bool {
+// iterate d as lines, find lineToFind and return the part
+// after that line. Return nil if not found
+func SkipPastLine(d []byte, lineToFind string) []byte {
 	lb := []byte(lineToFind)
-	rest := *d
 	var l []byte
 	for {
-		l, rest = ExtractLine(rest)
+		l, d = ExtractLine(d)
 		if l == nil {
-			*d = rest
-			return false
+			return nil
 		}
 		if bytes.Equal(l, lb) {
-			*d = rest
-			return true
+			return d
 		}
 	}
 	panic("")
-	return false
+}
+
+func FindLineWithPrefix(d []byte, prefix string) []byte {
+	prefixb := []byte(prefix)
+	var l []byte
+	for {
+		l, d = ExtractLine(d)
+		if l == nil {
+			return nil
+		}
+		if bytes.HasPrefix(l, prefixb) {
+			return l
+		}
+	}
+	panic("")
 }
 
 const base64Chars = "0123456789abcdefghijklmnopqrstuvwxyz"

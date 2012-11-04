@@ -40,7 +40,7 @@ const (
 )
 
 func ExtractSumatraCrashingLine(d []byte) string {
-	if !SkipPastLine(&d, "Crashed thread:") {
+	if d = SkipPastLine(d, "Crashed thread:"); d == nil {
 		return noCrashingLine
 	}
 	s := findValidCrashLine(d)

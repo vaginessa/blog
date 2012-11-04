@@ -382,3 +382,10 @@ func (s *StoreCrashes) GetCrashById(id int) *Crash {
 	}
 	return &s.crashes[id]
 }
+
+func (s *StoreCrashes) SaveCrash(appName, appVer, ipAddr, crashData string) error {
+	s.Lock()
+	defer s.Unlock()
+	// TODO: write me
+	return nil
+}

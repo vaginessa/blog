@@ -113,7 +113,7 @@ func getTwitter(cred *oauth.Credentials, urlStr string, params url.Values, data 
 	return json.Unmarshal(bodyData, data)
 }
 
-// url: GET /oauthtwittercb?redirect=$redirect
+// GET /oauthtwittercb?redirect=$redirect
 func handleOauthTwitterCallback(w http.ResponseWriter, r *http.Request) {
 	//fmt.Printf("handleOauthTwitterCallback()\n")
 	redirect := strings.TrimSpace(r.FormValue("redirect"))
@@ -155,7 +155,7 @@ func handleOauthTwitterCallback(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, redirect, 302)
 }
 
-// url: GET /login?redirect=$redirect
+// GET /login?redirect=$redirect
 func handleLogin(w http.ResponseWriter, r *http.Request) {
 	redirect := strings.TrimSpace(r.FormValue("redirect"))
 	if redirect == "" {
@@ -178,7 +178,7 @@ func handleLogin(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, oauthClient.AuthorizationURL(tempCred, nil), 302)
 }
 
-// url: GET /logout?redirect=$redirect
+// GET /logout?redirect=$redirect
 func handleLogout(w http.ResponseWriter, r *http.Request) {
 	redirect := strings.TrimSpace(r.FormValue("redirect"))
 	if redirect == "" {

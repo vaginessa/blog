@@ -17,7 +17,7 @@ func getTrimmedFormValue(r *http.Request, name string) string {
 	return strings.TrimSpace(r.FormValue(name))
 }
 
-// url: /app/preview
+// /app/preview
 func handleAppPreview(w http.ResponseWriter, r *http.Request) {
 	format := getTrimmedFormValue(r, "format")
 	formatInt := FormatNameToId(format)
@@ -40,7 +40,7 @@ func tagsFromString(s string) []string {
 	return tags
 }
 
-// url: POST /app/edit
+// POST /app/edit
 func createNewOrUpdatePost(w http.ResponseWriter, r *http.Request, article *Article) {
 	format := FormatNameToId(getTrimmedFormValue(r, "format"))
 	if !validFormat(format) {
@@ -198,7 +198,7 @@ func findArticleMustBeAdmin(w http.ResponseWriter, r *http.Request) *Article {
 	return article
 }
 
-// url: app/delete?article_id=${id}
+// app/delete?article_id=${id}
 func handleAppDelete(w http.ResponseWriter, r *http.Request) {
 	logger.Notice("handleAppDelete()")
 	article := findArticleMustBeAdmin(w, r)
@@ -219,7 +219,7 @@ func handleAppDelete(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, url, 301)
 }
 
-// url: app/undelete?article_id=${id}
+// app/undelete?article_id=${id}
 func handleAppUndelete(w http.ResponseWriter, r *http.Request) {
 	logger.Notice("handleAppUndelete()")
 	article := findArticleMustBeAdmin(w, r)
@@ -240,7 +240,7 @@ func handleAppUndelete(w http.ResponseWriter, r *http.Request) {
 	http.Redirect(w, r, url, 301)
 }
 
-// url: app/showdeleted
+// app/showdeleted
 func handleAppShowDeleted(w http.ResponseWriter, r *http.Request) {
 	logger.Notice("handleAppShowDeleted()")
 	isAdmin := IsAdmin(r)
@@ -257,7 +257,7 @@ func handleAppShowDeleted(w http.ResponseWriter, r *http.Request) {
 	showArchiveArticles(w, r, articles, "")
 }
 
-// url: app/showprivate 
+// app/showprivate
 func handleAppShowPrivate(w http.ResponseWriter, r *http.Request) {
 	logger.Notice("handleAppShowPrivate()")
 	isAdmin := IsAdmin(r)

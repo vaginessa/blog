@@ -58,12 +58,12 @@ func handleAtom(w http.ResponseWriter, r *http.Request, excludeNotes bool) {
 	w.Write([]byte(s))
 }
 
-// url: /atom-all.xml
+// /atom-all.xml
 func handleAtomAll(w http.ResponseWriter, r *http.Request) {
 	handleAtom(w, r, false)
 }
 
-// url: /feedburner.xml
+// /feedburner.xml
 func handleFeedburnerAtom(w http.ResponseWriter, r *http.Request) {
 	handleAtom(w, r, true)
 }
