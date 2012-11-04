@@ -324,7 +324,11 @@ func handleCrashSubmit(w http.ResponseWriter, r *http.Request) {
 	}
 
 	appVer := extractAppVer(appName, crashData)
-	storeCrashes.SaveCrash(appName, appVer, ipAddr, crashData)
+	err = storeCrashes.SaveCrash(appName, appVer, ipAddr, crashData)
+	if err != nil {
+		logger.Noticef("handleCrashSubmit(): storeCrashes.SaveCrash() failed with %s", err.Error())
+		return
+	}
 	s := fmt.Sprintf("")
 	w.Write([]byte(s))
 	logger.Noticef("handleCrashSubmit(): %s %s %s", appName, appVer, ipAddr)

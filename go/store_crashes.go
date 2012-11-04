@@ -20,8 +20,8 @@ type Crash struct {
 	App            *App
 	ProgramVersion *string
 	IpAddrInternal *string
-	Sha1           [20]byte
 	CrashingLine   *string
+	Sha1           [20]byte
 }
 
 type App struct {
@@ -37,7 +37,7 @@ func (a *App) CrashesCount() int {
 type StoreCrashes struct {
 	sync.Mutex
 	dataDir       string
-	crashes       []Crash
+	crashes       []*Crash
 	apps          []*App
 	versions      []*string
 	ips           map[string]*string
@@ -191,7 +191,7 @@ func (s *StoreCrashes) parseCrash(line []byte) {
 	ipAddr := s.FindOrCreateIp(ipAddrInternal)
 	app := s.FindOrCreateApp(programName)
 	crashingLine := s.FindOrCreateCrashingLine(crashingLineTmp)
-	c := Crash{
+	c := &Crash{
 		Id:             len(s.crashes),
 		App:            app,
 		CreatedOn:      createdOn,
@@ -204,19 +204,19 @@ func (s *StoreCrashes) parseCrash(line []byte) {
 	if !s.MessageFileExists(c.Sha1[:]) {
 		panic("message file doesn't exist")
 	}
+	s.appendCrash(c)
+}
+
+func (s *StoreCrashes) appendCrash(c *Crash) {
 	s.crashes = append(s.crashes, c)
-
-	n := len(s.crashes)
-	crash := &s.crashes[n-1]
-	app.Crashes = append(app.Crashes, crash)
-
+	c.App.Crashes = append(c.App.Crashes, c)
 	day := c.CreatedOnDay()
-	perDay, ok := app.PerDayCrashes[day]
+	perDay, ok := c.App.PerDayCrashes[day]
 	if !ok {
 		perDay = make([]*Crash, 0)
 	}
-	perDay = append(perDay, crash)
-	app.PerDayCrashes[day] = perDay
+	perDay = append(perDay, c)
+	c.App.PerDayCrashes[day] = perDay
 }
 
 func (s *StoreCrashes) readExistingCrashesData(fileDataPath string) error {
@@ -249,7 +249,7 @@ func NewStoreCrashes(dataDir string) (*StoreCrashes, error) {
 	dataFilePath := filepath.Join(dataDir, "crashesdata.txt")
 	store := &StoreCrashes{
 		dataDir:       dataDir,
-		crashes:       make([]Crash, 0),
+		crashes:       make([]*Crash, 0),
 		apps:          make([]*App, 0),
 		versions:      make([]*string, 0),
 		ips:           make(map[string]*string),
@@ -334,17 +334,6 @@ func ip2str(s string) uint32 {
 	return (nums[0] << 24) | (nums[1] << 16) + (nums[2] << 8) | nums[3]
 }
 
-func serCrash(c *Crash, appName string) string {
-	s1 := base64.StdEncoding.EncodeToString(c.Sha1[:])
-	s1 = s1[:len(s1)-1] // remove '=' from the end
-	s2 := fmt.Sprintf("%d", c.CreatedOn.Unix())
-	s3 := remSep(appName)
-	s4 := remSep(*c.ProgramVersion)
-	s5 := *c.IpAddrInternal
-	s6 := *c.CrashingLine
-	return fmt.Sprintf("C%s|%s|%s|%s|%s|%s\n", s1, s2, s3, s4, s5, s6)
-}
-
 func (s *StoreCrashes) GetApps() []*App {
 	s.Lock()
 	defer s.Unlock()
@@ -368,7 +357,7 @@ func (s *StoreCrashes) GetCrashesForIpAddrInternal(app *App, ipAddrInternal stri
 	}
 	for i, c := range s.crashes {
 		if c.App == app && c.IpAddrInternal == ipAddrPtr {
-			res = append(res, &s.crashes[i])
+			res = append(res, s.crashes[i])
 		}
 	}
 	sort.Sort(CrashesByCreatedOn(res))
@@ -385,7 +374,7 @@ func (s *StoreCrashes) GetCrashesForCrashingLine(app *App, crashingLine string) 
 	}
 	for i, c := range s.crashes {
 		if c.App == app && c.CrashingLine == crashingLinePtr {
-			res = append(res, &s.crashes[i])
+			res = append(res, s.crashes[i])
 		}
 	}
 	sort.Sort(CrashesByCreatedOn(res))
@@ -398,12 +387,57 @@ func (s *StoreCrashes) GetCrashById(id int) *Crash {
 	if id < 0 || id > len(s.crashes) {
 		return nil
 	}
-	return &s.crashes[id]
+	return s.crashes[id]
+}
+
+func serCrash(c *Crash) string {
+	s1 := base64.StdEncoding.EncodeToString(c.Sha1[:])
+	s1 = s1[:len(s1)-1] // remove '=' from the end
+	s2 := fmt.Sprintf("%d", c.CreatedOn.Unix())
+	s3 := remSep(c.App.Name)
+	s4 := remSep(*c.ProgramVersion)
+	s5 := *c.IpAddrInternal
+	s6 := *c.CrashingLine
+	return fmt.Sprintf("C%s|%s|%s|%s|%s|%s\n", s1, s2, s3, s4, s5, s6)
+}
+
+func getCrashPrefixData(crash *Crash) []byte {
+	s := fmt.Sprintf("App: %s\n", crash.App.Name)
+	s += fmt.Sprintf("Ip: %s\n", *crash.IpAddrInternal)
+	s += fmt.Sprintf("On: %s\n", crash.CreatedOn.Format(time.RFC3339))
+	return []byte(s)
 }
 
 func (s *StoreCrashes) SaveCrash(appName, appVer, ipAddr string, crashData []byte) error {
 	s.Lock()
 	defer s.Unlock()
-	// TODO: write me
+
+	// TODO: white-liest app names?
+	app := s.FindOrCreateApp(appName)
+	programVersionInterned := s.FindOrCreateVersion(appVer)
+	ipAddrInterned := s.FindOrCreateIp(ipAddrToInternal(ipAddr))
+	crashingLine := s.FindOrCreateCrashingLine(ExtractSumatraCrashingLine(crashData))
+
+	c := &Crash{
+		Id:             len(s.crashes),
+		App:            app,
+		CreatedOn:      time.Now(),
+		ProgramVersion: programVersionInterned,
+		IpAddrInternal: ipAddrInterned,
+		CrashingLine:   crashingLine,
+	}
+
+	var buf bytes.Buffer
+	buf.Write(getCrashPrefixData(c))
+	buf.Write(crashData)
+	dstData := buf.Bytes()
+	sha1 := Sha1OfBytes(dstData)
+	copy(c.Sha1[:], sha1)
+
+	err := s.writeMessageAsSha1(crashData, sha1)
+	if err != nil {
+		return err
+	}
+	s.appendCrash(c)
 	return nil
 }
