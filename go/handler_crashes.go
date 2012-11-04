@@ -270,9 +270,9 @@ func extractMacVersion(crashData string) string {
 		return ""
 	}
 	s := string(l)
-	parts := strings.Split(s, ":", 2)
+	parts := strings.SplitN(s, ":", 2)
 	ver := strings.TrimSpace(parts[1])
-	parts = strings.Split(s, " ")
+	parts = strings.Split(ver, " ")
 	return parts[0]
 }
 
@@ -306,7 +306,15 @@ func handleCrashSubmit(w http.ResponseWriter, r *http.Request) {
 	}
 	ipAddr := getIpAddress(r)
 	appName := getTrimmedFormValue(r, "appname")
+	if appName == "" {
+		logger.Noticef("handleCrashSubmit(): 'appName' is not defined")
+		return
+	}
 	crashData := r.FormValue("file")
+	if crashData == "" {
+		logger.Noticef("handleCrashSubmit(): 'file' is not defined")
+		return
+	}
 	appVer := extractAppVer(appName, crashData)
 	storeCrashes.SaveCrash(appName, appVer, ipAddr, crashData)
 	s := fmt.Sprintf("")
