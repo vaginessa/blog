@@ -334,6 +334,7 @@ func main() {
 	http.Handle("/app/showprivate", makeTimingHandler(handleAppShowPrivate))
 	http.Handle("/app/crashsubmit", makeTimingHandler(handleCrashSubmit))
 	http.Handle("/app/crashes", makeTimingHandler(handleCrashes))
+	http.Handle("/app/crashesrss", makeTimingHandler(handleCrashesRss))
 	http.Handle("/app/crashshow", makeTimingHandler(handleCrashShow))
 	http.Handle("/feedburner.xml", makeTimingHandler(handleFeedburnerAtom))
 	http.Handle("/atom-all.xml", makeTimingHandler(handleAtomAll))

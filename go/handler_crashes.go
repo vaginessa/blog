@@ -153,6 +153,21 @@ func showCrashesByCrashingLine(w http.ResponseWriter, r *http.Request, app *App,
 	ExecTemplate(w, tmplCrashReportsAppIndex, model)
 }
 
+// /app/crashesrss?app_name=${appName}
+func handleCrashesRss(w http.ResponseWriter, r *http.Request) {
+	appName := getTrimmedFormValue(r, "app_name")
+	if appName == "" {
+		serve404(w, r)
+		return
+	}
+
+	feed := &Feed{
+		Title: fmt.Sprintf("%s crashes"),
+		Link: fmt.Sprintf("http://blog.kowalczyk.info/app/crashesrss?app_name=%s" % appName),
+		PubDate:
+	}
+}
+
 // /app/crashes[?app_name=${appName}][&day=${day}][&ip_addr=${ipAddrInternal}]
 // [&crashing_line=${crashingLine}a]
 func handleCrashes(w http.ResponseWriter, r *http.Request) {
