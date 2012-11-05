@@ -10,6 +10,7 @@ import (
 )
 
 var redirects = map[string]string{
+	"/index.html":                         "/",
 	"/kb/serialization-in-c#.html":        "/article/Serialization-in-C.html",
 	"/software/fofou":                     "/software/fofou/index.html",
 	"/software/sumatra":                   "/software/sumatrapdf/free-pdf-reader.html",

@@ -156,8 +156,12 @@ func isTopLevelUrl(url string) bool {
 	return 0 == len(url) || "/" == url
 }
 
+func getReferer(r *http.Request) string {
+	return r.Header.Get("Referer")
+}
+
 func serve404(w http.ResponseWriter, r *http.Request) {
-	logger.Noticef("Not found: %s", r.URL.Path)
+	logger.Noticef("404: '%s', referer: '%s'", r.URL.Path, getReferer(r))
 	http.NotFound(w, r)
 }
 
@@ -203,10 +207,6 @@ func readConfig(configFile string) error {
 	}
 	// TODO: somehow verify twitter creds
 	return err
-}
-
-func getReferer(r *http.Request) string {
-	return r.Header.Get("Referer")
 }
 
 // Request.RemoteAddress contains port, which we want to remove i.e.:

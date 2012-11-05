@@ -8,7 +8,6 @@ import (
 	"sort"
 	"strconv"
 	"strings"
-	"time"
 )
 
 func (c *Crash) Version() string {
@@ -20,21 +19,6 @@ func (c *Crash) Version() string {
 		return ver[:len(ver)-1-len(" pre-release")]
 	}
 	return ver
-}
-
-func TimeSinceNowAsString(t time.Time) string {
-	d := time.Now().Sub(t)
-	minutes := int(d.Minutes()) % 60
-	hours := int(d.Hours())
-	days := hours / 24
-	hours = hours % 24
-	if days > 0 {
-		return fmt.Sprintf("%dd %dhr", days, hours)
-	}
-	if hours > 0 {
-		return fmt.Sprintf("%dhr %dm", hours, minutes)
-	}
-	return fmt.Sprintf("%dm", minutes)
 }
 
 func (c *Crash) CreatedOnSince() string {
@@ -161,11 +145,13 @@ func handleCrashesRss(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	feed := &Feed{
-		Title: fmt.Sprintf("%s crashes"),
-		Link: fmt.Sprintf("http://blog.kowalczyk.info/app/crashesrss?app_name=%s" % appName),
-		PubDate:
-	}
+	/*
+		feed := &Feed{
+			Title: fmt.Sprintf("%s crashes"),
+			Link: fmt.Sprintf("http://blog.kowalczyk.info/app/crashesrss?app_name=%s" % appName),
+			PubDate:
+		}
+	*/
 }
 
 // /app/crashes[?app_name=${appName}][&day=${day}][&ip_addr=${ipAddrInternal}]
