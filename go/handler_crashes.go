@@ -1,6 +1,8 @@
 package main
 
 import (
+	"atom"
+	"bytes"
 	"fmt"
 	"html/template"
 	"io/ioutil"
@@ -8,6 +10,7 @@ import (
 	"sort"
 	"strconv"
 	"strings"
+	"time"
 )
 
 func (c *Crash) Version() string {
@@ -137,21 +140,91 @@ func showCrashesByCrashingLine(w http.ResponseWriter, r *http.Request, app *App,
 	ExecTemplate(w, tmplCrashReportsAppIndex, model)
 }
 
+var tmplCrashesRss = template.Must(template.New("crashesrss.html").Parse(`
+  <p>{{ len .Crashes }} crashes for {{ .Day }}:</p>
+  {{ $appName := .AppName }}
+  <table>
+    {{ range .Crashes }}
+      <tr>
+        <td><a href="/app/crashshow?crash_id={{ .Id }}">{{ .Id }}</a></td>
+        <td>{{ .Version }}</td>
+        <td><a href="/app/crashes?app_name={{$appName}}&crashing_line={{.CrashingLine}}">{{ .ShortCrashingLine }}</a></td>
+      </tr>
+    {{ end }}
+  </table>
+`))
+
 // /app/crashesrss?app_name=${appName}
 func handleCrashesRss(w http.ResponseWriter, r *http.Request) {
 	appName := getTrimmedFormValue(r, "app_name")
-	if appName == "" {
+	app := storeCrashes.GetAppByName(appName)
+	if app == nil {
+		logger.Errorf("handleCrashesRss(): invalid app '%s'", appName)
 		serve404(w, r)
 		return
 	}
-
-	/*
-		feed := &Feed{
-			Title: fmt.Sprintf("%s crashes"),
-			Link: fmt.Sprintf("http://blog.kowalczyk.info/app/crashesrss?app_name=%s" % appName),
-			PubDate:
+	// to minimize the number of times rss reader updates the entries, we
+	// don't show crashes for today i.e. if first day is the same time as
+	// current time, we skip it
+	appDisplay := NewAppDisplay(app, true)
+	pubDate := time.Now()
+	firstDayIdx := -1
+	if len(appDisplay.Days) > 0 {
+		firstDayIdx = 0
+		todayDay := time.Now().Format("2006-01-02")
+		if todayDay == appDisplay.Days[1].Day {
+			firstDayIdx = 1
 		}
-	*/
+	}
+	if firstDayIdx != -1 {
+		pubDate, _ = time.Parse("2006-01-02", appDisplay.Days[firstDayIdx].Day)
+	}
+
+	feed := &atom.Feed{
+		Title:   fmt.Sprintf("%s crashes"),
+		Link:    fmt.Sprintf("http://blog.kowalczyk.info/app/crashesrss?app_name=%s", appName),
+		PubDate: pubDate}
+	baseUrl := fmt.Sprintf("http://blog.kowalczyk.info/app/crashes?app_name=%s", appName)
+	if firstDayIdx == -1 {
+		e := &atom.Entry{
+			Title:       fmt.Sprintf("Crashes for %s", appName),
+			Link:        baseUrl,
+			ContentHtml: fmt.Sprintf("There are no crashes for %s yet", appName),
+			PubDate:     pubDate}
+		feed.AddEntry(e)
+	} else {
+		maxDays := 10
+		for i := firstDayIdx; i < len(appDisplay.Days) && maxDays > 0; maxDays-- {
+			day := appDisplay.Days[i].Day
+			crashes := appDisplay.Days[i].Crashes
+			model := struct {
+				Crashes []*Crash
+				Day     string
+				AppName string
+			}{
+				Day:     day,
+				AppName: appName,
+				Crashes: crashes,
+			}
+			var buf bytes.Buffer
+			tmplCrashesRss.Execute(&buf, model)
+			html := string(buf.Bytes())
+			pubDate, _ = time.Parse(day, "2006-01-02")
+			e := &atom.Entry{
+				Title:       fmt.Sprintf("%d %s crashes on %s", len(crashes), appName, day),
+				Link:        fmt.Sprintf("%s&day=%s", baseUrl, day),
+				ContentHtml: html,
+				PubDate:     pubDate}
+			feed.AddEntry(e)
+			i += 1
+		}
+	}
+
+	s, err := feed.GenXml()
+	if err != nil {
+		s = "Failed to generate XML feed"
+	}
+	w.Write([]byte(s))
 }
 
 // /app/crashes[?app_name=${appName}][&day=${day}][&ip_addr=${ipAddrInternal}]

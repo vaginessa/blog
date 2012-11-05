@@ -23,7 +23,7 @@
         <td><a href="/app/crashes?app_name={{$appName}}&crashing_line={{.CrashingLine}}">{{ .ShortCrashingLine }}</a></td>
         <td><a href="/app/crashes?app_name={{$appName}}&ip_addr={{.IpAddrInternal}}">{{ .ShortIpAddr }}</a></td>
         {{ if $showSince }}
-        <td>{{ .CreatedOnSince }}
+        <td>{{ .CreatedOnSince }}</td>
         {{ end }}
       </tr>
     {{ end }}
