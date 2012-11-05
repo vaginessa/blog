@@ -7,9 +7,9 @@ var gSumExeName = "SumatraPDF-" + gSumVer + "-install.exe";
 
 // used by download-prev* pages, update after releasing a new version
 var gPrevSumatraVersion = [
-	"2.1", "2.0.1", "2.0", "1.9", "1.8", "1.7", "1.6", 
+	"2.1", "2.0.1", "2.0", "1.9", "1.8", "1.7", "1.6",
 	"1.5.1", "1.5", "1.4", "1.3", "1.2", "1.1", "1.0.1",
-	"1.0", "0.9.4", "0.9.3", "0.9.1", "0.9", "0.8.1", 
+	"1.0", "0.9.4", "0.9.3", "0.9.1", "0.9", "0.8.1",
 	"0.8", "0.7", "0.6", "0.5", "0.4", "0.3", "0.2"
 ];
 
@@ -21,8 +21,8 @@ function dlHtml(s1,s2, s3) {
 		s3 = " <span style='font-size:90%; color:gray'>" + s3 + "</span>";
 	}
 	return '<table><tr><td>' + s1 + '&nbsp;&nbsp;</td><td><a href="' +
-	gSumExeUrl + '" onclick="return SetupRedirect()">' + gSumExeName + 
-	'</a></td></tr><tr><td>' + s2 + '&nbsp;&nbsp;</td><td><a href="' + 
+	gSumExeUrl + '" onclick="return SetupRedirect()">' + gSumExeName +
+	'</a></td></tr><tr><td>' + s2 + '&nbsp;&nbsp;</td><td><a href="' +
 	gSumZipUrl + '" onclick="return SetupRedirect()">' + gSumZipName +
 	'</a>' + s3 + '</td></tr></table>';
 }
@@ -30,7 +30,7 @@ function dlHtml(s1,s2, s3) {
 // used by downloadafter*.html pages
 function dlAfterHtml(s1,s2,s3,s4) {
     return '<a href="' + gSumExeUrl + '">' + s1 + '</a>' + s2 +
-    '<a href="' + gSumZipUrl + '">' + s3 + '</a>' + s4;	
+    '<a href="' + gSumZipUrl + '">' + s3 + '</a>' + s4;
 }
 
 var gRuTrans = {
@@ -100,7 +100,7 @@ var gDeTrans = {
 	"Download" : "Download",
 	"Contribute" : "Helfen",
 	"Translations" : "Übersetzungen",
-	"Forums" : "Forum"	
+	"Forums" : "Forum"
 };
 
 var gCnTrans = {
@@ -110,7 +110,7 @@ var gCnTrans = {
 	"Download" : "下载",
 	"Contribute" : "参与贡献",
 	"Translations" : "翻译",
-	"Forums" : "论坛"	
+	"Forums" : "论坛"
 };
 
 var gSrTrans = {
@@ -120,7 +120,7 @@ var gSrTrans = {
 	"Download" : "Преузимање",
 	"Contribute" : "Допринос",
 	"Translations" : "Преводи",
-	"Forums" : "Форум"	
+	"Forums" : "Форум"
 };
 
 var gKaTrans = {
@@ -130,7 +130,7 @@ var gKaTrans = {
 	"Download" : "ჩამოტვირთვა",
 	"Contribute" : "მონაწილეობა",
 	"Translations" : "თარგმნები",
-	"Forums" : "ფორუმები"	
+	"Forums" : "ფორუმები"
 };
 
 var gEuTrans = {
@@ -345,7 +345,7 @@ function getBaseUrlAndLang() {
 		url = url.substring(0, url.length-3);
 	}
 	//alert(url + "," + lang);
-	return [url, lang];	
+	return [url, lang];
 }
 
 function isEng(lang) {
@@ -452,7 +452,7 @@ function urlFromBaseUrlLang(baseUrl, lang) {
 			<li><a href="news.html" title="News"><span>Новости</span></a></li>
 			<li><a href="manual.html" title="Manual"><span>Руководство пользователя</span></a></li>
 			<li><a href="download-free-pdf-viewer.html" title="Download"><span>Загрузка</span></a></li>
-			<li><a href="develop.html" title="Contribute"><span>Сотрудничество</span></a></li>
+			<li><a href="http://code.google.com/p/sumatrapdf/wiki/JoinTheProject" title="Contribute"><span>Сотрудничество</span></a></li>
 			<li><a href="translations.html" title="Translations"><span>Переводы</span></a></li>
 			<li><a href="/forum_sumatra/" title="Forums"><span>Форум</span></a></li>
 		</ul>
@@ -468,7 +468,7 @@ function navHtml() {
 	var s = '<div id="ddcolortabs"><ul>';
 	var baseUrls = [
 		["free-pdf-reader", "Home"],
-		["download-free-pdf-viewer", "Download"], 
+		["download-free-pdf-viewer", "Download"],
 		["manual", "Manual"],
 		["news", "Version History"],
 		//["develop", "Contribute"],
@@ -486,7 +486,7 @@ function navHtml() {
 		url = urlFromBaseUrlLang(currUrl, lang);
 		s += '<a href="' + url + '" title="' + txt + '"><span>' + txt + '</span></a></li>';
 	}
-	
+
 	s += '</ul></div><div id="ddcolortabsline"> </div>';
 	return s;
 }
@@ -508,7 +508,7 @@ function prevLanguagesList(installerStr, zipFileStr) {
 		s += '<p>' + installerStr + ': ' + installerHref(ver) + '<br>\n';
 		s += zipFileStr + ': ' + zipHref(ver) + '</p>\n';
 	}
-	return s;        
+	return s;
 }
 
 function langChanged() {

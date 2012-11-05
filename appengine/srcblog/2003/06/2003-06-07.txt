@@ -1,5 +1,0 @@
-Date: 2003-06-07 19:19:34
-Format: html
-Title: Free (and old) book on drawing.
-
-<a href="http://libtext.library.wisc.edu/cgi-bin/DLDecArts/DLDecArts-idx?id=DLDecArts.AmDrawBkChap">Book on drawing.</a>

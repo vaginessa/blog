@@ -1,7 +1,0 @@
-Date: 2003-02-25 07:09:28
-Format: wphtml
-Title: Can't wait.
-
-<b>Can't wait.</b>
-
-When will <a href="http://developer.danger.com/">this site</a> go live?

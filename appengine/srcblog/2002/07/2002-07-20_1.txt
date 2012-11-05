@@ -1,6 +1,0 @@
-Date: 2002-07-20 10:55:53
-Format: wphtml
-Title: To Groove or not to Groove?
-Draft: 1
-
-Again about <A href="../../../2002/06/07/groove-is-not-going-to-last.html">Groove</A>: don't force people to stuff applications <EM>inside</EM> Groove. Instead let them <EM>integrate</EM> Groove-like features into their apps.
