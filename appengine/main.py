@@ -27,7 +27,7 @@ from django.template import Context, Template
 COMPRESS_PICKLED = False
 USE_MEMCACHE = True
 
-# deployed name of the server. Only for redirection from *.appspot.com 
+# deployed name of the server. Only for redirection from *.appspot.com
 SERVER = "blog.kowalczyk.info"
 
 # memcache key for caching atom.xml
@@ -44,7 +44,7 @@ g_root_url = None
 # We no longer log crashes from those versions of Sumatra:
 # 1.0 and 3.0 are here because other people develop using those
 # versions without disabling crash handling
-SUMATRA_VER_CRASH_BLACKLIST = ["1.0", "1.5", "1.5.1", "1.6", "1.7", 
+SUMATRA_VER_CRASH_BLACKLIST = ["1.0", "1.5", "1.5.1", "1.6", "1.7",
     "1.8", "1.9", "2.0", "2.0.1", "2.1", "3.0"]
 
 HTTP_NOT_ACCEPTABLE = 406
@@ -208,7 +208,7 @@ def filter_notes(articles_summary):
     for article_summary in articles_summary:
         if NOTE_TAG not in article_summary['tags']:
             yield article_summary
-    
+
 def filter_by_tag(articles_summary, tag):
     for article_summary in articles_summary:
         if tag in article_summary["tags"]:
@@ -220,7 +220,7 @@ def new_or_dup_text_content(body, format):
     full = body + format
     sha1_digest = sha.new(full.encode("utf-8")).hexdigest()
     existing = TextContent.gql("WHERE sha1_digest = :1", sha1_digest).get()
-    if existing: 
+    if existing:
         return (existing, True)
     text_content = TextContent(content=body, format=format, sha1_digest=sha1_digest)
     text_content.put()
@@ -293,8 +293,8 @@ def is_empty_string(s):
     return 0 == len(s)
 
 def urlify(title):
-    url = re.sub('-+', '-', 
-                  re.sub('[^\w-]', '', 
+    url = re.sub('-+', '-',
+                  re.sub('[^\w-]', '',
                          re.sub('\s+', '-', title.strip())))
     return url[:48]
 
@@ -354,10 +354,10 @@ def lang_to_prettify_lang(lang):
     #"bsh", "c", "cc", "cpp", "cs", "csh", "cyc", "cv", "htm", "html",
     #"java", "js", "m", "mxml", "perl", "pl", "pm", "py", "rb", "sh",
     #"xhtml", "xml", "xsl".
-    LANG_TO_PRETTIFY_LANG_MAP = { 
-        "c" : "c", 
-        "c++" : "cc", 
-        "cpp" : "cpp", 
+    LANG_TO_PRETTIFY_LANG_MAP = {
+        "c" : "c",
+        "c++" : "cc",
+        "cpp" : "cpp",
         "python" : "py",
         "html" : "html",
         "xml" : "xml",
@@ -639,7 +639,7 @@ class NotesHandler(webapp.RequestHandler):
             'no_index' : no_index,
         }
         template_out(self.response, "tmpl/notes.html", vals)
-        
+
 
 # responds to /tag/${tag}
 class TagHandler(webapp.RequestHandler):
@@ -662,7 +662,7 @@ class JsHandler(webapp.RequestHandler):
             self.response.out.write(json_txt)
 
 def article_only_for_admin(article): return article and (article.is_deleted or not article.is_public)
-    
+
 # responds to /article/* and /kb/* and /blog/* (/kb and /blog for redirects
 # for links from old website)
 class ArticleHandler(webapp.RequestHandler):
@@ -746,7 +746,7 @@ def clean_html(html):
     html = html2text(html)
     assert isinstance(html, unicode)
     return html
-    
+
 class ClearMemcacheHandler(webapp.RequestHandler):
     def get(self):
         if not users.is_current_user_admin():
@@ -796,7 +796,7 @@ class EditHandler(webapp.RequestHandler):
         article.updated_on = published_on
         article.tags = tags_from_string(self.request.get("tags"))
         article.put()
-        
+
         article.permalink = gen_permalink(title, article.key().id())
         assert article.permalink != None
         article.put()
@@ -857,14 +857,14 @@ class EditHandler(webapp.RequestHandler):
         if update_published_on:
             article.published_on = article.updated_on
             invalidate_articles_cache = True
-    
+
         if text_content:
             article.previous_versions.append(text_content.key())
 
         if article.is_public != is_public:
             invalidate_articles_cache = True
         if article.tags != tags: invalidate_articles_cache = True
-            
+
         article.format = format
         article.title = title
         article.is_public = is_public
@@ -905,7 +905,7 @@ class EditHandler(webapp.RequestHandler):
             'format_html_checked' : "",
             'format_text_checked' : "",
             'article' : article,
-            'submit_button_text' : "Update post",            
+            'submit_button_text' : "Update post",
             'tags' : ", ".join(article.tags),
         }
         vals['format_%s_checked' % article.format] = "selected"
@@ -996,7 +996,7 @@ class SitemapHandler(webapp.RequestHandler):
             article["rfc3339_published"] = to_rfc339(article["published_on"])
 
         self.response.headers['Content-Type'] = 'text/xml'
-        vals = { 
+        vals = {
             'articles' : articles,
             'root_url' : self.request.host_url,
         }
@@ -1093,7 +1093,7 @@ class NotFoundHandler(webapp.RequestHandler):
 class AddIndexHandler(webapp.RequestHandler):
     def get(self, sub=None):
         new_path = get_redirect(self.request.path)
-        if new_path: return self.redirect(new_path)        
+        if new_path: return self.redirect(new_path)
         return self.redirect(self.request.url + "index.html")
 
 class ForumRedirect(webapp.RequestHandler):
@@ -1238,13 +1238,13 @@ class CrashSubmit(webapp.RequestHandler):
         crashreport.put()
         report_url = my_hostname() + "/app/crashshow/" + str(crashreport.key().id())
         self.response.out.write(report_url)
-        s = unicode(crash_data, 'utf-8-sig')
-        body = report_url + "\n" + s
-        subject = "New crash report"
-        mail.send_mail(sender=EMAIL_FROM,
-            to=CRASH_REPORT_NOTIFICATION_EMAIL_TO,
-            subject=subject,
-            body=body)
+        #s = unicode(crash_data, 'utf-8-sig')
+        #body = report_url + "\n" + s
+        #subject = "New crash report"
+        #mail.send_mail(sender=EMAIL_FROM,
+        #    to=CRASH_REPORT_NOTIFICATION_EMAIL_TO,
+        #    subject=subject,
+        #    body=body)
 
 def crash_list_url(app):
     if app and len(app) > 0: return "/app/crashes/" + app
