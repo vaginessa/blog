@@ -1,11 +1,11 @@
 package main
 
 import (
-	"math/rand"
 	"fmt"
-	"time"
-	"strings"
+	"math/rand"
 	"regexp"
+	"strings"
+	"time"
 )
 
 var guidRand = rand.New(rand.NewSource(time.Now().Unix()))
@@ -32,11 +32,11 @@ func _normalize_newlines(s string) string {
 }
 
 type Textile struct {
-	shelf map[string]string
-	html_type string
+	shelf      map[string]string
+	html_type  string
 	restricted bool
-	rel string
-	urlrefs map[string]string
+	rel        string
+	urlrefs    map[string]string
 }
 
 func (t *Textile) shelve(text string) string {

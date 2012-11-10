@@ -25,9 +25,10 @@ type Crash struct {
 }
 
 type App struct {
-	Name          string
-	Crashes       []*Crash
-	PerDayCrashes map[string][]*Crash
+	Name                   string
+	Crashes                []*Crash
+	PerDayCrashes          map[string][]*Crash
+	PerCrashingLineCrashes map[string][]*Crash
 }
 
 func (a *App) CrashesCount() int {
@@ -51,6 +52,10 @@ func (c *Crash) IpAddress() string {
 
 func (c *Crash) CreatedOnDay() string {
 	return c.CreatedOn.Format("2006-01-02")
+}
+
+func (c *Crash) CrashingLineCount() int {
+	return len(c.App.PerCrashingLineCrashes[*c.CrashingLine])
 }
 
 type CrashesByCreatedOn []*Crash
@@ -82,9 +87,10 @@ func (s *StoreCrashes) FindOrCreateApp(appName string) *App {
 	}
 
 	app := &App{
-		Name:          appName,
-		Crashes:       make([]*Crash, 0),
-		PerDayCrashes: make(map[string][]*Crash),
+		Name:                   appName,
+		Crashes:                make([]*Crash, 0),
+		PerDayCrashes:          make(map[string][]*Crash),
+		PerCrashingLineCrashes: make(map[string][]*Crash),
 	}
 	s.apps = append(s.apps, app)
 	return app
@@ -217,6 +223,14 @@ func (s *StoreCrashes) appendCrash(c *Crash) {
 	}
 	perDay = append(perDay, c)
 	c.App.PerDayCrashes[day] = perDay
+
+	cl := *c.CrashingLine
+	perCrashingLine, ok := c.App.PerCrashingLineCrashes[cl]
+	if !ok {
+		perCrashingLine = make([]*Crash, 0)
+	}
+	perCrashingLine = append(perCrashingLine, c)
+	c.App.PerCrashingLineCrashes[cl] = perCrashingLine
 }
 
 func (s *StoreCrashes) readExistingCrashesData(fileDataPath string) error {
