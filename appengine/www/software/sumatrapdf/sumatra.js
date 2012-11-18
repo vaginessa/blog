@@ -103,6 +103,16 @@ var gDeTrans = {
 	"Forums" : "Forum"
 };
 
+var gFrTrans = {
+	"Home" : "Accueil",
+	"Version History" : "Historique",
+	"Manual" : "Manuel",
+	"Download" : "T&eacute;l&eacute;charger",
+	"Contribute" : "Contribuer",
+	"Translations" : "Traductions",
+	"Forums" : "Forum"
+};
+
 var gCnTrans = {
 	"Home" : "主页",
 	"Version History" : "新闻",
@@ -144,8 +154,9 @@ var gEuTrans = {
 };
 
 var gTabTrans = {
-	"ru" : gRuTrans, "ro" : gRoTrans, "pt" : gPtTrans, "ja" : gJaTrans,
-	"es" : gEsTrans, "de" : gDeTrans, "cn" : gCnTrans, "bg" : gBgTrans,
+	"ru" : gRuTrans, "ro" : gRoTrans, "pt" : gPtTrans,
+	"ja" : gJaTrans, "es" : gEsTrans, "de" : gDeTrans,
+	"fr" : gFrTrans, "cn" : gCnTrans, "bg" : gBgTrans,
 	"sr" : gSrTrans, "ka" : gKaTrans, "eu" : gEuTrans
 };
 
@@ -160,7 +171,7 @@ var gLanguages = [
 	"de", ["Deutsch", "German"],
 	"es", ["Español", "Spanish"],
 	"eu", ["Euskara", "Basque"],
-	//"fr", ["Français", "French"],
+	"fr", ["Français", "French"],
 	"pt", ["Português", "Portuguese"],
 	"ru", ["Pусский", "Russian"],
 	"ro", ["Română", "Romanian"],
@@ -221,11 +232,11 @@ function langNativeName(lang) {
 
 var gTransalatedPages = [
 	"download-free-pdf-viewer", ["ka", "ru", "cn", "de", "es", "fr", "ja", "pt", "ro", "ru", "bg", "sr", "eu"],
-	"download-prev", ["ka", "de", "es", "ja", "pt", "ro", "sr", "eu"],
-	"downloadafter", ["ka", "de", "es", "ja", "pt", "ro", "bg", "sr", "eu"],
-	"free-pdf-reader", ["ka", "cn", "de", "es", "ja", "pt", "ro", "ru", "bg", "sr", "eu"],
-	"manual", ["ka", "ru", "cn", "de", "es", "ja", "pt", "ro", "ru", "bg", "sr", "eu"],
-	"news", ["pt"]
+	"download-prev", ["ka", "de", "fr", "es", "ja", "pt", "ro", "sr", "eu"],
+	"downloadafter", ["ka", "de", "fr", "es", "ja", "pt", "ro", "bg", "sr", "eu"],
+	"free-pdf-reader", ["ka", "cn", "de", "fr", "es", "ja", "pt", "ro", "ru", "bg", "sr", "eu"],
+	"manual", ["ka", "ru", "cn", "de", "fr", "es", "ja", "pt", "ro", "ru", "bg", "sr", "eu"],
+	"news", ["pt", "fr"]
 ];
 
 // return a list of langauges that a given page is translated into
@@ -309,7 +320,7 @@ function autoRedirectToTranslated() {
 	var pageLang = tmp[1];
 	// only redirect if we're on an english page
 	if (!isEng(pageLang)) {
-		alert("autoRedirectToTranslated() called from non-english page");
+		alert("autoRedirectToTranslated() called from non-english page "+tmp);
 		return;
 	}
 	var cookieLang = langFromCookie();
