@@ -284,6 +284,9 @@ var emptyString = ""
 func main() {
 	var err error
 
+	test_txt_with_code_parts()
+	return
+
 	runtime.GOMAXPROCS(runtime.NumCPU())
 	flag.Parse()
 
