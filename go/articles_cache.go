@@ -45,7 +45,7 @@ func buildArticlesJson(articles []*Article) ([]byte, string) {
 	for i := len(articles) - 1; i >= 0; i-- {
 		a := articles[i]
 		/*
-			val := make([]interface{}, 6, 6)		
+			val := make([]interface{}, 6, 6)
 			val[0] = a.PublishedOn.Format("2006-01-02")
 			val[1] = a.Permalink()
 			val[2] = a.Title
@@ -260,20 +260,37 @@ func strToHtml(s string) string {
 	return "<p>" + ns + "</p>"
 }
 
+func textile(s []byte) string {
+	s, replacements := txt_with_code_parts(s)
+	res := textiler.ToHtml(s, false, false)
+	for kStr, v := range replacements {
+		k := []byte(kStr)
+		res = bytes.Replace(res, k, v, -1)
+	}
+	return string(res)
+}
+
+func markdown(s []byte) string {
+	//fmt.Printf("msgToHtml(): markdown\n")
+	s, replacements := txt_with_code_parts(s)
+	renderer := blackfriday.HtmlRenderer(0, "", "")
+	res := blackfriday.Markdown(s, renderer, 0)
+	for kStr, v := range replacements {
+		k := []byte(kStr)
+		res = bytes.Replace(res, k, v, -1)
+	}
+	return string(res)
+}
+
 func msgToHtml(msg []byte, format int) string {
 	switch format {
 	case FormatHtml:
 		//fmt.Printf("msgToHtml(): html\n")
 		return string(msg)
 	case FormatTextile:
-		//fmt.Printf("msgToHtml(): textile\n")
-		s := textiler.ToHtml(msg, false, false)
-		//textiler.ToHtml(msg, false, true)
-		return string(s)
+		return textile(msg)
 	case FormatMarkdown:
-		//fmt.Printf("msgToHtml(): markdown\n")
-		renderer := blackfriday.HtmlRenderer(0, "", "")
-		return string(blackfriday.Markdown(msg, renderer, 0))
+		return markdown(msg)
 	case FormatText:
 		//fmt.Printf("msgToHtml(): text\n")
 		return strToHtml(string(msg))

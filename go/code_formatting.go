@@ -30,11 +30,11 @@ func lang_to_prettify_lang(lang string) string {
 	return ""
 }
 
-func txt_cookie(s string) []byte {
-	return Sha1OfBytes([]byte(s))
+func txt_cookie(s string) string {
+	return Sha1StringOfBytes([]byte(s))
 }
 
-var reCode = regexp.MustCompile("<code.+>.+</code>")
+var reCode = regexp.MustCompile("(?siU)<code.*>.+</code>")
 
 func extractLang(s []byte) (rest, lang []byte) {
 	for len(s) > 0 {
@@ -52,28 +52,19 @@ func extractLang(s []byte) (rest, lang []byte) {
 
 func txt_with_code_parts(txt []byte) ([]byte, map[string][]byte) {
 	code_parts := make(map[string][]byte)
-
 	res := reCode.ReplaceAllFunc(txt, func(s []byte) []byte {
 		s = s[len("<code") : len(s)-len("</code>")]
 		s, lang := extractLang(s)
 		new_code := ""
 		if lang != nil {
 			l := lang_to_prettify_lang(string(lang))
-			new_code = fmt.Sprintf(`<pre class="prettyprint %s">\n%s</pre>`, l, string(s))
+			new_code = fmt.Sprintf(`<pre class="prettyprint %s">%s</pre>`, l, string(s))
 		} else {
-			new_code = fmt.Sprintf(`<pre class="prettyprint">\n%s</pre>`, string(s))
+			new_code = fmt.Sprintf(`<pre class="prettyprint">%s</pre>`, string(s))
 		}
 		cookie := txt_cookie(new_code)
-		code_parts[string(cookie)] = []byte(new_code)
-		return cookie
+		code_parts[cookie] = []byte(new_code)
+		return []byte(cookie)
 	})
 	return res, code_parts
-}
-
-func test_txt_with_code_parts() {
-	//rest, lang := extractLang([]byte(" pl>ho"))
-	//fmt.Printf("rest: '%s', lang: '%s'\n", rest, lang)
-	s := `this is <code cpp>and inside</code> is here`
-	res, _ := txt_with_code_parts([]byte(s))
-	fmt.Printf("res: '%s'\n", res)
 }
