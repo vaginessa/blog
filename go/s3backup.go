@@ -202,7 +202,8 @@ func copyBlobs(config *BackupConfig, blobsDir, blobsS3Dir string) error {
 	copied := 0
 	blobFilesInS3 := make(map[string]bool)
 
-	logger.Noticef("copyBlobs(): %s => %s", blobsDir, blobsS3Dir)
+	dirPrefix := "/" + filepath.Base(blobsDir) + "/"
+	logger.Noticef("copyBlobs(): dirPrefix: '%s', %s => %s", dirPrefix, blobsDir, blobsS3Dir)
 
 	if keys, err := listBlobFiles(config, blobsS3Dir); err != nil {
 		logger.Errorf("listBlobFiles() failed with %s\n", err.Error())
@@ -230,12 +231,12 @@ func copyBlobs(config *BackupConfig, blobsDir, blobsS3Dir string) error {
 			return nil
 		}
 
-		idx := strings.Index(path, "/blobs/")
+		idx := strings.Index(path, dirPrefix)
 		if idx == -1 {
 			logger.Errorf("copyBlobs(): unknown file '%s'", path)
 			return errors.New("unknown file")
 		}
-		file := path[idx+len("/blobs/"):]
+		file := path[idx+len(dirPrefix):]
 		s3Path := filepath.Join(blobsS3Dir, file)
 		if _, ok := blobFilesInS3[s3Path]; ok {
 			existing += 1
