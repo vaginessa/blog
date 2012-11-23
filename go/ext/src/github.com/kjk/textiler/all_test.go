@@ -123,8 +123,14 @@ func TestParseInline(t *testing.T) {
 		"foo:**bold**?is here", "foo:<b>bold</b>?is here",
 		`"Hobix":http://hobix.com/`, `<a href="http://hobix.com/">Hobix</a>`,
 		`!http://hobix.com/sample.jpg!`, `<img src="http://hobix.com/sample.jpg" alt="">`,
+		`!>http://foo.com/me.jpg!`, `<img src="http://foo.com/me.jpg" style="float: right;" alt="">`,
+		`!<http://foo.com/me.jpg!`, `<img src="http://foo.com/me.jpg" style="float: left;" alt="">`,
+		`!=http://foo.com/me.jpg!`, `<img src="http://foo.com/me.jpg" style="display: block; margin: 0 auto;" alt="">`,
+		`!(me)http://foo.com/me.jpg!`, `<img src="http://foo.com/me.jpg" class="me" alt="">`,
 		`!openwindow1.gif(Bunny.)!`, `<img src="openwindow1.gif" title="Bunny." alt="Bunny.">`,
 		`!openwindow1.gif!:http://hobix.com/`, `<a href="http://hobix.com/" class="img"><img src="openwindow1.gif" alt=""></a>`,
+		// TODO: technically, it should be: style="float:right; padding:8px;"
+		`!{float:right;padding:8px}http://upload.wikimedia.org/poster.jpg(Social Network)!`, `<img src="http://upload.wikimedia.org/poster.jpg" style="float:right;padding:8px;" title="Social Network" alt="Social Network">`,
 		`@p@`, "<code>p</code>",
 		`before@foo@`, "before<code>foo</code>",
 		`bef@bar@after`, "bef<code>bar</code>after",
@@ -138,25 +144,6 @@ func TestParseInline(t *testing.T) {
 		if !bytes.Equal(expected, actual) {
 			ToHtml([]byte(s), false, true)
 			t.Fatalf("\nSrc:[%s]\nExp:[%s]\nGot:[%s]", s, string(expected), string(actual))
-		}
-	}
-}
-
-func TestItalic(t *testing.T) {
-	italics := []string{
-		"____", "", "",
-		"__f__", "f", "",
-		"__foo__o", "foo", "o",
-		"__a_d___lo", "a_d", "_lo",
-	}
-	for i := 0; i < len(italics)/3; i++ {
-		rest, inside := parseItalic([]byte(italics[i*3]))
-		er1, er2 := []byte(italics[i*3+1]), []byte(italics[i*3+2])
-		if !bytes.Equal(inside, er1) {
-			t.Fatalf("\nExpected[%#v]\nActual  [%#v]", er1, inside)
-		}
-		if !bytes.Equal(rest, er2) {
-			t.Fatalf("\nExpected[%#v]\nActual  [%#v]", er2, rest)
 		}
 	}
 }
