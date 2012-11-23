@@ -119,7 +119,7 @@ func s3PutRetry(config *BackupConfig, local, remote string, public bool) error {
 // tests if s3 credentials are valid and aborts if aren't
 func ensureValidConfig(config *BackupConfig) {
 	if !PathExists(config.LocalDir) {
-		log.Fatalf("Invalid s3 backup: directory to backup '%s' doesn't exist\n", config.LocalDir)
+		log.Fatalf("Invalid s3 backup: directory to backup '%s' doesn't exist", config.LocalDir)
 	}
 
 	if !strings.HasSuffix(config.S3Dir, bucketDelim) {
@@ -127,7 +127,7 @@ func ensureValidConfig(config *BackupConfig) {
 	}
 	_, err := listBackupFiles(config, 10)
 	if err != nil {
-		log.Fatalf("Invalid s3 backup: bucket.List failed %s\n", err.Error())
+		log.Fatalf("Invalid s3 backup: bucket.List failed %s", err.Error())
 	}
 }
 
@@ -206,7 +206,7 @@ func copyBlobs(config *BackupConfig, blobsDir, blobsS3Dir string) error {
 	logger.Noticef("copyBlobs(): dirPrefix: '%s', %s => %s", dirPrefix, blobsDir, blobsS3Dir)
 
 	if keys, err := listBlobFiles(config, blobsS3Dir); err != nil {
-		logger.Errorf("listBlobFiles() failed with %s\n", err.Error())
+		logger.Errorf("listBlobFiles() failed with %s", err.Error())
 		return err
 	} else {
 		for _, key := range keys {
@@ -224,7 +224,7 @@ func copyBlobs(config *BackupConfig, blobsDir, blobsS3Dir string) error {
 		}
 		isDir, err := PathIsDir(path)
 		if err != nil {
-			logger.Errorf("PathIsDir() for %s failed with %s\n", path, err.Error())
+			logger.Errorf("PathIsDir() for %s failed with %s", path, err.Error())
 			return err
 		}
 		if isDir {
@@ -247,12 +247,12 @@ func copyBlobs(config *BackupConfig, blobsDir, blobsS3Dir string) error {
 			logger.Errorf("s3Put of '%s' to '%s' failed with %s", path, s3Path, err.Error())
 			return err
 		} else {
-			logger.Noticef("copyBlobs(): s3Put '%s' as '%s'\n", path, s3Path)
+			logger.Noticef("copyBlobs(): s3Put '%s' as '%s'", path, s3Path)
 		}
 		copied += 1
 		return nil
 	})
-	logger.Noticef("copyBlobs(): skipped %d existing files, copied %d files\n", existing, copied)
+	logger.Noticef("copyBlobs(): skipped %d existing files, copied %d files", existing, copied)
 	return err
 }
 
