@@ -297,7 +297,7 @@ func (s *Store) readExistingBlogData(fileDataPath string) error {
 }
 
 func NewStore(dataDir string) (*Store, error) {
-	dataFilePath := filepath.Join(dataDir, "blogdata.txt")
+	dataFilePath := filepath.Join(dataDir, "data", "blogdata.txt")
 	store := &Store{
 		dataDir:            dataDir,
 		texts:              make([]Text, 0),

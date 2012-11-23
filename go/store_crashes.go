@@ -260,7 +260,7 @@ func (s *StoreCrashes) readExistingCrashesData(fileDataPath string) error {
 }
 
 func NewStoreCrashes(dataDir string) (*StoreCrashes, error) {
-	dataFilePath := filepath.Join(dataDir, "crashesdata.txt")
+	dataFilePath := filepath.Join(dataDir, "data", "crashesdata.txt")
 	store := &StoreCrashes{
 		dataDir:       dataDir,
 		crashes:       make([]*Crash, 0),

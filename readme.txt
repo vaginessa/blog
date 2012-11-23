@@ -1,15 +1,10 @@
-This is an example of a web blog running on an Google's App Engine.
+This is a simple blog engine and my personal website running at
+http://blog.kowalczyk.info
 
-It's not a generic blogging engine but if you want to run your blog
-on App Engine, you might look at the sources for inspiration.
+There is an older, no longer maintained App Engine version in appengine
+directory.
 
-Most of the code could be easily reused since it implements the
-necessary parts for a blog, like post storage and editing.
+The current version is built in go (go directory).
 
-The code was written by me (Krzysztof Kowalczyk) and is placed in
+The code was written by Krzysztof Kowalczyk and is placed in
 public domain.
-
-This code has been tested in real life (http://blog.kowalczyk.info runs on it).
-
-It also uses other people's code for doing textile->html and
-markdown->html conversion.

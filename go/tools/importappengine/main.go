@@ -394,7 +394,7 @@ func copyBlobs(texts []*Text) {
 	}
 }
 
-func blobCrahesPath(dir, sha1 string) string {
+func blobCrashesPath(dir, sha1 string) string {
 	d1 := sha1[:2]
 	d2 := sha1[2:4]
 	return filepath.Join(dir, "blobs_crashes", d1, d2, sha1)
@@ -427,7 +427,7 @@ func getCrashPrefixData(crash *Crash) []byte {
 
 func copyCrashesBlobs(crashes []*Crash) {
 	for _, c := range crashes {
-		srcPath := blobCrahesPath(srcDataDir, c.Sha1Str)
+		srcPath := blobCrashesPath(srcDataDir, c.Sha1Str)
 		srcData, err := ReadFileAll(srcPath)
 		if err != nil {
 			panic("ReadFileAll() failed")
@@ -440,7 +440,7 @@ func copyCrashesBlobs(crashes []*Crash) {
 		copy(c.Sha1[:], sha1)
 		c.Sha1Str = fmt.Sprintf("%x", c.Sha1)
 
-		dstPath := blobCrahesPath(dstDataDir, c.Sha1Str)
+		dstPath := blobCrashesPath(dstDataDir, c.Sha1Str)
 		if err := CreateDirIfNotExists(filepath.Dir(dstPath)); err != nil {
 			panic("failed to create dir for dstPath")
 		}
@@ -529,9 +529,16 @@ func main() {
 	// must copy before serializing because it updates some values
 	copyCrashesBlobs(crashes)
 	strCrashes := serCrashes(crashes)
-	saveStrings(filepath.Join(dstDataDir, "blogdata.txt"), strs)
-	saveArticleRedirects(filepath.Join(dstDataDir, "article_redirects.txt"), redirects)
-	saveStrings(filepath.Join(dstDataDir, "crashesdata.txt"), strCrashes)
+
+	dataDir := filepath.Join(dstDataDir, "data")
+	if err := CreateDirIfNotExists(dataDir); err != nil {
+		panic("failed to create dir")
+	}
+
+	saveStrings(filepath.Join(dataDir, "blogdata.txt"), strs)
+	saveArticleRedirects(filepath.Join(dataDir, "article_redirects.txt"), redirects)
+	saveStrings(filepath.Join(dataDir, "crashesdata.txt"), strCrashes)
+
 	copyBlobs(texts)
 	fmt.Printf("%d texts, %d articles, %d redirects, %d crashes\n", len(texts), len(articles), len(redirects), len(crashes))
 }
