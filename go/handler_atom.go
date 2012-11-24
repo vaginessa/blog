@@ -10,7 +10,7 @@ import (
 func handleAtom(w http.ResponseWriter, r *http.Request, excludeNotes bool) {
 	articles := getCachedArticles(false)
 	if excludeNotes {
-		articles = filterArticlesByTag(articles, "note")
+		articles = filterArticlesByTag(articles, "note", false)
 	}
 	n := 25
 	if n > len(articles) {

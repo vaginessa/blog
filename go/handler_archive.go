@@ -67,14 +67,20 @@ func buildYearsFromArticles(articles []*Article) []Year {
 	return res
 }
 
-func filterArticlesByTag(articles []*Article, tag string) []*Article {
+func filterArticlesByTag(articles []*Article, tag string, include bool) []*Article {
 	res := make([]*Article, 0)
 	for _, a := range articles {
+		hasTag := false
 		for _, t := range a.Tags {
 			if tag == t {
-				res = append(res, a)
+				hasTag = true
 				break
 			}
+		}
+		if include && hasTag {
+			res = append(res, a)
+		} else if !include && !hasTag {
+			res = append(res, a)
 		}
 	}
 	return res
@@ -100,7 +106,7 @@ func showArchiveArticles(w http.ResponseWriter, r *http.Request, articles []*Art
 func showArchivePage(w http.ResponseWriter, r *http.Request, tag string) {
 	articles := getCachedArticles(IsAdmin(r))
 	if tag != "" {
-		articles = filterArticlesByTag(articles, tag)
+		articles = filterArticlesByTag(articles, tag, true)
 	}
 	showArchiveArticles(w, r, articles, tag)
 }
