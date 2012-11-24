@@ -69,7 +69,7 @@ func getExtremeOptDir() string {
 
 func serveFileFromDir(w http.ResponseWriter, r *http.Request, dir, fileName string) {
 	filePath := filepath.Join(dir, fileName)
-	logger.Noticef("serveFileFromDir(): '%s'", filePath)
+	//logger.Noticef("serveFileFromDir(): '%s'", filePath)
 	if !PathExists(filePath) {
 		logger.Noticef("serveFileFromDir() file '%s' doesn't exist, referer: '%s'", fileName, getReferer(r))
 	}
