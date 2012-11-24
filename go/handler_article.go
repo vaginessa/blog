@@ -33,7 +33,6 @@ func handleArticle(w http.ResponseWriter, r *http.Request) {
 	// we expect /article/$shortId/$url
 	parts := strings.SplitN(url[len("/article/"):], "/", 2)
 	if len(parts) != 2 {
-		logger.Noticef("parts: %v", parts)
 		serve404(w, r)
 		return
 	}

@@ -160,8 +160,28 @@ func getReferer(r *http.Request) string {
 	return r.Header.Get("Referer")
 }
 
+var noLog404 = map[string]bool{
+	"/crossdomain.xml":                        true,
+	"/article/Exercise-links-1.html":          true,
+	"/article/Ecco-for-free.html":             true,
+	"/article/Disappointed-by-The-Bat.html":   true,
+	"/article/Comments-need-not-apply.html":   true,
+	"/article/Browsing-Newton.html":           true,
+	"/article/Perl-and-lisp-programmers.html": true,
+}
+
+func shouldLog404(s string) bool {
+	if strings.HasPrefix(s, "/apple-touch-icon") {
+		return false
+	}
+	_, ok := noLog404[s]
+	return !ok
+}
+
 func serve404(w http.ResponseWriter, r *http.Request) {
-	logger.Noticef("404: '%s', referer: '%s'", r.URL.Path, getReferer(r))
+	if shouldLog404(r.URL.Path) {
+		logger.Noticef("404: '%s', referer: '%s'", r.URL.Path, getReferer(r))
+	}
 	http.NotFound(w, r)
 }
 
