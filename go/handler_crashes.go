@@ -181,7 +181,7 @@ func handleCrashesRss(w http.ResponseWriter, r *http.Request) {
 	}
 
 	feed := &atom.Feed{
-		Title:   fmt.Sprintf("%s crashes"),
+		Title:   fmt.Sprintf("Crashes %s", appName),
 		Link:    fmt.Sprintf("http://blog.kowalczyk.info/app/crashesrss?app_name=%s", appName),
 		PubDate: pubDate}
 	baseUrl := fmt.Sprintf("http://blog.kowalczyk.info/app/crashes?app_name=%s", appName)
