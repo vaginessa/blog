@@ -201,12 +201,6 @@ func userIsAdmin(cookie *SecureCookieValue) bool {
 	return cookie.TwitterUser == "kjk"
 }
 
-/*
-// url: /blog
-func handleBlogMain(w http.ResponseWriter, r *http.Request) {
-	http.Redirect(w, r, "/", 302)
-}*/
-
 // reads the configuration file from the path specified by
 // the config command line flag.
 func readConfig(configFile string) error {

@@ -9,6 +9,8 @@
 </head>
 
 <body>
+  {{ if .User }}Logged in as {{ .User }}. {{ end }}
+
   See crash reports for:
   <ul>
   {{ range .Apps }}

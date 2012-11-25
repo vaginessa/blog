@@ -7,6 +7,7 @@ import (
 	"html/template"
 	"io/ioutil"
 	"net/http"
+	"net/url"
 	"sort"
 	"strconv"
 	"strings"
@@ -71,6 +72,30 @@ func (r Reverse) Less(i, j int) bool {
 	return r.Interface.Less(j, i)
 }
 
+func CanSeeCrashes(r *http.Request, app string) bool {
+	user := getSecureCookie(r).TwitterUser
+	if user == "kjk" {
+		return true
+	}
+	if user == "zeniko_ch" && (app == "SumatraPDF" || app == "") {
+		return true
+	}
+	return false
+}
+
+var notLoggedIn = `<html><body>Need to <a href="/login?redirect=%s">login</a> to see crashes.</body></html>`
+var loggedInButNoAccess = `<html><body>You're logged in as %s. No access. <a href="/logout?redirect=%s">logout</a>`
+
+func serveCrashLoginLogout(w http.ResponseWriter, r *http.Request) {
+	url := url.QueryEscape(r.URL.Path)
+	user := getSecureCookie(r).TwitterUser
+	if user == "" {
+		fmt.Fprintf(w, notLoggedIn, url)
+	} else {
+		fmt.Fprintf(w, loggedInButNoAccess, user, url)
+	}
+}
+
 func NewAppDisplay(app *App, addCrashesPerDay bool) *AppDisplay {
 	res := &AppDisplay{App: app}
 	if !addCrashesPerDay {
@@ -100,8 +125,10 @@ func showCrashesIndex(w http.ResponseWriter, r *http.Request) {
 	apps := storeCrashes.GetApps()
 	model := struct {
 		Apps []*App
+		User string
 	}{
 		Apps: apps,
+		User: getSecureCookie(r).TwitterUser,
 	}
 	ExecTemplate(w, tmplCrashReportsIndex, model)
 }
@@ -230,13 +257,13 @@ func handleCrashesRss(w http.ResponseWriter, r *http.Request) {
 // /app/crashes[?app_name=${appName}][&day=${day}][&ip_addr=${ipAddrInternal}]
 // [&crashing_line=${crashingLine}a]
 func handleCrashes(w http.ResponseWriter, r *http.Request) {
-	if !IsAdmin(r) {
-		serve404(w, r)
-		return
-	}
 	appName := getTrimmedFormValue(r, "app_name")
 	if appName == "" {
 		showCrashesIndex(w, r)
+		return
+	}
+	if !CanSeeCrashes(r, "") {
+		serveCrashLoginLogout(w, r)
 		return
 	}
 	app := storeCrashes.GetAppByName(appName)
@@ -291,8 +318,8 @@ func readCrashReport(sha1 []byte) ([]byte, error) {
 
 // /app/crashshow?crash_id=${crash_id}
 func handleCrashShow(w http.ResponseWriter, r *http.Request) {
-	if !IsAdmin(r) {
-		serve404(w, r)
+	if !CanSeeCrashes(r, "") {
+		serveCrashLoginLogout(w, r)
 		return
 	}
 	crashIdStr := getTrimmedFormValue(r, "crash_id")
