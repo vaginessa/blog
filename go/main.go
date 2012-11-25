@@ -2,7 +2,7 @@ package main
 
 import (
 	"bytes"
-	"code.google.com/p/gorilla/mux"
+	_ "code.google.com/p/gorilla/mux"
 	"code.google.com/p/gorilla/securecookie"
 	"encoding/hex"
 	"encoding/json"
@@ -187,7 +187,7 @@ func shouldLog404(s string) bool {
 }
 
 func serve404(w http.ResponseWriter, r *http.Request) {
-	if shouldLog404(r.URL.Path) {
+	if getReferer(r) != "" && shouldLog404(r.URL.Path) {
 		logger.Noticef("404: '%s', referer: '%s'", r.URL.Path, getReferer(r))
 	}
 	http.NotFound(w, r)
@@ -200,6 +200,12 @@ func serveErrorMsg(w http.ResponseWriter, msg string) {
 func userIsAdmin(cookie *SecureCookieValue) bool {
 	return cookie.TwitterUser == "kjk"
 }
+
+/*
+// url: /blog
+func handleBlogMain(w http.ResponseWriter, r *http.Request) {
+	http.Redirect(w, r, "/", 302)
+}*/
 
 // reads the configuration file from the path specified by
 // the config command line flag.
@@ -301,12 +307,6 @@ func makeTimingHandler(fn func(http.ResponseWriter, *http.Request)) http.Handler
 	}
 }
 
-// url: /blog
-func handleBlogMain(w http.ResponseWriter, r *http.Request) {
-	logger.Notice("handleBlogMain()")
-	serve404(w, r)
-}
-
 var emptyString = ""
 
 func main() {
@@ -342,9 +342,6 @@ func main() {
 	}
 
 	readRedirects()
-
-	r := mux.NewRouter()
-	r.HandleFunc("/blog", makeTimingHandler(handleBlogMain))
 
 	http.Handle("/", makeTimingHandler(handleMainPage))
 	http.HandleFunc("/favicon.ico", handleFavicon)
@@ -382,7 +379,7 @@ func main() {
 	http.Handle("/gfx/", makeTimingHandler(handleGfx))
 	http.Handle("/markitup/", makeTimingHandler(handleMarkitup))
 	http.Handle("/djs/", makeTimingHandler(handleDjs))
-	http.Handle("/blog", r)
+	//http.HandleFunc("/blog", handleBlogMain)
 
 	backupConfig := &BackupConfig{
 		AwsAccess: *config.AwsAccess,

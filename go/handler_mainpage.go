@@ -42,7 +42,6 @@ func handleDjs(w http.ResponseWriter, r *http.Request) {
 
 // /
 func handleMainPage(w http.ResponseWriter, r *http.Request) {
-
 	if redirectIfNeeded(w, r) {
 		return
 	}
