@@ -122,7 +122,7 @@ func ListFilesInDir(dir string, recursive bool) []string {
 			return err
 		}
 		if isDir {
-			if recursive {
+			if recursive || path == dir {
 				return nil
 			}
 			return filepath.SkipDir
