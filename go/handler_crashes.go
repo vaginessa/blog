@@ -400,6 +400,23 @@ func extractAppVer(appName string, crashData []byte) string {
 	return ""
 }
 
+var blacklistedSumatraVersions = []string{"1.5.1", "1.6", "1.7", "1.8", "1.9",
+	"2.0", "2.0.1", "2.1", "2.1.1"}
+
+// we don't need to process crashes from old version, so blacklist specific
+// versions
+func shouldSaveCrash(app, ver string) bool {
+	if app == "SumatraPDF" {
+		for _, v := range blacklistedSumatraVersions {
+			if v == ver {
+				return false
+			}
+		}
+		return true
+	}
+	return true
+}
+
 // POST /app/crashsubmit?appname=${appName}&file=${crashData}
 func handleCrashSubmit(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
@@ -425,12 +442,13 @@ func handleCrashSubmit(w http.ResponseWriter, r *http.Request) {
 	}
 
 	appVer := extractAppVer(appName, crashData)
-	err = storeCrashes.SaveCrash(appName, appVer, ipAddr, crashData)
-	if err != nil {
-		logger.Noticef("handleCrashSubmit(): storeCrashes.SaveCrash() failed with %s", err.Error())
-		return
+	if shouldSaveCrash(appName, appVer) {
+		err = storeCrashes.SaveCrash(appName, appVer, ipAddr, crashData)
+		if err != nil {
+			logger.Noticef("handleCrashSubmit(): storeCrashes.SaveCrash() failed with %s", err.Error())
+			return
+		}
+		logger.Noticef("handleCrashSubmit(): %s %s %s", appName, appVer, ipAddr)
 	}
-	s := fmt.Sprintf("")
-	w.Write([]byte(s))
-	logger.Noticef("handleCrashSubmit(): %s %s %s", appName, appVer, ipAddr)
+	w.Write([]byte(""))
 }
