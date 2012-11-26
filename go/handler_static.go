@@ -3,6 +3,7 @@ package main
 import (
 	"net/http"
 	"path/filepath"
+	"strings"
 )
 
 func getWwwDir() string {
@@ -68,11 +69,33 @@ func getExtremeOptDir() string {
 }
 
 func serveFileFromDir(w http.ResponseWriter, r *http.Request, dir, fileName string) {
-	filePath := filepath.Join(dir, fileName)
-	//logger.Noticef("serveFileFromDir(): '%s'", filePath)
-	if !PathExists(filePath) {
-		logger.Noticef("serveFileFromDir() file '%s' doesn't exist, referer: '%s'", fileName, getReferer(r))
+	if strings.HasSuffix(fileName, "/") {
+		url := r.URL.Path
+		url = url[:len(url)-1]
+		//logger.Noticef("serveFileFromDir(): redirecting '%s' => '%s'", r.URL.Path, url)
+		http.Redirect(w, r, url, 302)
+		return
 	}
+	filePath := filepath.Join(dir, fileName)
+	if !PathExists(filePath) {
+		// in logs I saw a url that was correct but had "&foo" garbage appended to it
+		// try to handle this case by redirecting to a valid url (if its file exists)
+		idx := strings.LastIndex(filePath, "&")
+		if idx != -1 {
+			filePath = filePath[:idx]
+			if PathExists(filePath) {
+				url := r.URL.Path
+				idx = strings.LastIndex(url, "&")
+				url = url[:idx]
+				//logger.Noticef("serveFileFromDir(): redirecting '%s' => '%s'", r.URL.Path, url)
+				http.Redirect(w, r, url, 302)
+				return
+			}
+		}
+		logger.Noticef("serveFileFromDir() file '%s' doesn't exist, referer: '%s'", fileName, getReferer(r))
+		return
+	}
+	logger.Noticef("serveFileFromDir(): '%s'", filePath)
 	http.ServeFile(w, r, filePath)
 }
 

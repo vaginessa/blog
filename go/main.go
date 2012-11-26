@@ -176,6 +176,7 @@ var noLog404 = map[string]bool{
 	"/2002/07/30/stuid-coding-mistake-of-the-day.html":               true,
 	"/article/Corman-Lisp.html":                                      true,
 	"/article/Offshore-outsourcing.html":                             true,
+	"/article/Nabble-hosted-forums.html":                             true,
 }
 
 func shouldLog404(s string) bool {
