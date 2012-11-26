@@ -422,15 +422,21 @@ func getCrashPrefixData(crash *Crash) []byte {
 	return []byte(s)
 }
 
+func storeCrashingLine(d []byte) string {
+	l := ExtractSumatraCrashingLine(d)
+	return remSep(l)
+}
+
 func (s *StoreCrashes) SaveCrash(appName, appVer, ipAddr string, crashData []byte) error {
 	s.Lock()
 	defer s.Unlock()
 
-	// TODO: white-liest app names?
+	// TODO: white-list app names?
 	app := s.FindOrCreateApp(appName)
 	programVersionInterned := s.FindOrCreateVersion(appVer)
 	ipAddrInterned := s.FindOrCreateIp(ipAddrToInternal(ipAddr))
-	crashingLine := s.FindOrCreateCrashingLine(ExtractSumatraCrashingLine(crashData))
+	cl := storeCrashingLine(crashData)
+	crashingLine := s.FindOrCreateCrashingLine(cl)
 
 	c := &Crash{
 		Id:             len(s.crashes),
@@ -448,10 +454,14 @@ func (s *StoreCrashes) SaveCrash(appName, appVer, ipAddr string, crashData []byt
 	sha1 := Sha1OfBytes(dstData)
 	copy(c.Sha1[:], sha1)
 
-	err := s.writeMessageAsSha1(crashData, sha1)
-	if err != nil {
+	if err := s.writeMessageAsSha1(crashData, sha1); err != nil {
 		return err
 	}
+	crashLine := serCrash(c)
+	if err := s.appendString(crashLine); err != nil {
+		return err
+	}
+
 	s.appendCrash(c)
 	return nil
 }
