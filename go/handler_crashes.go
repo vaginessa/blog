@@ -87,7 +87,7 @@ var notLoggedIn = `<html><body>Need to <a href="/login?redirect=%s">login</a> to
 var loggedInButNoAccess = `<html><body>You're logged in as %s. No access. <a href="/logout?redirect=%s">logout</a>`
 
 func serveCrashLoginLogout(w http.ResponseWriter, r *http.Request) {
-	url := url.QueryEscape(r.URL.Path)
+	url := url.QueryEscape(r.URL.Path + "?" + r.URL.RawQuery)
 	user := getSecureCookie(r).TwitterUser
 	if user == "" {
 		fmt.Fprintf(w, notLoggedIn, url)
