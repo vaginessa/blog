@@ -236,7 +236,7 @@ func handleCrashesRss(w http.ResponseWriter, r *http.Request) {
 			var buf bytes.Buffer
 			tmplCrashesRss.Execute(&buf, model)
 			html := string(buf.Bytes())
-			pubDate, _ = time.Parse(day, "2006-01-02")
+			pubDate, _ = time.Parse("2006-01-02", day)
 			e := &atom.Entry{
 				Title:       fmt.Sprintf("%d %s crashes on %s", len(crashes), appName, day),
 				Link:        fmt.Sprintf("%s&day=%s", baseUrl, day),
