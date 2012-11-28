@@ -60,6 +60,7 @@ var (
 	dataDir string
 
 	tmplLogs                 = "logs.html"
+	tmplTimings              = "timings.html"
 	tmplMainPage             = "mainpage.html"
 	tmplArticle              = "article.html"
 	tmplArchive              = "archive.html"
@@ -69,7 +70,7 @@ var (
 	tmplCrashReport          = "crash_report.html"
 	templateNames            = [...]string{tmplLogs, tmplMainPage, tmplArticle,
 		tmplArchive, tmplEdit, tmplCrashReportsIndex, tmplCrashReportsAppIndex,
-		tmplCrashReport,
+		tmplCrashReport, tmplTimings,
 		"analytics.html", "inline_css.html", "tagcloud.js", "page_navbar.html"}
 	templatePaths []string
 	templates     *template.Template
@@ -299,6 +300,8 @@ func makeTimingHandler(fn func(http.ResponseWriter, *http.Request)) http.Handler
 			}
 			logger.Noticef("'%s' took %f seconds to serve", url, duration.Seconds())
 		}
+		// TODO: add query to url
+		LogSlowPage(r.URL.Path, duration)
 	}
 }
 
@@ -342,6 +345,7 @@ func main() {
 	http.HandleFunc("/favicon.ico", handleFavicon)
 	http.HandleFunc("/robots.txt", handleRobotsTxt)
 	http.HandleFunc("/logs", handleLogs)
+	http.HandleFunc("/timings", handleTimings)
 	http.HandleFunc("/oauthtwittercb", handleOauthTwitterCallback)
 	http.HandleFunc("/login", handleLogin)
 	http.HandleFunc("/logout", handleLogout)
