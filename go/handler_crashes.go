@@ -20,7 +20,7 @@ func (c *Crash) Version() string {
 		return "no ver"
 	}
 	if strings.HasSuffix(ver, " pre-release") {
-		return ver[:len(ver)-1-len(" pre-release")]
+		return ver[:len(ver)-len(" pre-release")]
 	}
 	return ver
 }
