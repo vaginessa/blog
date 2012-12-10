@@ -307,11 +307,25 @@ func makeTimingHandler(fn func(http.ResponseWriter, *http.Request)) http.Handler
 
 var emptyString = ""
 
+var test = []byte(`Crashed thread:
+0114C072 01:0004B072 sumatrapdf.exe!CrashMe+0x2 c:\users\kkowalczyk\src\sumatrapdf\src\utils\baseutil.cpp+14
+0112F0AD 01:0002E0AD sumatrapdf.exe!PrintToDevice+0x1d c:\users\kkowalczyk\src\sumatrapdf\src\print.cpp+111
+011303E2 01:0002F3E2 sumatrapdf.exe!PrintThreadData::PrintThread+0x42 c:\users\kkowalczyk\src\sumatrapdf\src\print.cpp+420
+76031114 01:00050114 kernel32.dll!BaseThreadInitThunk+0x12
+7757B299 01:0005A299 ntdll.dll!RtlInitializeExceptionChain+0x63
+7757B26C 01:0005A26C ntdll.dll!RtlInitializeExceptionChain+0x36`)
+
 func main() {
 	var err error
 
 	runtime.GOMAXPROCS(runtime.NumCPU())
 	flag.Parse()
+
+	/*findFileFixes("../../../sumatrapdf")
+	return
+	s := linkifyCrashReport(test)
+	fmt.Print(string(s))
+	return*/
 
 	if *inProduction {
 		reloadTemplates = false
