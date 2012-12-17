@@ -51,8 +51,16 @@ body {
   color: gray;
 }
 
+a.articlelink {
+  text-decoration: none;
+  color: black;
+  font-size: 110%;
 }
 
+a.articlelink:hover {
+  color: white;
+  background-color: black;
+}
 </style>
 
 <script type="text/javascript" src="{{ .JqueryUrl }}"></script>
@@ -77,9 +85,10 @@ $(document).ready(function(){
 
 <div id="tophdr">
   <h1 style="padding-left:12px">
-    <a class="namelink" href="/">Krzysztof Kowalczyk</a>&nbsp;&nbsp;&nbsp;
-    <a class="namelink" href="/atom.xml"><img alt="Rss feed" src="http://kjkpub.s3.amazonaws.com/blog/img/feed-icon-14x14.png" style="position:relative; top:2px;" width=14 height=14> <span style="font-size: 80%">RSS</span></a>
+    <span class="namelink"> Krzysztof Kowalczyk</span>&nbsp;&nbsp;&nbsp;
     <span style="float:right; font-size:80%; font-weight:normal;  margin-right: 12px;">
+      <a class="hdrlink" href="/static/resume.html">About me</a>
+      <span style="color:gray">&nbsp;&bull;&nbsp;</span>
       <a class="hdrlink" href="/archives.html">Articles</a>
       <span style="color:gray">&nbsp;&bull;&nbsp;</span>
       <a href="/software/" class="hdrlink">My Software</a>
@@ -98,48 +107,14 @@ $(document).ready(function(){
     <table valign=top>
       <tr>
         <td valign=top colspan=2>
-        <span class="bigtxt">Krzysztof Kowalczyk</span>
+        <span class="bigtxt">Recent articles</span>
         <br><br>
-        </td>
-      </tr>
-      <tr>
-        <td valign=top style="padding-right: 14px;">
-          <a href="/static/resume.html">
-          <img src="https://kjkpub.s3.amazonaws.com/blog/img/head-big.jpg" border=0></a>
-        </td>
-
-        <td valign=top>
-          <script>
-            var email = "";
-            email += "kkowalczyk";
-            email += "@";
-            email += "gmail.com"
-            hyperlink = "<a href='mailto:email'>email</a>";
-            hyperlink = hyperlink.replace(/email/g, email);
-            document.write(hyperlink);
-          </script>
-          <br><a href="/static/resume.html">resume</a>
-
-          <br>
-          <br><a href="http://github.com/kjk">github.com/kjk</a>
-          <br><a href="http://code.google.com/u/@UxJfQFJRABhHWQN6/">code.google.com/u/kkowalczyk</a>
-          <br>
-
-          <br><a href="https://plus.google.com/112100039263959533932">Google+</a>
-          <br><a href="http://twitter.com/kjk">twitter.com/kjk</a>
-        </td>
-      </tr>
-      <tr>
-        <td colspan=2>
-          <br>
-          <div style="font-size:130%; font-weight: bold;">Recent articles:</div>
         </td>
       </tr>
       {{ range .Articles }}
       <tr>
-        <td colspan=2 style="padding-top:2px; max-width:380px">
-          <a href="/{{ .Permalink }}">
-            {{ if .Title }} {{ .Title }} {{ else }} no title {{ end }}</a>
+        <td colspan=2 style="padding-top:2px; padding-bottom: 4px; max-width:380px">
+          <a class="articlelink" href="/{{ .Permalink }}">{{.Title}}</a>
           {{ if .TagsDisplay }}&nbsp;
             <span style="font-size:80%">
             <span class="taglink">in:</span> {{ .TagsDisplay }}</span>
@@ -166,7 +141,7 @@ $(document).ready(function(){
     -->
       <tr>
         <td colspan=2 style="padding-top:12px; max-width:380px">
-          <span class="light">See <a href="/archives.html">all articles</a></span>
+          <span class="light">See <a href="/archives.html">all articles</a>, subscribe to <a href="/atom.xml">RSS feed</a></span>
         </td>
       </tr>
     </table>

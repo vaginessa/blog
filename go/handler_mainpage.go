@@ -64,7 +64,7 @@ func handleMainPage(w http.ResponseWriter, r *http.Request) {
 		AnalyticsCode: *config.AnalyticsCode,
 		JqueryUrl:     jQueryUrl(),
 		LogInOutUrl:   getLogInOutUrl(r),
-		Articles:      store.GetRecentArticles(10, isAdmin),
+		Articles:      store.GetRecentArticles(15, isAdmin),
 		ArticlesJsUrl: getArticlesJsUrl(isAdmin),
 	}
 

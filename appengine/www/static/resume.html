@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
- <meta http-equiv="Content-Type" content="text/html" />
+ <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
  <title>Krzysztof Kowalczyk Resume</title>
 
 <style>
@@ -11,13 +11,13 @@
 		font: normal 9pt Arial, Helvetica, sans-serif
 	}
 	table.resume {
-		width: 550pt;	
+		width: 550pt;
 	}
 	table.resume td.gutter {
 		border-left: 1pt solid black;
 	}
 	table.resume td.details {
-		padding-left:7pt; 
+		padding-left:7pt;
 		padding-bottom:12pt;
 	}
 	span.name {
@@ -25,7 +25,7 @@
 		font-size: 14pt;
 	}
 	td.category, td.subcategory {
-		text-align:right; 
+		text-align:right;
 		padding-right:2pt;
 	}
 	td.category {
@@ -92,10 +92,16 @@
   <td class="category">&nbsp;</td>
   <td rowspan=100 class="gutter">&nbsp;</td>
   <td class="details">
-    <span class="name">Krzysztof Kowalczyk </span><br>
+    <span class="name"><a href="http://blog.kowalczyk.info">Krzysztof Kowalczyk</a></span><br><br>
     <table>
       <tr>
-        <td>
+        <td style="padding-right: 14px; vertical-align: top">
+          <a href="http://blog.kowalczyk.info">
+            <img src="//kjkpub.s3.amazonaws.com/blog/img/head-big.jpg" border=0>
+          </a>
+        </td>
+
+        <td style="vertical-align: top">
           <i>3388 17th St. #202</i><br>
           <i>San Francisco, CA, 94110</i><br>
           <!--<i>(206) 683-5494</i><br>-->
@@ -108,9 +114,10 @@
             hyperlink = hyperlink.replace(/email/g, email);
             document.write(hyperlink);
           </script><br>
+          <br>
           <a href="http://blog.kowalczyk.info">blog.kowalczyk.info</a>
         </td>
-        <td style="padding-left: 16px;">
+        <td style="padding-left: 16px;vertical-align: top">
           <a href="http://github.com/kjk">github.com/kjk</a><br>
           <a href="http://code.google.com/u/@UxJfQFJRABhHWQN6/">code.google.com/u/kkowalczyk</a><br>
           <a href="https://plus.google.com/112100039263959533932">Google+</a><br>
@@ -235,7 +242,7 @@
   <a href="http://blog.kowalczyk.info/software/sumatrapdf/">SumatraPDF</a><br></td>
   <td class="details">PDF viewer for Windows. GUI part (around 10k lines of C++ code)
   designed and written from scratch by myself using just Win32 API. Performance improvements
-  to existing 
+  to existing
   <a href="http://blog.kowalczyk.info/article/On-how-I-improved-Sumatra-performance-by-60.html">
   pdf rendering engines</a>. Open-source, hobby effort.<br>
   <a href="https://www.ohloh.net/p/4623/contributors/19855633811562">https://www.ohloh.net/p/4623/contributors/19855633811562</a><br>
@@ -246,7 +253,7 @@
 <tr>
   <td class="subcategory" nowrap><a href="http://webkit.org/">WebKit</a><br></td>
   <td class="details">Engine behind Apple's Safari browser. Contributed Windows
-  and Linux/Gtk fixes. Received commit rights and 
+  and Linux/Gtk fixes. Received commit rights and
   <a href="http://webkit.org/blog/?p=95">review rights for the Gtk port</a><br>
   <a href="https://www.ohloh.net/p/WebKit/contributors/14027363190890">https://www.ohloh.net/p/WebKit/contributors/14027363190890</a><br>
   Technologies used: C++, Linux/GTK+ API.
@@ -264,7 +271,7 @@
   <td class="subcategory" nowrap>
   <a href="http://www.palm.com/us/products/smartphones/treo750/messaging.html">Messaging<br></td>
   <td class="details">SMS/MMS messaging application for Windows Mobile-based smartphones, shipped on
-  Treo 750 and later. Part of 3 person team that wrote the application from scratch 
+  Treo 750 and later. Part of 3 person team that wrote the application from scratch
   (60k lines of C++ code in total).<br>
   Technologies used: C++, Windows Mobile API, SMS, MMS, COM.
   </td>
@@ -272,7 +279,7 @@
 
 <tr>
   <td class="subcategory" nowrap><a href="http://blog.kowalczyk.info/software/wtail/">wTail</a><br></td>
-  <td class="details">Small application that implements GUI version of Unix's tail for 
+  <td class="details">Small application that implements GUI version of Unix's tail for
   Windows. Open-source.<br>
   Technologies used: C#, WinForms.
   </td>
@@ -298,9 +305,9 @@
 <tr>
   <td class="subcategory" nowrap>
   <a href="http://web.archive.org/web/20060205175412/arslexis.com/palm/ipedia/encyclopedia.html">iPedia</a><br></td>
-  <td class="details">Encyclopedia for Palm OS, MS Smartphone and Pocket PC (now known 
+  <td class="details">Encyclopedia for Palm OS, MS Smartphone and Pocket PC (now known
   as Windows Mobile)<br>
-  Technologies used: C++, Palm OS API, Windows Mobile API for the client. Python and MySQL 
+  Technologies used: C++, Palm OS API, Windows Mobile API for the client. Python and MySQL
   with full-text search running on Linux server for the backend.
   </td>
 </tr>
@@ -326,8 +333,8 @@
   <td class="subcategory" nowrap>
   <a href="/software/noahpro/">Noah Lite, Noah Pro</a><br></td>
   <td class="details">English dictionary for Palm OS. Implemented very good and fast
-  compression so that definition lookup was fast and yet didn't consume all available 
-  memory. At the time Noah Lite was the most popular program for Palm OS (as judged by 
+  compression so that definition lookup was fast and yet didn't consume all available
+  memory. At the time Noah Lite was the most popular program for Palm OS (as judged by
   PalmGear download statistics, more than 500.000 downloads).<br>
   Technology used: C, Palm OS API, Lisp, custom-designed compression scheme for dictionary data.
 </tr>
@@ -359,7 +366,7 @@
 
 <tr>
   <td class="subcategory" nowrap>French dictionary<br></td>
-  <td class="details">Java applet. School project, part of 3 person team. Designed 
+  <td class="details">Java applet. School project, part of 3 person team. Designed
   and wrote storage backend for efficient transmission of definitions over HTTP.
   <br>Technologies used: Java.
   </td>
@@ -381,7 +388,7 @@
 
 <tr>
   <td class="subcategory" nowrap>Dictionary for Amiga<br></td>
-  <td class="details">In high-school wrote an english-polish dictionary for Amiga OS, 
+  <td class="details">In high-school wrote an english-polish dictionary for Amiga OS,
   in 68000 assembly. GUI viewer and editor for editing dictionary database.
   <br>
   Technology used: Amiga OS, 68000 assembly.
@@ -423,7 +430,7 @@
       <td class="company">Palm, Inc.</td>
       <td class="dates">2004/12 - 2007/04</td>
       <td>Software Design Engineer.
-      Part of 3 person team that wrote, from scratch, SMS client that shipped 
+      Part of 3 person team that wrote, from scratch, SMS client that shipped
       on Treo 750w (Windows Mobile version).<br>
       Designed and implemented from scratch PDF viewer for <a href="http://en.wikipedia.org/wiki/Foleo">Foleo</a>
  			(not released because Folea has been cancelled).<br>
@@ -435,7 +442,7 @@
     <tr>
       <td class="company"><a href="http://web.archive.org/web/20060210202132/arslexis.com/index.html">ArsLexis</a></td>
       <td class="dates">2003/05 - 2004/11</td>
-      <td>Entreprenur. Designed, developed and sold software for Palm OS, MS Smartphone 
+      <td>Entreprenur. Designed, developed and sold software for Palm OS, MS Smartphone
 		and Pocket PC: Thesaurus, Noah Lite, Noah Pro, iNoah, iPedia, InfoMan. Developed
         the website, handled marketing and customer support, sys-admined Linux server etc.</td>
     </tr>
@@ -443,7 +450,7 @@
     <tr>
       <td class="company"><a href="http://www.microsoft.com/">Microsoft Corp.</a></td>
       <td class="dates">1999/01 - 2003/05</td>
-      <td>Software Design Engineer. Worked as a programmer 
+      <td>Software Design Engineer. Worked as a programmer
       on Microsoft Exchange and Microsoft SQL Server.
       </td>
     </tr>
@@ -453,8 +460,8 @@
 
 <tr>
   <td class="category">Skills</td>
-  <td class="details">	
-  Expert software engineering, software design, software construction skills. 
+  <td class="details">
+  Expert software engineering, software design, software construction skills.
   8+ years of professional programming experience.<br><br>
   Expert C and C++.<br><br>
   Expert Palm OS and Windows Mobile (Pocket PC) programming.<br><br>
@@ -465,13 +472,13 @@
   Used to be expert in 680x0 assembler (when programming for Amiga OS).<br><br>
   Advanced in Python.<br><br>
   Programmed in: JavaScript, Java, C#, SQL, Perl, PHP, x86 assember, Lisp, Scheme.<br><br>
-  Know about: TCP/IP, XML, networking protocols (HTTP, POP3, TELNET, FTP, SMTP), HTML, 
-  web technologies, Unix administration, databases (MySQL, SQL Server, Postgress), 
+  Know about: TCP/IP, XML, networking protocols (HTTP, POP3, TELNET, FTP, SMTP), HTML,
+  web technologies, Unix administration, databases (MySQL, SQL Server, Postgress),
   web servers (Apache, AOLServer), SMS, MMS, XML Schema<br><br>
   Expert debugging skills: used Visual Studio, WinDBG, cdb, gdb, MetroWerks CodeWarrior for Palm.
   Assembly-level debugging on x86, ARM and 68000.
   <br><br>
-  Extensive experience with source-code management tools (2 internal Microsoft tools, CVS, 
+  Extensive experience with source-code management tools (2 internal Microsoft tools, CVS,
   Subversion).<br><br>
   Extensive experience with bug-tracking tools (internal Palm and Microsoft system, used Bugzilla,
   Sourceforge's and Google Code's bug tracking).<br><br>
@@ -485,7 +492,7 @@
 <tr>
   <td class="category">Education</td>
   <td class="details">French engineering degree equivalent to Master of Science<br>
-  in Telecommunication/Computer Science  from 
+  in Telecommunication/Computer Science  from
   <a href="http://www.enst-bretagne.fr/">ENST de Bretagne</a>, France, 1998
   </td>
 </tr>
