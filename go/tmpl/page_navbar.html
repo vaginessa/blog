@@ -1,32 +1,32 @@
-<div id="tophdr" style="font-size:12pt; font-weight:bold; font-family: arial, sans-serif;padding-top: 8px; padding-left: 8pt; padding-right: 8pt">
-    <span class="namelink"><a class="namelink" href="/">Krzysztof Kowalczyk</a></span>&nbsp;&nbsp;&nbsp;
-      <ul id="nav">
-        {{ if .IsAdmin }}
-        <li><a href="#" style="color:yellow;">Admin</a>
-          <ul>
-            {{ if .Article }}
-              <li><a href="/app/edit?article_id={{ .Article.Id }}">Edit</a></li>
-              {{ if .Article.IsDeleted }}
-                <li><a href="/app/undelete?article_id={{ .Article.Id }}">Undelete</a></li>
-                {{ else }}
-                <li><a href="/app/delete?article_id={{ .Article.Id }}">Delete</a></li>
-              {{ end }}
+<div id="tophdr">
+    <a class="namelink" href="/">Krzysztof Kowalczyk</a>&nbsp;&nbsp;&nbsp;
+    <ul id="nav">
+      {{ if .IsAdmin }}
+      <li><a href="#" style="color:yellow;">Admin</a>
+        <ul>
+          {{ if .Article }}
+            <li><a href="/app/edit?article_id={{ .Article.Id }}">Edit</a></li>
+            {{ if .Article.IsDeleted }}
+              <li><a href="/app/undelete?article_id={{ .Article.Id }}">Undelete</a></li>
+              {{ else }}
+              <li><a href="/app/delete?article_id={{ .Article.Id }}">Delete</a></li>
             {{ end }}
-            <li><a href="/app/edit">New Blog Post</a></li>
-            <li><a href="/app/edit?note=yes">New Note</a></li>
-            <li><a href="/app/showprivate">Show Private</a></li>
-            <li><a href="/app/showdeleted">Show Deleted</a></li>
-            <li><a href="{{ .LogInOutUrl }}">Log Out</a></li>
-          </ul>
-        </li>
-        <li><span style="color:gray">&bull;</li>
-        {{ end }}
-        <li><a href="/static/resume.html">About me</a></span></li>
-        <li><span style="color:gray">&bull;</li>
-        <li><a href="/archives.html">Articles</a></li>
-        <li><span style="color:gray">&bull;</li>
-        <li><a href="/software/">Software</a></li>
-        <li><span style="color:gray">&bull;</li>
-        <li><a href="/static/documents.html">My Documents</a></li>
-      </ul>
+          {{ end }}
+          <li><a href="/app/edit">New Blog Post</a></li>
+          <li><a href="/app/edit?note=yes">New Note</a></li>
+          <li><a href="/app/showprivate">Show Private</a></li>
+          <li><a href="/app/showdeleted">Show Deleted</a></li>
+          <li><a href="{{ .LogInOutUrl }}">Log Out</a></li>
+        </ul>
+      </li>
+      <li><span style="color:gray">&bull;</style></li>
+      {{ end }}
+      <li><a href="/static/resume.html">About me</a></span></li>
+      <li><span style="color:gray">&bull;</style></li>
+      <li><a href="/archives.html">Articles</a></li>
+      <li><span style="color:gray">&bull;</style></li>
+      <li><a href="/software/">Software</a></li>
+      <li><span style="color:gray">&bull;</style></li>
+      <li><a href="/static/documents.html">My Documents</a></li>
+    </ul>
 </div>

@@ -78,8 +78,8 @@ $(document).ready(function(){
         <tr>
           <td style="color:gray; text-align:right; vertical-align:top; font-size:80%; padding-right:8px; padding-left:8px; padding-top:2px" nowrap>{{ .DisplayMonth }}</td>
           <td style="padding-top:2px">
-            {{ if .IsDeleted }}<font color="red">d</font>{{ end }}
-            {{ if .IsPrivate }}<font color="red">p</font>{{ end }}
+            {{ if .IsDeleted }}<font color="red">D</font>{{ end }}
+            {{ if .IsPrivate }}<font color="red">P</font>{{ end }}
 
             <a href="/{{ .Permalink }}">{{ .DisplayTitle }}</a>
             {{ if .TagsDisplay }}
