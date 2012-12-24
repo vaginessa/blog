@@ -49,58 +49,55 @@ $(document).ready(function(){
 {{ $isAdmin := .IsAdmin }}
 {{ template "page_navbar.html" . }}
 
-<div id="content" style="line-height:1.50; margin-top: 18px; margin-left: 12px; margin-right: 12px;">
+<div id="content" style="line-height:1.50; margin-top: 18px; margin-left: 12pt; margin-right: 12pt;">
 
-  <div style="float: right; margin-right: 12px; margin-left: 12px; font-size: 80%; border: 1px solid #CCC; padding: 6px;">
+  <div style="float: right; margin-right: 12px; margin-left: 12px; font-size: 80%; border: 1px solid #CCC; padding: 6px 12px;">
     <div class="sidebarhdr">Topics:</div>
-      <div style="margin-left: 6px; max-width:180px">
-        <span id="tagCloud"></span>
-      </div>
+    <div style="max-width:180px">
+      <span id="tagCloud"></span>
     </div>
   </div>
 
-  {{ if .PostsCount }}
-    <div style="font-size: 110%; font-weight: bold;">
-      {{ if .Tag }}
-        &nbsp; {{ .PostsCount }} articles in '{{ .Tag }}':
-      {{ else }}
-        &nbsp; {{ .PostsCount }} articles:
-      {{ end }}
-      {{ if not .IsAdmin }}
-      <a id="login" class="invisible" onMouseOver="showById('login');" onMouseOut="hideById('login');" href="{{ .LogInOutUrl }}">login</a>
-      {{ end }}
-    </div>
+  <div style="font-size: 110%; font-weight: bold;">
+    {{ if .Tag }}
+      {{ .PostsCount }} articles in '{{ .Tag }}':
+    {{ else }}
+      {{ .PostsCount }} articles:
+    {{ end }}
+    {{ if not .IsAdmin }}
+    <a id="login" class="invisible" onMouseOver="showById('login');" onMouseOut="hideById('login');" href="{{ .LogInOutUrl }}">login</a>
+    {{ end }}
+  </div>
 
-    <table id=arc>
-      {{ range .Years }}
-        <tr class=year><th colspan="2" style="text-align: left; padding-left: 5px;">{{ .Name }}</th></tr>
-        {{ range .Articles }}
-        <tr>
-          <td style="color:gray; text-align:right; vertical-align:top; font-size:80%; padding-right:8px; padding-left:8px; padding-top:2px" nowrap>{{ .DisplayMonth }}</td>
-          <td style="padding-top:2px">
-            {{ if .IsDeleted }}<font color="red">D</font>{{ end }}
-            {{ if .IsPrivate }}<font color="red">P</font>{{ end }}
+  <table id=arc>
+    {{ range .Years }}
+      <tr class=year><th colspan="2" style="text-align: left">{{ .Name }}</th></tr>
+      {{ range .Articles }}
+      <tr>
+        <td style="color:gray; text-align:right; vertical-align:top; font-size:80%; padding-right:8px; padding-left:8px; padding-top:2px" nowrap>{{ .DisplayMonth }}</td>
+        <td style="padding-top:2px">
+          {{ if .IsDeleted }}<font color="red">D</font>{{ end }}
+          {{ if .IsPrivate }}<font color="red">P</font>{{ end }}
 
-            <a href="/{{ .Permalink }}">{{ .DisplayTitle }}</a>
-            {{ if .TagsDisplay }}
-              <span style="font-size:80%">
-                <span class="taglink">in:</span> {{ .TagsDisplay }}
-              </span>
-            {{ end }}
+          <a href="/{{ .Permalink }}">{{ .DisplayTitle }}</a>
+          {{ if .TagsDisplay }}
+            <span style="font-size:80%">
+              <span class="taglink">in:</span> {{ .TagsDisplay }}
+            </span>
+          {{ end }}
 
-            {{ if $isAdmin }}<span style="font-size:80%">{{ .FormatName }}</span>{{ end }}
-            {{ if $isAdmin }}
-              <span class="onHoverVisible">
-              <a id="article_edit" style="font-size:80%" href="/app/edit?article_id={{ .Id }}">edit</a>
-              </span>
-            {{ end }}
-          </td>
-        </tr>
-        {{ end }}
+          {{ if $isAdmin }}<span style="font-size:80%">{{ .FormatName }}</span>{{ end }}
+          {{ if $isAdmin }}
+            <span class="onHoverVisible">
+            <a id="article_edit" style="font-size:80%" href="/app/edit?article_id={{ .Id }}">edit</a>
+            </span>
+          {{ end }}
+        </td>
+      </tr>
       {{ end }}
-    </table>
-    <br>
-  {{ end }}
+    {{ end }}
+  </table>
+  <br>
 
   <hr>
 </div>
