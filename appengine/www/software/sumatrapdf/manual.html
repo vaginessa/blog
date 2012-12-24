@@ -41,9 +41,9 @@ table.shortcuts {
         <td valign="top">
           <table class="shortcuts">
             <tr><td></td><td><b>Navigation</b></td></tr>
-            <tr><td align="right"><b>right mouse button</b></td> 
+            <tr><td align="right"><b>right mouse button</b></td>
                 <td>&nbsp;scroll</td></tr>
-            <tr><td align="right"><b>j/k</b>, <b>Up/Down</b></td> 
+            <tr><td align="right"><b>j/k</b>, <b>Up/Down</b></td>
                 <td>&nbsp;scroll up/down by line</td></tr>
             <tr><td align="right"><b>space</b></td>
                 <td>&nbsp;scroll by screen</td></tr>
@@ -107,7 +107,7 @@ table.shortcuts {
               <td>&nbsp;rotate left</td></tr>
             <tr><td align="right"><b>&lt;Ctrl&gt; &lt;Shift&gt; +</b></td>
               <td>&nbsp;rotate right</td></tr>
-            <tr><td align="right"><b>F12</b></td> 
+            <tr><td align="right"><b>F12</b></td>
                 <td>&nbsp;show/hide bookmarks (table of contents)</td></tr>
             <tr><td align="right"><b>F6</b>
               </td> <td>&nbsp;switch focus between bookmarks window and main window</td></tr>
@@ -137,7 +137,7 @@ table.shortcuts {
 
     <p>
     Command-line arguments:
-    <table class="shortcuts">
+    <table class="shortcuts" style="font-size: 90%; line-height: 105%">
       <tr><td align="right"><b>-page $pageno</b></td>
         <td>&nbsp;open PDF at a given page</td></tr>
       <tr><td align="right"><b>-named-dest $dest</b></td>
@@ -163,18 +163,22 @@ table.shortcuts {
       <tr><td align="right"><b>-bg-color $color</b></td>
         <td>&nbsp;change the yellow background color to a provided color in hex format (e.g. 0xffff00)</td></tr>
       <tr><td align="right"><b>-invert-colors</b></td>
-        <td>&nbsp;will invert colors in the PDF (e.g. white would become black and black would become white).</td></tr>
+        <td>&nbsp;will invert colors in the PDF (e.g. white would become black and black would become white)</td>
+      </tr>
+      <tr><td align="right"><b>-manga-mode $mode</b></td>
+        <td>&nbsp;enable display of manga comic books. $mode can be 1, true, 0, false</td>
+      </tr>
 
     </table>
     </p>
-  
+
     <p>Note: <b>-esc-to-exit</b> and <b>-bg-color</b> options change the defaults and persist
     them in sumatrapdfprefs.dat file (in %appdata%\SumatraPDF directory if installed, in the
     same directory as executable in portable mode). To revert back to defaults, you can
     delete sumatrapdfprefs.dat file.</p>
 
     <p>Printing related cmd-line arguments:
-    <table class="shortcuts">
+    <table class="shortcuts" style="font-size: 90%; line-height: 105%">
       <tr><td align="right"><b>-print-to-default $file.pdf</b></td>
         <td>&nbsp;prints a PDF file on a default printer</td></tr>
       <tr><td align="right"><b>-print-to $printer_name $file.pdf</b></td>
@@ -205,11 +209,6 @@ table.shortcuts {
       Switch to <b>Plugins</b> tab, enable Sumatra PDF plugin and disable
       other PDF plugins.</p>
 
-    <p><b>Known issues with Firefox plugin</b></p>
-    <p>In some  cases (if Foxit plugin is also already installed) Sumatra's plugin
-    will not work even if other plugins are disabled. This issue was fixed
-    in Firefox 4.0.</p>
-
     <p><b>Chrome</b></p>
     <p>Newer version of Chrome have a PDF plugin built-in. If you want to use
     Sumatra's plugin, you need to disable Chrome's plugin (and potentially
@@ -226,7 +225,6 @@ table.shortcuts {
     <li>Enable "Use the plugin" at the bottom and choose "SumatraPDF Browser Plugin"</li>
     <li>Click "OK" and then "OK". Restart Opera</li>
     </ol>
-
 
     <h2 id="manual-restricted">Running in restricted mode</h2>
     <p>A restricted mode is useful if you want to use SumatraPDF as a bundled viewer
