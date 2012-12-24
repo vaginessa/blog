@@ -52,18 +52,22 @@ func handleMainPage(w http.ResponseWriter, r *http.Request) {
 	}
 
 	isAdmin := IsAdmin(r)
+	articles := getCachedArticles(isAdmin)
+
 	model := struct {
 		IsAdmin       bool
 		AnalyticsCode string
 		JqueryUrl     string
 		Article       *Article
 		Articles      []*Article
+		ArticleCount  int
 		LogInOutUrl   string
 	}{
 		IsAdmin:       isAdmin,
 		AnalyticsCode: *config.AnalyticsCode,
 		JqueryUrl:     jQueryUrl(),
 		Article:       nil, // always nil
+		ArticleCount:  len(articles),
 		Articles:      store.GetRecentArticles(15, isAdmin),
 		LogInOutUrl:   getLogInOutUrl(r),
 	}
