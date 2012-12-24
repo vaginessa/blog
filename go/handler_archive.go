@@ -20,6 +20,7 @@ type ArticlesIndexModel struct {
 	JqueryUrl     string
 	LogInOutUrl   string
 	ArticlesJsUrl string
+	Article       *Article
 	PostsCount    int
 	Tag           string
 	Years         []Year

@@ -56,16 +56,16 @@ func handleMainPage(w http.ResponseWriter, r *http.Request) {
 		IsAdmin       bool
 		AnalyticsCode string
 		JqueryUrl     string
+		Article       *Article
 		Articles      []*Article
 		LogInOutUrl   string
-		ArticlesJsUrl string
 	}{
 		IsAdmin:       isAdmin,
 		AnalyticsCode: *config.AnalyticsCode,
 		JqueryUrl:     jQueryUrl(),
-		LogInOutUrl:   getLogInOutUrl(r),
+		Article:       nil, // always nil
 		Articles:      store.GetRecentArticles(15, isAdmin),
-		ArticlesJsUrl: getArticlesJsUrl(isAdmin),
+		LogInOutUrl:   getLogInOutUrl(r),
 	}
 
 	ExecTemplate(w, tmplMainPage, model)

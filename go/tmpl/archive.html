@@ -9,6 +9,8 @@
 
 {{ template "inline_css.html" }}
 <style>
+body {
+}
 
 #arc {
   border-collapse: collapse;
@@ -44,21 +46,12 @@ $(document).ready(function(){
 </head>
 <body>
 
-{{ template "page_navbar.html" }}
-
 {{ $isAdmin := .IsAdmin }}
+{{ template "page_navbar.html" . }}
 
 <div id="content" style="line-height:1.50; margin-top: 18px; margin-left: 12px; margin-right: 12px;">
 
   <div style="float: right; margin-right: 12px; margin-left: 12px; font-size: 80%; border: 1px solid #CCC; padding: 6px;">
-  {{ if .IsAdmin }}
-    <a href="{{ .LogInOutUrl }}">log out</a><br>
-    <a href="/app/edit">new blog post</a><br>
-    <a href="/app/edit?note=yes">new note</a><br>
-    <a href="/app/showprivate">show private</a><br>
-    <a href="/app/showdeleted">show deleted</a><br>
-    <br>
-  {{ end }}
     <div class="sidebarhdr">Topics:</div>
       <div style="margin-left: 6px; max-width:180px">
         <span id="tagCloud"></span>
@@ -85,21 +78,21 @@ $(document).ready(function(){
         <tr>
           <td style="color:gray; text-align:right; vertical-align:top; font-size:80%; padding-right:8px; padding-left:8px; padding-top:2px" nowrap>{{ .DisplayMonth }}</td>
           <td style="padding-top:2px">
+            {{ if .IsDeleted }}<font color="red">d</font>{{ end }}
+            {{ if .IsPrivate }}<font color="red">p</font>{{ end }}
+
             <a href="/{{ .Permalink }}">{{ .DisplayTitle }}</a>
-            {{ if .TagsDisplay }}&nbsp;
+            {{ if .TagsDisplay }}
               <span style="font-size:80%">
-              <span class="taglink">in:</span> {{ .TagsDisplay }}</span>
+                <span class="taglink">in:</span> {{ .TagsDisplay }}
+              </span>
             {{ end }}
 
-            {{ if $isAdmin }}{{ .FormatName }}{{ end }}
-            {{ if .IsDeleted }}
-            &nbsp;<font color="red">deleted</font>
-            {{ end }}
-            {{ if .IsPrivate }}
-            &nbsp;<font color="red">private</font>
-            {{ end }}
-            {{ if $isAdmin }}&nbsp;
-            <a id="article_edit" href="/app/edit?article_id={{ .Id }}">edit</a>
+            {{ if $isAdmin }}<span style="font-size:80%">{{ .FormatName }}</span>{{ end }}
+            {{ if $isAdmin }}
+              <span class="onHoverVisible">
+              <a id="article_edit" style="font-size:80%" href="/app/edit?article_id={{ .Id }}">edit</a>
+              </span>
             {{ end }}
           </td>
         </tr>

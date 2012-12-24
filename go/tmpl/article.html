@@ -29,30 +29,9 @@ $(document).ready(function(){
 
 <body onload="prettyPrint()">
 
-{{ template "page_navbar.html" }}
+{{ template "page_navbar.html" . }}
 
 <div id="content">
-
-  {{ if .IsAdmin }}
-  <div style="float: right; margin-right: 12px; margin-left: 12px; font-size: 80%">
-    <div id="navarea" style="border: 1px solid #CCC; padding: 6px; margin-top: 0px;">
-      <div class="sidebarhdr">Admin actions</div>
-      <div style="margin-left: 6px">
-        <div><a href="{{ .LogInOutUrl }}">log out</a></div>
-        <div><a href="/app/edit?article_id={{ .Article.Id }}">edit</a></div>
-        <div class="l"><a href="/app/edit">new blog post</a></div>
-        <div class="l"><a href="/app/edit?note=yes">new note</a></div>
-        {{ if .Article.IsDeleted }}
-        <div class="l"><a href="/app/undelete?article_id={{ .Article.Id }}">undelete</a></div>
-        {{ else }}
-        <div class="l"><a href="/app/delete?article_id={{ .Article.Id }}">delete</a></div>
-        {{ end }}
-        <div class="l"><a href="/app/showprivate">show private</a></div>
-        <div class="l"><a href="/app/showdeleted">show deleted</a></div>
-      </div>
-    </div>
-  </div>
-  {{ end }}
 
   <div id="post" style="margin-left:auto;margin-right:auto;margin-top:3em;">
       <h1 style="display:inline;">
@@ -65,7 +44,7 @@ $(document).ready(function(){
           &nbsp;<font color="red">private</font>
         {{ end }}
         </span>
-        {{ if not .IsAdmin }} <a id="login_id" class="invisible" onMouseOver="showById('login_id');" 
+        {{ if not .IsAdmin }} <a id="login_id" class="invisible" onMouseOver="showById('login_id');"
         onMouseOut="hideById('login_id');" href="{{ .LogInOutUrl }}">login</a>
         {{ end }}
     </h1>
@@ -76,7 +55,7 @@ $(document).ready(function(){
 
     <div class="postmeta">Written on {{ .Article.PublishedOnShort }}{{ if .Article.TagsDisplay }}. Topics: {{ .Article.TagsDisplay }} {{ end }}
     </div>
- 
+
     <table class="postmeta" style="padding-top:8px;padding-bottom:16px;border-spacing:0px">
     {{ if .NextArticle }}
     <tr>

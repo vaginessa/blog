@@ -1,7 +1,7 @@
 <style type=text/css>
 body {
   margin: 0px;
-  font-size: 11pt;
+  font-size: 10pt;
   font-family: arial, sans-serif;
 }
 
@@ -82,13 +82,21 @@ a.taglink:hover {
   text-decoration: underline;
 }
 
+.onHoverVisible a {
+  color: white;
+}
+
+.onHoverVisible a:hover {
+  color: gray;
+}
+
 .postmeta {
   color: gray;
   font-size: 80%;
 }
 
 .ad {
-  font-family: geneva,helvetica,arial,sans-serif;  
+  font-family: geneva,helvetica,arial,sans-serif;
   font-size: 12pt;
   background-color: #FBF0FA;
   padding: 4px 8px;
@@ -117,6 +125,71 @@ a.taglink:hover {
 .activeSearch {
   color: black;
   font-style: normal;
+}
+
+/* drop-down menu based on http://csswizardry.com/2011/02/creating-a-pure-css-dropdown-menu/ */
+#nav {
+  list-style:none;
+  font-weight: bold;
+  font-size: 80%;
+  float:right;
+  margin-top:0px;
+  position:relative;
+  z-index:5;
+}
+
+#nav li {
+  float: left;
+  margin-right: 4pt;
+  position:relative;
+}
+
+#nav a {
+  display: block;
+  color:white;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+}
+
+#nav a:hover {
+  color:white;
+  text-decoration: none;
+  border-bottom: 3px solid #AEDC31;
+}
+
+/* drop-down */
+#nav ul {
+  background:#4D5456;
+  list-style:none;
+  position:absolute;
+  left:-9999px;
+}
+
+#nav ul li {
+  padding-top:1px;
+  float: none;
+}
+
+#nav ul a{
+  white-space: nowrap;
+}
+
+#nav li:hover ul {
+  padding: 8pt;
+  left:-8pt;
+}
+
+#nav li:hover a{
+  text-decoration: none;
+}
+
+#nav li:hover ul a{
+  border-bottom: 3px solid transparent;
+  text-decoration: none;
+}
+
+#nav li:hover ul li a:hover{
+  border-bottom: 3px solid #AEDC31;
 }
 
 </style>

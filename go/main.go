@@ -269,12 +269,14 @@ func getIpAddress(r *http.Request) string {
 }
 
 func jQueryUrl() string {
-	//return "http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"
-	return "/js/jquery-1.4.2.js"
+	//return "//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"
+	//return "/js/jquery-1.4.2.js"
+	return "//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"
 }
 
 func prettifyJsUrl() string {
-	return "/js/prettify.js"
+	return "//cdnjs.cloudflare.com/ajax/libs/prettify/188.0.0/prettify.js"
+	//return "/js/prettify.js"
 }
 
 func prettifyCssUrl() string {

@@ -7,7 +7,6 @@
 
 <style type="text/css">
 body {
-    font-size: 9pt;
 }
 
 .bigtxt {
@@ -43,14 +42,6 @@ body {
   background: #008AC0;
 }
 
-.onHoverVisible a {
-  color: white;
-}
-
-.onHoverVisible a:hover {
-  color: gray;
-}
-
 a.articlelink {
   text-decoration: none;
   color: black;
@@ -61,45 +52,18 @@ a.articlelink:hover {
   color: white;
   background-color: black;
 }
+
 </style>
-
-<script type="text/javascript" src="{{ .JqueryUrl }}"></script>
-
-{{ template "tagcloud.js" }}
-
-<script type="text/javascript">
-function articlesJsonLoaded(articlesJson) {
-  articles_json = articlesJson;
-  var html = genTagCloudHtml2();
-  $('#tagCloud').html(html);
-}
-
-$(document).ready(function(){
-});
-</script>
 
 </head>
 <body>
 
+{{ template "page_navbar.html" . }}
+
 {{ $isAdmin := .IsAdmin }}
 
-<div id="tophdr">
-  <h1 style="padding-left:12px">
-    <span class="namelink"> Krzysztof Kowalczyk</span>&nbsp;&nbsp;&nbsp;
-    <span style="float:right; font-size:80%; font-weight:normal;  margin-right: 12px;">
-      <a class="hdrlink" href="/static/resume.html">About me</a>
-      <span style="color:gray">&nbsp;&bull;&nbsp;</span>
-      <a class="hdrlink" href="/archives.html">Articles</a>
-      <span style="color:gray">&nbsp;&bull;&nbsp;</span>
-      <a href="/software/" class="hdrlink">My Software</a>
-      <span style="color:gray">&nbsp;&bull;&nbsp;</span>
-      <a class="hdrlink" href="/static/documents.html">My Documents</a>
-    </span>
-  </h1>
-</div>
-
 <center>
-<div id="content">
+<div id="content" style="clear:both; font-size: 9pt">
 
 <table style="padding-top: 12px">
 <tr>
@@ -114,31 +78,21 @@ $(document).ready(function(){
       {{ range .Articles }}
       <tr>
         <td colspan=2 style="padding-top:2px; padding-bottom: 4px; max-width:380px">
+          {{ if .IsPrivate }}<font color="red">P</font>{{ end }}
+          {{ if .IsDeleted }}&nbsp;<font color="red">d</font>{{ end }}
+
           <a class="articlelink" href="/{{ .Permalink }}">{{.Title}}</a>
           {{ if .TagsDisplay }}&nbsp;
             <span style="font-size:80%">
             <span class="taglink">in:</span> {{ .TagsDisplay }}</span>
           {{ end }}
 
-          {{ if .IsDeleted }}
-          &nbsp;<font color="red">deleted</font>
-          {{ end }}
-          {{ if .IsPrivate }}
-          &nbsp;<font color="red">private</font>
-          {{ end }}
-          {{ if $isAdmin }}&nbsp;
-          <a id="article_edit" href="/app/edit?article_id={{ .Id }}">edit</a>
+          {{ if $isAdmin }}&nbsp;<span class="onHoverVisible">
+          <a id="article_edit" href="/app/edit?article_id={{ .Id }}">edit</a></span>
           {{ end }}
         </td>
       </tr>
       {{ end }}
-      <!--
-      <tr>
-        <td colspan=2 style="padding-top:12px; max-width:380px">
-          <span class="light">Topics:</span> <span id="tagCloud"></span>
-        </td>
-      </tr>
-    -->
       <tr>
         <td colspan=2 style="padding-top:12px; max-width:380px">
           <span class="light">See <a href="/archives.html">all articles</a>, subscribe to <a href="/atom.xml">RSS feed</a></span>
@@ -152,17 +106,10 @@ $(document).ready(function(){
       <tr>
         <td valign=top colspan=3>
         <span class="bigtxt">My software</span>
-          {{ if $isAdmin }}
-            <div style="float: right; margin-right: 12px; margin-left: 12px; font-size: 80%; border: 1px solid #CCC; padding: 6px;">
-              <a href="{{ .LogInOutUrl }}">log out</a><br>
-              <a href="/app/edit">new blog post</a><br>
-              <a href="/app/edit?note=yes">new note</a><br>
-              <a href="/app/showprivate">show private</a><br>
-            </div>
-          {{ else }}
+          {{ if not $isAdmin }}
             &nbsp;<span class="onHoverVisible"><a href="{{ .LogInOutUrl }}">log in</a></span>
-            <br><br>
           {{ end }}
+            <br><br>
         </td>
       </tr>
 
@@ -226,8 +173,6 @@ $(document).ready(function(){
 <hr>
 
 {{ template "analytics.html" . }}
-
-<script charset="utf-8" type="text/javascript" src="{{ .ArticlesJsUrl }}"></script>
 
 </body>
 </html>

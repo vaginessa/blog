@@ -65,24 +65,52 @@ a.hdrlink:hover {
   border-bottom: 3px solid #AEDC31;
   text-decoration: none;
 }
+
+/* drop-down menu based on http://csswizardry.com/2011/02/creating-a-pure-css-dropdown-menu/ */
+#nav {
+  list-style:none;
+  font-weight: bold;
+  font-size: 80%;
+  float:right;
+  margin-top:0px;
+  position:relative;
+  z-index:5;
+}
+
+#nav li {
+  float: left;
+  margin-right: 4pt;
+  position:relative;
+}
+
+#nav a {
+  display: block;
+  color:white;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+}
+
+#nav a:hover {
+  color:white;
+  text-decoration: none;
+  border-bottom: 3px solid #AEDC31;
+}
 </style>
 
 </head>
 <body>
 
-<div id="tophdr">
-  <h1 style="padding-left:12px">
-    <a class="namelink" href="/">Krzysztof Kowalczyk</a>&nbsp;&nbsp;&nbsp;
-    <span style="float:right; font-size:80%; font-weight:normal;  margin-right: 12px;">
-      <a class="hdrlink" href="/blog">Blog</a>
-      <span style="color:gray">&nbsp;&bull;&nbsp;</span>
-      <a class="hdrlink" href="/notes/">Notes</a>
-      <span style="color:gray">&nbsp;&bull;&nbsp;</span>
-      <span class="hdrlink currhdrlink">My Software</span>
-      <span style="color:gray">&nbsp;&bull;&nbsp;</span>
-      <a class="hdrlink" href="/static/documents.html">My Documents</a>
-    </span>
-  </h1>
+<div id="tophdr" style="font-size:125%; font-weight:bold; padding-top: 8px; padding-left: 8pt; padding-right: 8pt">
+    <span class="namelink"><a class="namelink" href="/">Krzysztof Kowalczyk</a></span>&nbsp;&nbsp;&nbsp;
+      <ul id="nav">
+        <li><a href="/static/resume.html">About me</a></span></li>
+        <li><span style="color:gray">&bull;</li>
+        <li><a href="/archives.html">Articles</a></li>
+        <li><span style="color:gray">&bull;</li>
+        <li><a href="/software/">Software</a></li>
+        <li><span style="color:gray">&bull;</li>
+        <li><a href="/static/documents.html">My Documents</a></li>
+      </ul>
 </div>
 
 <div id="content">
@@ -93,7 +121,7 @@ a.hdrlink:hover {
     <span class="light">- web service for crowd-sourced translations of software</span></li>
 <li><a href="/software/volante/">Volante</a>
     <span class="light">- fast, small, object-oriented database for C#</span></li>
-<li><a href="/software/leveldb-for-windows/">LevelDB for Windows</a> <span class="light">- windows part and binaries for <a href="http://code.google.com/p/leveldb/">LevelDB</a></span></li>  
+<li><a href="/software/leveldb-for-windows/">LevelDB for Windows</a> <span class="light">- windows part and binaries for <a href="http://code.google.com/p/leveldb/">LevelDB</a></span></li>
 <li><a href="http://www.yepi.ws/fotofi/free-stock-photos">Fotofi</a>
     <span class="light">- find free stock photos, a Windows application </span></li>
 <li><a href=/software/sumatrapdf/>Sumatra PDF</a>
