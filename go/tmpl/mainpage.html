@@ -62,10 +62,10 @@ a.articlelink:hover {
 
 {{ $isAdmin := .IsAdmin }}
 
-<center>
-<div id="content" style="clear:both; font-size: 9pt">
+<div id="content" style="clear:both">
 
-<table style="padding-top: 12px">
+<div class="centered">
+<table style="padding-top: 12px;">
 <tr>
   <td valign=top style="padding-right: 16px;">
     <table valign=top>
@@ -77,12 +77,12 @@ a.articlelink:hover {
       </tr>
       {{ range .Articles }}
       <tr>
-        <td colspan=2 style="padding-top:2px; padding-bottom: 4px; max-width:380px">
+        <td colspan=2 style="padding-top:2px; padding-bottom: 4px; max-width:480px">
           {{ if .IsPrivate }}<font color="red">P</font>{{ end }}
           {{ if .IsDeleted }}&nbsp;<font color="red">d</font>{{ end }}
 
           <a class="articlelink" href="/{{ .Permalink }}">{{.Title}}</a>
-          {{ if .TagsDisplay }}&nbsp;
+          {{ if .TagsDisplay }}
             <span style="font-size:80%">
             <span class="taglink">in:</span> {{ .TagsDisplay }}</span>
           {{ end }}
@@ -162,10 +162,9 @@ a.articlelink:hover {
     </table>
   </td>
 </tr>
-
 </table>
+</div>
 
-</center>
 <br>
 
 </div>
