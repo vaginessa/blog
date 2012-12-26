@@ -10,6 +10,7 @@
 {{ template "inline_css.html" }}
 
 <script type="text/javascript" src="{{ .JqueryUrl }}"></script>
+<script src="{{ .PrettifyJsUrl }}" type="text/javascript"></script>
 
 {{ template "tagcloud.js" }}
 
@@ -22,8 +23,6 @@ function articlesJsonLoaded(articlesJson) {
 $(document).ready(function(){
 });
 </script>
-
-<script src="{{ .PrettifyJsUrl }}" type="text/javascript"></script>
 
 </head>
 
