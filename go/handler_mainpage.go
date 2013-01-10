@@ -40,6 +40,19 @@ func handleDjs(w http.ResponseWriter, r *http.Request) {
 	serve404(w, r)
 }
 
+func getRecentArticles(articles []*Article, max int) []*Article {
+	if max > len(articles) {
+		max = len(articles)
+	}
+	res := make([]*Article, max, max)
+	n := 0
+	for i := len(articles) - 1; n < max; i-- {
+		res[n] = articles[i]
+		 n++
+	}
+	return res
+}
+
 // /
 func handleMainPage(w http.ResponseWriter, r *http.Request) {
 	if redirectIfNeeded(w, r) {
@@ -53,6 +66,7 @@ func handleMainPage(w http.ResponseWriter, r *http.Request) {
 
 	isAdmin := IsAdmin(r)
 	articles := getCachedArticles(isAdmin)
+	articles = getRecentArticles(articles, 15)
 
 	model := struct {
 		IsAdmin       bool
@@ -68,7 +82,7 @@ func handleMainPage(w http.ResponseWriter, r *http.Request) {
 		JqueryUrl:     jQueryUrl(),
 		Article:       nil, // always nil
 		ArticleCount:  len(articles),
-		Articles:      store.GetRecentArticles(15, isAdmin),
+		Articles:      articles,
 		LogInOutUrl:   getLogInOutUrl(r),
 	}
 

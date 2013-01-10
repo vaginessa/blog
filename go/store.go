@@ -385,6 +385,9 @@ func (s *Store) GetArticles(lastId int) (int, []Article) {
 	return s.articlesCacheId, s.articlesCache
 }
 
+// TODO: those are not sorted by the real creation date. Good thing
+// it's not used anymore (use articles_cache.go instead)
+/*
 func (s *Store) GetRecentArticles(max int, isAdmin bool) []*Article {
 	s.Lock()
 	defer s.Unlock()
@@ -402,6 +405,7 @@ func (s *Store) GetRecentArticles(max int, isAdmin bool) []*Article {
 	}
 	return res
 }
+*/
 
 func (s *Store) GetArticleById(id int) *Article {
 	s.Lock()
