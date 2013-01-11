@@ -1,5 +1,4 @@
-import sys, os, os.path, subprocess
-import zipfile
+import sys, os, os.path, subprocess, json, zipfile
 from fabric.api import *
 from fabric.contrib import *
 
@@ -84,8 +83,20 @@ def delete_old_deploys(to_keep=5):
 			for d in dirs_to_del:
 				run("rm -rf %s" % d)
 
-def deploy():
+def check_config():
+	needed_values = ["AwsAccess", "AwsSecret", "S3BackupBucket", "S3BackupDir", 
+		"CookieEncrKeyHexStr", "CookieAuthKeyHexStr", "AnalyticsCode", "TwitterOAuthCredentials"]
 	if not os.path.exists("config.json"): abort("config.json doesn't exist locally")
+	j = json.loads(open("config.json").read())
+	for k in needed_values:
+		if k not in j:
+			abort("config.json doesn't have key: %s" % k)
+		v = j[k]
+		if len(v) == 0:
+			abort("config.json has empty key: %s" % k)
+
+def deploy():
+	check_config()
 	git_ensure_clean()
 	local("./scripts/build.sh")
 	local("./scripts/tests.sh")
