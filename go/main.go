@@ -275,12 +275,14 @@ func jQueryUrl() string {
 }
 
 func prettifyJsUrl() string {
-	return "//cdnjs.cloudflare.com/ajax/libs/prettify/188.0.0/prettify.js"
+	//return "//cdnjs.cloudflare.com/ajax/libs/prettify/188.0.0/prettify.js"
 	//return "/js/prettify.js"
+	return "//cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.js"
 }
 
 func prettifyCssUrl() string {
-	return "/js/prettify.css"
+	//return "/js/prettify.css"
+	return "//cdnjs.cloudflare.com/ajax/libs/prettify/r224/prettify.css"
 }
 
 func makeTimingHandler(fn func(http.ResponseWriter, *http.Request)) http.HandlerFunc {
