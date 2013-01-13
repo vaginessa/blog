@@ -14,6 +14,9 @@ import (
 	"time"
 )
 
+var blacklistedSumatraVersions = []string{"1.5.1", "1.6", "1.7", "1.8", "1.9",
+	"2.0", "2.0.1", "2.1", "2.1.1", "2.2"}
+
 func (c *Crash) Version() string {
 	ver := *c.ProgramVersion
 	if ver == "" {
@@ -399,9 +402,6 @@ func extractAppVer(appName string, crashData []byte) string {
 	}
 	return ""
 }
-
-var blacklistedSumatraVersions = []string{"1.5.1", "1.6", "1.7", "1.8", "1.9",
-	"2.0", "2.0.1", "2.1", "2.1.1"}
 
 // we don't need to process crashes from old version, so blacklist specific
 // versions
