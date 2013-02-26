@@ -164,12 +164,22 @@ var gUzTrans = {
 	"Forums" : "Forum"
 };
 
+var gHrTrans = {
+	"Home" : "Home",
+	"Version History" : "Version History",
+	"Manual" : "Manual",
+	"Download" : "Download",
+	"Contribute" : "Contribute",
+	"Translations" : "Translations",
+	"Forums" : "Forums"
+};
+
 var gTabTrans = {
 	"ru" : gRuTrans, "ro" : gRoTrans, "pt" : gPtTrans,
 	"ja" : gJaTrans, "es" : gEsTrans, "de" : gDeTrans,
 	"fr" : gFrTrans, "cn" : gCnTrans, "bg" : gBgTrans,
 	"sr" : gSrTrans, "ka" : gKaTrans, "eu" : gEuTrans,
-	"uz" : gUzTrans
+	"uz" : gUzTrans, "hr" : gHrTrans
 };
 
 var gLangCookieName = "forceSumLang";
@@ -184,6 +194,7 @@ var gLanguages = [
 	"es", ["Español", "Spanish"],
 	"eu", ["Euskara", "Basque"],
 	"fr", ["Français", "French"],
+	"hr", ["Croatian", "Croatian"],
 	"pt", ["Português", "Portuguese"],
 	"ru", ["Pусский", "Russian"],
 	"ro", ["Română", "Romanian"],
@@ -244,11 +255,11 @@ function langNativeName(lang) {
 }
 
 var gTransalatedPages = [
-	"download-free-pdf-viewer", ["ka", "ru", "cn", "de", "es", "fr", "ja", "pt", "ro", "ru", "bg", "sr", "eu", "uz"],
-	"download-prev", ["ka", "de", "fr", "es", "ja", "pt", "ro", "sr", "eu", "uz"],
-	"downloadafter", ["ka", "de", "fr", "es", "ja", "pt", "ro", "bg", "sr", "eu", "uz"],
-	"free-pdf-reader", ["ka", "cn", "de", "fr", "es", "ja", "pt", "ro", "ru", "bg", "sr", "eu", "uz"],
-	"manual", ["ka", "ru", "cn", "de", "fr", "es", "ja", "pt", "ro", "ru", "bg", "sr", "eu", "uz"],
+	"download-free-pdf-viewer", ["ka", "ru", "cn", "de", "es", "fr", "ja", "pt", "ro", "ru", "bg", "sr", "eu", "uz", "hr"],
+	"download-prev", ["ka", "de", "fr", "es", "ja", "pt", "ro", "sr", "eu", "uz", "hr"],
+	"downloadafter", ["ka", "de", "fr", "es", "ja", "pt", "ro", "bg", "sr", "eu", "uz", "hr"],
+	"free-pdf-reader", ["ka", "cn", "de", "fr", "es", "ja", "pt", "ro", "ru", "bg", "sr", "eu", "uz", "hr"],
+	"manual", ["ka", "ru", "cn", "de", "fr", "es", "ja", "pt", "ro", "ru", "bg", "sr", "eu", "uz", "hr"],
 	"news", ["pt", "fr"]
 ];
 
