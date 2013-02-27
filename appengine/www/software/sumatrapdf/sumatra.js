@@ -165,13 +165,13 @@ var gUzTrans = {
 };
 
 var gHrTrans = {
-	"Home" : "Home",
-	"Version History" : "Version History",
-	"Manual" : "Manual",
-	"Download" : "Download",
-	"Contribute" : "Contribute",
-	"Translations" : "Translations",
-	"Forums" : "Forums"
+	"Home" : "Početna",
+	"Version History" : "Povijest verzija",
+	"Manual" : "Priručnik",
+	"Download" : "Preuzimanje",
+	"Contribute" : "Sudjelovanje",
+	"Translations" : "Prijevod",
+	"Forums" : "Forum"
 };
 
 var gTabTrans = {
@@ -194,7 +194,7 @@ var gLanguages = [
 	"es", ["Español", "Spanish"],
 	"eu", ["Euskara", "Basque"],
 	"fr", ["Français", "French"],
-	"hr", ["Croatian", "Croatian"],
+	"hr", ["Hrvatski", "Croatian"],
 	"pt", ["Português", "Portuguese"],
 	"ru", ["Pусский", "Russian"],
 	"ro", ["Română", "Romanian"],
