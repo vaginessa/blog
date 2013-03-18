@@ -1,3 +1,4 @@
+cd go
 export GOPATH=`pwd`/ext:$GOPATH
 go build -o blog_app *.go
 if [ "$?" -ne 0 ]; then echo "failed to build"; exit 1; fi

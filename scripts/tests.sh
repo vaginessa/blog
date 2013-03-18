@@ -1,2 +1,3 @@
+cd go
 export GOPATH=`pwd`/ext:$GOPATH
-go run *.go
+go test *.go
