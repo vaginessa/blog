@@ -1,0 +1,60 @@
+<p>Title: Pigz Windows port</p>
+<h1>Pigz Windows port</h1>
+<p><a href="http://zlib.net/pigz/">Pigz</a> is a parallel gzip implementation. It uses
+multiple cores to speed up compression.</p>
+<p>This is a Windows port made by <a href="http://blog.kowalczyk.info">Krzysztof Kowalczyk</a>.</p>
+<h2>Download</h2>
+<p>Pigz is a single executable:</p>
+<p>Download <a href="https://kjkpub.s3.amazonaws.com/software/pigz/2.3/pigz.exe">pigz.exe</a> (version 2.3).</p>
+<p>Sources are at <a href="https://github.com/kjk/pigz">https://github.com/kjk/pigz</a></p>
+<h2>How to use</h2>
+<p><code>pigz [options] [files ...]</code></p>
+<h3>Basic use</h3>
+<p><code>pigz foo</code> will create <code>foo.gz</code>, compressed with gzip, and will delete foo.</p>
+<p>To not delete the source file, use <code>--keep</code> (<code>-k</code>) option.</p>
+<p>To change the compression algorithm:</p>
+<ul>
+<li><code>-0</code> to <code>-9</code> selects the compression strength. Higher number means better, but slower, compression</li>
+<li><code>--fast</code> is the same as <code>-1</code>, <code>--best`` is the same as</code>-9`</li>
+<li><code>--11</code> selects <a href="https://code.google.com/p/zopfli/">zopfli</a> algorithm which
+creates zlib-compatible data, compresses ~5% better than zlib but with much
+slower compression</li>
+</ul>
+<p>For each file, it'll create a compressed file. The name of compressed file will
+be created by adding a suffix.</p>
+<p>The suffix is:</p>
+<ul>
+<li><code>.gz</code> by default</li>
+<li><code>.zip</code> with <code>--zip</code> (<code>-K</code>) option</li>
+<li><code>.zz</code> wiht <code>--zlib</code> (<code>-z</code>) option</li>
+<li>your own with <code>--suffix .custom</code> option</li>
+</ul>
+<h2>All options</h2>
+<p>Full list of options:</p>
+<ul>
+<li><code>-0</code> to <code>-9</code>, <code>-11</code> : Compression level (11 is much slower, a few % better)</li>
+<li><code>--fast</code>, <code>--best</code> : Compression levels 1 and 9 respectively</li>
+<li><code>-b</code>, <code>--blocksize mmm</code> : Set compression block size to mmmK (default 128K)</li>
+<li><code>-c</code>, <code>--stdout</code> : Write all processed output to stdout (won't delete)</li>
+<li><code>-d</code>, <code>--decompress</code> : Decompress the compressed input</li>
+<li><code>-f</code>, <code>--force</code> : Force overwrite, compress .gz, links, and to terminal</li>
+<li><code>-h</code>, <code>--help</code> : Display a help screen and quit</li>
+<li><code>-i</code>, <code>--independent</code> : Compress blocks independently for damage recovery</li>
+<li><code>-k</code>, <code>--keep</code> : Do not delete original file after processing</li>
+<li><code>-K</code>, <code>--zip</code> : Compress to PKWare zip (.zip) single entry format</li>
+<li><code>-l</code>, <code>--list</code> : List the contents of the compressed input</li>
+<li><code>-L</code>, <code>--license</code> : Display the pigz license and quit</li>
+<li><code>-n</code>, <code>--no-name</code> : Do not store or restore file name in/from header</li>
+<li><code>-N</code>, <code>--name</code> : Store/restore file name and mod time in/from header</li>
+<li><code>-p</code>, <code>--processes n</code> :Allow up to n compression threads (default is the number of online processors, or 8 if unknown)</li>
+<li><code>-q</code>, <code>--quiet</code> : Print no messages, even on error</li>
+<li><code>-r</code>, <code>--recursive</code> : Process the contents of all subdirectories</li>
+<li><code>-R</code>, <code>--rsyncable</code> : Input-determined block locations for rsync</li>
+<li><code>-S</code>, <code>--suffix .sss</code> : Use suffix .sss instead of .gz (for compression)</li>
+<li><code>-t</code>, <code>--test</code> : Test the integrity of the compressed input</li>
+<li><code>-T</code>, <code>--no-time</code> : Do not store or restore mod time in/from header</li>
+<li><code>-v</code>, <code>--verbose</code> : Provide more verbose output</li>
+<li><code>-V</code>, <code>--version</code> : Show the version of pigz</li>
+<li><code>-z</code>, <code>--zlib</code> : Compress to zlib (.zz) instead of gzip format</li>
+<li><code>--</code> : All arguments after "--" are treated as files</li>
+</ul>

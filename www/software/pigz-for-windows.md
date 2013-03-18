@@ -1,0 +1,74 @@
+Title: Pigz Windows port
+
+# Pigz Windows port
+
+[Pigz](http://zlib.net/pigz/) is a parallel gzip implementation. It uses
+multiple cores to speed up compression.
+
+This is a Windows port made by [Krzysztof Kowalczyk](http://blog.kowalczyk.info).
+
+## Download
+
+Pigz is a single executable:
+
+Download [pigz.exe](https://kjkpub.s3.amazonaws.com/software/pigz/2.3/pigz.exe) (version 2.3).
+
+Sources are at [https://github.com/kjk/pigz](https://github.com/kjk/pigz)
+
+## How to use
+
+`pigz [options] [files ...]`
+
+### Basic use
+
+`pigz foo` will create `foo.gz`, compressed with gzip, and will delete foo.
+
+To not delete the source file, use `--keep` (`-k`) option.
+
+To change the compression algorithm:
+
+* `-0` to `-9` selects the compression strength. Higher number means better, but slower, compression
+* `--fast` is the same as `-1`, `--best`` is the same as `-9`
+* `--11` selects [zopfli](https://code.google.com/p/zopfli/) algorithm which
+creates zlib-compatible data, compresses ~5% better than zlib but with much
+slower compression
+
+For each file, it'll create a compressed file. The name of compressed file will
+be created by adding a suffix.
+
+The suffix is:
+
+* `.gz` by default
+* `.zip` with `--zip` (`-K`) option
+* `.zz` wiht `--zlib` (`-z`) option
+* your own with `--suffix .custom` option
+
+## All options
+
+Full list of options:
+
+* `-0` to `-9`, `-11` : Compression level (11 is much slower, a few % better)
+* `--fast`, `--best` : Compression levels 1 and 9 respectively
+* `-b`, `--blocksize mmm` : Set compression block size to mmmK (default 128K)
+* `-c`, `--stdout` : Write all processed output to stdout (won't delete)
+* `-d`, `--decompress` : Decompress the compressed input
+* `-f`, `--force` : Force overwrite, compress .gz, links, and to terminal
+* `-h`, `--help` : Display a help screen and quit
+* `-i`, `--independent` : Compress blocks independently for damage recovery
+* `-k`, `--keep` : Do not delete original file after processing
+* `-K`, `--zip` : Compress to PKWare zip (.zip) single entry format
+* `-l`, `--list` : List the contents of the compressed input
+* `-L`, `--license` : Display the pigz license and quit
+* `-n`, `--no-name` : Do not store or restore file name in/from header
+* `-N`, `--name` : Store/restore file name and mod time in/from header
+* `-p`, `--processes n` :Allow up to n compression threads (default is the number of online processors, or 8 if unknown)
+* `-q`, `--quiet` : Print no messages, even on error
+* `-r`, `--recursive` : Process the contents of all subdirectories
+* `-R`, `--rsyncable` : Input-determined block locations for rsync
+* `-S`, `--suffix .sss` : Use suffix .sss instead of .gz (for compression)
+* `-t`, `--test` : Test the integrity of the compressed input
+* `-T`, `--no-time` : Do not store or restore mod time in/from header
+* `-v`, `--verbose` : Provide more verbose output
+* `-V`, `--version` : Show the version of pigz
+* `-z`, `--zlib` : Compress to zlib (.zz) instead of gzip format
+* `--` : All arguments after "--" are treated as files
