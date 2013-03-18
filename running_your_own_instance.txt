@@ -1,5 +1,4 @@
-This document describes what you need to do to run your own copy of the blog
-(the Go version in go directory).
+This document describes what you need to do to run your own copy of the blog.
 
 Warning: it's probably not complete and you're expected to be able to debug
 problems if they arise.
@@ -55,3 +54,9 @@ directory).
 This is where the data (blog posts etc.) is stored. Also, this is the directory
 being backed up to s3.
 
+3. You need to compile the app e.g. by running ./scripts/build.sh.
+This will create go/blog_app executable which is the web server.
+You can run it directly on port 80 or run on custom port and expose
+it via other web server by proxying.
+
+See scripts/nginx.conf for how I do it with nginx.
