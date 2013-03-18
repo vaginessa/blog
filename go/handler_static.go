@@ -8,7 +8,7 @@ import (
 
 func getWwwDir() string {
 	// when running locally
-	d := filepath.Join("..", "appengine", "www")
+	d := filepath.Join("..", "www")
 	if PathExists(d) {
 		return d
 	}
@@ -23,7 +23,7 @@ func getWwwDir() string {
 
 func getAppEngineTmplDir() string {
 	// when running locally
-	d := filepath.Join("..", "appengine", "tmpl")
+	d := filepath.Join("..", "tmpl")
 	if PathExists(d) {
 		return d
 	}
