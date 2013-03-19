@@ -42,6 +42,7 @@ var redirects = map[string]string{
 	"/software/sumatrapdf/sumatra-shot-01-full.gif": "http://kjkpub.s3.amazonaws.com/blog/sumatra/sumatra-shot-01-full.gif",
 	"/software/sumatrapdf/SumatraSplash.png":        "http://kjkpub.s3.amazonaws.com/blog/sumatra/SumatraSplash.png",
 	"/software/sumatrapdf/download.html _blank":     "/software/sumatrapdf/download.html",
+	"/static/software.html": "/software/index.html",
 }
 
 var articleRedirects = make(map[string]int)

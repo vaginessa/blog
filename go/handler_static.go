@@ -112,11 +112,15 @@ func serveFileFromDir(w http.ResponseWriter, r *http.Request, dir, fileName stri
 		http.ServeFile(w, r, filePath)
 	} else {
 		logger.Noticef("serveFileFromDir() file '%s' doesn't exist, referer: '%s'", fileName, getReferer(r))
+		serve404(w, r)
 	}
 }
 
 // url: /static/*
 func handleStatic(w http.ResponseWriter, r *http.Request) {
+	if redirectIfNeeded(w, r) {
+		return
+	}
 	file := r.URL.Path[len("/static/"):]
 	serveFileFromDir(w, r, getStaticDir(), file)
 }
@@ -149,7 +153,7 @@ func handleMarkitup(w http.ResponseWriter, r *http.Request) {
 func handleSoftware(w http.ResponseWriter, r *http.Request) {
 	url := r.URL.Path
 	if url == "/software" || url == "/software/" || url == "/software/index.html" {
-		serveFileFromDir(w, r, getAppEngineTmplDir(), "software.html")
+		serveFileFromDir(w, r, getSoftwareDir(), "index.html")
 		return
 	}
 	if redirectIfNeeded(w, r) {
