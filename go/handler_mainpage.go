@@ -48,7 +48,7 @@ func getRecentArticles(articles []*Article, max int) []*Article {
 	n := 0
 	for i := len(articles) - 1; n < max; i-- {
 		res[n] = articles[i]
-		 n++
+		n++
 	}
 	return res
 }

@@ -24,6 +24,10 @@ var redirects = map[string]string{
 	"/software/volante":                   "/software/volante/database.html",
 	"/software/volante/":                  "/software/volante/database.html",
 	"/software/volante/index.html":        "/software/volante/database.html",
+	"/software/15minutes/index.html":      "/software/15minutes.html",
+	"/software/15minutes/":                "/software/15minutes.html",
+	"/software/scdiff/index.html":         "/software/scdiff.html",
+	"/software/scdiff/":                   "/software/scdiff.html",
 	"/extremeoptimizations":               "/extremeoptimizations/index.html",
 	"/extremeoptimizations/":              "/extremeoptimizations/index.html",
 	"/atom.xml":                           "http://feeds.feedburner.com/KrzysztofKowalczykBlog",
@@ -42,7 +46,7 @@ var redirects = map[string]string{
 	"/software/sumatrapdf/sumatra-shot-01-full.gif": "http://kjkpub.s3.amazonaws.com/blog/sumatra/sumatra-shot-01-full.gif",
 	"/software/sumatrapdf/SumatraSplash.png":        "http://kjkpub.s3.amazonaws.com/blog/sumatra/SumatraSplash.png",
 	"/software/sumatrapdf/download.html _blank":     "/software/sumatrapdf/download.html",
-	"/static/software.html": "/software/index.html",
+	"/static/software.html":                         "/software/index.html",
 }
 
 var articleRedirects = make(map[string]int)
