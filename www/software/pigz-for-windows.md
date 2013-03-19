@@ -15,13 +15,13 @@ Download [pigz.exe](https://kjkpub.s3.amazonaws.com/software/pigz/2.3/pigz.exe) 
 
 Sources are at [https://github.com/kjk/pigz](https://github.com/kjk/pigz)
 
-## How to use
+## Usage
 
-`pigz [options] [files ...]`
+To compress: `pigz [options] [files ...]`
 
-### Basic use
+To uncompress: `unpigz [options] [files ...]`
 
-`pigz foo` will create `foo.gz`, compressed with gzip, and will delete foo.
+`pigz foo.txt` will create `foo.txt.gz`, compressed with gzip algorithm, and delete `foo.txt`.
 
 To not delete the source file, use `--keep` (`-k`) option.
 

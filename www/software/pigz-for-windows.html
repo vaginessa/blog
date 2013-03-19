@@ -6,10 +6,10 @@ multiple cores to speed up compression.</p>
 <p>Pigz is a single executable:</p>
 <p>Download <a href="https://kjkpub.s3.amazonaws.com/software/pigz/2.3/pigz.exe">pigz.exe</a> (version 2.3).</p>
 <p>Sources are at <a href="https://github.com/kjk/pigz">https://github.com/kjk/pigz</a></p>
-<h2>How to use</h2>
-<p><code>pigz [options] [files ...]</code></p>
-<h3>Basic use</h3>
-<p><code>pigz foo</code> will create <code>foo.gz</code>, compressed with gzip, and will delete foo.</p>
+<h2>Usage</h2>
+<p>To compress: <code>pigz [options] [files ...]</code></p>
+<p>To uncompress: <code>unpigz [options] [files ...]</code></p>
+<p><code>pigz foo.txt</code> will create <code>foo.txt.gz</code>, compressed with gzip algorithm, and delete <code>foo.txt</code>.</p>
 <p>To not delete the source file, use <code>--keep</code> (<code>-k</code>) option.</p>
 <p>To change the compression algorithm:</p>
 <ul>
