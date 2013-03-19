@@ -4,7 +4,7 @@
 Re-generate html files from markdown (.md) files.
 """
 
-import markdown
+import os, markdown, web
 from util import read_file_utf8, write_file_utf8, list_files, ext
 
 def is_markdown_file(path):
@@ -34,10 +34,21 @@ def parse_md(s):
 	s = "\n".join(lines)
 	return MdInfo(meta_data, s)
 
+def tmpl_for_src_path(src):
+	dir = os.path.dirname(src)
+	path = os.path.join(dir, "_md.tmpl.html")
+	tmpl_data = open(path).read()
+	return web.template.Template(tmpl_data, filename="md_tmpl.html")
+
 def md_to_html(src, dst):
 	s = read_file_utf8(src)
 	md_info = parse_md(s)
-	html = markdown.markdown(md_info.s)
+	body = markdown.markdown(md_info.s)
+	tmpl = tmpl_for_src_path(src)
+	#print("Found template: %s" % mdtmpl)
+	title = md_info.meta_data["title"]
+	#print(vars.keys())
+	html = str(tmpl(title, body))
 	write_file_utf8(dst, html)
 
 def main():
