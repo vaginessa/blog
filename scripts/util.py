@@ -35,3 +35,7 @@ def list_files_g(d, filter_func=None, recur=False):
 # generator => array
 def list_files(d, filter_func=None, recur=False):
     return [path for path in list_files_g(d, filter_func, recur)]
+
+def delete_file(path):
+    if os.path.exists(path):
+        os.remove(path)

@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf8" />
-<title>Pigz Windows port</title>
+<title>Pigz windows port</title>
 <link rel="stylesheet" href="/css/wp-style.css" type="text/css" />
 <link rel="stylesheet" href="/css/article.css" type="text/css" />
 <body>
@@ -10,12 +10,12 @@
 <div id="container">
 <p>
 <a href="/">Home</a> &raquo; <a href="index.html">Software I've written</a>
-&raquo; <strong>Pigz Windows port</strong>
+&raquo; <strong>Pigz windows port</strong>
 </p>
 
 <div id="article">
 
-<h1>Pigz Windows port</h1>
+<h1>Pigz windows port</h1>
 <p><a href="http://zlib.net/pigz/">Pigz</a> is a parallel gzip implementation. It uses
 multiple cores to speed up compression and decompression.</p>
 <p>This is a Windows port made by <a href="http://blog.kowalczyk.info">Krzysztof Kowalczyk</a>.</p>
@@ -24,24 +24,23 @@ multiple cores to speed up compression and decompression.</p>
 <ul>
 <li><a href="https://kjkpub.s3.amazonaws.com/software/pigz/2.3/pigz.exe">pigz.exe</a> and
 <a href="https://kjkpub.s3.amazonaws.com/software/pigz/2.3/unpigz.exe">unpigz.exe</a></li>
-<li>or both inside <a href="https://kjkpub.s3.amazonaws.com/software/pigz/2.3/pigz.zip">pigz.zip</a></li>
+<li>or both in <a href="https://kjkpub.s3.amazonaws.com/software/pigz/2.3/pigz.zip">pigz.zip</a></li>
 </ul>
 <p>Sources are at <a href="https://github.com/kjk/pigz">https://github.com/kjk/pigz</a></p>
 <h2>Usage</h2>
 <p>To compress: <code>pigz [options] [files ...]</code></p>
 <p>To uncompress: <code>unpigz [options] [files ...]</code></p>
-<p><code>pigz foo.txt</code> will create <code>foo.txt.gz</code>, compressed with gzip algorithm, and delete <code>foo.txt</code>.</p>
+<p><code>pigz foo.txt</code> will create <code>foo.txt.gz</code>, compressed with gzip algorithm,
+and delete <code>foo.txt</code>.</p>
 <p>To not delete the source file, use <code>--keep</code> (<code>-k</code>) option.</p>
 <p>To change the compression algorithm:</p>
 <ul>
 <li><code>-0</code> to <code>-9</code> selects the compression strength. Higher number means better, but slower, compression</li>
-<li><code>--fast</code> is the same as <code>-1</code>, <code>--best`` is the same as</code>-9`</li>
+<li><code>--fast</code> is the same as <code>-1</code>, <code>--best</code> is the same as <code>-9</code></li>
 <li><code>--11</code> selects <a href="https://code.google.com/p/zopfli/">zopfli</a> algorithm which
-creates zlib-compatible data, compresses ~5% better than zlib but with much
-slower compression</li>
+creates zlib-compatible data, compresses ~5% better than zlib but is much
+slower</li>
 </ul>
-<p>For each file, it'll create a compressed file. The name of compressed file will
-be created by adding a suffix.</p>
 <p>The suffix is:</p>
 <ul>
 <li><code>.gz</code> by default</li>
@@ -50,7 +49,6 @@ be created by adding a suffix.</p>
 <li>your own with <code>--suffix .custom</code> option</li>
 </ul>
 <h2>All options</h2>
-<p>Full list of options:</p>
 <ul>
 <li><code>-0</code> to <code>-9</code>, <code>-11</code> : Compression level (11 is much slower, a few % better)</li>
 <li><code>--fast</code>, <code>--best</code> : Compression levels 1 and 9 respectively</li>

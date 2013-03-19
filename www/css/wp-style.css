@@ -6,12 +6,12 @@ body { margin-left: 10px; margin-right: 10px }
 blockquote { border-left: 5px solid #ccc; margin-left: 1.5em;	padding-left: 5px;}
 pre { border-left: 5px solid #ccc;	margin-left: 1.5em;	padding-left: 5px;}
 
-/* --- LINKS ------------------------------- */	
+/* --- LINKS ------------------------------- */
 a:link    { background-color: transparent; }
 a:visited { background-color: transparent; }
 a:hover   { background-color: #5F9EA0; color: #fff; text-decoration: none;  }
 
-/* --- DIVS IN INDEX ------------------------------- */	
+/* --- DIVS IN INDEX ------------------------------- */
 #header	{ height: 50px; background-color: #fffde3;}
 #header-blog { height: 50px; background-color: #fffde3;}
 #container	{ padding: 0; margin: 0; text-align: left; height: 100%; background: #fff;}
@@ -23,15 +23,13 @@ a:hover   { background-color: #5F9EA0; color: #fff; text-decoration: none;  }
 #footer { margin-right: 10px;  margin-left: 10px; clear: both; height: 50px; background-color: #399; }
 div.clearing {	clear: both; height: 1px }
 
-/* --- STYLES ------------------------------- */	
+/* --- STYLES ------------------------------- */
 /* p { padding: 0; margin: 10px 20px 10px 20px; }
 table { padding: 0; margin: 10px 20px 10px 20px; } */
 
 /* original settings from wordpress
 li { padding: 0; margin: 10px 20px 10px 20px; } */
 li { padding: 0; }
-h1 { padding: 0; margin: 0 20px 0 20px; font-weight: bold; } /* TODO: 1.5em */
-h2 { padding: 0; margin: 0 20px 0 20px; font-size: 120%; font-weight: bold; }
 
 #header h1 { padding-top: 6px; margin: 0 10px 0 10px; font-weight: bold; font-size: 1.5em; }
 #header h2 { padding-top: 4px; margin: 0 10px 0 10px; font-size: 100%; font-weight: bold; }
@@ -62,14 +60,14 @@ h2 { padding: 0; margin: 0 20px 0 20px; font-size: 120%; font-weight: bold; }
 #links ul { font-size: 80%; line-height: 1.4em; margin: 5px 0 10px 10px; padding: 0; list-style-type: none;	}
 #links li { margin: 0; padding: 0 0 10px 0;	}
 #links h1 {	padding: 0;	margin: 10px 15px 0 10px; }
-.google { padding: 0; margin: 15px 10px 10px 20px; }                
+.google { padding: 0; margin: 15px 10px 10px 20px; }
 
 /* --- SEARCH STYLE ------------------------------- */
 .side { font-size:x-small; background:#FFF; padding:0; margin:10px; }
 
 /* --- NOT IN INDEX YET------------------------------- */
-.trackback-url {font-family:palatino, georgia, verdana, arial, sans-serif;	color:#666;	font-size:small;font-weight:normal;	background:#FFF;line-height:140%;padding:5px;border:1px dotted #999; }	
-.trackback-body {font-family:palatino, georgia, verdana, arial, sans-serif;	color:#666;	font-size:small;font-weight:normal;	background:#FFF;line-height:140%;padding-bottom:10px;padding-top:10px;	border-bottom:1px dotted #999; 		}			
+.trackback-url {font-family:palatino, georgia, verdana, arial, sans-serif;	color:#666;	font-size:small;font-weight:normal;	background:#FFF;line-height:140%;padding:5px;border:1px dotted #999; }
+.trackback-body {font-family:palatino, georgia, verdana, arial, sans-serif;	color:#666;	font-size:small;font-weight:normal;	background:#FFF;line-height:140%;padding-bottom:10px;padding-top:10px;	border-bottom:1px dotted #999; 		}
 .trackback-post {font-family:verdana, arial, sans-serif;color:#666;	font-size:x-small;font-weight:normal;background:#FFF;}
 
 #banner { background-color: #fffde3; }

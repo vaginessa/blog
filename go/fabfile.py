@@ -56,8 +56,8 @@ def zip_files(zip_path):
 	add_dir_files(zf, "tmpl")
 	add_dir_files(zf, "ext")
 	add_dir_files(zf, "scripts")
-	add_dir_files(zf, os.path.join("..", "appengine", "www"), "www")
-	add_dir_files(zf, os.path.join("..", "appengine", "tmpl"), "appengtmpl")
+	add_dir_files(zf, os.path.join("..", "www"), "www")
+	add_dir_files(zf, os.path.join("..", "tmpl"), "appengtmpl")
 	zf.close()
 
 def delete_old_deploys(to_keep=5):
@@ -84,7 +84,7 @@ def delete_old_deploys(to_keep=5):
 				run("rm -rf %s" % d)
 
 def check_config():
-	needed_values = ["AwsAccess", "AwsSecret", "S3BackupBucket", "S3BackupDir", 
+	needed_values = ["AwsAccess", "AwsSecret", "S3BackupBucket", "S3BackupDir",
 		"CookieEncrKeyHexStr", "CookieAuthKeyHexStr", "AnalyticsCode", "TwitterOAuthCredentials"]
 	if not os.path.exists("config.json"): abort("config.json doesn't exist locally")
 	j = json.loads(open("config.json").read())

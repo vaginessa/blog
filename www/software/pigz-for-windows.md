@@ -1,6 +1,6 @@
-Title: Pigz Windows port
+Title: Pigz windows port
 
-# Pigz Windows port
+# Pigz windows port
 
 [Pigz](http://zlib.net/pigz/) is a parallel gzip implementation. It uses
 multiple cores to speed up compression and decompression.
@@ -13,7 +13,7 @@ Download version 2.3:
 
 * [pigz.exe](https://kjkpub.s3.amazonaws.com/software/pigz/2.3/pigz.exe) and
 [unpigz.exe](https://kjkpub.s3.amazonaws.com/software/pigz/2.3/unpigz.exe)
-* or both inside [pigz.zip](https://kjkpub.s3.amazonaws.com/software/pigz/2.3/pigz.zip)
+* or both in [pigz.zip](https://kjkpub.s3.amazonaws.com/software/pigz/2.3/pigz.zip)
 
 Sources are at [https://github.com/kjk/pigz](https://github.com/kjk/pigz)
 
@@ -23,20 +23,19 @@ To compress: `pigz [options] [files ...]`
 
 To uncompress: `unpigz [options] [files ...]`
 
-`pigz foo.txt` will create `foo.txt.gz`, compressed with gzip algorithm, and delete `foo.txt`.
+`pigz foo.txt` will create `foo.txt.gz`, compressed with gzip algorithm,
+and delete `foo.txt`.
 
 To not delete the source file, use `--keep` (`-k`) option.
 
 To change the compression algorithm:
 
 * `-0` to `-9` selects the compression strength. Higher number means better, but slower, compression
-* `--fast` is the same as `-1`, `--best`` is the same as `-9`
+* `--fast` is the same as `-1`, `--best` is the same as `-9`
 * `--11` selects [zopfli](https://code.google.com/p/zopfli/) algorithm which
-creates zlib-compatible data, compresses ~5% better than zlib but with much
-slower compression
+creates zlib-compatible data, compresses ~5% better than zlib but is much
+slower
 
-For each file, it'll create a compressed file. The name of compressed file will
-be created by adding a suffix.
 
 The suffix is:
 
@@ -46,8 +45,6 @@ The suffix is:
 * your own with `--suffix .custom` option
 
 ## All options
-
-Full list of options:
 
 * `-0` to `-9`, `-11` : Compression level (11 is much slower, a few % better)
 * `--fast`, `--best` : Compression levels 1 and 9 respectively
