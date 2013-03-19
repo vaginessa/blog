@@ -3,15 +3,17 @@ Title: Pigz Windows port
 # Pigz Windows port
 
 [Pigz](http://zlib.net/pigz/) is a parallel gzip implementation. It uses
-multiple cores to speed up compression.
+multiple cores to speed up compression and decompression.
 
 This is a Windows port made by [Krzysztof Kowalczyk](http://blog.kowalczyk.info).
 
 ## Download
 
-Pigz is a single executable:
+Download version 2.3:
 
-Download [pigz.exe](https://kjkpub.s3.amazonaws.com/software/pigz/2.3/pigz.exe) (version 2.3).
+* [pigz.exe](https://kjkpub.s3.amazonaws.com/software/pigz/2.3/pigz.exe) and
+[unpigz.exe](https://kjkpub.s3.amazonaws.com/software/pigz/2.3/unpigz.exe)
+* or both inside [pigz.zip](https://kjkpub.s3.amazonaws.com/software/pigz/2.3/pigz.zip)
 
 Sources are at [https://github.com/kjk/pigz](https://github.com/kjk/pigz)
 
