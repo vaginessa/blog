@@ -422,6 +422,7 @@ func (s *Store) newArticleId() int {
 		if _, ok := s.articleIdToArticle[id]; !ok {
 			return id
 		}
+		id += 1
 	}
 	return id
 }
@@ -515,7 +516,8 @@ func (s *Store) CreateOrUpdateArticle(article *Article) (*Article, error) {
 		article.Id = s.newArticleId()
 		newArticle = true
 	}
-	if err := s.appendString(serArticle(article)); err != nil {
+	articleStr := serArticle(article)
+	if err := s.appendString(articleStr); err != nil {
 		return nil, err
 	}
 
