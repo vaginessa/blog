@@ -562,10 +562,13 @@ function langChanged() {
 };
 
 function buttonsHtml() {
+	return '';
+/*
 return '<span style="position:relative; left: 22px; top: 6px;">\
 <script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>\
 <g:plusone size="medium" href="http://blog.kowalczyk.info/software/sumatrapdf/"></g:plusone>\
 </span>';
+*/
 }
 
 function buttonsOldHtml() {
