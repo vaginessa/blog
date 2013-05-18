@@ -194,7 +194,6 @@ func SkipPastLine(d []byte, lineToFind string) []byte {
 			return d
 		}
 	}
-	panic("")
 }
 
 func FindLineWithPrefix(d []byte, prefix string) []byte {
@@ -209,7 +208,6 @@ func FindLineWithPrefix(d []byte, prefix string) []byte {
 			return l
 		}
 	}
-	panic("")
 }
 
 const base64Chars = "0123456789abcdefghijklmnopqrstuvwxyz"
