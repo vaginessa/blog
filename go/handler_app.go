@@ -162,19 +162,19 @@ func handleAppEdit(w http.ResponseWriter, r *http.Request) {
 		model.Tags = strings.Join(article.Tags, ",")
 		if article.IsPrivate {
 			model.PrivateCheckboxChecked = "checked"
-			format := article.CurrVersion().Format
-			checked := &model.FormatTextChecked
-			if format == FormatHtml {
-				checked = &model.FormatHtmlChecked
-			} else if format == FormatTextile {
-				checked = &model.FormatTextileChecked
-			} else if format == FormatMarkdown {
-				checked = &model.FormatMarkdownChecked
-			} else if format != FormatText {
-				panic("invalid format")
-			}
-			*checked = "selected"
 		}
+		format := article.CurrVersion().Format
+		checked := &model.FormatTextChecked
+		if format == FormatHtml {
+			checked = &model.FormatHtmlChecked
+		} else if format == FormatTextile {
+			checked = &model.FormatTextileChecked
+		} else if format == FormatMarkdown {
+			checked = &model.FormatMarkdownChecked
+		} else if format != FormatText {
+			panic("invalid format")
+		}
+		*checked = "selected"
 	}
 
 	ExecTemplate(w, tmplEdit, model)
