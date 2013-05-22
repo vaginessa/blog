@@ -295,5 +295,6 @@ func msgToHtml(msg []byte, format int) string {
 		//fmt.Printf("msgToHtml(): text\n")
 		return strToHtml(string(msg))
 	}
+	panic("unknown format")
 	return ""
 }

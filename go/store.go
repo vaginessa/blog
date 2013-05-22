@@ -424,6 +424,7 @@ func (s *Store) newArticleId() int {
 		}
 		id += 1
 	}
+	return id
 }
 
 func (s *Store) newTextId() int {

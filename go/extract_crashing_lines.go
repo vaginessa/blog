@@ -103,4 +103,6 @@ func findValidCrashLine(d []byte) string {
 		}
 		return string(l)
 	}
+	panic("")
+	return ""
 }
