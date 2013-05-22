@@ -378,7 +378,11 @@ func main() {
 	http.Handle("/app/crashes", makeTimingHandler(handleCrashes))
 	http.Handle("/app/crashesrss", makeTimingHandler(handleCrashesRss))
 	http.Handle("/app/crashshow", makeTimingHandler(handleCrashShow))
-	http.Handle("/feedburner.xml", makeTimingHandler(handleFeedburnerAtom))
+	// TODO: I stopped pointing people to FeedBurner feed on 2013-05-22
+	// At some point I should delete /feedburner.xml, which is a source data
+	// for FeedBurner
+	http.Handle("/feedburner.xml", makeTimingHandler(handleAtom))
+	http.Handle("/atom.xml", makeTimingHandler(handleAtom))
 	http.Handle("/atom-all.xml", makeTimingHandler(handleAtomAll))
 	http.Handle("/archives.html", makeTimingHandler(handleArchives))
 	http.Handle("/software", makeTimingHandler(handleSoftware))

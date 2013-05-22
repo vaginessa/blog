@@ -58,7 +58,7 @@ func findFileFixes(dir string) {
 	}
 }
 
-// 0114C072 01:0004B072 sumatrapdf.exe!CrashMe+0x2 
+// 0114C072 01:0004B072 sumatrapdf.exe!CrashMe+0x2
 // c:\users\kkowalczyk\src\sumatrapdf\src\utils\baseutil.cpp+14
 
 func linkifyCrashReportLine(l []byte) []byte {

@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-func handleAtom(w http.ResponseWriter, r *http.Request, excludeNotes bool) {
+func handleAtomHelp(w http.ResponseWriter, r *http.Request, excludeNotes bool) {
 	articles := getCachedArticles(false)
 	if excludeNotes {
 		articles = filterArticlesByTag(articles, "note", false)
@@ -60,10 +60,10 @@ func handleAtom(w http.ResponseWriter, r *http.Request, excludeNotes bool) {
 
 // /atom-all.xml
 func handleAtomAll(w http.ResponseWriter, r *http.Request) {
-	handleAtom(w, r, false)
+	handleAtomHelp(w, r, false)
 }
 
-// /feedburner.xml
-func handleFeedburnerAtom(w http.ResponseWriter, r *http.Request) {
-	handleAtom(w, r, true)
+// /atom.xml
+func handleAtom(w http.ResponseWriter, r *http.Request) {
+	handleAtomHelp(w, r, true)
 }
