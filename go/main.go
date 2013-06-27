@@ -32,7 +32,7 @@ var (
 var (
 	oauthClient = oauth.Client{
 		TemporaryCredentialRequestURI: "https://api.twitter.com/oauth/request_token",
-		ResourceOwnerAuthorizationURI: "https://api.twitter.com/oauth/authenticate",
+		ResourceOwnerAuthorizationURI: "https://api.twitter.com/oauth/authorize",
 		TokenRequestURI:               "https://api.twitter.com/oauth/access_token",
 	}
 
