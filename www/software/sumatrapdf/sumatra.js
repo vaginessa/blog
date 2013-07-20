@@ -260,7 +260,7 @@ var gTransalatedPages = [
 	"downloadafter", ["ka", "de", "fr", "es", "ja", "pt", "ro", "bg", "sr", "eu", "uz", "hr"],
 	"free-pdf-reader", ["ka", "cn", "de", "fr", "es", "ja", "pt", "ro", "ru", "bg", "sr", "eu", "uz", "hr"],
 	"manual", ["ka", "ru", "cn", "de", "fr", "es", "ja", "pt", "ro", "ru", "bg", "sr", "eu", "uz", "hr"],
-	"news", ["pt", "fr"]
+	"news", ["fr"]
 ];
 
 // return a list of langauges that a given page is translated into
