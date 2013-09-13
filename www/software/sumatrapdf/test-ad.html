@@ -11,37 +11,102 @@
 
 <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
 
+<script>
+var OS_UNKNOWN = -1;
+var OS_WIN_XP = 0;
+var OS_WIN_VISTA = 1;
+var OS_WIN_7 = 2;
+var OS_WIN_8 = 3;
+function getOS() {
+	var userAgent = navigator.userAgent;
+	if (-1 != userAgent.indexOf("Windows NT 5.1")) {
+		return OS_WIN_XP;
+	}
+	if (-1 != userAgent.indexOf("Windows NT 6.0")) {
+		return OS_WIN_VISTA;
+	}
+	if (-1 != userAgent.indexOf("Windows NT 6.1")) {
+		return OS_WIN_7;
+	}
+	if (-1 != userAgent.indexOf("Windows NT 6.2")) {
+		return OS_WIN_8;
+	}
+	return OS_UNKNOWN;
+};
+</script>
+
 <script type="text/javascript">
+function getCreativeId() {
+	var os = getOS();
+	if (OS_WIN_XP == os) {
+		return 176253;
+	} else if (OS_WIN_VISTA == os) {
+		return 176255;
+	} else if (OS_WIN_7 == os) {
+		return 176257;
+	} else if (OS_WIN_8 == os) {
+		return 176258;
+	}
+	return 176258;
+}
+
+// http://kkowalczyk.adzerk.com/network/7803/brand/33242/campaign/47122/option/84481/creatives/129416/map/176253 xp
+// http://kkowalczyk.adzerk.com/network/7803/brand/33242/campaign/47122/option/84481/creatives/129418/map/176255 vista
+// http://kkowalczyk.adzerk.com/network/7803/brand/33242/campaign/47122/option/84481/creatives/129420/map/176257 win7
+// http://kkowalczyk.adzerk.com/network/7803/brand/33242/campaign/47122/option/84481/creatives/129421/map/176258 win8
+
 var ados = ados || {};
-ados.run = ados.run || [];
-ados.run.push(function() {
-/* load placement for account: kkowalczyk, site: blog, size: 728x90 - Leaderboard*/
-ados_add_placement(7803, 51221, "azk9318", 4);
-ados_load();
-});</script>
+function doAdzerk() {
+	ados.run = ados.run || [];
+	var creativeId = getCreativeId();
+	ados.run.push(function() {
+		/* load placement for account: kkowalczyk, site: blog, size: 728x90 - Leaderboard*/
+		ados_add_placement(7803, 51221, "azk9318", 4).setFlightCreativeId(creativeId);
+		ados_load();
+	});
+};</script>
 
 <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script>
-(adsbygoogle = window.adsbygoogle || []).push({});
+function doAdsense() {
+	(adsbygoogle = window.adsbygoogle || []).push({});
+};
 </script>
 
 </head>
 <body>
 
-This is an ad area:
+<script>
+function dispatchAd() {
+	var os = getOS();
+	if (-1 == os) {
+		doAdsense();
+	} else {
+		doAdzerk();
+	}
+};
+dispatchAd();
+</script>
+
+Adzerk ad:
 <hr>
-<div style="margin-left:auto; margin-right:auto;width=728px;height:90px" id="azk9318"></div>
+<center>
+<div id="azk9318"></div>
+</center>
 <hr>
 
-Adsense ad area:
+Adsense ad:
 <hr>
 <!-- sumatra -->
+<center>
 <ins class="adsbygoogle"
      style="width:728px;height:90px;margin-left:auto; margin-right:auto;"
      data-ad-client="ca-pub-8305375090017172"
      data-ad-slot="5091334157"></ins>
+</center>
 <hr>
 
-This is a body of the page.
+This is a body of the page.<br>
+
 </body>
 </html>
