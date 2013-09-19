@@ -674,7 +674,7 @@ var ados = ados || {};
 function doAdzerk() {
 	ados.run = ados.run || [];
 	var creativeId = getCreativeId();
-	if (0 == createiveId) {
+	if (0 == creativeId) {
 		doAdsense();
 		return;
 	}
