@@ -674,6 +674,8 @@ var ados = ados || {};
 function doAdzerk() {
 	ados.run = ados.run || [];
 	var creativeId = getCreativeId();
+	creativeId = 182470;
+	console.log("creativeId = " + creativeId);
 	if (0 == creativeId) {
 		doAdsense();
 		return;
@@ -682,6 +684,15 @@ function doAdzerk() {
 	ados.run.push(function() {
 		/* load placement for account: kkowalczyk, site: blog, size: 728x90 - Leaderboard*/
 		ados_add_placement(7803, 51221, "azk9318", 4).setFlightCreativeId(creativeId);
+		ados_load();
+	});
+}
+
+function doAdzerk2() {
+	ados.run = ados.run || [];
+	ados.run.push(function() {
+		/* load placement for account: kkowalczyk, site: blog, size: 728x90 - Leaderboard*/
+		ados_add_placement(7803, 51221, "azk9318", 4);
 		ados_load();
 	});
 }

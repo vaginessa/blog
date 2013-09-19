@@ -3,115 +3,53 @@
 <head>
   <meta http-equiv="Content-Language" content="en-us">
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta name="keywords" content="pdf, epub, mobi, chm, cbr, cbz, xps, djvu, reader, viewer" />
-  <meta name="description" content="Sumatra PDF reader and viewer for Windows" />
-  <title>Testing the ad</title>
+  <title>Test ad</title>
+  <link rel="stylesheet" href="sumatra.css" type="text/css" />
 
 <script type="text/javascript">var p="http",d="static";if(document.location.protocol=="https:"){p+="s";d="engine";}var z=document.createElement("script");z.type="text/javascript";z.async=true;z.src=p+"://"+d+".adzerk.net/ados.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(z,s);</script>
 
-<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
-
-<script>
-var OS_UNKNOWN = -1;
-var OS_WIN_XP = 0;
-var OS_WIN_VISTA = 1;
-var OS_WIN_7 = 2;
-var OS_WIN_8 = 3;
-function getOS() {
-	var userAgent = navigator.userAgent;
-	if (-1 != userAgent.indexOf("Windows NT 5.1")) {
-		return OS_WIN_XP;
-	}
-	if (-1 != userAgent.indexOf("Windows NT 6.0")) {
-		return OS_WIN_VISTA;
-	}
-	if (-1 != userAgent.indexOf("Windows NT 6.1")) {
-		return OS_WIN_7;
-	}
-	if (-1 != userAgent.indexOf("Windows NT 6.2")) {
-		return OS_WIN_8;
-	}
-	return OS_UNKNOWN;
-};
-</script>
-
-<script type="text/javascript">
-function getCreativeId() {
-	var os = getOS();
-	if (OS_WIN_XP == os) {
-		return 176253;
-	} else if (OS_WIN_VISTA == os) {
-		return 176255;
-	} else if (OS_WIN_7 == os) {
-		return 176257;
-	} else if (OS_WIN_8 == os) {
-		return 176258;
-	}
-	return 176258;
-}
-
-// http://kkowalczyk.adzerk.com/network/7803/brand/33242/campaign/47122/option/84481/creatives/129416/map/176253 xp
-// http://kkowalczyk.adzerk.com/network/7803/brand/33242/campaign/47122/option/84481/creatives/129418/map/176255 vista
-// http://kkowalczyk.adzerk.com/network/7803/brand/33242/campaign/47122/option/84481/creatives/129420/map/176257 win7
-// http://kkowalczyk.adzerk.com/network/7803/brand/33242/campaign/47122/option/84481/creatives/129421/map/176258 win8
-
-// http://kkowalczyk.adzerk.com/network/7803/brand/33242/campaign/48296/option/86975/creatives/129416/map/182468 xp
-// http://kkowalczyk.adzerk.com/network/7803/brand/33242/campaign/48296/option/86975/creatives/129418/map/182469 vista
-// http://kkowalczyk.adzerk.com/network/7803/brand/33242/campaign/48296/option/86975/creatives/129420/map/182470 win7
-// http://kkowalczyk.adzerk.com/network/7803/brand/33242/campaign/48296/option/86975/creatives/129421/map/182471 win8
-
-var ados = ados || {};
-function doAdzerk() {
-	ados.run = ados.run || [];
-	var creativeId = getCreativeId();
-	ados.run.push(function() {
-		/* load placement for account: kkowalczyk, site: blog, size: 728x90 - Leaderboard*/
-		ados_add_placement(7803, 51221, "azk9318", 4).setFlightCreativeId(creativeId);
-		ados_load();
-	});
-};</script>
-
 <script async src="http://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-function doAdsense() {
-	(adsbygoogle = window.adsbygoogle || []).push({});
-};
-</script>
 
 </head>
 <body>
 
-<script>
-function dispatchAd() {
-	var os = getOS();
-	if (-1 == os) {
-		doAdsense();
-	} else {
-		doAdzerk();
-	}
-};
-dispatchAd();
-</script>
+<script type="text/javascript" src="sumatra.js"></script>
 
-Adzerk ad:
+Adzerk:
+<center><div id="azk9318"></div></center>
 <hr>
-<center>
-<div id="azk9318"></div>
-</center>
-<hr>
-
-Adsense ad:
-<hr>
-<!-- sumatra -->
+Adsense:
 <center>
 <ins class="adsbygoogle"
      style="width:728px;height:90px;margin-left:auto; margin-right:auto;"
      data-ad-client="ca-pub-8305375090017172"
      data-ad-slot="5091334157"></ins>
 </center>
-<hr>
 
-This is a body of the page.<br>
+<script>
+doAdsense();
+doAdzerk();
+//dispatchAd();
+</script>
+
+  <div id="container">
+    <div id="banner">
+      <h1 style="display:inline;">Sumatra PDF <font size="-1">is a PDF, ePub</font></h1>
+      <script type="text/javascript">
+        document.write(buttonsHtml());
+      </script>
+
+      <script type="text/javascript">document.write(navHtml());</script>
+    </div>
+
+    <br/>
+
+    <div id="center">
+    	This is a test page.
+    </div>
+    <hr/>
+    <center><a href="/">Krzysztof Kowalczyk</a></center>
+  </div>
 
 </body>
 </html>
