@@ -617,3 +617,84 @@ function adData() {
 	google_ad_width = 728;
 	google_ad_height = 90;
 }
+
+/* adzerk ads */
+
+var OS_UNKNOWN = -1;
+var OS_WIN_XP = 0;
+var OS_WIN_VISTA = 1;
+var OS_WIN_7 = 2;
+var OS_WIN_8 = 3;
+function getOS() {
+	var userAgent = navigator.userAgent;
+	if (-1 != userAgent.indexOf("Windows NT 5.1")) {
+		return OS_WIN_XP;
+	}
+	if (-1 != userAgent.indexOf("Windows NT 6.0")) {
+		return OS_WIN_VISTA;
+	}
+	if (-1 != userAgent.indexOf("Windows NT 6.1")) {
+		return OS_WIN_7;
+	}
+	if (-1 != userAgent.indexOf("Windows NT 6.2")) {
+		return OS_WIN_8;
+	}
+	return OS_UNKNOWN;
+};
+
+// slimware-01
+// http://kkowalczyk.adzerk.com/network/7803/brand/33242/campaign/48296/option/86975/creatives/129416/map/182468 xp
+// http://kkowalczyk.adzerk.com/network/7803/brand/33242/campaign/48296/option/86975/creatives/129418/map/182469 vista
+// http://kkowalczyk.adzerk.com/network/7803/brand/33242/campaign/48296/option/86975/creatives/129420/map/182470 win7
+// http://kkowalczyk.adzerk.com/network/7803/brand/33242/campaign/48296/option/86975/creatives/129421/map/182471 win8
+function getCreativeId() {
+	var os = getOS();
+	if (OS_WIN_XP == os) {
+		return 182468;
+	} else if (OS_WIN_VISTA == os) {
+		return 182469;
+	} else if (OS_WIN_7 == os) {
+		return 182470;
+	} else if (OS_WIN_8 == os) {
+		return 182471;
+	}
+	return 0;
+}
+
+var creativeByOs = [182468, 182469, 182470, 182471];
+function getCreativeId2() {
+	var os = getOS();
+	if (OS_UNKNOWN != os) {
+		return creativeByOs(os);
+	}
+	return 0;
+}
+
+var ados = ados || {};
+function doAdzerk() {
+	ados.run = ados.run || [];
+	var creativeId = getCreativeId();
+	if (0 == createiveId) {
+		doAdsense();
+		return;
+	}
+
+	ados.run.push(function() {
+		/* load placement for account: kkowalczyk, site: blog, size: 728x90 - Leaderboard*/
+		ados_add_placement(7803, 51221, "azk9318", 4).setFlightCreativeId(creativeId);
+		ados_load();
+	});
+}
+
+function doAdsense() {
+	(adsbygoogle = window.adsbygoogle || []).push({});
+}
+
+function dispatchAd() {
+	var os = getOS();
+	if (-1 == os) {
+		doAdsense();
+	} else {
+		doAdzerk();
+	}
+}
