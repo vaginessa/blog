@@ -1,9 +1,10 @@
 // update after releasing a new version
-var gSumVer = "2.3.2";
+var gSumVer = "2.4";
 
 // used by download-prev* pages, update after releasing a new version
 var gPrevSumatraVersion = [
-	"2.3.1", "2.3", "2.2.1", "2.2", "2.1.1", "2.1", "2.0.1", "2.0", "1.9", "1.8", "1.7", "1.6",
+	"2.3.3", "2.3.1", "2.3", "2.2.1", "2.2", "2.1.1",
+	"2.1", "2.0.1", "2.0", "1.9", "1.8", "1.7", "1.6",
 	"1.5.1", "1.5", "1.4", "1.3", "1.2", "1.1", "1.0.1",
 	"1.0", "0.9.4", "0.9.3", "0.9.1", "0.9", "0.8.1",
 	"0.8", "0.7", "0.6", "0.5", "0.4", "0.3", "0.2"
@@ -259,8 +260,7 @@ var gTransalatedPages = [
 	"download-prev", ["ka", "de", "fr", "es", "ja", "pt", "ro", "sr", "eu", "uz", "hr"],
 	"downloadafter", ["ka", "de", "fr", "es", "ja", "pt", "ro", "bg", "sr", "eu", "uz", "hr"],
 	"free-pdf-reader", ["ka", "cn", "de", "fr", "es", "ja", "pt", "ro", "ru", "bg", "sr", "eu", "uz", "hr"],
-	"manual", ["ka", "ru", "cn", "de", "fr", "es", "ja", "pt", "ro", "ru", "bg", "sr", "eu", "uz", "hr"],
-	"news", ["fr"]
+	"manual", ["ka", "ru", "cn", "de", "fr", "es", "ja", "pt", "ro", "ru", "bg", "sr", "eu", "uz", "hr"]
 ];
 
 // return a list of langauges that a given page is translated into
@@ -315,7 +315,7 @@ function setLangCookie(lang) {
 	setCookie(gLangCookieName, lang, 365);
 }
 
-// A heuristic used to detect preffered language of the user
+// A heuristic used to detect preferred language of the user
 // based on settings in navigator object.
 // TODO: we should also look at Accept-Language header, which might look like:
 // Accept-Language:ru,en-US;q=0.8,en;q=0.6
