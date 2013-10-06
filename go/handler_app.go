@@ -145,7 +145,7 @@ func handleAppEdit(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if article == nil {
-		model.FormatTextileChecked = "selected"
+		model.FormatMarkdownChecked = "selected"
 		model.PrivateCheckboxChecked = "checked"
 		model.SubmitButtonText = "Post"
 		model.Tags = strings.Join(tags, ",")
