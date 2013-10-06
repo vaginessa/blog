@@ -2,7 +2,7 @@
 <html>
 <head>
 
-<meta http-equiv="Content-type" content="text/html; charset=utf-8"> 
+<meta http-equiv="Content-type" content="text/html; charset=utf-8">
 <link rel="stylesheet" type="text/css" href="/markitup/skins/simple/style.css">
 <link rel="stylesheet" type="text/css" href="/markitup/sets/html/style.css">
 <link rel="stylesheet" type="text/css" href="/markitup/sets/textile/style.css">
@@ -49,6 +49,11 @@ textarea {
 
 <script type="text/javascript">
 
+var enableLogging = false;
+function mylog(s) {
+  if (enableLogging) { console.log(s); }
+}
+
 var previewTimerId = 0;
 // true if we started the ajax call to do the preview
 var previewInProgress = false;
@@ -61,17 +66,17 @@ myTextileSettings = {
         {name:'Heading 2', key:'2', openWith:'h2(!(([![Class]!]))!). ', placeHolder:'Your title here...' },
         {name:'Heading 3', key:'3', openWith:'h3(!(([![Class]!]))!). ', placeHolder:'Your title here...' },
         {name:'Heading 4', key:'4', openWith:'h4(!(([![Class]!]))!). ', placeHolder:'Your title here...' },
-        {name:'Paragraph', key:'P', openWith:'p(!(([![Class]!]))!). '}, 
-        {name:'Bold', key:'B', closeWith:'*', openWith:'*'}, 
+        {name:'Paragraph', key:'P', openWith:'p(!(([![Class]!]))!). '},
+        {name:'Bold', key:'B', closeWith:'*', openWith:'*'},
         {separator:'---------------' },
-        {name:'Bulleted list', openWith:'(!(* |!|*)!)'}, 
-        {name:'Numeric list', openWith:'(!(# |!|#)!)'}, 
+        {name:'Bulleted list', openWith:'(!(* |!|*)!)'},
+        {name:'Numeric list', openWith:'(!(# |!|#)!)'},
         {separator:'---------------' },
-        {name:'Picture', replaceWith:'![![Source:!:http://]!]([![Alternative text]!])!'}, 
+        {name:'Picture', replaceWith:'![![Source:!:http://]!]([![Alternative text]!])!'},
         {name:'Link', openWith:'"', closeWith:'([![Title]!])":[![Link:!:http://]!]', placeHolder:'Your text to link here...' },
         {separator:'---------------' },
-        {name:'Quotes', openWith:'bq(!(([![Class]!]))!). '}, 
-        {name:'Code', openWith:'@', closeWith:'@'}, 
+        {name:'Quotes', openWith:'bq(!(([![Class]!]))!). '},
+        {name:'Code', openWith:'@', closeWith:'@'},
     ]
 }
 
@@ -92,7 +97,7 @@ myMarkdownSettings = {
         {separator:'---------------' },
         {name:'Picture', key:"P", replaceWith:'![[![Alternative text]!]]([![Url:!:http://]!] "[![Title]!]")'},
         {name:'Link', key:"L", openWith:'[', closeWith:']([![Url:!:http://]!] "[![Title]!]")', placeHolder:'Your text to link here...' },
-        {separator:'---------------'},    
+        {separator:'---------------'},
         {name:'Quotes', openWith:'> '},
         {name:'Code Block / Code', openWith:'(!(\t|!|`)!)', closeWith:'(!(`)!)'},
     ]
@@ -162,6 +167,7 @@ function onFormatChanged() {
   var settings = markitUpSettingsForFormat(noteFormat());
   if (null == settings) { return; }
   $('#note').markItUp(settings);
+  $('#note').keyup(schedulePreview);
   onWndResize();
 }
 
@@ -177,6 +183,7 @@ function schedulePreview() {
   // reschedule the timer for doing the preview
   clearTimeout(previewTimerId);
   previewTimerId = setTimeout(preview, 2000);
+  mylog("scheduled preview");
 }
 
 function startInProgress() {
@@ -191,6 +198,7 @@ function stopInProgress() {
 
 function previewAllButHtml() {
   function preview_callback(data, status) {
+    mylog("preview_callback()");
     data = data.replace(/<p>(.*)<\/p>/, "$1");
     $("#preview").html(data);
     stopInProgress();
@@ -202,10 +210,12 @@ function previewAllButHtml() {
   if (0 == t.length) { return; }
   var data = { "format" : noteFormat(), "note" : note };
   $.post("/app/preview", data, preview_callback, "html");
+  mylog("called /app/preview for " + noteFormat());
   startInProgress();
 }
 
 function preview()  {
+  mylog("preview()");
   if (previewInProgress) { schedulePreview(); return; }
   if (noteFormat() == "html") {
     $("#preview").html($("#note").val());
@@ -296,9 +306,9 @@ $(document).ready(function() {
   &bull;
   <input type="checkbox" name="private_checkbox" id="private_checkbox" {{ .PrivateCheckboxChecked }}>Private &bull;
   <input type="checkbox" name="update_published_on">
-   update published on 
+   update published on
    <span id="cleanHtml">&bull; <a onclick="cleanHtml(); return false;" href="#">clean html</a></span>
-  &bull; <a href="/">cancel</a> 
+  &bull; <a href="/">cancel</a>
   </form>
 
   <div id="header" class="private" width=100%>
