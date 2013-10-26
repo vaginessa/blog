@@ -4,6 +4,8 @@
 <title>Misc software betas</title>
 <script src="http://kjkpub.s3.amazonaws.com/app/fotofi/latestver.js" type="text/javascript"></script>
 <script src="http://kjkpub.s3.amazonaws.com/software/patheditor/latestver.js" type="text/javascript"></script>
+<script src="http://kjkpub.s3.amazonaws.com/software/the_silver_searcher/latestver.js" type="text/javascript"></script>
+
 <!--
 <script src="http://kjkpub.s3.amazonaws.com/app/filerion/latestver.js" type="text/javascript"></script>
 <script src="http://kjkpub.s3.amazonaws.com/app/velociraptor8/latestver.js" type="text/javascript"></script>
@@ -36,7 +38,8 @@ function build_link_html(latestVer) {
 function build_link_html2(ver, url) { return a(url, ver); }
 
 function build_fotofi_html() { return build_link_html(fotofiLatestVer); }
-function build_patheditor_html() { return build_link_html2(pathEditorLatestVer, pathEditorLatestUrl)}
+function build_patheditor_html() { return build_link_html2(pathEditorLatestVer, pathEditorLatestUrl); }
+function build_ag_html() { return build_link_html2(agLatestVer, agLatestUrl); }
 
 //function build_simplerion_html() { return build_link_html(simplerionLatestVer); }
 //function build_filerion_html() { return build_link_html(filerionLatestVer); }
@@ -45,6 +48,7 @@ function build_patheditor_html() { return build_link_html2(pathEditorLatestVer, 
 function myInit() {
 	$("fotofi").innerHTML = build_fotofi_html();
   $("patheditor").innerHTML = build_patheditor_html();
+  $("ag").innerHTML = build_ag_html();
 	//$("simplerion").innerHTML = build_simplerion_html();
 	//$("filerion").innerHTML = build_filerion_html();
 	//$("velociraptor8").innerHTML = build_velociraptor8_html();
@@ -57,6 +61,7 @@ window.onload = myInit;
 
 Latest versions of my misc software:
 <ul>
+  <li><a href="/software/the-silver-searcher-for-windows.html">the silver searcher</a>: <span id="ag"></span></li>
   <li>fotofi: <span id="fotofi"></span></li>
   <li><a href="/software/patheditor/">patheditor</a>: <span id="patheditor"></span></li>
   <!--
