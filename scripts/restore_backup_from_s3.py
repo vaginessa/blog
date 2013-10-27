@@ -91,10 +91,12 @@ def restore_from_zip(s3_key):
 	delete_file(tmp_path)
 	s3_key.get_contents_to_filename(tmp_path)
 	zf = zipfile.ZipFile(tmp_path, "r")
+	dst_dir = os.path.join(local_download_dir(), "data")
+	create_dir(dst_dir)
 	for name in zf.namelist():
-		dst_path = os.path.join(local_download_dir(), name)
+		dst_path = os.path.join(dst_dir, name)
 		delete_file(dst_path) # just in case
-		zf.extract(name, local_download_dir())
+		zf.extract(name, dst_dir)
 		print("  extracted %s to %s " % (name, dst_path))
 	delete_file(tmp_path)
 
@@ -103,7 +105,9 @@ def restore_from_zip(s3_key):
 def restore_blobs(s3_keys, s3_prefix, relative_dst_dir, limit=0):
 	print("Restoring %d blobs with s3_prefix '%s' to dir '%s'" % (len(s3_keys), s3_prefix, relative_dst_dir))
 	restored = 0
+	restored_with_existing = 0
 	for key in s3_keys:
+		restored_with_existing += 1
 		assert key.name.startswith(s3_prefix)
 		name = key.name[len(s3_prefix):]
 		dst_path = os.path.join(local_download_dir(), relative_dst_dir, name)
@@ -120,6 +124,9 @@ def restore_blobs(s3_keys, s3_prefix, relative_dst_dir, limit=0):
 		restored += 1
 		if limit != 0 and restored >= limit:
 			return
+		if restored % 100 == 0:
+			left = len(s3_keys) - restored_with_existing
+			print(" left: %d, restored %d" % (left, restored))
 
 
 def main():
@@ -146,7 +153,6 @@ def main():
 			zip_files.append(f)
 		elif name.startswith("blog/blobs/"):
 			blobs_files.append(f)
-			if len(blobs_files) > 100: break
 		elif name.startswith("blog/blobs_crashes/"):
 			blobs_crashes_files.append(f)
 		else:
