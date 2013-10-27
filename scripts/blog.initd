@@ -1,8 +1,5 @@
 #!/bin/sh
 
-# /etc/init.d/blog must be symlinked to this file i.e. /home/blog/www/app/current/scripts/blog.initd
-# sudo ln -s /home/blog/www/app/current/scripts/blog.initd /etc/init.d/blog
-
 ### BEGIN INIT INFO
 # Provides:          blog
 # Required-Start:    $local_fs $remote_fs $network $syslog
@@ -12,6 +9,9 @@
 # Short-Description: starts blog
 # Description:       starts blog using start-stop-daemon
 ### END INIT INFO
+
+# /etc/init.d/blog must be symlinked to this file i.e. /home/blog/www/app/current/scripts/blog.initd
+# sudo ln -s /home/blog/www/app/current/scripts/blog.initd /etc/init.d/blog
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DAEMON=/home/blog/www/app/current/blog_app
