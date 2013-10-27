@@ -127,7 +127,6 @@ def deploy():
 	curr_dir = app_dir + '/current'
 	if files.exists(curr_dir):
 		# shut-down currently running instance
-		#with cd(curr_dir):
 		sudo("/etc/init.d/blog stop", pty=False)
 		# rename old current as prev for easy rollback of bad deploy
 		with cd(app_dir):
@@ -140,6 +139,8 @@ def deploy():
 
 	if not files.exists("/etc/init.d/blog"):
 		sudo("ln -s /home/blog/www/app/current/scripts/blog.initd /etc/init.d/blog")
+		# make sure it runs on startup
+		sudo("update-rc.d blog defaults")
 
 	# start it
 	sudo("/etc/init.d/blog start", pty=False)

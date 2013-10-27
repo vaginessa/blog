@@ -121,7 +121,11 @@ func redirectIfNeeded(w http.ResponseWriter, r *http.Request) bool {
 // url: /forum_sumatra/${rest}
 func forumRedirect(w http.ResponseWriter, r *http.Request) {
 	url := r.URL.Path[len("/forum_sumatra/"):]
-	redirUrl := "http://forums.fofou.org/sumatrapdf/" + url + "?" + r.URL.RawQuery
+
+	redirUrl := "http://forums.fofou.org/sumatrapdf/" + url
+	if len(r.URL.RawQuery) > 0 {
+		redirUrl = redirUrl + "?" + r.URL.RawQuery
+	}
 	//logger.Noticef("Redirecting '%s' => '%s'", r.URL.Path, redirUrl)
 	http.Redirect(w, r, redirUrl, 302)
 }

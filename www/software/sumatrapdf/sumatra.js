@@ -470,7 +470,7 @@ function translateTabText(lang, s) {
 }
 
 function urlFromBaseUrlLang(baseUrl, lang) {
-	if (baseUrl == "/forum_sumatra/") {
+	if (baseUrl == "/forum_sumatra/" || baseUrl == "http://forums.fofou.org/sumatrapdf/") {
 		return baseUrl;
 	}
 	if (hasTranslation(baseUrl, lang)) {
@@ -489,7 +489,7 @@ function urlFromBaseUrlLang(baseUrl, lang) {
 			<li><a href="download-free-pdf-viewer.html" title="Download"><span>Загрузка</span></a></li>
 			<li><a href="http://code.google.com/p/sumatrapdf/wiki/JoinTheProject" title="Contribute"><span>Сотрудничество</span></a></li>
 			<li><a href="translations.html" title="Translations"><span>Переводы</span></a></li>
-			<li><a href="/forum_sumatra/" title="Forums"><span>Форум</span></a></li>
+			<li><a href="http://forums.fofou.org/sumatrapdf/" title="Forums"><span>Форум</span></a></li>
 		</ul>
 	</div>
 	<div id="ddcolortabsline"> </div>
@@ -508,7 +508,7 @@ function navHtml() {
 		["news", "Version History"],
 		//["develop", "Contribute"],
 		//["translations", "Translations"],
-		["/forum_sumatra/", "Forums"]];
+		["http://forums.fofou.org/sumatrapdf/", "Forums"]];
 
 	for (i=0; i<baseUrls.length; i++) {
 		currUrl = baseUrls[i][0];
