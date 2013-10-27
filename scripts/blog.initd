@@ -18,7 +18,7 @@ DAEMON=/home/blog/www/app/current/blog_app
 #DAEMON_ARGS=-production
 NAME=blog
 DESC=blog
-PID=/var/run/blog.pid
+#PID=/var/run/blog.pid
 
 test -x $DAEMON || exit 0
 
@@ -28,25 +28,25 @@ set -e
 
 
 start() {
-	start-stop-daemon --oknodo --start --verbose --pidfile $PID \
+	start-stop-daemon --oknodo --start --verbose --background \
 		--chuid blog --chdir /home/blog/www/app/current \
 		--exec $DAEMON -- $DAEMON_ARGS
 }
 
 start2() {
-	start-stop-daemon --oknodo --start --verbose --background --pidfile $PID \
+	start-stop-daemon --oknodo --start --verbose --background \
 		--retry 2 --chuid blog --chdir /home/blog/www/app/current \
 		--exec /bin/bash -- -c "$DAEMON $DAEMON_ARGS > log.txt 2>&1"
 }
 
 stop() {
-	start-stop-daemon --oknodo --stop --verbose --pidfile $PID \
+	start-stop-daemon --oknodo --stop --verbose \
 		--exec $DAEMON
 }
 
 case "$1" in
 	start)
-		env
+		#env
 		log_daemon_msg "Starting $NAME"
 		start
 		log_end_msg $?
@@ -59,7 +59,7 @@ case "$1" in
 		;;
 
 	status)
-		status_of_proc -p $PID "$DAEMON" "$NAME"
+		status_of_proc "$DAEMON" "$NAME"
 		;;
 esac
 

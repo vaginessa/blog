@@ -149,8 +149,8 @@ def deploy():
 	# start it
 	#with cd(curr_dir):
 		#run("/sbin/start-stop-daemon --verbose --start --background --chdir /home/blog/www/app/current --exec blog_app -- -production")
-	run("env")
-	run("sudo env")
+	#run("env")
+	#run("sudo env")
 	run("sudo /etc/init.d/blog start")
 	run("ps aux | grep blog_app | grep -v grep")
 
