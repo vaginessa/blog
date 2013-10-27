@@ -27,7 +27,7 @@ set -e
 . /lib/lsb/init-functions
 
 
-start2() {
+start() {
 	start-stop-daemon --oknodo --start --verbose --background --pidfile $PID \
 		--retry 2 --chuid blog --chdir /home/blog/www/app/current \
 		--exec $DAEMON -- $DAEMON_ARGS

@@ -20,6 +20,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"os"
 )
 
 var (
@@ -323,6 +324,15 @@ func main() {
 	var err error
 
 	runtime.GOMAXPROCS(runtime.NumCPU())
+
+	logFile, err := os.Create("log.txt")
+	if err == nil {
+		defer logFile.Close()
+	}
+	if logFile != nil {
+		logFile.WriteString("Hello matherfuckers!\n")
+	}
+
 	flag.Parse()
 
 	/*findFileFixes("../../../sumatrapdf")
