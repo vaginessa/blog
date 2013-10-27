@@ -52,11 +52,11 @@ def script_dir(): return os.path.realpath(os.path.dirname(__file__))
 
 
 # where we will download the files
-# to tmp directory (if exists) - for local testing
+# to ../../blogdata directory (if exists) - for local testing
 # to the same directory where the script is - on the server
 @memoize
 def local_download_dir():
-	d = os.path.join(script_dir(), "tmp")
+	d = os.path.join(script_dir(), "..", "..", "blogdata")
 	if os.path.exists(d):
 		return d
 	return script_dir()
