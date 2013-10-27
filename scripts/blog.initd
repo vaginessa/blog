@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# /etc/init.d/blog must be symlinked to this file i.e. /home/blog/www/app/current/scripts/blog.initd
+# sudo ln -s /home/blog/www/app/current/scripts/blog.initd /etc/init.d/blog
+
 ### BEGIN INIT INFO
 # Provides:          blog
 # Required-Start:    $local_fs $remote_fs $network $syslog
@@ -12,6 +15,7 @@
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DAEMON=/home/blog/www/app/current/blog_app
+DAEMON_OPTS=-production
 NAME=blog
 DESC=blog
 
@@ -21,19 +25,35 @@ set -e
 
 . /lib/lsb/init-functions
 
+PID=/var/run/blog.pid
+
+start() {
+	start-stop-daemon --start --quiet --pidfile $PID \
+		--background --chuid blog --chdir /home/blog/www/app/current \
+		--retry 2 --exec $DAEMON --oknodo -- $DAEMON_OPTS
+}
+
+stop() {
+	start-stop-daemon --stop --quiet --pidfile $PID \
+		--retry 2 --oknodo --exec $DAEMON
+}
+
 case "$1" in
 	start)
-		echo -n "Starting $DESC: "
-		start-stop-daemon --start --background --chuid blog --chdir /home/blog/www/app/current --exec $DAEMON -- -production || true
-		echo "$NAME."
+		log_daemon_msg "Starting $DESC" "$NAME"
+		start
+		log_end_msg $?
 		;;
 
 	stop)
-		echo -n "Stopping $DESC: "
-		start-stop-daemon --stop --oknodo --exec $DAEMON || true
-		echo "$NAME."
+		log_daemon_msg "Stopping $DESC" "$NAME"
+		stop
+		log_end_msg $?
 		;;
 
+	status)
+		status_of_proc -p $PID "$DAEMON" blog_app
+		;;
 esac
 
 exit 0
