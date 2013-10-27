@@ -15,7 +15,7 @@
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 DAEMON=/home/blog/www/app/current/blog_app
-DAEMON_OPTS=-production
+#DAEMON_OPTS=-production
 NAME=blog
 DESC=blog
 
@@ -27,15 +27,22 @@ set -e
 
 PID=/var/run/blog.pid
 
-start() {
-	start-stop-daemon --start --quiet --pidfile $PID \
-		--background --chuid blog --chdir /home/blog/www/app/current \
-		--retry 2 --exec $DAEMON --oknodo -- $DAEMON_OPTS
+start2() {
+	start-stop-daemon --oknodo --start --quiet --background --pidfile $PID \
+		--retry 2 --chuid blog --chdir /home/blog/www/app/current \
+		--exec $DAEMON -- $DAEMON_OPTS
 }
 
+start() {
+	start-stop-daemon --oknodo --start --quiet --background --pidfile $PID \
+		--retry 2 --chuid blog --chdir /home/blog/www/app/current \
+		--exec /bin/bash -- -c "$DAEMON $DAEMON_ARGS > log.txt 2>&1"
+}
+
+
 stop() {
-	start-stop-daemon --stop --quiet --pidfile $PID \
-		--retry 2 --oknodo --exec $DAEMON
+	start-stop-daemon --oknodo --stop --quiet --pidfile $PID \
+		--retry 2 --exec $DAEMON
 }
 
 case "$1" in
