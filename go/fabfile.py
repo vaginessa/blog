@@ -129,8 +129,8 @@ def deploy():
 	curr_dir = app_dir + '/current'
 	if files.exists(curr_dir):
 		# shut-down currently running instance
-		with cd(curr_dir):
-			run("/etc/init.d/blog stop")
+		#with cd(curr_dir):
+		run("sudo /etc/init.d/blog stop")
 		# rename old current as prev for easy rollback of bad deploy
 		with cd(app_dir):
 			run('rm -f prev')
@@ -141,9 +141,9 @@ def deploy():
 		run("ln -s %s current" % sha1)
 
 	# start it
-	with cd(curr_dir):
+	#with cd(curr_dir):
 		#run("/sbin/start-stop-daemon --verbose --start --background --chdir /home/blog/www/app/current --exec blog_app -- -production")
-		run("/etc/init.d/blog start")
-		run("ps aux | grep blog_app | grep -v grep")
+	run("sudo /etc/init.d/blog start")
+	run("ps aux | grep blog_app | grep -v grep")
 
 	delete_old_deploys()
