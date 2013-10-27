@@ -138,6 +138,9 @@ def deploy():
 	with cd(app_dir):
 		run("ln -s %s current" % sha1)
 
+	if not files.exists("/etc/init.d/blog"):
+		sudo("ln -s /home/blog/www/app/current/scripts/blog.initd /etc/init.d/blog")
+
 	# start it
 	sudo("/etc/init.d/blog start", pty=False)
 	run("ps aux | grep blog_app | grep -v grep")
