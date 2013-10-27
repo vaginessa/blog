@@ -103,16 +103,20 @@ def deploy1():
 		run("/sbin/start-stop-daemon --verbose --start --background --chdir /home/blog/www/app/current --exec /home/blog/www/app/current/blog_app")
 		run("ps aux | grep blog_app | grep -v grep")
 
+# force only in testing
+g_force_deploy = True
+
 def deploy():
 	check_config()
-	git_ensure_clean()
+	if not g_force_deploy:
+		git_ensure_clean()
 	local("../scripts/build.sh")
 	local("../scripts/tests.sh")
 	ensure_remote_dir_exists(app_dir)
 	ensure_remote_file_exists('www/data')
 	sha1 = git_trunk_sha1()
 	code_path_remote = app_dir + '/' + sha1
-	if files.exists(code_path_remote):
+	if not g_force_deploy and files.exists(code_path_remote):
 		abort('code for revision %s already exists on the server' % sha1)
 	zip_path = sha1 + ".zip"
 	zip_files(zip_path)
@@ -120,6 +124,8 @@ def deploy():
 	put(zip_path, zip_path_remote)
 	delete_file(zip_path)
 	with cd(app_dir):
+		if g_force_deploy:
+			run("rm -rf %s" % sha1)
 		run('unzip -q -x %s -d %s' % (zip_path, sha1))
 		run('rm -f %s' % zip_path)
 	# make sure it can build

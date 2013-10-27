@@ -15,12 +15,12 @@ import (
 	"math/rand"
 	"net/http"
 	_ "net/url"
+	"os"
 	"path/filepath"
 	"runtime"
 	"strconv"
 	"strings"
 	"time"
-	"os"
 )
 
 var (
@@ -325,7 +325,7 @@ func main() {
 
 	runtime.GOMAXPROCS(runtime.NumCPU())
 
-	logFile, err := os.Create("log.txt")
+	logFile, err := os.Create("/home/blog/log.txt")
 	if err == nil {
 		defer logFile.Close()
 	}
