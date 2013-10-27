@@ -39,7 +39,6 @@ start() {
 		--exec /bin/bash -- -c "$DAEMON $DAEMON_ARGS > log.txt 2>&1"
 }
 
-
 stop() {
 	start-stop-daemon --oknodo --stop --verbose --pidfile $PID \
 		--retry 2 --exec $DAEMON
