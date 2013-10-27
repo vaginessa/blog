@@ -28,8 +28,8 @@ set -e
 
 
 start() {
-	start-stop-daemon --oknodo --start --verbose --background --pidfile $PID \
-		--retry 2 --chuid blog --chdir /home/blog/www/app/current \
+	start-stop-daemon --oknodo --start --verbose --pidfile $PID \
+		--chuid blog --chdir /home/blog/www/app/current \
 		--exec $DAEMON -- $DAEMON_ARGS
 }
 
@@ -41,11 +41,12 @@ start2() {
 
 stop() {
 	start-stop-daemon --oknodo --stop --verbose --pidfile $PID \
-		--retry 2 --exec $DAEMON
+		--exec $DAEMON
 }
 
 case "$1" in
 	start)
+		env
 		log_daemon_msg "Starting $NAME"
 		start
 		log_end_msg $?
