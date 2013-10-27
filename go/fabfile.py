@@ -2,7 +2,7 @@ import sys, os, os.path, subprocess, json, zipfile
 from fabric.api import *
 from fabric.contrib import *
 
-env.hosts = ['blog.kowalczyk.info']
+env.hosts = ['do-blog.kowalczyk.info']
 env.user = 'blog'
 
 app_dir = 'www/app'
@@ -134,7 +134,8 @@ def deploy():
 
 	# start it
 	with cd(curr_dir):
-		run("/sbin/start-stop-daemon --start --background --chdir /home/blog/www/app/current --exec blog_app -- -production")
+		#run("/sbin/start-stop-daemon --start --background --chdir /home/blog/www/app/current --exec blog_app -- -production")
+		run("/sbin/start-stop-daemon --start --background --chdir /home/blog/www/app/current --exec blog_app --")
 		run("ps aux | grep blog_app | grep -v grep")
 
 	delete_old_deploys()
