@@ -362,6 +362,7 @@ func main() {
 	http.Handle("/", makeTimingHandler(handleMainPage))
 	http.HandleFunc("/favicon.ico", handleFavicon)
 	http.HandleFunc("/robots.txt", handleRobotsTxt)
+	http.HandleFunc("/contactme.html", handleContactme)
 	http.HandleFunc("/logs", handleLogs)
 	http.HandleFunc("/timings", handleTimings)
 	http.HandleFunc("/oauthtwittercb", handleOauthTwitterCallback)
