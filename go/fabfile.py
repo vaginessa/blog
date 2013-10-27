@@ -95,14 +95,6 @@ def check_config():
 		if len(v) == 0:
 			abort("config.json has empty key: %s" % k)
 
-def deploy1():
-	check_config()
-	curr_dir = app_dir + '/current'
-	with cd(curr_dir):
-		#run("/sbin/start-stop-daemon --verbose --start --background --chdir /home/blog/www/app/current --exec blog_app -- -production")
-		run("/sbin/start-stop-daemon --verbose --start --background --chdir /home/blog/www/app/current --exec /home/blog/www/app/current/blog_app")
-		run("ps aux | grep blog_app | grep -v grep")
-
 # force only in testing
 g_force_deploy = False
 
@@ -136,7 +128,7 @@ def deploy():
 	if files.exists(curr_dir):
 		# shut-down currently running instance
 		#with cd(curr_dir):
-		run("sudo /etc/init.d/blog stop")
+		sudo("/etc/init.d/blog stop", pty=False)
 		# rename old current as prev for easy rollback of bad deploy
 		with cd(app_dir):
 			run('rm -f prev')
@@ -147,11 +139,7 @@ def deploy():
 		run("ln -s %s current" % sha1)
 
 	# start it
-	#with cd(curr_dir):
-		#run("/sbin/start-stop-daemon --verbose --start --background --chdir /home/blog/www/app/current --exec blog_app -- -production")
-	#run("env")
-	#run("sudo env")
-	run("sudo /etc/init.d/blog start")
+	sudo("/etc/init.d/blog start", pty=False)
 	run("ps aux | grep blog_app | grep -v grep")
 
 	delete_old_deploys()

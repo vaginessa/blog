@@ -15,7 +15,6 @@ import (
 	"math/rand"
 	"net/http"
 	_ "net/url"
-	"os"
 	"path/filepath"
 	"runtime"
 	"strconv"
@@ -324,15 +323,6 @@ func main() {
 	var err error
 
 	runtime.GOMAXPROCS(runtime.NumCPU())
-
-	logFile, err := os.Create("/home/blog/log.txt")
-	if err == nil {
-		defer logFile.Close()
-	}
-	if logFile != nil {
-		logFile.WriteString("Hello matherfuckers!\n")
-	}
-
 	flag.Parse()
 
 	/*findFileFixes("../../../sumatrapdf")
