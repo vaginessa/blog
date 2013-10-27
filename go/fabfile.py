@@ -104,7 +104,7 @@ def deploy1():
 		run("ps aux | grep blog_app | grep -v grep")
 
 # force only in testing
-g_force_deploy = True
+g_force_deploy = False
 
 def deploy():
 	check_config()
