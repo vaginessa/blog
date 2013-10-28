@@ -17,6 +17,8 @@ Download version 2.3:
 
 Sources are at [https://github.com/kjk/pigz](https://github.com/kjk/pigz)
 
+Have comments or questions about this software? [Get in touch](/contactme.html).
+
 ## Usage
 
 To compress: `pigz [options] [files ...]`
