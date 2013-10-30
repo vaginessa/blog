@@ -5,6 +5,39 @@
 <title>Pigz windows port</title>
 <link rel="stylesheet" href="/css/wp-style.css" type="text/css" />
 <link rel="stylesheet" href="/css/article.css" type="text/css" />
+  <script src="http://kjkpub.s3.amazonaws.com/software/pigz/latestver.js" type="text/javascript"></script>
+
+<script>
+function $(id) {
+    if (document.all)
+        return document.all[id];
+    if (document.getElementById)
+        return document.getElementById(id);
+    for (var i=1; i<document.layers.length; i++) {
+        if (document.layers[i].id==id)
+          return document.layers[i];
+    }
+    return false;
+}
+
+function a(url, txt) { return '<a href="' + url + '">' + txt + '</a>'; }
+function build_ver_html() {
+  return pigzLatestVer + " <span style='color:gray'>(built on " + pigzBuiltOn + ")</span>";
+}
+function build_exe_html() {
+  return a(pigzLatestUrl, "pigz.exe") + "and " + a(unpigzLatestUrl, "unpigz.exe");
+}
+function build_zip_html() { return "or both in " + a(pigzLatestUrlZip, "pigz.zip"); }
+
+function myInit() {
+  $("ver").innerHTML = build_ver_html();
+  $("exe").innerHTML = build_exe_html();
+  $("zip").innerHTML = build_zip_html();
+}
+
+window.onload = myInit;
+</script>
+
 <body>
 
 <div id="container">
@@ -16,16 +49,20 @@
 <div id="article">
 
 <h1>Pigz windows port</h1>
-<p><a href="http://zlib.net/pigz/">Pigz</a> is a parallel gzip implementation. It uses
-multiple cores to speed up compression and decompression.</p>
+
+<p><a href="http://zlib.net/pigz/">Pigz</a> is a parallel gzip implementation.
+It uses multiple cores to speed up compression and decompression.</p>
 <p>This is a Windows port made by <a href="http://blog.kowalczyk.info">Krzysztof Kowalczyk</a>.</p>
+
 <h2>Download</h2>
-<p>Download version 2.3:</p>
+
+<p>Download  latest version <span id="ver"></span>:</p>
+
 <ul>
-<li><a href="https://kjkpub.s3.amazonaws.com/software/pigz/2.3/pigz.exe">pigz.exe</a> and
-<a href="https://kjkpub.s3.amazonaws.com/software/pigz/2.3/unpigz.exe">unpigz.exe</a></li>
-<li>or both in <a href="https://kjkpub.s3.amazonaws.com/software/pigz/2.3/pigz.zip">pigz.zip</a></li>
+<li><span id="exe"></span></li>
+<li><span id="zip"></span></li>
 </ul>
+
 <p>Sources are at <a href="https://github.com/kjk/pigz">https://github.com/kjk/pigz</a></p>
 <p>Have comments or questions about this software? <a href="/contactme.html">Get in touch</a>.</p>
 <h2>Usage</h2>

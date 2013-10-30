@@ -21,15 +21,15 @@ function $(id) {
 }
 
 function a(url, txt) { return '<a href="' + url + '">' + txt + '</a>'; }
-function build_link_html(ver, url) { return a(url, ver); }
-function build_ag_ver_html() { return agLatestVer + " built on " + agBuiltOn; }
-function build_ag_exe_html() { return build_link_html("ag.exe", agLatestUrl); }
-function build_ag_zip_html() { return build_link_html("ag.zip", agLatestUrlZip); }
+function build_ver_html() {
+  return agLatestVer + " <span style='color:gray'>(built on " + agBuiltOn + ")</span>"; }
+function build_exe_html() { return a(agLatestUrl, "ag.exe"); }
+function build_zip_html() { return a(agLatestUrlZip, "ag.zip"); }
 
 function myInit() {
-  $("ag_ver").innerHTML = build_ag_ver_html();
-  $("ag_exe").innerHTML = build_ag_exe_html();
-  $("ag_zip").innerHTML = build_ag_zip_html();
+  $("ver").innerHTML = build_ver_html();
+  $("exe").innerHTML = build_exe_html();
+  $("zip").innerHTML = build_zip_html();
 }
 
 window.onload = myInit;
@@ -53,10 +53,10 @@ is like grep or ack, except faster. It's written in super-optimized C
 don't want to waste time searching (like ack).</p>
 <p>This is a Windows port made by <a href="/">Krzysztof Kowalczyk</a>.</p>
 <h2>Download</h2>
-<p>Download latest version <span id="ag_ver"></span>:</p>
+<p>Download latest version <span id="ver"></span>:</p>
 <ul>
-<li><span id="ag_exe"></span></li>
-<li><span id="ag_zip"></span></li>
+<li><span id="exe"></span></li>
+<li><span id="zip"></span></li>
 </ul>
 
 <p>Sources are at <a href="https://github.com/kjk/the_silver_searcher">https://github.com/kjk/the_silver_searcher</a></p>
