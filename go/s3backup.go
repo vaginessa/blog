@@ -303,6 +303,7 @@ func doBackup(config *BackupConfig) {
 
 	dur := time.Now().Sub(startTime)
 	logger.Noticef("s3 backup of '%s' to '%s' took %.2f secs", zipLocalPath, zipS3Path, dur.Seconds())
+	metricsBackupTime.Update(dur)
 }
 
 func BackupLoop(config *BackupConfig) {

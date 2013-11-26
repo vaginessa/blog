@@ -10,6 +10,7 @@ import (
 	"fmt"
 	"github.com/garyburd/go-oauth/oauth"
 	"html/template"
+	"io"
 	"io/ioutil"
 	"log"
 	"math/rand"
@@ -23,10 +24,7 @@ import (
 )
 
 var (
-	configPath   = flag.String("config", "config.json", "Path to configuration file")
-	httpAddr     = flag.String("addr", ":5020", "HTTP server address")
-	inProduction = flag.Bool("production", false, "are we running in production")
-	cookieName   = "ckie"
+	cookieName = "ckie"
 )
 
 var (
@@ -86,7 +84,7 @@ func StringEmpty(s *string) bool {
 }
 
 func S3BackupEnabled() bool {
-	if !*inProduction {
+	if !inProduction {
 		logger.Notice("s3 backups disabled because not in production")
 		return false
 	}
@@ -287,7 +285,8 @@ func prettifyCssUrl() string {
 
 func makeTimingHandler(fn func(http.ResponseWriter, *http.Request)) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-
+		metricCurrentReqs.Inc(1)
+		defer metricCurrentReqs.Dec(1)
 		startTime := time.Now()
 		fn(w, r)
 		duration := time.Now().Sub(startTime)
@@ -305,8 +304,24 @@ func makeTimingHandler(fn func(http.ResponseWriter, *http.Request)) http.Handler
 			logger.Noticef("'%s' took %f seconds to serve", url, duration.Seconds())
 		}
 		// TODO: add query to url
+		metricHttpReqRate.Mark(1)
+		metricHttpReqTime.Update(duration)
 		LogSlowPage(r.URL.Path, duration)
 	}
+}
+
+func setContentType(w http.ResponseWriter, contentType string) {
+	w.Header().Set("Content-Type", contentType)
+}
+
+func writeResponse(w http.ResponseWriter, responseBody string) {
+	w.Header().Set("Content-Length", strconv.FormatInt(int64(len(responseBody)), 10))
+	io.WriteString(w, responseBody)
+}
+
+func textResponse(w http.ResponseWriter, text string) {
+	setContentType(w, "text/plain")
+	writeResponse(w, text)
 }
 
 var emptyString = ""
@@ -319,11 +334,24 @@ var test = []byte(`Crashed thread:
 7757B299 01:0005A299 ntdll.dll!RtlInitializeExceptionChain+0x63
 7757B26C 01:0005A26C ntdll.dll!RtlInitializeExceptionChain+0x36`)
 
+var (
+	configPath   string
+	httpAddr     string
+	inProduction bool
+)
+
+func parseCmdLineArgs() {
+	flag.StringVar(&configPath, "config", "config.json", "Path to configuration file")
+	flag.StringVar(&httpAddr, "addr", ":5020", "HTTP server address")
+	flag.BoolVar(&inProduction, "production", false, "are we running in production")
+	flag.Parse()
+}
+
 func main() {
 	var err error
 
 	runtime.GOMAXPROCS(runtime.NumCPU())
-	flag.Parse()
+	parseCmdLineArgs()
 
 	/*findFileFixes("../../../sumatrapdf")
 	return
@@ -331,21 +359,21 @@ func main() {
 	fmt.Print(string(s))
 	return*/
 
-	if *inProduction {
+	if inProduction {
 		reloadTemplates = false
 		alwaysLogTime = false
 	}
 
-	useStdout := !*inProduction
+	useStdout := !inProduction
 	logger = NewServerLogger(256, 256, useStdout)
 
 	rand.Seed(time.Now().UnixNano())
 
-	if err := readConfig(*configPath); err != nil {
-		log.Fatalf("Failed reading config file %s. %s\n", *configPath, err.Error())
+	if err := readConfig(configPath); err != nil {
+		log.Fatalf("Failed reading config file %s. %s\n", configPath, err.Error())
 	}
 
-	if !*inProduction {
+	if !inProduction {
 		config.AnalyticsCode = &emptyString
 	}
 
@@ -358,6 +386,7 @@ func main() {
 	}
 
 	readRedirects()
+	initMetrics()
 
 	http.Handle("/", makeTimingHandler(handleMainPage))
 	http.HandleFunc("/favicon.ico", handleFavicon)
@@ -415,8 +444,8 @@ func main() {
 		go BackupLoop(backupConfig)
 	}
 
-	logger.Noticef(fmt.Sprintf("Started runing on %s", *httpAddr))
-	if err := http.ListenAndServe(*httpAddr, nil); err != nil {
+	logger.Noticef(fmt.Sprintf("Started runing on %s", httpAddr))
+	if err := http.ListenAndServe(httpAddr, nil); err != nil {
 		fmt.Printf("http.ListendAndServer() failed with %s\n", err.Error())
 	}
 	fmt.Printf("Exited\n")
