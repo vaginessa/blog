@@ -19,7 +19,7 @@ var (
 	metricsBackupTime metrics.Timer
 )
 
-func handleStats(w http.ResponseWriter, r *http.Request) {
+func handleMetrics(w http.ResponseWriter, r *http.Request) {
 	reg, ok := metrics.DefaultRegistry.(*metrics.StandardRegistry)
 	if !ok {
 		log.Fatalln("metrics.DefaultRegistry type assertion failed")

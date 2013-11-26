@@ -433,6 +433,7 @@ func main() {
 	http.Handle("/gfx/", makeTimingHandler(handleGfx))
 	http.Handle("/markitup/", makeTimingHandler(handleMarkitup))
 	http.Handle("/djs/", makeTimingHandler(handleDjs))
+	http.Handle("/metrics", makeTimingHandler(handleMetrics))
 	//http.HandleFunc("/blog", handleBlogMain)
 
 	backupConfig := &BackupConfig{
