@@ -2,8 +2,10 @@ package main
 
 import (
 	"github.com/rcrowley/go-metrics"
+	"github.com/rcrowley/go-metrics/librato"
 	"log"
 	"net/http"
+	"time"
 )
 
 var (
@@ -33,8 +35,17 @@ func handleStats(w http.ResponseWriter, r *http.Request) {
 
 func initMetrics() {
 	defReg := metrics.DefaultRegistry
-	metricCurrentReqs = metrics.NewRegisteredCounter("current http requests", defReg)
-	metricHttpReqRate = metrics.NewRegisteredMeter("http requests rate", defReg)
-	metricHttpReqTime = metrics.NewRegisteredTimer("http requests time", defReg)
-	metricsBackupTime = metrics.NewRegisteredTimer("backup time", defReg)
+	metricCurrentReqs = metrics.NewRegisteredCounter("curr_http_req", defReg)
+	metricHttpReqRate = metrics.NewRegisteredMeter("http_req_rate", defReg)
+	metricHttpReqTime = metrics.NewRegisteredTimer("http_req_time", defReg)
+	metricsBackupTime = metrics.NewRegisteredTimer("backup_time", defReg)
+
+	if !StringEmpty(config.LibratoToken) && !StringEmpty(config.LibratoEmail) {
+		logger.Notice("Starting librato stats\n")
+		go func() {
+			librato.Librato(defReg, 1*time.Minute, *config.LibratoEmail, *config.LibratoToken, "blog", make([]float64, 0))
+		}()
+	} else {
+		logger.Notice("Didn't start librato stats because no config.LibratoToken\n")
+	}
 }

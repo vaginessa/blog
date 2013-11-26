@@ -43,10 +43,13 @@ var (
 		AwsSecret               *string
 		S3BackupBucket          *string
 		S3BackupDir             *string
+		LibratoEmail            *string
+		LibratoToken            *string
 	}{
 		&oauthClient.Credentials,
 		nil, nil,
 		nil,
+		nil, nil,
 		nil, nil,
 		nil, nil,
 	}
