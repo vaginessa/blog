@@ -2,7 +2,7 @@ import sys, os, os.path, subprocess, json, zipfile
 from fabric.api import *
 from fabric.contrib import *
 
-env.hosts = ['do-blog.kowalczyk.info']
+env.hosts = ['blog.kowalczyk.info']
 env.user = 'blog'
 
 app_dir = 'www/app'
