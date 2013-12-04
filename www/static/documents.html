@@ -16,54 +16,10 @@ div#tophdr {
   font-weight:bold;
   font-family: sans-serif;
 
-  background-color: #4D5456;
-
   margin: 0px;
   padding: 6pt;
   padding-left: 16px;
   padding-right: 16px
-}
-
-div#content {
-  font-size: 14px;
-  margin: 1.75em auto;
-  line-height: 150%;
-  width: 600px;
-}
-
-.namelink {
-  color: #aedc31;
-  text-decoration:none;
-}
-
-a.namelink:hover {
-  padding-bottom: 4px;
-  border-bottom: 3px solid #AEDC31;
-}
-
-.hdrlink {
-  font-weight: bold;
-  text-decoration: none;
-  color: white;
-}
-
-.currhdrlink {
-  padding-bottom: 4px;
-  border-bottom: 3px solid #fff;
-}
-
-a.hdrlink:hover {
-  padding-bottom: 4px;
-  border-bottom: 3px solid #AEDC31;
-  text-decoration: none;
-}
-
-img {
-  border:0
-}
-
-.light {
-  color: #5a5a5a;
 }
 
 /* drop-down menu based on http://csswizardry.com/2011/02/creating-a-pure-css-dropdown-menu/ */
@@ -84,16 +40,32 @@ img {
 
 #nav a {
   display: block;
-  color:white;
+  color: #666;
   text-decoration: none;
   border-bottom: 3px solid transparent;
 }
 
 #nav a:hover {
-  color:white;
+  color: #666;
   text-decoration: none;
-  border-bottom: 3px solid #AEDC31;
+  border-bottom: 3px solid  #666;
 }
+
+div#content {
+  font-size: 14px;
+  margin: 1.75em auto;
+  line-height: 150%;
+  width: 600px;
+}
+
+img {
+  border:0
+}
+
+.light {
+  color: #5a5a5a;
+}
+
 
 </style>
 
@@ -101,8 +73,9 @@ img {
 <body>
 
 <div id="tophdr">
-    <a class="namelink" href="/">Krzysztof Kowalczyk</a>&nbsp;&nbsp;&nbsp;
     <ul id="nav">
+      <li><a href="/">Krzysztof Kowalczyk</a></li>
+      <li><span style="color:gray">&bull;</span></li>
       <li><a href="/static/resume.html">About me</a></li>
       <li><span style="color:gray">&bull;</span></li>
       <li><a href="/archives.html">Articles</a></li>

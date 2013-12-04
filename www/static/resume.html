@@ -1,88 +1,143 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-
+<!DOCTYPE html>
+<html>
 <head>
- <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
- <title>Krzysztof Kowalczyk Resume</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Krzysztof Kowalczyk Resume</title>
+<style type="text/css">
 
-<style>
-<!--
-	table {
-		font: normal 10pt sans-serif
-	}
-	table.resume {
-		width: 550pt;
-	}
-	table.resume td.gutter {
-		border-left: 1pt solid black;
-	}
-	table.resume td.details {
-		padding-left:7pt;
-		padding-bottom:12pt;
-	}
-	span.name {
-		font-weight: bold;
-		font-size: 14pt;
-	}
-	td.category, td.subcategory {
-		text-align:right;
-		padding-right:2pt;
-	}
-	td.category {
-		vertical-align: top;
-		font-weight: bold;
-		font-size: 11pt
-	}
-	td.subcategory {
-		vertical-align: top;
-		font-style: italic
-	}
-	table.skills {
-		margin-top: 1pt;
-		border-collapse: collapse;
-		table-layout: fixed;
-	}
-	td.skill-level {
-		width: 60pt;
-		vertical-align: top;
-		font-weight: bold;
-	}
-	td.skills-general
-	{
-		padding-top: 10pt;
-	}
-	table.experience {
-		border-collapse:collapse;
-	}
-	table.experience td {
-		padding: 0;
-	}
-	table.experience td.bar
-	{
-		border-left:solid lightgrey 3pt;
-		width: 4pt;
-	}
-	table.experience td.company {
-		vertical-align: top;
-		width: 80pt;
-		font-weight:bold;
-	}
-	table.experience td.dates {
-		vertical-align: top;
-		width: 90pt;
-	}
-	table.experience td.note {
-		font-style:italic;
-	}
-	table.experience td.vspacer {
-		height:8pt;
-	}
+body {
+  margin: 0px;
+}
 
--->
+div#tophdr {
+  font-size:10pt;
+  font-weight:bold;
+  font-family: sans-serif;
+
+  margin: 0px;
+  padding: 6pt;
+  padding-left: 16px;
+  padding-right: 16px
+}
+
+/* drop-down menu based on http://csswizardry.com/2011/02/creating-a-pure-css-dropdown-menu/ */
+#nav {
+  list-style:none;
+  font-weight: bold;
+  float:right;
+  margin-top:0px;
+  position:relative;
+  z-index:5;
+}
+
+#nav li {
+  float: left;
+  margin-right: 4pt;
+  position:relative;
+}
+
+#nav a {
+  display: block;
+  color: #666;
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+}
+
+#nav a:hover {
+  color: #666;
+  text-decoration: none;
+  border-bottom: 3px solid  #666;
+}
+table {
+  font: normal 10pt sans-serif
+}
+table.resume {
+  width: 550pt;
+}
+table.resume td.gutter {
+  border-left: 1pt solid black;
+}
+table.resume td.details {
+  padding-left:7pt;
+  padding-bottom:12pt;
+}
+span.name {
+  font-weight: bold;
+  font-size: 14pt;
+}
+td.category, td.subcategory {
+  text-align:right;
+  padding-right:2pt;
+}
+td.category {
+  vertical-align: top;
+  font-weight: bold;
+  font-size: 11pt
+}
+td.subcategory {
+  vertical-align: top;
+  font-style: italic
+}
+table.skills {
+  margin-top: 1pt;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+td.skill-level {
+  width: 60pt;
+  vertical-align: top;
+  font-weight: bold;
+}
+td.skills-general
+{
+  padding-top: 10pt;
+}
+table.experience {
+  border-collapse:collapse;
+}
+table.experience td {
+  padding: 0;
+}
+table.experience td.bar
+{
+  border-left:solid lightgrey 3pt;
+  width: 4pt;
+}
+table.experience td.company {
+  vertical-align: top;
+  width: 80pt;
+  font-weight:bold;
+}
+table.experience td.dates {
+  vertical-align: top;
+  width: 90pt;
+}
+table.experience td.note {
+  font-style:italic;
+}
+table.experience td.vspacer {
+  height:8pt;
+}
+
 </style>
 </head>
 
 <body>
+
+<div id="tophdr">
+    <ul id="nav">
+      <li><a href="/">Krzysztof Kowalczyk</a></li>
+      <li><span style="color:gray">&bull;</span></li>
+      <li><a href="/static/resume.html">About me</a></li>
+      <li><span style="color:gray">&bull;</span></li>
+      <li><a href="/archives.html">Articles</a></li>
+      <li><span style="color:gray">&bull;</span></li>
+      <li><a href="/software/">Software</a></li>
+      <li><span style="color:gray">&bull;</span></li>
+      <li><a href="/static/documents.html">My Documents</a></li>
+    </ul>
+</div>
+
 
 <div id="container">
 <p>
@@ -122,6 +177,7 @@
           <a href="http://code.google.com/u/@UxJfQFJRABhHWQN6/">code.google.com/u/kkowalczyk</a><br>
           <a href="https://plus.google.com/112100039263959533932">Google+</a><br>
           <a href="http://twitter.com/kjk">twitter.com/kjk</a><br>
+          <a href="http://www.linkedin.com/profile/view?id=30171766">linkedin</a>
         </td>
       </tr>
     </table>
@@ -541,5 +597,7 @@
 </tr>
 -->
 </table>
+<hr>
+
 </body>
 </html>

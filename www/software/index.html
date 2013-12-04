@@ -21,8 +21,6 @@ div#tophdr {
   font-weight:bold;
   font-family: sans-serif;
 
-  background-color: #4D5456;
-
   margin: 0px;
   padding: 6pt;
   padding-left: 16px;
@@ -44,15 +42,6 @@ img {
   color: #5a5a5a;
 }
 
-.namelink {
-  color: #aedc31;
-  text-decoration:none;
-}
-
-a.namelink:hover {
-  border-bottom: 3px solid #AEDC31;
-}
-
 .hdrlink {
   font-weight: bold;
   text-decoration: none;
@@ -66,7 +55,7 @@ a.namelink:hover {
 
 a.hdrlink:hover {
   padding-bottom: 4px;
-  border-bottom: 3px solid #AEDC31;
+  border-bottom: 3px solid #666;
   text-decoration: none;
 }
 
@@ -88,15 +77,15 @@ a.hdrlink:hover {
 
 #nav a {
   display: block;
-  color:white;
+  color:#666;
   text-decoration: none;
   border-bottom: 3px solid transparent;
 }
 
 #nav a:hover {
-  color:white;
+  color:#666;
   text-decoration: none;
-  border-bottom: 3px solid #AEDC31;
+  border-bottom: 3px solid #666;
 }
 
 </style>
@@ -105,8 +94,9 @@ a.hdrlink:hover {
 <body>
 
 <div id="tophdr">
-    <span class="namelink"><a class="namelink" href="/">Krzysztof Kowalczyk</a></span>&nbsp;&nbsp;&nbsp;
       <ul id="nav">
+        <li><a href="/">Krzysztof Kowalczyk</a></li>
+        <li><span style="color:gray">&bull;</span></li>
         <li><a href="/static/resume.html">About me</a></span></li>
         <li><span style="color:gray">&bull;</span></li>
         <li><a href="/archives.html">Articles</a></li>

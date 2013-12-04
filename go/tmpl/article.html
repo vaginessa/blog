@@ -63,15 +63,11 @@ $(document).ready(function(){
     <table class="postmeta" style="padding-top:8px;padding-bottom:16px;border-spacing:0px">
     {{ if .NextArticle }}
     <tr>
-      <td style="margin:0px; padding:0px">Newer article:</td>
-      <td style="margin:0px; padding:0px; padding-left: 8px;"><a title="{{ .NextArticle.Title }}" href="/{{ .NextArticle.Permalink }}">{{ .NextArticle.Title }}</a></td>
-    </tr>
+      <td style="margin:0px; padding:0px; padding-right: 8px;"><a title="{{ .NextArticle.Title }}" href="/{{ .NextArticle.Permalink }}">« {{ .NextArticle.Title }}</a></td>
+      <td style="padding:0px; padding-right: 8px">&bull;</td>
     {{ end }}
-
     {{ if .PrevArticle }}
-    <tr>
-      <td style="margin:0px; padding:0px">Older article:</td>
-      <td style="margin:0px; padding:0px; padding-left: 8px;"><a title="{{ .PrevArticle.Title }}" href="/{{ .PrevArticle.Permalink }}">{{ .PrevArticle.Title }}</a></td>
+      <td style="margin:0px; padding:0px"><a title="{{ .PrevArticle.Title }}" href="/{{ .PrevArticle.Permalink }}">{{ .PrevArticle.Title }} »</a></td>
     </tr>
     {{ end }}
     </table>
