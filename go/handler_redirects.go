@@ -48,6 +48,7 @@ var redirects = map[string]string{
 	"/software/volante/":                            "/software/volante/database.html",
 	"/software/volante/index.html":                  "/software/volante/database.html",
 	"/static/software.html":                         "/software/index.html",
+	"/static/krzysztof.html":                        "/static/resume.html",
 }
 
 var articleRedirects = make(map[string]int)
