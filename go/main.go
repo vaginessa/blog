@@ -92,19 +92,19 @@ func S3BackupEnabled() bool {
 		return false
 	}
 	if StringEmpty(config.AwsAccess) {
-		logger.Notice("s3 backups disabled because AwsAccess not defined in config.json\n")
+		logger.Notice("s3 backups disabled because AwsAccess not defined in config.json")
 		return false
 	}
 	if StringEmpty(config.AwsSecret) {
-		logger.Notice("s3 backups disabled because AwsSecret not defined in config.json\n")
+		logger.Notice("s3 backups disabled because AwsSecret not defined in config.json")
 		return false
 	}
 	if StringEmpty(config.S3BackupBucket) {
-		logger.Notice("s3 backups disabled because S3BackupBucket not defined in config.json\n")
+		logger.Notice("s3 backups disabled because S3BackupBucket not defined in config.json")
 		return false
 	}
 	if StringEmpty(config.S3BackupDir) {
-		logger.Notice("s3 backups disabled because S3BackupDir not defined in config.json\n")
+		logger.Notice("s3 backups disabled because S3BackupDir not defined in config.json")
 		return false
 	}
 	return true

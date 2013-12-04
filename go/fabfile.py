@@ -39,7 +39,7 @@ def add_dir_files(zip_file, dir, dirInZip=None):
 		for f in files:
 			p = os.path.join(path, f)
 			zipPath = None
-			if dirInZip != None:
+			if dirInZip is not None:
 				zipPath = dirInZip + p[len(dir):]
 				#print("Adding %s as %s" % (p, zipPath))
 				zip_file.write(p, zipPath)
@@ -57,7 +57,6 @@ def zip_files(zip_path):
 	add_dir_files(zf, "ext")
 	add_dir_files(zf, os.path.join("..", "scripts"), "scripts")
 	add_dir_files(zf, os.path.join("..", "www"), "www")
-	add_dir_files(zf, os.path.join("..", "tmpl"), "appengtmpl")
 	zf.close()
 
 def delete_old_deploys(to_keep=5):
@@ -74,7 +73,7 @@ def delete_old_deploys(to_keep=5):
 				i += 1
 				to_keep -= 1
 			else:
-				if len(s) == 41: # s == "0111cb7bdd014850e8c11ee4820dc0d7e12f4015/"
+				if len(s) == 41:  # s == "0111cb7bdd014850e8c11ee4820dc0d7e12f4015/"
 					dirs_to_del.append(s)
 			i += 1
 		if len(dirs_to_del) > to_keep:
@@ -85,7 +84,8 @@ def delete_old_deploys(to_keep=5):
 
 def check_config():
 	needed_values = ["AwsAccess", "AwsSecret", "S3BackupBucket", "S3BackupDir",
-		"CookieEncrKeyHexStr", "CookieAuthKeyHexStr", "AnalyticsCode", "TwitterOAuthCredentials"]
+					 "CookieEncrKeyHexStr", "CookieAuthKeyHexStr", "AnalyticsCode",
+					 "TwitterOAuthCredentials"]
 	if not os.path.exists("config.json"): abort("config.json doesn't exist locally")
 	j = json.loads(open("config.json").read())
 	for k in needed_values:

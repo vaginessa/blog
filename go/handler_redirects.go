@@ -80,7 +80,7 @@ func readRedirects() {
 			articleRedirects[url] = id
 		}
 	}
-	logger.Noticef("loaded %d article redirects\n", len(articleRedirects))
+	logger.Noticef("loaded %d article redirects", len(articleRedirects))
 }
 
 // return -1 if there's no redirect for this urls

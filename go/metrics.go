@@ -40,12 +40,17 @@ func initMetrics() {
 	metricHttpReqTime = metrics.NewRegisteredTimer("http_req_time", defReg)
 	metricsBackupTime = metrics.NewRegisteredTimer("backup_time", defReg)
 
-	if !StringEmpty(config.LibratoToken) && !StringEmpty(config.LibratoEmail) {
-		logger.Notice("Starting librato stats\n")
-		go func() {
-			librato.Librato(defReg, 1*time.Minute, *config.LibratoEmail, *config.LibratoToken, "blog", make([]float64, 0))
-		}()
-	} else {
-		logger.Notice("Didn't start librato stats because no config.LibratoToken\n")
+	if !inProduction {
+		logger.Notice("Librato stats disabled because not in production")
+		return
 	}
+	if StringEmpty(config.LibratoToken) || StringEmpty(config.LibratoEmail) {
+		logger.Notice("Librato stats disabled because no config.LibratoToken or no config.LibratoEmail")
+		return
+	}
+
+	logger.Notice("Starting librato stats\n")
+	go func() {
+		librato.Librato(defReg, 1*time.Minute, *config.LibratoEmail, *config.LibratoToken, "blog", make([]float64, 0))
+	}()
 }
