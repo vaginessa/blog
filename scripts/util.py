@@ -26,7 +26,7 @@ def list_files_g(d, filter_func=None, recur=False):
                 if recur:
                     to_visit.append(path)
             else:
-                if filter_func != None:
+                if filter_func is not None:
                     if filter_func(path):
                         yield path
                 else:
