@@ -561,16 +561,16 @@ function langChanged() {
     return true;
 };
 
-function buttonsHtml() {
-	return '';
 /*
+function buttonsHtmlObsolete() {
 return '<span style="position:relative; left: 22px; top: 6px;">\
 <script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>\
 <g:plusone size="medium" href="http://blog.kowalczyk.info/software/sumatrapdf/"></g:plusone>\
 </span>';
-*/
 }
+*/
 
+/*
 function buttonsOldHtml() {
 return '<span style="position:relative; left: 22px; top: 6px;">\
 <script type="text/javascript" src="http://apis.google.com/js/plusone.js"></script>\
@@ -583,6 +583,7 @@ return '<span style="position:relative; left: 22px; top: 6px;">\
 <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fblog.kowalczyk.info%2Fsoftware%2Fsumatrapdf%2F&amp;layout=button_count&amp;show_faces=false&amp;width=450&amp;action=like&amp;colorscheme=light&amp;height=21" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:88px; height:21px;" allowTransparency="true"></iframe>\
 </span>';
 }
+*/
 
 function yepiAdHtml() {
 return '<center>\
@@ -598,18 +599,6 @@ Find free stock photos with Fotofi. More than 100 million photos available.</spa
 </center>';
 }
 
-function googleAnalytics() {
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-194516-1']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
-    })();
-}
-
 function adData() {
 	google_ad_client = "pub-8305375090017172";
 	/* sumatra */
@@ -618,94 +607,6 @@ function adData() {
 	google_ad_height = 90;
 }
 
-/* adzerk ads */
-
-var OS_UNKNOWN = -1;
-var OS_WIN_XP = 0;
-var OS_WIN_VISTA = 1;
-var OS_WIN_7 = 2;
-var OS_WIN_8 = 3;
-function getOS() {
-	var userAgent = navigator.userAgent;
-	if (-1 != userAgent.indexOf("Windows NT 5.1")) {
-		return OS_WIN_XP;
-	}
-	if (-1 != userAgent.indexOf("Windows NT 6.0")) {
-		return OS_WIN_VISTA;
-	}
-	if (-1 != userAgent.indexOf("Windows NT 6.1")) {
-		return OS_WIN_7;
-	}
-	if (-1 != userAgent.indexOf("Windows NT 6.2")) {
-		return OS_WIN_8;
-	}
-	return OS_UNKNOWN;
-};
-
-// slimware-01
-// http://kkowalczyk.adzerk.com/network/7803/brand/33242/campaign/48296/option/86975/creatives/129416/map/182468 xp
-// http://kkowalczyk.adzerk.com/network/7803/brand/33242/campaign/48296/option/86975/creatives/129418/map/182469 vista
-// http://kkowalczyk.adzerk.com/network/7803/brand/33242/campaign/48296/option/86975/creatives/129420/map/182470 win7
-// http://kkowalczyk.adzerk.com/network/7803/brand/33242/campaign/48296/option/86975/creatives/129421/map/182471 win8
-function getCreativeId() {
-	var os = getOS();
-	if (OS_WIN_XP == os) {
-		return 182468;
-	} else if (OS_WIN_VISTA == os) {
-		return 182469;
-	} else if (OS_WIN_7 == os) {
-		return 182470;
-	} else if (OS_WIN_8 == os) {
-		return 182471;
-	}
-	return 0;
-}
-
-var creativeByOs = [182468, 182469, 182470, 182471];
-function getCreativeId2() {
-	var os = getOS();
-	if (OS_UNKNOWN != os) {
-		return creativeByOs(os);
-	}
-	return 0;
-}
-
-var ados = ados || {};
-function doAdzerk() {
-	ados.run = ados.run || [];
-	var creativeId = getCreativeId();
-	//creativeId = 182470;
-	console.log("creativeId = " + creativeId);
-	if (0 == creativeId) {
-		doAdsense();
-		return;
-	}
-
-	ados.run.push(function() {
-		/* load placement for account: kkowalczyk, site: blog, size: 728x90 - Leaderboard*/
-		ados_add_placement(7803, 51221, "azk9318", 4).setFlightCreativeId(creativeId);
-		ados_load();
-	});
-}
-
-function doAdzerk2() {
-	ados.run = ados.run || [];
-	ados.run.push(function() {
-		/* load placement for account: kkowalczyk, site: blog, size: 728x90 - Leaderboard*/
-		ados_add_placement(7803, 51221, "azk9318", 4);
-		ados_load();
-	});
-}
-
 function doAdsense() {
 	(adsbygoogle = window.adsbygoogle || []).push({});
-}
-
-function dispatchAd() {
-	var os = getOS();
-	if (-1 == os) {
-		doAdsense();
-	} else {
-		doAdzerk();
-	}
 }
