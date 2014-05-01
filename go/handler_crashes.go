@@ -1,7 +1,6 @@
 package main
 
 import (
-	"atom"
 	"bytes"
 	"fmt"
 	"html/template"
@@ -12,6 +11,7 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	atom "github.com/thomas11/atomgenerator"
 
 	"github.com/kjk/u"
 )
@@ -219,10 +219,10 @@ func handleCrashesRss(w http.ResponseWriter, r *http.Request) {
 	baseUrl := fmt.Sprintf("http://blog.kowalczyk.info/app/crashes?app_name=%s", appName)
 	if firstDayIdx == -1 {
 		e := &atom.Entry{
-			Title:       fmt.Sprintf("Crashes for %s", appName),
-			Link:        baseUrl,
-			ContentHtml: fmt.Sprintf("There are no crashes for %s yet", appName),
-			PubDate:     pubDate}
+			Title:   fmt.Sprintf("Crashes for %s", appName),
+			Link:    baseUrl,
+			Content: fmt.Sprintf("There are no crashes for %s yet", appName),
+			PubDate: pubDate}
 		feed.AddEntry(e)
 	} else {
 		maxDays := 10
@@ -243,10 +243,10 @@ func handleCrashesRss(w http.ResponseWriter, r *http.Request) {
 			html := string(buf.Bytes())
 			pubDate, _ = time.Parse("2006-01-02", day)
 			e := &atom.Entry{
-				Title:       fmt.Sprintf("%d %s crashes on %s", len(crashes), appName, day),
-				Link:        fmt.Sprintf("%s&day=%s", baseUrl, day),
-				ContentHtml: html,
-				PubDate:     pubDate}
+				Title:   fmt.Sprintf("%d %s crashes on %s", len(crashes), appName, day),
+				Link:    fmt.Sprintf("%s&day=%s", baseUrl, day),
+				Content: html,
+				PubDate: pubDate}
 			feed.AddEntry(e)
 			i += 1
 		}
@@ -254,9 +254,9 @@ func handleCrashesRss(w http.ResponseWriter, r *http.Request) {
 
 	s, err := feed.GenXml()
 	if err != nil {
-		s = "Failed to generate XML feed"
+		s = []byte("Failed to generate XML feed")
 	}
-	w.Write([]byte(s))
+	w.Write(s)
 }
 
 // /app/crashes[?app_name=${appName}][&day=${day}][&ip_addr=${ipAddrInternal}]

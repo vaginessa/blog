@@ -1,10 +1,10 @@
 package main
 
 import (
-	"atom"
-	"fmt"
 	"net/http"
 	"time"
+
+	atom "github.com/thomas11/atomgenerator"
 )
 
 func handleAtomHelp(w http.ResponseWriter, r *http.Request, excludeNotes bool) {
@@ -39,23 +39,22 @@ func handleAtomHelp(w http.ResponseWriter, r *http.Request, excludeNotes bool) {
 		ver := a.CurrVersion()
 		msgHtml := articleBodyCache.GetHtml(ver.Sha1, ver.Format)
 
-		id := fmt.Sprintf("tag:blog.kowalczyk.info,1999:%d", a.Id)
+		//id := fmt.Sprintf("tag:blog.kowalczyk.info,1999:%d", a.Id)
 		e := &atom.Entry{
-			Id:          id,
-			Title:       a.Title,
-			Link:        "http://blog.kowalczyk.info/" + a.Permalink(),
-			ContentHtml: msgHtml,
-			PubDate:     a.PublishedOn,
+			Title:   a.Title,
+			Link:    "http://blog.kowalczyk.info/" + a.Permalink(),
+			Content: msgHtml,
+			PubDate: a.PublishedOn,
 		}
 		feed.AddEntry(e)
 	}
 
 	s, err := feed.GenXml()
 	if err != nil {
-		s = "Failed to generate XML feed"
+		s = []byte("Failed to generate XML feed")
 	}
 
-	w.Write([]byte(s))
+	w.Write(s)
 }
 
 // /atom-all.xml
