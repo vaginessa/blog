@@ -4,6 +4,8 @@ import (
 	"bytes"
 	"fmt"
 	"regexp"
+
+	"github.com/kjk/u"
 )
 
 var LANG_TO_PRETTIFY_LANG_MAP = map[string]string{
@@ -31,7 +33,7 @@ func lang_to_prettify_lang(lang string) string {
 }
 
 func txt_cookie(s string) string {
-	return Sha1StringOfBytes([]byte(s))
+	return u.Sha1StringOfBytes([]byte(s))
 }
 
 var reCode = regexp.MustCompile("(?siU)<code.*>.+</code>")

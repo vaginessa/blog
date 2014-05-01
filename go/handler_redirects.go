@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"io/ioutil"
 	"net/http"
 	"path/filepath"
 	"strconv"
@@ -56,7 +57,7 @@ var articleRedirectsMutex sync.Mutex
 
 func readRedirects() {
 	fname := filepath.Join(getDataDir(), "data", "article_redirects.txt")
-	d, err := ReadFileAll(fname)
+	d, err := ioutil.ReadFile(fname)
 	if err != nil {
 		return
 	}

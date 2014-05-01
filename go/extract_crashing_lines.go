@@ -11,15 +11,15 @@ import (
 
 func main() {
 	dataDir := filepath.Join("..", "..", "blogdata", "blobs_crashes")
-	if !PathExists(dataDir) {
+	if !u.PathExists(dataDir) {
 		log.Fatalf("dir '%s' doesn't exist", dataDir)
 	}
-	files := ListFilesInDir(dataDir, true)
+	files := u.ListFilesInDir(dataDir, true)
 	for i, f := range files {
 		if i > 200000 {
 			break
 		}
-		d, err := ReadFileAll(f)
+		d, err := ioutil.ReadFile(f)
 		if err != nil {
 			log.Fatalf("ReadFileAll() failed with '%s'", err.Error())
 		}

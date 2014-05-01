@@ -7,6 +7,7 @@ import (
 	_ "errors"
 	"fmt"
 	"html/template"
+	"io/ioutil"
 	"os"
 	"path/filepath"
 	"sort"
@@ -14,6 +15,8 @@ import (
 	"strings"
 	"sync"
 	"time"
+
+	"github.com/kjk/u"
 )
 
 const (
@@ -270,7 +273,7 @@ func (s *Store) parseArticle(line []byte) {
 }
 
 func (s *Store) readExistingBlogData(fileDataPath string) error {
-	d, err := ReadFileAll(fileDataPath)
+	d, err := ioutil.ReadFile(fileDataPath)
 	if err != nil {
 		return err
 	}
@@ -306,7 +309,7 @@ func NewStore(dataDir string) (*Store, error) {
 		articlesCacheId:    1,
 	}
 	var err error
-	if PathExists(dataFilePath) {
+	if u.PathExists(dataFilePath) {
 		err = store.readExistingBlogData(dataFilePath)
 		if err != nil {
 			logger.Errorf("NewStore(): readExistingBlogData() failed with %s\n", err.Error())
@@ -348,7 +351,7 @@ func (s *Store) MessageFilePath(sha1 []byte) string {
 
 func (s *Store) MessageFileExists(sha1 []byte) bool {
 	p := s.MessageFilePath(sha1)
-	return PathExists(p)
+	return u.PathExists(p)
 }
 
 func (s *Store) appendString(str string) error {
@@ -361,7 +364,7 @@ func (s *Store) appendString(str string) error {
 
 func (s *Store) writeMessageAsSha1(msg []byte, sha1 []byte) error {
 	path := s.MessageFilePath(sha1)
-	err := WriteBytesToFile(msg, path)
+	err := u.WriteBytesToFile(msg, path)
 	if err != nil {
 		logger.Errorf("Store.writeMessageAsSha1(): failed to write %s with error %s", path, err.Error())
 	}
@@ -447,7 +450,7 @@ func (s *Store) CreateNewText(format int, txt string) (*Text, error) {
 	defer s.Unlock()
 
 	data := []byte(txt)
-	sha1 := Sha1OfBytes(data)
+	sha1 := u.Sha1OfBytes(data)
 	if err := s.writeMessageAsSha1(data, sha1); err != nil {
 		return nil, err
 	}

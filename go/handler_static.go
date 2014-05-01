@@ -4,17 +4,19 @@ import (
 	"net/http"
 	"path/filepath"
 	"strings"
+
+	"github.com/kjk/u"
 )
 
 func getWwwDir() string {
 	// when running locally
 	d := filepath.Join("..", "www")
-	if PathExists(d) {
+	if u.PathExists(d) {
 		return d
 	}
 	// when running on a server
 	d = "www"
-	if PathExists(d) {
+	if u.PathExists(d) {
 		return d
 	}
 	logger.Errorf("getWwwDir(): '%s' dir doesn't exist", d)
@@ -24,12 +26,12 @@ func getWwwDir() string {
 func getAppEngineTmplDir() string {
 	// when running locally
 	d := filepath.Join("..", "tmpl")
-	if PathExists(d) {
+	if u.PathExists(d) {
 		return d
 	}
 	// when running on a server
 	d = "appengtmpl"
-	if PathExists(d) {
+	if u.PathExists(d) {
 		return d
 	}
 	logger.Errorf("getAppEngineTmplDir(): '%s' dir doesn't exist", d)
@@ -78,7 +80,7 @@ func redirectIfFoundMatching(w http.ResponseWriter, r *http.Request, dir, fileNa
 	var files []string
 	ok := false
 	if files, ok = filesPerDir[dir]; !ok {
-		files = ListFilesInDir(dir, true)
+		files = u.ListFilesInDir(dir, true)
 		n := len(dir) + 1
 		for i, f := range files {
 			files[i] = f[n:]
@@ -107,7 +109,7 @@ func serveFileFromDir(w http.ResponseWriter, r *http.Request, dir, fileName stri
 		return
 	}
 	filePath := filepath.Join(dir, fileName)
-	if PathExists(filePath) {
+	if u.PathExists(filePath) {
 		//logger.Noticef("serveFileFromDir(): '%s'", filePath)
 		http.ServeFile(w, r, filePath)
 	} else {

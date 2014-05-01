@@ -12,10 +12,12 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	"github.com/kjk/u"
 )
 
 var blacklistedSumatraVersions = []string{"1.5.1", "1.6", "1.7", "1.8", "1.9",
-	"2.0", "2.0.1", "2.1", "2.1.1", "2.2", "2.2.1", "2.3", "2.3.1", "2.3.2"}
+	"2.0", "2.0.1", "2.1", "2.1.1", "2.2", "2.2.1", "2.3", "2.3.1", "2.3.2", "2.4"}
 
 func (c *Crash) Version() string {
 	ver := *c.ProgramVersion
@@ -29,7 +31,7 @@ func (c *Crash) Version() string {
 }
 
 func (c *Crash) CreatedOnSince() string {
-	return TimeSinceNowAsString(c.CreatedOn)
+	return u.TimeSinceNowAsString(c.CreatedOn)
 }
 
 func (c *Crash) ShortCrashingLine() string {
@@ -316,7 +318,7 @@ func handleCrashes(w http.ResponseWriter, r *http.Request) {
 }
 
 func readCrashReport(sha1 []byte) ([]byte, error) {
-	return ReadFileAll(storeCrashes.MessageFilePath(sha1))
+	return ioutil.ReadFile(storeCrashes.MessageFilePath(sha1))
 }
 
 // /app/crashshow?crash_id=${crash_id}

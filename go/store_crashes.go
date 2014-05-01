@@ -5,6 +5,7 @@ import (
 	"encoding/base64"
 	"encoding/hex"
 	"fmt"
+	"io/ioutil"
 	"os"
 	"path/filepath"
 	"sort"
@@ -12,6 +13,8 @@ import (
 	"strings"
 	"sync"
 	"time"
+
+	"github.com/kjk/u"
 )
 
 type Crash struct {
@@ -234,7 +237,7 @@ func (s *StoreCrashes) appendCrash(c *Crash) {
 }
 
 func (s *StoreCrashes) readExistingCrashesData(fileDataPath string) error {
-	d, err := ReadFileAll(fileDataPath)
+	d, err := ioutil.ReadFile(fileDataPath)
 	if err != nil {
 		return err
 	}
@@ -271,7 +274,7 @@ func NewStoreCrashes(dataDir string) (*StoreCrashes, error) {
 	}
 
 	var err error
-	if PathExists(dataFilePath) {
+	if u.PathExists(dataFilePath) {
 		err = store.readExistingCrashesData(dataFilePath)
 		if err != nil {
 			logger.Errorf("NewStoreCrashes(): readExistingCrashesData() failed with %s\n", err.Error())
@@ -314,7 +317,7 @@ func (s *StoreCrashes) MessageFilePath(sha1 []byte) string {
 
 func (s *StoreCrashes) MessageFileExists(sha1 []byte) bool {
 	p := s.MessageFilePath(sha1)
-	return PathExists(p)
+	return u.PathExists(p)
 }
 
 func (s *StoreCrashes) appendString(str string) error {
@@ -327,7 +330,7 @@ func (s *StoreCrashes) appendString(str string) error {
 
 func (s *StoreCrashes) writeMessageAsSha1(msg []byte, sha1 []byte) error {
 	path := s.MessageFilePath(sha1)
-	err := WriteBytesToFile(msg, path)
+	err := u.WriteBytesToFile(msg, path)
 	if err != nil {
 		logger.Errorf("StoreCrashes.writeMessageAsSha1(): failed to write %s with error %s", path, err.Error())
 	}
@@ -451,7 +454,7 @@ func (s *StoreCrashes) SaveCrash(appName, appVer, ipAddr string, crashData []byt
 	buf.Write(getCrashPrefixData(c))
 	buf.Write(crashData)
 	dstData := buf.Bytes()
-	sha1 := Sha1OfBytes(dstData)
+	sha1 := u.Sha1OfBytes(dstData)
 	copy(c.Sha1[:], sha1)
 
 	if err := s.writeMessageAsSha1(crashData, sha1); err != nil {

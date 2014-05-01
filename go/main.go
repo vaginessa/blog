@@ -2,13 +2,10 @@ package main
 
 import (
 	"bytes"
-	_ "code.google.com/p/gorilla/mux"
-	"code.google.com/p/gorilla/securecookie"
 	"encoding/hex"
 	"encoding/json"
 	"flag"
 	"fmt"
-	"github.com/garyburd/go-oauth/oauth"
 	"html/template"
 	"io"
 	"io/ioutil"
@@ -21,6 +18,11 @@ import (
 	"strconv"
 	"strings"
 	"time"
+
+	_ "code.google.com/p/gorilla/mux"
+	"code.google.com/p/gorilla/securecookie"
+	"github.com/garyburd/go-oauth/oauth"
+	"github.com/kjk/u"
 )
 
 var (
@@ -116,12 +118,12 @@ func getDataDir() string {
 	}
 	// locally
 	dataDir = filepath.Join("..", "..", "blogdata")
-	if PathExists(dataDir) {
+	if u.PathExists(dataDir) {
 		return dataDir
 	}
 	// on the server
 	dataDir = filepath.Join("..", "..", "data")
-	if PathExists(dataDir) {
+	if u.PathExists(dataDir) {
 		return dataDir
 	}
 	log.Fatal("data directory (../../data or ../../blogdata) doesn't exist")

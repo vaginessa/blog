@@ -2,8 +2,6 @@ package main
 
 import (
 	"errors"
-	"launchpad.net/goamz/aws"
-	"launchpad.net/goamz/s3"
 	"log"
 	"mime"
 	"os"
@@ -12,6 +10,10 @@ import (
 	"sort"
 	"strings"
 	"time"
+
+	"github.com/kjk/u"
+	"launchpad.net/goamz/aws"
+	"launchpad.net/goamz/s3"
 )
 
 var backupFreq = 12 * time.Hour
@@ -118,7 +120,7 @@ func s3PutRetry(config *BackupConfig, local, remote string, public bool) error {
 
 // tests if s3 credentials are valid and aborts if aren't
 func ensureValidConfig(config *BackupConfig) {
-	if !PathExists(config.LocalDir) {
+	if !u.PathExists(config.LocalDir) {
 		log.Fatalf("Invalid s3 backup: directory to backup '%s' doesn't exist", config.LocalDir)
 	}
 
@@ -222,7 +224,7 @@ func copyBlobs(config *BackupConfig, blobsDir, blobsS3Dir string) error {
 			logger.Errorf("WalkFunc() received err %s from filepath.Wath()", err.Error())
 			return err
 		}
-		isDir, err := PathIsDir(path)
+		isDir, err := u.PathIsDir(path)
 		if err != nil {
 			logger.Errorf("PathIsDir() for %s failed with %s", path, err.Error())
 			return err
@@ -277,12 +279,12 @@ func doBackup(config *BackupConfig) {
 	zipLocalPath := filepath.Join(os.TempDir(), "blog-tmp-backup.zip")
 	// TODO: do I need os.Remove() won't os.Create() over-write the file anyway?
 	os.Remove(zipLocalPath) // remove before trying to create a new one, just in cased
-	err := CreateZipWithDirContent(zipLocalPath, dataDir)
+	err := u.CreateZipWithDirContent(zipLocalPath, dataDir)
 	defer os.Remove(zipLocalPath)
 	if err != nil {
 		return
 	}
-	sha1, err := FileSha1(zipLocalPath)
+	sha1, err := u.FileSha1(zipLocalPath)
 	if err != nil {
 		return
 	}

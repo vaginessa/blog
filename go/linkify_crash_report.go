@@ -4,6 +4,8 @@ import (
 	"bytes"
 	"fmt"
 	"strings"
+
+	"github.com/kjk/u"
 )
 
 // given a path in the form foo\bar.cpp, return
@@ -38,7 +40,7 @@ func isSrcFile(s string) bool {
 
 func findFileFixes(dir string) {
 	n := len(dir)
-	allFiles := ListFilesInDir(dir, true)
+	allFiles := u.ListFilesInDir(dir, true)
 	files := make([]string, 0)
 	for _, f := range allFiles {
 		f = f[n+1:]

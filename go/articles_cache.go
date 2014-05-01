@@ -4,13 +4,15 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/kjk/textiler"
-	"github.com/russross/blackfriday"
 	"html/template"
 	"io/ioutil"
 	"regexp"
 	"strings"
 	"sync"
+
+	"github.com/kjk/textiler"
+	"github.com/kjk/u"
+	"github.com/russross/blackfriday"
 )
 
 var articleBodyCache ArticleBodyCache
@@ -61,9 +63,9 @@ func buildArticlesJson(articles []*Article) ([]byte, string) {
 	appendJsonMarshalled(&buf, vals)
 	buf.WriteString("; articlesJsonLoaded(__articles_json);")
 	jsData := buf.Bytes()
-	sha1 := Sha1StringOfBytes(jsData)
+	sha1 := u.Sha1StringOfBytes(jsData)
 	logger.Noticef("buildArticlesJson(): len(jsData)=%d, sha1=%s", len(jsData), sha1)
-	return buf.Bytes(), Sha1StringOfBytes(buf.Bytes())
+	return buf.Bytes(), u.Sha1StringOfBytes(buf.Bytes())
 }
 
 // must be called with a articlesCache locked
