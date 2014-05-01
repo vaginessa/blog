@@ -1,11 +1,12 @@
 package main
 
 import (
-	"github.com/rcrowley/go-metrics"
-	"github.com/rcrowley/go-metrics/librato"
 	"log"
 	"net/http"
 	"time"
+
+	"github.com/rcrowley/go-metrics"
+	"github.com/rcrowley/go-metrics/librato"
 )
 
 var (
@@ -51,6 +52,6 @@ func initMetrics() {
 
 	logger.Notice("Starting librato stats\n")
 	go func() {
-		librato.Librato(defReg, 1*time.Minute, *config.LibratoEmail, *config.LibratoToken, "blog", make([]float64, 0))
+		librato.Librato(defReg, 1*time.Minute, *config.LibratoEmail, *config.LibratoToken, "blog", make([]float64, 0), time.Second*15)
 	}()
 }

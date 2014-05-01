@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # on the server the hierarchy is different
 if [ -e go ]; then cd go; fi
 
