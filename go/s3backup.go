@@ -11,9 +11,9 @@ import (
 	"strings"
 	"time"
 
+	"github.com/crowdmob/goamz/aws"
+	"github.com/crowdmob/goamz/s3"
 	"github.com/kjk/u"
-	"launchpad.net/goamz/aws"
-	"launchpad.net/goamz/s3"
 )
 
 var backupFreq = 12 * time.Hour
@@ -42,14 +42,14 @@ func sanitizeDirForList(dir, delim string) string {
 }
 
 func listBackupFiles(config *BackupConfig, max int) (*s3.ListResp, error) {
-	auth := aws.Auth{config.AwsAccess, config.AwsSecret}
+	auth := aws.Auth{AccessKey: config.AwsAccess, SecretKey: config.AwsSecret}
 	b := s3.New(auth, aws.USEast).Bucket(config.Bucket)
 	dir := sanitizeDirForList(config.S3Dir, bucketDelim)
 	return b.List(dir, bucketDelim, "", max)
 }
 
 func listBlobFiles(config *BackupConfig, dir string) ([]s3.Key, error) {
-	auth := aws.Auth{config.AwsAccess, config.AwsSecret}
+	auth := aws.Auth{AccessKey: config.AwsAccess, SecretKey: config.AwsSecret}
 	b := s3.New(auth, aws.USEast).Bucket(config.Bucket)
 	ret := make([]s3.Key, 0)
 	dir = sanitizeDirForList(dir, bucketDelim)
@@ -72,7 +72,7 @@ func listBlobFiles(config *BackupConfig, dir string) ([]s3.Key, error) {
 }
 
 func s3Del(config *BackupConfig, keyName string) error {
-	auth := aws.Auth{config.AwsAccess, config.AwsSecret}
+	auth := aws.Auth{AccessKey: config.AwsAccess, SecretKey: config.AwsSecret}
 	b := s3.New(auth, aws.USEast).Bucket(config.Bucket)
 	return b.Del(keyName)
 }
@@ -88,7 +88,7 @@ func s3Put(config *BackupConfig, local, remote string, public bool) error {
 		return err
 	}
 
-	auth := aws.Auth{config.AwsAccess, config.AwsSecret}
+	auth := aws.Auth{AccessKey: config.AwsAccess, SecretKey: config.AwsSecret}
 	b := s3.New(auth, aws.USEast).Bucket(config.Bucket)
 
 	acl := s3.Private
@@ -105,7 +105,8 @@ func s3Put(config *BackupConfig, local, remote string, public bool) error {
 	if err != nil {
 		return err
 	}
-	return b.PutReader(remote, localf, localfi.Size(), contType, acl)
+	opts := s3.Options{}
+	return b.PutReader(remote, localf, localfi.Size(), contType, acl, opts)
 }
 
 // s3Put() likes to fail when putting lots of files in a sequence, so retry once
