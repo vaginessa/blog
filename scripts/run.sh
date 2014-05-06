@@ -6,5 +6,5 @@ set -o pipefail
 
 cd go
 #go run *.go
-go build -o blog_app *.go || exit 1
+go build -o blog_app *.go
 ./blog_app

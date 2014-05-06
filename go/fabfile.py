@@ -2,9 +2,11 @@ import sys, os, os.path, subprocess, json, zipfile
 from fabric.api import *
 from fabric.contrib import *
 
+# force only in testing
+g_force_deploy = False
+
 env.hosts = ['blog.kowalczyk.info']
 env.user = 'blog'
-
 app_dir = 'www/app'
 
 def git_ensure_clean():
@@ -14,23 +16,29 @@ def git_ensure_clean():
 		print(out)
 		sys.exit(1)
 
+
 def git_pull():
 	local("git pull")
 
+
 def git_trunk_sha1():
 	return subprocess.check_output(["git", "log", "-1", "--pretty=format:%H"])
+
 
 def delete_file(p):
 	if os.path.exists(p):
 		os.remove(p)
 
+
 def ensure_remote_dir_exists(p):
 	if not files.exists(p):
 		abort("dir '%s' doesn't exist on remote server" % p)
 
+
 def ensure_remote_file_exists(p):
 	if not files.exists(p):
 		abort("dir '%s' doesn't exist on remote server" % p)
+
 
 def add_dir_files(zip_file, dir, dirInZip=None):
 	if not os.path.exists(dir):
@@ -46,18 +54,16 @@ def add_dir_files(zip_file, dir, dirInZip=None):
 			else:
 				zip_file.write(p)
 
+
 def zip_files(zip_path):
 	zf = zipfile.ZipFile(zip_path, mode="w", compression=zipfile.ZIP_DEFLATED)
-	blacklist = []
-	files = [f for f in os.listdir(".") if f.endswith(".go") and not f in blacklist]
-	for f in files:
-		zf.write(f)
 	zf.write("config.json")
+	zf.write("blog_app_linux", "blog_app")
 	add_dir_files(zf, "tmpl")
-	add_dir_files(zf, "ext")
 	add_dir_files(zf, os.path.join("..", "scripts"), "scripts")
 	add_dir_files(zf, os.path.join("..", "www"), "www")
 	zf.close()
+
 
 def delete_old_deploys(to_keep=5):
 	with cd(app_dir):
@@ -82,10 +88,11 @@ def delete_old_deploys(to_keep=5):
 			for d in dirs_to_del:
 				run("rm -rf %s" % d)
 
+
 def check_config():
 	needed_values = ["AwsAccess", "AwsSecret", "S3BackupBucket", "S3BackupDir",
 					 "CookieEncrKeyHexStr", "CookieAuthKeyHexStr", "AnalyticsCode",
-					 "TwitterOAuthCredentials"]
+					"TwitterOAuthCredentials"]
 	if not os.path.exists("config.json"): abort("config.json doesn't exist locally")
 	j = json.loads(open("config.json").read())
 	for k in needed_values:
@@ -95,8 +102,6 @@ def check_config():
 		if len(v) == 0:
 			abort("config.json has empty key: %s" % k)
 
-# force only in testing
-g_force_deploy = False
 
 def deploy():
 	check_config()
@@ -120,9 +125,6 @@ def deploy():
 			run("rm -rf %s" % sha1)
 		run('unzip -q -x %s -d %s' % (zip_path, sha1))
 		run('rm -f %s' % zip_path)
-	# make sure it can build
-	with cd(code_path_remote):
-		run("./scripts/build.sh")
 
 	curr_dir = app_dir + '/current'
 	if files.exists(curr_dir):
