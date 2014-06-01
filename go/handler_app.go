@@ -62,7 +62,7 @@ func createNewOrUpdatePost(w http.ResponseWriter, r *http.Request, article *Arti
 
 	text, err := store.CreateNewText(format, body)
 	if err != nil {
-		logger.Errorf("createNewOrUpdatePost(): store.CreateNewText() failed with %s", err.Error())
+		logger.Errorf("createNewOrUpdatePost(): store.CreateNewText() failed with %s", err)
 		serveErrorMsg(w, "error creating text")
 		return
 	}
@@ -83,7 +83,7 @@ func createNewOrUpdatePost(w http.ResponseWriter, r *http.Request, article *Arti
 	article.IsDeleted = false
 	article.Tags = tags
 	if article, err = store.CreateOrUpdateArticle(article); err != nil {
-		logger.Errorf("createNewOrUpdatePost(): store.CreateNewArticle() failed with %s", err.Error())
+		logger.Errorf("createNewOrUpdatePost(): store.CreateNewArticle() failed with %s", err)
 		serveErrorMsg(w, "error creating article")
 		return
 	}

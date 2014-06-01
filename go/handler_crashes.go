@@ -435,13 +435,13 @@ func handleCrashSubmit(w http.ResponseWriter, r *http.Request) {
 	}
 	crashDataFile, _, err := r.FormFile("file")
 	if err != nil {
-		logger.Noticef("handleCrashSubmit(): 'file' is not defined, err = %s", err.Error())
+		logger.Noticef("handleCrashSubmit(): 'file' is not defined, err = %s", err)
 		return
 	}
 
 	crashData, err := ioutil.ReadAll(crashDataFile)
 	if err != nil {
-		logger.Noticef("handleCrashSubmit(): ioutil.ReadAll() failed with %s", err.Error())
+		logger.Noticef("handleCrashSubmit(): ioutil.ReadAll() failed with %s", err)
 		return
 	}
 
@@ -449,7 +449,7 @@ func handleCrashSubmit(w http.ResponseWriter, r *http.Request) {
 	if shouldSaveCrash(appName, appVer) {
 		err = storeCrashes.SaveCrash(appName, appVer, ipAddr, crashData)
 		if err != nil {
-			logger.Noticef("handleCrashSubmit(): storeCrashes.SaveCrash() failed with %s", err.Error())
+			logger.Noticef("handleCrashSubmit(): storeCrashes.SaveCrash() failed with %s", err)
 			return
 		}
 		logger.Noticef("handleCrashSubmit(): %s %s %s", appName, appVer, ipAddr)

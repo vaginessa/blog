@@ -277,20 +277,20 @@ func NewStoreCrashes(dataDir string) (*StoreCrashes, error) {
 	if u.PathExists(dataFilePath) {
 		err = store.readExistingCrashesData(dataFilePath)
 		if err != nil {
-			logger.Errorf("NewStoreCrashes(): readExistingCrashesData() failed with %s\n", err.Error())
+			logger.Errorf("NewStoreCrashes(): readExistingCrashesData() failed with %s\n", err)
 			return nil, err
 		}
 	} else {
 		f, err := os.Create(dataFilePath)
 		if err != nil {
-			logger.Errorf("NewStoreCrashes(): os.Create(%s) failed with %s", dataFilePath, err.Error())
+			logger.Errorf("NewStoreCrashes(): os.Create(%s) failed with %s", dataFilePath, err)
 			return nil, err
 		}
 		f.Close()
 	}
 	store.dataFile, err = os.OpenFile(dataFilePath, os.O_APPEND|os.O_RDWR, 0666)
 	if err != nil {
-		logger.Errorf("NewStoreCrashes(): os.OpenFile(%s) failed with %s", dataFilePath, err.Error())
+		logger.Errorf("NewStoreCrashes(): os.OpenFile(%s) failed with %s", dataFilePath, err)
 		return nil, err
 	}
 	logger.Noticef("crashes: %d, versions: %d, ips: %d, crashing lines: %d", len(store.crashes), len(store.versions), len(store.ips), len(store.crashingLines))
@@ -323,7 +323,7 @@ func (s *StoreCrashes) MessageFileExists(sha1 []byte) bool {
 func (s *StoreCrashes) appendString(str string) error {
 	_, err := s.dataFile.WriteString(str)
 	if err != nil {
-		logger.Errorf("StoreCrashes.appendString() error: %s\n", err.Error())
+		logger.Errorf("StoreCrashes.appendString() error: %s\n", err)
 	}
 	return err
 }
@@ -332,7 +332,7 @@ func (s *StoreCrashes) writeMessageAsSha1(msg []byte, sha1 []byte) error {
 	path := s.MessageFilePath(sha1)
 	err := u.WriteBytesToFile(msg, path)
 	if err != nil {
-		logger.Errorf("StoreCrashes.writeMessageAsSha1(): failed to write %s with error %s", path, err.Error())
+		logger.Errorf("StoreCrashes.writeMessageAsSha1(): failed to write %s with error %s", path, err)
 	}
 	return err
 }

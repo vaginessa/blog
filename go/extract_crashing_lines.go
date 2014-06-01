@@ -21,7 +21,7 @@ func main() {
 		}
 		d, err := ioutil.ReadFile(f)
 		if err != nil {
-			log.Fatalf("ReadFileAll() failed with '%s'", err.Error())
+			log.Fatalf("ReadFileAll() failed with '%s'", err)
 		}
 		s := ExtractSumatraCrashingLine(d)
 		//fmt.Printf("%s:\n  %s\n", f, s)

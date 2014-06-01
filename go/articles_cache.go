@@ -31,7 +31,7 @@ type ArticlesCache struct {
 
 func appendJsonMarshalled(buf *bytes.Buffer, val interface{}) {
 	if data, err := json.Marshal(val); err != nil {
-		logger.Errorf("json.Marshal() of %v failed with %s", val, err.Error())
+		logger.Errorf("json.Marshal() of %v failed with %s", val, err)
 	} else {
 		buf.Write(data)
 	}

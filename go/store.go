@@ -312,20 +312,20 @@ func NewStore(dataDir string) (*Store, error) {
 	if u.PathExists(dataFilePath) {
 		err = store.readExistingBlogData(dataFilePath)
 		if err != nil {
-			logger.Errorf("NewStore(): readExistingBlogData() failed with %s\n", err.Error())
+			logger.Errorf("NewStore(): readExistingBlogData() failed with %s\n", err)
 			return nil, err
 		}
 	} else {
 		f, err := os.Create(dataFilePath)
 		if err != nil {
-			logger.Errorf("NewStore(): os.Create(%s) failed with %s", dataFilePath, err.Error())
+			logger.Errorf("NewStore(): os.Create(%s) failed with %s", dataFilePath, err)
 			return nil, err
 		}
 		f.Close()
 	}
 	store.dataFile, err = os.OpenFile(dataFilePath, os.O_APPEND|os.O_RDWR, 0666)
 	if err != nil {
-		logger.Errorf("NewStore(): os.OpenFile(%s) failed with %s", dataFilePath, err.Error())
+		logger.Errorf("NewStore(): os.OpenFile(%s) failed with %s", dataFilePath, err)
 		return nil, err
 	}
 	logger.Noticef("texts: %d, articles: %d", len(store.texts), len(store.articles))
@@ -357,7 +357,7 @@ func (s *Store) MessageFileExists(sha1 []byte) bool {
 func (s *Store) appendString(str string) error {
 	_, err := s.dataFile.WriteString(str)
 	if err != nil {
-		logger.Errorf("Store.appendString() error: %s\n", err.Error())
+		logger.Errorf("Store.appendString() error: %s\n", err)
 	}
 	return err
 }
@@ -366,7 +366,7 @@ func (s *Store) writeMessageAsSha1(msg []byte, sha1 []byte) error {
 	path := s.MessageFilePath(sha1)
 	err := u.WriteBytesToFile(msg, path)
 	if err != nil {
-		logger.Errorf("Store.writeMessageAsSha1(): failed to write %s with error %s", path, err.Error())
+		logger.Errorf("Store.writeMessageAsSha1(): failed to write %s with error %s", path, err)
 	}
 	return err
 }

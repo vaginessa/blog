@@ -130,7 +130,7 @@ func ensureValidConfig(config *BackupConfig) {
 	}
 	_, err := listBackupFiles(config, 10)
 	if err != nil {
-		log.Fatalf("Invalid s3 backup: bucket.List failed %s", err.Error())
+		log.Fatalf("Invalid s3 backup: bucket.List failed %s", err)
 	}
 }
 
@@ -141,7 +141,7 @@ func ensureValidConfig(config *BackupConfig) {
 func alreadyUploaded(config *BackupConfig, sha1 string) bool {
 	rsp, err := listBackupFiles(config, 1024)
 	if err != nil {
-		logger.Errorf("alreadyUploaded(): listBackupFiles() failed with %s", err.Error())
+		logger.Errorf("alreadyUploaded(): listBackupFiles() failed with %s", err)
 		return false
 	}
 	for _, key := range rsp.Contents {
@@ -174,7 +174,7 @@ func isBackupFile(s string) bool {
 func deleteOldBackups(config *BackupConfig, maxToKeep int) {
 	rsp, err := listBackupFiles(config, 1024)
 	if err != nil {
-		logger.Errorf("deleteOldBackups(): listBackupFiles() failed with %s", err.Error())
+		logger.Errorf("deleteOldBackups(): listBackupFiles() failed with %s", err)
 		return
 	}
 	keys := make([]string, 0)
@@ -193,7 +193,7 @@ func deleteOldBackups(config *BackupConfig, maxToKeep int) {
 	for i := 0; i < toDelete; i++ {
 		key := keys[i]
 		if err = s3Del(config, key); err != nil {
-			logger.Noticef("deleteOldBackups(): failed to delete %s, error: %s", key, err.Error())
+			logger.Noticef("deleteOldBackups(): failed to delete %s, error: %s", key, err)
 		} else {
 			logger.Noticef("deleteOldBackups(): deleted %s", key)
 		}
@@ -209,7 +209,7 @@ func copyBlobs(config *BackupConfig, blobsDir, blobsS3Dir string) error {
 	logger.Noticef("copyBlobs(): dirPrefix: '%s', %s => %s", dirPrefix, blobsDir, blobsS3Dir)
 
 	if keys, err := listBlobFiles(config, blobsS3Dir); err != nil {
-		logger.Errorf("listBlobFiles() failed with %s", err.Error())
+		logger.Errorf("listBlobFiles() failed with %s", err)
 		return err
 	} else {
 		for _, key := range keys {
@@ -222,12 +222,12 @@ func copyBlobs(config *BackupConfig, blobsDir, blobsS3Dir string) error {
 
 	err := filepath.Walk(blobsDir, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
-			logger.Errorf("WalkFunc() received err %s from filepath.Wath()", err.Error())
+			logger.Errorf("WalkFunc() received err %s from filepath.Wath()", err)
 			return err
 		}
 		isDir, err := u.PathIsDir(path)
 		if err != nil {
-			logger.Errorf("PathIsDir() for %s failed with %s", path, err.Error())
+			logger.Errorf("PathIsDir() for %s failed with %s", path, err)
 			return err
 		}
 		if isDir {
@@ -247,7 +247,7 @@ func copyBlobs(config *BackupConfig, blobsDir, blobsS3Dir string) error {
 		}
 
 		if err = s3PutRetry(config, path, s3Path, true); err != nil {
-			logger.Errorf("s3Put of '%s' to '%s' failed with %s", path, s3Path, err.Error())
+			logger.Errorf("s3Put of '%s' to '%s' failed with %s", path, s3Path, err)
 			return err
 		} else {
 			logger.Noticef("copyBlobs(): s3Put '%s' as '%s'", path, s3Path)
@@ -264,14 +264,14 @@ func doBackup(config *BackupConfig) {
 	blobsDir := filepath.Join(config.LocalDir, "blobs")
 	blobsS3Dir := filepath.Join(config.S3Dir, "blobs")
 	if err := copyBlobs(config, blobsDir, blobsS3Dir); err != nil {
-		logger.Errorf("doBackup(): copyBlobs() %s => %s failed with %s", blobsDir, blobsS3Dir, err.Error())
+		logger.Errorf("doBackup(): copyBlobs() %s => %s failed with %s", blobsDir, blobsS3Dir, err)
 		return
 	}
 
 	blobsDir = filepath.Join(config.LocalDir, "blobs_crashes")
 	blobsS3Dir = filepath.Join(config.S3Dir, "blobs_crashes")
 	if err := copyBlobs(config, blobsDir, blobsS3Dir); err != nil {
-		logger.Errorf("doBackup(): copyBlobs() %s => %s failed with %s", blobsDir, blobsS3Dir, err.Error())
+		logger.Errorf("doBackup(): copyBlobs() %s => %s failed with %s", blobsDir, blobsS3Dir, err)
 		return
 	}
 
@@ -298,7 +298,7 @@ func doBackup(config *BackupConfig) {
 	zipS3Path := path.Join(config.S3Dir, timeStr+sha1+".zip")
 
 	if err = s3Put(config, zipLocalPath, zipS3Path, true); err != nil {
-		logger.Errorf("s3Put of '%s' to '%s' failed with %s", zipLocalPath, zipS3Path, err.Error())
+		logger.Errorf("s3Put of '%s' to '%s' failed with %s", zipLocalPath, zipS3Path, err)
 		return
 	}
 

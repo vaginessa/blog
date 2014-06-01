@@ -145,7 +145,7 @@ func GetTemplates() *template.Template {
 func ExecTemplate(w http.ResponseWriter, templateName string, model interface{}) bool {
 	var buf bytes.Buffer
 	if err := GetTemplates().ExecuteTemplate(&buf, templateName, model); err != nil {
-		logger.Errorf("Failed to execute template '%s', error: %s", templateName, err.Error())
+		logger.Errorf("Failed to execute template '%s', error: %s", templateName, err)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return false
 	} else {
@@ -375,7 +375,7 @@ func main() {
 	rand.Seed(time.Now().UnixNano())
 
 	if err := readConfig(configPath); err != nil {
-		log.Fatalf("Failed reading config file %s. %s\n", configPath, err.Error())
+		log.Fatalf("Failed reading config file %s. %s\n", configPath, err)
 	}
 
 	if !inProduction {
@@ -383,11 +383,11 @@ func main() {
 	}
 
 	if store, err = NewStore(getDataDir()); err != nil {
-		log.Fatalf("NewStore() failed with %s", err.Error())
+		log.Fatalf("NewStore() failed with %s", err)
 	}
 
 	if storeCrashes, err = NewStoreCrashes(getDataDir()); err != nil {
-		log.Fatalf("NewStoreCrashes() failed with %s", err.Error())
+		log.Fatalf("NewStoreCrashes() failed with %s", err)
 	}
 
 	readRedirects()
@@ -452,7 +452,7 @@ func main() {
 
 	logger.Noticef(fmt.Sprintf("Started runing on %s", httpAddr))
 	if err := http.ListenAndServe(httpAddr, nil); err != nil {
-		fmt.Printf("http.ListendAndServer() failed with %s\n", err.Error())
+		fmt.Printf("http.ListendAndServer() failed with %s\n", err)
 	}
 	fmt.Printf("Exited\n")
 }
