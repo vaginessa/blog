@@ -92,7 +92,7 @@ def delete_old_deploys(to_keep=5):
 def check_config():
 	needed_values = ["AwsAccess", "AwsSecret", "S3BackupBucket", "S3BackupDir",
 					 "CookieEncrKeyHexStr", "CookieAuthKeyHexStr", "AnalyticsCode",
-					"TwitterOAuthCredentials"]
+					 "TwitterOAuthCredentials"]
 	if not os.path.exists("config.json"): abort("config.json doesn't exist locally")
 	j = json.loads(open("config.json").read())
 	for k in needed_values:
