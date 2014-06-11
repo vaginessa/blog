@@ -97,19 +97,23 @@ func getDataDir() string {
 	if dataDir != "" {
 		return dataDir
 	}
-	// on the server
-	dataDir = filepath.Join("..", "..", "data")
+
+	// on the server, must be done first because ExpandTildeInPath()
+	// doesn't work when cross-compiled on mac for linux
+	serverDir := filepath.Join("..", "..", "data")
+	dataDir = serverDir
 	if u.PathExists(dataDir) {
 		return dataDir
 	}
 
 	// locally
-	dataDir = filepath.Join("..", "blogdata")
+	localDir := u.ExpandTildeInPath("~/data/blogdata")
+	dataDir = localDir
 	if u.PathExists(dataDir) {
 		return dataDir
 	}
 
-	log.Fatal("data directory (../../data or ../../blogdata) doesn't exist")
+	log.Fatalf("data directory (%q or %q) doesn't exist", serverDir, localDir)
 	return ""
 }
 
