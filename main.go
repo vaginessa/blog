@@ -97,16 +97,18 @@ func getDataDir() string {
 	if dataDir != "" {
 		return dataDir
 	}
-	// locally
-	dataDir = filepath.Join("..", "..", "blogdata")
-	if u.PathExists(dataDir) {
-		return dataDir
-	}
 	// on the server
 	dataDir = filepath.Join("..", "..", "data")
 	if u.PathExists(dataDir) {
 		return dataDir
 	}
+
+	// locally
+	dataDir = filepath.Join("..", "blogdata")
+	if u.PathExists(dataDir) {
+		return dataDir
+	}
+
 	log.Fatal("data directory (../../data or ../../blogdata) doesn't exist")
 	return ""
 }
