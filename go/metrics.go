@@ -34,7 +34,7 @@ func handleMetrics(w http.ResponseWriter, r *http.Request) {
 	textResponse(w, string(json))
 }
 
-func initMetrics() {
+func InitMetrics() {
 	defReg := metrics.DefaultRegistry
 	metricCurrentReqs = metrics.NewRegisteredCounter("curr_http_req", defReg)
 	metricHttpReqRate = metrics.NewRegisteredMeter("http_req_rate", defReg)
