@@ -37,7 +37,7 @@ func handleDjs(w http.ResponseWriter, r *http.Request) {
 		handleArticlesJs(w, r, url[len("articles-"):])
 		return
 	}
-	serve404(w, r)
+	http404(w, r)
 }
 
 func getRecentArticles(articles []*Article, max int) []*Article {
@@ -60,7 +60,7 @@ func handleMainPage(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if !isTopLevelUrl(r.URL.Path) {
-		serve404(w, r)
+		http404(w, r)
 		return
 	}
 

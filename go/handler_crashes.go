@@ -194,7 +194,7 @@ func handleCrashesRss(w http.ResponseWriter, r *http.Request) {
 	app := storeCrashes.GetAppByName(appName)
 	if app == nil {
 		logger.Errorf("handleCrashesRss(): invalid app '%s'", appName)
-		serve404(w, r)
+		http404(w, r)
 		return
 	}
 	// to minimize the number of times rss reader updates the entries, we
@@ -276,7 +276,7 @@ func handleCrashes(w http.ResponseWriter, r *http.Request) {
 	app := storeCrashes.GetAppByName(appName)
 	if app == nil {
 		logger.Errorf("handleCrashes(): invalid app '%s'", appName)
-		serve404(w, r)
+		http404(w, r)
 		return
 	}
 
@@ -332,17 +332,17 @@ func handleCrashShow(w http.ResponseWriter, r *http.Request) {
 	crashIdStr := getTrimmedFormValue(r, "crash_id")
 	crashId, err := strconv.Atoi(crashIdStr)
 	if err != nil {
-		serve404(w, r)
+		http404(w, r)
 		return
 	}
 	crash := storeCrashes.GetCrashById(crashId)
 	if crash == nil {
-		serve404(w, r)
+		http404(w, r)
 		return
 	}
 	crashData, err := readCrashReport(crash.Sha1[:])
 	if err != nil {
-		serve404(w, r)
+		http404(w, r)
 		return
 	}
 	appName := crash.App.Name
@@ -424,7 +424,7 @@ func shouldSaveCrash(app, ver string) bool {
 // POST /app/crashsubmit?appname=${appName}&file=${crashData}
 func handleCrashSubmit(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
-		serveErrorMsg(w, "GET not supported")
+		httpErrorf(w, "GET not supported")
 		return
 	}
 	ipAddr := getIpAddress(r)

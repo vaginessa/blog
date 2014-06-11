@@ -298,5 +298,4 @@ func msgToHtml(msg []byte, format int) string {
 		return strToHtml(string(msg))
 	}
 	panic("unknown format")
-	return ""
 }

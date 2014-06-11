@@ -191,17 +191,6 @@ func shouldLog404(s string) bool {
 	return !ok
 }
 
-func serve404(w http.ResponseWriter, r *http.Request) {
-	if getReferer(r) != "" && shouldLog404(r.URL.Path) {
-		logger.Noticef("404: '%s', referer: '%s'", r.URL.Path, getReferer(r))
-	}
-	http.NotFound(w, r)
-}
-
-func serveErrorMsg(w http.ResponseWriter, msg string) {
-	http.Error(w, msg, http.StatusBadRequest)
-}
-
 func userIsAdmin(cookie *SecureCookieValue) bool {
 	return cookie.TwitterUser == "kjk"
 }

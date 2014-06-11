@@ -25,7 +25,7 @@ func handleArticle(w http.ResponseWriter, r *http.Request) {
 	// at this point
 	url := r.URL.Path
 	if !strings.HasPrefix(url, "/article/") {
-		serve404(w, r)
+		http404(w, r)
 		return
 	}
 	isAdmin := IsAdmin(r)
@@ -33,14 +33,14 @@ func handleArticle(w http.ResponseWriter, r *http.Request) {
 	// we expect /article/$shortId/$url
 	parts := strings.SplitN(url[len("/article/"):], "/", 2)
 	if len(parts) != 2 {
-		serve404(w, r)
+		http404(w, r)
 		return
 	}
 
 	articleId := UnshortenId(parts[0])
 	prev, article, next, pos := getCachedArticlesById(articleId, isAdmin)
 	if nil == article {
-		serve404(w, r)
+		http404(w, r)
 		return
 	}
 

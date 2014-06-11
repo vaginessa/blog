@@ -44,17 +44,17 @@ func tagsFromString(s string) []string {
 func createNewOrUpdatePost(w http.ResponseWriter, r *http.Request, article *Article) {
 	format := FormatNameToId(getTrimmedFormValue(r, "format"))
 	if !validFormat(format) {
-		serveErrorMsg(w, "invalid format")
+		httpErrorf(w, "invalid format")
 		return
 	}
 	title := getTrimmedFormValue(r, "title")
 	if title == "" {
-		serveErrorMsg(w, "empty title not valid")
+		httpErrorf(w, "empty title not valid")
 		return
 	}
 	body := getTrimmedFormValue(r, "note")
 	if len(body) < 10 {
-		serveErrorMsg(w, "body too small")
+		httpErrorf(w, "body too small")
 		return
 	}
 	isPrivate := checkboxToBool(getTrimmedFormValue(r, "private_checkbox"))
@@ -63,7 +63,7 @@ func createNewOrUpdatePost(w http.ResponseWriter, r *http.Request, article *Arti
 	text, err := store.CreateNewText(format, body)
 	if err != nil {
 		logger.Errorf("createNewOrUpdatePost(): store.CreateNewText() failed with %s", err)
-		serveErrorMsg(w, "error creating text")
+		httpErrorf(w, "error creating text")
 		return
 	}
 	if article == nil {
@@ -84,7 +84,7 @@ func createNewOrUpdatePost(w http.ResponseWriter, r *http.Request, article *Arti
 	article.Tags = tags
 	if article, err = store.CreateOrUpdateArticle(article); err != nil {
 		logger.Errorf("createNewOrUpdatePost(): store.CreateNewArticle() failed with %s", err)
-		serveErrorMsg(w, "error creating article")
+		httpErrorf(w, "error creating article")
 		return
 	}
 	clearArticlesCache()
@@ -104,7 +104,7 @@ func GetArticleVersionBody(sha1 []byte) (string, error) {
 // url: /app/edit
 func handleAppEdit(w http.ResponseWriter, r *http.Request) {
 	if !IsAdmin(r) {
-		serve404(w, r)
+		http404(w, r)
 		return
 	}
 
@@ -182,7 +182,7 @@ func handleAppEdit(w http.ResponseWriter, r *http.Request) {
 
 func findArticleMustBeAdmin(w http.ResponseWriter, r *http.Request) *Article {
 	if !IsAdmin(r) {
-		serve404(w, r)
+		http404(w, r)
 		return nil
 	}
 
@@ -193,7 +193,7 @@ func findArticleMustBeAdmin(w http.ResponseWriter, r *http.Request) *Article {
 	}
 	if article == nil {
 		logger.Errorf("findArticleMustBeAdmin(): no article with article_id '%s'", idStr)
-		serveErrorMsg(w, "invalid article")
+		httpErrorf(w, "invalid article")
 	}
 	return article
 }
@@ -208,7 +208,7 @@ func handleAppDelete(w http.ResponseWriter, r *http.Request) {
 
 	if article.IsDeleted {
 		logger.Errorf("handleAppDelete(): article %d already deleted", article.Id)
-		serveErrorMsg(w, "article already deleted")
+		httpErrorf(w, "article already deleted")
 		return
 	}
 
@@ -229,7 +229,7 @@ func handleAppUndelete(w http.ResponseWriter, r *http.Request) {
 
 	if !article.IsDeleted {
 		logger.Errorf("handleAppUndelete(): article %d not deleted", article.Id)
-		serveErrorMsg(w, "article not deleted")
+		httpErrorf(w, "article not deleted")
 		return
 	}
 
@@ -245,7 +245,7 @@ func handleAppShowDeleted(w http.ResponseWriter, r *http.Request) {
 	logger.Notice("handleAppShowDeleted()")
 	isAdmin := IsAdmin(r)
 	if !isAdmin {
-		serve404(w, r)
+		http404(w, r)
 		return
 	}
 	articles := make([]*Article, 0)
@@ -262,7 +262,7 @@ func handleAppShowPrivate(w http.ResponseWriter, r *http.Request) {
 	logger.Notice("handleAppShowPrivate()")
 	isAdmin := IsAdmin(r)
 	if !isAdmin {
-		serve404(w, r)
+		http404(w, r)
 		return
 	}
 	articles := make([]*Article, 0)

@@ -3,6 +3,8 @@ package main
 
 import (
 	"bytes"
+	"fmt"
+	"net/http"
 	"regexp"
 	"strings"
 )
@@ -68,7 +70,6 @@ func SkipPastLine(d []byte, lineToFind string) []byte {
 			return d
 		}
 	}
-	panic("")
 }
 
 func FindLineWithPrefix(d []byte, prefix string) []byte {
@@ -83,7 +84,6 @@ func FindLineWithPrefix(d []byte, prefix string) []byte {
 			return l
 		}
 	}
-	panic("")
 }
 
 const base64Chars = "0123456789abcdefghijklmnopqrstuvwxyz"
@@ -118,4 +118,26 @@ func UnshortenId(s string) int {
 		n += i
 	}
 	return n
+}
+
+func http404(w http.ResponseWriter, r *http.Request) {
+	http.NotFound(w, r)
+}
+
+func httpErrorf(w http.ResponseWriter, format string, args ...interface{}) {
+	msg := format
+	if len(args) > 0 {
+		msg = fmt.Sprintf(format, args...)
+	}
+	http.Error(w, msg, http.StatusBadRequest)
+}
+
+func panicif(shouldPanic bool, format string, args ...interface{}) {
+	if shouldPanic {
+		s := format
+		if len(args) > 0 {
+			s = fmt.Sprintf(format, args...)
+		}
+		panic(s)
+	}
 }
