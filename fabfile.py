@@ -60,8 +60,8 @@ def zip_files(zip_path):
 	zf.write("config.json")
 	zf.write("blog_app_linux", "blog_app")
 	add_dir_files(zf, "tmpl")
-	add_dir_files(zf, os.path.join("..", "scripts"), "scripts")
-	add_dir_files(zf, os.path.join("..", "www"), "www")
+	add_dir_files(zf, os.path.join("scripts"), "scripts")
+	add_dir_files(zf, os.path.join("www"), "www")
 	zf.close()
 
 
@@ -107,8 +107,8 @@ def deploy():
 	check_config()
 	if not g_force_deploy:
 		git_ensure_clean()
-	local("../scripts/build.sh")
-	local("../scripts/tests.sh")
+	local("./scripts/build.sh")
+	local("./scripts/tests.sh")
 	ensure_remote_dir_exists(app_dir)
 	ensure_remote_file_exists('www/data')
 	sha1 = git_trunk_sha1()
