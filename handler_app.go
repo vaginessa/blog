@@ -192,7 +192,7 @@ func findArticleMustBeAdmin(w http.ResponseWriter, r *http.Request) *Article {
 		article = store.GetArticleById(articleId)
 	}
 	if article == nil {
-		logger.Errorf("findArticleMustBeAdmin(): no article with article_id '%s'", idStr)
+		logger.Errorf("findArticleMustBeAdmin(): no article with article_id %q", idStr)
 		httpErrorf(w, "invalid article")
 	}
 	return article

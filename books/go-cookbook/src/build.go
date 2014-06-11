@@ -49,7 +49,7 @@ func main() {
 	srcname := "book.txt"
 	f, err := os.Open(srcname)
 	if f == nil {
-		fmt.Printf("Can't open '%s'\n", srcname)
+		fmt.Printf("Can't open %q\n", srcname)
 		os.Exit(1)
 	}
 	defer f.Close()

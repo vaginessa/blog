@@ -10,13 +10,13 @@ import (
 func handleArticlesJs(w http.ResponseWriter, r *http.Request, url string) {
 	sha1 := url[:len(url)-len(".js")]
 	if len(sha1) != 40 {
-		logger.Errorf("handleArticlesJs(): invalid sha1='%s', url='%s", sha1, url)
+		logger.Errorf("handleArticlesJs(): invalid sha1=%q, url='%s", sha1, url)
 		panic("invalid sha1")
 	}
 
 	jsData, expectedSha1 := getArticlesJsData(IsAdmin(r))
 	if sha1 != expectedSha1 {
-		logger.Errorf("handleArticlesJs(): invalid value of sha1='%s', expected='%s'", sha1, expectedSha1)
+		logger.Errorf("handleArticlesJs(): invalid value of sha1=%q, expected=%q", sha1, expectedSha1)
 		panic("invalid value of sha1")
 	}
 

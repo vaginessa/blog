@@ -12,7 +12,7 @@ import (
 func main() {
 	dataDir := filepath.Join("..", "..", "blogdata", "blobs_crashes")
 	if !u.PathExists(dataDir) {
-		log.Fatalf("dir '%s' doesn't exist", dataDir)
+		log.Fatalf("dir %q doesn't exist", dataDir)
 	}
 	files := u.ListFilesInDir(dataDir, true)
 	for i, f := range files {
@@ -21,7 +21,7 @@ func main() {
 		}
 		d, err := ioutil.ReadFile(f)
 		if err != nil {
-			log.Fatalf("ReadFileAll() failed with '%s'", err)
+			log.Fatalf("ReadFileAll() failed with %q", err)
 		}
 		s := ExtractSumatraCrashingLine(d)
 		//fmt.Printf("%s:\n  %s\n", f, s)

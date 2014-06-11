@@ -255,7 +255,7 @@ func (s *StoreCrashes) readExistingCrashesData(fileDataPath string) error {
 		if c == 'C' {
 			s.parseCrash(line)
 		} else {
-			fmt.Printf("'%s'\n", string(line))
+			fmt.Printf("%q\n", string(line))
 			panic("Unexpected line type")
 		}
 	}

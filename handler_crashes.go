@@ -193,7 +193,7 @@ func handleCrashesRss(w http.ResponseWriter, r *http.Request) {
 	appName := getTrimmedFormValue(r, "app_name")
 	app := storeCrashes.GetAppByName(appName)
 	if app == nil {
-		logger.Errorf("handleCrashesRss(): invalid app '%s'", appName)
+		logger.Errorf("handleCrashesRss(): invalid app %q", appName)
 		http404(w, r)
 		return
 	}
@@ -275,7 +275,7 @@ func handleCrashes(w http.ResponseWriter, r *http.Request) {
 	}
 	app := storeCrashes.GetAppByName(appName)
 	if app == nil {
-		logger.Errorf("handleCrashes(): invalid app '%s'", appName)
+		logger.Errorf("handleCrashes(): invalid app %q", appName)
 		http404(w, r)
 		return
 	}

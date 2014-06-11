@@ -98,9 +98,9 @@ func getRedirectArticleId(url string) int {
 
 func redirectIfNeeded(w http.ResponseWriter, r *http.Request) bool {
 	url := r.URL.Path
-	//logger.Noticef("redirectIfNeeded(): '%s'", url)
+	//logger.Noticef("redirectIfNeeded(): %q", url)
 	if redirUrl, ok := redirects[url]; ok {
-		//logger.Noticef("Redirecting '%s' => '%s'", url, redirUrl)
+		//logger.Noticef("Redirecting %q => %q", url, redirUrl)
 		http.Redirect(w, r, redirUrl, 302)
 		return true
 	}
@@ -112,7 +112,7 @@ func redirectIfNeeded(w http.ResponseWriter, r *http.Request) bool {
 	article := store.GetArticleById(redirectArticleId)
 	if article != nil {
 		redirUrl := "/" + article.Permalink()
-		//logger.Noticef("Redirecting '%s' => '%s'", url, redirUrl)
+		//logger.Noticef("Redirecting %q => %q", url, redirUrl)
 		http.Redirect(w, r, redirUrl, 302)
 		return true
 	}
@@ -128,6 +128,6 @@ func forumRedirect(w http.ResponseWriter, r *http.Request) {
 	if len(r.URL.RawQuery) > 0 {
 		redirUrl = redirUrl + "?" + r.URL.RawQuery
 	}
-	//logger.Noticef("Redirecting '%s' => '%s'", r.URL.Path, redirUrl)
+	//logger.Noticef("Redirecting %q => %q", r.URL.Path, redirUrl)
 	http.Redirect(w, r, redirUrl, 302)
 }

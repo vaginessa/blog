@@ -19,7 +19,7 @@ func getWwwDir() string {
 	if u.PathExists(d) {
 		return d
 	}
-	logger.Errorf("getWwwDir(): '%s' dir doesn't exist", d)
+	logger.Errorf("getWwwDir(): %q dir doesn't exist", d)
 	return ""
 }
 
@@ -34,7 +34,7 @@ func getAppEngineTmplDir() string {
 	if u.PathExists(d) {
 		return d
 	}
-	logger.Errorf("getAppEngineTmplDir(): '%s' dir doesn't exist", d)
+	logger.Errorf("getAppEngineTmplDir(): %q dir doesn't exist", d)
 	return ""
 }
 
@@ -85,7 +85,7 @@ func redirectIfFoundMatching(w http.ResponseWriter, r *http.Request, dir, fileNa
 		for i, f := range files {
 			files[i] = f[n:]
 		}
-		//logger.Noticef("files in '%s': %v", dir, files)
+		//logger.Noticef("files in %q: %v", dir, files)
 		filesPerDir[dir] = files
 	}
 	for _, f := range files {
@@ -96,7 +96,7 @@ func redirectIfFoundMatching(w http.ResponseWriter, r *http.Request, dir, fileNa
 			diff := len(fileName) - len(f)
 			url := r.URL.Path
 			url = url[:len(url)-diff]
-			logger.Noticef("serveFileFromDir(): redirecting '%s' => '%s'", r.URL.Path, url)
+			logger.Noticef("serveFileFromDir(): redirecting %q => %q", r.URL.Path, url)
 			http.Redirect(w, r, url, 302)
 			return true
 		}
@@ -110,10 +110,10 @@ func serveFileFromDir(w http.ResponseWriter, r *http.Request, dir, fileName stri
 	}
 	filePath := filepath.Join(dir, fileName)
 	if u.PathExists(filePath) {
-		//logger.Noticef("serveFileFromDir(): '%s'", filePath)
+		//logger.Noticef("serveFileFromDir(): %q", filePath)
 		http.ServeFile(w, r, filePath)
 	} else {
-		logger.Noticef("serveFileFromDir() file '%s' doesn't exist, referer: '%s'", fileName, getReferer(r))
+		logger.Noticef("serveFileFromDir() file %q doesn't exist, referer: %q", fileName, getReferer(r))
 		http404(w, r)
 	}
 }
