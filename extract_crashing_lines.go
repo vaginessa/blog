@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	dataDir := filepath.Join("..", "..", "blogdata", "blobs_crashes")
+	dataDir := filepath.Join("..", "..", "blog", "blobs_crashes")
 	if !u.PathExists(dataDir) {
 		log.Fatalf("dir %q doesn't exist", dataDir)
 	}

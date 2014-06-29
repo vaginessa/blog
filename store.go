@@ -171,10 +171,7 @@ func (s *Store) parseText(line []byte) {
 	createdOn := time.Unix(int64(createdOnSeconds), 0)
 
 	format, err := strconv.Atoi(formatStr)
-
-	if err != nil || !validFormat(format) {
-		panic("format not a number or invalid")
-	}
+	panicif(err != nil || !validFormat(format), "%s is not a valid format", formatStr)
 
 	msgSha1, err := base64.StdEncoding.DecodeString(msgSha1b64)
 	if err != nil {
@@ -195,6 +192,16 @@ func (s *Store) parseText(line []byte) {
 	}
 
 	s.texts = append(s.texts, t)
+
+	if store2Rewrite != nil {
+		// TODO: read message data
+		fmt.Printf("Writing text id: %d sha1: %s\n", id, msgSha1b64)
+		path := s.MessageFilePath(t.Sha1[:])
+		d, err := ioutil.ReadFile(path)
+		panicif(err != nil, "ReadFile(%q) failed with %q", path, err)
+		_, err = store2Rewrite.CreateNewTextWithTime(format, string(d), createdOn)
+		panicif(err != nil, "CreateNewTextWithTime() failed with %q", err)
+	}
 }
 
 // parse:
@@ -429,8 +436,11 @@ func (s *Store) newArticleId() int {
 	}
 }
 
-func (s *Store) newTextId() int {
-	return len(s.texts)
+func (s *Store) addText(t Text) *Text {
+	n := len(s.texts)
+	t.Id = n
+	s.texts = append(s.texts, t)
+	return &s.texts[n]
 }
 
 func serText(t *Text) string {
@@ -441,9 +451,7 @@ func serText(t *Text) string {
 }
 
 func (s *Store) CreateNewText(format int, txt string) (*Text, error) {
-	if !validFormat(format) {
-		panic("invalid format")
-	}
+	panicif(!validFormat(format), "%d is not a valid fomrat", format)
 
 	s.Lock()
 	defer s.Unlock()
@@ -454,7 +462,6 @@ func (s *Store) CreateNewText(format int, txt string) (*Text, error) {
 		return nil, err
 	}
 	t := Text{
-		Id:        s.newTextId(),
 		CreatedOn: time.Now(),
 		Format:    format,
 	}
@@ -462,8 +469,7 @@ func (s *Store) CreateNewText(format int, txt string) (*Text, error) {
 	if err := s.appendString(serText(&t)); err != nil {
 		return nil, err
 	}
-	s.texts = append(s.texts, t)
-	return &s.texts[len(s.texts)-1], nil
+	return s.addText(t), nil
 }
 
 func serVersions(vers []int) string {
@@ -541,4 +547,10 @@ func (s *Store) UpdateArticle(article *Article) (*Article, error) {
 	}
 	err := s.appendString(serArticle(article))
 	return article, err
+}
+
+func (s *Store) Close() {
+	if s.dataFile != nil {
+		s.dataFile.Close()
+	}
 }

@@ -107,7 +107,7 @@ func getDataDir() string {
 	}
 
 	// locally
-	localDir := u.ExpandTildeInPath("~/data/blogdata")
+	localDir := u.ExpandTildeInPath("~/data/blog")
 	dataDir = localDir
 	if u.PathExists(dataDir) {
 		return dataDir
@@ -331,6 +331,8 @@ func main() {
 	if !inProduction {
 		config.AnalyticsCode = &emptyString
 	}
+
+	RewriteStore(getDataDir())
 
 	if store, err = NewStore(getDataDir()); err != nil {
 		log.Fatalf("NewStore() failed with %s", err)
