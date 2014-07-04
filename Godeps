@@ -1,0 +1,60 @@
+{
+	"ImportPath": "github.com/kjk/blog",
+	"GoVersion": "go1.3",
+	"Deps": [
+		{
+			"ImportPath": "code.google.com/p/go.net/html",
+			"Comment": "null-117",
+			"Rev": "c17ad62118ea511e1051721b429779fa40bddc74"
+		},
+		{
+			"ImportPath": "github.com/crowdmob/goamz/aws",
+			"Rev": "721b8036c20a0f864b374e8cc142c71bb3802f90"
+		},
+		{
+			"ImportPath": "github.com/crowdmob/goamz/s3",
+			"Rev": "721b8036c20a0f864b374e8cc142c71bb3802f90"
+		},
+		{
+			"ImportPath": "github.com/garyburd/go-oauth/oauth",
+			"Rev": "12ce6efc373e0a0fb9f6c93209a768dc5b797ba8"
+		},
+		{
+			"ImportPath": "github.com/gorilla/context",
+			"Rev": "14f550f51af52180c2eefed15e5fd18d63c0a64a"
+		},
+		{
+			"ImportPath": "github.com/gorilla/mux",
+			"Rev": "14cafe28513321476c73967a5a4f3454b6129c46"
+		},
+		{
+			"ImportPath": "github.com/gorilla/securecookie",
+			"Rev": "1b0c7f6e9ab3d7f500fd7d50c7ad835ff428139b"
+		},
+		{
+			"ImportPath": "github.com/kjk/contentstore",
+			"Rev": "62e56dad607dead2e2b7378f52cfcc1a4f804fe8"
+		},
+		{
+			"ImportPath": "github.com/kjk/textiler",
+			"Rev": "31558f2abcdda161c33ac431eab39e17bb7c2c52"
+		},
+		{
+			"ImportPath": "github.com/kjk/u",
+			"Rev": "88d3a38e7745d920d680ae987d57df8f5551fd86"
+		},
+		{
+			"ImportPath": "github.com/rcrowley/go-metrics",
+			"Rev": "c3fec5ef7b304a4347c498236aff4ed3234c1898"
+		},
+		{
+			"ImportPath": "github.com/russross/blackfriday",
+			"Comment": "v1.1-115-gf3ab184",
+			"Rev": "f3ab1849e6b17a1564b9088d01fee399a83cddd7"
+		},
+		{
+			"ImportPath": "github.com/thomas11/atomgenerator",
+			"Rev": "0b3b01da14a48f084a3effeda175ce53c4d8320e"
+		}
+	]
+}

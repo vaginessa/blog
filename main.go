@@ -17,9 +17,9 @@ import (
 	"strings"
 	"time"
 
-	_ "code.google.com/p/gorilla/mux"
-	"code.google.com/p/gorilla/securecookie"
 	"github.com/garyburd/go-oauth/oauth"
+	_ "github.com/gorilla/mux"
+	"github.com/gorilla/securecookie"
 	"github.com/kjk/u"
 )
 
