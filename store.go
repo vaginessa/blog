@@ -484,20 +484,16 @@ func serVersions(vers []int) string {
 	return s
 }
 
-func sanitizeTag(tag string) string {
-	return strings.Replace(tag, ",", "", -1)
+func joinStringsSanitized(arr []string, sep string) string {
+	for i, s := range arr {
+		// TODO: could escape instead
+		arr[i] = strings.Replace(s, sep, "", -1)
+	}
+	return strings.Join(arr, sep)
 }
 
 func serTags(tags []string) string {
-	s := ""
-	lastIdx := len(tags) - 1
-	for i, tag := range tags {
-		s += sanitizeTag(tag)
-		if i != lastIdx {
-			s += ","
-		}
-	}
-	return s
+	return joinStringsSanitized(tags, ",")
 }
 
 func serArticle(a *Article) string {
