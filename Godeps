@@ -28,7 +28,7 @@
 		},
 		{
 			"ImportPath": "github.com/kjk/contentstore",
-			"Rev": "62e56dad607dead2e2b7378f52cfcc1a4f804fe8"
+			"Rev": "3a29ec64cac98f54c57a4271a053a98bc5927b64"
 		},
 		{
 			"ImportPath": "github.com/kjk/textiler",
