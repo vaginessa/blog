@@ -5,6 +5,7 @@ import (
 	"os"
 	"path/filepath"
 	"strconv"
+	"strings"
 	"sync"
 	"time"
 
@@ -70,11 +71,48 @@ func (s *Store2) writeCsv(rec []string) error {
 	return s.w.WriteAll(recs)
 }
 
+// t, $id, $createdOn, $format, $sha1
 func (s *Store2) writeTextRec(t *Text2) error {
 	timeStr := strconv.FormatInt(t.CreatedOn.Unix(), 10)
 	formatStr := strconv.Itoa(t.Format)
 	rec := []string{recIdText, strconv.Itoa(t.Id), timeStr, formatStr, t.BodyId}
 	return s.writeCsv(rec)
+}
+
+// a, $id, $publishedOn, $title, $isPrivate, $isDeleted, $tags, $versions
+func (s *Store2) writeArticleRec(a *Article2) error {
+	timeStr := strconv.FormatInt(a.PublishedOn.Unix(), 10)
+	idStr := strconv.Itoa(a.Id)
+	isPriv := boolToStr(a.IsPrivate)
+	isDel := boolToStr(a.IsDeleted)
+	tags := serTags(a.Tags)
+	nVers := len(a.Versions)
+	vers := make([]string, nVers, nVers)
+	for i, ver := range a.Versions {
+		vers[i] = strconv.Itoa(ver.Id)
+	}
+	versions := strings.Join(vers, ",")
+	rec := []string{recIdArticle, idStr, timeStr, a.Title, isPriv, isDel, tags, versions}
+	return s.writeCsv(rec)
+}
+
+// only needed for rewrite
+func (s *Store2) writeArticleOld(a *Article) error {
+	aNew := &Article2{
+		Id:          a.Id,
+		PublishedOn: a.PublishedOn,
+		Title:       a.Title,
+		IsPrivate:   a.IsPrivate,
+		IsDeleted:   a.IsDeleted,
+		Tags:        a.Tags,
+		Versions:    make([]*Text2, 0),
+	}
+	for _, ver := range a.Versions {
+		verId := ver.Id
+		verNew := s.texts[verId]
+		aNew.Versions = append(aNew.Versions, verNew)
+	}
+	return s.writeArticleRec(aNew)
 }
 
 func NewStore2(dataDir string) (*Store2, error) {

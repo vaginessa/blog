@@ -303,6 +303,12 @@ func (s *Store) readExistingBlogData(fileDataPath string) error {
 			panic("Unexpected line type")
 		}
 	}
+	if store2Rewrite != nil {
+		for _, a := range s.articles {
+			store2Rewrite.writeArticleOld(&a)
+			panicif(err != nil, "store2Rewrite.writeArticleOld() failed with %q", err)
+		}
+	}
 	return nil
 }
 
