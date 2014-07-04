@@ -195,7 +195,7 @@ func (s *Store) parseText(line []byte) {
 
 	if store2Rewrite != nil {
 		// TODO: read message data
-		fmt.Printf("Writing text id: %d sha1: %s\n", id, msgSha1b64)
+		//fmt.Printf("Writing text id: %d sha1: %s\n", id, msgSha1b64)
 		path := s.MessageFilePath(t.Sha1[:])
 		d, err := ioutil.ReadFile(path)
 		panicif(err != nil, "ReadFile(%q) failed with %q", path, err)
