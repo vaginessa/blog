@@ -13,13 +13,12 @@ import (
 
 /* csv records:
 t, $id, $createdOn, $format, $sha1
-
+a, $id, $publishedOn, $title, $isPrivate, $isDeleted, $tags, $versions
 */
 
 const (
-	recIdText        = "t"
-	recIdArticle     = "a"
-	recArticleChange = "c"
+	recIdText    = "t"
+	recIdArticle = "a"
 )
 
 type Text2 struct {
