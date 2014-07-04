@@ -472,21 +472,9 @@ func (s *Store) CreateNewText(format int, txt string) (*Text, error) {
 	return s.addText(t), nil
 }
 
-func serVersions(vers []int) string {
-	s := ""
-	lastIdx := len(vers) - 1
-	for i, ver := range vers {
-		s += fmt.Sprintf("%d", ver)
-		if i != lastIdx {
-			s += ","
-		}
-	}
-	return s
-}
-
 func joinStringsSanitized(arr []string, sep string) string {
 	for i, s := range arr {
-		// TODO: could escape instead
+		// TODO: could also escape
 		arr[i] = strings.Replace(s, sep, "", -1)
 	}
 	return strings.Join(arr, sep)
@@ -503,11 +491,12 @@ func serArticle(a *Article) string {
 	s4 := boolToStr(a.IsPrivate)
 	s5 := boolToStr(a.IsDeleted)
 	s6 := serTags(a.Tags)
-	vers := make([]int, len(a.Versions), len(a.Versions))
+	nVers := len(a.Versions)
+	vers := make([]string, nVers, nVers)
 	for i, ver := range a.Versions {
-		vers[i] = ver.Id
+		vers[i] = strconv.Itoa(ver.Id)
 	}
-	s7 := serVersions(vers)
+	s7 := strings.Join(vers, ",")
 	return fmt.Sprintf("A%s|%s|%s|%s|%s|%s|%s\n", s1, s2, s3, s4, s5, s6, s7)
 }
 
