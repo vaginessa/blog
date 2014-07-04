@@ -490,6 +490,14 @@ func serTags(tags []string) string {
 	return joinStringsSanitized(tags, ",")
 }
 
+func deserTags(s string) []string {
+	return strings.Split(s, ",")
+}
+
+func deserVersions(s string) []string {
+	return strings.Split(s, ",")
+}
+
 func serArticle(a *Article) string {
 	s1 := fmt.Sprintf("%d", a.Id)
 	s2 := fmt.Sprintf("%d", a.PublishedOn.Unix())

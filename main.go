@@ -60,7 +60,7 @@ var (
 
 	dataDir string
 
-	store         *Store
+	store         *Store2
 	storeCrashes  *StoreCrashes
 	alwaysLogTime = true
 )
@@ -334,7 +334,7 @@ func main() {
 
 	RewriteStore(getDataDir())
 
-	if store, err = NewStore(getDataDir()); err != nil {
+	if store, err = NewStore2(getDataDir()); err != nil {
 		log.Fatalf("NewStore() failed with %s", err)
 	}
 

@@ -7,7 +7,7 @@ import (
 )
 
 type DisplayArticle struct {
-	*Article
+	*Article2
 	HtmlBody template.HTML
 }
 
@@ -44,10 +44,10 @@ func handleArticle(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	displayArticle := &DisplayArticle{Article: article}
+	displayArticle := &DisplayArticle{Article2: article}
 
 	ver := article.CurrVersion()
-	msgHtml := articleBodyCache.GetHtml(ver.Sha1, ver.Format)
+	msgHtml := articleBodyCache.GetHtml(ver.BodyId, ver.Format)
 	displayArticle.HtmlBody = template.HTML(msgHtml)
 
 	model := struct {
@@ -58,8 +58,8 @@ func handleArticle(w http.ResponseWriter, r *http.Request) {
 		PrettifyCssUrl string
 		PageTitle      string
 		Article        *DisplayArticle
-		NextArticle    *Article
-		PrevArticle    *Article
+		NextArticle    *Article2
+		PrevArticle    *Article2
 		LogInOutUrl    string
 		ArticlesJsUrl  string
 		TagsDisplay    string

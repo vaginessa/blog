@@ -2,7 +2,6 @@ package main
 
 import (
 	"html/template"
-	"io/ioutil"
 	"net/http"
 	"strconv"
 	"strings"
@@ -41,7 +40,7 @@ func tagsFromString(s string) []string {
 }
 
 // POST /app/edit
-func createNewOrUpdatePost(w http.ResponseWriter, r *http.Request, article *Article) {
+func createNewOrUpdatePost(w http.ResponseWriter, r *http.Request, article *Article2) {
 	format := FormatNameToId(getTrimmedFormValue(r, "format"))
 	if !validFormat(format) {
 		httpErrorf(w, "invalid format")
@@ -67,10 +66,10 @@ func createNewOrUpdatePost(w http.ResponseWriter, r *http.Request, article *Arti
 		return
 	}
 	if article == nil {
-		article = &Article{
+		article = &Article2{
 			Id:          0,
 			PublishedOn: time.Now(),
-			Versions:    make([]*Text, 0),
+			Versions:    make([]*Text2, 0),
 		}
 	}
 	article.Versions = append(article.Versions, text)
@@ -92,9 +91,8 @@ func createNewOrUpdatePost(w http.ResponseWriter, r *http.Request, article *Arti
 	http.Redirect(w, r, url, 301)
 }
 
-func GetArticleVersionBody(sha1 []byte) (string, error) {
-	msgFilePath := store.MessageFilePath(sha1)
-	msg, err := ioutil.ReadFile(msgFilePath)
+func GetArticleVersionBody(bodyId string) (string, error) {
+	msg, err := store.GetTextBody(bodyId)
 	if err != nil {
 		return "", err
 	}
@@ -113,7 +111,7 @@ func handleAppEdit(w http.ResponseWriter, r *http.Request) {
 		tags = append(tags, NOTE_TAG)
 	}
 
-	var article *Article
+	var article *Article2
 	articleIdStr := getTrimmedFormValue(r, "article_id")
 	if articleId, err := strconv.Atoi(articleIdStr); err == nil {
 		article = store.GetArticleById(articleId)
@@ -153,7 +151,7 @@ func handleAppEdit(w http.ResponseWriter, r *http.Request) {
 		model.ArticleId = article.Id
 		model.ArticleTitle = article.Title
 		ver := article.CurrVersion()
-		if body, err := GetArticleVersionBody(ver.Sha1[:]); err != nil {
+		if body, err := GetArticleVersionBody(ver.BodyId); err != nil {
 			panic("GetArticleVersionBody() failed")
 		} else {
 			model.ArticleBody = template.HTML(body)
@@ -180,13 +178,13 @@ func handleAppEdit(w http.ResponseWriter, r *http.Request) {
 	ExecTemplate(w, tmplEdit, model)
 }
 
-func findArticleMustBeAdmin(w http.ResponseWriter, r *http.Request) *Article {
+func findArticleMustBeAdmin(w http.ResponseWriter, r *http.Request) *Article2 {
 	if !IsAdmin(r) {
 		http404(w, r)
 		return nil
 	}
 
-	var article *Article
+	var article *Article2
 	idStr := getTrimmedFormValue(r, "article_id")
 	if articleId, err := strconv.Atoi(idStr); err == nil {
 		article = store.GetArticleById(articleId)
@@ -248,7 +246,7 @@ func handleAppShowDeleted(w http.ResponseWriter, r *http.Request) {
 		http404(w, r)
 		return
 	}
-	articles := make([]*Article, 0)
+	articles := make([]*Article2, 0)
 	for _, a := range getCachedArticles(isAdmin) {
 		if a.IsDeleted {
 			articles = append(articles, a)
@@ -265,7 +263,7 @@ func handleAppShowPrivate(w http.ResponseWriter, r *http.Request) {
 		http404(w, r)
 		return
 	}
-	articles := make([]*Article, 0)
+	articles := make([]*Article2, 0)
 	for _, a := range getCachedArticles(isAdmin) {
 		if a.IsPrivate {
 			articles = append(articles, a)

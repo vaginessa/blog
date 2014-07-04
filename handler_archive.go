@@ -4,14 +4,14 @@ import (
 	"net/http"
 )
 
+type MonthArticle struct {
+	*Article2
+	DisplayMonth string
+}
+
 type Year struct {
 	Name     string
 	Articles []MonthArticle
-}
-
-type MonthArticle struct {
-	*Article
-	DisplayMonth string
 }
 
 type ArticlesIndexModel struct {
@@ -20,7 +20,7 @@ type ArticlesIndexModel struct {
 	JqueryUrl     string
 	LogInOutUrl   string
 	ArticlesJsUrl string
-	Article       *Article
+	Article       *Article2
 	PostsCount    int
 	Tag           string
 	Years         []Year
@@ -37,7 +37,7 @@ func NewYear(name string) *Year {
 	return &Year{Name: name, Articles: make([]MonthArticle, 0)}
 }
 
-func buildYearsFromArticles(articles []*Article) []Year {
+func buildYearsFromArticles(articles []*Article2) []Year {
 	res := make([]Year, 0)
 	var currYear *Year
 	var currMonthName string
@@ -52,7 +52,7 @@ func buildYearsFromArticles(articles []*Article) []Year {
 			currYear = NewYear(yearName)
 			currMonthName = ""
 		}
-		ma := MonthArticle{Article: a}
+		ma := MonthArticle{Article2: a}
 		monthName := a.PublishedOn.Format("01")
 		if monthName != currMonthName {
 			ma.DisplayMonth = a.PublishedOn.Format("January 2")
@@ -68,8 +68,8 @@ func buildYearsFromArticles(articles []*Article) []Year {
 	return res
 }
 
-func filterArticlesByTag(articles []*Article, tag string, include bool) []*Article {
-	res := make([]*Article, 0)
+func filterArticlesByTag(articles []*Article2, tag string, include bool) []*Article2 {
+	res := make([]*Article2, 0)
 	for _, a := range articles {
 		hasTag := false
 		for _, t := range a.Tags {
@@ -87,7 +87,7 @@ func filterArticlesByTag(articles []*Article, tag string, include bool) []*Artic
 	return res
 }
 
-func showArchiveArticles(w http.ResponseWriter, r *http.Request, articles []*Article, tag string) {
+func showArchiveArticles(w http.ResponseWriter, r *http.Request, articles []*Article2, tag string) {
 	isAdmin := IsAdmin(r)
 	articlesJsUrl := getArticlesJsUrl(isAdmin)
 	model := ArticlesIndexModel{

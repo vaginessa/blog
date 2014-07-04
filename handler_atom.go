@@ -17,7 +17,7 @@ func handleAtomHelp(w http.ResponseWriter, r *http.Request, excludeNotes bool) {
 		n = len(articles)
 	}
 
-	latest := make([]*Article, n, n)
+	latest := make([]*Article2, n, n)
 	size := len(articles)
 	for i := 0; i < n; i++ {
 		latest[i] = articles[size-1-i]
@@ -37,7 +37,7 @@ func handleAtomHelp(w http.ResponseWriter, r *http.Request, excludeNotes bool) {
 	for _, a := range latest {
 
 		ver := a.CurrVersion()
-		msgHtml := articleBodyCache.GetHtml(ver.Sha1, ver.Format)
+		msgHtml := articleBodyCache.GetHtml(ver.BodyId, ver.Format)
 
 		//id := fmt.Sprintf("tag:blog.kowalczyk.info,1999:%d", a.Id)
 		e := &atom.Entry{

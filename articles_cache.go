@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"html/template"
-	"io/ioutil"
 	"regexp"
 	"strings"
 	"sync"
@@ -21,10 +20,10 @@ var articlesCache ArticlesCache
 type ArticlesCache struct {
 	sync.Mutex
 	articlesCacheId        int
-	adminArticles          []*Article
+	adminArticles          []*Article2
 	adminArticlesJs        []byte
 	adminArticlesJsSha1    string
-	nonAdminArticles       []*Article
+	nonAdminArticles       []*Article2
 	nonAdminArticlesJs     []byte
 	nonAdminArticlesJsSha1 string
 }
@@ -38,7 +37,7 @@ func appendJsonMarshalled(buf *bytes.Buffer, val interface{}) {
 }
 
 // TODO: I only use it for tag cloud, could just send info about tags directly
-func buildArticlesJson(articles []*Article) ([]byte, string) {
+func buildArticlesJson(articles []*Article2) ([]byte, string) {
 	var buf bytes.Buffer
 	buf.WriteString("var __articles_json = ")
 	n := len(articles)
@@ -69,15 +68,14 @@ func buildArticlesJson(articles []*Article) ([]byte, string) {
 }
 
 // must be called with a articlesCache locked
-func buildArticlesCache(articlesCacheId int, articles []Article) {
+func buildArticlesCache(articlesCacheId int, articles []*Article2) {
 	n := len(articles)
-	adminArticles := make([]*Article, n, n)
-	nonAdminArticles := make([]*Article, 0)
+	adminArticles := make([]*Article2, n, n)
+	nonAdminArticles := make([]*Article2, 0)
 	for i, a := range articles {
-		article := &articles[i]
-		adminArticles[i] = article
+		adminArticles[i] = a
 		if !a.IsDeleted && !a.IsPrivate {
-			nonAdminArticles = append(nonAdminArticles, article)
+			nonAdminArticles = append(nonAdminArticles, a)
 		}
 	}
 
@@ -124,7 +122,7 @@ func getArticlesJsData(isAdmin bool) ([]byte, string) {
 	return articlesCache.nonAdminArticlesJs, articlesCache.nonAdminArticlesJsSha1
 }
 
-func getCachedArticles(isAdmin bool) []*Article {
+func getCachedArticles(isAdmin bool) []*Article2 {
 	articlesCache.Lock()
 	defer articlesCache.Unlock()
 
@@ -135,9 +133,9 @@ func getCachedArticles(isAdmin bool) []*Article {
 	return articlesCache.nonAdminArticles
 }
 
-func getCachedArticlesById(articleId int, isAdmin bool) (*Article, *Article, *Article, int) {
+func getCachedArticlesById(articleId int, isAdmin bool) (*Article2, *Article2, *Article2, int) {
 	articles := getCachedArticles(isAdmin)
-	var prev, next *Article
+	var prev, next *Article2
 	for i, curr := range articles {
 		if curr.Id == articleId {
 			if i != len(articles)-1 {
@@ -151,8 +149,7 @@ func getCachedArticlesById(articleId int, isAdmin bool) (*Article, *Article, *Ar
 }
 
 type ArticleBodyCacheEntry struct {
-	sha1 [20]byte
-
+	bodyId  string
 	msgHtml string
 }
 
@@ -163,21 +160,20 @@ type ArticleBodyCache struct {
 	curr         int
 }
 
-func (c *ArticleBodyCache) GetHtml(sha1 [20]byte, format int) string {
+func (c *ArticleBodyCache) GetHtml(bodyId string, format int) string {
 	c.Lock()
 	defer c.Unlock()
 
 	for i := 0; i < c.entriesCount; i++ {
-		if c.entries[i].sha1 == sha1 {
+		if c.entries[i].bodyId == bodyId {
 			return c.entries[i].msgHtml
 		}
 	}
 
-	msgFilePath := store.MessageFilePath(sha1[:])
-	msg, err := ioutil.ReadFile(msgFilePath)
+	msg, err := store.GetTextBody(bodyId)
 	var msgHtml string
 	if err != nil {
-		msgHtml = fmt.Sprintf("Error: failed to fetch a message with sha1 %x, file: %s", sha1[:], msgFilePath)
+		msgHtml = fmt.Sprintf("Error: failed to fetch a message with bodyId %q", bodyId)
 	} else {
 		msgHtml = msgToHtml(msg, format)
 	}
@@ -192,7 +188,7 @@ func (c *ArticleBodyCache) GetHtml(sha1 [20]byte, format int) string {
 		c.curr = c.curr % len(c.entries)
 	}
 
-	entry.sha1 = sha1
+	entry.bodyId = bodyId
 	entry.msgHtml = msgHtml
 	return msgHtml
 }

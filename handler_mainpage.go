@@ -40,11 +40,11 @@ func handleDjs(w http.ResponseWriter, r *http.Request) {
 	http404(w, r)
 }
 
-func getRecentArticles(articles []*Article, max int) []*Article {
+func getRecentArticles(articles []*Article2, max int) []*Article2 {
 	if max > len(articles) {
 		max = len(articles)
 	}
-	res := make([]*Article, max, max)
+	res := make([]*Article2, max, max)
 	n := 0
 	for i := len(articles) - 1; n < max; i-- {
 		res[n] = articles[i]
@@ -73,8 +73,8 @@ func handleMainPage(w http.ResponseWriter, r *http.Request) {
 		IsAdmin       bool
 		AnalyticsCode string
 		JqueryUrl     string
-		Article       *Article
-		Articles      []*Article
+		Article       *Article2
+		Articles      []*Article2
 		ArticleCount  int
 		LogInOutUrl   string
 	}{
