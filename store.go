@@ -253,9 +253,8 @@ func (s *Store) parseArticle(line []byte) {
 		}
 		if textId > len(s.texts) {
 			panic("non-existent verStr")
-		} else {
-			versions[i] = &s.texts[textId]
 		}
+		versions[i] = &s.texts[textId]
 	}
 
 	var a *Article

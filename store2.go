@@ -103,6 +103,10 @@ func (a *Article2) CurrVersion() *Text2 {
 	return vers[len(vers)-1]
 }
 
+func (a *Article2) FormatName() string {
+	return formatNames[a.CurrVersion().Format]
+}
+
 func (a *Article2) TagsDisplay() template.HTML {
 	n := len(a.Tags)
 	if n == 0 {
@@ -234,13 +238,14 @@ func (s *Store2) decodeRec(rec []string) error {
 		tags := deserTags(rec[6])
 		versStr := deserVersions(rec[7])
 		nVers := len(versStr)
-		vers := make([]int, nVers, nVers)
-		for i, s := range versStr {
-			ver, err := strconv.Atoi(s)
+		versions := make([]*Text2, nVers, nVers)
+		for i, ver := range versStr {
+			textId, err := strconv.Atoi(ver)
 			if err != nil {
 				return err
 			}
-			vers[i] = ver
+			panicif(textId > len(s.texts))
+			versions[i] = s.texts[textId]
 		}
 		a := &Article2{
 			Id:          id,
@@ -249,7 +254,7 @@ func (s *Store2) decodeRec(rec []string) error {
 			IsDeleted:   isDel,
 			IsPrivate:   isPriv,
 			Tags:        tags,
-			Versions:    make([]*Text2, 0),
+			Versions:    versions,
 		}
 		s.articles = append(s.articles, a)
 		s.articleIdToArticle[a.Id] = a
@@ -298,6 +303,7 @@ func (s *Store2) ArticlesCount() int {
 	defer s.Unlock()
 	return len(s.articles)
 }
+
 func (s *Store2) CreateNewText(format int, txt string) (*Text2, error) {
 	return s.CreateNewTextWithTime(format, txt, time.Now())
 }

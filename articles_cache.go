@@ -63,7 +63,7 @@ func buildArticlesJson(articles []*Article2) ([]byte, string) {
 	buf.WriteString("; articlesJsonLoaded(__articles_json);")
 	jsData := buf.Bytes()
 	sha1 := u.Sha1StringOfBytes(jsData)
-	logger.Noticef("buildArticlesJson(): len(jsData)=%d, sha1=%s", len(jsData), sha1)
+	//logger.Noticef("buildArticlesJson(): len(jsData)=%d, sha1=%s", len(jsData), sha1)
 	return buf.Bytes(), u.Sha1StringOfBytes(buf.Bytes())
 }
 
