@@ -332,7 +332,7 @@ func main() {
 		config.AnalyticsCode = &emptyString
 	}
 
-	RewriteStore(getDataDir())
+	//RewriteStore(getDataDir())
 
 	if store, err = NewStore2(getDataDir()); err != nil {
 		log.Fatalf("NewStore() failed with %s", err)
