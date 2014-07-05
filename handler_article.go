@@ -17,6 +17,7 @@ func (a *DisplayArticle) PublishedOnShort() string {
 
 // /article/*, /blog/*, /kb/*
 func handleArticle(w http.ResponseWriter, r *http.Request) {
+	logger.Noticef("handleArticle: %s", r.URL)
 	if redirectIfNeeded(w, r) {
 		return
 	}
@@ -33,6 +34,7 @@ func handleArticle(w http.ResponseWriter, r *http.Request) {
 	// we expect /article/$shortId/$url
 	parts := strings.SplitN(url[len("/article/"):], "/", 2)
 	if len(parts) != 2 {
+		logger.Noticef("handleArticle: invalid url")
 		http404(w, r)
 		return
 	}
@@ -40,6 +42,7 @@ func handleArticle(w http.ResponseWriter, r *http.Request) {
 	articleId := UnshortenId(parts[0])
 	prev, article, next, pos := getCachedArticlesById(articleId, isAdmin)
 	if nil == article {
+		logger.Noticef("handleArticle: didn't find article with id = %d", articleId)
 		http404(w, r)
 		return
 	}

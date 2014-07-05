@@ -14,13 +14,19 @@ var (
 func RewriteStore(dataDir string) {
 	var err error
 	fmt.Printf("RewriteStore(%q)\n", dataDir)
+	blobsBasePath := store2BlobsBasePath(dataDir)
+	idxPath := blobsBasePath + "_idx.txt"
+
+	if u.PathExists(idxPath) {
+		fmt.Printf("RewriteStore: not rewriting because %q already exists\n", idxPath)
+		return
+	}
 
 	// delete store data file
 	os.Remove(store2Path(dataDir))
 
 	// delete contentstore files
-	blobsBasePath := store2BlobsBasePath(dataDir)
-	os.Remove(blobsBasePath + "_idx.txt")
+	os.Remove(idxPath)
 	i := 0
 	for {
 		path := blobsBasePath + fmt.Sprintf("_%d.txt", i)

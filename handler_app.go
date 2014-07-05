@@ -169,8 +169,8 @@ func handleAppEdit(w http.ResponseWriter, r *http.Request) {
 			checked = &model.FormatTextileChecked
 		} else if format == FormatMarkdown {
 			checked = &model.FormatMarkdownChecked
-		} else if format != FormatText {
-			panic("invalid format")
+		} else {
+			panicif(format != FormatText, "%d is not a valid format", format)
 		}
 		*checked = "selected"
 	}

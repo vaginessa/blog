@@ -67,18 +67,14 @@ func readRedirects() {
 			continue
 		}
 		parts := strings.Split(string(l), "|")
-		if len(parts) != 2 {
-			panic("malformed article_redirects.txt")
-		}
+		panicif(len(parts) != 2, "malformed article_redirects.txt, len(parts) = %d (!2)", len(parts))
 		idStr := parts[0]
 		url := strings.TrimSpace(parts[1])
 		if id, err := strconv.Atoi(idStr); err != nil {
 			panic("malformed line in article_redirects.txt")
 		} else {
 			a := store.GetArticleById(id)
-			if a == nil {
-				panic("bad article id article_redirects.txt")
-			}
+			panicif(a == nil, "bad article id (%d) article_redirects.txt", id)
 			articleRedirects[url] = id
 		}
 	}
