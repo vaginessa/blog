@@ -19,7 +19,7 @@ import (
 
 /* csv records:
 t, $id, $createdOn, $format, $sha1
-a, $id, $publishedOn, $title, $isPrivate, $isDeleted, $tags, $versions
+a, $id, $publishedOn, $title, $flags, $tags, $versions
 */
 
 const (
@@ -108,13 +108,9 @@ func (a *Article2) FormatName() string {
 }
 
 func (a *Article2) TagsDisplay() template.HTML {
-	n := len(a.Tags)
-	if n == 0 {
-		return ""
-	}
-	arr := make([]string, n, n)
-	for i, t := range a.Tags {
-		arr[i] = urlForTag(t)
+	arr := make([]string, 0)
+	for _, tag := range a.Tags {
+		arr = append(arr, urlForTag(tag))
 	}
 	s := strings.Join(arr, ", ")
 	return template.HTML(s)
@@ -133,12 +129,17 @@ func (s *Store2) writeTextRec(t *Text2) error {
 	return s.writeCsv(rec)
 }
 
-// a, $id, $publishedOn, $title, $isPrivate, $isDeleted, $tags, $versions
+// a, $id, $publishedOn, $title, $flags, $tags, $versions
 func (s *Store2) writeArticleRec(a *Article2) error {
 	timeStr := strconv.FormatInt(a.PublishedOn.Unix(), 10)
 	idStr := strconv.Itoa(a.Id)
-	isPriv := boolToStr(a.IsPrivate)
-	isDel := boolToStr(a.IsDeleted)
+	flags := ""
+	if a.IsPrivate {
+		flags += "p"
+	}
+	if a.IsDeleted {
+		flags += "d"
+	}
 	tags := serTags(a.Tags)
 	nVers := len(a.Versions)
 	vers := make([]string, nVers, nVers)
@@ -146,7 +147,7 @@ func (s *Store2) writeArticleRec(a *Article2) error {
 		vers[i] = strconv.Itoa(ver.Id)
 	}
 	versions := strings.Join(vers, ",")
-	rec := []string{recIdArticle, idStr, timeStr, a.Title, isPriv, isDel, tags, versions}
+	rec := []string{recIdArticle, idStr, timeStr, a.Title, flags, tags, versions}
 	return s.writeCsv(rec)
 }
 
@@ -201,7 +202,7 @@ func NewStore2(dataDir string) (*Store2, error) {
 
 /* csv records:
 t, $id, $createdOn, $format, $bodyId
-a, $id, $publishedOn, $title, $isPrivate, $isDeleted, $tags, $versions
+a, $id, $publishedOn, $title, $flags, $tags, $versions
 */
 func (s *Store2) decodeRec(rec []string) error {
 	if len(rec) < 5 {
@@ -233,10 +234,18 @@ func (s *Store2) decodeRec(rec []string) error {
 		s.texts = append(s.texts, t)
 	} else if rec[0] == recIdArticle {
 		title := rec[3]
-		isPriv := strToBool(rec[4])
-		isDel := strToBool(rec[5])
-		tags := deserTags(rec[6])
-		versStr := deserVersions(rec[7])
+		var isPriv, isDel bool
+		flags := rec[4]
+		for _, flag := range flags {
+			switch flag {
+			case 'p':
+				isPriv = true
+			case 'd':
+				isDel = true
+			}
+		}
+		tags := deserTags(rec[5])
+		versStr := deserVersions(rec[6])
 		nVers := len(versStr)
 		versions := make([]*Text2, nVers, nVers)
 		for i, ver := range versStr {

@@ -17,7 +17,7 @@ func (a *DisplayArticle) PublishedOnShort() string {
 
 // /article/*, /blog/*, /kb/*
 func handleArticle(w http.ResponseWriter, r *http.Request) {
-	logger.Noticef("handleArticle: %s", r.URL)
+	//logger.Noticef("handleArticle: %s", r.URL)
 	if redirectIfNeeded(w, r) {
 		return
 	}

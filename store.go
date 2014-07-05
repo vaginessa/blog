@@ -490,7 +490,11 @@ func serTags(tags []string) string {
 }
 
 func deserTags(s string) []string {
-	return strings.Split(s, ",")
+	tags := strings.Split(s, ",")
+	if len(tags) > 0 && tags[0] == "" {
+		tags = tags[1:]
+	}
+	return tags
 }
 
 func deserVersions(s string) []string {
