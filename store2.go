@@ -253,7 +253,7 @@ func (s *Store2) decodeRec(rec []string) error {
 			if err != nil {
 				return err
 			}
-			panicif(textId > len(s.texts))
+			panicif(textId > len(s.texts), "textId > len(s.texts) %d > %d", textid, len(s.texts))
 			versions[i] = s.texts[textId]
 		}
 		a := &Article2{
