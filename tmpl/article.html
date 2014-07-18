@@ -63,16 +63,23 @@ $(document).ready(function(){
     </div>
 
 
-    <table class="postmeta" style="padding-top:8px;padding-bottom:16px;border-spacing:0px">
-    {{ if .NextArticle }}
+    <table class="postmeta" style="padding-top:8px;padding-bottom:16px;border-spacing:0px;width:100%">
     <tr>
-      <td style="margin:0px; padding:0px; padding-right: 8px;"><a title="{{ .NextArticle.Title }}" href="/{{ .NextArticle.Permalink }}">« {{ .NextArticle.Title }}</a></td>
-      <td style="padding:0px; padding-right: 8px">&bull;</td>
-    {{ end }}
-    {{ if .PrevArticle }}
-      <td style="margin:0px; padding:0px"><a title="{{ .PrevArticle.Title }}" href="/{{ .PrevArticle.Permalink }}">{{ .PrevArticle.Title }} »</a></td>
+      <td style="margin:0px; padding:0px; padding-right: 8px; width: 50%; text-align:right">
+      {{if .NextArticle}}
+      <a title="{{ .NextArticle.Title }}" href="/{{ .NextArticle.Permalink }}">« {{ .NextArticle.Title }}</a>
+      {{end}}
+      </td>
+
+      <td style="padding:0px; padding-right: 8px;">&bull;</td>
+
+      {{if .PrevArticle }}
+      <td style="margin:0px; padding:0px;width:50%">
+      <a title="{{ .PrevArticle.Title }}" href="/{{ .PrevArticle.Permalink }}">{{ .PrevArticle.Title }} »</a>
+      {{end}}
+      </td>
     </tr>
-    {{ end }}
+
     </table>
   </div>
 
