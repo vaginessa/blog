@@ -10,10 +10,8 @@
 {{ template "inline_css.html" }}
 <style type=text/css>
 body {
-  font-size: 11pt;
-}
-h1 {
-  font-size: 140%;
+  font-size: 0.9em;
+  /* font-size: 0.9em; */
 }
 </style>
 
@@ -41,8 +39,7 @@ $(document).ready(function(){
 <div id="content">
 
   <div id="post" style="margin-left:auto;margin-right:auto;margin-top:2em;">
-      <h1 style="display:inline;">
-        <span class="title">
+    <div class="title">
         {{ .Article.Title }}
         {{ if .Article.IsDeleted }}
           &nbsp;<font color="red">deleted</font>
@@ -50,18 +47,21 @@ $(document).ready(function(){
         {{ if .Article.IsPrivate }}
           &nbsp;<font color="red">private</font>
         {{ end }}
-        </span>
         {{ if not .IsAdmin }} <a id="login_id" class="invisible" onMouseOver="showById('login_id');"
         onMouseOut="hideById('login_id');" href="{{ .LogInOutUrl }}">login</a>
         {{ end }}
-    </h1>
+    </div>
 
-    <div style="margin-right:48px;">
+
+    <div style="margin-right:48px; line-height: 1.35">
     {{ .Article.HtmlBody }}
     </div>
 
+    <hr>
+
     <div class="postmeta">Written on {{ .Article.PublishedOnShort }}{{ if .Article.TagsDisplay }}. Topics: {{ .Article.TagsDisplay }} {{ end }}
     </div>
+
 
     <table class="postmeta" style="padding-top:8px;padding-bottom:16px;border-spacing:0px">
     {{ if .NextArticle }}
