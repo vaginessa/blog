@@ -194,7 +194,7 @@ func handleCrashesRss(w http.ResponseWriter, r *http.Request) {
 	app := storeCrashes.GetAppByName(appName)
 	if app == nil {
 		logger.Errorf("handleCrashesRss(): invalid app %q", appName)
-		http404(w, r)
+		http.NotFound(w, r)
 		return
 	}
 	// to minimize the number of times rss reader updates the entries, we
@@ -276,7 +276,7 @@ func handleCrashes(w http.ResponseWriter, r *http.Request) {
 	app := storeCrashes.GetAppByName(appName)
 	if app == nil {
 		logger.Errorf("handleCrashes(): invalid app %q", appName)
-		http404(w, r)
+		http.NotFound(w, r)
 		return
 	}
 
@@ -332,17 +332,17 @@ func handleCrashShow(w http.ResponseWriter, r *http.Request) {
 	crashIdStr := getTrimmedFormValue(r, "crash_id")
 	crashId, err := strconv.Atoi(crashIdStr)
 	if err != nil {
-		http404(w, r)
+		http.NotFound(w, r)
 		return
 	}
 	crash := storeCrashes.GetCrashById(crashId)
 	if crash == nil {
-		http404(w, r)
+		http.NotFound(w, r)
 		return
 	}
 	crashData, err := readCrashReport(crash.Sha1[:])
 	if err != nil {
-		http404(w, r)
+		http.NotFound(w, r)
 		return
 	}
 	appName := crash.App.Name

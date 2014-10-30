@@ -102,7 +102,7 @@ func GetArticleVersionBody(bodyId string) (string, error) {
 // url: /app/edit
 func handleAppEdit(w http.ResponseWriter, r *http.Request) {
 	if !IsAdmin(r) {
-		http404(w, r)
+		http.NotFound(w, r)
 		return
 	}
 
@@ -180,7 +180,7 @@ func handleAppEdit(w http.ResponseWriter, r *http.Request) {
 
 func findArticleMustBeAdmin(w http.ResponseWriter, r *http.Request) *Article2 {
 	if !IsAdmin(r) {
-		http404(w, r)
+		http.NotFound(w, r)
 		return nil
 	}
 
@@ -243,7 +243,7 @@ func handleAppShowDeleted(w http.ResponseWriter, r *http.Request) {
 	logger.Notice("handleAppShowDeleted()")
 	isAdmin := IsAdmin(r)
 	if !isAdmin {
-		http404(w, r)
+		http.NotFound(w, r)
 		return
 	}
 	articles := make([]*Article2, 0)
@@ -260,7 +260,7 @@ func handleAppShowPrivate(w http.ResponseWriter, r *http.Request) {
 	logger.Notice("handleAppShowPrivate()")
 	isAdmin := IsAdmin(r)
 	if !isAdmin {
-		http404(w, r)
+		http.NotFound(w, r)
 		return
 	}
 	articles := make([]*Article2, 0)

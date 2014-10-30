@@ -26,7 +26,7 @@ func handleArticle(w http.ResponseWriter, r *http.Request) {
 	// at this point
 	url := r.URL.Path
 	if !strings.HasPrefix(url, "/article/") {
-		http404(w, r)
+		http.NotFound(w, r)
 		return
 	}
 	isAdmin := IsAdmin(r)
@@ -35,7 +35,7 @@ func handleArticle(w http.ResponseWriter, r *http.Request) {
 	parts := strings.SplitN(url[len("/article/"):], "/", 2)
 	if len(parts) != 2 {
 		logger.Noticef("handleArticle: invalid url")
-		http404(w, r)
+		http.NotFound(w, r)
 		return
 	}
 
@@ -43,7 +43,7 @@ func handleArticle(w http.ResponseWriter, r *http.Request) {
 	prev, article, next, pos := getCachedArticlesById(articleId, isAdmin)
 	if nil == article {
 		logger.Noticef("handleArticle: didn't find article with id = %d", articleId)
-		http404(w, r)
+		http.NotFound(w, r)
 		return
 	}
 
