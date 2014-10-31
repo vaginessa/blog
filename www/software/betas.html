@@ -3,12 +3,13 @@
 <meta http-equiv="Content-Type"content="text/html; charset=utf-8" />
 <title>Misc software betas</title>
 <script src="//kjkpub.s3.amazonaws.com/app/fotofi/latestver.js" type="text/javascript"></script>
-<script src="//kjkpub.s3.amazonaws.com/software/patheditor/latestver.js" type="text/javascript"></script>
 <script src="//kjkpub.s3.amazonaws.com/software/the_silver_searcher/latestver.js" type="text/javascript"></script>
 <script src="//kjkpub.s3.amazonaws.com/software/pigz/latestver.js" type="text/javascript"></script>
-<script src="//kjkpub.s3.amazonaws.com/software/notenik/latestver.js" type="text/javascript"></script>
+<script src="//kjkpub.s3.amazonaws.com/software/ve8/latestver.js" type="text/javascript"></script>
 
 <!--
+<script src="//kjkpub.s3.amazonaws.com/software/notenik/latestver.js" type="text/javascript"></script>
+<script src="//kjkpub.s3.amazonaws.com/software/patheditor/latestver.js" type="text/javascript"></script>
 <script src="//kjkpub.s3.amazonaws.com/app/filerion/latestver.js" type="text/javascript"></script>
 <script src="//kjkpub.s3.amazonaws.com/app/velociraptor8/latestver.js" type="text/javascript"></script>
 <script src="//kjkpub.s3.amazonaws.com/app/simplerion/latestver.js" type="text/javascript"></script>
@@ -52,16 +53,21 @@ function build_notenik_html() {
   return a(notenikLatestUrl,  notenikLatestVer) + " <span style='color:gray'> built on " + notenikBuiltOn + "</span>";
 }
 
+function build_ve8_html() {
+  return a(ve8LatestUrl,  ve8LatestVer) + " <span style='color:gray'> built on " + ve8BuiltOn + "</span>";
+}
+
 //function build_simplerion_html() { return build_link_html(simplerionLatestVer); }
 //function build_filerion_html() { return build_link_html(filerionLatestVer); }
 //function build_velociraptor8_html() { return build_link_html(velociraptor8LatestVer); }
 
 function myInit() {
-	$("fotofi").innerHTML = build_fotofi_html();
-  $("patheditor").innerHTML = build_patheditor_html();
+	//$("fotofi").innerHTML = build_fotofi_html();
+  //$("patheditor").innerHTML = build_patheditor_html();
   $("ag").innerHTML = build_ag_html();
   $("pigz").innerHTML = build_pigz_html();
-  $("notenik").innerHTML = build_notenik_html();
+  $("ve8").innerHTML = build_ve8_html();
+  //$("notenik").innerHTML = build_notenik_html();
 	//$("simplerion").innerHTML = build_simplerion_html();
 	//$("filerion").innerHTML = build_filerion_html();
 	//$("velociraptor8").innerHTML = build_velociraptor8_html();
@@ -74,12 +80,13 @@ window.onload = myInit;
 
 Latest versions of my misc software:
 <ul>
-  <li>fotofi: <span id="fotofi"></span></li>
-  <li><a href="/software/patheditor/">patheditor</a>: <span id="patheditor"></span></li>
   <li><a href="/software/the-silver-searcher-for-windows.html">the silver searcher</a>: <span id="ag"></span></li>
   <li><a href="/software/pigz-for-windows.html">pigz</a>: <span id="pigz"></span></li>
-  <li>notenik: <span id="notenik"></span></li>
+  <li>velociraptor8: <span id="ve8"></span></li>
   <!--
+  <li>fotofi: <span id="fotofi"></span></li>
+  <li>notenik: <span id="notenik"></span></li>
+  <li><a href="/software/patheditor/">patheditor</a>: <span id="patheditor"></span></li>
   <li>Latest Simplerion: <span id="simplerion"></span></li>
   <li>Latest Filerion: <span id="filerion"></span></li>
   <li>Latest Velociraptor8: <span id="velociraptor8"></span></li>
