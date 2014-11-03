@@ -64,7 +64,7 @@ def local_download_dir():
 
 def get_config_json_path():
 	d1 = script_dir()
-	d2 = os.path.join(script_dir(), "..", "go")
+	d2 = os.path.join(script_dir(), "..")
 	f_path = os.path.join(d1, "config.json")
 	if os.path.exists(f_path):
 		return f_path
