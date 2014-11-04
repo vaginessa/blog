@@ -36,7 +36,7 @@
 		},
 		{
 			"ImportPath": "github.com/kjk/u",
-			"Rev": "88d3a38e7745d920d680ae987d57df8f5551fd86"
+			"Rev": "1a606aa55f9c3ded3889a813e8cba1c0f4c4250b"
 		},
 		{
 			"ImportPath": "github.com/rcrowley/go-metrics",

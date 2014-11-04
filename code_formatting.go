@@ -33,7 +33,7 @@ func lang_to_prettify_lang(lang string) string {
 }
 
 func txt_cookie(s string) string {
-	return u.Sha1StringOfBytes([]byte(s))
+	return u.Sha1HexOfBytes([]byte(s))
 }
 
 var reCode = regexp.MustCompile("(?siU)<code.*>.+</code>")

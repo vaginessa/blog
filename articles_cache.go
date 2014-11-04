@@ -62,7 +62,7 @@ func buildArticlesJson(articles []*Article2) ([]byte, string) {
 	appendJsonMarshalled(&buf, vals)
 	buf.WriteString("; articlesJsonLoaded(__articles_json);")
 	jsData := buf.Bytes()
-	sha1 := u.Sha1StringOfBytes(jsData)
+	sha1 := u.Sha1HexOfBytes(jsData)
 	//logger.Noticef("buildArticlesJson(): len(jsData)=%d, sha1=%s", len(jsData), sha1)
 	return jsData, sha1
 }

@@ -285,7 +285,7 @@ func doBackup(config *BackupConfig) {
 	if err != nil {
 		return
 	}
-	sha1, err := u.FileSha1(zipLocalPath)
+	sha1, err := u.Sha1HexOfFile(zipLocalPath)
 	if err != nil {
 		return
 	}
