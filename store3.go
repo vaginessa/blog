@@ -3,6 +3,7 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"html/template"
 	"os"
 	"strconv"
 	"strings"
@@ -171,7 +172,7 @@ func NewStore3() (*Store3, error) {
 
 func (s *Store3) GetArticles(lastId int) (int, []*Article2) {
 	fmt.Printf("GetArticles: lastId: %d, nArticles: %d\n", lastId, len(s.articles))
-	return 0, s.articles
+	return 1, s.articles
 }
 
 func (s *Store3) GetTextBody(bodyId string) ([]byte, error) {
@@ -181,7 +182,7 @@ func (s *Store3) GetTextBody(bodyId string) ([]byte, error) {
 }
 
 func (s *Store3) GetArticleById(id int) *Article2 {
-	fmt.Printf("GetArticleById: %d\n", id)
+	//fmt.Printf("GetArticleById: %d\n", id)
 	for _, a := range s.articles {
 		if a.Id == id {
 			return a
@@ -200,4 +201,13 @@ func (a *Article2) CurrVersion() *Text2 {
 
 func (a *Article2) Permalink() string {
 	return "article/" + ShortenId(a.Id) + "/" + Urlify(a.Title) + ".html"
+}
+
+func (a *Article2) TagsDisplay() template.HTML {
+	arr := make([]string, 0)
+	for _, tag := range a.Tags {
+		arr = append(arr, urlForTag(tag))
+	}
+	s := strings.Join(arr, ", ")
+	return template.HTML(s)
 }
