@@ -31,7 +31,7 @@ const (
 )
 
 // same format as Format* constants
-var formatNames []string = []string{"Html", "Textile", "Markdown", "Text"}
+var formatNames = []string{"Html", "Textile", "Markdown", "Text"}
 
 type Text struct {
 	Id        int
