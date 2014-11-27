@@ -27,23 +27,6 @@ const (
 	recIdArticle = "a"
 )
 
-type Text2 struct {
-	Id        int
-	CreatedOn time.Time
-	Format    int
-	BodyId    string
-}
-
-type Article2 struct {
-	Id          int
-	PublishedOn time.Time
-	Title       string
-	IsPrivate   bool
-	IsDeleted   bool
-	Tags        []string
-	Versions    []*Text2
-}
-
 type Store2 struct {
 	sync.Mutex
 	*contentstore.Store
