@@ -1,0 +1,19 @@
+Id: 1243
+Title: variadic macros in msvc
+Tags: programming,c++,msvc
+Date: 2008-04-04T16:38:52-07:00
+Format: Html
+--------------
+<div><font size="2" face="monospace"><br/><font face="monospace">&gt;<em>&nbsp;Is&nbsp;there&nbsp;any&nbsp;way&nbsp;to&nbsp;support&nbsp;variadic&nbsp;macros&nbsp;in&nbsp;Visual&nbsp;Studio<br/></em>&gt;<em>&nbsp;like&nbsp;gcc&nbsp;supports?&nbsp;&nbsp;If&nbsp;not,&nbsp;how&nbsp;do&nbsp;people&nbsp;write&nbsp;stuff&nbsp;like<br/></em>&gt;<em>&nbsp;custom&nbsp;asserts&nbsp;that&nbsp;take&nbsp;variable&nbsp;parameters?<br/></em>&gt;<br/>&gt;<em>&nbsp;<a href="http://gcc.gnu.org/onlinedocs/cpp/Variadic-Macros.html">http://gcc.gnu.org/onlinedocs/cpp/Variadic-Macros.html</a>
+
+<br/></em>&gt;<br/></font>
+
+<br/>Depending&nbsp;on&nbsp;what&nbsp;you&apos;re&nbsp;after,&nbsp;you&nbsp;might&nbsp;find&nbsp;that&nbsp;the&nbsp;__noop<br/>intrinsic&nbsp;will&nbsp;help&nbsp;you&nbsp;out.
+
+<br/><br/>
+#ifdef&nbsp;_DEBUG<br/>void&nbsp;_MyDebugPrintf(const&nbsp;char*&nbsp;fmt,&nbsp;...);<br/>#define&nbsp;DPF&nbsp;_MyDebugPrintf<br/>#else<br/>#define&nbsp;DPF&nbsp;__noop<br/>#endif<br/><br/>//&nbsp;later,&nbsp;...<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DPF(&quot;%s&nbsp;%s&nbsp;this&nbsp;works&quot;,&nbsp;FuncA(),&nbsp;FuncB());<br/><br/>FuncA&nbsp;and&nbsp;FuncB&nbsp;(or&nbsp;parameters&nbsp;in&nbsp;general) are not evaluated<br/>in&nbsp;non&nbsp;_DEBUG&nbsp;builds. The compiler ignores the statement.<br/>
+
+<br/>
+This&nbsp;is&nbsp;obviously&nbsp;not&nbsp;variadic&nbsp;macros,&nbsp;but&nbsp;you&nbsp;can&nbsp;do&nbsp;quite&nbsp;a<br/>bit&nbsp;with&nbsp;it.<br/></font></div>
+
+<div align="right"></div>
