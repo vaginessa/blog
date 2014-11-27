@@ -110,10 +110,6 @@ a.articlelink:hover {
             <span style="font-size:80%">
             <span class="taglink">in:</span> {{ .TagsDisplay }}</span>
           {{ end }}
-
-          {{ if $isAdmin }}&nbsp;<span class="onHoverVisible">
-          <a id="article_edit" href="/app/edit?article_id={{ .Id }}">edit</a></span>
-          {{ end }}
         </td>
       </tr>
       {{ end }}

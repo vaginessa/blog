@@ -6,17 +6,6 @@
       <li><a href="#" style="color:red;">Admin</a>
         <ul>
           {{ if .Article }}
-            <li><a href="/app/edit?article_id={{ .Article.Id }}">Edit</a></li>
-            {{ if .Article.IsDeleted }}
-              <li><a href="/app/undelete?article_id={{ .Article.Id }}">Undelete</a></li>
-              {{ else }}
-              <li><a href="/app/delete?article_id={{ .Article.Id }}">Delete</a></li>
-            {{ end }}
-          {{ end }}
-          <li><a href="/app/edit">New Blog Post</a></li>
-          <li><a href="/app/edit?note=yes">New Note</a></li>
-          <li><a href="/app/showprivate">Show Private</a></li>
-          <li><a href="/app/showdeleted">Show Deleted</a></li>
           <li><a href="{{ .LogInOutUrl }}">Log Out</a></li>
         </ul>
       </li>

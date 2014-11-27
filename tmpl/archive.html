@@ -74,13 +74,6 @@ $(document).ready(function(){
               <span class="taglink">in:</span> {{ .TagsDisplay }}
             </span>
           {{ end }}
-
-          {{ if $isAdmin }}<span style="font-size:80%">{{ .FormatName }}</span>{{ end }}
-          {{ if $isAdmin }}
-            <span class="onHoverVisible">
-            <a id="article_edit" style="font-size:80%" href="/app/edit?article_id={{ .Id }}">edit</a>
-            </span>
-          {{ end }}
         </td>
       </tr>
       {{ end }}
