@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"strings"
-	"time"
 )
 
 const (
@@ -16,23 +15,6 @@ const (
 	FormatLast    = 3
 	FormatUnknown = -1
 )
-
-type Text struct {
-	Id        int
-	CreatedOn time.Time
-	Format    int
-	Sha1      [20]byte
-}
-
-type Article struct {
-	Id          int
-	PublishedOn time.Time
-	Title       string
-	IsPrivate   bool
-	IsDeleted   bool
-	Tags        []string
-	Versions    []*Text
-}
 
 // same format as Format* constants
 var formatNames = []string{"Html", "Textile", "Markdown", "Text"}
@@ -57,28 +39,4 @@ func FormatNameToId(name string) int {
 		}
 	}
 	return FormatUnknown
-}
-
-func joinStringsSanitized(arr []string, sep string) string {
-	for i, s := range arr {
-		// TODO: could also escape
-		arr[i] = strings.Replace(s, sep, "", -1)
-	}
-	return strings.Join(arr, sep)
-}
-
-func serTags(tags []string) string {
-	return joinStringsSanitized(tags, ",")
-}
-
-func deserTags(s string) []string {
-	tags := strings.Split(s, ",")
-	if len(tags) > 0 && tags[0] == "" {
-		tags = tags[1:]
-	}
-	return tags
-}
-
-func deserVersions(s string) []string {
-	return strings.Split(s, ",")
 }

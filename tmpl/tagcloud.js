@@ -32,7 +32,11 @@ function build_tags_hash() {
 
   for (i=0; i < articles_json.length; i++) {
     tags = articles_json[i][TAGS_IDX];
-    for (j=0; j < tags.length; j++) {
+    var n = 0;
+    if (tags != null) {
+      n = tags.length
+    }
+    for (j=0; j < n; j++) {
       tag = tags[j];
       tag_count = all_tags[tag];
       if (undefined == tag_count) {
@@ -53,16 +57,16 @@ function sort_tags(all_tags) {
     all_tags_arr.push(tag);
   }
 
-  all_tags_arr.sort(function(x,y){ 
-      var a = String(x).toUpperCase(); 
-      var b = String(y).toUpperCase(); 
-      if (a > b) 
-         return 1 
-      if (a < b) 
-         return -1 
-      return 0; 
+  all_tags_arr.sort(function(x,y){
+      var a = String(x).toUpperCase();
+      var b = String(y).toUpperCase();
+      if (a > b)
+         return 1
+      if (a < b)
+         return -1
+      return 0;
   });
-  return all_tags_arr;  
+  return all_tags_arr;
 }
 
 function genTagCloudHtml() {
@@ -77,7 +81,7 @@ function genTagCloudHtml() {
     tag_count = tags[tag];
     lines.push(tagUrl("/tag/" + tag, tag, tag_count));
   }
-  return lines.join("");  
+  return lines.join("");
 }
 
 function genTagCloudHtml2() {

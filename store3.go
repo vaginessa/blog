@@ -171,13 +171,17 @@ func NewStore3() (*Store3, error) {
 }
 
 func (s *Store3) GetArticles(lastId int) (int, []*Article2) {
-	fmt.Printf("GetArticles: lastId: %d, nArticles: %d\n", lastId, len(s.articles))
+	//fmt.Printf("GetArticles: lastId: %d, nArticles: %d\n", lastId, len(s.articles))
 	return 1, s.articles
 }
 
 func (s *Store3) GetTextBody(bodyId string) ([]byte, error) {
-	fmt.Printf("GetTextBody: bodyId=%s\n", bodyId)
-	//return s.Store.Get(bodyId)
+	//fmt.Printf("GetTextBody: bodyId=%s\n", bodyId)
+	for _, a := range s.articles {
+		if a.Versions[0].BodyId == bodyId {
+			return a.GetHtml()
+		}
+	}
 	return nil, nil
 }
 
@@ -210,4 +214,9 @@ func (a *Article2) TagsDisplay() template.HTML {
 	}
 	s := strings.Join(arr, ", ")
 	return template.HTML(s)
+}
+
+func (a *Article2) GetHtml() ([]byte, error) {
+	s := "<p>Hello!</p>"
+	return []byte(s), nil
 }
