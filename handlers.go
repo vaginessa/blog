@@ -13,12 +13,7 @@ func InitHttpHandlers() {
 	http.HandleFunc("/login", handleLogin)
 	http.HandleFunc("/logout", handleLogout)
 
-	http.Handle("/app/edit", makeTimingHandler(handleAppEdit))
 	http.Handle("/app/preview", makeTimingHandler(handleAppPreview))
-	http.Handle("/app/delete", makeTimingHandler(handleAppDelete))
-	http.Handle("/app/undelete", makeTimingHandler(handleAppUndelete))
-	http.Handle("/app/showdeleted", makeTimingHandler(handleAppShowDeleted))
-	http.Handle("/app/showprivate", makeTimingHandler(handleAppShowPrivate))
 	http.Handle("/app/crashsubmit", makeTimingHandler(handleCrashSubmit))
 	http.Handle("/app/crashes", makeTimingHandler(handleCrashes))
 	http.Handle("/app/crashesrss", makeTimingHandler(handleCrashesRss))

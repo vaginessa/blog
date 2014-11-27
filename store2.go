@@ -116,60 +116,6 @@ func (a *Article2) TagsDisplay() template.HTML {
 	return template.HTML(s)
 }
 
-func (s *Store2) writeCsv(rec []string) error {
-	recs := [][]string{rec}
-	return s.w.WriteAll(recs)
-}
-
-// t, $id, $createdOn, $format, $sha1
-func (s *Store2) writeTextRec(t *Text2) error {
-	timeStr := strconv.FormatInt(t.CreatedOn.Unix(), 10)
-	formatStr := strconv.Itoa(t.Format)
-	rec := []string{recIdText, strconv.Itoa(t.Id), timeStr, formatStr, t.BodyId}
-	return s.writeCsv(rec)
-}
-
-// a, $id, $publishedOn, $title, $flags, $tags, $versions
-func (s *Store2) writeArticleRec(a *Article2) error {
-	timeStr := strconv.FormatInt(a.PublishedOn.Unix(), 10)
-	idStr := strconv.Itoa(a.Id)
-	flags := ""
-	if a.IsPrivate {
-		flags += "p"
-	}
-	if a.IsDeleted {
-		flags += "d"
-	}
-	tags := serTags(a.Tags)
-	nVers := len(a.Versions)
-	vers := make([]string, nVers, nVers)
-	for i, ver := range a.Versions {
-		vers[i] = strconv.Itoa(ver.Id)
-	}
-	versions := strings.Join(vers, ",")
-	rec := []string{recIdArticle, idStr, timeStr, a.Title, flags, tags, versions}
-	return s.writeCsv(rec)
-}
-
-// only needed for rewrite
-func (s *Store2) writeArticleOld(a *Article) error {
-	aNew := &Article2{
-		Id:          a.Id,
-		PublishedOn: a.PublishedOn,
-		Title:       a.Title,
-		IsPrivate:   a.IsPrivate,
-		IsDeleted:   a.IsDeleted,
-		Tags:        a.Tags,
-		Versions:    make([]*Text2, 0),
-	}
-	for _, ver := range a.Versions {
-		verId := ver.Id
-		verNew := s.texts[verId]
-		aNew.Versions = append(aNew.Versions, verNew)
-	}
-	return s.writeArticleRec(aNew)
-}
-
 func NewStore2(dataDir string) (*Store2, error) {
 	dataFilePath := store2Path(dataDir)
 	s := &Store2{
@@ -297,24 +243,10 @@ func (s *Store2) readExistingBlogData(fileDataPath string) error {
 	return nil
 }
 
-func (s *Store2) nextTextId() int {
-	return len(s.texts)
-}
-
-func (s *Store2) addText(t *Text2) {
-	n := len(s.texts)
-	t.Id = n
-	s.texts = append(s.texts, t)
-}
-
 func (s *Store2) ArticlesCount() int {
 	s.Lock()
 	defer s.Unlock()
 	return len(s.articles)
-}
-
-func (s *Store2) CreateNewText(format int, txt string) (*Text2, error) {
-	return s.CreateNewTextWithTime(format, txt, time.Now())
 }
 
 func (s *Store2) GetArticles(lastId int) (int, []*Article2) {
@@ -341,72 +273,6 @@ func (s *Store2) GetArticleById(id int) *Article2 {
 		return article
 	}
 	return nil
-}
-
-func (s *Store2) newArticleId() int {
-	id := 1
-	for {
-		if _, ok := s.articleIdToArticle[id]; !ok {
-			return id
-		}
-		id += 1
-	}
-}
-
-// TODO: only needed for rewrite
-func (s *Store2) CreateNewTextWithTime(format int, txt string, createdOn time.Time) (*Text2, error) {
-	panicif(!validFormat(format), "%d is not a valid format", format)
-	s.Lock()
-	defer s.Unlock()
-
-	data := []byte(txt)
-	bodyId, err := s.Store.Put(data)
-	if err != nil {
-		return nil, err
-	}
-	t := &Text2{
-		Id:        s.nextTextId(),
-		CreatedOn: createdOn,
-		Format:    format,
-		BodyId:    bodyId,
-	}
-	if err = s.writeTextRec(t); err != nil {
-		return nil, err
-	}
-	s.addText(t)
-	return t, nil
-}
-
-func (s *Store2) CreateOrUpdateArticle(article *Article2) (*Article2, error) {
-	s.Lock()
-	defer s.Unlock()
-
-	newArticle := false
-	if article.Id == 0 {
-		article.Id = s.newArticleId()
-		newArticle = true
-	}
-	if err := s.writeArticleRec(article); err != nil {
-		return nil, err
-	}
-
-	if newArticle {
-		s.articles = append(s.articles, article)
-		s.articleIdToArticle[article.Id] = article
-	}
-	return article, nil
-}
-
-func (s *Store2) UpdateArticle(article *Article2) (*Article2, error) {
-	s.Lock()
-	defer s.Unlock()
-
-	tmp := s.articleIdToArticle[article.Id]
-	if tmp != article {
-		panic("invalid article object")
-	}
-	err := s.writeArticleRec(article)
-	return article, err
 }
 
 func (s *Store2) Close() {

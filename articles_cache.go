@@ -20,9 +20,6 @@ var articlesCache ArticlesCache
 type ArticlesCache struct {
 	sync.Mutex
 	articlesCacheId        int
-	adminArticles          []*Article2
-	adminArticlesJs        []byte
-	adminArticlesJsSha1    string
 	nonAdminArticles       []*Article2
 	nonAdminArticlesJs     []byte
 	nonAdminArticlesJsSha1 string
@@ -69,24 +66,13 @@ func buildArticlesJson(articles []*Article2) ([]byte, string) {
 
 // must be called with a articlesCache locked
 func buildArticlesCache(articlesCacheId int, articles []*Article2) {
-	n := len(articles)
-	adminArticles := make([]*Article2, n, n)
 	nonAdminArticles := make([]*Article2, 0)
-	for i, a := range articles {
-		adminArticles[i] = a
-		if !a.IsDeleted && !a.IsPrivate {
-			nonAdminArticles = append(nonAdminArticles, a)
-		}
+	for _, a := range articles {
+		nonAdminArticles = append(nonAdminArticles, a)
 	}
-
 	articlesCache.articlesCacheId = articlesCacheId
-	articlesCache.adminArticles = adminArticles
 	articlesCache.nonAdminArticles = nonAdminArticles
-
-	js, sha1 := buildArticlesJson(adminArticles)
-	articlesCache.adminArticlesJs, articlesCache.adminArticlesJsSha1 = js, sha1
-
-	js, sha1 = buildArticlesJson(nonAdminArticles)
+	js, sha1 := buildArticlesJson(nonAdminArticles)
 	articlesCache.nonAdminArticlesJs, articlesCache.nonAdminArticlesJsSha1 = js, sha1
 }
 
@@ -100,14 +86,8 @@ func rebuildArticlesCacheIfNeededUnlocked() {
 func getArticlesJsUrl(isAdmin bool) string {
 	articlesCache.Lock()
 	defer articlesCache.Unlock()
-
 	rebuildArticlesCacheIfNeededUnlocked()
-	var sha1 string
-	if isAdmin {
-		sha1 = articlesCache.adminArticlesJsSha1
-	} else {
-		sha1 = articlesCache.nonAdminArticlesJsSha1
-	}
+	sha1 := articlesCache.nonAdminArticlesJsSha1
 	return "/djs/articles-" + sha1 + ".js"
 }
 
@@ -116,9 +96,6 @@ func getArticlesJsData(isAdmin bool) ([]byte, string) {
 	defer articlesCache.Unlock()
 
 	rebuildArticlesCacheIfNeededUnlocked()
-	if isAdmin {
-		return articlesCache.adminArticlesJs, articlesCache.adminArticlesJsSha1
-	}
 	return articlesCache.nonAdminArticlesJs, articlesCache.nonAdminArticlesJsSha1
 }
 
@@ -127,9 +104,6 @@ func getCachedArticles(isAdmin bool) []*Article2 {
 	defer articlesCache.Unlock()
 
 	rebuildArticlesCacheIfNeededUnlocked()
-	if isAdmin {
-		return articlesCache.adminArticles
-	}
 	return articlesCache.nonAdminArticles
 }
 
@@ -191,18 +165,6 @@ func (c *ArticleBodyCache) GetHtml(bodyId string, format int) string {
 	entry.bodyId = bodyId
 	entry.msgHtml = msgHtml
 	return msgHtml
-}
-
-func (c *ArticleBodyCache) Clear() {
-	c.Lock()
-	defer c.Unlock()
-	c.entriesCount = 0
-	c.curr = 0
-}
-
-func clearArticlesCache() {
-	articlesCache.articlesCacheId = 0
-	articleBodyCache.Clear()
 }
 
 // TODO: this is simplistic but works for me, http://net.tutsplus.com/tutorials/other/8-regular-expressions-you-should-know/
