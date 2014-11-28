@@ -56,7 +56,7 @@ var articleRedirects = make(map[string]int)
 var articleRedirectsMutex sync.Mutex
 
 func readRedirects() {
-	fname := filepath.Join(getDataDir(), "data", "article_redirects.txt")
+	fname := filepath.Join("article_redirects.txt")
 	d, err := ioutil.ReadFile(fname)
 	if err != nil {
 		return

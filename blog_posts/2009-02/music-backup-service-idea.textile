@@ -3,6 +3,7 @@ Title: Music backup service idea
 Tags: idea,note
 Date: 2009-02-18T01:03:18-08:00
 Format: Textile
+Deleted: true
 --------------
 h1. Unfortunate event
 
@@ -18,7 +19,7 @@ This might not be true if iTunes fucks with metadata inside mp3 file.
 
 h1. Components
 
-1. A mac/windows desktop app 
+1. A mac/windows desktop app
 
 * configures which folders to backup (and helps by scanning the whole hard-drive). The UI for selection of folders to backup like in Picasa
 * builds a catalog of files (file path + sha1 hash of the file) and sends that to the server in one big chunk (initial setup)

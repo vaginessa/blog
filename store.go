@@ -111,6 +111,7 @@ func parseDate(s string) (time.Time, error) {
 	return time.Now(), err
 }
 
+// might return nil if article is meant to be skipped (deleted or draft)
 func readArticle(path string) (*Article, error) {
 	f, err := os.Open(path)
 	if err != nil {
@@ -135,8 +136,8 @@ func readArticle(path string) (*Article, error) {
 		k := strings.ToLower(parts[0])
 		v := strings.TrimSpace(parts[1])
 		switch k {
-		case "deleted":
-			continue // skip deleted articles
+		case "deleted", "draft":
+			return nil, nil
 		case "id":
 			id, err := strconv.Atoi(v)
 			if err != nil {
@@ -190,8 +191,9 @@ func readArticles() ([]*Article, error) {
 			fmt.Printf("readArticle() failed with %s\n", err)
 			return nil, err
 		}
-		//a.Path = path
-		res = append(res, a)
+		if a != nil {
+			res = append(res, a)
+		}
 	}
 	fmt.Printf("read %d articles in %s\n", len(res), time.Since(timeStart))
 	return res, nil
