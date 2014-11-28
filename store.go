@@ -214,10 +214,10 @@ func (s *Store3) GetTextBody(bodyId string) ([]byte, error) {
 	//fmt.Printf("GetTextBody: bodyId=%s\n", bodyId)
 	for _, a := range s.articles {
 		if a.Path == bodyId {
-			return a.GetHtml()
+			return a.Body, nil
 		}
 	}
-	return nil, nil
+	return nil, fmt.Errorf("No body for bodyId: %s\n", bodyId)
 }
 
 func (s *Store3) GetArticleById(id int) *Article {

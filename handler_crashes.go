@@ -21,6 +21,10 @@ var blacklistedSumatraVersions = []string{"1.5.1", "1.6", "1.7", "1.8", "1.9",
 	"2.0", "2.0.1", "2.1", "2.1.1", "2.2", "2.2.1", "2.3", "2.3.1", "2.3.2",
 	"2.4", "2.5", "2.5.1", "2.5 dbg", "2.5.1 dbg", "2.5.2"}
 
+func getTrimmedFormValue(r *http.Request, name string) string {
+	return strings.TrimSpace(r.FormValue(name))
+}
+
 func (c *Crash) Version() string {
 	ver := *c.ProgramVersion
 	if ver == "" {

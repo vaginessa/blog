@@ -102,9 +102,6 @@ a.articlelink:hover {
       {{ range .Articles }}
       <tr>
         <td colspan=2 style="padding-top:2px; padding-bottom: 4px; max-width:480px">
-          {{ if .IsPrivate }}<font color="red">P</font>{{ end }}
-          {{ if .IsDeleted }}&nbsp;<font color="red">d</font>{{ end }}
-
           <a class="articlelink" href="/{{ .Permalink }}">{{.Title}}</a>
           {{ if .TagsDisplay }}
             <span style="font-size:80%">

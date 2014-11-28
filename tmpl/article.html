@@ -39,12 +39,6 @@ $(document).ready(function(){
   <div id="post" style="margin-left:auto;margin-right:auto;margin-top:2em;">
     <div class="title">
         {{ .Article.Title }}
-        {{ if .Article.IsDeleted }}
-          &nbsp;<font color="red">deleted</font>
-        {{ end }}
-        {{ if .Article.IsPrivate }}
-          &nbsp;<font color="red">private</font>
-        {{ end }}
         {{ if not .IsAdmin }} <a id="login_id" class="invisible" onMouseOver="showById('login_id');"
         onMouseOut="hideById('login_id');" href="{{ .LogInOutUrl }}">login</a>
         {{ end }}
