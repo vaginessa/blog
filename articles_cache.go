@@ -9,7 +9,6 @@ import (
 	"github.com/kjk/u"
 )
 
-var articleBodyCache ArticleBodyCache
 var articlesCache ArticlesCache
 
 type ArticlesCache struct {
@@ -117,47 +116,10 @@ func getCachedArticlesById(articleId int, isAdmin bool) (*Article, *Article, *Ar
 	return nil, nil, nil, 0
 }
 
-type ArticleBodyCacheEntry struct {
-	bodyId  string
-	msgHtml string
-}
-
-type ArticleBodyCache struct {
-	sync.Mutex
-	entries      [64]ArticleBodyCacheEntry
-	entriesCount int
-	curr         int
-}
-
-func (c *ArticleBodyCache) GetHtml(bodyId string, format int) string {
-	c.Lock()
-	defer c.Unlock()
-
-	for i := 0; i < c.entriesCount; i++ {
-		if c.entries[i].bodyId == bodyId {
-			return c.entries[i].msgHtml
-		}
-	}
-
-	msg, err := store.GetTextBody(bodyId)
-	var msgHtml string
-	if err != nil {
+func GetArticleHtml(bodyId string, format int) string {
+	msgHtml := store.GetArticleHtml(bodyId)
+	if msgHtml == "" {
 		msgHtml = fmt.Sprintf("Error: failed to fetch a message with bodyId %q", bodyId)
-	} else {
-		msgHtml = msgToHtml(msg, format)
 	}
-
-	var entry *ArticleBodyCacheEntry
-	if c.entriesCount < len(c.entries) {
-		entry = &c.entries[c.entriesCount]
-		c.entriesCount += 1
-	} else {
-		entry = &c.entries[c.curr]
-		c.curr += 1
-		c.curr = c.curr % len(c.entries)
-	}
-
-	entry.bodyId = bodyId
-	entry.msgHtml = msgHtml
 	return msgHtml
 }

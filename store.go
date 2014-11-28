@@ -210,6 +210,15 @@ func (s *Store3) GetArticles(lastId int) (int, []*Article) {
 	return 1, s.articles
 }
 
+func (s *Store3) GetArticleHtml(bodyId string) string {
+	for _, a := range s.articles {
+		if a.Path == bodyId {
+			return a.GetHtmlStr()
+		}
+	}
+	return ""
+}
+
 func (s *Store3) GetTextBody(bodyId string) ([]byte, error) {
 	//fmt.Printf("GetTextBody: bodyId=%s\n", bodyId)
 	for _, a := range s.articles {
