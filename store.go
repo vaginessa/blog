@@ -219,16 +219,6 @@ func (s *Store3) GetArticleHtml(bodyId string) string {
 	return ""
 }
 
-func (s *Store3) GetTextBody(bodyId string) ([]byte, error) {
-	//fmt.Printf("GetTextBody: bodyId=%s\n", bodyId)
-	for _, a := range s.articles {
-		if a.Path == bodyId {
-			return a.Body, nil
-		}
-	}
-	return nil, fmt.Errorf("No body for bodyId: %s\n", bodyId)
-}
-
 func (s *Store3) GetArticleById(id int) *Article {
 	//fmt.Printf("GetArticleById: %d\n", id)
 	for _, a := range s.articles {
@@ -261,13 +251,6 @@ func (a *Article) GetHtmlStr() string {
 		a.BodyHtml = msgToHtml(a.Body, a.Format)
 	}
 	return a.BodyHtml
-}
-
-func (a *Article) GetHtml() ([]byte, error) {
-	if a.BodyHtml == "" {
-		a.BodyHtml = msgToHtml(a.Body, a.Format)
-	}
-	return []byte(a.BodyHtml), nil
 }
 
 // TODO: this is simplistic but works for me, http://net.tutsplus.com/tutorials/other/8-regular-expressions-you-should-know/
