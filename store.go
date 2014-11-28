@@ -21,11 +21,9 @@ type Article struct {
 	Id          int
 	PublishedOn time.Time
 	Title       string
-	IsPrivate   bool
-	IsDeleted   bool
 	Tags        []string
 	Format      int
-	BodyId      string
+	Path        string
 	Body        []byte
 	BodyHtml    string
 }
@@ -145,7 +143,7 @@ func readArticle(path string) (*Article, error) {
 				return nil, fmt.Errorf("%q is not a valid id (not a number)", v)
 			}
 			a.Id = id
-			a.BodyId = path // TODO: remove BodyId
+			a.Path = path
 		case "title":
 			a.Title = v
 		case "tags":
@@ -215,7 +213,7 @@ func (s *Store3) GetArticles(lastId int) (int, []*Article) {
 func (s *Store3) GetTextBody(bodyId string) ([]byte, error) {
 	//fmt.Printf("GetTextBody: bodyId=%s\n", bodyId)
 	for _, a := range s.articles {
-		if a.BodyId == bodyId {
+		if a.Path == bodyId {
 			return a.GetHtml()
 		}
 	}
