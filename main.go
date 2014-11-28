@@ -13,9 +13,11 @@ import (
 	_ "net/url"
 	"path/filepath"
 	"runtime"
+	"sort"
 	"strconv"
 	"strings"
 	"time"
+	"unicode/utf8"
 
 	"github.com/garyburd/go-oauth/oauth"
 	_ "github.com/gorilla/mux"
@@ -287,15 +289,17 @@ var test = []byte(`Crashed thread:
 7757B26C 01:0005A26C ntdll.dll!RtlInitializeExceptionChain+0x36`)
 
 var (
-	configPath   string
-	httpAddr     string
-	inProduction bool
+	configPath      string
+	httpAddr        string
+	inProduction    bool
+	newArticleTitle string
 )
 
 func parseCmdLineArgs() {
 	flag.StringVar(&configPath, "config", "config.json", "Path to configuration file")
 	flag.StringVar(&httpAddr, "addr", ":5020", "HTTP server address")
 	flag.BoolVar(&inProduction, "production", false, "are we running in production")
+	flag.StringVar(&newArticleTitle, "newarticle", "", "create a new article")
 	flag.Parse()
 }
 
@@ -303,11 +307,97 @@ func isTmpFile(path string) bool {
 	return strings.HasSuffix(path, ".tmp")
 }
 
+func sanitizeForFile(s string) string {
+	var res []byte
+	toRemove := "/\\#()[]{},?+.'\""
+	var prev rune
+	buf := make([]byte, 3)
+	for _, c := range s {
+		if strings.ContainsRune(toRemove, c) {
+			continue
+		}
+		switch c {
+		case ' ', '_':
+			c = '-'
+		}
+		if c == prev {
+			continue
+		}
+		prev = c
+		n := utf8.EncodeRune(buf, c)
+		for i := 0; i < n; i++ {
+			res = append(res, buf[i])
+		}
+	}
+	if len(res) > 32 {
+		res = res[:32]
+	}
+	s = string(res)
+	s = strings.Trim(s, "_- ")
+	s = strings.ToLower(s)
+	return s
+}
+
+func findUniqueArticleId(articles []*Article) int {
+	ids := make([]int, 0)
+	for _, a := range articles {
+		ids = append(ids, a.Id)
+	}
+	if len(ids) == 0 {
+		return 1
+	}
+	sort.Ints(ids)
+	prevId := ids[0]
+	for i := 1; i < len(ids); i++ {
+		if ids[i] != prevId+1 {
+			return prevId + 1
+		}
+		prevId = ids[i]
+	}
+	return prevId + 1
+}
+
+func genNewArticle(title string) {
+	fmt.Printf("genNewArticle: %q\n", title)
+	store, err := NewStore()
+	if err != nil {
+		log.Fatalf("NewStore() failed with %s", err)
+	}
+	newId := findUniqueArticleId(store.articles)
+	name := sanitizeForFile(title) + ".md"
+	fmt.Printf("new id: %d, name: %s\n", newId, name)
+	t := time.Now()
+	dir := "blog_posts"
+	d := t.Format("2006-01")
+	path := filepath.Join(dir, d, name)
+	s := fmt.Sprintf(`Id: %d
+Title: %s
+Date: %s
+Format: Markdown
+--------------`, newId, title, t.Format(time.RFC3339))
+	for i := 1; i < 10; i++ {
+		if !u.PathExists(path) {
+			break
+		}
+		name := sanitizeForFile(title) + "-" + strconv.Itoa(i) + ".md"
+		path = filepath.Join(dir, d, name)
+	}
+	u.PanicIf(u.PathExists(path))
+	fmt.Printf("path: %s\n", path)
+	u.CreateDirForFileMust(path)
+	ioutil.WriteFile(path, []byte(s), 0644)
+}
+
 func main() {
 	var err error
 
 	runtime.GOMAXPROCS(runtime.NumCPU())
 	parseCmdLineArgs()
+
+	if newArticleTitle != "" {
+		genNewArticle(newArticleTitle)
+		return
+	}
 
 	/*findFileFixes("../../../sumatrapdf")
 	return

@@ -62,6 +62,7 @@ def zip_files(zip_path):
 	add_dir_files(zf, "tmpl")
 	add_dir_files(zf, os.path.join("scripts"), "scripts")
 	add_dir_files(zf, os.path.join("www"), "www")
+	add_dir_files(zf, os.path.join("blog_posts"), "blog_posts")
 	zf.close()
 
 

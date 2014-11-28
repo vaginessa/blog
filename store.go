@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"html/template"
 	"io/ioutil"
+	"log"
 	"os"
 	"regexp"
 	"strconv"
@@ -66,6 +67,7 @@ func FormatNameToId(name string) int {
 
 type Store struct {
 	articles    []*Article
+	idToArticle map[int]*Article
 	dirsToWatch []string
 }
 
@@ -206,7 +208,17 @@ func NewStore() (*Store, error) {
 	if err != nil {
 		return nil, err
 	}
-	return &Store{articles: articles, dirsToWatch: dirs}, nil
+	res := &Store{articles: articles, dirsToWatch: dirs}
+	res.idToArticle = make(map[int]*Article)
+	for _, a := range articles {
+		curr := res.idToArticle[a.Id]
+		if curr == nil {
+			res.idToArticle[a.Id] = a
+			continue
+		}
+		log.Fatalf("2 articles with the same id %d\n%s\n%s\n", a.Id, curr.Path, a.Path)
+	}
+	return res, nil
 }
 
 func (s *Store) GetArticles() []*Article {
