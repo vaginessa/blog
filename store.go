@@ -16,6 +16,7 @@ import (
 
 	"github.com/kjk/textiler"
 	"github.com/kr/fs"
+	"github.com/microcosm-cc/bluemonday"
 	"github.com/russross/blackfriday"
 )
 
@@ -347,8 +348,8 @@ func textile(s []byte) string {
 func markdown(s []byte) string {
 	//fmt.Printf("msgToHtml(): markdown\n")
 	s, replacements := txt_with_code_parts(s)
-	renderer := blackfriday.HtmlRenderer(0, "", "")
-	res := blackfriday.Markdown(s, renderer, 0)
+	unsafe := blackfriday.MarkdownCommon(s)
+	res := bluemonday.UGCPolicy().SanitizeBytes(unsafe)
 	for kStr, v := range replacements {
 		k := []byte(kStr)
 		res = bytes.Replace(res, k, v, -1)

@@ -32,6 +32,10 @@
 			"Rev": "1b0c7f6e9ab3d7f500fd7d50c7ad835ff428139b"
 		},
 		{
+			"ImportPath": "github.com/gorilla/websocket",
+			"Rev": "9007e29a7c93fc3dcebbdbf742ce0efaf19e6510"
+		},
+		{
 			"ImportPath": "github.com/kjk/textiler",
 			"Rev": "31558f2abcdda161c33ac431eab39e17bb7c2c52"
 		},
@@ -49,7 +53,11 @@
 		},
 		{
 			"ImportPath": "github.com/russross/blackfriday",
-			"Rev": "05b8cefd6a3cd87b81adb83479f5faadc0df2a67"
+			"Rev": "f10a439fa0de041047d06b686fa5e056bee024b7"
+		},
+		{
+			"ImportPath": "github.com/shurcooL/go/github_flavored_markdown/sanitized_anchor_name",
+			"Rev": "37fb1155a44a5e39fc9775216c9cc6f6847dfa23"
 		},
 		{
 			"ImportPath": "github.com/thomas11/atomgenerator",
