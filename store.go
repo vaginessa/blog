@@ -155,7 +155,9 @@ func readArticle(path string) (*Article, error) {
 		v := strings.TrimSpace(parts[1])
 		switch k {
 		case "deleted", "draft":
-			return nil, nil
+			if inProduction {
+				return nil, nil
+			}
 		case "id":
 			id, err := strconv.Atoi(v)
 			if err != nil {
