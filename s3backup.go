@@ -261,15 +261,9 @@ func copyBlobs(config *BackupConfig, blobsDir, blobsS3Dir string) error {
 
 func doBackup(config *BackupConfig) {
 	startTime := time.Now()
-	blobsDir := filepath.Join(config.LocalDir, "blobs")
-	blobsS3Dir := filepath.Join(config.S3Dir, "blobs")
-	if err := copyBlobs(config, blobsDir, blobsS3Dir); err != nil {
-		logger.Errorf("doBackup(): copyBlobs() %s => %s failed with %s", blobsDir, blobsS3Dir, err)
-		return
-	}
 
-	blobsDir = filepath.Join(config.LocalDir, "blobs_crashes")
-	blobsS3Dir = filepath.Join(config.S3Dir, "blobs_crashes")
+	blobsDir := filepath.Join(config.LocalDir, "blobs_crashes")
+	blobsS3Dir := filepath.Join(config.S3Dir, "blobs_crashes")
 	if err := copyBlobs(config, blobsDir, blobsS3Dir); err != nil {
 		logger.Errorf("doBackup(): copyBlobs() %s => %s failed with %s", blobsDir, blobsS3Dir, err)
 		return
