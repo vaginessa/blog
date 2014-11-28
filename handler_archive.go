@@ -89,7 +89,7 @@ func filterArticlesByTag(articles []*Article, tag string, include bool) []*Artic
 
 func showArchiveArticles(w http.ResponseWriter, r *http.Request, articles []*Article, tag string) {
 	isAdmin := IsAdmin(r)
-	articlesJsUrl := getArticlesJsUrl(isAdmin)
+	articlesJsUrl := getArticlesJsUrl()
 	model := ArticlesIndexModel{
 		IsAdmin:       isAdmin,
 		AnalyticsCode: *config.AnalyticsCode,
@@ -105,7 +105,7 @@ func showArchiveArticles(w http.ResponseWriter, r *http.Request, articles []*Art
 }
 
 func showArchivePage(w http.ResponseWriter, r *http.Request, tag string) {
-	articles := getCachedArticles(IsAdmin(r))
+	articles := getCachedArticles()
 	if tag != "" {
 		articles = filterArticlesByTag(articles, tag, true)
 	}

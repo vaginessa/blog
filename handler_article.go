@@ -40,7 +40,7 @@ func handleArticle(w http.ResponseWriter, r *http.Request) {
 	}
 
 	articleId := UnshortenId(parts[0])
-	prev, article, next, pos := getCachedArticlesById(articleId, isAdmin)
+	prev, article, next, pos := getCachedArticlesById(articleId)
 	if nil == article {
 		logger.Noticef("handleArticle: didn't find article with id = %d", articleId)
 		http.NotFound(w, r)
@@ -79,7 +79,7 @@ func handleArticle(w http.ResponseWriter, r *http.Request) {
 		PageTitle:      article.Title,
 		ArticlesCount:  store.ArticlesCount(),
 		ArticleNo:      pos + 1,
-		ArticlesJsUrl:  getArticlesJsUrl(isAdmin),
+		ArticlesJsUrl:  getArticlesJsUrl(),
 	}
 
 	ExecTemplate(w, tmplArticle, model)

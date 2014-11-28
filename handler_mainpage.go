@@ -14,7 +14,7 @@ func handleArticlesJs(w http.ResponseWriter, r *http.Request, url string) {
 		panic("invalid sha1")
 	}
 
-	jsData, expectedSha1 := getArticlesJsData(IsAdmin(r))
+	jsData, expectedSha1 := getArticlesJsData()
 	if sha1 != expectedSha1 {
 		logger.Errorf("handleArticlesJs(): invalid value of sha1=%q, expected=%q", sha1, expectedSha1)
 		panic("invalid value of sha1")
@@ -65,7 +65,7 @@ func handleMainPage(w http.ResponseWriter, r *http.Request) {
 	}
 
 	isAdmin := IsAdmin(r)
-	articles := getCachedArticles(isAdmin)
+	articles := getCachedArticles()
 	articleCount := len(articles)
 	articles = getRecentArticles(articles, 15)
 

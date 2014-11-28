@@ -332,6 +332,7 @@ func main() {
 	if store, err = NewStore(); err != nil {
 		log.Fatalf("NewStore() failed with %s", err)
 	}
+	buildArticlesCache()
 
 	if storeCrashes, err = NewStoreCrashes(getDataDir()); err != nil {
 		log.Fatalf("NewStoreCrashes() failed with %s", err)

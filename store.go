@@ -205,18 +205,8 @@ func NewStore() (*Store, error) {
 	return &Store{articles: articles}, nil
 }
 
-func (s *Store) GetArticles(lastId int) (int, []*Article) {
-	//fmt.Printf("GetArticles: lastId: %d, nArticles: %d\n", lastId, len(s.articles))
-	return 1, s.articles
-}
-
-func (s *Store) GetArticleHtml(bodyId string) string {
-	for _, a := range s.articles {
-		if a.Path == bodyId {
-			return a.GetHtmlStr()
-		}
-	}
-	return ""
+func (s *Store) GetArticles() []*Article {
+	return s.articles
 }
 
 func (s *Store) GetArticleById(id int) *Article {

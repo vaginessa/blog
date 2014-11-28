@@ -8,7 +8,7 @@ import (
 )
 
 func handleAtomHelp(w http.ResponseWriter, r *http.Request, excludeNotes bool) {
-	articles := getCachedArticles(false)
+	articles := getCachedArticles()
 	if excludeNotes {
 		articles = filterArticlesByTag(articles, "note", false)
 	}
@@ -35,14 +35,11 @@ func handleAtomHelp(w http.ResponseWriter, r *http.Request, excludeNotes bool) {
 	}
 
 	for _, a := range latest {
-
-		msgHtml := a.GetHtmlStr()
-
 		//id := fmt.Sprintf("tag:blog.kowalczyk.info,1999:%d", a.Id)
 		e := &atom.Entry{
 			Title:   a.Title,
 			Link:    "http://blog.kowalczyk.info/" + a.Permalink(),
-			Content: msgHtml,
+			Content: a.GetHtmlStr(),
 			PubDate: a.PublishedOn,
 		}
 		feed.AddEntry(e)
