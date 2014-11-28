@@ -45,13 +45,13 @@ func GetArticleVersionBody(bodyId string) (string, error) {
 	return string(msg), nil
 }
 
-func findArticleMustBeAdmin(w http.ResponseWriter, r *http.Request) *Article2 {
+func findArticleMustBeAdmin(w http.ResponseWriter, r *http.Request) *Article {
 	if !IsAdmin(r) {
 		http.NotFound(w, r)
 		return nil
 	}
 
-	var article *Article2
+	var article *Article
 	idStr := getTrimmedFormValue(r, "article_id")
 	if articleId, err := strconv.Atoi(idStr); err == nil {
 		article = store.GetArticleById(articleId)

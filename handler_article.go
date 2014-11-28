@@ -7,7 +7,7 @@ import (
 )
 
 type DisplayArticle struct {
-	*Article2
+	*Article
 	HtmlBody template.HTML
 }
 
@@ -47,7 +47,7 @@ func handleArticle(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	displayArticle := &DisplayArticle{Article2: article}
+	displayArticle := &DisplayArticle{Article: article}
 	msgHtml := article.GetHtmlStr()
 	displayArticle.HtmlBody = template.HTML(msgHtml)
 
@@ -59,8 +59,8 @@ func handleArticle(w http.ResponseWriter, r *http.Request) {
 		PrettifyCssUrl string
 		PageTitle      string
 		Article        *DisplayArticle
-		NextArticle    *Article2
-		PrevArticle    *Article2
+		NextArticle    *Article
+		PrevArticle    *Article
 		LogInOutUrl    string
 		ArticlesJsUrl  string
 		TagsDisplay    string

@@ -17,7 +17,7 @@ import (
 	"github.com/russross/blackfriday"
 )
 
-type Article2 struct {
+type Article struct {
 	Id          int
 	PublishedOn time.Time
 	Title       string
@@ -67,7 +67,7 @@ func FormatNameToId(name string) int {
 }
 
 type Store3 struct {
-	articles []*Article2
+	articles []*Article
 }
 
 func isSepLine(s string) bool {
@@ -113,13 +113,13 @@ func parseDate(s string) (time.Time, error) {
 	return time.Now(), err
 }
 
-func readArticle(path string) (*Article2, error) {
+func readArticle(path string) (*Article, error) {
 	f, err := os.Open(path)
 	if err != nil {
 		return nil, err
 	}
 	defer f.Close()
-	a := &Article2{}
+	a := &Article{}
 	r := bufio.NewReader(f)
 	for {
 		l, err := r.ReadString('\n')
@@ -172,10 +172,10 @@ func readArticle(path string) (*Article2, error) {
 	return a, nil
 }
 
-func readArticles() ([]*Article2, error) {
+func readArticles() ([]*Article, error) {
 	timeStart := time.Now()
 	walker := fs.Walk("blog_posts")
-	res := make([]*Article2, 0)
+	res := make([]*Article, 0)
 	for walker.Step() {
 		if walker.Err() != nil {
 			fmt.Printf("walker.Err() failed with %s\n", walker.Err())
@@ -207,7 +207,7 @@ func NewStore3() (*Store3, error) {
 	return &Store3{articles: articles}, nil
 }
 
-func (s *Store3) GetArticles(lastId int) (int, []*Article2) {
+func (s *Store3) GetArticles(lastId int) (int, []*Article) {
 	//fmt.Printf("GetArticles: lastId: %d, nArticles: %d\n", lastId, len(s.articles))
 	return 1, s.articles
 }
@@ -222,7 +222,7 @@ func (s *Store3) GetTextBody(bodyId string) ([]byte, error) {
 	return nil, nil
 }
 
-func (s *Store3) GetArticleById(id int) *Article2 {
+func (s *Store3) GetArticleById(id int) *Article {
 	//fmt.Printf("GetArticleById: %d\n", id)
 	for _, a := range s.articles {
 		if a.Id == id {
@@ -236,11 +236,11 @@ func (s *Store3) ArticlesCount() int {
 	return len(s.articles)
 }
 
-func (a *Article2) Permalink() string {
+func (a *Article) Permalink() string {
 	return "article/" + ShortenId(a.Id) + "/" + Urlify(a.Title) + ".html"
 }
 
-func (a *Article2) TagsDisplay() template.HTML {
+func (a *Article) TagsDisplay() template.HTML {
 	arr := make([]string, 0)
 	for _, tag := range a.Tags {
 		arr = append(arr, urlForTag(tag))
@@ -249,14 +249,14 @@ func (a *Article2) TagsDisplay() template.HTML {
 	return template.HTML(s)
 }
 
-func (a *Article2) GetHtmlStr() string {
+func (a *Article) GetHtmlStr() string {
 	if a.BodyHtml == "" {
 		a.BodyHtml = msgToHtml(a.Body, a.Format)
 	}
 	return a.BodyHtml
 }
 
-func (a *Article2) GetHtml() ([]byte, error) {
+func (a *Article) GetHtml() ([]byte, error) {
 	if a.BodyHtml == "" {
 		a.BodyHtml = msgToHtml(a.Body, a.Format)
 	}

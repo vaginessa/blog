@@ -17,7 +17,7 @@ func handleAtomHelp(w http.ResponseWriter, r *http.Request, excludeNotes bool) {
 		n = len(articles)
 	}
 
-	latest := make([]*Article2, n, n)
+	latest := make([]*Article, n, n)
 	size := len(articles)
 	for i := 0; i < n; i++ {
 		latest[i] = articles[size-1-i]

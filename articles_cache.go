@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"sync"
+
 	"github.com/kjk/u"
 )
 
@@ -14,7 +15,7 @@ var articlesCache ArticlesCache
 type ArticlesCache struct {
 	sync.Mutex
 	articlesCacheId        int
-	nonAdminArticles       []*Article2
+	nonAdminArticles       []*Article
 	nonAdminArticlesJs     []byte
 	nonAdminArticlesJsSha1 string
 }
@@ -28,7 +29,7 @@ func appendJsonMarshalled(buf *bytes.Buffer, val interface{}) {
 }
 
 // TODO: I only use it for tag cloud, could just send info about tags directly
-func buildArticlesJson(articles []*Article2) ([]byte, string) {
+func buildArticlesJson(articles []*Article) ([]byte, string) {
 	var buf bytes.Buffer
 	buf.WriteString("var __articles_json = ")
 	n := len(articles)
@@ -59,8 +60,8 @@ func buildArticlesJson(articles []*Article2) ([]byte, string) {
 }
 
 // must be called with a articlesCache locked
-func buildArticlesCache(articlesCacheId int, articles []*Article2) {
-	nonAdminArticles := make([]*Article2, 0)
+func buildArticlesCache(articlesCacheId int, articles []*Article) {
+	nonAdminArticles := make([]*Article, 0)
 	for _, a := range articles {
 		nonAdminArticles = append(nonAdminArticles, a)
 	}
@@ -93,7 +94,7 @@ func getArticlesJsData(isAdmin bool) ([]byte, string) {
 	return articlesCache.nonAdminArticlesJs, articlesCache.nonAdminArticlesJsSha1
 }
 
-func getCachedArticles(isAdmin bool) []*Article2 {
+func getCachedArticles(isAdmin bool) []*Article {
 	articlesCache.Lock()
 	defer articlesCache.Unlock()
 
@@ -101,9 +102,9 @@ func getCachedArticles(isAdmin bool) []*Article2 {
 	return articlesCache.nonAdminArticles
 }
 
-func getCachedArticlesById(articleId int, isAdmin bool) (*Article2, *Article2, *Article2, int) {
+func getCachedArticlesById(articleId int, isAdmin bool) (*Article, *Article, *Article, int) {
 	articles := getCachedArticles(isAdmin)
-	var prev, next *Article2
+	var prev, next *Article
 	for i, curr := range articles {
 		if curr.Id == articleId {
 			if i != len(articles)-1 {

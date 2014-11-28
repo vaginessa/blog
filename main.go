@@ -332,12 +332,6 @@ func main() {
 		config.AnalyticsCode = &emptyString
 	}
 
-	/*
-		if store, err = NewStore2(getDataDir()); err != nil {
-			log.Fatalf("NewStore2() failed with %s", err)
-		}
-	*/
-
 	if store, err = NewStore3(); err != nil {
 		log.Fatalf("NewStore3() failed with %s", err)
 	}
