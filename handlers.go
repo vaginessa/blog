@@ -40,6 +40,6 @@ func InitHttpHandlers() {
 	http.Handle("/markitup/", makeTimingHandler(handleMarkitup))
 	http.Handle("/djs/", makeTimingHandler(handleDjs))
 	http.Handle("/metrics", makeTimingHandler(handleMetrics))
-
+	http.HandleFunc("/ws", serveWs)
 	http.HandleFunc("/tool/protobufs-online-decoder", handleProtobufDecoder)
 }

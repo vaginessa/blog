@@ -67,17 +67,26 @@ func getCachedArticles() []*Article {
 	return articlesCache.articles
 }
 
-func getCachedArticlesById(articleId int) (*Article, *Article, *Article, int) {
-	articles := getCachedArticles()
-	var prev, next *Article
+type ArticleInfo struct {
+	this *Article
+	next *Article
+	prev *Article
+	pos  int
+}
+
+func getCachedArticlesById(articleId int) *ArticleInfo {
+	articles := store.GetArticles()
+	res := &ArticleInfo{}
 	for i, curr := range articles {
 		if curr.Id == articleId {
 			if i != len(articles)-1 {
-				next = articles[i+1]
+				res.next = articles[i+1]
 			}
-			return prev, curr, next, i
+			res.this = curr
+			res.pos = i
+			return res
 		}
-		prev = curr
+		res.prev = curr
 	}
-	return nil, nil, nil, 0
+	return nil
 }
