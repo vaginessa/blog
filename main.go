@@ -18,7 +18,6 @@ import (
 	"time"
 
 	"github.com/garyburd/go-oauth/oauth"
-	"github.com/go-fsnotify/fsnotify"
 	_ "github.com/gorilla/mux"
 	"github.com/gorilla/securecookie"
 	"github.com/kjk/u"
@@ -302,46 +301,6 @@ func parseCmdLineArgs() {
 
 func isTmpFile(path string) bool {
 	return strings.HasSuffix(path, ".tmp")
-}
-
-func watchChanges(watcher *fsnotify.Watcher) {
-	for {
-		select {
-		case ev := <-watcher.Events:
-			if isTmpFile(ev.Name) {
-				continue
-			}
-			log.Println("event:", ev)
-		case err := <-watcher.Errors:
-			log.Println("error:", err)
-		}
-	}
-}
-
-func startWatching() {
-	if inProduction {
-		return
-	}
-	watcher, err := fsnotify.NewWatcher()
-	if err != nil {
-		fmt.Printf("fsnotify.NewWather() failed with %s\n", err)
-		return
-	}
-
-	go watchChanges(watcher)
-
-	dirs := store.GetDirsToWatch()
-	dirs = append(dirs, "blog_posts")
-	for _, dir := range dirs {
-		err = watcher.Add(dir)
-		if err != nil {
-			fmt.Printf("watcher.Add() for %s failed with %s\n", dir, err)
-			return
-		} else {
-			fmt.Printf("added watching for dir %s\n", dir)
-		}
-	}
-	//watcher.Close()
 }
 
 func main() {
