@@ -9,6 +9,7 @@ import (
 	"log"
 	"os"
 	"regexp"
+	"sort"
 	"strconv"
 	"strings"
 	"time"
@@ -39,6 +40,20 @@ const (
 	FormatLast    = 3
 	FormatUnknown = -1
 )
+
+type ArticlesByTime []*Article
+
+func (s ArticlesByTime) Len() int {
+	return len(s)
+}
+
+func (s ArticlesByTime) Swap(i, j int) {
+	s[i], s[j] = s[j], s[i]
+}
+
+func (s ArticlesByTime) Less(i, j int) bool {
+	return s[i].PublishedOn.Before(s[j].PublishedOn)
+}
 
 // same format as Format* constants
 var formatNames = []string{"Html", "Textile", "Markdown", "Text"}
@@ -208,6 +223,7 @@ func NewStore() (*Store, error) {
 	if err != nil {
 		return nil, err
 	}
+	sort.Sort(ArticlesByTime(articles))
 	res := &Store{articles: articles, dirsToWatch: dirs}
 	res.idToArticle = make(map[int]*Article)
 	for _, a := range articles {
