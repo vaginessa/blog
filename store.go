@@ -64,7 +64,7 @@ func FormatNameToId(name string) int {
 	return FormatUnknown
 }
 
-type Store3 struct {
+type Store struct {
 	articles []*Article
 }
 
@@ -197,20 +197,20 @@ func readArticles() ([]*Article, error) {
 	return res, nil
 }
 
-func NewStore3() (*Store3, error) {
+func NewStore() (*Store, error) {
 	articles, err := readArticles()
 	if err != nil {
 		return nil, err
 	}
-	return &Store3{articles: articles}, nil
+	return &Store{articles: articles}, nil
 }
 
-func (s *Store3) GetArticles(lastId int) (int, []*Article) {
+func (s *Store) GetArticles(lastId int) (int, []*Article) {
 	//fmt.Printf("GetArticles: lastId: %d, nArticles: %d\n", lastId, len(s.articles))
 	return 1, s.articles
 }
 
-func (s *Store3) GetArticleHtml(bodyId string) string {
+func (s *Store) GetArticleHtml(bodyId string) string {
 	for _, a := range s.articles {
 		if a.Path == bodyId {
 			return a.GetHtmlStr()
@@ -219,7 +219,7 @@ func (s *Store3) GetArticleHtml(bodyId string) string {
 	return ""
 }
 
-func (s *Store3) GetArticleById(id int) *Article {
+func (s *Store) GetArticleById(id int) *Article {
 	//fmt.Printf("GetArticleById: %d\n", id)
 	for _, a := range s.articles {
 		if a.Id == id {
@@ -229,7 +229,7 @@ func (s *Store3) GetArticleById(id int) *Article {
 	return nil
 }
 
-func (s *Store3) ArticlesCount() int {
+func (s *Store) ArticlesCount() int {
 	return len(s.articles)
 }
 
