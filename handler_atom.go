@@ -36,8 +36,7 @@ func handleAtomHelp(w http.ResponseWriter, r *http.Request, excludeNotes bool) {
 
 	for _, a := range latest {
 
-		ver := a.CurrVersion()
-		msgHtml := articleBodyCache.GetHtml(ver.BodyId, ver.Format)
+		msgHtml := a.GetHtmlStr()
 
 		//id := fmt.Sprintf("tag:blog.kowalczyk.info,1999:%d", a.Id)
 		e := &atom.Entry{

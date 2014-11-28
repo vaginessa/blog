@@ -48,9 +48,7 @@ func handleArticle(w http.ResponseWriter, r *http.Request) {
 	}
 
 	displayArticle := &DisplayArticle{Article2: article}
-
-	ver := article.CurrVersion()
-	msgHtml := articleBodyCache.GetHtml(ver.BodyId, ver.Format)
+	msgHtml := article.GetHtmlStr()
 	displayArticle.HtmlBody = template.HTML(msgHtml)
 
 	model := struct {

@@ -2,22 +2,20 @@ package main
 
 import (
 	"bufio"
+	"bytes"
 	"fmt"
 	"html/template"
+	"io/ioutil"
 	"os"
+	"regexp"
 	"strconv"
 	"strings"
 	"time"
 
+	"github.com/kjk/textiler"
 	"github.com/kr/fs"
+	"github.com/russross/blackfriday"
 )
-
-type Text2 struct {
-	Id        int
-	CreatedOn time.Time
-	Format    int
-	BodyId    string
-}
 
 type Article2 struct {
 	Id          int
@@ -26,7 +24,10 @@ type Article2 struct {
 	IsPrivate   bool
 	IsDeleted   bool
 	Tags        []string
-	Versions    []*Text2
+	Format      int
+	BodyId      string
+	Body        []byte
+	BodyHtml    string
 }
 
 const (
@@ -112,16 +113,13 @@ func parseDate(s string) (time.Time, error) {
 	return time.Now(), err
 }
 
-func readArticleMetadata(path string) (*Article2, error) {
+func readArticle(path string) (*Article2, error) {
 	f, err := os.Open(path)
 	if err != nil {
 		return nil, err
 	}
 	defer f.Close()
 	a := &Article2{}
-	a.Versions = make([]*Text2, 1, 1)
-	a.Versions[0] = &Text2{}
-	a.Versions[0].BodyId = path
 	r := bufio.NewReader(f)
 	for {
 		l, err := r.ReadString('\n')
@@ -147,7 +145,7 @@ func readArticleMetadata(path string) (*Article2, error) {
 				return nil, fmt.Errorf("%q is not a valid id (not a number)", v)
 			}
 			a.Id = id
-			a.Versions[0].Id = id
+			a.BodyId = path // TODO: remove BodyId
 		case "title":
 			a.Title = v
 		case "tags":
@@ -157,21 +155,24 @@ func readArticleMetadata(path string) (*Article2, error) {
 			if f == FormatUnknown {
 				return nil, fmt.Errorf("%q is not a valid format", v)
 			}
-			a.Versions[0].Format = f
+			a.Format = f
 		case "date":
 			a.PublishedOn, err = parseDate(v)
 			if err != nil {
 				return nil, fmt.Errorf("%q is not a valid date", v)
 			}
-			a.Versions[0].CreatedOn = a.PublishedOn
 		default:
 			return nil, fmt.Errorf("Unexpected key: %q\n", k)
 		}
 	}
+	a.Body, err = ioutil.ReadAll(r)
+	if err != nil {
+		return nil, err
+	}
 	return a, nil
 }
 
-func readArticlesMetadata() ([]*Article2, error) {
+func readArticles() ([]*Article2, error) {
 	timeStart := time.Now()
 	walker := fs.Walk("blog_posts")
 	res := make([]*Article2, 0)
@@ -186,9 +187,9 @@ func readArticlesMetadata() ([]*Article2, error) {
 		}
 		path := walker.Path()
 		//fmt.Printf("p: %s\n", path)
-		a, err := readArticleMetadata(path)
+		a, err := readArticle(path)
 		if err != nil {
-			fmt.Printf("readArticleMetadata() failed with %s\n", err)
+			fmt.Printf("readArticle() failed with %s\n", err)
 			return nil, err
 		}
 		//a.Path = path
@@ -199,7 +200,7 @@ func readArticlesMetadata() ([]*Article2, error) {
 }
 
 func NewStore3() (*Store3, error) {
-	articles, err := readArticlesMetadata()
+	articles, err := readArticles()
 	if err != nil {
 		return nil, err
 	}
@@ -214,7 +215,7 @@ func (s *Store3) GetArticles(lastId int) (int, []*Article2) {
 func (s *Store3) GetTextBody(bodyId string) ([]byte, error) {
 	//fmt.Printf("GetTextBody: bodyId=%s\n", bodyId)
 	for _, a := range s.articles {
-		if a.Versions[0].BodyId == bodyId {
+		if a.BodyId == bodyId {
 			return a.GetHtml()
 		}
 	}
@@ -235,10 +236,6 @@ func (s *Store3) ArticlesCount() int {
 	return len(s.articles)
 }
 
-func (a *Article2) CurrVersion() *Text2 {
-	return a.Versions[0]
-}
-
 func (a *Article2) Permalink() string {
 	return "article/" + ShortenId(a.Id) + "/" + Urlify(a.Title) + ".html"
 }
@@ -252,7 +249,107 @@ func (a *Article2) TagsDisplay() template.HTML {
 	return template.HTML(s)
 }
 
+func (a *Article2) GetHtmlStr() string {
+	if a.BodyHtml == "" {
+		a.BodyHtml = msgToHtml(a.Body, a.Format)
+	}
+	return a.BodyHtml
+}
+
 func (a *Article2) GetHtml() ([]byte, error) {
-	s := "<p>Hello!</p>"
-	return []byte(s), nil
+	if a.BodyHtml == "" {
+		a.BodyHtml = msgToHtml(a.Body, a.Format)
+	}
+	return []byte(a.BodyHtml), nil
+}
+
+// TODO: this is simplistic but works for me, http://net.tutsplus.com/tutorials/other/8-regular-expressions-you-should-know/
+// has more elaborate regex for extracting urls
+var urlRx = regexp.MustCompile(`https?://[[:^space:]]+`)
+var notUrlEndChars = []byte(".),")
+
+func notUrlEndChar(c byte) bool {
+	return -1 != bytes.IndexByte(notUrlEndChars, c)
+}
+
+var disableUrlization = false
+
+func strToHtml(s string) string {
+	matches := urlRx.FindAllStringIndex(s, -1)
+	if nil == matches || disableUrlization {
+		s = template.HTMLEscapeString(s)
+		s = strings.Replace(s, "\n", "<br>", -1)
+		return "<p>" + s + "</p>"
+	}
+
+	urlMap := make(map[string]string)
+	ns := ""
+	prevEnd := 0
+	for n, match := range matches {
+		start, end := match[0], match[1]
+		for end > start && notUrlEndChar(s[end-1]) {
+			end -= 1
+		}
+		url := s[start:end]
+		ns += s[prevEnd:start]
+
+		// placeHolder is meant to be an unlikely string that doesn't exist in
+		// the message, so that we can replace the string with it and then
+		// revert the replacement. A more robust approach would be to remember
+		// offsets
+		placeHolder, ok := urlMap[url]
+		if !ok {
+			placeHolder = fmt.Sprintf("a;dfsl;a__lkasjdfh1234098;lajksdf_%d", n)
+			urlMap[url] = placeHolder
+		}
+		ns += placeHolder
+		prevEnd = end
+	}
+	ns += s[prevEnd:len(s)]
+
+	ns = template.HTMLEscapeString(ns)
+	for url, placeHolder := range urlMap {
+		url = fmt.Sprintf(`<a href="%s" rel="nofollow">%s</a>`, url, url)
+		ns = strings.Replace(ns, placeHolder, url, -1)
+	}
+	ns = strings.Replace(ns, "\n", "<br>", -1)
+	return "<p>" + ns + "</p>"
+}
+
+func textile(s []byte) string {
+	s, replacements := txt_with_code_parts(s)
+	res := textiler.ToHtml(s, false, false)
+	for kStr, v := range replacements {
+		k := []byte(kStr)
+		res = bytes.Replace(res, k, v, -1)
+	}
+	return string(res)
+}
+
+func markdown(s []byte) string {
+	//fmt.Printf("msgToHtml(): markdown\n")
+	s, replacements := txt_with_code_parts(s)
+	renderer := blackfriday.HtmlRenderer(0, "", "")
+	res := blackfriday.Markdown(s, renderer, 0)
+	for kStr, v := range replacements {
+		k := []byte(kStr)
+		res = bytes.Replace(res, k, v, -1)
+	}
+	return string(res)
+}
+
+func msgToHtml(msg []byte, format int) string {
+	switch format {
+	case FormatHtml:
+		//fmt.Printf("msgToHtml(): html\n")
+		return string(msg)
+	case FormatTextile:
+		return textile(msg)
+	case FormatMarkdown:
+		return markdown(msg)
+	case FormatText:
+		//fmt.Printf("msgToHtml(): text\n")
+		return strToHtml(string(msg))
+	}
+	panic("unknown format")
 }

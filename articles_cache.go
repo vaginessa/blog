@@ -4,14 +4,8 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"html/template"
-	"regexp"
-	"strings"
 	"sync"
-
-	"github.com/kjk/textiler"
 	"github.com/kjk/u"
-	"github.com/russross/blackfriday"
 )
 
 var articleBodyCache ArticleBodyCache
@@ -165,95 +159,4 @@ func (c *ArticleBodyCache) GetHtml(bodyId string, format int) string {
 	entry.bodyId = bodyId
 	entry.msgHtml = msgHtml
 	return msgHtml
-}
-
-// TODO: this is simplistic but works for me, http://net.tutsplus.com/tutorials/other/8-regular-expressions-you-should-know/
-// has more elaborate regex for extracting urls
-var urlRx = regexp.MustCompile(`https?://[[:^space:]]+`)
-var notUrlEndChars = []byte(".),")
-
-func notUrlEndChar(c byte) bool {
-	return -1 != bytes.IndexByte(notUrlEndChars, c)
-}
-
-var disableUrlization = false
-
-func strToHtml(s string) string {
-	matches := urlRx.FindAllStringIndex(s, -1)
-	if nil == matches || disableUrlization {
-		s = template.HTMLEscapeString(s)
-		s = strings.Replace(s, "\n", "<br>", -1)
-		return "<p>" + s + "</p>"
-	}
-
-	urlMap := make(map[string]string)
-	ns := ""
-	prevEnd := 0
-	for n, match := range matches {
-		start, end := match[0], match[1]
-		for end > start && notUrlEndChar(s[end-1]) {
-			end -= 1
-		}
-		url := s[start:end]
-		ns += s[prevEnd:start]
-
-		// placeHolder is meant to be an unlikely string that doesn't exist in
-		// the message, so that we can replace the string with it and then
-		// revert the replacement. A more robust approach would be to remember
-		// offsets
-		placeHolder, ok := urlMap[url]
-		if !ok {
-			placeHolder = fmt.Sprintf("a;dfsl;a__lkasjdfh1234098;lajksdf_%d", n)
-			urlMap[url] = placeHolder
-		}
-		ns += placeHolder
-		prevEnd = end
-	}
-	ns += s[prevEnd:len(s)]
-
-	ns = template.HTMLEscapeString(ns)
-	for url, placeHolder := range urlMap {
-		url = fmt.Sprintf(`<a href="%s" rel="nofollow">%s</a>`, url, url)
-		ns = strings.Replace(ns, placeHolder, url, -1)
-	}
-	ns = strings.Replace(ns, "\n", "<br>", -1)
-	return "<p>" + ns + "</p>"
-}
-
-func textile(s []byte) string {
-	s, replacements := txt_with_code_parts(s)
-	res := textiler.ToHtml(s, false, false)
-	for kStr, v := range replacements {
-		k := []byte(kStr)
-		res = bytes.Replace(res, k, v, -1)
-	}
-	return string(res)
-}
-
-func markdown(s []byte) string {
-	//fmt.Printf("msgToHtml(): markdown\n")
-	s, replacements := txt_with_code_parts(s)
-	renderer := blackfriday.HtmlRenderer(0, "", "")
-	res := blackfriday.Markdown(s, renderer, 0)
-	for kStr, v := range replacements {
-		k := []byte(kStr)
-		res = bytes.Replace(res, k, v, -1)
-	}
-	return string(res)
-}
-
-func msgToHtml(msg []byte, format int) string {
-	switch format {
-	case FormatHtml:
-		//fmt.Printf("msgToHtml(): html\n")
-		return string(msg)
-	case FormatTextile:
-		return textile(msg)
-	case FormatMarkdown:
-		return markdown(msg)
-	case FormatText:
-		//fmt.Printf("msgToHtml(): text\n")
-		return strToHtml(string(msg))
-	}
-	panic("unknown format")
 }
