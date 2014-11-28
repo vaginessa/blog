@@ -47,7 +47,8 @@ func RemoveWatch(c chan struct{}) {
 	mu.Unlock()
 }
 
-func NotifyFileChanges(path string) {
+func NotifyFileChanges(ev fsnotify.Event) {
+	path := ev.Name
 	if isTmpFile(path) {
 		return
 	}
@@ -57,7 +58,7 @@ func NotifyFileChanges(path string) {
 
 	for _, w := range watchedFiles {
 		if strings.HasSuffix(path, w.path) {
-			fmt.Printf("NotifyFileChanges: notify about %s\n", path)
+			fmt.Printf("NotifyFileChanges: notify about %s, event: %s\n", path, ev.String())
 			select {
 			case w.c <- struct{}{}:
 			default:
@@ -70,8 +71,7 @@ func watchChanges(watcher *fsnotify.Watcher) {
 	for {
 		select {
 		case ev := <-watcher.Events:
-			NotifyFileChanges(ev.Name)
-			log.Println("event:", ev)
+			NotifyFileChanges(ev)
 		case err := <-watcher.Errors:
 			log.Println("error:", err)
 		}

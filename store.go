@@ -112,6 +112,26 @@ func parseDate(s string) (time.Time, error) {
 	return time.Now(), err
 }
 
+func readArticleBody(path string) ([]byte, error) {
+	f, err := os.Open(path)
+	if err != nil {
+		return nil, err
+	}
+	defer f.Close()
+	r := bufio.NewReader(f)
+	for {
+		l, err := r.ReadString('\n')
+		if err != nil {
+			return nil, err
+		}
+		l = strings.TrimSpace(l)
+		if isSepLine(l) {
+			return ioutil.ReadAll(r)
+		}
+	}
+	return nil, fmt.Errorf("No separator line ---- in %s\n", path)
+}
+
 // might return nil if article is meant to be skipped (deleted or draft)
 func readArticle(path string) (*Article, error) {
 	f, err := os.Open(path)
@@ -241,6 +261,15 @@ func (a *Article) TagsDisplay() template.HTML {
 }
 
 func (a *Article) GetHtmlStr() string {
+	if !inProduction {
+		// always re-read from disk to make live refresh working
+		body, err := readArticleBody(a.Path)
+		if err != nil {
+			return ""
+		}
+		fmt.Printf("Got body for %s\n", a.Path)
+		return msgToHtml(body, a.Format)
+	}
 	if a.BodyHtml == "" {
 		a.BodyHtml = msgToHtml(a.Body, a.Format)
 	}
