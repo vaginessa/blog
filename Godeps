@@ -27,16 +27,16 @@
 			"Rev": "1b0c7f6e9ab3d7f500fd7d50c7ad835ff428139b"
 		},
 		{
-			"ImportPath": "github.com/kjk/contentstore",
-			"Rev": "3a29ec64cac98f54c57a4271a053a98bc5927b64"
-		},
-		{
 			"ImportPath": "github.com/kjk/textiler",
 			"Rev": "31558f2abcdda161c33ac431eab39e17bb7c2c52"
 		},
 		{
 			"ImportPath": "github.com/kjk/u",
 			"Rev": "1a606aa55f9c3ded3889a813e8cba1c0f4c4250b"
+		},
+		{
+			"ImportPath": "github.com/kr/fs",
+			"Rev": "2788f0dbd16903de03cb8186e5c7d97b69ad387b"
 		},
 		{
 			"ImportPath": "github.com/rcrowley/go-metrics",
