@@ -15,6 +15,11 @@
 			"Rev": "12ce6efc373e0a0fb9f6c93209a768dc5b797ba8"
 		},
 		{
+			"ImportPath": "github.com/go-fsnotify/fsnotify",
+			"Comment": "v1.0.4-13-gb26ce4f",
+			"Rev": "b26ce4f25b59a23443829c673303e439614eea0f"
+		},
+		{
 			"ImportPath": "github.com/gorilla/context",
 			"Rev": "14f550f51af52180c2eefed15e5fd18d63c0a64a"
 		},

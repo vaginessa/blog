@@ -65,7 +65,8 @@ func FormatNameToId(name string) int {
 }
 
 type Store struct {
-	articles []*Article
+	articles    []*Article
+	dirsToWatch []string
 }
 
 func isSepLine(s string) bool {
@@ -171,40 +172,41 @@ func readArticle(path string) (*Article, error) {
 	return a, nil
 }
 
-func readArticles() ([]*Article, error) {
+func readArticles() ([]*Article, []string, error) {
 	timeStart := time.Now()
 	walker := fs.Walk("blog_posts")
 	res := make([]*Article, 0)
+	dirs := make([]string, 0)
 	for walker.Step() {
 		if walker.Err() != nil {
 			fmt.Printf("walker.Err() failed with %s\n", walker.Err())
-			return nil, walker.Err()
+			return nil, nil, walker.Err()
 		}
 		st := walker.Stat()
+		path := walker.Path()
 		if st.IsDir() {
+			dirs = append(dirs, path)
 			continue
 		}
-		path := walker.Path()
-		//fmt.Printf("p: %s\n", path)
 		a, err := readArticle(path)
 		if err != nil {
-			fmt.Printf("readArticle() failed with %s\n", err)
-			return nil, err
+			fmt.Printf("readArticle() of %s failed with %s\n", path, err)
+			return nil, nil, err
 		}
 		if a != nil {
 			res = append(res, a)
 		}
 	}
 	fmt.Printf("read %d articles in %s\n", len(res), time.Since(timeStart))
-	return res, nil
+	return res, dirs, nil
 }
 
 func NewStore() (*Store, error) {
-	articles, err := readArticles()
+	articles, dirs, err := readArticles()
 	if err != nil {
 		return nil, err
 	}
-	return &Store{articles: articles}, nil
+	return &Store{articles: articles, dirsToWatch: dirs}, nil
 }
 
 func (s *Store) GetArticles() []*Article {
@@ -243,6 +245,10 @@ func (a *Article) GetHtmlStr() string {
 		a.BodyHtml = msgToHtml(a.Body, a.Format)
 	}
 	return a.BodyHtml
+}
+
+func (s *Store) GetDirsToWatch() []string {
+	return s.dirsToWatch
 }
 
 // TODO: this is simplistic but works for me, http://net.tutsplus.com/tutorials/other/8-regular-expressions-you-should-know/
