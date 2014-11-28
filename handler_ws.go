@@ -104,6 +104,21 @@ func startWatching() {
 	//watcher.Close()
 }
 
+func reloadArticle(article *Article) {
+	for i, a := range store.articles {
+		if a == article {
+			fmt.Printf("reloading %s\n", a.Path)
+			newArticle, err := readArticle(a.Path)
+			if err != nil {
+				fmt.Printf("reloading %s failed with %s\n", a.Path, err)
+				return
+			}
+			store.articles[i] = newArticle
+			return
+		}
+	}
+}
+
 // serveWs receives a file name from a websocket client and relays to it
 // all the notifications about changes to this file.
 func serveWs(w http.ResponseWriter, r *http.Request) {
@@ -148,6 +163,7 @@ loop:
 	for {
 		select {
 		case <-c:
+			reloadArticle(article)
 			err := conn.WriteMessage(websocket.TextMessage, nil)
 			if err != nil {
 				log.Print(err)
