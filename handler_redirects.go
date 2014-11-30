@@ -93,15 +93,22 @@ func getRedirectArticleId(url string) int {
 }
 
 func redirectIfNeeded(w http.ResponseWriter, r *http.Request) bool {
-	url := r.URL.Path
-	//logger.Noticef("redirectIfNeeded(): %q", url)
-	if redirUrl, ok := redirects[url]; ok {
+	uri := r.URL.Path
+	//logger.Noticef("redirectIfNeeded(): %q", uri)
+
+	if strings.HasPrefix(uri, "/software/sumatrapdf") {
+		redirUrl := "http://www.sumatrapdfreader.org" + uri[len("/software/sumatrapdf"):]
+		http.Redirect(w, r, redirUrl, 302)
+		return true
+	}
+
+	if redirUrl, ok := redirects[uri]; ok {
 		//logger.Noticef("Redirecting %q => %q", url, redirUrl)
 		http.Redirect(w, r, redirUrl, 302)
 		return true
 	}
 
-	redirectArticleId := getRedirectArticleId(url)
+	redirectArticleId := getRedirectArticleId(uri)
 	if redirectArticleId == -1 {
 		return false
 	}

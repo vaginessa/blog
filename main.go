@@ -20,7 +20,6 @@ import (
 	"unicode/utf8"
 
 	"github.com/garyburd/go-oauth/oauth"
-	_ "github.com/gorilla/mux"
 	"github.com/gorilla/securecookie"
 	"github.com/kjk/u"
 )
