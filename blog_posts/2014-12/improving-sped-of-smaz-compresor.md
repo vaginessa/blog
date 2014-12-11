@@ -1,5 +1,5 @@
 Id: 13
-Title: Improving speed of SMAZ compressor in Go by 2.6x/1.5x
+Title: Improving speed of pure Go SMAZ compressor by 2.6x/1.5x
 Date: 2014-12-11T00:19:49-08:00
 Format: Markdown
 Tags: go, programming
