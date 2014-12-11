@@ -23,7 +23,7 @@ BenchmarkCompression       40.35        62.26        1.54x
 BenchmarkDecompression     28.34        73.90        2.61x
 ```
 
-The speed increase came from 2 micro-optimizations.
+The speed increase came from 3 micro-optimizations.
 
 ## 1. Don't use `bytes.Buffer` if `[]byte` will do.
 
