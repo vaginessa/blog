@@ -58,6 +58,16 @@ If the buffer is not big enough, it'll be enlarged. If the caller
 doesn't want additional complexity of managing reusable buffers, it can
 pass `nil`.
 
+## 3. Avoid un-necessary copies
+
+Compression and decompression improves reading data from memory, transforming it
+and writing the result to another memory location.
+
+Memory operations are expensive. You can execute [7 CPU instructions](https://gist.github.com/kjk/0cd9e13e8b5f1046b697) for one memory operation in L2 cache.
+
+I noticed that compression was making unnecessary temporary copies of data.
+The code got [a bit more complicated](https://github.com/kjk/smaz/commit/754db648b7cd39fb12120a851e3d1106d2dff3e0) but also 1.14x faster.
+
 ## A digression on benchmarking tools in Go
 
 One of the features that distinguish Go from other programming language
@@ -102,5 +112,3 @@ after the change:
 > go test -bench=. >after.txt
 > benchcmp before.txt after.txt
 ```
-
-
