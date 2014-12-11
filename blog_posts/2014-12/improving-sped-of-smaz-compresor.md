@@ -1,5 +1,5 @@
 Id: 13
-Title: Improving speed of SMAZ compressor in Go by 2.4x/1.3x
+Title: Improving speed of SMAZ compressor in Go by 2.6x/1.5x
 Date: 2014-12-11T00:19:49-08:00
 Format: Markdown
 Tags: go, programming
@@ -10,17 +10,17 @@ of [SMAZ algorithm](https://github.com/antirez/smaz) for compressing small
 strings. It's simple, fast and works well for English text.
 
 It wasn't as fast as I expected so I looked at the code and with a few tweaks
-I managed to speed up decompression 2.42x times and compression 1.3x times:
+I managed to speed up decompression 2.61x times and compression 1.54x times:
 
 ```
-kjkmacbookpro-3:smaz kkowalczyk$ benchcmp before.txt after.txt
+kjkmacpro:smaz kjk$ benchcmp before.txt after.txt
 benchmark                  old ns/op     new ns/op     delta
-BenchmarkCompression       3918382       3027116       -22.75%
-BenchmarkDecompression     3012193       1244970       -58.67%
+BenchmarkCompression       3387936       2195304       -35.20%
+BenchmarkDecompression     2667583       1022908       -61.65%
 
 benchmark                  old MB/s     new MB/s     speedup
-BenchmarkCompression       34.88        45.15        1.29x
-BenchmarkDecompression     25.10        60.72        2.42x
+BenchmarkCompression       40.35        62.26        1.54x
+BenchmarkDecompression     28.34        73.90        2.61x
 ```
 
 The speed increase came from 2 micro-optimizations.
