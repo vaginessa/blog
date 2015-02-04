@@ -67,7 +67,7 @@ func handleMainPage(w http.ResponseWriter, r *http.Request) {
 	isAdmin := IsAdmin(r)
 	articles := getCachedArticles()
 	articleCount := len(articles)
-	articles = getRecentArticles(articles, 15)
+	articles = getRecentArticles(articles, articleCount)
 
 	model := struct {
 		IsAdmin       bool

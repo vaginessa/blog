@@ -465,8 +465,6 @@
 1889|blog/2004/12/31/bad-google-the-fallout.html
 1890|article/Google-comments-on-comments.html
 1890|blog/2004/12/31/google-comments-on-comments.html
-1891|article/43-depressing-things.html
-1891|blog/2005/01/02/43-depressing-things.html
 1901|article/Deep-indentation-vs-flat.html
 1901|blog/2005/07/10/deep-indentation-vs-flat.html
 1902|article/VirtualEarth-vs-Google-Maps-not-hitting-the-high.html
