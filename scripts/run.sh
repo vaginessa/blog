@@ -6,7 +6,7 @@ set -o pipefail
 
 #rm -rf $TMPDIR/godep
 echo "building"
-godep go build -o blog_app *.go
+gdep go build -o blog_app *.go
 #go build -o blog_app *.go
 echo "running in `pwd`"
 ./blog_app
