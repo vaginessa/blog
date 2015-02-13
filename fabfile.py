@@ -5,7 +5,7 @@ from fabric.contrib import *
 # force only in testing
 g_force_deploy = False
 
-env.hosts = ['blog.kowalczyk.info']
+env.hosts = ['blog-ssh.kowalczyk.info']
 env.user = 'blog'
 app_dir = 'www/app'
 
