@@ -1,5 +1,5 @@
 Id: 15
-Title: Using go-github package with golang.org/x/oauth2
+Title: Accessing GitHub API from Go
 Date: 2015-02-12T23:18:58-08:00
 Format: Markdown
 tags: go, programming
