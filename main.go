@@ -220,20 +220,16 @@ func getIpAddress(r *http.Request) string {
 }
 
 func jQueryUrl() string {
-	//return "//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"
 	//return "/js/jquery-1.4.2.js"
 	return "//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"
 }
 
-func prettifyJsUrl() string {
-	//return "//cdnjs.cloudflare.com/ajax/libs/prettify/188.0.0/prettify.js"
-	//return "/js/prettify.js"
-	return "//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.js"
+func highlightJsUrl() string {
+	return "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"
 }
 
-func prettifyCssUrl() string {
-	//return "/js/prettify.css"
-	return "//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.css"
+func highlightCssUrl() string {
+	return "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css"
 }
 
 func makeTimingHandler(fn func(http.ResponseWriter, *http.Request)) http.HandlerFunc {

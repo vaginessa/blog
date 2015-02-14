@@ -6,7 +6,7 @@
 <title>{{ .PageTitle }}</title>
 
 <link rel="alternate" type="application/atom+xml" title="RSS 2.0" href="/atom.xml">
-<link  href="{{ .PrettifyCssUrl }}" type="text/css" rel="stylesheet">
+<link  href="{{ .HighlightCssUrl }}" type="text/css" rel="stylesheet">
 {{ template "inline_css.html" }}
 <style type=text/css>
 body {
@@ -14,7 +14,8 @@ body {
 </style>
 
 <script type="text/javascript" src="{{ .JqueryUrl }}"></script>
-<script src="{{ .PrettifyJsUrl }}" type="text/javascript"></script>
+<script src="{{ .HighlightJsUrl }}" type="text/javascript"></script>
+<script>hljs.initHighlightingOnLoad();</script>
 
 {{ template "tagcloud.js" }}
 
@@ -48,7 +49,7 @@ $(document).ready(function(){
 
 </head>
 
-<body onload="prettyPrint()">
+<body>
 
 {{ template "page_navbar.html" . }}
 

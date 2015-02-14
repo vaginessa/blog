@@ -349,7 +349,9 @@ func markdown(s []byte) string {
 	//fmt.Printf("msgToHtml(): markdown\n")
 	s, replacements := txt_with_code_parts(s)
 	unsafe := blackfriday.MarkdownCommon(s)
-	res := bluemonday.UGCPolicy().SanitizeBytes(unsafe)
+	policy := bluemonday.UGCPolicy()
+	policy.AllowStyling()
+	res := policy.SanitizeBytes(unsafe)
 	for kStr, v := range replacements {
 		k := []byte(kStr)
 		res = bytes.Replace(res, k, v, -1)

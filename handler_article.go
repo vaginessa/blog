@@ -54,36 +54,36 @@ func handleArticle(w http.ResponseWriter, r *http.Request) {
 	displayArticle.HtmlBody = template.HTML(msgHtml)
 
 	model := struct {
-		IsAdmin        bool
-		Reload         bool
-		AnalyticsCode  string
-		JqueryUrl      string
-		PrettifyJsUrl  string
-		PrettifyCssUrl string
-		PageTitle      string
-		Article        *DisplayArticle
-		NextArticle    *Article
-		PrevArticle    *Article
-		LogInOutUrl    string
-		ArticlesJsUrl  string
-		TagsDisplay    string
-		ArticleNo      int
-		ArticlesCount  int
+		IsAdmin         bool
+		Reload          bool
+		AnalyticsCode   string
+		JqueryUrl       string
+		HighlightJsUrl  string
+		HighlightCssUrl string
+		PageTitle       string
+		Article         *DisplayArticle
+		NextArticle     *Article
+		PrevArticle     *Article
+		LogInOutUrl     string
+		ArticlesJsUrl   string
+		TagsDisplay     string
+		ArticleNo       int
+		ArticlesCount   int
 	}{
-		IsAdmin:        isAdmin,
-		Reload:         !inProduction,
-		AnalyticsCode:  *config.AnalyticsCode,
-		JqueryUrl:      jQueryUrl(),
-		PrettifyJsUrl:  prettifyJsUrl(),
-		PrettifyCssUrl: prettifyCssUrl(),
-		LogInOutUrl:    getLogInOutUrl(r),
-		Article:        displayArticle,
-		NextArticle:    articleInfo.next,
-		PrevArticle:    articleInfo.prev,
-		PageTitle:      article.Title,
-		ArticlesCount:  store.ArticlesCount(),
-		ArticleNo:      articleInfo.pos + 1,
-		ArticlesJsUrl:  getArticlesJsUrl(),
+		IsAdmin:         isAdmin,
+		Reload:          !inProduction,
+		AnalyticsCode:   *config.AnalyticsCode,
+		JqueryUrl:       jQueryUrl(),
+		HighlightJsUrl:  highlightJsUrl(),
+		HighlightCssUrl: highlightCssUrl(),
+		LogInOutUrl:     getLogInOutUrl(r),
+		Article:         displayArticle,
+		NextArticle:     articleInfo.next,
+		PrevArticle:     articleInfo.prev,
+		PageTitle:       article.Title,
+		ArticlesCount:   store.ArticlesCount(),
+		ArticleNo:       articleInfo.pos + 1,
+		ArticlesJsUrl:   getArticlesJsUrl(),
 	}
 
 	ExecTemplate(w, tmplArticle, model)
