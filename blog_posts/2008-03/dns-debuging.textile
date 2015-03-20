@@ -2,18 +2,18 @@ Id: 1121
 Title: DNS debugging
 Tags: unix,networking
 Date: 2008-03-26T06:52:36-07:00
-Format: Textile
+Format: Markdown
 --------------
 DNS debugging
 
-<code>
+<code>\
 dhcp client
 
-/etc/resolv.conf - written by dhcp client, might be overwritten by Network
+/etc/resolv.conf - written by dhcp client, might be overwritten by
+Network\
 Manager (?)
 
-[kkowalczyk@tlapx60ubu]:/etc$ ls -lah resolv.conf
+[kkowalczyk@tlapx60ubu]:/etc\$ ls -lah resolv.conf
 
--rw-r--r-- 1 root root 37 2008-03-24 15:35 resolv.conf
+-rw-r—r— 1 root root 37 2008-03-24 15:35 resolv.conf\
 </code>
-

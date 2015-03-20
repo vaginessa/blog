@@ -70,8 +70,8 @@ func splitFile(path string) (string, string) {
 	idx := strings.Index(s, "----------")
 	u.PanicIf(idx == -1, "idx == -1")
 	hdr := s[:idx]
-	hdr = strings.Replace(hdr, "Html", "Markdown")
-	hdr = strings.Replace(hdr, "Textile", "Markdown")
+	hdr = strings.Replace(hdr, "Html", "Markdown", -1)
+	hdr = strings.Replace(hdr, "Textile", "Markdown", -1)
 	body := s[idx:]
 	idx = strings.Index(body, "\n")
 	u.PanicIf(idx == -1, "idx == -1")

@@ -2,18 +2,40 @@ Id: 1243
 Title: variadic macros in msvc
 Tags: programming,c++,msvc
 Date: 2008-04-04T16:38:52-07:00
-Format: Html
+Format: Markdown
 --------------
-<div><font size="2" face="monospace"><br/><font face="monospace">&gt;<em>&nbsp;Is&nbsp;there&nbsp;any&nbsp;way&nbsp;to&nbsp;support&nbsp;variadic&nbsp;macros&nbsp;in&nbsp;Visual&nbsp;Studio<br/></em>&gt;<em>&nbsp;like&nbsp;gcc&nbsp;supports?&nbsp;&nbsp;If&nbsp;not,&nbsp;how&nbsp;do&nbsp;people&nbsp;write&nbsp;stuff&nbsp;like<br/></em>&gt;<em>&nbsp;custom&nbsp;asserts&nbsp;that&nbsp;take&nbsp;variable&nbsp;parameters?<br/></em>&gt;<br/>&gt;<em>&nbsp;<a href="http://gcc.gnu.org/onlinedocs/cpp/Variadic-Macros.html">http://gcc.gnu.org/onlinedocs/cpp/Variadic-Macros.html</a>
+<div>
 
-<br/></em>&gt;<br/></font>
+\
+\>* Is there any way to support variadic macros in Visual Studio\
+*\>* like gcc supports?  If not, how do people write stuff like\
+*\>* custom asserts that take variable parameters?\
+*\>\
+\>* <http://gcc.gnu.org/onlinedocs/cpp/Variadic-Macros.html>\
+*\>\
+\
+Depending on what you're after, you might find that the \_\_noop\
+intrinsic will help you out.\
+\
+ \#ifdef \_DEBUG\
+void \_MyDebugPrintf(const char\* fmt, ...);\
+\#define DPF \_MyDebugPrintf\
+\#else\
+\#define DPF \_\_noop\
+\#endif\
+\
+// later, ...\
+\
+        DPF("%s %s this works", FuncA(), FuncB());\
+\
+FuncA and FuncB (or parameters in general) are not evaluated\
+in non \_DEBUG builds. The compiler ignores the statement.\
+\
+ This is obviously not variadic macros, but you can do quite a\
+bit with it.\
 
-<br/>Depending&nbsp;on&nbsp;what&nbsp;you&apos;re&nbsp;after,&nbsp;you&nbsp;might&nbsp;find&nbsp;that&nbsp;the&nbsp;__noop<br/>intrinsic&nbsp;will&nbsp;help&nbsp;you&nbsp;out.
+</div>
 
-<br/><br/>
-#ifdef&nbsp;_DEBUG<br/>void&nbsp;_MyDebugPrintf(const&nbsp;char*&nbsp;fmt,&nbsp;...);<br/>#define&nbsp;DPF&nbsp;_MyDebugPrintf<br/>#else<br/>#define&nbsp;DPF&nbsp;__noop<br/>#endif<br/><br/>//&nbsp;later,&nbsp;...<br/><br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DPF(&quot;%s&nbsp;%s&nbsp;this&nbsp;works&quot;,&nbsp;FuncA(),&nbsp;FuncB());<br/><br/>FuncA&nbsp;and&nbsp;FuncB&nbsp;(or&nbsp;parameters&nbsp;in&nbsp;general) are not evaluated<br/>in&nbsp;non&nbsp;_DEBUG&nbsp;builds. The compiler ignores the statement.<br/>
+<div align="right">
 
-<br/>
-This&nbsp;is&nbsp;obviously&nbsp;not&nbsp;variadic&nbsp;macros,&nbsp;but&nbsp;you&nbsp;can&nbsp;do&nbsp;quite&nbsp;a<br/>bit&nbsp;with&nbsp;it.<br/></font></div>
-
-<div align="right"></div>
+</div>
