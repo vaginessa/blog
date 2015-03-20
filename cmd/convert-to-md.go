@@ -123,7 +123,8 @@ func main() {
 	checkPandoc()
 	files := getFilesToConvert("blog_posts")
 	for _, path := range files {
-		fmt.Printf("converting: %s\n", path)
-		convertWithPandoc(path)
+		fmt.Printf("renaming: %s\n", path)
+		//convertWithPandoc(path)
+		gitRename(path)
 	}
 }
