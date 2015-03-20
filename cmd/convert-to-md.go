@@ -70,11 +70,24 @@ func splitFile(path string) (string, string) {
 	idx := strings.Index(s, "----------")
 	u.PanicIf(idx == -1, "idx == -1")
 	hdr := s[:idx]
+	hdr = strings.Replace(hdr, "Html", "Markdown")
+	hdr = strings.Replace(hdr, "Textile", "Markdown")
 	body := s[idx:]
 	idx = strings.Index(body, "\n")
 	u.PanicIf(idx == -1, "idx == -1")
 	body = body[idx+1:]
 	return hdr, body
+}
+
+func gitRename(path string) {
+	ext := filepath.Ext(path)
+	if ext == ".md" {
+		return
+	}
+	dstPath := path[:len(path)-len(ext)]
+	dstPath += ".md"
+	//fmt.Printf("dst path: %s\n", dstPath)
+	runCmd("git", "mv", path, dstPath)
 }
 
 func convertWithPandoc(path string) {
@@ -104,18 +117,12 @@ func convertWithPandoc(path string) {
 	f.Close()
 	err = os.Remove(pathTmp)
 	u.PanicIfErr(err)
-
-	ext := filepath.Ext(path)
-	dstPath := path[:len(path)-len(ext)]
-	dstPath += ".md"
-	//fmt.Printf("dst path: %s\n", dstPath)
-	runCmd("git", "mv", path, dstPath)
 }
 
 func main() {
 	checkPandoc()
 	files := getFilesToConvert("blog_posts")
-	for i, path := range files {
+	for _, path := range files {
 		fmt.Printf("converting: %s\n", path)
 		convertWithPandoc(path)
 	}
