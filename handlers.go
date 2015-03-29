@@ -43,5 +43,4 @@ func InitHttpHandlers() {
 	if !inProduction {
 		http.HandleFunc("/ws", serveWs)
 	}
-	http.HandleFunc("/tool/protobufs-online-decoder", handleProtobufDecoder)
 }

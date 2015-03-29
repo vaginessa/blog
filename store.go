@@ -273,7 +273,7 @@ func (a *Article) TagsDisplay() template.HTML {
 
 func (a *Article) GetHtmlStr() string {
 	if a.BodyHtml == "" {
-		a.BodyHtml = msgToHtml(a.Body, a.Format)
+		a.BodyHtml = msgToHTML(a.Body, a.Format)
 	}
 	return a.BodyHtml
 }
@@ -293,7 +293,7 @@ func notUrlEndChar(c byte) bool {
 
 var disableUrlization = false
 
-func strToHtml(s string) string {
+func strToHTML(s string) string {
 	matches := urlRx.FindAllStringIndex(s, -1)
 	if nil == matches || disableUrlization {
 		s = template.HTMLEscapeString(s)
@@ -336,7 +336,7 @@ func strToHtml(s string) string {
 }
 
 func textile(s []byte) string {
-	s, replacements := txt_with_code_parts(s)
+	s, replacements := txtWithCodeParts(s)
 	res := textiler.ToHtml(s, false, false)
 	for kStr, v := range replacements {
 		k := []byte(kStr)
@@ -346,8 +346,7 @@ func textile(s []byte) string {
 }
 
 func markdown(s []byte) string {
-	//fmt.Printf("msgToHtml(): markdown\n")
-	s, replacements := txt_with_code_parts(s)
+	s, replacements := txtWithCodeParts(s)
 	unsafe := blackfriday.MarkdownCommon(s)
 	policy := bluemonday.UGCPolicy()
 	policy.AllowStyling()
@@ -359,18 +358,16 @@ func markdown(s []byte) string {
 	return string(res)
 }
 
-func msgToHtml(msg []byte, format int) string {
+func msgToHTML(msg []byte, format int) string {
 	switch format {
 	case FormatHtml:
-		//fmt.Printf("msgToHtml(): html\n")
 		return string(msg)
 	case FormatTextile:
 		return textile(msg)
 	case FormatMarkdown:
 		return markdown(msg)
 	case FormatText:
-		//fmt.Printf("msgToHtml(): text\n")
-		return strToHtml(string(msg))
+		return strToHTML(string(msg))
 	}
 	panic("unknown format")
 }

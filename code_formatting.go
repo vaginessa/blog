@@ -8,7 +8,7 @@ import (
 	"github.com/kjk/u"
 )
 
-var LANG_TO_PRETTIFY_LANG_MAP = map[string]string{
+var langToPrettifyLangMap = map[string]string{
 	"c":          "c",
 	"c++":        "cc",
 	"cpp":        "cpp",
@@ -21,18 +21,18 @@ var LANG_TO_PRETTIFY_LANG_MAP = map[string]string{
 	"java":       "java",
 }
 
-func lang_to_prettify_lang(lang string) string {
+func langToPrettifyLang(lang string) string {
 	//from http://google-code-prettify.googlecode.com/svn/trunk/README.html
 	//"bsh", "c", "cc", "cpp", "cs", "csh", "cyc", "cv", "htm", "html",
 	//"java", "js", "m", "mxml", "perl", "pl", "pm", "py", "rb", "sh",
 	//"xhtml", "xml", "xsl"
-	if l, ok := LANG_TO_PRETTIFY_LANG_MAP[lang]; ok {
+	if l, ok := langToPrettifyLangMap[lang]; ok {
 		return fmt.Sprintf("lang-%s", l)
 	}
 	return ""
 }
 
-func txt_cookie(s string) string {
+func txtCookie(s string) string {
 	return u.Sha1HexOfBytes([]byte(s))
 }
 
@@ -52,21 +52,21 @@ func extractLang(s []byte) (rest, lang []byte) {
 	return s[i+1:], s[:i]
 }
 
-func txt_with_code_parts(txt []byte) ([]byte, map[string][]byte) {
-	code_parts := make(map[string][]byte)
+func txtWithCodeParts(txt []byte) ([]byte, map[string][]byte) {
+	codeParts := make(map[string][]byte)
 	res := reCode.ReplaceAllFunc(txt, func(s []byte) []byte {
 		s = s[len("<code") : len(s)-len("</code>")]
 		s, lang := extractLang(s)
-		new_code := ""
+		newCode := ""
 		if lang != nil {
-			l := lang_to_prettify_lang(string(lang))
-			new_code = fmt.Sprintf(`<pre class="prettyprint %s">%s</pre>`, l, string(s))
+			l := langToPrettifyLang(string(lang))
+			newCode = fmt.Sprintf(`<pre class="prettyprint %s">%s</pre>`, l, string(s))
 		} else {
-			new_code = fmt.Sprintf(`<pre class="prettyprint">%s</pre>`, string(s))
+			newCode = fmt.Sprintf(`<pre class="prettyprint">%s</pre>`, string(s))
 		}
-		cookie := txt_cookie(new_code)
-		code_parts[cookie] = []byte(new_code)
+		cookie := txtCookie(newCode)
+		codeParts[cookie] = []byte(newCode)
 		return []byte(cookie)
 	})
-	return res, code_parts
+	return res, codeParts
 }
