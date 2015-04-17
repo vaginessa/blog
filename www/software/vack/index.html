@@ -3,7 +3,7 @@
 
 <link rel="alternate" type="application/atom+xml" title="RSS 2.0" href="http://kjkpub.s3.amazonaws.com/vack/relnotes.xml" />
 
-<style type="text/css"> 
+<style type="text/css">
 body {
 	background: #ffffff;
 	background: #A9D1FF;
@@ -197,12 +197,12 @@ it only supports the basic options.
 var uservoiceOptions = {
   /* required */
   key: 'visualack',
-  host: 'visualack.uservoice.com', 
+  host: 'visualack.uservoice.com',
   forum: '34392',
-  showTab: true,  
+  showTab: true,
   /* optional */
   alignment: 'left',
-  background_color:'#f00', 
+  background_color:'#f00',
   text_color: 'black',
   hover_color: '#06C',
   lang: 'en'
@@ -221,16 +221,15 @@ window.onload = (typeof window.onload != 'function') ? _loadUserVoice : function
 <hr>
 
 <center>Written by <a href="/">Krzysztof Kowalczyk</a></center>
-<script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-194516-1']);
-  _gaq.push(['_trackPageview']);
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
-  })();
+  ga('create', 'UA-194516-1', 'auto');
+  ga('send', 'pageview');
+
 </script>
 
 </body>

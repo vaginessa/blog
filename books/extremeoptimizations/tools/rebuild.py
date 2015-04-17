@@ -9,7 +9,7 @@ SCRIPT_DIR = os.path.dirname(__file__)
 BASE_DIR = os.path.realpath(os.path.join(SCRIPT_DIR, ".."))
 TXTSRCDIR = os.path.join(BASE_DIR, "txtsrc")
 SRCDIR = os.path.join(BASE_DIR, "src")
-OUTDIR = os.path.realpath(os.path.join(BASE_DIR, "..", "www", "extremeoptimizations"))
+OUTDIR = os.path.realpath(os.path.join(BASE_DIR, "..", "...", "..", "..", "www", "extremeoptimizations"))
 OUTSRCDIR = os.path.join(OUTDIR, "src")
 
 def read(path):
@@ -194,7 +194,7 @@ def htmlify(text):
 # Return a <code class=$x> where $x is a class name understood by highlight.js
 # We auto-detect $x from file name.
 def code_for_filename(filename):
-    ext_to_classname = { 
+    ext_to_classname = {
         ".cpp" : "cpp",
         ".cc" : "cpp",
         ".h" : "cpp",
@@ -219,7 +219,7 @@ def dofile(srcpath):
         title = keys["Title"]
     hdr = header()
     hdr = hdr.replace("$title", title)
-    ftr = footer()        
+    ftr = footer()
     #write(tmppath, txt)
     html = textile.textile(txt)
     if g_do_tokens:

@@ -39,37 +39,37 @@ var sep = " <font color=#ccc>&bull;</font> ";
 function dw(s) { document.write(s); }
 function dwjoined(arr) { document.write(arr.join(sep)); }
 
-var kw = ["raise", "assert", "elif", "from", "lambda", "return", "break", "else", 
-	"global", "not", "try", "class", "except", "if", "or", "while", "continue", 
+var kw = ["raise", "assert", "elif", "from", "lambda", "return", "break", "else",
+	"global", "not", "try", "class", "except", "if", "or", "while", "continue",
 	"exec", "import", "pass", "with", "def", "finally", "in", "print", "yield"].sort();
 
 var envVars = ["PYTHONHOME", "PYTHONPATH", "PYTHONSTARTUP", "PYTHONDEBUG", "PYTHONINSPECT"];
-/* var strs = ['"str"', "'str'", "'''str'''", '"""str"""', "u'unicode str'", 
+/* var strs = ['"str"', "'str'", "'''str'''", '"""str"""', "u'unicode str'",
 'U"unicode str"', "r'raw str'", 'R"raw st"', "ur'unicode raw str'", 'UR"unicode raw str"']; */
 var strs = ['"str"', "'str'", "'''str'''", '"""str"""', "u'unicode str'", "r'raw str'", "ur'unicode raw str'"];
-var strEscapes = ["\\newline", "\\\\", "\\e", "\\v", "\\'", "\\f", "\\ooo", '\\"', 
+var strEscapes = ["\\newline", "\\\\", "\\e", "\\v", "\\'", "\\f", "\\ooo", '\\"',
 	"\\n", "\\a", "\\r", "\\xhh", "\\b", "\\t", "\\uxxxx", "\Uxxxxxxxx"];
 
-var nums = ["<b>Int:</b> 1234, 123L", "<b>Hex:</b> 0xff, 0xFFL", 
-	"<b>Float (double precision):</b> 3.14e-10, .001, 10., 1E3", "<b>Octal:</b> 0177", 
+var nums = ["<b>Int:</b> 1234, 123L", "<b>Hex:</b> 0xff, 0xFFL",
+	"<b>Float (double precision):</b> 3.14e-10, .001, 10., 1E3", "<b>Octal:</b> 0177",
 	"<b>Complex:</b> 1J, 2+3J, 4+5j", "(since 2.2 int and long are unified)"];
 var seqs = ["<b>Strings</b>", "<b>Tuples</b> (), (1,), (1,2)", "<b>Lists</b> [], [1], [1,2]"];
 
-var seqOps = ["x in s", "x not in s", "s1 + s2", "s * n", "n * s", "s[i]", "s[i:j]", 
+var seqOps = ["x in s", "x not in s", "s1 + s2", "s * n", "n * s", "s[i]", "s[i:j]",
 	"s[i:j:step]", "len(s)", "min(s)"," max(s)", "reversed(s) [2.4]"];
-var mutSeqOps = ["s[i] = x", "s[i:j [:step]] = t", "del s[i:j[:step]]", 
-	"s.append(x)","s.extend(x)", "s.count(x)", "s.index(x[, start[, stop]])", 
+var mutSeqOps = ["s[i] = x", "s[i:j [:step]] = t", "del s[i:j[:step]]",
+	"s.append(x)","s.extend(x)", "s.count(x)", "s.index(x[, start[, stop]])",
 	"s.insert(i, x)", "s.remove(x)", "s.pop([i])", "s.reverse()", "s.sort([cmp])"];
-var numOps = ["abs(x)", "int(x)", "long(x)", "float(x)", "-x", "+x", "x + y", 
+var numOps = ["abs(x)", "int(x)", "long(x)", "float(x)", "-x", "+x", "x + y",
 	"x - y", "x * y", "x / y", "x // y", "x % y", "divmod(x,y)", "x**y"];
 var bitOps = ["~x", "x ^ y", "x & y", "x | y", "x << n", "x >> n"];
 
 var sysModule = ["argv", "stdin", "stdout", "stderr", "version"];
 
-var osModule = ["listdir(dir)", "makedirs(path)", "system(cmd)", "environ", 
+var osModule = ["listdir(dir)", "makedirs(path)", "system(cmd)", "environ",
 	"stat(path)", "fstat(path)", "lstat(path)"].sort();
 
-var osPathModule = ["join(x,y,..)", "exists(path)", "isdir(path)", "isfile(path)", 
+var osPathModule = ["join(x,y,..)", "exists(path)", "isdir(path)", "isfile(path)",
 	"basename(path)", "dirpath(path)", "realpath(path)", "expanduser(path)"].sort();
 
 var statModule = ["ST_MODE", "ST_INO", "ST_DEV", "ST_NLINK", "ST_UID", "ST_GID",
@@ -83,7 +83,7 @@ var reSpecialSeqs = [
 	"?&nbsp;", "zero or one",
 	"*&nbsp;", "zero or more",
 	"+&nbsp;", "one or more",
-	"|&nbsp;", "alternative e.g. 'foo|Bar' matches either 'foo' or 'Bar'", 
+	"|&nbsp;", "alternative e.g. 'foo|Bar' matches either 'foo' or 'Bar'",
 	"^&nbsp;", "beginning of string or beginning of string and any place after newline in MULTILINE mode",
 	"$&nbsp;", "end of string",
 	"[]", "character class e.g. [a-z] (any character between 'a' and 'z')",
@@ -108,7 +108,7 @@ var reSpecialSeqs = [
 <p><code><ct>Numbers: </ct><script>dwjoined(nums)</script></code></p>
 <p><code><ct>Sequences: </ct><script>dwjoined(seqs)</script></code></p>
 <p><code><ct>Dictionaries: </ct>{}, {1 : "first"}, {"foo" : "bar", 2 : "ah"} </code></p>
-<!--<p><code><ct>Operators: </ct>, [...] {...} `` s[i] s[i:j] s.attr f(...) 
+<!--<p><code><ct>Operators: </ct>, [...] {...} `` s[i] s[i:j] s.attr f(...)
 +x -x ~x x**y x*y x/y x%y x+y x-y x&lt;&lt;y x&gt;&gt;y x&and;y x^y x|y </code></p>-->
 <p><code><ct>Ops on all numeric types: </ct><script>dwjoined(numOps)</script></code></p>
 <p><code><ct>Bit operations: </ct><script>dwjoined(bitOps)</script></code></p>
@@ -141,16 +141,15 @@ var reSpecialSeqs = [
 </code>
 </p>
 
-<script type="text/javascript">
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-194516-1']);
-  _gaq.push(['_trackPageview']);
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
-  })();
+  ga('create', 'UA-194516-1', 'auto');
+  ga('send', 'pageview');
+
 </script>
 
 </body>
