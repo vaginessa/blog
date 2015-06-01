@@ -36,4 +36,4 @@ call it experimental.
 
 This is how “frequently read” list looks like:
 
-![](=http://kjkpub.s3.amazonaws.com/blog/sumatra/sum-shot-03-small.png)
+![](=//kjkpub.s3.amazonaws.com/blog/sumatra/sum-shot-03-small.png)

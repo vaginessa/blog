@@ -62,7 +62,7 @@ PartCover produces an XML file with the results of code coverage. There
 is a PartCover.Browse GUI app that shows the results but it’s rather
 clunky. Here’s how it looks like:
 
-![PartCover GUI browser](http://kjkpub.s3.amazonaws.com/blog/img/partcover-browse.png "PartCover GUI browser")
+![PartCover GUI browser](//kjkpub.s3.amazonaws.com/blog/img/partcover-browse.png "PartCover GUI browser")
 
 There’s also XSLT files to convert XML to html file, but the result is
 very basic and not very useful.

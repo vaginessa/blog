@@ -4,7 +4,7 @@ Tags: software
 Date: 2009-04-08T22:48:04-07:00
 Format: Markdown
 --------------
-![](http://kjkpub.s3.amazonaws.com/blog/15minutes/15minutes-1.1.png)
+![](//kjkpub.s3.amazonaws.com/blog/15minutes/15minutes-1.1.png)
 
 [15minutes](http://blog.kowalczyk.info/software/15minutes/) is a simple
 productivity tool I wrote.

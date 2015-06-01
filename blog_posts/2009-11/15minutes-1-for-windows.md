@@ -20,4 +20,4 @@ would sometimes forget to start the timer).
 
 And here’s how it looks like:
 
-![](http://kjkpub.s3.amazonaws.com/blog/15minutes/15minutes-1.1.png)
+![](//kjkpub.s3.amazonaws.com/blog/15minutes/15minutes-1.1.png)

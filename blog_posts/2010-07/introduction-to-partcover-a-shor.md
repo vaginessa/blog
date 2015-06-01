@@ -99,7 +99,7 @@ methods. When you click on a method, on the right you’ll see source code
 of that method annotated with code coverage information (lines with
 green background have been executed):
 
-![PartCover GUI browser](http://kjkpub.s3.amazonaws.com/blog/img/partcover-browse.png "PartCover GUI browser")
+![PartCover GUI browser](//kjkpub.s3.amazonaws.com/blog/img/partcover-browse.png "PartCover GUI browser")
 
 Alternatively, you can adapt for your purposes [my python
 script](/article/Converting-PartCover-results-to-html.html) that
@@ -146,4 +146,3 @@ Resources
 -   [original SourceForge
     project](http://sourceforge.net/projects/partcover/)
 -   [github fork](http://github.com/sawilde/partcover.net4)
-

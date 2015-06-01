@@ -13,11 +13,11 @@ I’ve created a new installer.
 
 The old installer:
 
-![Old installer](http://kjkpub.s3.amazonaws.com/blog/sumatra/sum-installer-old.png "Old installer")
+![Old installer](//kjkpub.s3.amazonaws.com/blog/sumatra/sum-installer-old.png "Old installer")
 
 New installer:
 
-![New installer](http://kjkpub.s3.amazonaws.com/blog/sumatra/sum-installer-new.png "New installer")
+![New installer](//kjkpub.s3.amazonaws.com/blog/sumatra/sum-installer-new.png "New installer")
 
 This post explains why I spent the time rewriting perfectly functional
 installer.

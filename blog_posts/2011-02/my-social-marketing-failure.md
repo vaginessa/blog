@@ -14,7 +14,7 @@ my free PDF viewer for Windows.
 Let me rephrase that without the buzzwords: four months ago I added
 Google buzz, tweet and Facebook like buttons to Sumatra’s web pages:
 
-![](=http://kjkpub.s3.amazonaws.com/blog/sumatra/sum-tweet-like.png)
+![](//kjkpub.s3.amazonaws.com/blog/sumatra/sum-tweet-like.png)
 
 This is a reflection on changing habits of how people share what they
 find on the web. Blogs used to be the medium to write about products and
