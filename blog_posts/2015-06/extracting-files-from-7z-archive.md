@@ -8,9 +8,9 @@ For a project written in Go I needed to access files inside .7z archive.
 
 Unfortunately at this time there is no pure Go implementation for that.
 
-An easy way to achieve his is to sub-launch `7z` executable to first extract the file to disk and then proceed as usual.
+An easy way to achieve this is to sub-launch `7z` executable to extract the file to disk and then proceed as usual.
 
-I spent a little more effort and added a way to get an `io.ReadCloser` stream for a file inside .7z archive.
+I spent a little more effort and created a way to get an `io.ReadCloser` stream for a file inside .7z archive.
 
 It still uses `7z` executable for the functionality but it doesn't create temporary file. Instead it streams decompressed data so it's more efficient.
 
