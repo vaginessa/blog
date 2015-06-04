@@ -33,27 +33,26 @@ The library offers essentially 2 functions:
 Here's a skeleton of the code, error handling skipped for  clarity:
 
 ```go
-	var archive *lzmadec.Archive
-	archive, _ := lzmadec.NewArchive("foo.7z")
+var archive *lzmadec.Archive
+archive, _ := lzmadec.NewArchive("foo.7z")
 
-	// list all files inside archive
-	for _, e := range archive.Entries {
-		fmt.Printf("name: %s, size: %d\n", e.Path, e.Size)
-	}
-	firstFile := archive.Entries[0].Path
+// list all files inside archive
+for _, e := range archive.Entries {
+	fmt.Printf("name: %s, size: %d\n", e.Path, e.Size)
+}
+firstFile := archive.Entries[0].Path
 
-	// extract to a file
-	archive.ExtractToFile(firstFile + ".extracted", firstFile)
+// extract to a file
+archive.ExtractToFile(firstFile + ".extracted", firstFile)
 
-	// decompress to in-memory buffer
-	r, _ := archive.GetFileReader(firstFile)
-	var buf bytes.Buffer
-	_, _ = io.Copy(&buf, r)
-	// if not fully read, calling Close() ensures the sub-launched 7z executable
-	// is terminated
-	r.Close()
-	fmt.Printf("size of file %s after decompression: %d\n",
-		firstFile, len(buf.Bytes()))
+// decompress to in-memory buffer
+r, _ := archive.GetFileReader(firstFile)
+var buf bytes.Buffer
+_, _ = io.Copy(&buf, r)
+// if not fully read, calling Close() ensures that sub-launched 7z executable
+// is terminated
+r.Close()
+fmt.Printf("size of file %s after decompression: %d\n", firstFile, len(buf.Bytes()))
 ```
 
 To see a more complete example: https://github.com/kjk/lzmadec/blob/master/cmd/test/main.go
