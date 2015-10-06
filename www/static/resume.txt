@@ -37,7 +37,7 @@ Technologies used: Go, Unix.
 Small, fast, object-oriented, embedded database engine for C#/.NET.
 Technologies used: C#.
 
-[Fotofi](http://www.yepi.ws/fotofi/free-stock-photos)
+[Fotofi](http://blog.kowalczyk.info/software/fotofi/)
 
 A windows application for finding free stock photographs.
 Technologies used: C#, WPF.
@@ -212,12 +212,6 @@ Technology used: Amiga OS, 68000 assembly.
 
 Employment history
 
-[Yepi](http://www.yepi.ws)
-
-2010/07 - present
-
-Independent Software Maker.
-
 [OpenDNS](http://www.opendns.com/)
 
 2009/02 - 2010/06
@@ -308,4 +302,3 @@ Education
 French engineering degree equivalent to Master of Science
 in Telecommunication/Computer Science from [ENST de Bretagne](http://www.enst-
 bretagne.fr/), France, 1998
-

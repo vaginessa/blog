@@ -91,17 +91,17 @@ a.articlelink:hover {
 <div class="centered">
 <table style="padding-top: 12px;">
 <tr>
-  <td valign=top style="padding-right: 16px;">
-    <table valign=top>
+  <td valign="top" style="padding-right: 16px;">
+    <table valign="top">
       <tr>
-        <td valign=top colspan=2>
+        <td valign="top" colspan="2">
         <span class="bigtxt">Recent articles</span>
         <br><br>
         </td>
       </tr>
       {{ range .Articles }}
       <tr>
-        <td colspan=2 style="padding-top:2px; padding-bottom: 4px; max-width:480px">
+        <td colspan="2" style="padding-top:2px; padding-bottom: 4px; max-width:480px">
           <a class="articlelink" href="/{{ .Permalink }}">{{.Title}}</a>
           {{ if .TagsDisplay }}
             <span style="font-size:80%">
@@ -111,17 +111,17 @@ a.articlelink:hover {
       </tr>
       {{ end }}
       <tr>
-        <td colspan=2 style="padding-top:12px; max-width:380px">
-          Subscribe to <a href="/atom.xml">RSS feed</a></span>
+        <td colspan="2" style="padding-top:12px; max-width:380px">
+          Subscribe to <a href="/atom.xml">RSS feed</a>
         </td>
       </tr>
     </table>
   </td>
 
-  <td valign=top>
+  <td valign="top">
     <table>
       <tr>
-        <td valign=top colspan=3>
+        <td valign="top" colspan="3">
         <span class="bigtxt">My software</span>
           {{ if not $isAdmin }}
             &nbsp;<span class="onHoverVisible"><a href="{{ .LogInOutUrl }}">log in</a></span>
@@ -169,7 +169,7 @@ a.articlelink:hover {
       <tr>
         <td>
           <div class="softbox">
-            <span class="title"><a href="http://www.yepi.ws/fotofi/free-stock-photos">Fotofi</a></span>
+            <span class="title"><a href="/software/fotofi/">Fotofi</a></span>
             <div class="desc">
             Find free stock photos, a Windows application.
             </div>

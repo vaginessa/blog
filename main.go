@@ -442,7 +442,7 @@ func main() {
 		go BackupLoop(backupConfig)
 	}
 
-	startWatching()
+	//startWatching()
 	InitHttpHandlers()
 	logger.Noticef(fmt.Sprintf("Started runing on %s", httpAddr))
 	if err := http.ListenAndServe(httpAddr, nil); err != nil {

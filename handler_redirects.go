@@ -48,6 +48,9 @@ var redirects = map[string]string{
 	"/software/volante":                             "/software/volante/database.html",
 	"/software/volante/":                            "/software/volante/database.html",
 	"/software/volante/index.html":                  "/software/volante/database.html",
+	"/software/fotofi":                              "/software/fotofi/free-stock-photos.html",
+	"/software/fotofi/":                             "/software/fotofi/free-stock-photos.html",
+	"/software/fotofi/index.html":                   "/software/fotofi/free-stock-photos.html",
 	"/static/software.html":                         "/software/index.html",
 	"/static/krzysztof.html":                        "/static/resume.html",
 }

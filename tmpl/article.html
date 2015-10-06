@@ -8,10 +8,6 @@
 <link rel="alternate" type="application/atom+xml" title="RSS 2.0" href="/atom.xml">
 <link  href="{{ .HighlightCssUrl }}" type="text/css" rel="stylesheet">
 {{ template "inline_css.html" }}
-<style type=text/css>
-body {
-}
-</style>
 
 <script type="text/javascript" src="{{ .JqueryUrl }}"></script>
 <script src="{{ .HighlightJsUrl }}" type="text/javascript"></script>
@@ -58,8 +54,8 @@ $(document).ready(function(){
   <div id="post" style="margin-left:auto;margin-right:auto;margin-top:2em;">
     <div class="title">
         {{ .Article.Title }}
-        {{ if not .IsAdmin }} <a id="login_id" class="invisible" onMouseOver="showById('login_id');"
-        onMouseOut="hideById('login_id');" href="{{ .LogInOutUrl }}">login</a>
+        {{ if not .IsAdmin }} <a id="login_id" class="invisible" onouseover="showById('login_id');"
+        onmouseout="hideById('login_id');" href="{{ .LogInOutUrl }}">login</a>
         {{ end }}
     </div>
 
@@ -98,7 +94,7 @@ $(document).ready(function(){
 <center>
 <table class="ad" style="visibility:hidden;" cellspacing=0 cellpadding=0>
 <tr><td>
-  <a href="http://www.yepi.ws/fotofi/free-stock-photos"><b>Free stock photos</b></a>
+  <a href="/software/fotofi/"><b>Free stock photos</b></a>
 </td></tr>
 <tr><td>
 <span style="font-size: 80%"><span class="adl">www.yepi.ws</span>&nbsp;&nbsp;&nbsp;&nbsp;
