@@ -101,8 +101,6 @@ body {
 }
 .btn * {
   font-style: normal;
-  background-image: url(btn2.png);
-  background-repeat: no-repeat;
   display: block;
   position: relative;
 }
@@ -172,7 +170,6 @@ body {
   background-color: #444;
 }
 .btn[class] {
-  background-image: url(shade.png);
   background-position: bottom;
 }
 * html .btn {
