@@ -1,204 +1,201 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Krzysztof Kowalczyk</title>
-{{ template "inline_css.html" }}
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Krzysztof Kowalczyk</title>
+  {{ template "inline_css.html" }}
 
-<style type="text/css">
-body {
-}
+  <style type="text/css">
+    body {}
 
-.bigtxt {
-  font-size: 160%;
-  font-weight: bold;
-}
+    .bigtxt {
+      font-size: 160%;
+      font-weight: bold;
+    }
 
-.softbox {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  padding: 8px; max-width: 320px;
-}
+    .softbox {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      padding: 8px;
+      max-width: 320px;
+    }
 
-.softbox .title {
-  font-size:160%;
-  font-weight: bold;
-  color: #008AC0;
-}
+    .softbox .title {
+      font-size: 160%;
+      font-weight: bold;
+      color: #008AC0;
+    }
 
-.softbox .desc {
-  padding-top: 4px;
-}
+    .softbox .desc {
+      padding-top: 4px;
+    }
 
-.softbox a {
-  text-decoration: none;
-  color: #008AC0;
-}
+    .softbox a {
+      text-decoration: none;
+      color: #008AC0;
+    }
 
-.softbox a:hover {
-  color: white;
-  background: #008AC0;
-}
+    .softbox a:hover {
+      color: white;
+      background: #008AC0;
+    }
 
-.softbox2 {
-  padding: 8px; max-width: 320px;
-}
+    .softbox2 {
+      padding: 8px;
+      max-width: 320px;
+    }
 
-.softbox2 .title {
-  font-size:160%;
-  font-weight: bold;
-  color: #008AC0;
-}
+    .softbox2 .title {
+      font-size: 160%;
+      font-weight: bold;
+      color: #008AC0;
+    }
 
-.softbox2 .desc {
-  padding-top: 4px;
-}
+    .softbox2 .desc {
+      padding-top: 4px;
+    }
 
-.softbox2 a {
-  text-decoration: none;
-  color: #008AC0;
-}
+    .softbox2 a {
+      text-decoration: none;
+      color: #008AC0;
+    }
 
-.softbox2 a:hover {
-  color: white;
-  background: #008AC0;
-}
+    .softbox2 a:hover {
+      color: white;
+      background: #008AC0;
+    }
 
-a.articlelink {
-  text-decoration: none;
-  color: black;
-  font-size: 110%;
-}
+    a.articlelink {
+      text-decoration: none;
+      color: black;
+      font-size: 110%;
+    }
 
-a.articlelink:hover {
-  color: white;
-  background-color: black;
-}
-
-</style>
+    a.articlelink:hover {
+      color: white;
+      background-color: black;
+    }
+  </style>
 
 </head>
+
 <body>
 
-{{ template "page_navbar.html" . }}
+  {{ template "page_navbar.html" . }}
 
-{{ $isAdmin := .IsAdmin }}
+  <div id="content" style="clear:both">
 
-<div id="content" style="clear:both">
+    <div class="centered">
+      <table style="padding-top: 12px;">
+        <tr>
+          <td valign="top" style="padding-right: 16px;">
+            <table valign="top">
+              <tr>
+                <td valign="top" colspan="2">
+                  <span class="bigtxt">Recent articles</span>
+                  <br>
+                  <br>
+                </td>
+              </tr>
+              {{ range .Articles }}
+              <tr>
+                <td colspan="2" style="padding-top:2px; padding-bottom: 4px; max-width:480px">
+                  <a class="articlelink" href="/{{ .Permalink }}">{{.Title}}</a> {{ if .TagsDisplay }}
+                  <span style="font-size:80%">
+                    <span class="taglink">in:</span> {{ .TagsDisplay }}</span>
+                  {{ end }}
+                </td>
+              </tr>
+              {{ end }}
+              <tr>
+                <td colspan="2" style="padding-top:12px; max-width:380px">
+                  Subscribe to <a href="/atom.xml">RSS feed</a>
+                </td>
+              </tr>
+            </table>
+          </td>
 
-<div class="centered">
-<table style="padding-top: 12px;">
-<tr>
-  <td valign="top" style="padding-right: 16px;">
-    <table valign="top">
-      <tr>
-        <td valign="top" colspan="2">
-        <span class="bigtxt">Recent articles</span>
-        <br><br>
-        </td>
-      </tr>
-      {{ range .Articles }}
-      <tr>
-        <td colspan="2" style="padding-top:2px; padding-bottom: 4px; max-width:480px">
-          <a class="articlelink" href="/{{ .Permalink }}">{{.Title}}</a>
-          {{ if .TagsDisplay }}
-            <span style="font-size:80%">
-            <span class="taglink">in:</span> {{ .TagsDisplay }}</span>
-          {{ end }}
-        </td>
-      </tr>
-      {{ end }}
-      <tr>
-        <td colspan="2" style="padding-top:12px; max-width:380px">
-          Subscribe to <a href="/atom.xml">RSS feed</a>
-        </td>
-      </tr>
-    </table>
-  </td>
+          <td valign="top">
+            <table>
+              <tr>
+                <td valign="top" colspan="3">
+                  <span class="bigtxt">My software</span>
+                  <br>
+                  <br>
+                </td>
+              </tr>
 
-  <td valign="top">
-    <table>
-      <tr>
-        <td valign="top" colspan="3">
-        <span class="bigtxt">My software</span>
-          {{ if not $isAdmin }}
-            &nbsp;<span class="onHoverVisible"><a href="{{ .LogInOutUrl }}">log in</a></span>
-          {{ end }}
-            <br><br>
-        </td>
-      </tr>
+              <tr>
+                <td>
+                  <div class="softbox">
+                    <span class="title"><a href="/software/volante/">Volante</a></span>
+                    <div class="desc">
+                      Fast, small, object-oriented, embedded database engine for C#/.NET.
+                    </div>
+                  </div>
+                  <br>
+                </td>
+              </tr>
 
-      <tr>
-        <td>
-          <div class="softbox">
-            <span class="title"><a href="/software/volante/">Volante</a></span>
-            <div class="desc">
-            Fast, small, object-oriented, embedded database engine for C#/.NET.
-            </div>
-          </div>
-          <br>
-        </td>
-      </tr>
+              <tr>
+                <td>
+                  <div class="softbox">
+                    <span class="title"><a href="/software/sumatrapdf/">SumatraPDF</a></span>
+                    <div class="desc">
+                      Small, fast, free PDF, ePub, MOBI, CHM, XPS, DjVu, CBZ and CBR reader for Windows.
+                    </div>
+                  </div>
+                  <br>
+                </td>
+              </tr>
 
-      <tr>
-        <td>
-          <div class="softbox">
-            <span class="title"><a href="/software/sumatrapdf/">SumatraPDF</a></span>
-            <div class="desc">
-            Small, fast, free PDF, ePub, MOBI, CHM, XPS, DjVu, CBZ and CBR reader for Windows.
-            </div>
-          </div>
-          <br>
-        </td>
-      </tr>
+              <tr>
+                <td>
+                  <div class="softbox">
+                    <span class="title"><a href="software/vack/">VisualAck</a></span>
+                    <div class="desc">
+                      Visual grep for Mac OS X.
+                    </div>
+                  </div>
+                  <br>
+                </td>
+              </tr>
 
-      <tr>
-        <td>
-          <div class="softbox">
-            <span class="title"><a href="software/vack/">VisualAck</a></span>
-            <div class="desc">
-            Visual grep for Mac OS X.
-            </div>
-          </div>
-          <br>
-        </td>
-      </tr>
+              <tr>
+                <td>
+                  <div class="softbox">
+                    <span class="title"><a href="/software/fotofi/">Fotofi</a></span>
+                    <div class="desc">
+                      Find free stock photos, a Windows application.
+                    </div>
+                  </div>
+                  <br>
+                </td>
+              </tr>
 
-      <tr>
-        <td>
-          <div class="softbox">
-            <span class="title"><a href="/software/fotofi/">Fotofi</a></span>
-            <div class="desc">
-            Find free stock photos, a Windows application.
-            </div>
-          </div>
-          <br>
-        </td>
-      </tr>
+              <tr>
+                <td>
+                  <div class="softbox2">
+                    and <a href="/software/">more...</a>
+                  </div>
+                </td>
+              </tr>
 
-      <tr>
-        <td>
-          <div class="softbox2">
-            and <a href="/software/">more...</a>
-          </div>
-        </td>
-      </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </div>
 
-    </table>
-  </td>
-</tr>
-</table>
-</div>
+    <br>
 
-<br>
+  </div>
 
-</div>
-
-<hr>
-
-{{ template "analytics.html" . }}
+  <hr> {{ template "analytics.html" . }}
 
 </body>
+
 </html>
