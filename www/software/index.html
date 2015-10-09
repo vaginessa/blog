@@ -1,142 +1,181 @@
 <!doctype html>
 <html>
+
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Software by Krzysztof Kowalczyk</title>
-<style type="text/css">
-body {
-  margin: 0px;
-  font-size: 10pt;
-  font-family: sans-serif;
-}
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title>Software by Krzysztof Kowalczyk</title>
+  <style type="text/css">
+    body {
+      margin: 0px;
+      font-size: 10pt;
+      font-family: sans-serif;
+    }
 
-h1 {
-  font-size: medium;
-  margin-bottom: 2px;
-  padding: 0;
-}
+    h1 {
+      font-size: medium;
+      margin-bottom: 2px;
+      padding: 0;
+    }
 
-div#tophdr {
-  font-size:10pt;
-  font-weight:bold;
-  font-family: sans-serif;
+    div#tophdr {
+      font-size: 10pt;
+      font-weight: bold;
+      font-family: sans-serif;
+      margin: 0px;
+      padding: 6pt;
+      padding-left: 16px;
+      padding-right: 16px
+    }
+    /* drop-down menu based on http://csswizardry.com/2011/02/creating-a-pure-css-dropdown-menu/ */
 
-  margin: 0px;
-  padding: 6pt;
-  padding-left: 16px;
-  padding-right: 16px
-}
+    #nav {
+      list-style: none;
+      font-weight: bold;
+      float: right;
+      margin-top: 0px;
+      position: relative;
+      z-index: 5;
+    }
 
-/* drop-down menu based on http://csswizardry.com/2011/02/creating-a-pure-css-dropdown-menu/ */
-#nav {
-  list-style:none;
-  font-weight: bold;
-  float:right;
-  margin-top:0px;
-  position:relative;
-  z-index:5;
-}
+    #nav li {
+      float: left;
+      margin-right: 4pt;
+      position: relative;
+    }
 
-#nav li {
-  float: left;
-  margin-right: 4pt;
-  position:relative;
-}
+    #nav a {
+      display: block;
+      color: #aaa;
+      text-decoration: none;
+      border-bottom: 3px solid transparent;
+    }
 
-#nav a {
-  display: block;
-  color: #aaa;
-  text-decoration: none;
-  border-bottom: 3px solid transparent;
-}
+    #nav a:hover {
+      color: #666;
+      text-decoration: none;
+      border-bottom: 3px solid #666;
+    }
 
-#nav a:hover {
-  color:#666;
-  text-decoration: none;
-  border-bottom: 3px solid #666;
-}
+    div#content {
+      font-size: 14px;
+      margin: 1.75em auto;
+      line-height: 150%;
+      width: 600px;
+    }
 
-div#content {
-  font-size: 14px;
-  margin: 1.75em auto;
-  line-height: 150%;
-  width: 600px;
-}
+    img {
+      border: 0
+    }
 
-img {
-  border:0
-}
-
-.light {
-  color: #5a5a5a;
-}
-</style>
+    .light {
+      color: #5a5a5a;
+    }
+  </style>
 
 </head>
+
 <body>
 
-<div id="tophdr">
-      <ul id="nav">
-        <li><a href="/">Krzysztof Kowalczyk</a></li>
-        <li><span style="color:gray">&bull;</span></li>
-        <li><a href="/static/resume.html">About me</a></li>
-        <li><span style="color:gray">&bull;</span></li>
-        <li><a href="/archives.html">Articles</a></li>
-        <li><span style="color:gray">&bull;</span></li>
-        <li><a href="/software/">Software</a></li>
-        <li><span style="color:gray">&bull;</span></li>
-        <li><a href="/static/documents.html">My Documents</a></li>
-      </ul>
-</div>
+  <div id="tophdr">
+    <ul id="nav">
+      <li><a href="/software/">Software</a></li>
+      <li>
+        <span style="color:gray">&bull;</span>
+      </li>
+      <li><a href="/archives.html">Articles</a></li>
+      <li>
+        <span style="color:gray">&bull;</span>
+      </li>
+      <li><a href="/static/documents.html">Documents</a></li>
+      <li>
+        <span style="color:gray">&bull;</span>
+      </li>
+      <li><a href="/static/resume.html">About me</a></li>
+    </ul>
+  </div>
 
-<div id="content">
-  <h3>Software I wrote:</h3>
+  <div id="content">
 
-  <ul>
-    <li><a href="/software/sumatrapdf/">Sumatra PDF</a>
-      <span class="light">- a PDF viewer for Windows, often <a href="/software/sumatrapdf/ripoffs/list-of-sumatrapdf-ripoffs.html">ripped off</a></span></li>
-    <li><a href="/software/volante/">Volante</a>
-        <span class="light">- fast, small, object-oriented database for C#</span></li>
-    <li><a href="/software/the-silver-searcher-for-windows.html">The Silver Searcher</a>
-      <span class="light">- port of The Silver Searcher (ag) for Windows</span></li>
-    <li><a href="/software/pigz-for-windows.html">Pigz</a>
-      <span class="light">- port of pigz for Windows</span></li>
-    <li><a href="/software/fofou/">Fofou</a>
-      <span class="light">- simple forum software in Go</span></li>
-    <li><a href="/software/scdiff/">scdiff</a>
-      <span class="light">- git, subversion, cvs checkin preview, for Windows</span></li>
-  </ul>
+    <p><a href="/">Home</a> : Software I wrote</p>
 
-  <h3>Less notable:</h3>
-  <ul>
-    <li><a href="/software/fotofi/">Fotofi</a>
-        <span class="light">- find free stock photos, for Windows</span></li>
-    <li><a href="/software/patheditor/">Path Editor</a>
-      <span class="light">- edit %PATH% variable, for Windows</span></li>
-    <li><a href="/software/vack/">VisualAck</a>
-      <span class="light">- a visual grep for Mac OS X</span></li>
-    <li><a href="/software/15minutes.html">15minutes</a>
-      <span class="light">- a simple timer for Mac and Windows</span></li>
-    <!--
-    <li><a href="/software/noahpro/">Noah Pro</a>
-      <span class="light">- an English dictionary for Palm OS</span></li>
-    -->
-    <li><a href="/software/wtail/">wTail</a>
-      <span class="light">- like tail, but for Windows and with a UI</span></li>
-    <li>and more as listed in my <a href="/static/resume.html">resume</a></li>
-  </ul>
-  <hr>
-  <center><a href="/">Krzysztof Kowalczyk</a></center>
-</div>
+    <h3>Software for Windows:</h3>
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-194516-1', 'auto');
-  ga('send', 'pageview');
-</script>
+    <ul>
+      <li><a href="/software/sumatrapdf/">Sumatra PDF</a>
+        <span class="light">- a PDF viewer for Windows, often <a href="/software/sumatrapdf/ripoffs/list-of-sumatrapdf-ripoffs.html">ripped off</a></span>
+      </li>
+      <li><a href="/software/patheditor/">Path Editor</a>
+        <span class="light">- edit %PATH% variable, for Windows</span>
+      </li>
+      <li><a href="/software/fotofi/">Fotofi</a>
+        <span class="light">- find free stock photos, for Windows</span>
+      </li>
+      <li><a href="/software/the-silver-searcher-for-windows.html">The Silver Searcher</a>
+        <span class="light">- port of The Silver Searcher (ag) for Windows</span>
+      </li>
+      <li><a href="/software/pigz-for-windows.html">Pigz</a>
+        <span class="light">- port of pigz for Windows</span>
+      </li>
+      <li><a href="/software/scdiff/">scdiff</a>
+        <span class="light">- git, subversion, cvs checkin preview, for Windows</span>
+      </li>
+      <li><a href="/software/15minutes.html">15minutes</a>
+        <span class="light">- a simple timer for Mac and Windows</span>
+      </li>
+      <li><a href="/software/wtail/">wTail</a>
+        <span class="light">- like tail, but for Windows and with a UI</span>
+      </li>
+    </ul>
+
+    <h3>Software for Mac:</h3>
+    <ul>
+      <li><a href="/software/vack/">VisualAck</a>
+        <span class="light">- a visual grep for Mac OS X</span>
+      </li>
+      <li><a href="/software/15minutes.html">15minutes</a>
+        <span class="light">- a simple timer for Mac and Windows</span>
+      </li>
+    </ul>
+
+    <h3>Libraries:</h3>
+    <ul>
+      <li><a href="/software/volante/">Volante</a>
+        <span class="light">- fast, small, object-oriented database for C#</span>
+      </li>
+    </ul>
+
+    <h3>Web-based</h3>
+    <ul>
+      <li><a href="/software/fofou/">Fofou</a>
+        <span class="light">- simple forum software in Go</span>
+      </li>
+      <li><a href="http://www.apptranslator.org">AppTranslator</a>
+        <span class="light">- simple forum software in Go</span>
+      </li>
+    </ul>
+
+    And more as listed in my <a href="/static/resume.html">resume</a>.
+
+    <hr>
+    <center><a href="/">Krzysztof Kowalczyk</a></center>
+  </div>
+
+  <script>
+    (function(i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r;
+      i[r] = i[r] || function() {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date();
+      a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0];
+      a.async = 1;
+      a.src = g;
+      m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+    ga('create', 'UA-194516-1', 'auto');
+    ga('send', 'pageview');
+  </script>
 
 </body>
+
 </html>
