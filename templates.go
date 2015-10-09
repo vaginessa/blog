@@ -20,7 +20,7 @@ var (
 	templateNames            = [...]string{tmplLogs, tmplMainPage, tmplArticle,
 		tmplArchive, tmplCrashReportsIndex, tmplCrashReportsAppIndex,
 		tmplCrashReport, tmplTimings,
-		"analytics.html", "inline_css.html", "tagcloud.js", "page_navbar.html"}
+		"analytics.html", "tagcloud.js", "page_navbar.html"}
 	templatePaths   []string
 	templates       *template.Template
 	reloadTemplates = true
