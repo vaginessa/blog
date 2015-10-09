@@ -33,12 +33,12 @@ var redirects = map[string]string{
 	"/software/patheditor/":                         "/software/patheditor/for-windows.html",
 	"/software/scdiff/":                             "/software/scdiff.html",
 	"/software/scdiff/index.html":                   "/software/scdiff.html",
-	"/software/sumatra":                             "/software/sumatrapdf/free-pdf-reader.html",
-	"/software/sumatrapdf":                          "/software/sumatrapdf/free-pdf-reader.html",
-	"/software/sumatrapdf/":                         "/software/sumatrapdf/free-pdf-reader.html",
-	"/software/sumatrapdf/index.html":               "/software/sumatrapdf/free-pdf-reader.html",
-	"/software/sumatrapdf/download.html _blank":     "/software/sumatrapdf/download-free-pdf-viewer.html",
-	"/software/sumatrapdf/download.html":            "/software/sumatrapdf/download-free-pdf-viewer.html",
+	"/software/sumatra":                             "http://www.sumatrapdfreader.org/free-pdf-reader.html",
+	"/software/sumatrapdf":                          "http://www.sumatrapdfreader.org/free-pdf-reader.html",
+	"/software/sumatrapdf/":                         "http://www.sumatrapdfreader.org/free-pdf-reader.html",
+	"/software/sumatrapdf/index.html":               "http://www.sumatrapdfreader.org/free-pdf-reader.html",
+	"/software/sumatrapdf/download.html _blank":     "http://www.sumatrapdfreader.org/free-pdf-reader.html",
+	"/software/sumatrapdf/download.html":            "http://www.sumatrapdfreader.org/free-pdf-reader.html",
 	"/software/sumatrapdf/prerelase.html":           "/software/sumatrapdf/prerelease.html",
 	"/software/sumatrapdf/sumatra-shot-00.gif":      "http://kjkpub.s3.amazonaws.com/blog/sumatra/sumatra-shot-00.gif",
 	"/software/sumatrapdf/sumatra-shot-01.gif":      "http://kjkpub.s3.amazonaws.com/blog/sumatra/sumatra-shot-01.gif",
@@ -85,12 +85,12 @@ func readRedirects() {
 }
 
 // return -1 if there's no redirect for this urls
-func getRedirectArticleId(url string) int {
+func getRedirectArticleID(url string) int {
 	url = url[1:] // remove '/' from the beginning
 	articleRedirectsMutex.Lock()
 	defer articleRedirectsMutex.Unlock()
-	if articleId, ok := articleRedirects[url]; ok {
-		return articleId
+	if articleID, ok := articleRedirects[url]; ok {
+		return articleID
 	}
 	return -1
 }
@@ -100,26 +100,26 @@ func redirectIfNeeded(w http.ResponseWriter, r *http.Request) bool {
 	//logger.Noticef("redirectIfNeeded(): %q", uri)
 
 	if strings.HasPrefix(uri, "/software/sumatrapdf") {
-		redirUrl := "http://www.sumatrapdfreader.org" + uri[len("/software/sumatrapdf"):]
-		http.Redirect(w, r, redirUrl, 302)
+		redirURL := "http://www.sumatrapdfreader.org" + uri[len("/software/sumatrapdf"):]
+		http.Redirect(w, r, redirURL, 302)
 		return true
 	}
 
-	if redirUrl, ok := redirects[uri]; ok {
+	if redirURL, ok := redirects[uri]; ok {
 		//logger.Noticef("Redirecting %q => %q", url, redirUrl)
-		http.Redirect(w, r, redirUrl, 302)
+		http.Redirect(w, r, redirURL, 302)
 		return true
 	}
 
-	redirectArticleId := getRedirectArticleId(uri)
-	if redirectArticleId == -1 {
+	redirectArticleID := getRedirectArticleID(uri)
+	if redirectArticleID == -1 {
 		return false
 	}
-	article := store.GetArticleById(redirectArticleId)
+	article := store.GetArticleById(redirectArticleID)
 	if article != nil {
-		redirUrl := "/" + article.Permalink()
+		redirURL := "/" + article.Permalink()
 		//logger.Noticef("Redirecting %q => %q", url, redirUrl)
-		http.Redirect(w, r, redirUrl, 302)
+		http.Redirect(w, r, redirURL, 302)
 		return true
 	}
 
@@ -130,10 +130,10 @@ func redirectIfNeeded(w http.ResponseWriter, r *http.Request) bool {
 func forumRedirect(w http.ResponseWriter, r *http.Request) {
 	url := r.URL.Path[len("/forum_sumatra/"):]
 
-	redirUrl := "http://forums.fofou.org/sumatrapdf/" + url
+	redirURL := "http://forums.fofou.org/sumatrapdf/" + url
 	if len(r.URL.RawQuery) > 0 {
-		redirUrl = redirUrl + "?" + r.URL.RawQuery
+		redirURL = redirURL + "?" + r.URL.RawQuery
 	}
 	//logger.Noticef("Redirecting %q => %q", r.URL.Path, redirUrl)
-	http.Redirect(w, r, redirUrl, 302)
+	http.Redirect(w, r, redirURL, 302)
 }
