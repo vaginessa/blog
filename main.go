@@ -12,7 +12,6 @@ import (
 	"net/http"
 	_ "net/url"
 	"path/filepath"
-	"runtime"
 	"sort"
 	"strconv"
 	"strings"
@@ -386,7 +385,6 @@ Format: Markdown
 func main() {
 	var err error
 
-	runtime.GOMAXPROCS(runtime.NumCPU())
 	parseCmdLineArgs()
 
 	if newArticleTitle != "" {
