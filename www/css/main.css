@@ -6,7 +6,8 @@ body {
   background: #fcfcfa;
   color: #333;
   font-family: 'Roboto', sans-serif;
-  font-size: 13pt;
+  font-family: 'PT Serif Caption', serif;
+  font-size: 12pt;
 }
 
 div > p, li > p {
@@ -44,9 +45,6 @@ div.centered table
 {
     margin: 0 auto;
     text-align: left;
-}
-
-div#content {
 }
 
 div#post {
@@ -144,13 +142,13 @@ a.taglink:hover {
   display: block;
   color: #aaa;
   text-decoration: none;
-  border-bottom: 3px solid transparent;
+  border-bottom: 1px solid transparent;
 }
 
 #nav a:hover {
   color:#666;
   text-decoration: none;
-  border-bottom: 3px solid #666;
+  border-bottom: 1px solid #666;
 }
 
 /* drop-down */
