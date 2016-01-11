@@ -14,6 +14,6 @@ What are possible uses for this file:
 Changes to hosts file take place immediately after saving the file.
 
 Here's the simplest mapping from 127.0.0.1 to localhost and blog.local.org names:
-<code>
+```
 127.0.0.1       localhost blog.local.org
-</code>
+```

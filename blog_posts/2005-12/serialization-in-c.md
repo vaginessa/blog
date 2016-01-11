@@ -26,7 +26,7 @@ XML is slightly different:
 
 An example of serialization/deserialization to a file:
 
-<code c#>
+```c#
 using System.IO;
 using System.Diagnostics;
 using System.Runtime.Serialization;
@@ -56,7 +56,7 @@ public class Settings {
                     stream.Close();
             }
     }
-    
+
     static MySettings Load(string fileName) {
         Stream stream = null;
         MySettings settings = null;
@@ -75,4 +75,4 @@ public class Settings {
         return settings;
     }
 }
-</code>
+```

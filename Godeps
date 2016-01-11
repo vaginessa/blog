@@ -53,7 +53,7 @@
 		},
 		{
 			"ImportPath": "github.com/russross/blackfriday",
-			"Rev": "f10a439fa0de041047d06b686fa5e056bee024b7"
+			"Rev": "c8875c0ed47e07b063c3628e2e4d4c9826721795"
 		},
 		{
 			"ImportPath": "github.com/shurcooL/go/github_flavored_markdown/sanitized_anchor_name",

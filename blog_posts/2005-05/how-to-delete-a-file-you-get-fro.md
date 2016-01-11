@@ -8,7 +8,7 @@ I just hit an interesting corner case in Python. Urllib module has a very
 useful function urllib.urlretrieve(url, filePath) which will get a given url
 and save it to a file. This function, however, might fail, in which case we
 would like to delete it so that we don't get confused by partially downloaded,
-corrupted file. 
+corrupted file.
 
 To detect failure of urlretrieve() we can simply wrap it
 inside exception handling. As experience showed, at least on windows, calling
@@ -20,7 +20,7 @@ My solution to the problem was to retry os.remove() few times, sleeping for a
 second between tries, therefore giving python time to close the file used in
 urlretrieve(). This seems to work. And here's the full code:
 
-<code>
+```python
 def fFileExists(filePath):
   try:
     st = os.stat(filePath)
@@ -50,5 +50,4 @@ while removeRetryCount < 3:
     print "exception: n  %s, n  %s, n  %s n  when trying to remove
 file %s" % (sys.exc_info()[0], sys.exc_info()[1], sys.exc_info()[2], filePath)
     removeRetryCount += 1
-</code>
-
+```

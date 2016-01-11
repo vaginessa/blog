@@ -7,23 +7,23 @@ Format: Markdown
 Windows binary can have resources embedded in them. Most resources are of
 predetermined type (e.g. a menu, an icon or a bitmap) but you can also
 embed arbitrary binary data (e.g. a text file). The proper syntax is hard to figure out
-just from reading msdn docs. 
+just from reading msdn docs.
 
 This snippet shows how to embed a binary resource from a file.
 
 First you need to define a resource identifier in a header file (e.g. `resource.h`)
 that will be used by both C compiler and resource compiler:
-<code c>
+```c
 #define MY_RESOURCE 300
-</code>
+```
 
 Then you need to add to your resource file (e.g. `resource.rc`):
-<code>
+```
 MY_RESOURCE RCDATA "file-with-data.txt"
-</code>
+```
 
 And finally, this is how you can get to this data:
-<code c>
+```c
 void WorkOnResource(void)
 {
     HGLOBAL     res_handle = NULL;
@@ -42,4 +42,4 @@ void WorkOnResource(void)
     res_size = SizeofResource(NULL, res);
     /* you can now use the resource data */
 }
-</code>
+```

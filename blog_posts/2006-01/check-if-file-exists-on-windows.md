@@ -8,7 +8,7 @@ Windows doesn't have a built-in function that checks if a file with a given name
 exists. It can be trivially written using `GetFileAttributes` or `FindFirstFile`
 APIs. Version below uses `GetFileAttributes`.
 
-<code c>
+```c
 /* Return TRUE if file 'fileName' exists */
 bool FileExists(const TCHAR *fileName)
 {
@@ -19,4 +19,4 @@ bool FileExists(const TCHAR *fileName)
         return false;
     return true;
 }
-</code>
+```

@@ -15,7 +15,7 @@ For timing exuction time of pieces of code you need a high-resolution timer. On 
 
 Here's a simple implementation in C:
 
-<code c>
+```c
 typedef struct prof_timer_t {
     LARGE_INTEGER time_start;
     LARGE_INTEGER time_stop;
@@ -36,11 +36,11 @@ double prof_timer_get_duration_in_secs(prof_timer_t *timer) {
     duration = (double)(timer->time_stop.QuadPart-timer->time_start.QuadPart)/(double)freq.QuadPart;
     return duration;
 }
-</code>
+```
 
 And in C++:
 
-<code c++>
+```c++
 // very simple, high-precision (at least in theory) timer for timing API calls
 struct ProfTimer {
     void Start(void) {
@@ -60,11 +60,11 @@ struct ProfTimer {
     LARGE_INTEGER mTimeStart;
     LARGE_INTEGER mTimeStop;
 };
-</code>
+```
 
 And here's an example of using the C++ version:
 
-<code c++>
+```c++
     ProfTimer t;
     t.Start();
     foo();

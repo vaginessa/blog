@@ -9,12 +9,12 @@ Pickling is an easy way to serialize data in Python. One possible use for that i
 There are few things worth knowing:
 
 * python has `pickle` and `cPickle` modules. They are almost the same (`pickle` handles more cases but `cPickle` is faster)
-* you can specify protocol parameter to `dump()` function. Use `cPickle.HIGHEST_PROTOCOL` - it's the most efficient one 
+* you can specify protocol parameter to `dump()` function. Use `cPickle.HIGHEST_PROTOCOL` - it's the most efficient one
 * the simplest thing to do is to stuff everything you want to serialize in a hash and serialize the hash
 
 The code snippet below shows how to save and load some data to a file. It removes the file if unpickling fails (which can happen if e.g. file is corrupted or not in the right format). The retry logic comes from experience - I found that `os.remove()` right after `close()` might fail.
 
-<code python>
+```python
 import sys, os, string, time, cPickle
 
 DATA_FILE_NAME = "settings.dat"
@@ -50,4 +50,4 @@ def loadData():
             removeRetryCount += 1
         return
     fo.close()
-</code>
+```

@@ -6,9 +6,9 @@ Format: Markdown
 --------------
 Asserts are good. Compile-time asserts are even  better. Here's how to define and use them in C.
 
-<code c>
+```c
 #ifndef CASSERT
 #define CASSERT( exp, name ) typedef int dummy##name [ (exp ) ? 1 : -1 ];
 #endif
 CASSERT( sizeof(int16_t) == 2, int16_t_is_two_bytes )
-</code>
+```

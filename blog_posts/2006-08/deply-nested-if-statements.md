@@ -5,14 +5,14 @@ Format: Markdown
 --------------
 I dislike deeply nested C\C++ code. I.e. the code of the form:
 
-<code>
+```java
 if (foo) {
   if (bar) {
    if (anotherVariable) {
    }
   }
 }
-</code>
+```
 
 It's a simplified example that doesn't really show the problem with such code
 - when the logic within an if is long, such code becomes hard to read because
@@ -33,13 +33,13 @@ website][3]).
 The way to avoid deeply nesting is to do early exit as soon as possible. The
 trivial example could be rewritten as:
 
-<code>
+```java
   if (!foo) return;
   if (!bar) return;
   if (!anotherVariable) return;
 
   ... and this is the logic
-</code>
+```
 
 Of course trivial examples teach us nothing - this only shows the forest so
 that you don't get lost in details. For a real-life example see how Stepanov
@@ -51,5 +51,3 @@ refactors deeply nested logic expression (pages 4-13 in the paper above).
    [2]: http://www.stepanovpapers.com/Professionalism%20in%20Programming.pdf
 
    [3]: http://www.stepanovpapers.com/
-
-

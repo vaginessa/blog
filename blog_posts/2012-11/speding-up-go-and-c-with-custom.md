@@ -26,12 +26,12 @@ I was able to speed up Go code by about 4x by using a custom allocator.
 
 The benchmark builds a large binary tree composed of nodes:
 
-<code go>\
-type struct Node {\
- int item\
- left, right \*Node\
-}\
-</code>
+```go
+type struct Node {
+ int item
+ left, right *Node
+}
+```
 
 To allocate a new node we use `&Node{item, left, right}`.
 
@@ -78,14 +78,14 @@ Speeding binary-trees shootout benchmark
 We said that we should avoid pointers, so that garbage collector doesn’t
 have to chase them. The new definition of `Node` struct is:
 
-<code go>\
+```go
 type NodeId int
 
-type struct Node {\
- int item\
- left, right NodeId\
-}\
-</code>
+type struct Node {
+ int item
+ left, right NodeId
+}
+```
 
 We changed `left` and `right` fields from `*Node` to an alias type
 `NodeId`, which is just a unique integer representing a node.
@@ -103,38 +103,38 @@ extend the array with `append()` but it involves memory copy. We avoid
 that by pre-allocating nodes in buckets and using an array of arrays for
 storage. The code is still relatively simple:
 
-<code go>\
-const nodes\_per\_bucket = 1024 \* 1024
+```go
+const nodes_per_bucket = 1024 * 1024
 
-var (\
- all\_nodes [][]Node = make([][]Node, 0)\
- nodes\_left int = 0\
- curr\_node\_id int = 0\
+var (
+ all_nodes [][]Node = make([][]Node, 0)
+ nodes_left int = 0
+ curr_node_id int = 0
 )
 
-func NodeFromId(id NodeId) \*Node {\
- n := int(id) - 1\
- bucket := n / nodes\_per\_bucket\
- el := n % nodes\_per\_bucket\
- return &all\_nodes[bucket][el]\
+func NodeFromId(id NodeId) *Node {
+ n := int(id) - 1
+ bucket := n / nodes_per_bucket
+ el := n % nodes_per_bucket
+ return &all_nodes[bucket][el]
 }
 
-func allocNode(item int, left, right NodeId) NodeId {\
- if 0 == nodes\_left {\
- new\_nodes := make([]Node, nodes\_per\_bucket, nodes\_per\_bucket)\
- all\_nodes = append(all\_nodes, new\_nodes)\
- nodes\_left = nodes\_per\_bucket\
- }\
- nodes\_left -= 1\
- node := NodeFromId(NodeId(curr\_node\_id + 1))\
- node.item = item\
- node.left = left\
+func allocNode(item int, left, right NodeId) NodeId {
+ if 0 == nodes_left {
+ new_nodes := make([]Node, nodes_per_bucket, nodes_per_bucket)
+ all_nodes = append(all_nodes, new_nodes)
+ nodes_left = nodes_per_bucket
+ }
+ nodes_left -= 1
+ node := NodeFromId(NodeId(curr_node_id + 1))
+ node.item = item
+ node.left = left
  node.right = right
 
-curr\_node\_id += 1\
- return NodeId(curr\_node\_id)\
-}\
-</code>
+curr_node_id += 1
+ return NodeId(curr_node_id)
+}
+```
 
 Remaining changes to the code involve adding `NodeFromId()` call in a
 few places.
@@ -217,4 +217,4 @@ code](https://code.google.com/p/sumatrapdf/source/browse/trunk/src/utils/Vec.h)
 I also managed to improve Poppler by another \~25% by using a simple,
 [custom allocator](https://bugs.freedesktop.org/show_bug.cgi?id=7910)
 
-Since then I use this trick whenever I can.
+It's a good trick to know.

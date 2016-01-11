@@ -25,7 +25,7 @@ check for any failures use 1.
 
 Here's an example of a batch file that does a few common things:
 
-<code batch>
+```bat
 @ECHO OFF
 @rem "pushd $dir" puts $dir on directory stack
 pushd .
@@ -51,4 +51,4 @@ goto END
 :END
 @rem popd pops the directory name from the stack and does cd there
 popd
-</code>
+```

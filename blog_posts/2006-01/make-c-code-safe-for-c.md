@@ -19,7 +19,7 @@ If a header file for functions compiled by C compiler is included in a file
 compiled by C++ compiler, the linker won't be able to link those object
 files since the names of functions won't match due to different name mangling.
 
-There is a solution to this problem. 
+There is a solution to this problem.
 
 First thing to know is that C++ compilers
 define __cplusplus preprocessor symbol, so it's possible to use `#ifdef __cplusplus`
@@ -32,7 +32,7 @@ mangling for those functions.
 All this boring explanation means that in order to make your C code safe for C++,
 you need to wrap the code in header file with those statements:
 
-<code c>
+```c++
 #ifdef __cplusplus
 extern "C"
 {
@@ -43,4 +43,4 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif
-</code>
+```
