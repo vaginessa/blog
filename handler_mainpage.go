@@ -72,7 +72,6 @@ func handleMainPage(w http.ResponseWriter, r *http.Request) {
 	model := struct {
 		IsAdmin       bool
 		AnalyticsCode string
-		JqueryUrl     string
 		Article       *Article
 		Articles      []*Article
 		ArticleCount  int
@@ -80,7 +79,6 @@ func handleMainPage(w http.ResponseWriter, r *http.Request) {
 	}{
 		IsAdmin:       isAdmin,
 		AnalyticsCode: *config.AnalyticsCode,
-		JqueryUrl:     jQueryUrl(),
 		Article:       nil, // always nil
 		ArticleCount:  articleCount,
 		Articles:      articles,

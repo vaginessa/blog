@@ -57,9 +57,6 @@ func handleArticle(w http.ResponseWriter, r *http.Request) {
 		IsAdmin         bool
 		Reload          bool
 		AnalyticsCode   string
-		JqueryUrl       string
-		HighlightJsUrl  string
-		HighlightCssUrl string
 		PageTitle       string
 		Article         *DisplayArticle
 		NextArticle     *Article
@@ -73,9 +70,6 @@ func handleArticle(w http.ResponseWriter, r *http.Request) {
 		IsAdmin:         isAdmin,
 		Reload:          !inProduction,
 		AnalyticsCode:   *config.AnalyticsCode,
-		JqueryUrl:       jQueryUrl(),
-		HighlightJsUrl:  highlightJsUrl(),
-		HighlightCssUrl: highlightCssUrl(),
 		LogInOutUrl:     getLogInOutUrl(r),
 		Article:         displayArticle,
 		NextArticle:     articleInfo.next,

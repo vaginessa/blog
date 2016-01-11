@@ -218,19 +218,6 @@ func getIpAddress(r *http.Request) string {
 	return hdrRealIp
 }
 
-func jQueryUrl() string {
-	//return "/js/jquery-1.4.2.js"
-	return "//cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js"
-}
-
-func highlightJsUrl() string {
-	return "//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/highlight.min.js"
-}
-
-func highlightCssUrl() string {
-	return "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.4/styles/default.min.css"
-}
-
 func makeTimingHandler(fn func(http.ResponseWriter, *http.Request)) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		metricCurrentReqs.Inc(1)

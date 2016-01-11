@@ -107,32 +107,32 @@ storage. The code is still relatively simple:
 const nodes_per_bucket = 1024 * 1024
 
 var (
- all_nodes [][]Node = make([][]Node, 0)
- nodes_left int = 0
- curr_node_id int = 0
+  all_nodes [][]Node = make([][]Node, 0)
+  nodes_left int = 0
+  curr_node_id int = 0
 )
 
 func NodeFromId(id NodeId) *Node {
- n := int(id) - 1
- bucket := n / nodes_per_bucket
- el := n % nodes_per_bucket
- return &all_nodes[bucket][el]
+  n := int(id) - 1
+  bucket := n / nodes_per_bucket
+  el := n % nodes_per_bucket
+  return &all_nodes[bucket][el]
 }
 
 func allocNode(item int, left, right NodeId) NodeId {
- if 0 == nodes_left {
- new_nodes := make([]Node, nodes_per_bucket, nodes_per_bucket)
- all_nodes = append(all_nodes, new_nodes)
- nodes_left = nodes_per_bucket
- }
- nodes_left -= 1
- node := NodeFromId(NodeId(curr_node_id + 1))
- node.item = item
- node.left = left
- node.right = right
+  if 0 == nodes_left {
+    new_nodes := make([]Node, nodes_per_bucket, nodes_per_bucket)
+    all_nodes = append(all_nodes, new_nodes)
+    nodes_left = nodes_per_bucket
+  }
+  nodes_left -= 1
+  node := NodeFromId(NodeId(curr_node_id + 1))
+  node.item = item
+  node.left = left
+  node.right = right
 
-curr_node_id += 1
- return NodeId(curr_node_id)
+  curr_node_id += 1
+  return NodeId(curr_node_id)
 }
 ```
 
