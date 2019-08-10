@@ -4,9 +4,6 @@ workflow "Build go" {
 }
 
 action "build" {
-  uses = "sosedoff/actions/golang-build@master"
-
-  // Optional args for specific architechtures
-  args = "linux/amd64"
+  uses = "cedrickring/golang-action/go1.12@master"
 }
 
