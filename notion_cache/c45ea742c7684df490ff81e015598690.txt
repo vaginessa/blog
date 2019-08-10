@@ -1,4 +1,4 @@
-2612 1565326134673 httpcache-v1
+2662 1565433523769 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+110
@@ -10,7 +10,7 @@ Body:+110
     }
   ]
 }
-Response:+1463
+Response:+1513
 {
   "results": [
     {
@@ -19,7 +19,7 @@ Response:+1463
         "alive": true,
         "content": [
           "fb2dcd1a-906b-4a38-8128-bf2321b5b03e",
-          "4f5f2384-e781-474c-8dee-1b40eeab2838",
+          "a4a21d4f-fdbd-43d5-ac3a-c8537319ac7f",
           "bc513583-9c7a-4101-b70a-9a75789085ee",
           "38d5121c-06a3-4444-8dd6-0150b692088b",
           "a9bc96e8-41d8-4c04-987f-ff17cf776d7f",
@@ -27,10 +27,11 @@ Response:+1463
           "0e677c6d-6f36-43db-afcf-7bca57ff6650",
           "4d20225f-09e9-459a-9e3f-efbcc0c10512",
           "7cb8d4fb-b5fa-491d-96d1-9862abfa5575",
-          "97d0a1bc-0055-4509-8fcf-1763fc3d6a10",
+          "d5b3f1a2-9772-4aa3-980d-6953ec1a5521",
           "6c40c02e-debb-4057-a5b4-4b7cdb2f52f2",
           "08152f23-2300-4bd5-be0f-af62a28c6ffc",
           "8f13c8e0-5193-49ab-a717-ea5c98bf16f8",
+          "4f5f2384-e781-474c-8dee-1b40eeab2838",
           "1048195e-2735-48e0-b2a2-8f21f3bbcac9"
         ],
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
@@ -41,7 +42,7 @@ Response:+1463
         },
         "id": "c45ea742-c768-4df4-90ff-81e015598690",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1565296560000,
+        "last_edited_time": 1565410740000,
         "parent_id": "66c160f5-e60e-4aa2-8683-c9dce71188bc",
         "parent_table": "block",
         "properties": {
@@ -52,7 +53,7 @@ Response:+1463
           ]
         },
         "type": "page",
-        "version": 44
+        "version": 72
       }
     }
   ]
@@ -60,16 +61,16 @@ Response:+1463
 HeadersJSON:+931
 {
   "Cf-Ray": [
-    "503719afde1e7fb4-SAN"
+    "5041577febcdc554-ORD"
   ],
   "Content-Type": [
     "application/json; charset=utf-8"
   ],
   "Date": [
-    "Fri, 09 Aug 2019 04:48:53 GMT"
+    "Sat, 10 Aug 2019 10:38:43 GMT"
   ],
   "Etag": [
-    "W/\"3ff-lIb3vof1G5ryxLDpGnMRn8K3Txg\""
+    "W/\"426-1yi/+61p6IhrzMWICAiM1L1V1cI\""
   ],
   "Expect-Ct": [
     "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\""
@@ -81,7 +82,7 @@ HeadersJSON:+931
     "cloudflare"
   ],
   "Set-Cookie": [
-    "__cfduid=df5ed9a8f5c12516ae333919025de7df31565326133; expires=Sat, 08-Aug-20 04:48:53 GMT; path=/; domain=.notion.so; HttpOnly"
+    "__cfduid=d6a1b8ab0ca8f7813bab0825e63b3c3c71565433523; expires=Sun, 09-Aug-20 10:38:43 GMT; path=/; domain=.notion.so; HttpOnly"
   ],
   "Strict-Transport-Security": [
     "max-age=5184000; includeSubDomains"
@@ -105,7 +106,7 @@ HeadersJSON:+931
     "1; mode=block"
   ]
 }
-22708 1565326134674 httpcache-v1
+24012 1565433523770 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+152
@@ -118,7 +119,7 @@ Body:+152
   "pageId": "c45ea742-c768-4df4-90ff-81e015598690",
   "verticalColumns": false
 }
-Response:+21517
+Response:+22821
 {
   "cursor": {
     "stack": []
@@ -300,7 +301,7 @@ Response:+21517
           "created_time": 1492378505061,
           "id": "4f5f2384-e781-474c-8dee-1b40eeab2838",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1492378505061,
+          "last_edited_time": 1565375880000,
           "parent_id": "c45ea742-c768-4df4-90ff-81e015598690",
           "parent_table": "block",
           "properties": {
@@ -311,7 +312,7 @@ Response:+21517
             ]
           },
           "type": "toggle",
-          "version": 0
+          "version": 3
         }
       },
       "568ac4c0-64c3-4ef6-a6ad-0b8d77230681": {
@@ -472,15 +473,14 @@ Response:+21517
         "value": {
           "alive": true,
           "content": [
-            "55315ea3-9bce-4544-ac89-e60d735bfd20",
-            "ef56b05b-27cf-49ab-ade2-834ae4a23359",
-            "eb1da52c-37a4-4c88-90af-7c89178ed9a3"
+            "01bcfc56-8bec-4943-a860-e130dd9f8d7e",
+            "2c39fe3b-be37-4ecf-a0e6-f0cd33651010"
           ],
           "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
           "created_time": 1515366516412,
           "id": "7cb8d4fb-b5fa-491d-96d1-9862abfa5575",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1515366552518,
+          "last_edited_time": 1565390940000,
           "parent_id": "c45ea742-c768-4df4-90ff-81e015598690",
           "parent_table": "block",
           "properties": {
@@ -491,7 +491,7 @@ Response:+21517
             ]
           },
           "type": "toggle",
-          "version": 71
+          "version": 77
         }
       },
       "8f13c8e0-5193-49ab-a717-ea5c98bf16f8": {
@@ -521,29 +521,36 @@ Response:+21517
           "version": 23
         }
       },
-      "97d0a1bc-0055-4509-8fcf-1763fc3d6a10": {
+      "a4a21d4f-fdbd-43d5-ac3a-c8537319ac7f": {
         "role": "comment_only",
         "value": {
           "alive": true,
           "content": [
-            "431cea1b-e285-4ad5-aa5f-b304c4387441"
+            "e1f01822-5212-4cd7-bc58-f134ee7f5740",
+            "1eb86d1a-84c3-4694-9879-90f4969e6085",
+            "5f508b9c-731e-420c-9e33-abd129d05059",
+            "20a58198-161a-4575-992a-c40c7c2fc7c7",
+            "c9138351-1eb3-45ce-a5e6-ea0292aff27f",
+            "dc6738ef-d434-4116-a23f-5310bed6fdb0",
+            "ae905c9a-075f-4040-b9d2-e3337e820dab",
+            "7d30ad63-f6c2-4053-af9f-862a26b1510b"
           ],
           "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1512352883674,
-          "id": "97d0a1bc-0055-4509-8fcf-1763fc3d6a10",
+          "created_time": 1565375940000,
+          "id": "a4a21d4f-fdbd-43d5-ac3a-c8537319ac7f",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1512352883674,
+          "last_edited_time": 1565376180000,
           "parent_id": "c45ea742-c768-4df4-90ff-81e015598690",
           "parent_table": "block",
           "properties": {
             "title": [
               [
-                "tips"
+                "tracking a remote branch"
               ]
             ]
           },
           "type": "toggle",
-          "version": 0
+          "version": 39
         }
       },
       "a9bc96e8-41d8-4c04-987f-ff17cf776d7f": {
@@ -609,7 +616,7 @@ Response:+21517
           "alive": true,
           "content": [
             "fb2dcd1a-906b-4a38-8128-bf2321b5b03e",
-            "4f5f2384-e781-474c-8dee-1b40eeab2838",
+            "a4a21d4f-fdbd-43d5-ac3a-c8537319ac7f",
             "bc513583-9c7a-4101-b70a-9a75789085ee",
             "38d5121c-06a3-4444-8dd6-0150b692088b",
             "a9bc96e8-41d8-4c04-987f-ff17cf776d7f",
@@ -617,10 +624,11 @@ Response:+21517
             "0e677c6d-6f36-43db-afcf-7bca57ff6650",
             "4d20225f-09e9-459a-9e3f-efbcc0c10512",
             "7cb8d4fb-b5fa-491d-96d1-9862abfa5575",
-            "97d0a1bc-0055-4509-8fcf-1763fc3d6a10",
+            "d5b3f1a2-9772-4aa3-980d-6953ec1a5521",
             "6c40c02e-debb-4057-a5b4-4b7cdb2f52f2",
             "08152f23-2300-4bd5-be0f-af62a28c6ffc",
             "8f13c8e0-5193-49ab-a717-ea5c98bf16f8",
+            "4f5f2384-e781-474c-8dee-1b40eeab2838",
             "1048195e-2735-48e0-b2a2-8f21f3bbcac9"
           ],
           "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
@@ -631,7 +639,7 @@ Response:+21517
           },
           "id": "c45ea742-c768-4df4-90ff-81e015598690",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1565296560000,
+          "last_edited_time": 1565410740000,
           "parent_id": "66c160f5-e60e-4aa2-8683-c9dce71188bc",
           "parent_table": "block",
           "properties": {
@@ -642,7 +650,7 @@ Response:+21517
             ]
           },
           "type": "page",
-          "version": 44
+          "version": 72
         }
       },
       "c9bef0f1-c8fe-40a2-bc8b-06ace2bd7d8f": {
@@ -680,6 +688,33 @@ Response:+21517
           },
           "type": "page",
           "version": 80
+        }
+      },
+      "d5b3f1a2-9772-4aa3-980d-6953ec1a5521": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "content": [
+            "7668832b-12dd-41bd-870e-0b8edd09268c",
+            "5ca32faa-16c4-4ab9-a52f-faf8977ee48d",
+            "4c32afcf-5cc9-4453-a84a-f802d7429385"
+          ],
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1565410680000,
+          "id": "d5b3f1a2-9772-4aa3-980d-6953ec1a5521",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1565410740000,
+          "parent_id": "c45ea742-c768-4df4-90ff-81e015598690",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "remove empty branches from history"
+              ]
+            ]
+          },
+          "type": "toggle",
+          "version": 44
         }
       },
       "fb2dcd1a-906b-4a38-8128-bf2321b5b03e": {
@@ -733,16 +768,16 @@ Response:+21517
 HeadersJSON:+932
 {
   "Cf-Ray": [
-    "503719b06e7d7fb4-SAN"
+    "504157807c85c554-ORD"
   ],
   "Content-Type": [
     "application/json; charset=utf-8"
   ],
   "Date": [
-    "Fri, 09 Aug 2019 04:48:53 GMT"
+    "Sat, 10 Aug 2019 10:38:43 GMT"
   ],
   "Etag": [
-    "W/\"379f-vjqul9N0L1k6N4eZH2v/zDjikiM\""
+    "W/\"3b19-1vgAH7GYfGZYOsZ/7xIoT4eXqiw\""
   ],
   "Expect-Ct": [
     "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\""
@@ -754,7 +789,7 @@ HeadersJSON:+932
     "cloudflare"
   ],
   "Set-Cookie": [
-    "__cfduid=df5ed9a8f5c12516ae333919025de7df31565326133; expires=Sat, 08-Aug-20 04:48:53 GMT; path=/; domain=.notion.so; HttpOnly"
+    "__cfduid=d6a1b8ab0ca8f7813bab0825e63b3c3c71565433523; expires=Sun, 09-Aug-20 10:38:43 GMT; path=/; domain=.notion.so; HttpOnly"
   ],
   "Strict-Transport-Security": [
     "max-age=5184000; includeSubDomains"
@@ -778,10 +813,10 @@ HeadersJSON:+932
     "1; mode=block"
   ]
 }
-49186 1565326134676 httpcache-v1
+56428 1565433523773 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
-Body:+4510
+Body:+5302
 {
   "requests": [
     {
@@ -801,63 +836,35 @@ Body:+4510
       "table": "block"
     },
     {
-      "id": "58997931-d3ea-441e-b36f-2083f01d31d7",
+      "id": "e1f01822-5212-4cd7-bc58-f134ee7f5740",
       "table": "block"
     },
     {
-      "id": "616d75ec-03db-4657-b5a9-37b433e777b2",
+      "id": "1eb86d1a-84c3-4694-9879-90f4969e6085",
       "table": "block"
     },
     {
-      "id": "08858438-e245-4b3c-b9f7-b555ebdc9d8a",
+      "id": "5f508b9c-731e-420c-9e33-abd129d05059",
       "table": "block"
     },
     {
-      "id": "731b901e-539f-47ca-aa8e-f7dd99014793",
+      "id": "20a58198-161a-4575-992a-c40c7c2fc7c7",
       "table": "block"
     },
     {
-      "id": "bbd68958-9969-4555-b65b-7a39c9d9d31f",
+      "id": "c9138351-1eb3-45ce-a5e6-ea0292aff27f",
       "table": "block"
     },
     {
-      "id": "7289e4d8-b646-4d7e-8849-fc6e64cd6c5b",
+      "id": "dc6738ef-d434-4116-a23f-5310bed6fdb0",
       "table": "block"
     },
     {
-      "id": "f7c4e9cd-b0a3-4127-9241-94a8bb86051e",
+      "id": "ae905c9a-075f-4040-b9d2-e3337e820dab",
       "table": "block"
     },
     {
-      "id": "209bdf29-3826-4a6b-aa00-f0b01ddab588",
-      "table": "block"
-    },
-    {
-      "id": "a49f6d5a-6f43-449e-88d2-3f26220f6c4e",
-      "table": "block"
-    },
-    {
-      "id": "96dd007d-36ab-4159-a551-f1da0016c331",
-      "table": "block"
-    },
-    {
-      "id": "d0eed289-c66d-4fd0-8028-e912f1665a4c",
-      "table": "block"
-    },
-    {
-      "id": "d8d0a23b-3ee5-482f-8e05-c0defd5fdc57",
-      "table": "block"
-    },
-    {
-      "id": "a67f1111-e1f6-4402-a19d-3e714f7b731c",
-      "table": "block"
-    },
-    {
-      "id": "0bae3665-fff8-42b3-8dfc-42e1ba59aef4",
-      "table": "block"
-    },
-    {
-      "id": "681757e1-1637-45c3-908f-a81410080d72",
+      "id": "7d30ad63-f6c2-4053-af9f-862a26b1510b",
       "table": "block"
     },
     {
@@ -953,19 +960,23 @@ Body:+4510
       "table": "block"
     },
     {
-      "id": "55315ea3-9bce-4544-ac89-e60d735bfd20",
+      "id": "01bcfc56-8bec-4943-a860-e130dd9f8d7e",
       "table": "block"
     },
     {
-      "id": "ef56b05b-27cf-49ab-ade2-834ae4a23359",
+      "id": "2c39fe3b-be37-4ecf-a0e6-f0cd33651010",
       "table": "block"
     },
     {
-      "id": "eb1da52c-37a4-4c88-90af-7c89178ed9a3",
+      "id": "7668832b-12dd-41bd-870e-0b8edd09268c",
       "table": "block"
     },
     {
-      "id": "431cea1b-e285-4ad5-aa5f-b304c4387441",
+      "id": "5ca32faa-16c4-4ab9-a52f-faf8977ee48d",
+      "table": "block"
+    },
+    {
+      "id": "4c32afcf-5cc9-4453-a84a-f802d7429385",
       "table": "block"
     },
     {
@@ -987,10 +998,70 @@ Body:+4510
     {
       "id": "61576026-7ed5-4e58-8dc6-5caf6e715faf",
       "table": "block"
+    },
+    {
+      "id": "58997931-d3ea-441e-b36f-2083f01d31d7",
+      "table": "block"
+    },
+    {
+      "id": "616d75ec-03db-4657-b5a9-37b433e777b2",
+      "table": "block"
+    },
+    {
+      "id": "08858438-e245-4b3c-b9f7-b555ebdc9d8a",
+      "table": "block"
+    },
+    {
+      "id": "731b901e-539f-47ca-aa8e-f7dd99014793",
+      "table": "block"
+    },
+    {
+      "id": "bbd68958-9969-4555-b65b-7a39c9d9d31f",
+      "table": "block"
+    },
+    {
+      "id": "7289e4d8-b646-4d7e-8849-fc6e64cd6c5b",
+      "table": "block"
+    },
+    {
+      "id": "f7c4e9cd-b0a3-4127-9241-94a8bb86051e",
+      "table": "block"
+    },
+    {
+      "id": "209bdf29-3826-4a6b-aa00-f0b01ddab588",
+      "table": "block"
+    },
+    {
+      "id": "a49f6d5a-6f43-449e-88d2-3f26220f6c4e",
+      "table": "block"
+    },
+    {
+      "id": "96dd007d-36ab-4159-a551-f1da0016c331",
+      "table": "block"
+    },
+    {
+      "id": "d0eed289-c66d-4fd0-8028-e912f1665a4c",
+      "table": "block"
+    },
+    {
+      "id": "d8d0a23b-3ee5-482f-8e05-c0defd5fdc57",
+      "table": "block"
+    },
+    {
+      "id": "a67f1111-e1f6-4402-a19d-3e714f7b731c",
+      "table": "block"
+    },
+    {
+      "id": "0bae3665-fff8-42b3-8dfc-42e1ba59aef4",
+      "table": "block"
+    },
+    {
+      "id": "681757e1-1637-45c3-908f-a81410080d72",
+      "table": "block"
     }
   ]
 }
-Response:+43634
+Response:+50084
 {
   "results": [
     {
@@ -1116,30 +1187,48 @@ Response:+43634
       "value": {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1492565381236,
-        "id": "58997931-d3ea-441e-b36f-2083f01d31d7",
+        "created_time": 1565375940000,
+        "id": "e1f01822-5212-4cd7-bc58-f134ee7f5740",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1492565381236,
-        "parent_id": "4f5f2384-e781-474c-8dee-1b40eeab2838",
+        "last_edited_time": 1565375940000,
+        "parent_id": "a4a21d4f-fdbd-43d5-ac3a-c8537319ac7f",
         "parent_table": "block",
         "properties": {
           "title": [
             [
-              "From "
-            ],
+              "initial setup:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 18
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1565375940000,
+        "id": "1eb86d1a-84c3-4694-9879-90f4969e6085",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1565375940000,
+        "parent_id": "a4a21d4f-fdbd-43d5-ac3a-c8537319ac7f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
             [
-              "https://chrisjean.com/git-submodules-adding-using-removing-and-updating/",
+              "git remote add upstream \u003crepo\u003e",
               [
                 [
-                  "a",
-                  "https://chrisjean.com/git-submodules-adding-using-removing-and-updating/"
+                  "c"
                 ]
               ]
             ]
           ]
         },
         "type": "text",
-        "version": 0
+        "version": 50
       }
     },
     {
@@ -1147,240 +1236,21 @@ Response:+43634
       "value": {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1492561104880,
-        "id": "616d75ec-03db-4657-b5a9-37b433e777b2",
+        "created_time": 1565375940000,
+        "id": "5f508b9c-731e-420c-9e33-abd129d05059",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1492561104880,
-        "parent_id": "4f5f2384-e781-474c-8dee-1b40eeab2838",
+        "last_edited_time": 1565375940000,
+        "parent_id": "a4a21d4f-fdbd-43d5-ac3a-c8537319ac7f",
         "parent_table": "block",
         "properties": {
           "title": [
             [
-              "git checkout --recursive ...",
-              [
-                [
-                  "c"
-                ]
-              ]
-            ],
-            [
-              " : checkout with submodules"
-            ]
-          ]
-        },
-        "type": "bulleted_list",
-        "version": 0
-      }
-    },
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1493587784985,
-        "id": "08858438-e245-4b3c-b9f7-b555ebdc9d8a",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1493587784985,
-        "parent_id": "4f5f2384-e781-474c-8dee-1b40eeab2838",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "git submodule init",
-              [
-                [
-                  "c"
-                ]
-              ]
-            ],
-            [
-              ", "
-            ],
-            [
-              "git submodule update",
-              [
-                [
-                  "c"
-                ]
-              ]
-            ],
-            [
-              " : if you forgot "
-            ],
-            [
-              "--recursive",
-              [
-                [
-                  "c"
-                ]
-              ]
-            ],
-            [
-              " flag, you can do this instead"
-            ]
-          ]
-        },
-        "type": "bulleted_list",
-        "version": 0
-      }
-    },
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1492561134481,
-        "id": "731b901e-539f-47ca-aa8e-f7dd99014793",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1492561134481,
-        "parent_id": "4f5f2384-e781-474c-8dee-1b40eeab2838",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "git submodule init",
-              [
-                [
-                  "c"
-                ]
-              ]
-            ],
-            [
-              " : initialize submodules"
-            ]
-          ]
-        },
-        "type": "bulleted_list",
-        "version": 0
-      }
-    },
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1493587828536,
-        "id": "bbd68958-9969-4555-b65b-7a39c9d9d31f",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1493587828536,
-        "parent_id": "4f5f2384-e781-474c-8dee-1b40eeab2838",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "git submodule update",
-              [
-                [
-                  "c"
-                ]
-              ]
-            ],
-            [
-              " : update local submodules to what the server says"
-            ]
-          ]
-        },
-        "type": "bulleted_list",
-        "version": 0
-      }
-    },
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1492561435468,
-        "id": "7289e4d8-b646-4d7e-8849-fc6e64cd6c5b",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1492561435468,
-        "parent_id": "4f5f2384-e781-474c-8dee-1b40eeab2838",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "git submodule add ",
-              [
-                [
-                  "c"
-                ]
-              ]
-            ],
-            [
-              "https://github.com/ArtifexSoftware/thirdparty-openjpeg.git",
-              [
-                [
-                  "a",
-                  "https://github.com/ArtifexSoftware/thirdparty-openjpeg.git"
-                ],
-                [
-                  "c"
-                ]
-              ]
-            ],
-            [
-              " ext2/openjpeg",
-              [
-                [
-                  "c"
-                ]
-              ]
-            ]
-          ]
-        },
-        "type": "bulleted_list",
-        "version": 0
-      }
-    },
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1493588139215,
-        "id": "f7c4e9cd-b0a3-4127-9241-94a8bb86051e",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1493588139215,
-        "parent_id": "4f5f2384-e781-474c-8dee-1b40eeab2838",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "git submodule status",
-              [
-                [
-                  "c"
-                ]
-              ]
-            ],
-            [
-              " : check status of submodules"
-            ]
-          ]
-        },
-        "type": "bulleted_list",
-        "version": 0
-      }
-    },
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1493587762857,
-        "id": "209bdf29-3826-4a6b-aa00-f0b01ddab588",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1493587762857,
-        "parent_id": "4f5f2384-e781-474c-8dee-1b40eeab2838",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "To point submodule to a different version:"
+              "updating my master with upstream master:"
             ]
           ]
         },
         "type": "text",
-        "version": 0
+        "version": 58
       }
     },
     {
@@ -1388,29 +1258,26 @@ Response:+43634
       "value": {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1493587901486,
-        "id": "a49f6d5a-6f43-449e-88d2-3f26220f6c4e",
+        "created_time": 1565375940000,
+        "id": "20a58198-161a-4575-992a-c40c7c2fc7c7",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1493587901486,
-        "parent_id": "4f5f2384-e781-474c-8dee-1b40eeab2838",
+        "last_edited_time": 1565376000000,
+        "parent_id": "a4a21d4f-fdbd-43d5-ac3a-c8537319ac7f",
         "parent_table": "block",
         "properties": {
           "title": [
             [
-              "cd ext2/openjpeg",
+              "git fetch upstream",
               [
                 [
                   "c"
                 ]
               ]
-            ],
-            [
-              " : go to submodule repository pointed by ext2/openjpeg"
             ]
           ]
         },
-        "type": "bulleted_list",
-        "version": 0
+        "type": "text",
+        "version": 24
       }
     },
     {
@@ -1418,11 +1285,11 @@ Response:+43634
       "value": {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1493587908618,
-        "id": "96dd007d-36ab-4159-a551-f1da0016c331",
+        "created_time": 1565376060000,
+        "id": "c9138351-1eb3-45ce-a5e6-ea0292aff27f",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1493587908618,
-        "parent_id": "4f5f2384-e781-474c-8dee-1b40eeab2838",
+        "last_edited_time": 1565376060000,
+        "parent_id": "a4a21d4f-fdbd-43d5-ac3a-c8537319ac7f",
         "parent_table": "block",
         "properties": {
           "title": [
@@ -1433,14 +1300,11 @@ Response:+43634
                   "c"
                 ]
               ]
-            ],
-            [
-              " : submodules are in detached head state by default so in order to do something you need to switch to master (or whatever) branch"
             ]
           ]
         },
-        "type": "bulleted_list",
-        "version": 0
+        "type": "text",
+        "version": 24
       }
     },
     {
@@ -1448,150 +1312,78 @@ Response:+43634
       "value": {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1493587992452,
-        "id": "d0eed289-c66d-4fd0-8028-e912f1665a4c",
+        "created_time": 1565376000000,
+        "id": "dc6738ef-d434-4116-a23f-5310bed6fdb0",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1493587992452,
-        "parent_id": "4f5f2384-e781-474c-8dee-1b40eeab2838",
+        "last_edited_time": 1565376060000,
+        "parent_id": "a4a21d4f-fdbd-43d5-ac3a-c8537319ac7f",
         "parent_table": "block",
         "properties": {
           "title": [
             [
-              "git pull",
+              "git merge upstream/master",
               [
                 [
                   "c"
-                ]
-              ]
-            ],
-            [
-              " : let's say that in the simplest case we want to point to latest version"
-            ]
-          ]
-        },
-        "type": "bulleted_list",
-        "version": 0
-      }
-    },
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1493588239951,
-        "id": "d8d0a23b-3ee5-482f-8e05-c0defd5fdc57",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1493588239951,
-        "parent_id": "4f5f2384-e781-474c-8dee-1b40eeab2838",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "cd ..\\..",
-              [
-                [
-                  "c"
-                ]
-              ]
-            ],
-            [
-              " : back to main repo"
-            ]
-          ]
-        },
-        "type": "bulleted_list",
-        "version": 0
-      }
-    },
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1493588253622,
-        "id": "a67f1111-e1f6-4402-a19d-3e714f7b731c",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1493588253622,
-        "parent_id": "4f5f2384-e781-474c-8dee-1b40eeab2838",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "git status",
-              [
-                [
-                  "c"
-                ]
-              ]
-            ],
-            [
-              " : verify ext2/openjpeg shows as modified"
-            ]
-          ]
-        },
-        "type": "bulleted_list",
-        "version": 0
-      }
-    },
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1493588291978,
-        "id": "0bae3665-fff8-42b3-8dfc-42e1ba59aef4",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1493588291978,
-        "parent_id": "4f5f2384-e781-474c-8dee-1b40eeab2838",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "git commit -am \"update ext2/openjpeg to latest version\"",
-              [
-                [
-                  "c"
-                ]
-              ]
-            ],
-            [
-              " : commit the changes"
-            ]
-          ]
-        },
-        "type": "bulleted_list",
-        "version": 0
-      }
-    },
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1493588014930,
-        "id": "681757e1-1637-45c3-908f-a81410080d72",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1493588014930,
-        "parent_id": "4f5f2384-e781-474c-8dee-1b40eeab2838",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "Removing a submodule: complicated, read "
-            ],
-            [
-              "https://chrisjean.com/git-submodules-adding-using-removing-and-updating/",
-              [
-                [
-                  "a",
-                  "https://chrisjean.com/git-submodules-adding-using-removing-and-updating/"
                 ]
               ]
             ]
           ]
         },
         "type": "text",
-        "version": 0
+        "version": 7
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1565376180000,
+        "id": "ae905c9a-075f-4040-b9d2-e3337e820dab",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1565376180000,
+        "parent_id": "a4a21d4f-fdbd-43d5-ac3a-c8537319ac7f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Other:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 10
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1565376180000,
+        "id": "7d30ad63-f6c2-4053-af9f-862a26b1510b",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1565376240000,
+        "parent_id": "a4a21d4f-fdbd-43d5-ac3a-c8537319ac7f",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "git remote -v",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " : list all remote branches"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 50
       }
     },
     {
@@ -2236,31 +2028,106 @@ Response:+43634
       "role": "comment_only",
       "value": {
         "alive": true,
+        "content": [
+          "55315ea3-9bce-4544-ac89-e60d735bfd20",
+          "06c7dc94-37e4-4ec5-858f-4280b1ecffcd",
+          "ef56b05b-27cf-49ab-ade2-834ae4a23359",
+          "eb1da52c-37a4-4c88-90af-7c89178ed9a3",
+          "0b8e4392-65bd-46ed-b0f6-617d7bb371d3",
+          "9e560a26-b41e-42b6-b864-e514ced2727f",
+          "4d1324f7-01c1-4a4d-b07d-c4d7e3a31688"
+        ],
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1515366523285,
-        "id": "55315ea3-9bce-4544-ac89-e60d735bfd20",
+        "created_time": 1565390940000,
+        "id": "01bcfc56-8bec-4943-a860-e130dd9f8d7e",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1515366525331,
+        "last_edited_time": 1565396280000,
         "parent_id": "7cb8d4fb-b5fa-491d-96d1-9862abfa5575",
         "parent_table": "block",
         "properties": {
           "title": [
             [
-              "Use "
+              "using bfg repo cleaner"
+            ]
+          ]
+        },
+        "type": "toggle",
+        "version": 43
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "content": [
+          "cb136b7f-df00-4533-b12d-c50edee9d695",
+          "57da64a5-57d4-4e45-b21b-499a6825bd01",
+          "12b467e7-ae26-418f-9e6c-9378cca4e822",
+          "b1da170e-9ba3-496c-8893-394b265d648a"
+        ],
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1565390940000,
+        "id": "2c39fe3b-be37-4ecf-a0e6-f0cd33651010",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1565392920000,
+        "parent_id": "7cb8d4fb-b5fa-491d-96d1-9862abfa5575",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "using "
             ],
             [
-              "https://rtyley.github.io/bfg-repo-cleaner/",
+              "filter-branch",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "toggle",
+        "version": 40
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1565410680000,
+        "id": "7668832b-12dd-41bd-870e-0b8edd09268c",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1565410740000,
+        "parent_id": "d5b3f1a2-9772-4aa3-980d-6953ec1a5521",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "git clone --mirror ",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "https://github.com/kjk/blog.git",
               [
                 [
                   "a",
-                  "https://rtyley.github.io/bfg-repo-cleaner/"
+                  "https://github.com/kjk/blog.git"
+                ],
+                [
+                  "c"
                 ]
               ]
             ]
           ]
         },
         "type": "text",
-        "version": 15
+        "version": 20
       }
     },
     {
@@ -2268,29 +2135,26 @@ Response:+43634
       "value": {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1515366526450,
-        "id": "ef56b05b-27cf-49ab-ade2-834ae4a23359",
+        "created_time": 1565410680000,
+        "id": "5ca32faa-16c4-4ab9-a52f-faf8977ee48d",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1515366532306,
-        "parent_id": "7cb8d4fb-b5fa-491d-96d1-9862abfa5575",
+        "last_edited_time": 1565410680000,
+        "parent_id": "d5b3f1a2-9772-4aa3-980d-6953ec1a5521",
         "parent_table": "block",
         "properties": {
           "title": [
             [
-              "brew install bfg",
+              "git filter-branch --prune-empty --tag-name-filter cat -- --all",
               [
                 [
                   "c"
                 ]
               ]
-            ],
-            [
-              " "
             ]
           ]
         },
         "type": "text",
-        "version": 54
+        "version": 5
       }
     },
     {
@@ -2298,56 +2162,26 @@ Response:+43634
       "value": {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1515366532897,
-        "id": "eb1da52c-37a4-4c88-90af-7c89178ed9a3",
+        "created_time": 1565410740000,
+        "id": "4c32afcf-5cc9-4453-a84a-f802d7429385",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1515366555180,
-        "parent_id": "7cb8d4fb-b5fa-491d-96d1-9862abfa5575",
+        "last_edited_time": 1565410740000,
+        "parent_id": "d5b3f1a2-9772-4aa3-980d-6953ec1a5521",
         "parent_table": "block",
         "properties": {
           "title": [
             [
-              "bfg --delete-files \u003cfile_name_to_delete\u003e",
+              "git push —force",
               [
                 [
                   "c"
                 ]
               ]
-            ],
-            [
-              " "
             ]
           ]
         },
         "type": "text",
-        "version": 129
-      }
-    },
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1512352888793,
-        "id": "431cea1b-e285-4ad5-aa5f-b304c4387441",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1512352888793,
-        "parent_id": "97d0a1bc-0055-4509-8fcf-1763fc3d6a10",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Plain Text"
-            ]
-          ],
-          "title": [
-            [
-              "https://github.com/AGWA/git-crypt - selectively encrypt files in git repo, has brew package, has a windows build in https://github.com/ccleaud/git-crypt\n\nRename a branch locally and remotely: (from https://gist.github.com/lttlrck/9628955)\ngit branch -m old_branch new_branch         # Rename branch locally\ngit push origin :old_branch                 # Delete the old branch\ngit push --set-upstream origin new_branch   # Push the new branch, set local branch to track the new remote"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 0
+        "version": 23
       }
     },
     {
@@ -2490,22 +2324,505 @@ Response:+43634
         "type": "bulleted_list",
         "version": 5
       }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1492565381236,
+        "id": "58997931-d3ea-441e-b36f-2083f01d31d7",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1492565381236,
+        "parent_id": "4f5f2384-e781-474c-8dee-1b40eeab2838",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "From "
+            ],
+            [
+              "https://chrisjean.com/git-submodules-adding-using-removing-and-updating/",
+              [
+                [
+                  "a",
+                  "https://chrisjean.com/git-submodules-adding-using-removing-and-updating/"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 0
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1492561104880,
+        "id": "616d75ec-03db-4657-b5a9-37b433e777b2",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1492561104880,
+        "parent_id": "4f5f2384-e781-474c-8dee-1b40eeab2838",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "git checkout --recursive ...",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " : checkout with submodules"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 0
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1493587784985,
+        "id": "08858438-e245-4b3c-b9f7-b555ebdc9d8a",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1493587784985,
+        "parent_id": "4f5f2384-e781-474c-8dee-1b40eeab2838",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "git submodule init",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              ", "
+            ],
+            [
+              "git submodule update",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " : if you forgot "
+            ],
+            [
+              "--recursive",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " flag, you can do this instead"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 0
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1492561134481,
+        "id": "731b901e-539f-47ca-aa8e-f7dd99014793",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1492561134481,
+        "parent_id": "4f5f2384-e781-474c-8dee-1b40eeab2838",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "git submodule init",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " : initialize submodules"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 0
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1493587828536,
+        "id": "bbd68958-9969-4555-b65b-7a39c9d9d31f",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1493587828536,
+        "parent_id": "4f5f2384-e781-474c-8dee-1b40eeab2838",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "git submodule update",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " : update local submodules to what the server says"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 0
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1492561435468,
+        "id": "7289e4d8-b646-4d7e-8849-fc6e64cd6c5b",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1492561435468,
+        "parent_id": "4f5f2384-e781-474c-8dee-1b40eeab2838",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "git submodule add ",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              "https://github.com/ArtifexSoftware/thirdparty-openjpeg.git",
+              [
+                [
+                  "a",
+                  "https://github.com/ArtifexSoftware/thirdparty-openjpeg.git"
+                ],
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " ext2/openjpeg",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 0
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1493588139215,
+        "id": "f7c4e9cd-b0a3-4127-9241-94a8bb86051e",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1493588139215,
+        "parent_id": "4f5f2384-e781-474c-8dee-1b40eeab2838",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "git submodule status",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " : check status of submodules"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 0
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1493587762857,
+        "id": "209bdf29-3826-4a6b-aa00-f0b01ddab588",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1493587762857,
+        "parent_id": "4f5f2384-e781-474c-8dee-1b40eeab2838",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "To point submodule to a different version:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 0
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1493587901486,
+        "id": "a49f6d5a-6f43-449e-88d2-3f26220f6c4e",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1493587901486,
+        "parent_id": "4f5f2384-e781-474c-8dee-1b40eeab2838",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "cd ext2/openjpeg",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " : go to submodule repository pointed by ext2/openjpeg"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 0
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1493587908618,
+        "id": "96dd007d-36ab-4159-a551-f1da0016c331",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1493587908618,
+        "parent_id": "4f5f2384-e781-474c-8dee-1b40eeab2838",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "git checkout master",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " : submodules are in detached head state by default so in order to do something you need to switch to master (or whatever) branch"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 0
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1493587992452,
+        "id": "d0eed289-c66d-4fd0-8028-e912f1665a4c",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1493587992452,
+        "parent_id": "4f5f2384-e781-474c-8dee-1b40eeab2838",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "git pull",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " : let's say that in the simplest case we want to point to latest version"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 0
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1493588239951,
+        "id": "d8d0a23b-3ee5-482f-8e05-c0defd5fdc57",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1493588239951,
+        "parent_id": "4f5f2384-e781-474c-8dee-1b40eeab2838",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "cd ..\\..",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " : back to main repo"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 0
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1493588253622,
+        "id": "a67f1111-e1f6-4402-a19d-3e714f7b731c",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1493588253622,
+        "parent_id": "4f5f2384-e781-474c-8dee-1b40eeab2838",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "git status",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " : verify ext2/openjpeg shows as modified"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 0
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1493588291978,
+        "id": "0bae3665-fff8-42b3-8dfc-42e1ba59aef4",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1493588291978,
+        "parent_id": "4f5f2384-e781-474c-8dee-1b40eeab2838",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "git commit -am \"update ext2/openjpeg to latest version\"",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " : commit the changes"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 0
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1493588014930,
+        "id": "681757e1-1637-45c3-908f-a81410080d72",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1493588014930,
+        "parent_id": "4f5f2384-e781-474c-8dee-1b40eeab2838",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Removing a submodule: complicated, read "
+            ],
+            [
+              "https://chrisjean.com/git-submodules-adding-using-removing-and-updating/",
+              [
+                [
+                  "a",
+                  "https://chrisjean.com/git-submodules-adding-using-removing-and-updating/"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 0
+      }
     }
   ]
 }
 HeadersJSON:+932
 {
   "Cf-Ray": [
-    "503719b0dea17fb4-SAN"
+    "504157810d41c554-ORD"
   ],
   "Content-Type": [
     "application/json; charset=utf-8"
   ],
   "Date": [
-    "Fri, 09 Aug 2019 04:48:53 GMT"
+    "Sat, 10 Aug 2019 10:38:43 GMT"
   ],
   "Etag": [
-    "W/\"682c-MA2DDCVDBNqVQg+HugaheVRtTj8\""
+    "W/\"76ed-x6pNkK1Xa2tNb6NDvDOmgayyKCU\""
   ],
   "Expect-Ct": [
     "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\""
@@ -2517,7 +2834,626 @@ HeadersJSON:+932
     "cloudflare"
   ],
   "Set-Cookie": [
-    "__cfduid=df5ed9a8f5c12516ae333919025de7df31565326133; expires=Sat, 08-Aug-20 04:48:53 GMT; path=/; domain=.notion.so; HttpOnly"
+    "__cfduid=d6a1b8ab0ca8f7813bab0825e63b3c3c71565433523; expires=Sun, 09-Aug-20 10:38:43 GMT; path=/; domain=.notion.so; HttpOnly"
+  ],
+  "Strict-Transport-Security": [
+    "max-age=5184000; includeSubDomains"
+  ],
+  "Vary": [
+    "Accept-Encoding"
+  ],
+  "X-Content-Type-Options": [
+    "nosniff"
+  ],
+  "X-Dns-Prefetch-Control": [
+    "off"
+  ],
+  "X-Download-Options": [
+    "noopen"
+  ],
+  "X-Frame-Options": [
+    "SAMEORIGIN"
+  ],
+  "X-Xss-Protection": [
+    "1; mode=block"
+  ]
+}
+10582 1565433523774 httpcache-v1
+Method: POST
+URL: https://www.notion.so/api/v3/getRecordValues
+Body:+990
+{
+  "requests": [
+    {
+      "id": "55315ea3-9bce-4544-ac89-e60d735bfd20",
+      "table": "block"
+    },
+    {
+      "id": "06c7dc94-37e4-4ec5-858f-4280b1ecffcd",
+      "table": "block"
+    },
+    {
+      "id": "ef56b05b-27cf-49ab-ade2-834ae4a23359",
+      "table": "block"
+    },
+    {
+      "id": "eb1da52c-37a4-4c88-90af-7c89178ed9a3",
+      "table": "block"
+    },
+    {
+      "id": "0b8e4392-65bd-46ed-b0f6-617d7bb371d3",
+      "table": "block"
+    },
+    {
+      "id": "9e560a26-b41e-42b6-b864-e514ced2727f",
+      "table": "block"
+    },
+    {
+      "id": "4d1324f7-01c1-4a4d-b07d-c4d7e3a31688",
+      "table": "block"
+    },
+    {
+      "id": "cb136b7f-df00-4533-b12d-c50edee9d695",
+      "table": "block"
+    },
+    {
+      "id": "57da64a5-57d4-4e45-b21b-499a6825bd01",
+      "table": "block"
+    },
+    {
+      "id": "12b467e7-ae26-418f-9e6c-9378cca4e822",
+      "table": "block"
+    },
+    {
+      "id": "b1da170e-9ba3-496c-8893-394b265d648a",
+      "table": "block"
+    }
+  ]
+}
+Response:+8552
+{
+  "results": [
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1515366523285,
+        "id": "55315ea3-9bce-4544-ac89-e60d735bfd20",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1565390940000,
+        "parent_id": "01bcfc56-8bec-4943-a860-e130dd9f8d7e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Use "
+            ],
+            [
+              "https://rtyley.github.io/bfg-repo-cleaner/",
+              [
+                [
+                  "a",
+                  "https://rtyley.github.io/bfg-repo-cleaner/"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 18
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1565395740000,
+        "id": "06c7dc94-37e4-4ec5-858f-4280b1ecffcd",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1565395740000,
+        "parent_id": "01bcfc56-8bec-4943-a860-e130dd9f8d7e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://repository.sonatype.org/service/local/repositories/central-proxy/content/com/madgag/bfg/1.13.0/bfg-1.13.0.txt",
+              [
+                [
+                  "a",
+                  "https://repository.sonatype.org/service/local/repositories/central-proxy/content/com/madgag/bfg/1.13.0/bfg-1.13.0.txt"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 5
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1515366526450,
+        "id": "ef56b05b-27cf-49ab-ade2-834ae4a23359",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1565390940000,
+        "parent_id": "01bcfc56-8bec-4943-a860-e130dd9f8d7e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "brew install bfg",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " "
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 57
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1515366532897,
+        "id": "eb1da52c-37a4-4c88-90af-7c89178ed9a3",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1565390940000,
+        "parent_id": "01bcfc56-8bec-4943-a860-e130dd9f8d7e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "bfg --delete-files \u003cfile_name_to_delete\u003e",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " "
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 132
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1565396280000,
+        "id": "0b8e4392-65bd-46ed-b0f6-617d7bb371d3",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1565396280000,
+        "parent_id": "01bcfc56-8bec-4943-a860-e130dd9f8d7e",
+        "parent_table": "block",
+        "type": "text",
+        "version": 4
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1565395020000,
+        "id": "9e560a26-b41e-42b6-b864-e514ced2727f",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1565396040000,
+        "parent_id": "01bcfc56-8bec-4943-a860-e130dd9f8d7e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "java -jar bfg.jar --delete-files \"*.json\" blog.git",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 112
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1565395200000,
+        "id": "4d1324f7-01c1-4a4d-b07d-c4d7e3a31688",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1565395200000,
+        "parent_id": "01bcfc56-8bec-4943-a860-e130dd9f8d7e",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "git reflog expire --expire=now --all \u0026\u0026 git gc --prune=now --aggressive",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 8
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1565390940000,
+        "id": "cb136b7f-df00-4533-b12d-c50edee9d695",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1565390940000,
+        "parent_id": "2c39fe3b-be37-4ecf-a0e6-f0cd33651010",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Example:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 11
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1565390940000,
+        "id": "57da64a5-57d4-4e45-b21b-499a6825bd01",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1565390940000,
+        "parent_id": "2c39fe3b-be37-4ecf-a0e6-f0cd33651010",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "git filter-branch --tree-filter 'find -wholename \"notion_cache/*.json\" -type f -exec rm -rf {} \\; ' -- --all",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 10
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1565392920000,
+        "id": "12b467e7-ae26-418f-9e6c-9378cca4e822",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1565396100000,
+        "parent_id": "2c39fe3b-be37-4ecf-a0e6-f0cd33651010",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "git filter-branch --prune-empty --tree-filter 'git rm -rf --cached --ignore-unmatch notion_cache/*.json' -- --all",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 36
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "content": [
+          "6622d6a1-4246-4c3f-ba1a-88eafc3fb51a",
+          "8b9ebb68-5714-4688-82a1-eec03aa24221",
+          "68dd8b8e-6ef4-4b54-9eae-a522afa00a4f",
+          "82352e1e-bee9-4e4c-8842-3a6fd535752c",
+          "2e79f25f-4f49-415d-ac29-b6f688c4119b"
+        ],
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1565390940000,
+        "id": "b1da170e-9ba3-496c-8893-394b265d648a",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1565391360000,
+        "parent_id": "2c39fe3b-be37-4ecf-a0e6-f0cd33651010",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Other docs:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 24
+      }
+    }
+  ]
+}
+HeadersJSON:+932
+{
+  "Cf-Ray": [
+    "504157822efcc554-ORD"
+  ],
+  "Content-Type": [
+    "application/json; charset=utf-8"
+  ],
+  "Date": [
+    "Sat, 10 Aug 2019 10:38:43 GMT"
+  ],
+  "Etag": [
+    "W/\"14d4-CicRaVYphPNc8l7URfInmkbloEc\""
+  ],
+  "Expect-Ct": [
+    "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\""
+  ],
+  "Referrer-Policy": [
+    "same-origin"
+  ],
+  "Server": [
+    "cloudflare"
+  ],
+  "Set-Cookie": [
+    "__cfduid=d6a1b8ab0ca8f7813bab0825e63b3c3c71565433523; expires=Sun, 09-Aug-20 10:38:43 GMT; path=/; domain=.notion.so; HttpOnly"
+  ],
+  "Strict-Transport-Security": [
+    "max-age=5184000; includeSubDomains"
+  ],
+  "Vary": [
+    "Accept-Encoding"
+  ],
+  "X-Content-Type-Options": [
+    "nosniff"
+  ],
+  "X-Dns-Prefetch-Control": [
+    "off"
+  ],
+  "X-Download-Options": [
+    "noopen"
+  ],
+  "X-Frame-Options": [
+    "SAMEORIGIN"
+  ],
+  "X-Xss-Protection": [
+    "1; mode=block"
+  ]
+}
+5898 1565433523774 httpcache-v1
+Method: POST
+URL: https://www.notion.so/api/v3/getRecordValues
+Body:+462
+{
+  "requests": [
+    {
+      "id": "6622d6a1-4246-4c3f-ba1a-88eafc3fb51a",
+      "table": "block"
+    },
+    {
+      "id": "8b9ebb68-5714-4688-82a1-eec03aa24221",
+      "table": "block"
+    },
+    {
+      "id": "68dd8b8e-6ef4-4b54-9eae-a522afa00a4f",
+      "table": "block"
+    },
+    {
+      "id": "82352e1e-bee9-4e4c-8842-3a6fd535752c",
+      "table": "block"
+    },
+    {
+      "id": "2e79f25f-4f49-415d-ac29-b6f688c4119b",
+      "table": "block"
+    }
+  ]
+}
+Response:+4397
+{
+  "results": [
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1565391120000,
+        "id": "6622d6a1-4246-4c3f-ba1a-88eafc3fb51a",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1565391120000,
+        "parent_id": "b1da170e-9ba3-496c-8893-394b265d648a",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://blog.ostermiller.org/git-remove-from-history",
+              [
+                [
+                  "a",
+                  "https://blog.ostermiller.org/git-remove-from-history"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 11
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1565391120000,
+        "id": "8b9ebb68-5714-4688-82a1-eec03aa24221",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1565391180000,
+        "parent_id": "b1da170e-9ba3-496c-8893-394b265d648a",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://blog.tinned-software.net/remove-files-from-git-history/",
+              [
+                [
+                  "a",
+                  "https://blog.tinned-software.net/remove-files-from-git-history/"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 6
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1565391180000,
+        "id": "68dd8b8e-6ef4-4b54-9eae-a522afa00a4f",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1565391240000,
+        "parent_id": "b1da170e-9ba3-496c-8893-394b265d648a",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://stackoverflow.com/questions/2164581/remove-file-from-git-repository-history",
+              [
+                [
+                  "a",
+                  "https://stackoverflow.com/questions/2164581/remove-file-from-git-repository-history"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 6
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1565391240000,
+        "id": "82352e1e-bee9-4e4c-8842-3a6fd535752c",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1565391360000,
+        "parent_id": "b1da170e-9ba3-496c-8893-394b265d648a",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://help.github.com/en/articles/removing-sensitive-data-from-a-repository",
+              [
+                [
+                  "a",
+                  "https://help.github.com/en/articles/removing-sensitive-data-from-a-repository"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 6
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1565391360000,
+        "id": "2e79f25f-4f49-415d-ac29-b6f688c4119b",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1565391360000,
+        "parent_id": "b1da170e-9ba3-496c-8893-394b265d648a",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://myopswork.com/how-remove-files-completely-from-git-repository-history-47ed3e0c4c35",
+              [
+                [
+                  "a",
+                  "https://myopswork.com/how-remove-files-completely-from-git-repository-history-47ed3e0c4c35"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 9
+      }
+    }
+  ]
+}
+HeadersJSON:+931
+{
+  "Cf-Ray": [
+    "50415782f805c554-ORD"
+  ],
+  "Content-Type": [
+    "application/json; charset=utf-8"
+  ],
+  "Date": [
+    "Sat, 10 Aug 2019 10:38:43 GMT"
+  ],
+  "Etag": [
+    "W/\"aef-LKrLP3jGY//6CnnNLDCv1lnxa64\""
+  ],
+  "Expect-Ct": [
+    "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\""
+  ],
+  "Referrer-Policy": [
+    "same-origin"
+  ],
+  "Server": [
+    "cloudflare"
+  ],
+  "Set-Cookie": [
+    "__cfduid=d6a1b8ab0ca8f7813bab0825e63b3c3c71565433523; expires=Sun, 09-Aug-20 10:38:43 GMT; path=/; domain=.notion.so; HttpOnly"
   ],
   "Strict-Transport-Security": [
     "max-age=5184000; includeSubDomains"
