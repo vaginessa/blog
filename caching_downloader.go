@@ -81,7 +81,6 @@ func loadPageFromCache(dir, pageID string) *notionapi.Page {
 	}
 	page, err := client.DownloadPage(pageID)
 	must(err)
-	panicIf(httpCache.RequestsNotFromCache != 0, "unexpectedly made %d server connections for page %s", httpCache.RequestsNotFromCache, pageID)
 	return page
 }
 
