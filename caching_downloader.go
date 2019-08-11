@@ -9,6 +9,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/kjk/caching_http_client"
 	"github.com/kjk/notionapi"
 )
 
@@ -33,7 +34,7 @@ func NewCachingDownloader(cacheDir string) *CachingDownloader {
 }
 
 // I got "connection reset by peer" error once so retry download 3 times, with a short sleep in-between
-func downloadPageRetry(c *notionapi.Client, pageID string) (*notionapi.Page, *notionapi.HTTPCache, error) {
+func downloadPageRetry(c *notionapi.Client, pageID string) (*notionapi.Page, *caching_http_client.Cache, error) {
 	var res *notionapi.Page
 	var err error
 	for i := 0; i < 3; i++ {
@@ -41,8 +42,8 @@ func downloadPageRetry(c *notionapi.Client, pageID string) (*notionapi.Page, *no
 			lg("Download %s failed with '%s'\n", pageID, err)
 			time.Sleep(5 * time.Second) // not sure if it matters
 		}
-		httpCache := notionapi.NewHTTPCache()
-		c.HTTPClient = notionapi.NewCachingHTTPClient(httpCache)
+		httpCache := caching_http_client.NewCache()
+		c.HTTPClient = caching_http_client.New(httpCache)
 		res, err = c.DownloadPage(pageID)
 		if err == nil {
 			return res, httpCache, nil
@@ -51,7 +52,7 @@ func downloadPageRetry(c *notionapi.Client, pageID string) (*notionapi.Page, *no
 	return nil, nil, err
 }
 
-func loadHTTPCacheForPage(path string) *notionapi.HTTPCache {
+func loadHTTPCacheForPage(path string) *caching_http_client.Cache {
 	d, err := ioutil.ReadFile(path)
 	if err != nil {
 		// it's ok if file doesn't exit
@@ -72,7 +73,7 @@ func loadPageFromCache(dir, pageID string) *notionapi.Page {
 	if httpCache == nil {
 		return nil
 	}
-	httpClient := notionapi.NewCachingHTTPClient(httpCache)
+	httpClient := caching_http_client.New(httpCache)
 	client := &notionapi.Client{
 		//DebugLog:   true,
 		//Logger:     os.Stdout,

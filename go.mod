@@ -9,7 +9,8 @@ require (
 	github.com/gomarkdown/markdown v0.0.0-20190802011031-b3dd8ce84a34
 	github.com/gorilla/handlers v1.4.2 // indirect
 	github.com/kjk/betterguid v0.0.0-20170621091430-c442874ba63a
-	github.com/kjk/notionapi v0.0.0-20190809051956-c1b3b798694f
+	github.com/kjk/caching_http_client v0.0.0-20190810075619-06ff809674f7
+	github.com/kjk/notionapi v0.0.0-20190811015057-b958498e0d4f
 	github.com/kjk/siser v0.0.0-20190801014033-b3367920d7f2
 	github.com/kjk/u v0.0.0-20170711051841-93181be023c9
 	github.com/kylelemons/godebug v1.1.0

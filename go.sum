@@ -56,6 +56,8 @@ github.com/hashicorp/hcl v1.0.0/go.mod h1:E5yfLk+7swimpb2L/Alb/PJmXilQ/rhwaUYs4T
 github.com/jessevdk/go-flags v1.4.0/go.mod h1:4FA24M0QyGHXBuZZK/XkWh8h0e1EYbRYJSGM75WSRxI=
 github.com/kjk/betterguid v0.0.0-20170621091430-c442874ba63a h1:b+Gt8sQs//Sl5Dcem5zP9Qc2FgEUAygREa2AAa2Vmcw=
 github.com/kjk/betterguid v0.0.0-20170621091430-c442874ba63a/go.mod h1:uxRAhHE1nl34DpWgfe0CYbNYbCnYplaB6rZH9ReWtUk=
+github.com/kjk/caching_http_client v0.0.0-20190810075619-06ff809674f7 h1:QpTfahFJ/tetY9TR6GeV3ubuzU5qJnmfTk35cJF8/WQ=
+github.com/kjk/caching_http_client v0.0.0-20190810075619-06ff809674f7/go.mod h1:uZMXWOA3unK8KYdy6aBIel64MMqZwsRFRKIvgSadLAU=
 github.com/kjk/notionapi v0.0.0-20190201233602-ddf1f774f988 h1:IGbKXeIvxNGDxRi5CWkxdUkdY5UoczUU5dPWUasb8MU=
 github.com/kjk/notionapi v0.0.0-20190201233602-ddf1f774f988/go.mod h1:Z/EMHQc5WHTPxNNOSLVgtCWGcZKUl/09/tXL/3rRDU0=
 github.com/kjk/notionapi v0.0.0-20190322025246-8ffa904ade1a h1:b01uP7qdgDQEDQhxbmHGoudWqLb/CKV72odyw1kDMgc=
@@ -132,6 +134,8 @@ github.com/kjk/notionapi v0.0.0-20190809051415-43d0d7731ac3 h1:SzocpiFVZmU6nzfHe
 github.com/kjk/notionapi v0.0.0-20190809051415-43d0d7731ac3/go.mod h1:WlZ3SsQAYhULPTEKwrXGlCwDPeRzqH92uc6XuS9GqpA=
 github.com/kjk/notionapi v0.0.0-20190809051956-c1b3b798694f h1:M/Bg4+VZAcVJNMiyb4mdbN5lLprpckjGZy0dFZr765E=
 github.com/kjk/notionapi v0.0.0-20190809051956-c1b3b798694f/go.mod h1:WlZ3SsQAYhULPTEKwrXGlCwDPeRzqH92uc6XuS9GqpA=
+github.com/kjk/notionapi v0.0.0-20190811015057-b958498e0d4f h1:fva4rDIN5arZvgmYjo+Tcby36WZlgKgRzP99XhlAbbQ=
+github.com/kjk/notionapi v0.0.0-20190811015057-b958498e0d4f/go.mod h1:6gP174diiOgxYHNxQyNsgrNmHJAsCljmoiwrCrO9D0s=
 github.com/kjk/siser v0.0.0-20190801014033-b3367920d7f2 h1:vrqsThWMeIUgprELZhUEw0wFu/LJANlftGo6US4vIDg=
 github.com/kjk/siser v0.0.0-20190801014033-b3367920d7f2/go.mod h1:5VyY+9nF1wpSfWAIM/mIrd0fZCiA/6IK6CSf3PnjfMA=
 github.com/kjk/u v0.0.0-20170711051841-93181be023c9 h1:1j5Nzg2ooGH8dCMJiiMeRaW8nc299dVotlOkT9RTaK4=
