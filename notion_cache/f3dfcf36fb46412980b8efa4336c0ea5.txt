@@ -1,4 +1,4 @@
-2985 1565326115230 httpcache-v1
+2036 1565586596579 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+110
@@ -64,55 +64,7 @@ Response:+1836
     }
   ]
 }
-HeadersJSON:+931
-{
-  "Cf-Ray": [
-    "503719364ba27fb4-SAN"
-  ],
-  "Content-Type": [
-    "application/json; charset=utf-8"
-  ],
-  "Date": [
-    "Fri, 09 Aug 2019 04:48:34 GMT"
-  ],
-  "Etag": [
-    "W/\"527-ZaPkLb4l9nhA8Nj0vqEsd3kULWU\""
-  ],
-  "Expect-Ct": [
-    "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\""
-  ],
-  "Referrer-Policy": [
-    "same-origin"
-  ],
-  "Server": [
-    "cloudflare"
-  ],
-  "Set-Cookie": [
-    "__cfduid=d5bd4add407f9cfa4dc55d1db4439fd251565326114; expires=Sat, 08-Aug-20 04:48:34 GMT; path=/; domain=.notion.so; HttpOnly"
-  ],
-  "Strict-Transport-Security": [
-    "max-age=5184000; includeSubDomains"
-  ],
-  "Vary": [
-    "Accept-Encoding"
-  ],
-  "X-Content-Type-Options": [
-    "nosniff"
-  ],
-  "X-Dns-Prefetch-Control": [
-    "off"
-  ],
-  "X-Download-Options": [
-    "noopen"
-  ],
-  "X-Frame-Options": [
-    "SAMEORIGIN"
-  ],
-  "X-Xss-Protection": [
-    "1; mode=block"
-  ]
-}
-26197 1565326115236 httpcache-v1
+25247 1565586596580 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+152
@@ -857,62 +809,14 @@ Response:+25006
           "mobile_onboarding_completed": true,
           "onboarding_completed": true,
           "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-          "version": 176
+          "version": 179
         }
       }
     },
     "space": {}
   }
 }
-HeadersJSON:+932
-{
-  "Cf-Ray": [
-    "50371936abcc7fb4-SAN"
-  ],
-  "Content-Type": [
-    "application/json; charset=utf-8"
-  ],
-  "Date": [
-    "Fri, 09 Aug 2019 04:48:34 GMT"
-  ],
-  "Etag": [
-    "W/\"3e0d-7jZDaKAXq2A5elvqZ4uNHP6JDu4\""
-  ],
-  "Expect-Ct": [
-    "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\""
-  ],
-  "Referrer-Policy": [
-    "same-origin"
-  ],
-  "Server": [
-    "cloudflare"
-  ],
-  "Set-Cookie": [
-    "__cfduid=d5bd4add407f9cfa4dc55d1db4439fd251565326114; expires=Sat, 08-Aug-20 04:48:34 GMT; path=/; domain=.notion.so; HttpOnly"
-  ],
-  "Strict-Transport-Security": [
-    "max-age=5184000; includeSubDomains"
-  ],
-  "Vary": [
-    "Accept-Encoding"
-  ],
-  "X-Content-Type-Options": [
-    "nosniff"
-  ],
-  "X-Dns-Prefetch-Control": [
-    "off"
-  ],
-  "X-Download-Options": [
-    "noopen"
-  ],
-  "X-Frame-Options": [
-    "SAMEORIGIN"
-  ],
-  "X-Xss-Protection": [
-    "1; mode=block"
-  ]
-}
-27366 1565326115240 httpcache-v1
+26416 1565586596581 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/queryCollection
 Body:+241
@@ -1762,52 +1666,4 @@ Response:+26084
     "total": 18,
     "type": "table"
   }
-}
-HeadersJSON:+932
-{
-  "Cf-Ray": [
-    "503719371bfb7fb4-SAN"
-  ],
-  "Content-Type": [
-    "application/json; charset=utf-8"
-  ],
-  "Date": [
-    "Fri, 09 Aug 2019 04:48:34 GMT"
-  ],
-  "Etag": [
-    "W/\"3d94-W71Pv9JXEvlt/oywdHykZ+ZrIw8\""
-  ],
-  "Expect-Ct": [
-    "max-age=604800, report-uri=\"https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct\""
-  ],
-  "Referrer-Policy": [
-    "same-origin"
-  ],
-  "Server": [
-    "cloudflare"
-  ],
-  "Set-Cookie": [
-    "__cfduid=d5bd4add407f9cfa4dc55d1db4439fd251565326114; expires=Sat, 08-Aug-20 04:48:34 GMT; path=/; domain=.notion.so; HttpOnly"
-  ],
-  "Strict-Transport-Security": [
-    "max-age=5184000; includeSubDomains"
-  ],
-  "Vary": [
-    "Accept-Encoding"
-  ],
-  "X-Content-Type-Options": [
-    "nosniff"
-  ],
-  "X-Dns-Prefetch-Control": [
-    "off"
-  ],
-  "X-Download-Options": [
-    "noopen"
-  ],
-  "X-Frame-Options": [
-    "SAMEORIGIN"
-  ],
-  "X-Xss-Protection": [
-    "1; mode=block"
-  ]
 }
