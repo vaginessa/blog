@@ -9,6 +9,9 @@ import (
 	"os/exec"
 	"runtime"
 	"time"
+
+	"github.com/kjk/notionapi"
+	"github.com/kjk/notionapi/caching_downloader"
 )
 
 var (
@@ -34,7 +37,7 @@ func parseCmdLineFlags() {
 	flag.Parse()
 }
 
-func rebuildAll(d *CachingDownloader) *Articles {
+func rebuildAll(d *caching_downloader.CachingDownloader) *Articles {
 	regenMd()
 	loadTemplates()
 	articles := loadArticles(d)
@@ -85,7 +88,11 @@ func main() {
 	parseCmdLineFlags()
 	os.MkdirAll("netlify_static", 0755)
 
-	d := NewCachingDownloader(cacheDir)
+	client := &notionapi.Client{}
+	//client.Logger = os.Stdout
+	d, err := caching_downloader.New(cacheDir, client)
+	must(err)
+	d.Logger = os.Stdout
 
 	// make sure this happens first so that building for deployment is not
 	// disrupted by the temporary testing code we might have below

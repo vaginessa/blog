@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"github.com/kjk/notionapi"
+	"github.com/kjk/notionapi/caching_downloader"
 )
 
 var (
@@ -104,10 +105,10 @@ func rmCached(pageID string) {
 	rmFile(filepath.Join(cacheDir, id+".txt"))
 }
 
-func loadPageAsArticle(d *CachingDownloader, pageID string) *Article {
-	page, err := d.downloadAndCachePage(pageID)
+func loadPageAsArticle(d *caching_downloader.CachingDownloader, pageID string) *Article {
+	page, err := d.DownloadPage(pageID)
 	panicIfErr(err)
 	lg("Downloaded %s %s\n", pageID, page.Root().Title)
-	c := d.Client
+	c := &notionapi.Client{}
 	return notionPageToArticle(c, page)
 }
