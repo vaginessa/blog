@@ -148,6 +148,10 @@ github.com/kjk/notionapi v0.0.0-20190812053039-851a51dd870b h1:Jp5bDlI3Tg3Yr/gU2
 github.com/kjk/notionapi v0.0.0-20190812053039-851a51dd870b/go.mod h1:DKwdFoIoXjVfYPg4UguKwU3hgfYs0DiNN1lDIyWRajI=
 github.com/kjk/notionapi v0.0.0-20190812053653-9026fc821b88 h1:6R1rteDoaPRLMPLEHFUoJ90rgVXKKMRaoGJoDXjdk90=
 github.com/kjk/notionapi v0.0.0-20190812053653-9026fc821b88/go.mod h1:DKwdFoIoXjVfYPg4UguKwU3hgfYs0DiNN1lDIyWRajI=
+github.com/kjk/notionapi v0.0.0-20190812054836-45671cdbf832 h1:ZLGg4aNUdtEZ5vTRSThQOwmbxwSvzGlXYx7jJbKFfUE=
+github.com/kjk/notionapi v0.0.0-20190812054836-45671cdbf832/go.mod h1:DKwdFoIoXjVfYPg4UguKwU3hgfYs0DiNN1lDIyWRajI=
+github.com/kjk/notionapi v0.0.0-20190812055418-cd5b431ef59d h1:+lguDx6YGzxjFA2/DaaGjoEEuRVlLxl8CSbU4eZXxRg=
+github.com/kjk/notionapi v0.0.0-20190812055418-cd5b431ef59d/go.mod h1:DKwdFoIoXjVfYPg4UguKwU3hgfYs0DiNN1lDIyWRajI=
 github.com/kjk/siser v0.0.0-20190801014033-b3367920d7f2 h1:vrqsThWMeIUgprELZhUEw0wFu/LJANlftGo6US4vIDg=
 github.com/kjk/siser v0.0.0-20190801014033-b3367920d7f2/go.mod h1:5VyY+9nF1wpSfWAIM/mIrd0fZCiA/6IK6CSf3PnjfMA=
 github.com/kjk/u v0.0.0-20170711051841-93181be023c9 h1:1j5Nzg2ooGH8dCMJiiMeRaW8nc299dVotlOkT9RTaK4=

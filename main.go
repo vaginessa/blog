@@ -18,18 +18,18 @@ var (
 	analyticsCode = "UA-194516-1"
 
 	flgRedownloadNotion bool
-	flgNoDownload       bool
 	flgRedownloadPage   string
 	flgDeploy           bool
 	flgPreview          bool
 	flgPreviewOnDemand  bool
 	flgVerbose          bool
+	flgNoCache          bool
 )
 
 func parseCmdLineFlags() {
 	flag.BoolVar(&flgVerbose, "verbose", false, "if true, verbose logging")
+	flag.BoolVar(&flgNoCache, "no-cache", false, "if true, disables cache for downloading notion pages")
 	flag.BoolVar(&flgDeploy, "deploy", false, "if true, build for deployment")
-	flag.BoolVar(&flgNoDownload, "no-download", false, "if true, skips downloading")
 	flag.BoolVar(&flgPreview, "preview", false, "if true, runs caddy and opens a browser for preview")
 	flag.BoolVar(&flgPreviewOnDemand, "preview-on-demand", false, "if true runs the browser for local preview")
 	flag.BoolVar(&flgRedownloadNotion, "redownload-notion", false, "if true, re-downloads content from notion")
@@ -93,6 +93,8 @@ func main() {
 	d, err := caching_downloader.New(cacheDir, client)
 	must(err)
 	d.Logger = os.Stdout
+	d.RedownloadNewerVersions = true
+	d.NoReadCache = flgNoCache
 
 	// make sure this happens first so that building for deployment is not
 	// disrupted by the temporary testing code we might have below
