@@ -1,4 +1,4 @@
-1236 1565589884415 httpcache-v1
+1286 1565692748435 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+110
@@ -10,7 +10,7 @@ Body:+110
     }
   ]
 }
-Response:+1036
+Response:+1086
 {
   "results": [
     {
@@ -22,7 +22,8 @@ Response:+1036
           "db05c076-3ce4-40b6-bc79-29ee3703b7d8",
           "cd13037d-cbf3-4737-8886-99dc21e1b545",
           "5c10f51f-4af6-4cb6-b243-6090ef7ec4b7",
-          "f7d5b306-4481-45e7-b789-af03f5beff7f"
+          "f7d5b306-4481-45e7-b789-af03f5beff7f",
+          "6722c51b-c7f4-402c-86ff-fb373d214510"
         ],
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
         "created_time": 1512455139144,
@@ -32,7 +33,7 @@ Response:+1036
         },
         "id": "2e8d39a3-a23d-4d33-abbb-4f8154efb231",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1563299100000,
+        "last_edited_time": 1565677740000,
         "parent_id": "e4fe2d9f-ae30-4e3a-beb9-b8316b9e2d62",
         "parent_table": "block",
         "properties": {
@@ -43,12 +44,12 @@ Response:+1036
           ]
         },
         "type": "page",
-        "version": 22
+        "version": 33
       }
     }
   ]
 }
-13163 1565589884418 httpcache-v1
+14264 1565692748437 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+152
@@ -61,7 +62,7 @@ Body:+152
   "pageId": "2e8d39a3-a23d-4d33-abbb-4f8154efb231",
   "verticalColumns": false
 }
-Response:+12922
+Response:+14023
 {
   "cursor": {
     "stack": []
@@ -77,7 +78,8 @@ Response:+12922
             "db05c076-3ce4-40b6-bc79-29ee3703b7d8",
             "cd13037d-cbf3-4737-8886-99dc21e1b545",
             "5c10f51f-4af6-4cb6-b243-6090ef7ec4b7",
-            "f7d5b306-4481-45e7-b789-af03f5beff7f"
+            "f7d5b306-4481-45e7-b789-af03f5beff7f",
+            "6722c51b-c7f4-402c-86ff-fb373d214510"
           ],
           "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
           "created_time": 1512455139144,
@@ -87,7 +89,7 @@ Response:+12922
           },
           "id": "2e8d39a3-a23d-4d33-abbb-4f8154efb231",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1563299100000,
+          "last_edited_time": 1565677740000,
           "parent_id": "e4fe2d9f-ae30-4e3a-beb9-b8316b9e2d62",
           "parent_table": "block",
           "properties": {
@@ -98,7 +100,7 @@ Response:+12922
             ]
           },
           "type": "page",
-          "version": 22
+          "version": 33
         }
       },
       "568ac4c0-64c3-4ef6-a6ad-0b8d77230681": {
@@ -201,6 +203,36 @@ Response:+12922
           "parent_table": "block",
           "type": "column_list",
           "version": 0
+        }
+      },
+      "6722c51b-c7f4-402c-86ff-fb373d214510": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "content": [
+            "8a4ff95b-50a2-4e91-927f-8a8c2f52aa2b",
+            "44d8b198-0adf-4f00-9fad-6476a0007b80",
+            "4380574b-b036-4dd6-b48a-cf6fae33b70f",
+            "e0ef27df-1b4e-4abe-9a35-3f4a1bf0dade",
+            "b8455ad4-5da4-4512-ab07-685fdc22736d",
+            "d29b2875-0491-4bcd-961a-ec4ea7c32f9a"
+          ],
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1565677440000,
+          "id": "6722c51b-c7f4-402c-86ff-fb373d214510",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1565677740000,
+          "parent_id": "2e8d39a3-a23d-4d33-abbb-4f8154efb231",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "prettier"
+              ]
+            ]
+          },
+          "type": "toggle",
+          "version": 21
         }
       },
       "c9bef0f1-c8fe-40a2-bc8b-06ace2bd7d8f": {
@@ -424,10 +456,10 @@ Response:+12922
     "space": {}
   }
 }
-16262 1565589884421 httpcache-v1
+21500 1565692748439 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
-Body:+1518
+Body:+2046
 {
   "requests": [
     {
@@ -497,10 +529,34 @@ Body:+1518
     {
       "id": "5b5a3691-d141-4c65-989b-6ba3c476b49d",
       "table": "block"
+    },
+    {
+      "id": "8a4ff95b-50a2-4e91-927f-8a8c2f52aa2b",
+      "table": "block"
+    },
+    {
+      "id": "44d8b198-0adf-4f00-9fad-6476a0007b80",
+      "table": "block"
+    },
+    {
+      "id": "4380574b-b036-4dd6-b48a-cf6fae33b70f",
+      "table": "block"
+    },
+    {
+      "id": "e0ef27df-1b4e-4abe-9a35-3f4a1bf0dade",
+      "table": "block"
+    },
+    {
+      "id": "b8455ad4-5da4-4512-ab07-685fdc22736d",
+      "table": "block"
+    },
+    {
+      "id": "d29b2875-0491-4bcd-961a-ec4ea7c32f9a",
+      "table": "block"
     }
   ]
 }
-Response:+14652
+Response:+19362
 {
   "results": [
     {
@@ -942,10 +998,165 @@ Response:+14652
         "type": "text",
         "version": 4
       }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1565677440000,
+        "id": "8a4ff95b-50a2-4e91-927f-8a8c2f52aa2b",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1565677440000,
+        "parent_id": "6722c51b-c7f4-402c-86ff-fb373d214510",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://github.com/prettier/prettier-vscode/issues/636",
+              [
+                [
+                  "a",
+                  "https://github.com/prettier/prettier-vscode/issues/636"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 8
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1565677560000,
+        "id": "44d8b198-0adf-4f00-9fad-6476a0007b80",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1565677560000,
+        "parent_id": "6722c51b-c7f4-402c-86ff-fb373d214510",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://travishorn.com/setting-up-prettier-on-vs-code-1fd5e5a43523",
+              [
+                [
+                  "a",
+                  "https://travishorn.com/setting-up-prettier-on-vs-code-1fd5e5a43523"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 5
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1565677560000,
+        "id": "4380574b-b036-4dd6-b48a-cf6fae33b70f",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1565677620000,
+        "parent_id": "6722c51b-c7f4-402c-86ff-fb373d214510",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode",
+              [
+                [
+                  "a",
+                  "https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 5
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1565677620000,
+        "id": "e0ef27df-1b4e-4abe-9a35-3f4a1bf0dade",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1565677740000,
+        "parent_id": "6722c51b-c7f4-402c-86ff-fb373d214510",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://prettier.io/docs/en/options.html#html-whitespace-sensitivity",
+              [
+                [
+                  "a",
+                  "https://prettier.io/docs/en/options.html#html-whitespace-sensitivity"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 6
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1565677740000,
+        "id": "b8455ad4-5da4-4512-ab07-685fdc22736d",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1565677740000,
+        "parent_id": "6722c51b-c7f4-402c-86ff-fb373d214510",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://prettier.io/docs/en/configuration.html",
+              [
+                [
+                  "a",
+                  "https://prettier.io/docs/en/configuration.html"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 5
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1565677740000,
+        "id": "d29b2875-0491-4bcd-961a-ec4ea7c32f9a",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1565677740000,
+        "parent_id": "6722c51b-c7f4-402c-86ff-fb373d214510",
+        "parent_table": "block",
+        "type": "text",
+        "version": 4
+      }
     }
   ]
 }
-848 1565589884421 httpcache-v1
+848 1565692748439 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+110
