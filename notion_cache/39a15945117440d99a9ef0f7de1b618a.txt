@@ -1,4 +1,4 @@
-3310 1565589933904 httpcache-v1
+3310 1565779186300 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+110
@@ -73,7 +73,7 @@ Response:+3110
         },
         "id": "39a15945-1174-40d9-9a9e-f0f7de1b618a",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1564213740000,
+        "last_edited_time": 1565720880000,
         "parent_id": "8999d1d7-32c7-4061-b439-ff9efd8f8a70",
         "parent_table": "block",
         "properties": {
@@ -84,12 +84,12 @@ Response:+3110
           ]
         },
         "type": "page",
-        "version": 189
+        "version": 190
       }
     }
   ]
 }
-47501 1565589933907 httpcache-v1
+47500 1565779186302 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+152
@@ -102,7 +102,7 @@ Body:+152
   "pageId": "39a15945-1174-40d9-9a9e-f0f7de1b618a",
   "verticalColumns": false
 }
-Response:+47260
+Response:+47259
 {
   "cursor": {
     "stack": []
@@ -498,7 +498,7 @@ Response:+47260
           },
           "id": "39a15945-1174-40d9-9a9e-f0f7de1b618a",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1564213740000,
+          "last_edited_time": 1565720880000,
           "parent_id": "8999d1d7-32c7-4061-b439-ff9efd8f8a70",
           "parent_table": "block",
           "properties": {
@@ -509,7 +509,7 @@ Response:+47260
             ]
           },
           "type": "page",
-          "version": 189
+          "version": 190
         }
       },
       "3cbd590e-81d6-4721-bd9a-ea7e2d14c23b": {
@@ -1284,18 +1284,18 @@ Response:+47260
           "created_time": 1556568300000,
           "id": "dfd52e6d-3673-444d-a978-0ace128c95fb",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1556568300000,
+          "last_edited_time": 1565720880000,
           "parent_id": "39a15945-1174-40d9-9a9e-f0f7de1b618a",
           "parent_table": "block",
           "properties": {
             "title": [
               [
-                "You can toggle log window from File menu. As an additional touch, if it logs and error and it's a dev build, it automatically opens a window."
+                "You can toggle log window from File menu. As an additional touch, if it logs an error and it's a dev build, it automatically opens a window."
               ]
             ]
           },
           "type": "text",
-          "version": 106
+          "version": 108
         }
       },
       "e0b9d485-cf61-4f80-b5ad-52d1fdabb5b7": {

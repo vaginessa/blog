@@ -1,4 +1,4 @@
-1452 1565589995976 httpcache-v1
+1502 1565779187842 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+110
@@ -10,7 +10,7 @@ Body:+110
     }
   ]
 }
-Response:+1252
+Response:+1302
 {
   "results": [
     {
@@ -21,6 +21,7 @@ Response:+1252
           "ea07db1b-9bff-415a-b180-b0525f3898f6",
           "fe8925d5-1dec-4f2f-824e-8b3be79f8d15",
           "8632887d-82fe-4016-bea0-c62c816076bd",
+          "cbe63fe6-dc11-49c9-869c-a2f158f44476",
           "e6c81f96-572d-4335-9492-4c7105517be7",
           "462467a3-1856-4cb6-9228-6936960414b6",
           "6b9460b3-cce6-4f2c-9652-c514399cfa84",
@@ -36,7 +37,7 @@ Response:+1252
         },
         "id": "2377733d-91ad-43a5-bceb-937810ec75ba",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1563986640000,
+        "last_edited_time": 1565762880000,
         "parent_id": "7c7c99c1-c933-44c8-8310-1e6dbbf80899",
         "parent_table": "block",
         "properties": {
@@ -47,12 +48,12 @@ Response:+1252
           ]
         },
         "type": "page",
-        "version": 241
+        "version": 244
       }
     }
   ]
 }
-22512 1565589995978 httpcache-v1
+23442 1565779187844 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+152
@@ -65,7 +66,7 @@ Body:+152
   "pageId": "2377733d-91ad-43a5-bceb-937810ec75ba",
   "verticalColumns": false
 }
-Response:+22271
+Response:+23201
 {
   "cursor": {
     "stack": []
@@ -80,6 +81,7 @@ Response:+22271
             "ea07db1b-9bff-415a-b180-b0525f3898f6",
             "fe8925d5-1dec-4f2f-824e-8b3be79f8d15",
             "8632887d-82fe-4016-bea0-c62c816076bd",
+            "cbe63fe6-dc11-49c9-869c-a2f158f44476",
             "e6c81f96-572d-4335-9492-4c7105517be7",
             "462467a3-1856-4cb6-9228-6936960414b6",
             "6b9460b3-cce6-4f2c-9652-c514399cfa84",
@@ -95,7 +97,7 @@ Response:+22271
           },
           "id": "2377733d-91ad-43a5-bceb-937810ec75ba",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1563986640000,
+          "last_edited_time": 1565762880000,
           "parent_id": "7c7c99c1-c933-44c8-8310-1e6dbbf80899",
           "parent_table": "block",
           "properties": {
@@ -106,7 +108,7 @@ Response:+22271
             ]
           },
           "type": "page",
-          "version": 241
+          "version": 244
         }
       },
       "462467a3-1856-4cb6-9228-6936960414b6": {
@@ -436,6 +438,34 @@ Response:+22271
           "version": 40
         }
       },
+      "cbe63fe6-dc11-49c9-869c-a2f158f44476": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1565762820000,
+          "id": "cbe63fe6-dc11-49c9-869c-a2f158f44476",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1565762820000,
+          "parent_id": "2377733d-91ad-43a5-bceb-937810ec75ba",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "https://github.com/mafredri/cdp",
+                [
+                  [
+                    "a",
+                    "https://github.com/mafredri/cdp"
+                  ]
+                ]
+              ]
+            ]
+          },
+          "type": "text",
+          "version": 5
+        }
+      },
       "d61b4f94-b10d-4d80-8d3d-238a4e7c4d10": {
         "role": "comment_only",
         "value": {
@@ -663,7 +693,7 @@ Response:+22271
     "space": {}
   }
 }
-44617 1565589995981 httpcache-v1
+44628 1565779187847 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+4158
@@ -859,7 +889,7 @@ Body:+4158
     }
   ]
 }
-Response:+40367
+Response:+40378
 {
   "results": [
     {
@@ -2060,17 +2090,17 @@ Response:+40367
         "created_time": 1532923623512,
         "id": "c966b196-4aac-4cf4-bf00-02d261f6daad",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1532923744116,
+        "last_edited_time": 1565762880000,
         "parent_id": "c5709806-e8a7-4979-90c2-8419b93bb141",
         "parent_table": "block",
         "properties": {
           "title": [
             [
-              "https://github.com/knq/chromedp",
+              "https://github.com/chromedp/chromedp",
               [
                 [
                   "a",
-                  "https://github.com/knq/chromedp"
+                  "https://github.com/chromedp/chromedp"
                 ]
               ]
             ],
@@ -2080,7 +2110,7 @@ Response:+40367
           ]
         },
         "type": "bulleted_list",
-        "version": 6
+        "version": 39
       }
     },
     {
@@ -2196,7 +2226,7 @@ Response:+40367
     }
   ]
 }
-6622 1565589995981 httpcache-v1
+6622 1565779187847 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+374
