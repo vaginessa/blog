@@ -26,8 +26,8 @@ require (
 	github.com/thomas11/atomgenerator v0.0.0-20140514140532-0b3b01da14a4
 	github.com/yosssi/gohtml v0.0.0-20190128141317-9b7db94d32d9
 	golang.org/x/crypto v0.0.0-20190701094942-4def268fd1a4 // indirect
-	golang.org/x/net v0.0.0-20190724013045-ca1201d0de80 // indirect
-	golang.org/x/sys v0.0.0-20190804053845-51ab0e2deafa // indirect
+	golang.org/x/net v0.0.0-20190813141303-74dc4d7220e7 // indirect
+	golang.org/x/sys v0.0.0-20190813064441-fde4db37ae7a // indirect
 	golang.org/x/text v0.3.2 // indirect
-	golang.org/x/tools v0.0.0-20190807223507-b346f7fd45de // indirect
+	golang.org/x/tools v0.0.0-20190814235402-ea4142463bf3 // indirect
 )
