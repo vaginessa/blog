@@ -209,7 +209,6 @@ func NewHTMLConverter(c *notionapi.Client, article *Article) *Converter {
 
 	r := tohtml.NewConverter(article.page)
 	notionapi.PanicOnFailures = true
-	r.AddIDAttribute = true
 	r.RenderBlockOverride = res.blockRenderOverride
 	r.RewriteURL = res.rewriteURL
 	res.r = r

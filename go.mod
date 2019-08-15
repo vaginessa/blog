@@ -10,7 +10,7 @@ require (
 	github.com/gorilla/handlers v1.4.2 // indirect
 	github.com/kjk/betterguid v0.0.0-20170621091430-c442874ba63a
 	github.com/kjk/caching_http_client v0.0.0-20190810075619-06ff809674f7
-	github.com/kjk/notionapi v0.0.0-20190815065503-99945985d8b5
+	github.com/kjk/notionapi v0.0.0-20190815080352-6e69e6794db0
 	github.com/kjk/siser v0.0.0-20190801014033-b3367920d7f2
 	github.com/kjk/u v0.0.0-20170711051841-93181be023c9
 	github.com/kylelemons/godebug v1.1.0
