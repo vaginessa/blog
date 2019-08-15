@@ -105,7 +105,7 @@ func rmCached(pageID string) {
 	rmFile(filepath.Join(cacheDir, id+".txt"))
 }
 
-func loadPageAsArticle(d *caching_downloader.CachingDownloader, pageID string) *Article {
+func loadPageAsArticle(d *caching_downloader.Downloader, pageID string) *Article {
 	page, err := d.DownloadPage(pageID)
 	panicIfErr(err)
 	lg("Downloaded %s %s\n", pageID, page.Root().Title)

@@ -146,23 +146,16 @@ func (r *Converter) RenderImage(block *notionapi.Block) bool {
 
 // RenderPage renders BlockPage
 func (r *Converter) RenderPage(block *notionapi.Block) bool {
-	tp := block.GetPageType()
-	if tp == notionapi.BlockPageTopLevel {
-		// title := html.EscapeString(block.Title)
-		attrs := []string{"class", "notion-page"}
-		r.r.WriteElement(block, "div", attrs, "", true)
+	if r.r.IsRootPage(block) {
+		r.r.Printf(`<div class="notion-page" id="%s">`, block.ID)
 		r.r.RenderChildren(block)
-		r.r.WriteElement(block, "div", attrs, "", false)
+		r.r.Printf(`</div>`)
 		return true
 	}
 
-	var cls string
-	if tp == notionapi.BlockPageSubPage {
+	cls := "page-link"
+	if block.IsSubPage() {
 		cls = "page"
-	} else if tp == notionapi.BlockPageLink {
-		cls = "page-link"
-	} else {
-		panic("unexpected page type")
 	}
 
 	url, title := r.getURLAndTitleForBlock(block)

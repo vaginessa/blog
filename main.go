@@ -37,7 +37,7 @@ func parseCmdLineFlags() {
 	flag.Parse()
 }
 
-func rebuildAll(d *caching_downloader.CachingDownloader) *Articles {
+func rebuildAll(d *caching_downloader.Downloader) *Articles {
 	regenMd()
 	loadTemplates()
 	articles := loadArticles(d)
@@ -84,15 +84,30 @@ func preview() {
 	runCaddy()
 }
 
+func eventObserver(ev interface{}) {
+	switch v := ev.(type) {
+	case caching_downloader.EventError:
+		lg(v.Error)
+	case caching_downloader.EventDidDownload:
+		lg("'%s' : downloaded in %s\n", v.PageID, v.Duration)
+	case caching_downloader.EventDidReadFromCache:
+		// TODO: only verbose
+		lg("'%s' : read from cache in %s\n", v.PageID, v.Duration)
+	case caching_downloader.EventGotVersions:
+		lg("downloaded info about %d versions in %s\n", v.Count, v.Duration)
+	}
+}
+
 func main() {
 	parseCmdLineFlags()
 	os.MkdirAll("netlify_static", 0755)
 
 	client := &notionapi.Client{}
 	//client.Logger = os.Stdout
-	d, err := caching_downloader.New(cacheDir, client)
+	cache, err := caching_downloader.NewDirectoryCache(cacheDir)
 	must(err)
-	d.Logger = os.Stdout
+	d := caching_downloader.New(cache, client)
+	d.EventObserver = eventObserver
 	d.RedownloadNewerVersions = true
 	d.NoReadCache = flgNoCache
 
@@ -115,7 +130,7 @@ func main() {
 		return
 	}
 
-	if flgPreviewOnDemand {
+	if true || flgPreviewOnDemand {
 		startPreviewOnDemand(articles)
 		return
 	}

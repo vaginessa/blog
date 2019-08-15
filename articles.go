@@ -132,7 +132,7 @@ func buildArticlesNavigation(articles *Articles) {
 	}
 }
 
-func loadArticles(d *caching_downloader.CachingDownloader) *Articles {
+func loadArticles(d *caching_downloader.Downloader) *Articles {
 	res := &Articles{}
 	_, err := d.DownloadPagesRecursively(notionWebsiteStartPage)
 	must(err)
