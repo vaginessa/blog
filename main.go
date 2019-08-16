@@ -130,7 +130,7 @@ func main() {
 		return
 	}
 
-	if true || flgPreviewOnDemand {
+	if flgPreviewOnDemand {
 		startPreviewOnDemand(articles)
 		return
 	}
