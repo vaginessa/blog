@@ -18,7 +18,7 @@ jobs:
         run: go test -v .
 
       - name: Install netlify-ctl
-        run: npm install netlify-cli -g
+        run: npm install netlify-cli
 
       - name: Download netlifyctl
         run: |
