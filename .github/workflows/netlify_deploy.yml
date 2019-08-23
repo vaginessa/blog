@@ -14,22 +14,25 @@ jobs:
       - name: Check out source code
         uses: actions/checkout@v1
 
+      - name: Build
+        run: go build -o blog
+
       - name: Test
         run: go test -v .
 
-      # - name: Install netlify-ctl
-      #   run: npm install netlify-cli
+      - name: Regenerate blog html
+        run: ./blog -deploy
 
-      - name: Download netlifyctl
+      - name: Install netlifyctl
         run: |
           wget https://github.com/netlify/netlifyctl/releases/download/v0.4.0/netlifyctl-linux-amd64-0.4.0.tar.gz
           tar -xvf netlifyctl-linux-amd64-0.4.0.tar.gz
 
-      - name: build the program
-        run: go build -o blog
-
-      - name: regenerate blog html
-        run: ./blog -deploy
+      # TODO: maybe migrate from netlifyctl to netlify-ctl
+      # ./node_modules/.bin/netlify
+      # (but it installs much longer)
+      # - name: Install netlify-ctl
+      #   run: npm install netlify-cli
 
       - name: Netlify deploy
         env:

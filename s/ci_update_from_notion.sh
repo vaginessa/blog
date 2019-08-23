@@ -12,7 +12,6 @@ git config --global github.token "${GH_TOKEN}"
 rm -rf netlify*
 git checkout master
 
-go build -o blog
 ./blog -redownload-notion
 
 git status
