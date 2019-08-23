@@ -17,5 +17,13 @@ jobs:
       - name: Test
         run: go test -v .
 
+      - name: Install netlify-ctl
+        run: npm install netlify-cli -g
+
+      - name: Download netlifyctl
+        run: |
+        wget https://github.com/netlify/netlifyctl/releases/download/v0.4.0/netlifyctl-linux-amd64-0.4.0.tar.gz
+        tar -xvf netlifyctl-linux-amd64-0.4.0.tar.gz
+
       - name: Netlify deploy
         run: ./s/ci_netlify_deploy.sh
