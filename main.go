@@ -84,16 +84,22 @@ func preview() {
 	runCaddy()
 }
 
+var (
+	nDownloadedPage = 0
+)
+
 func eventObserver(ev interface{}) {
 	switch v := ev.(type) {
-	case caching_downloader.EventError:
+	case *caching_downloader.EventError:
 		lg(v.Error)
-	case caching_downloader.EventDidDownload:
-		lg("'%s' : downloaded in %s\n", v.PageID, v.Duration)
-	case caching_downloader.EventDidReadFromCache:
+	case *caching_downloader.EventDidDownload:
+		nDownloadedPage++
+		lg("%03d '%s' : downloaded in %s\n", nDownloadedPage, v.PageID, v.Duration)
+	case *caching_downloader.EventDidReadFromCache:
 		// TODO: only verbose
-		lg("'%s' : read from cache in %s\n", v.PageID, v.Duration)
-	case caching_downloader.EventGotVersions:
+		nDownloadedPage++
+		lg("%03d '%s' : read from cache in %s\n", nDownloadedPage, v.PageID, v.Duration)
+	case *caching_downloader.EventGotVersions:
 		lg("downloaded info about %d versions in %s\n", v.Count, v.Duration)
 	}
 }
@@ -102,8 +108,13 @@ func main() {
 	parseCmdLineFlags()
 	os.MkdirAll("netlify_static", 0755)
 
+	openLog()
+	defer closeLog()
+
 	client := &notionapi.Client{}
-	//client.Logger = os.Stdout
+	if flgVerbose {
+		client.Logger = os.Stdout
+	}
 	cache, err := caching_downloader.NewDirectoryCache(cacheDir)
 	must(err)
 	d := caching_downloader.New(cache, client)

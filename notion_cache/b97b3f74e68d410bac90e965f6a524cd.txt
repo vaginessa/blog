@@ -1,4 +1,4 @@
-1539 1565589879847 httpcache-v1
+1539 1566590861978 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+110
@@ -57,7 +57,7 @@ Response:+1339
     }
   ]
 }
-11852 1565589879847 httpcache-v1
+11852 1566590861979 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+152
@@ -404,23 +404,19 @@ Response:+11611
           "mobile_onboarding_completed": true,
           "onboarding_completed": true,
           "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-          "version": 179
+          "version": 182
         }
       }
     },
     "space": {}
   }
 }
-4704 1565589879848 httpcache-v1
+4704 1566590861979 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+462
 {
   "requests": [
-    {
-      "id": "f9cabc14-a9a3-4540-9b95-6b314abfa146",
-      "table": "block"
-    },
     {
       "id": "443a066b-9ace-485e-8270-5bb674d75517",
       "table": "block"
@@ -436,39 +432,16 @@ Body:+462
     {
       "id": "be4038d5-dde0-4c6d-a00d-c20e2e6a321f",
       "table": "block"
+    },
+    {
+      "id": "f9cabc14-a9a3-4540-9b95-6b314abfa146",
+      "table": "block"
     }
   ]
 }
 Response:+4152
 {
   "results": [
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "content": [
-          "ac9ca876-4df6-4e93-9435-2164d2346758",
-          "9e95fd56-0978-435f-b08a-38e9c9cdca3b",
-          "3eb06e5e-0a35-4071-b92d-873df06d6d28"
-        ],
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1514859936657,
-        "id": "f9cabc14-a9a3-4540-9b95-6b314abfa146",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1514860165031,
-        "parent_id": "1a5729b2-30e0-45e5-94cf-f14403db6c79",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "content marketing"
-            ]
-          ]
-        },
-        "type": "toggle",
-        "version": 52
-      }
-    },
     {
       "role": "comment_only",
       "value": {
@@ -574,17 +547,44 @@ Response:+4152
         "type": "bulleted_list",
         "version": 13
       }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "content": [
+          "ac9ca876-4df6-4e93-9435-2164d2346758",
+          "9e95fd56-0978-435f-b08a-38e9c9cdca3b",
+          "3eb06e5e-0a35-4071-b92d-873df06d6d28"
+        ],
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1514859936657,
+        "id": "f9cabc14-a9a3-4540-9b95-6b314abfa146",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1514860165031,
+        "parent_id": "1a5729b2-30e0-45e5-94cf-f14403db6c79",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "content marketing"
+            ]
+          ]
+        },
+        "type": "toggle",
+        "version": 52
+      }
     }
   ]
 }
-2861 1565589879848 httpcache-v1
+2861 1566590861979 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+286
 {
   "requests": [
     {
-      "id": "ac9ca876-4df6-4e93-9435-2164d2346758",
+      "id": "3eb06e5e-0a35-4071-b92d-873df06d6d28",
       "table": "block"
     },
     {
@@ -592,7 +592,7 @@ Body:+286
       "table": "block"
     },
     {
-      "id": "3eb06e5e-0a35-4071-b92d-873df06d6d28",
+      "id": "ac9ca876-4df6-4e93-9435-2164d2346758",
       "table": "block"
     }
   ]
@@ -605,27 +605,27 @@ Response:+2485
       "value": {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1514859943101,
-        "id": "ac9ca876-4df6-4e93-9435-2164d2346758",
+        "created_time": 1514860165031,
+        "id": "3eb06e5e-0a35-4071-b92d-873df06d6d28",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1514859947873,
+        "last_edited_time": 1514860165299,
         "parent_id": "f9cabc14-a9a3-4540-9b95-6b314abfa146",
         "parent_table": "block",
         "properties": {
           "title": [
             [
-              "https://www.copyblogger.com/persuasive-content-marketing/",
+              "https://cmichel.io/on-writing-well/",
               [
                 [
                   "a",
-                  "https://www.copyblogger.com/persuasive-content-marketing/"
+                  "https://cmichel.io/on-writing-well/"
                 ]
               ]
             ]
           ]
         },
         "type": "bulleted_list",
-        "version": 13
+        "version": 9
       }
     },
     {
@@ -661,27 +661,27 @@ Response:+2485
       "value": {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1514860165031,
-        "id": "3eb06e5e-0a35-4071-b92d-873df06d6d28",
+        "created_time": 1514859943101,
+        "id": "ac9ca876-4df6-4e93-9435-2164d2346758",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1514860165299,
+        "last_edited_time": 1514859947873,
         "parent_id": "f9cabc14-a9a3-4540-9b95-6b314abfa146",
         "parent_table": "block",
         "properties": {
           "title": [
             [
-              "https://cmichel.io/on-writing-well/",
+              "https://www.copyblogger.com/persuasive-content-marketing/",
               [
                 [
                   "a",
-                  "https://cmichel.io/on-writing-well/"
+                  "https://www.copyblogger.com/persuasive-content-marketing/"
                 ]
               ]
             ]
           ]
         },
         "type": "bulleted_list",
-        "version": 9
+        "version": 13
       }
     }
   ]

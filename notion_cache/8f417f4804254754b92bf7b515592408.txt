@@ -1,4 +1,4 @@
-5932 1565589879542 httpcache-v1
+5932 1566590861400 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+110
@@ -142,7 +142,7 @@ Response:+5732
     }
   ]
 }
-50957 1565589879550 httpcache-v1
+50957 1566590861402 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+152
@@ -1603,14 +1603,14 @@ Response:+50716
           "mobile_onboarding_completed": true,
           "onboarding_completed": true,
           "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-          "version": 179
+          "version": 182
         }
       }
     },
     "space": {}
   }
 }
-37238 1565589879553 httpcache-v1
+37238 1566590861403 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+441
@@ -2683,14 +2683,14 @@ Response:+36708
           "mobile_onboarding_completed": true,
           "onboarding_completed": true,
           "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-          "version": 179
+          "version": 182
         }
       }
     },
     "space": {}
   }
 }
-35953 1565589879556 httpcache-v1
+35953 1566590861404 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+441
@@ -3707,14 +3707,14 @@ Response:+35423
           "mobile_onboarding_completed": true,
           "onboarding_completed": true,
           "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-          "version": 179
+          "version": 182
         }
       }
     },
     "space": {}
   }
 }
-14753 1565589879557 httpcache-v1
+14753 1566590861404 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+441
@@ -4091,10 +4091,213 @@ Response:+14223
           "mobile_onboarding_completed": true,
           "onboarding_completed": true,
           "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-          "version": 179
+          "version": 182
         }
       }
     },
     "space": {}
   }
+}
+5381 1566590861404 httpcache-v1
+Method: POST
+URL: https://www.notion.so/api/v3/getRecordValues
+Body:+462
+{
+  "requests": [
+    {
+      "id": "322e5db6-683c-441f-b3d5-11ff4f24af8a",
+      "table": "block"
+    },
+    {
+      "id": "82576ef3-e97a-4f74-9952-aba398f75b36",
+      "table": "block"
+    },
+    {
+      "id": "994ce4bd-a674-4c4e-8d12-eb4a1d7dd574",
+      "table": "block"
+    },
+    {
+      "id": "a643a618-2e95-48cb-a40c-5cf03dd2ee64",
+      "table": "block"
+    },
+    {
+      "id": "e94d2dbd-5c02-4c42-99f2-19cd7a250d25",
+      "table": "block"
+    }
+  ]
+}
+Response:+4829
+{
+  "results": [
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1539060978901,
+        "id": "322e5db6-683c-441f-b3d5-11ff4f24af8a",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549660620000,
+        "parent_id": "f79996b1-a1a4-4467-8db0-1704748c3d8c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://ryanwaggoner.com/articles/",
+              [
+                [
+                  "a",
+                  "https://ryanwaggoner.com/articles/"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 23
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1553894280000,
+        "id": "82576ef3-e97a-4f74-9952-aba398f75b36",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1553894280000,
+        "parent_id": "f79996b1-a1a4-4467-8db0-1704748c3d8c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://certainly.software/",
+              [
+                [
+                  "a",
+                  "https://certainly.software/"
+                ]
+              ]
+            ],
+            [
+              " : a good \"hire me\" page"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 28
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1550116980000,
+        "id": "994ce4bd-a674-4c4e-8d12-eb4a1d7dd574",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1550439060000,
+        "parent_id": "f79996b1-a1a4-4467-8db0-1704748c3d8c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://kev.inburke.com/kevin/going-solo-successfully/",
+              [
+                [
+                  "a",
+                  "https://kev.inburke.com/kevin/going-solo-successfully/"
+                ]
+              ]
+            ],
+            [
+              ", "
+            ],
+            [
+              "https://news.ycombinator.com/item?id=19181931",
+              [
+                [
+                  "a",
+                  "https://news.ycombinator.com/item?id=19181931"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 14
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1553892120000,
+        "id": "a643a618-2e95-48cb-a40c-5cf03dd2ee64",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1553894280000,
+        "parent_id": "f79996b1-a1a4-4467-8db0-1704748c3d8c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://andyadams.org/everything-i-know-about-freelancing/",
+              [
+                [
+                  "a",
+                  "https://andyadams.org/everything-i-know-about-freelancing/"
+                ]
+              ]
+            ],
+            [
+              ", "
+            ],
+            [
+              "https://news.ycombinator.com/item?id=19522053",
+              [
+                [
+                  "a",
+                  "https://news.ycombinator.com/item?id=19522053"
+                ]
+              ]
+            ],
+            [
+              ","
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 12
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1549660620000,
+        "id": "e94d2dbd-5c02-4c42-99f2-19cd7a250d25",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1549660620000,
+        "parent_id": "f79996b1-a1a4-4467-8db0-1704748c3d8c",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://simpleprogrammer.com/freelancing-business/",
+              [
+                [
+                  "a",
+                  "https://simpleprogrammer.com/freelancing-business/"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 5
+      }
+    }
+  ]
 }

@@ -146,7 +146,7 @@ func (r *Converter) RenderImage(block *notionapi.Block) bool {
 
 // RenderPage renders BlockPage
 func (r *Converter) RenderPage(block *notionapi.Block) bool {
-	if r.r.IsRootPage(block) {
+	if r.r.Page.IsRoot(block) {
 		r.r.Printf(`<div class="notion-page" id="%s">`, block.ID)
 		r.r.RenderChildren(block)
 		r.r.Printf(`</div>`)

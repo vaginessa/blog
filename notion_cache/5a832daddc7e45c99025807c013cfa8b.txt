@@ -1,4 +1,4 @@
-1626 1565589875029 httpcache-v1
+1626 1566590850932 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+110
@@ -56,7 +56,7 @@ Response:+1426
     }
   ]
 }
-17976 1565589875030 httpcache-v1
+17976 1566590850932 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+152
@@ -592,69 +592,21 @@ Response:+17735
           "mobile_onboarding_completed": true,
           "onboarding_completed": true,
           "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-          "version": 179
+          "version": 182
         }
       }
     },
     "space": {}
   }
 }
-27099 1565589875031 httpcache-v1
+30379 1566590850933 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
-Body:+1782
+Body:+1870
 {
   "requests": [
     {
-      "id": "822848c6-d4f3-4496-a2fb-d0c839e2ed41",
-      "table": "block"
-    },
-    {
-      "id": "e506454c-ad92-47dd-8dc6-41422baa4242",
-      "table": "block"
-    },
-    {
-      "id": "acd21668-c6f7-4d6d-a654-d1c660c0612f",
-      "table": "block"
-    },
-    {
       "id": "17412f34-a722-4c95-9fb4-443928dd5f4a",
-      "table": "block"
-    },
-    {
-      "id": "f1349e63-fc8a-4123-ad33-d596f95c6303",
-      "table": "block"
-    },
-    {
-      "id": "589330b6-be9d-48dd-84be-14db1e8989bd",
-      "table": "block"
-    },
-    {
-      "id": "b276ff11-a91f-4e21-90e9-6e74943eb1ce",
-      "table": "block"
-    },
-    {
-      "id": "a48dfb08-f010-46c2-9b7c-9819b9a7d2e0",
-      "table": "block"
-    },
-    {
-      "id": "e731cb45-6bae-4b4d-b233-430fab9534bf",
-      "table": "block"
-    },
-    {
-      "id": "f2413c83-e5c8-4406-a3ec-206a27f2ecf1",
-      "table": "block"
-    },
-    {
-      "id": "a2f4cc02-1d57-41a8-828b-62d380a2422b",
-      "table": "block"
-    },
-    {
-      "id": "88730164-dcb3-43e9-8b92-eb8982c3cb08",
-      "table": "block"
-    },
-    {
-      "id": "fe4f3651-8cef-45be-b9a0-438d9c185781",
       "table": "block"
     },
     {
@@ -662,7 +614,7 @@ Body:+1782
       "table": "block"
     },
     {
-      "id": "c806f461-2f1a-49bb-a0d8-e7e4d79f791c",
+      "id": "589330b6-be9d-48dd-84be-14db1e8989bd",
       "table": "block"
     },
     {
@@ -670,11 +622,35 @@ Body:+1782
       "table": "block"
     },
     {
+      "id": "822848c6-d4f3-4496-a2fb-d0c839e2ed41",
+      "table": "block"
+    },
+    {
+      "id": "88730164-dcb3-43e9-8b92-eb8982c3cb08",
+      "table": "block"
+    },
+    {
       "id": "8f1ad12c-d9e6-4a1b-a478-8e6f93ac5119",
       "table": "block"
     },
     {
-      "id": "f1a08e85-964f-4501-8f11-0cf8827b319e",
+      "id": "a2f4cc02-1d57-41a8-828b-62d380a2422b",
+      "table": "block"
+    },
+    {
+      "id": "a48dfb08-f010-46c2-9b7c-9819b9a7d2e0",
+      "table": "block"
+    },
+    {
+      "id": "acd21668-c6f7-4d6d-a654-d1c660c0612f",
+      "table": "block"
+    },
+    {
+      "id": "b276ff11-a91f-4e21-90e9-6e74943eb1ce",
+      "table": "block"
+    },
+    {
+      "id": "c806f461-2f1a-49bb-a0d8-e7e4d79f791c",
       "table": "block"
     },
     {
@@ -682,89 +658,42 @@ Body:+1782
       "table": "block"
     },
     {
+      "id": "e506454c-ad92-47dd-8dc6-41422baa4242",
+      "table": "block"
+    },
+    {
+      "id": "e731cb45-6bae-4b4d-b233-430fab9534bf",
+      "table": "block"
+    },
+    {
+      "id": "ed055f63-753e-42ef-9025-e11ac9062c35",
+      "table": "block"
+    },
+    {
+      "id": "f1349e63-fc8a-4123-ad33-d596f95c6303",
+      "table": "block"
+    },
+    {
       "id": "f17970aa-6717-4c0b-b7c6-8ecebe9a5de1",
+      "table": "block"
+    },
+    {
+      "id": "f1a08e85-964f-4501-8f11-0cf8827b319e",
+      "table": "block"
+    },
+    {
+      "id": "f2413c83-e5c8-4406-a3ec-206a27f2ecf1",
+      "table": "block"
+    },
+    {
+      "id": "fe4f3651-8cef-45be-b9a0-438d9c185781",
       "table": "block"
     }
   ]
 }
-Response:+25225
+Response:+28417
 {
   "results": [
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "content": [
-          "f2d241f3-c806-4cd2-bf75-b829fa1bc7da"
-        ],
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1512336763574,
-        "id": "822848c6-d4f3-4496-a2fb-d0c839e2ed41",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1516490693847,
-        "parent_id": "fcb0f40c-8780-410d-ba69-1cb3ad3280a3",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "read gzipped file"
-            ]
-          ]
-        },
-        "type": "toggle",
-        "version": 3
-      }
-    },
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "content": [
-          "f78411b1-d7e4-469f-b760-8db47a08e7cd"
-        ],
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1516395486554,
-        "id": "e506454c-ad92-47dd-8dc6-41422baa4242",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1516490693847,
-        "parent_id": "fcb0f40c-8780-410d-ba69-1cb3ad3280a3",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "io.ReadCloser for a gzipped file"
-            ]
-          ]
-        },
-        "type": "toggle",
-        "version": 101
-      }
-    },
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "content": [
-          "3cc94dc3-cd72-4177-ae1e-e9eab7c1dfa9"
-        ],
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1512336816120,
-        "id": "acd21668-c6f7-4d6d-a654-d1c660c0612f",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1516490693847,
-        "parent_id": "fcb0f40c-8780-410d-ba69-1cb3ad3280a3",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "read file line by line using scanner"
-            ]
-          ]
-        },
-        "type": "toggle",
-        "version": 3
-      }
-    },
     {
       "role": "comment_only",
       "value": {
@@ -794,25 +723,27 @@ Response:+25225
       "role": "comment_only",
       "value": {
         "alive": true,
-        "content": [
-          "50e4f1ef-8543-4573-8d9f-0301bd11ea8f"
-        ],
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1532153489783,
-        "id": "f1349e63-fc8a-4123-ad33-d596f95c6303",
+        "created_time": 1515897529402,
+        "id": "1ee63b45-d9f0-4f62-abcd-0b3b6bfb8034",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1532153497667,
-        "parent_id": "fcb0f40c-8780-410d-ba69-1cb3ad3280a3",
+        "last_edited_time": 1517451662323,
+        "parent_id": "93d8f491-4d5f-488d-9187-9c8a6ea7f12d",
         "parent_table": "block",
         "properties": {
+          "language": [
+            [
+              "Shell"
+            ]
+          ],
           "title": [
             [
-              "copy file"
+              "func openBrowser(url string) {\n\tvar err error\n\n\tswitch runtime.GOOS {\n\tcase \"linux\":\n\t\terr = exec.Command(\"xdg-open\", url).Start()\n\tcase \"windows\":\n\t\terr = exec.Command(\"rundll32\", \"url.dll,FileProtocolHandler\", url).Start()\n\tcase \"darwin\":\n\t\terr = exec.Command(\"open\", url).Start()\n\tdefault:\n\t\terr = fmt.Errorf(\"unsupported platform\")\n\t}\n\tif err != nil {\n\t\tlog.Fatal(err)\n\t}\n\n}"
             ]
           ]
         },
-        "type": "toggle",
-        "version": 45
+        "type": "code",
+        "version": 12
       }
     },
     {
@@ -845,11 +776,11 @@ Response:+25225
       "value": {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1512356250271,
-        "id": "b276ff11-a91f-4e21-90e9-6e74943eb1ce",
+        "created_time": 1517558276243,
+        "id": "5ef2afb4-0d64-47c7-907f-4b7c5313c396",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1512356250271,
-        "parent_id": "2a406ecd-1b58-4326-ba81-58101b267c99",
+        "last_edited_time": 1517558276784,
+        "parent_id": "d7724a1d-06c1-44e8-8fda-afde4daca7bc",
         "parent_table": "block",
         "properties": {
           "language": [
@@ -859,12 +790,37 @@ Response:+25225
           ],
           "title": [
             [
-              "// Debouncer runs a given function, debounced\ntype Debouncer struct {\n    currDebounceID *int32\n}\n\n// NewDebouncer creates a new Debouncer\nfunc NewDebouncer() *Debouncer {\n    return \u0026Debouncer{}\n}\n\nfunc (d *Debouncer) debounce(f func(), timeout time.Duration) {\n    if d.currDebounceID != nil {\n        // stop currently scheduled function\n        v := atomic.AddInt32(d.currDebounceID, 1)\n        d.currDebounceID = nil\n        if v \u003e 1 {\n            // it was already executed\n            return\n        }\n    }\n\n    d.currDebounceID = new(int32)\n    go func(f func(), timeout time.Duration, debounceID *int32) {\n        for {\n            select {\n            case \u003c-time.After(timeout):\n                v := atomic.AddInt32(debounceID, 1)\n                // if v != 1, it was cancelled\n                if v == 1 {\n                    f()\n                }\n            }\n        }\n    }(f, timeout, d.currDebounceID)\n}\n\nvar articleLoadDebouncer *Debouncer\n\nfunc reloadArticlesDelayed() {\n    if articleLoadDebouncer == nil {\n        articleLoadDebouncer = NewDebouncer()\n    }\n    articleLoadDebouncer.debounce(loadArticles, time.Second)\n}"
+              "func normalizeNewlines(d []byte) []byte {\n\t// replace CR LF (windows) with LF (unix)\n\td = bytes.Replace(d, []byte{13, 10}, []byte{10}, -1)\n\t// replace CF (mac) with LF (unix)\n\td = bytes.Replace(d, []byte{13}, []byte{10}, -1)\n\treturn d\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 0
+        "version": 8
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "content": [
+          "f2d241f3-c806-4cd2-bf75-b829fa1bc7da"
+        ],
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1512336763574,
+        "id": "822848c6-d4f3-4496-a2fb-d0c839e2ed41",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1516490693847,
+        "parent_id": "fcb0f40c-8780-410d-ba69-1cb3ad3280a3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "read gzipped file"
+            ]
+          ]
+        },
+        "type": "toggle",
+        "version": 3
       }
     },
     {
@@ -872,11 +828,11 @@ Response:+25225
       "value": {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1512356590747,
-        "id": "a48dfb08-f010-46c2-9b7c-9819b9a7d2e0",
+        "created_time": 1515360404896,
+        "id": "88730164-dcb3-43e9-8b92-eb8982c3cb08",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1512356590747,
-        "parent_id": "47ecbe32-c3a1-4740-ad96-b711d54f8b2e",
+        "last_edited_time": 1515360411177,
+        "parent_id": "84c55fe3-e32f-4f6c-a698-87af16d1471a",
         "parent_table": "block",
         "properties": {
           "language": [
@@ -886,12 +842,12 @@ Response:+25225
           ],
           "title": [
             [
-              "func TimeoutDialer(cTimeout time.Duration, rwTimeout time.Duration) func(net, addr string) (c net.Conn, err error) {\n    return func(netw, addr string) (net.Conn, error) {\n        conn, err := net.DialTimeout(netw, addr, cTimeout)\n        if err != nil {\n            return nil, err\n        }\n        conn.SetDeadline(time.Now().Add(rwTimeout))\n        return conn, nil\n    }\n}\n\n// can be used for http.Get() requests with better timeouts. New one must be created\n// for each Get() request\nfunc NewTimeoutClient(connectTimeout time.Duration, readWriteTimeout time.Duration) *http.Client {\n    return \u0026http.Client{\n        Transport: \u0026http.Transport{\n            Dial:  TimeoutDialer(connectTimeout, readWriteTimeout),\n            Proxy: http.ProxyFromEnvironment,\n        },\n    }\n}\n\nfunc DownloadUrl(url string) ([]byte, error) {\n    // default timeout for http.Get() is really long, so dial it down\n    // for both connection and read/write timeouts\n    timeoutClient := NewTimeoutClient(time.Second*120, time.Second*120)\n    resp, err := timeoutClient.Get(url)\n    if err != nil {\n        return nil, err\n    }\n    defer resp.Body.Close()\n    if resp.StatusCode != 200 {\n        return nil, errors.New(fmt.Sprintf(\"'%s': status code not 200 (%d)\", url, resp.StatusCode))\n    }\n    return ioutil.ReadAll(resp.Body)\n}"
+              "package main\n\nimport (\n\t\"crypto/tls\"\n\t\"golang.org/x/crypto/acme/autocert\"\n\t\"log\"\n\t\"net\"\n\t\"net/http\"\n)\n\nvar domain string = \"example.com\"\n\nfunc redirect(w http.ResponseWriter, req *http.Request) {\n\n\tip, _, _ := net.SplitHostPort(req.RemoteAddr)\n\ttarget := \"https://\" + req.Host\n\tagent := req.UserAgent()\n\tlog.Printf(\"Redirecting [%s] - [%s] to: %s\", agent, ip, target)\n\thttp.Redirect(w, req, target, http.StatusTemporaryRedirect)\n\n}\n\nfunc main() {\n\n\tstaticDir := \"static\"\n\tcertCache := \"tmp/certs\"\n\tTLSAddr := \":https\"\n\n\t// Use LE key \u0026 cert retrieved from tls.Config GetCertificate\n\tcertFile, keyFile := \"\", \"\"\n\n\tcertManager := autocert.Manager{\n\t\tPrompt:     autocert.AcceptTOS,\n\t\tHostPolicy: autocert.HostWhitelist(domain),\n\t\tCache:      autocert.DirCache(certCache),\n\t}\n\n\tSetHSTSHeader := func(h http.Handler) http.HandlerFunc {\n\t\treturn func(w http.ResponseWriter, r *http.Request) {\n\t\t\tip, _, _ := net.SplitHostPort(r.RemoteAddr)\n\n\t\t\tl := \"[\" + r.UserAgent() + \"] - [\" + ip + \"]\"\n\t\t\tlog.Print(l)\n\n\t\t\theaders := map[string]string{\n\t\t\t\t\"Strict-Transport-Security\": \"max-age=31557600; includeSubDomains\",\n\t\t\t\t\"X-Content-Type-Options\":    \"nosniff\",\n\t\t\t\t\"X-XSS-Protection\":          \"1; mode=block\",\n\t\t\t\t\"Content-Security-Policy\":   \"default-src 'self'; script-src 'self'\",\n\t\t\t\t\"X-Frame-Options\":           \"DENY\",\n\t\t\t\t\"Referrer-Policy\":           \"no-referrer\",\n\t\t\t\t\"Public-Key-Pins\": \n\t\t\t\t\t\"pin-sha256=\\\"uIgDNRW0N1ZqFBvx6qJWFqIlaR2rZH/Yr35ZNB+KdHE=\\\";\" + // Site cert\n\t\t\t\t\t\"pin-sha256=\\\"BackupBackupBackupBackupBackupBackupBackups=\\\";\" + // Site backup cert\n\t\t\t\t\t\"pin-sha256=\\\"YLh1dUR9y6Kja30RrAn7JKnbQG/uEtLMkBgFF2Fuihg=\\\";\" + // LE X3 root CA\n\t\t\t\t\t\"pin-sha256=\\\"Vjs8r4z+80wjNcr1YKepWQboSIRi63WsWXhIMN+eWys=\\\";\" + // LE DST X3 root CA\n\t\t\t\t\t\"includeSubdomains; max-age=2592000\",\n\t\t\t}\n\t\t\tfor k, v := range headers {\n\t\t\t\t//fmt.Println(k, \":\", v)\n\t\t\t\tw.Header().Add(k, v)\n\t\t\t}\n\t\t\th.ServeHTTP(w, r)\n\t\t}\n\t}\n\n\tHTTPSServer := \u0026http.Server{\n\t\tAddr: TLSAddr,\n\t\tTLSConfig: \u0026tls.Config{\n\t\t\tGetCertificate: certManager.GetCertificate, MinVersion: tls.VersionTLS10, // MaxVersion: tls.VersionTLS12,\n\t\t\tCipherSuites: []uint16{\n\t\t\t\ttls.TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305,\n\t\t\t\ttls.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,\n\t\t\t\ttls.TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,\n\t\t\t\ttls.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256, // Required by Go (and HTTP/2 RFC), even if you only present ECDSA certs\n\t\t\t\ttls.TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,\n\t\t\t\t/*\n\t\t\t\t\ttls.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,\n\t\t\t\t\ttls.TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,\n\t\t\t\t\ttls.TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305,\n\t\t\t\t\ttls.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,\n\t\t\t\t\ttls.TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,\n\t\t\t\t*/\n\t\t\t},\n\t\t},\n\t}\n\n\thttp.Handle(\"/\", SetHSTSHeader(http.FileServer(http.Dir(staticDir))))\n\n\t// HTTP (redirect) Listener\n\tgo http.ListenAndServe(\":80\", http.HandlerFunc(redirect))\n\n\t// HTTPS Listener\n\terr := HTTPSServer.ListenAndServeTLS(certFile, keyFile)\n\n\tlog.Fatal(err)\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 0
+        "version": 10
       }
     },
     {
@@ -899,11 +855,11 @@ Response:+25225
       "value": {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1512363630831,
-        "id": "e731cb45-6bae-4b4d-b233-430fab9534bf",
+        "created_time": 1517558302047,
+        "id": "8f1ad12c-d9e6-4a1b-a478-8e6f93ac5119",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1512363630831,
-        "parent_id": "5f2fac9f-b0f5-47d5-93f4-8077af81ec5e",
+        "last_edited_time": 1517558302570,
+        "parent_id": "bbf82344-2303-4990-a02e-d1d3a2928d6b",
         "parent_table": "block",
         "properties": {
           "language": [
@@ -913,39 +869,12 @@ Response:+25225
           ],
           "title": [
             [
-              "select {\ncase ch \u003c- value:\ndefault:\n}"
+              "// return first line of d and the rest\nfunc bytesRemoveFirstLine(d []byte) (string, []byte) {\n\tidx := bytes.IndexByte(d, 10)\n\t//u.PanicIf(-1 == idx)\n\tif -1 == idx {\n\t\treturn string(d), nil\n\t}\n\tl := d[:idx]\n\treturn string(l), d[idx+1:]\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 0
-      }
-    },
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1512456277456,
-        "id": "f2413c83-e5c8-4406-a3ec-206a27f2ecf1",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1512456277456,
-        "parent_id": "3af349c2-7deb-449e-8897-bdffa548a230",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Go"
-            ]
-          ],
-          "title": [
-            [
-              "package util\n\nimport (\n\t\"sync\"\n\t\"time\"\n)\n\n// ProgressEstimatorData contains fields readable after Next()\ntype ProgressEstimatorData struct {\n\tTotal             int\n\tCurr              int\n\tLeft              int\n\tPercDone          float64 // 0...1\n\tSkipped           int\n\tTimeSoFar         time.Duration\n\tEstimatedTimeLeft time.Duration\n}\n\n// ProgressEstimator is for estimating progress\ntype ProgressEstimator struct {\n\ttimeStart time.Time\n\tsync.Mutex\n\tProgressEstimatorData\n}\n\n// NewProgressEstimator creates a ProgressEstimator\nfunc NewProgressEstimator(total int) *ProgressEstimator {\n\td := ProgressEstimatorData{\n\t\tTotal: total,\n\t}\n\treturn \u0026ProgressEstimator{\n\t\tProgressEstimatorData: d,\n\t\ttimeStart:             time.Now(),\n\t}\n}\n\n// Next advances estimator\nfunc (pe *ProgressEstimator) next(isSkipped bool) ProgressEstimatorData {\n\tpe.Lock()\n\tdefer pe.Unlock()\n\tif isSkipped {\n\t\tpe.Skipped++\n\t}\n\tpe.Curr++\n\tpe.Left = pe.Total - pe.Curr\n\tpe.TimeSoFar = time.Since(pe.timeStart)\n\n\trealTotal := pe.Total - pe.Skipped\n\trealCurr := pe.Curr - pe.Skipped\n\tif realCurr == 0 || realTotal == 0 {\n\t\tpe.EstimatedTimeLeft = pe.TimeSoFar\n\t} else {\n\t\tpe.PercDone = float64(realCurr) / float64(realTotal) // 0..1 range\n\t\trealPerc := float64(realTotal) / float64(realCurr)\n\t\testimatedTotalTime := float64(pe.TimeSoFar) * realPerc\n\t\tpe.EstimatedTimeLeft = time.Duration(estimatedTotalTime) - pe.TimeSoFar\n\t}\n\tcpy := pe.ProgressEstimatorData\n\treturn cpy\n}\n\n// Next advances estimator\nfunc (pe *ProgressEstimator) Next() ProgressEstimatorData {\n\treturn pe.next(false)\n}\n\n// Skip advances estimator but allows to mark this file as taking no time,\n// to allow better estimates\nfunc (pe *ProgressEstimator) Skip() ProgressEstimatorData {\n\treturn pe.next(true)\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 0
+        "version": 8
       }
     },
     {
@@ -981,11 +910,11 @@ Response:+25225
       "value": {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1515360404896,
-        "id": "88730164-dcb3-43e9-8b92-eb8982c3cb08",
+        "created_time": 1512356590747,
+        "id": "a48dfb08-f010-46c2-9b7c-9819b9a7d2e0",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1515360411177,
-        "parent_id": "84c55fe3-e32f-4f6c-a698-87af16d1471a",
+        "last_edited_time": 1512356590747,
+        "parent_id": "47ecbe32-c3a1-4740-ad96-b711d54f8b2e",
         "parent_table": "block",
         "properties": {
           "language": [
@@ -995,40 +924,37 @@ Response:+25225
           ],
           "title": [
             [
-              "package main\n\nimport (\n\t\"crypto/tls\"\n\t\"golang.org/x/crypto/acme/autocert\"\n\t\"log\"\n\t\"net\"\n\t\"net/http\"\n)\n\nvar domain string = \"example.com\"\n\nfunc redirect(w http.ResponseWriter, req *http.Request) {\n\n\tip, _, _ := net.SplitHostPort(req.RemoteAddr)\n\ttarget := \"https://\" + req.Host\n\tagent := req.UserAgent()\n\tlog.Printf(\"Redirecting [%s] - [%s] to: %s\", agent, ip, target)\n\thttp.Redirect(w, req, target, http.StatusTemporaryRedirect)\n\n}\n\nfunc main() {\n\n\tstaticDir := \"static\"\n\tcertCache := \"tmp/certs\"\n\tTLSAddr := \":https\"\n\n\t// Use LE key \u0026 cert retrieved from tls.Config GetCertificate\n\tcertFile, keyFile := \"\", \"\"\n\n\tcertManager := autocert.Manager{\n\t\tPrompt:     autocert.AcceptTOS,\n\t\tHostPolicy: autocert.HostWhitelist(domain),\n\t\tCache:      autocert.DirCache(certCache),\n\t}\n\n\tSetHSTSHeader := func(h http.Handler) http.HandlerFunc {\n\t\treturn func(w http.ResponseWriter, r *http.Request) {\n\t\t\tip, _, _ := net.SplitHostPort(r.RemoteAddr)\n\n\t\t\tl := \"[\" + r.UserAgent() + \"] - [\" + ip + \"]\"\n\t\t\tlog.Print(l)\n\n\t\t\theaders := map[string]string{\n\t\t\t\t\"Strict-Transport-Security\": \"max-age=31557600; includeSubDomains\",\n\t\t\t\t\"X-Content-Type-Options\":    \"nosniff\",\n\t\t\t\t\"X-XSS-Protection\":          \"1; mode=block\",\n\t\t\t\t\"Content-Security-Policy\":   \"default-src 'self'; script-src 'self'\",\n\t\t\t\t\"X-Frame-Options\":           \"DENY\",\n\t\t\t\t\"Referrer-Policy\":           \"no-referrer\",\n\t\t\t\t\"Public-Key-Pins\": \n\t\t\t\t\t\"pin-sha256=\\\"uIgDNRW0N1ZqFBvx6qJWFqIlaR2rZH/Yr35ZNB+KdHE=\\\";\" + // Site cert\n\t\t\t\t\t\"pin-sha256=\\\"BackupBackupBackupBackupBackupBackupBackups=\\\";\" + // Site backup cert\n\t\t\t\t\t\"pin-sha256=\\\"YLh1dUR9y6Kja30RrAn7JKnbQG/uEtLMkBgFF2Fuihg=\\\";\" + // LE X3 root CA\n\t\t\t\t\t\"pin-sha256=\\\"Vjs8r4z+80wjNcr1YKepWQboSIRi63WsWXhIMN+eWys=\\\";\" + // LE DST X3 root CA\n\t\t\t\t\t\"includeSubdomains; max-age=2592000\",\n\t\t\t}\n\t\t\tfor k, v := range headers {\n\t\t\t\t//fmt.Println(k, \":\", v)\n\t\t\t\tw.Header().Add(k, v)\n\t\t\t}\n\t\t\th.ServeHTTP(w, r)\n\t\t}\n\t}\n\n\tHTTPSServer := \u0026http.Server{\n\t\tAddr: TLSAddr,\n\t\tTLSConfig: \u0026tls.Config{\n\t\t\tGetCertificate: certManager.GetCertificate, MinVersion: tls.VersionTLS10, // MaxVersion: tls.VersionTLS12,\n\t\t\tCipherSuites: []uint16{\n\t\t\t\ttls.TLS_ECDHE_ECDSA_WITH_CHACHA20_POLY1305,\n\t\t\t\ttls.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,\n\t\t\t\ttls.TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,\n\t\t\t\ttls.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256, // Required by Go (and HTTP/2 RFC), even if you only present ECDSA certs\n\t\t\t\ttls.TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,\n\t\t\t\t/*\n\t\t\t\t\ttls.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,\n\t\t\t\t\ttls.TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,\n\t\t\t\t\ttls.TLS_ECDHE_RSA_WITH_CHACHA20_POLY1305,\n\t\t\t\t\ttls.TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,\n\t\t\t\t\ttls.TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,\n\t\t\t\t*/\n\t\t\t},\n\t\t},\n\t}\n\n\thttp.Handle(\"/\", SetHSTSHeader(http.FileServer(http.Dir(staticDir))))\n\n\t// HTTP (redirect) Listener\n\tgo http.ListenAndServe(\":80\", http.HandlerFunc(redirect))\n\n\t// HTTPS Listener\n\terr := HTTPSServer.ListenAndServeTLS(certFile, keyFile)\n\n\tlog.Fatal(err)\n}"
+              "func TimeoutDialer(cTimeout time.Duration, rwTimeout time.Duration) func(net, addr string) (c net.Conn, err error) {\n    return func(netw, addr string) (net.Conn, error) {\n        conn, err := net.DialTimeout(netw, addr, cTimeout)\n        if err != nil {\n            return nil, err\n        }\n        conn.SetDeadline(time.Now().Add(rwTimeout))\n        return conn, nil\n    }\n}\n\n// can be used for http.Get() requests with better timeouts. New one must be created\n// for each Get() request\nfunc NewTimeoutClient(connectTimeout time.Duration, readWriteTimeout time.Duration) *http.Client {\n    return \u0026http.Client{\n        Transport: \u0026http.Transport{\n            Dial:  TimeoutDialer(connectTimeout, readWriteTimeout),\n            Proxy: http.ProxyFromEnvironment,\n        },\n    }\n}\n\nfunc DownloadUrl(url string) ([]byte, error) {\n    // default timeout for http.Get() is really long, so dial it down\n    // for both connection and read/write timeouts\n    timeoutClient := NewTimeoutClient(time.Second*120, time.Second*120)\n    resp, err := timeoutClient.Get(url)\n    if err != nil {\n        return nil, err\n    }\n    defer resp.Body.Close()\n    if resp.StatusCode != 200 {\n        return nil, errors.New(fmt.Sprintf(\"'%s': status code not 200 (%d)\", url, resp.StatusCode))\n    }\n    return ioutil.ReadAll(resp.Body)\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 10
+        "version": 0
       }
     },
     {
       "role": "comment_only",
       "value": {
         "alive": true,
+        "content": [
+          "3cc94dc3-cd72-4177-ae1e-e9eab7c1dfa9"
+        ],
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1515897536471,
-        "id": "fe4f3651-8cef-45be-b9a0-438d9c185781",
+        "created_time": 1512336816120,
+        "id": "acd21668-c6f7-4d6d-a654-d1c660c0612f",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1515897536777,
-        "parent_id": "93d8f491-4d5f-488d-9187-9c8a6ea7f12d",
+        "last_edited_time": 1516490693847,
+        "parent_id": "fcb0f40c-8780-410d-ba69-1cb3ad3280a3",
         "parent_table": "block",
         "properties": {
           "title": [
             [
-              "https://gist.github.com/hyg/9c4afcd91fe24316cbf0",
-              [
-                [
-                  "a",
-                  "https://gist.github.com/hyg/9c4afcd91fe24316cbf0"
-                ]
-              ]
+              "read file line by line using scanner"
             ]
           ]
         },
-        "type": "text",
-        "version": 9
+        "type": "toggle",
+        "version": 3
       }
     },
     {
@@ -1036,26 +962,26 @@ Response:+25225
       "value": {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1515897529402,
-        "id": "1ee63b45-d9f0-4f62-abcd-0b3b6bfb8034",
+        "created_time": 1512356250271,
+        "id": "b276ff11-a91f-4e21-90e9-6e74943eb1ce",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1517451662323,
-        "parent_id": "93d8f491-4d5f-488d-9187-9c8a6ea7f12d",
+        "last_edited_time": 1512356250271,
+        "parent_id": "2a406ecd-1b58-4326-ba81-58101b267c99",
         "parent_table": "block",
         "properties": {
           "language": [
             [
-              "Shell"
+              "Go"
             ]
           ],
           "title": [
             [
-              "func openBrowser(url string) {\n\tvar err error\n\n\tswitch runtime.GOOS {\n\tcase \"linux\":\n\t\terr = exec.Command(\"xdg-open\", url).Start()\n\tcase \"windows\":\n\t\terr = exec.Command(\"rundll32\", \"url.dll,FileProtocolHandler\", url).Start()\n\tcase \"darwin\":\n\t\terr = exec.Command(\"open\", url).Start()\n\tdefault:\n\t\terr = fmt.Errorf(\"unsupported platform\")\n\t}\n\tif err != nil {\n\t\tlog.Fatal(err)\n\t}\n\n}"
+              "// Debouncer runs a given function, debounced\ntype Debouncer struct {\n    currDebounceID *int32\n}\n\n// NewDebouncer creates a new Debouncer\nfunc NewDebouncer() *Debouncer {\n    return \u0026Debouncer{}\n}\n\nfunc (d *Debouncer) debounce(f func(), timeout time.Duration) {\n    if d.currDebounceID != nil {\n        // stop currently scheduled function\n        v := atomic.AddInt32(d.currDebounceID, 1)\n        d.currDebounceID = nil\n        if v \u003e 1 {\n            // it was already executed\n            return\n        }\n    }\n\n    d.currDebounceID = new(int32)\n    go func(f func(), timeout time.Duration, debounceID *int32) {\n        for {\n            select {\n            case \u003c-time.After(timeout):\n                v := atomic.AddInt32(debounceID, 1)\n                // if v != 1, it was cancelled\n                if v == 1 {\n                    f()\n                }\n            }\n        }\n    }(f, timeout, d.currDebounceID)\n}\n\nvar articleLoadDebouncer *Debouncer\n\nfunc reloadArticlesDelayed() {\n    if articleLoadDebouncer == nil {\n        articleLoadDebouncer = NewDebouncer()\n    }\n    articleLoadDebouncer.debounce(loadArticles, time.Second)\n}"
             ]
           ]
         },
         "type": "code",
-        "version": 12
+        "version": 0
       }
     },
     {
@@ -1083,87 +1009,6 @@ Response:+25225
         },
         "type": "code",
         "version": 8
-      }
-    },
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1517558276243,
-        "id": "5ef2afb4-0d64-47c7-907f-4b7c5313c396",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1517558276784,
-        "parent_id": "d7724a1d-06c1-44e8-8fda-afde4daca7bc",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Go"
-            ]
-          ],
-          "title": [
-            [
-              "func normalizeNewlines(d []byte) []byte {\n\t// replace CR LF (windows) with LF (unix)\n\td = bytes.Replace(d, []byte{13, 10}, []byte{10}, -1)\n\t// replace CF (mac) with LF (unix)\n\td = bytes.Replace(d, []byte{13}, []byte{10}, -1)\n\treturn d\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 8
-      }
-    },
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1517558302047,
-        "id": "8f1ad12c-d9e6-4a1b-a478-8e6f93ac5119",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1517558302570,
-        "parent_id": "bbf82344-2303-4990-a02e-d1d3a2928d6b",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Go"
-            ]
-          ],
-          "title": [
-            [
-              "// return first line of d and the rest\nfunc bytesRemoveFirstLine(d []byte) (string, []byte) {\n\tidx := bytes.IndexByte(d, 10)\n\t//u.PanicIf(-1 == idx)\n\tif -1 == idx {\n\t\treturn string(d), nil\n\t}\n\tl := d[:idx]\n\treturn string(l), d[idx+1:]\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 8
-      }
-    },
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1524479132204,
-        "id": "f1a08e85-964f-4501-8f11-0cf8827b319e",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1524479139211,
-        "parent_id": "9b4e192c-6b84-4f43-af99-8c178f2ecf44",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Go"
-            ]
-          ],
-          "title": [
-            [
-              "// FmtArgs formats args as a string. First argument should be format string\n// and the rest are arguments to the format\nfunc FmtArgs(args ...interface{}) string {\n\tif len(args) == 0 {\n\t\treturn \"\"\n\t}\n\tformat := args[0].(string)\n\tif len(args) == 1 {\n\t\treturn format\n\t}\n\treturn fmt.Sprintf(format, args[1:]...)\n}\n\nfunc panicWithMsg(defaultMsg string, args ...interface{}) {\n\ts := FmtArgs(args...)\n\tif s == \"\" {\n\t\ts = defaultMsg\n\t}\n\tfmt.Printf(\"%s\\n\", s)\n\tpanic(s)\n}\n\n// PanicIf panics if cond is true\nfunc PanicIf(cond bool, args ...interface{}) {\n\tif !cond {\n\t\treturn\n\t}\n\tpanicWithMsg(\"PanicIf: condition failed\", args...)\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 11
       }
     },
     {
@@ -1199,6 +1044,160 @@ Response:+25225
       "value": {
         "alive": true,
         "content": [
+          "f78411b1-d7e4-469f-b760-8db47a08e7cd"
+        ],
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1516395486554,
+        "id": "e506454c-ad92-47dd-8dc6-41422baa4242",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1516490693847,
+        "parent_id": "fcb0f40c-8780-410d-ba69-1cb3ad3280a3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "io.ReadCloser for a gzipped file"
+            ]
+          ]
+        },
+        "type": "toggle",
+        "version": 101
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1512363630831,
+        "id": "e731cb45-6bae-4b4d-b233-430fab9534bf",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1512363630831,
+        "parent_id": "5f2fac9f-b0f5-47d5-93f4-8077af81ec5e",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "select {\ncase ch \u003c- value:\ndefault:\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 0
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "content": [
+          "029ce27b-00a6-4965-9293-7b39ea0c09ca",
+          "37c6f481-9b67-492d-ab22-bde3ee34d74f",
+          "6f7a3240-5fb0-4720-9c2c-fc0195de32a2",
+          "616c08e7-0c86-428c-a12c-3bf6742f50cb",
+          "c117379a-1178-42fc-958b-914b5ec633fe",
+          "104f2fcc-6bb4-4caa-9164-92429978c6bd",
+          "341257f8-9f5e-4da5-8342-b5d483714a22",
+          "6b8c6ff9-35bf-4dc6-995f-2e808886815a",
+          "6d840b71-269e-40bc-b238-618f2392636a",
+          "b66503d6-af00-4808-8fdf-e08a519f6b42",
+          "212d1b62-edfa-45f7-a9b0-79c0859f845e",
+          "054b9945-cd4b-4aa8-82b1-4142e123dcc9",
+          "a2cf6835-0ff1-4b06-8641-6bb712970115",
+          "aa6503d1-331e-40c2-aec7-f095d570f09b",
+          "273e0f95-302a-4cd8-8713-9a3a53e0d833",
+          "4f06fa0b-e001-455b-bbbf-4e7f76d654db",
+          "66e8d90a-7ce6-4807-8150-1be702f63c73",
+          "5baeed82-cfe4-400d-96bc-90dbb2d216bf",
+          "03703920-2597-4d4b-bd22-1b1ee16ef9f1",
+          "c6407faa-1749-48e3-a046-c422e1282c2e",
+          "034bb138-5c30-4b74-b002-f5eaf318a885",
+          "e83a79e1-e787-440c-ae2e-e66fe2bbd9f6",
+          "46629540-c145-4cb4-9247-b9294610a822",
+          "ad35f4e1-c713-4378-9bca-776777a64062",
+          "16960a0b-18f8-4b77-8b2d-f53a23d38233",
+          "a9b1b85b-6aec-4a86-87c6-5f51b76c6ea2",
+          "f54d25c9-a933-4407-8fb6-81954de04386",
+          "e860028f-1a9e-45fe-a230-38900def85df",
+          "9637571e-f4ab-4f37-ba35-9b0e9e6af1dc",
+          "bce2d6d8-5326-47eb-aa57-7611465cbbea",
+          "b8e269b2-a4c6-4aa3-aa05-8e9011138841",
+          "4aa47bab-3afd-4117-9d9b-a8503f5c0eb7",
+          "242a5d98-d3d9-4e3a-8f0c-eb0c0854014a",
+          "57d799bc-74d1-4bd9-8516-fb2fe88ae7e9",
+          "2a1d61ae-2207-4571-8ed2-b76b6ea90ee3",
+          "517c8d5f-058a-440c-8d5a-8fc6fcd98ef6",
+          "1a9c0c00-e3b4-472a-ace2-26ec1d331fa0",
+          "bf444c6d-9a7d-4407-b967-06bb6970d336",
+          "6ff371ec-e9b0-4565-abdb-02aae2160ead",
+          "2d0aa106-98e6-4432-aa01-96c03b9b6cf6",
+          "9edd6eb0-11f2-4f9d-b628-85c0f2a1c392",
+          "36a1a27f-8dcf-4609-8754-96f7122eaf96",
+          "08e7ba49-aeca-4432-b9fa-37168f841114",
+          "76a34532-cc84-43dc-80b5-43e188704277",
+          "45eb2162-74fd-48e2-b6e9-8d57d0bd673c",
+          "02cbb85a-6baf-4061-82d3-5bb1b11b422d",
+          "685312b2-9fc2-4b04-b0e1-02b0348fafe0",
+          "a5c85fe6-1334-4e97-9826-460e6463e1d5",
+          "4dbe88c5-650b-4a46-b73b-71ccadc13647"
+        ],
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1495403335718,
+        "format": {
+          "page_full_width": true,
+          "page_small_text": true
+        },
+        "id": "ed055f63-753e-42ef-9025-e11ac9062c35",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1545566399253,
+        "parent_id": "aea20e01-890c-4874-ae08-4557d7789195",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "C++"
+            ]
+          ]
+        },
+        "type": "page",
+        "version": 43
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "content": [
+          "50e4f1ef-8543-4573-8d9f-0301bd11ea8f"
+        ],
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1532153489783,
+        "id": "f1349e63-fc8a-4123-ad33-d596f95c6303",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1532153497667,
+        "parent_id": "fcb0f40c-8780-410d-ba69-1cb3ad3280a3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "copy file"
+            ]
+          ]
+        },
+        "type": "toggle",
+        "version": 45
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "content": [
           "85c0aa5f-0de2-4010-905a-4c06feb21fc7"
         ],
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
@@ -1218,29 +1217,99 @@ Response:+25225
         "type": "toggle",
         "version": 76
       }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1524479132204,
+        "id": "f1a08e85-964f-4501-8f11-0cf8827b319e",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1524479139211,
+        "parent_id": "9b4e192c-6b84-4f43-af99-8c178f2ecf44",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// FmtArgs formats args as a string. First argument should be format string\n// and the rest are arguments to the format\nfunc FmtArgs(args ...interface{}) string {\n\tif len(args) == 0 {\n\t\treturn \"\"\n\t}\n\tformat := args[0].(string)\n\tif len(args) == 1 {\n\t\treturn format\n\t}\n\treturn fmt.Sprintf(format, args[1:]...)\n}\n\nfunc panicWithMsg(defaultMsg string, args ...interface{}) {\n\ts := FmtArgs(args...)\n\tif s == \"\" {\n\t\ts = defaultMsg\n\t}\n\tfmt.Printf(\"%s\\n\", s)\n\tpanic(s)\n}\n\n// PanicIf panics if cond is true\nfunc PanicIf(cond bool, args ...interface{}) {\n\tif !cond {\n\t\treturn\n\t}\n\tpanicWithMsg(\"PanicIf: condition failed\", args...)\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 11
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1512456277456,
+        "id": "f2413c83-e5c8-4406-a3ec-206a27f2ecf1",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1512456277456,
+        "parent_id": "3af349c2-7deb-449e-8897-bdffa548a230",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "package util\n\nimport (\n\t\"sync\"\n\t\"time\"\n)\n\n// ProgressEstimatorData contains fields readable after Next()\ntype ProgressEstimatorData struct {\n\tTotal             int\n\tCurr              int\n\tLeft              int\n\tPercDone          float64 // 0...1\n\tSkipped           int\n\tTimeSoFar         time.Duration\n\tEstimatedTimeLeft time.Duration\n}\n\n// ProgressEstimator is for estimating progress\ntype ProgressEstimator struct {\n\ttimeStart time.Time\n\tsync.Mutex\n\tProgressEstimatorData\n}\n\n// NewProgressEstimator creates a ProgressEstimator\nfunc NewProgressEstimator(total int) *ProgressEstimator {\n\td := ProgressEstimatorData{\n\t\tTotal: total,\n\t}\n\treturn \u0026ProgressEstimator{\n\t\tProgressEstimatorData: d,\n\t\ttimeStart:             time.Now(),\n\t}\n}\n\n// Next advances estimator\nfunc (pe *ProgressEstimator) next(isSkipped bool) ProgressEstimatorData {\n\tpe.Lock()\n\tdefer pe.Unlock()\n\tif isSkipped {\n\t\tpe.Skipped++\n\t}\n\tpe.Curr++\n\tpe.Left = pe.Total - pe.Curr\n\tpe.TimeSoFar = time.Since(pe.timeStart)\n\n\trealTotal := pe.Total - pe.Skipped\n\trealCurr := pe.Curr - pe.Skipped\n\tif realCurr == 0 || realTotal == 0 {\n\t\tpe.EstimatedTimeLeft = pe.TimeSoFar\n\t} else {\n\t\tpe.PercDone = float64(realCurr) / float64(realTotal) // 0..1 range\n\t\trealPerc := float64(realTotal) / float64(realCurr)\n\t\testimatedTotalTime := float64(pe.TimeSoFar) * realPerc\n\t\tpe.EstimatedTimeLeft = time.Duration(estimatedTotalTime) - pe.TimeSoFar\n\t}\n\tcpy := pe.ProgressEstimatorData\n\treturn cpy\n}\n\n// Next advances estimator\nfunc (pe *ProgressEstimator) Next() ProgressEstimatorData {\n\treturn pe.next(false)\n}\n\n// Skip advances estimator but allows to mark this file as taking no time,\n// to allow better estimates\nfunc (pe *ProgressEstimator) Skip() ProgressEstimatorData {\n\treturn pe.next(true)\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 0
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1515897536471,
+        "id": "fe4f3651-8cef-45be-b9a0-438d9c185781",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1515897536777,
+        "parent_id": "93d8f491-4d5f-488d-9187-9c8a6ea7f12d",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://gist.github.com/hyg/9c4afcd91fe24316cbf0",
+              [
+                [
+                  "a",
+                  "https://gist.github.com/hyg/9c4afcd91fe24316cbf0"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 9
+      }
     }
   ]
 }
-11772 1565589875032 httpcache-v1
+11772 1566590850934 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+638
 {
   "requests": [
     {
-      "id": "f2d241f3-c806-4cd2-bf75-b829fa1bc7da",
-      "table": "block"
-    },
-    {
-      "id": "f78411b1-d7e4-469f-b760-8db47a08e7cd",
-      "table": "block"
-    },
-    {
       "id": "3cc94dc3-cd72-4177-ae1e-e9eab7c1dfa9",
-      "table": "block"
-    },
-    {
-      "id": "a1f84ba8-4250-4ba7-a1eb-294a22c6783f",
       "table": "block"
     },
     {
@@ -1254,66 +1323,24 @@ Body:+638
     {
       "id": "85c0aa5f-0de2-4010-905a-4c06feb21fc7",
       "table": "block"
+    },
+    {
+      "id": "a1f84ba8-4250-4ba7-a1eb-294a22c6783f",
+      "table": "block"
+    },
+    {
+      "id": "f2d241f3-c806-4cd2-bf75-b829fa1bc7da",
+      "table": "block"
+    },
+    {
+      "id": "f78411b1-d7e4-469f-b760-8db47a08e7cd",
+      "table": "block"
     }
   ]
 }
 Response:+11043
 {
   "results": [
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1512336787599,
-        "id": "f2d241f3-c806-4cd2-bf75-b829fa1bc7da",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1512336787599,
-        "parent_id": "822848c6-d4f3-4496-a2fb-d0c839e2ed41",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Go"
-            ]
-          ],
-          "title": [
-            [
-              "package main\n\nimport (\n    \"compress/gzip\"\n    \"fmt\"\n    \"io/ioutil\"\n    \"os\"\n)\n\nfunc ReadGzippedFile(path string) ([]byte, error) {\n    file, err := os.Open(path)\n    if err != nil {\n        return nil, err\n    }\n    defer file.Close()\n    gzipReader, err := gzip.NewReader(file)\n    if err != nil {\n        return nil, err\n    }\n    defer gzipReader.Close()\n    return ioutil.ReadAll(gzipReader)\n}\n\nfunc main() {\n    fileName := \"t.gz\"\n    if data, err := ReadGzippedFile(fileName); err != nil {\n        fmt.Printf(\"ReadGzippedFile('%s') failed with '%s'\\n\", fileName, err.Error())\n    } else {\n        fmt.Printf(\"Uncompressed size of '%s' file: %d bytes\\n\", fileName, len(data))\n    }\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 0
-      }
-    },
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1516395505421,
-        "id": "f78411b1-d7e4-469f-b760-8db47a08e7cd",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1516395742380,
-        "parent_id": "e506454c-ad92-47dd-8dc6-41422baa4242",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Go"
-            ]
-          ],
-          "title": [
-            [
-              "// GzippedReadCloser is a io.ReadCloser for a gzip file\ntype GzippedReadCloser struct {\n\tf *os.File\n\tr io.Reader\n}\n\n// Close closes a reader\nfunc (rc *GzippedReadCloser) Close() error {\n\treturn rc.f.Close()\n}\n\n// Read reads data from a reader\nfunc (rc *GzippedReadCloser) Read(d []byte) (int, error) {\n\treturn rc.r.Read(d)\n}\n\nfunc openGzipped(path string) (io.ReadCloser, error) {\n\tf, err := os.Open(path)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\tr, err := gzip.NewReader(f)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\trc := \u0026GzippedReadCloser{\n\t\tf: f,\n\t\tr: r,\n\t}\n\treturn rc, nil\n}\n\nfunc readGzipped(path string) ([]byte, error) {\n\trc, err := openGzipped(path)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\tdefer rc.Close()\n\td, err := ioutil.ReadAll(rc)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\treturn d, nil\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 14
-      }
-    },
     {
       "role": "comment_only",
       "value": {
@@ -1339,33 +1366,6 @@ Response:+11043
         },
         "type": "code",
         "version": 0
-      }
-    },
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1516490659974,
-        "id": "a1f84ba8-4250-4ba7-a1eb-294a22c6783f",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1516490660342,
-        "parent_id": "17412f34-a722-4c95-9fb4-443928dd5f4a",
-        "parent_table": "block",
-        "properties": {
-          "language": [
-            [
-              "Go"
-            ]
-          ],
-          "title": [
-            [
-              "func readFileAsLines(path string) ([]string, error) {\n\td, err := ioutil.ReadFile(path)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\ts := string(d)\n\tres := strings.Split(s, \"\\n\")\n\treturn res, nil\n}"
-            ]
-          ]
-        },
-        "type": "code",
-        "version": 8
       }
     },
     {
@@ -1447,6 +1447,87 @@ Response:+11043
         },
         "type": "code",
         "version": 57
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1516490659974,
+        "id": "a1f84ba8-4250-4ba7-a1eb-294a22c6783f",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1516490660342,
+        "parent_id": "17412f34-a722-4c95-9fb4-443928dd5f4a",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "func readFileAsLines(path string) ([]string, error) {\n\td, err := ioutil.ReadFile(path)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\ts := string(d)\n\tres := strings.Split(s, \"\\n\")\n\treturn res, nil\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 8
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1512336787599,
+        "id": "f2d241f3-c806-4cd2-bf75-b829fa1bc7da",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1512336787599,
+        "parent_id": "822848c6-d4f3-4496-a2fb-d0c839e2ed41",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "package main\n\nimport (\n    \"compress/gzip\"\n    \"fmt\"\n    \"io/ioutil\"\n    \"os\"\n)\n\nfunc ReadGzippedFile(path string) ([]byte, error) {\n    file, err := os.Open(path)\n    if err != nil {\n        return nil, err\n    }\n    defer file.Close()\n    gzipReader, err := gzip.NewReader(file)\n    if err != nil {\n        return nil, err\n    }\n    defer gzipReader.Close()\n    return ioutil.ReadAll(gzipReader)\n}\n\nfunc main() {\n    fileName := \"t.gz\"\n    if data, err := ReadGzippedFile(fileName); err != nil {\n        fmt.Printf(\"ReadGzippedFile('%s') failed with '%s'\\n\", fileName, err.Error())\n    } else {\n        fmt.Printf(\"Uncompressed size of '%s' file: %d bytes\\n\", fileName, len(data))\n    }\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 0
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1516395505421,
+        "id": "f78411b1-d7e4-469f-b760-8db47a08e7cd",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1516395742380,
+        "parent_id": "e506454c-ad92-47dd-8dc6-41422baa4242",
+        "parent_table": "block",
+        "properties": {
+          "language": [
+            [
+              "Go"
+            ]
+          ],
+          "title": [
+            [
+              "// GzippedReadCloser is a io.ReadCloser for a gzip file\ntype GzippedReadCloser struct {\n\tf *os.File\n\tr io.Reader\n}\n\n// Close closes a reader\nfunc (rc *GzippedReadCloser) Close() error {\n\treturn rc.f.Close()\n}\n\n// Read reads data from a reader\nfunc (rc *GzippedReadCloser) Read(d []byte) (int, error) {\n\treturn rc.r.Read(d)\n}\n\nfunc openGzipped(path string) (io.ReadCloser, error) {\n\tf, err := os.Open(path)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\tr, err := gzip.NewReader(f)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\trc := \u0026GzippedReadCloser{\n\t\tf: f,\n\t\tr: r,\n\t}\n\treturn rc, nil\n}\n\nfunc readGzipped(path string) ([]byte, error) {\n\trc, err := openGzipped(path)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\tdefer rc.Close()\n\td, err := ioutil.ReadAll(rc)\n\tif err != nil {\n\t\treturn nil, err\n\t}\n\treturn d, nil\n}"
+            ]
+          ]
+        },
+        "type": "code",
+        "version": 14
       }
     }
   ]

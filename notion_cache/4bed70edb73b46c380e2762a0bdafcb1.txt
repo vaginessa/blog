@@ -1,4 +1,4 @@
-2151 1565590002204 httpcache-v1
+2151 1566591152926 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+110
@@ -70,7 +70,7 @@ Response:+1951
     }
   ]
 }
-27731 1565590002209 httpcache-v1
+27731 1566591152927 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+152
@@ -874,25 +874,21 @@ Response:+27490
           "mobile_onboarding_completed": true,
           "onboarding_completed": true,
           "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-          "version": 179
+          "version": 182
         }
       }
     },
     "space": {}
   }
 }
-5179 1565590002210 httpcache-v1
+5179 1566591152927 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+462
 {
   "requests": [
     {
-      "id": "a5802a6b-efb1-4543-818b-60fef5789094",
-      "table": "block"
-    },
-    {
-      "id": "8f6d46da-f48c-449b-afe1-5e98cf9a3490",
+      "id": "4d778a4f-3731-4b66-8a89-1623f5250941",
       "table": "block"
     },
     {
@@ -900,11 +896,15 @@ Body:+462
       "table": "block"
     },
     {
-      "id": "b45c7405-1c1a-446b-8bd7-77c07d70a8ef",
+      "id": "8f6d46da-f48c-449b-afe1-5e98cf9a3490",
       "table": "block"
     },
     {
-      "id": "4d778a4f-3731-4b66-8a89-1623f5250941",
+      "id": "a5802a6b-efb1-4543-818b-60fef5789094",
+      "table": "block"
+    },
+    {
+      "id": "b45c7405-1c1a-446b-8bd7-77c07d70a8ef",
       "table": "block"
     }
   ]
@@ -917,67 +917,21 @@ Response:+4627
       "value": {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1523422186553,
-        "id": "a5802a6b-efb1-4543-818b-60fef5789094",
+        "created_time": 1523422278498,
+        "id": "4d778a4f-3731-4b66-8a89-1623f5250941",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1523422586066,
+        "last_edited_time": 1523422706378,
         "parent_id": "ba011b9b-6e26-4cda-b5b8-1e3fb565f0e5",
         "parent_table": "block",
         "properties": {
           "title": [
             [
-              "PowerPack : ~250 kWh ("
-            ],
-            [
-              "https://www.energymatters.com.au/commercial-solar/battery-energy-storage/tesla-powerpack/",
-              [
-                [
-                  "a",
-                  "https://www.energymatters.com.au/commercial-solar/battery-energy-storage/tesla-powerpack/"
-                ]
-              ]
-            ],
-            [
-              ")"
-            ]
-          ]
-        },
-        "type": "text",
-        "version": 90
-      }
-    },
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1523422421287,
-        "id": "8f6d46da-f48c-449b-afe1-5e98cf9a3490",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1523422463262,
-        "parent_id": "ba011b9b-6e26-4cda-b5b8-1e3fb565f0e5",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "2018: 150 MWh per quarter, doubling per year ("
-            ],
-            [
-              "https://electrek.co/2018/03/22/tesla-large-powerpack-australia/",
-              [
-                [
-                  "a",
-                  "https://electrek.co/2018/03/22/tesla-large-powerpack-australia/"
-                ]
-              ]
-            ],
-            [
-              ")"
+              "2017-12-01 129 MWh (516 PowerPacks)"
             ]
           ]
         },
         "type": "bulleted_list",
-        "version": 125
+        "version": 136
       }
     },
     {
@@ -1019,6 +973,74 @@ Response:+4627
       "value": {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1523422421287,
+        "id": "8f6d46da-f48c-449b-afe1-5e98cf9a3490",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1523422463262,
+        "parent_id": "ba011b9b-6e26-4cda-b5b8-1e3fb565f0e5",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "2018: 150 MWh per quarter, doubling per year ("
+            ],
+            [
+              "https://electrek.co/2018/03/22/tesla-large-powerpack-australia/",
+              [
+                [
+                  "a",
+                  "https://electrek.co/2018/03/22/tesla-large-powerpack-australia/"
+                ]
+              ]
+            ],
+            [
+              ")"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 125
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1523422186553,
+        "id": "a5802a6b-efb1-4543-818b-60fef5789094",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1523422586066,
+        "parent_id": "ba011b9b-6e26-4cda-b5b8-1e3fb565f0e5",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "PowerPack : ~250 kWh ("
+            ],
+            [
+              "https://www.energymatters.com.au/commercial-solar/battery-energy-storage/tesla-powerpack/",
+              [
+                [
+                  "a",
+                  "https://www.energymatters.com.au/commercial-solar/battery-energy-storage/tesla-powerpack/"
+                ]
+              ]
+            ],
+            [
+              ")"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 90
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
         "created_time": 1523422134650,
         "id": "b45c7405-1c1a-446b-8bd7-77c07d70a8ef",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
@@ -1043,28 +1065,6 @@ Response:+4627
         },
         "type": "bulleted_list",
         "version": 106
-      }
-    },
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1523422278498,
-        "id": "4d778a4f-3731-4b66-8a89-1623f5250941",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1523422706378,
-        "parent_id": "ba011b9b-6e26-4cda-b5b8-1e3fb565f0e5",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "2017-12-01 129 MWh (516 PowerPacks)"
-            ]
-          ]
-        },
-        "type": "bulleted_list",
-        "version": 136
       }
     }
   ]

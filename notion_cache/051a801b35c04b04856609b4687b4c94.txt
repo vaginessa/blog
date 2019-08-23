@@ -1,4 +1,4 @@
-1934 1565589877953 httpcache-v1
+1934 1566590857589 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+110
@@ -61,7 +61,7 @@ Response:+1734
     }
   ]
 }
-30719 1565589877954 httpcache-v1
+30719 1566590857590 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+152
@@ -934,10 +934,315 @@ Response:+30478
           "mobile_onboarding_completed": true,
           "onboarding_completed": true,
           "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-          "version": 179
+          "version": 182
         }
       }
     },
     "space": {}
   }
+}
+9629 1566590857590 httpcache-v1
+Method: POST
+URL: https://www.notion.so/api/v3/getRecordValues
+Body:+726
+{
+  "requests": [
+    {
+      "id": "20566b7c-36af-4633-a9a4-3bdb6074f425",
+      "table": "block"
+    },
+    {
+      "id": "3e2dae73-4f84-41a4-b0ab-be674af1c3e0",
+      "table": "block"
+    },
+    {
+      "id": "550a8263-5952-4d9f-b828-5a8182ab5dbc",
+      "table": "block"
+    },
+    {
+      "id": "74a556f4-242b-4752-afb0-8a3c37aeaa8c",
+      "table": "block"
+    },
+    {
+      "id": "830df507-5ca8-4cdb-ab33-8d495fb7a6f2",
+      "table": "block"
+    },
+    {
+      "id": "d1eeacca-5b64-4a47-8f1f-97f1606b8741",
+      "table": "block"
+    },
+    {
+      "id": "e81eae50-797e-4ee3-915a-7a147f42eaef",
+      "table": "block"
+    },
+    {
+      "id": "fe855cbe-29a5-4e52-bb98-623883f33936",
+      "table": "block"
+    }
+  ]
+}
+Response:+8813
+{
+  "results": [
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1532924015337,
+        "id": "20566b7c-36af-4633-a9a4-3bdb6074f425",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1532924028058,
+        "parent_id": "b725097a-bd79-48df-b36e-ad5f89e18654",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://www.reddit.com/r/Entrepreneur/comments/6gveyw/ive_seen_a_lot_of_google_adwords_posts_that_lack/",
+              [
+                [
+                  "a",
+                  "https://www.reddit.com/r/Entrepreneur/comments/6gveyw/ive_seen_a_lot_of_google_adwords_posts_that_lack/"
+                ]
+              ]
+            ],
+            [
+              " : notes on using adsense well; has links to online seo tools."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 80
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1532315868372,
+        "id": "3e2dae73-4f84-41a4-b0ab-be674af1c3e0",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1532315870448,
+        "parent_id": "b725097a-bd79-48df-b36e-ad5f89e18654",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://medium.com/startup-grind/seo-is-not-hard-a-step-by-step-seo-tutorial-for-beginners-that-will-get-you-ranked-every-single-1b903b3ab6bb",
+              [
+                [
+                  "a",
+                  "https://medium.com/startup-grind/seo-is-not-hard-a-step-by-step-seo-tutorial-for-beginners-that-will-get-you-ranked-every-single-1b903b3ab6bb"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 15
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1518848868876,
+        "id": "550a8263-5952-4d9f-b828-5a8182ab5dbc",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1518848870133,
+        "parent_id": "b725097a-bd79-48df-b36e-ad5f89e18654",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://www.reddit.com/r/startups/comments/7x9gr0/quick_and_easy_guide_to_seo_for_startups/",
+              [
+                [
+                  "a",
+                  "https://www.reddit.com/r/startups/comments/7x9gr0/quick_and_easy_guide_to_seo_for_startups/"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 13
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1554166140000,
+        "id": "74a556f4-242b-4752-afb0-8a3c37aeaa8c",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1554166140000,
+        "parent_id": "b725097a-bd79-48df-b36e-ad5f89e18654",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://backlinko.com/on-page-seo",
+              [
+                [
+                  "a",
+                  "https://backlinko.com/on-page-seo"
+                ]
+              ]
+            ],
+            [
+              " : a good list for basics of seo"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 39
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "content": [
+          "6be27a37-223b-4bf8-8203-1783f9a7f1c0",
+          "fb4067b4-f01b-4a2a-92c9-5a6e6136472f",
+          "88b6eecb-6d55-4781-99f5-07815de9d4d9",
+          "f74e658a-8d9f-4c42-8777-587acd87a52f",
+          "ddec4207-c315-458e-aec6-86fc897d7e1e",
+          "4ecf8338-e2b2-4df7-9a52-963d0f65e1ff",
+          "1bc4e04e-9be7-4eed-a7e3-d4fdef98a1fd",
+          "f15de051-d936-4651-bef8-bf8aac959efe",
+          "a2a193af-e1c0-4317-9884-8c8ef09dbcaa",
+          "6607d939-0a70-4803-b2a2-7bc19f905073",
+          "1ff24a47-6dae-45d8-8d45-951757a7508a",
+          "482a7728-e0bc-410e-9c4b-4cba5ae639ba",
+          "e8302967-2afa-42ea-aa6d-4e69b68ef318",
+          "ce2fd203-f547-4848-8e68-0d1f2df5ed2b",
+          "f8796154-d42e-4e85-ab34-23bebe072fdd",
+          "1b7f1837-5a30-43db-af52-7660f8a72b69",
+          "7670c4e6-6bc5-43f3-b0da-068d669d89f1",
+          "cfa41364-2e43-4af9-bb23-f14fad514d91",
+          "bf3ba87d-7a59-42c6-8aee-5c9bf587860f",
+          "eb03cdf4-bb5b-4781-8b31-f04da52f46d1",
+          "5b1556f9-64ec-4260-9a71-2ee95e2f4778",
+          "afa76c55-f065-47f4-92cc-e0efa32df0a6",
+          "cb1a1033-5cc2-4dff-890c-034d99d6f7ec",
+          "b0d91e10-da6b-404a-b2c0-cb780c8044f3",
+          "c6786236-0cac-4c29-802c-63b28050162f",
+          "a5856744-9f33-4c8d-a538-e9948ccecb25",
+          "da6a1ed5-1666-4214-aabd-5d21b93ac9ef"
+        ],
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1532922984913,
+        "format": {
+          "page_full_width": true,
+          "page_small_text": true
+        },
+        "id": "830df507-5ca8-4cdb-ab33-8d495fb7a6f2",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1532923059394,
+        "parent_id": "b725097a-bd79-48df-b36e-ad5f89e18654",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Summary of “Sell to Strangers” video about content marketing"
+            ]
+          ]
+        },
+        "type": "page",
+        "version": 44
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1532922560403,
+        "id": "d1eeacca-5b64-4a47-8f1f-97f1606b8741",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1532922562418,
+        "parent_id": "b725097a-bd79-48df-b36e-ad5f89e18654",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "http://www.kalzumeus.com/2008/01/28/why-you-shouldnt-pay-any-seo-you-can-afford/",
+              [
+                [
+                  "a",
+                  "http://www.kalzumeus.com/2008/01/28/why-you-shouldnt-pay-any-seo-you-can-afford/"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 10
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1520984416705,
+        "id": "e81eae50-797e-4ee3-915a-7a147f42eaef",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1520984417103,
+        "parent_id": "b725097a-bd79-48df-b36e-ad5f89e18654",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://medium.com/edulift/competitive-analysis-with-ahrefs-how-we-scaled-the-lingualift-blog-to-80-000-readers-b5267df0b8e7",
+              [
+                [
+                  "a",
+                  "https://medium.com/edulift/competitive-analysis-with-ahrefs-how-we-scaled-the-lingualift-blog-to-80-000-readers-b5267df0b8e7"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 8
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1532923994454,
+        "id": "fe855cbe-29a5-4e52-bb98-623883f33936",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1532924015069,
+        "parent_id": "b725097a-bd79-48df-b36e-ad5f89e18654",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://inside.6q.io/blogging-for-startups/",
+              [
+                [
+                  "a",
+                  "https://inside.6q.io/blogging-for-startups/"
+                ]
+              ]
+            ],
+            [
+              " is a case study of attracting website traffic by writing blog posts"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 10
+      }
+    }
+  ]
 }

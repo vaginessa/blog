@@ -1,4 +1,4 @@
-8666 1565589921285 httpcache-v1
+8666 1566590944049 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+110
@@ -196,7 +196,7 @@ Response:+8466
     }
   ]
 }
-59381 1565589921288 httpcache-v1
+59381 1566590944051 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+152
@@ -1863,14 +1863,14 @@ Response:+59140
           "mobile_onboarding_completed": true,
           "onboarding_completed": true,
           "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-          "version": 179
+          "version": 182
         }
       }
     },
     "space": {}
   }
 }
-42009 1565589921292 httpcache-v1
+42009 1566590944053 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+441
@@ -3083,14 +3083,14 @@ Response:+41479
           "mobile_onboarding_completed": true,
           "onboarding_completed": true,
           "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-          "version": 179
+          "version": 182
         }
       }
     },
     "space": {}
   }
 }
-42381 1565589921300 httpcache-v1
+42381 1566590944055 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+441
@@ -4267,14 +4267,14 @@ Response:+41851
           "mobile_onboarding_completed": true,
           "onboarding_completed": true,
           "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-          "version": 179
+          "version": 182
         }
       }
     },
     "space": {}
   }
 }
-44023 1565589921304 httpcache-v1
+44023 1566590944056 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+442
@@ -5452,14 +5452,14 @@ Response:+43492
           "mobile_onboarding_completed": true,
           "onboarding_completed": true,
           "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-          "version": 179
+          "version": 182
         }
       }
     },
     "space": {}
   }
 }
-30467 1565589921307 httpcache-v1
+30467 1566590944057 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+442
@@ -6284,10 +6284,218 @@ Response:+29936
           "mobile_onboarding_completed": true,
           "onboarding_completed": true,
           "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-          "version": 179
+          "version": 182
         }
       }
     },
     "space": {}
   }
+}
+8440 1566590944058 httpcache-v1
+Method: POST
+URL: https://www.notion.so/api/v3/getRecordValues
+Body:+198
+{
+  "requests": [
+    {
+      "id": "39a15945-1174-40d9-9a9e-f0f7de1b618a",
+      "table": "block"
+    },
+    {
+      "id": "fc9203f7-c72a-4532-b1ae-51d018fef7b3",
+      "table": "block"
+    }
+  ]
+}
+Response:+8152
+{
+  "results": [
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "content": [
+          "a9b30d79-697c-4b58-a0a3-d281dd2d0f86",
+          "88d4c070-dc31-43f5-9c31-d96ae134848e",
+          "1be647a7-b261-4094-8001-081901af77b6",
+          "256a0293-af62-452e-8a55-a13680504d8a",
+          "98a73fba-b84e-414d-addf-85d79cdde7b6",
+          "e74d785b-17b8-4c47-a516-d77faec50ebd",
+          "94287ef2-a41c-4029-9e1e-c8a2c6ab0f2b",
+          "94a57c44-ab3d-4a93-b9d8-7b23c1d3c722",
+          "e0b9d485-cf61-4f80-b5ad-52d1fdabb5b7",
+          "ca20ffeb-8f51-4746-9b58-8535f2ec7a42",
+          "bae7aa38-3a49-49a0-9208-185c1add597b",
+          "41701f62-413e-44b6-b347-e4cbb88014a3",
+          "3cbd590e-81d6-4721-bd9a-ea7e2d14c23b",
+          "dfd52e6d-3673-444d-a978-0ace128c95fb",
+          "653a2410-3fb2-4d93-814a-40bdb77f3753",
+          "6fb32419-2e87-4f6f-8876-3693d26726da",
+          "324f9ba5-3bf0-4240-b113-1847249d05a2",
+          "cc06c332-34ff-403b-a46b-c6a30567d153",
+          "f4b64af6-fbed-4329-b2e7-1fd26116521d",
+          "2fdff308-a80b-42b2-9531-ea29319fc1bb",
+          "4a696400-1df8-4106-80d3-3e7cc33b6345",
+          "bf5cbd52-5437-440e-9fa7-c6dace4d1652",
+          "c3d6cc82-79c9-449e-8bdf-a10431c9d0f8",
+          "0edf85f0-9b25-4bf5-92e6-63e580ac3122",
+          "9def2635-e270-4b21-b01e-1e7c14094a83",
+          "6447862a-e72f-4cf5-8590-4ac463fe83ec",
+          "354bfe5c-ecca-4cfe-8e19-c80ee86c3827",
+          "da4fb38b-34a7-4efe-9ab2-f6f539b3aca0",
+          "e5af1107-a494-401d-8dad-c53545579040",
+          "56c5f212-5866-4a2b-b308-43d8964cc991",
+          "63ea85df-ac81-4fbe-a990-f5d03975b1d0",
+          "683d5251-21b9-4c5c-98ec-4a34f52334f7",
+          "25bce43f-cc93-4ea5-a444-82b927cf89dd",
+          "b299623a-2845-4fb4-bfdb-2ecf1a5e5720",
+          "497d2df3-7e23-4708-9b32-1df6a2620f64",
+          "e9b349d5-fe71-4df0-bbb5-ff8d090030e6",
+          "15d1280d-1d6e-4c8e-b5c1-1bb102eae83d",
+          "c2f02785-2935-4801-bcac-e89b141dbc86",
+          "948171db-424e-4278-82b1-0e34725b06b6",
+          "09503813-e6d1-4ec6-a142-24ffadbf46a3",
+          "83190e16-c9a4-4b4c-ab7d-f42d6c10eadc"
+        ],
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1556567641008,
+        "file_ids": [
+          "5223b07e-0302-4cc9-8da4-e9678651fab9"
+        ],
+        "format": {
+          "page_cover": "https://s3-us-west-2.amazonaws.com/secure.notion-static.com/5223b07e-0302-4cc9-8da4-e9678651fab9/header-43.jpg",
+          "page_cover_position": 0.5,
+          "page_full_width": true,
+          "page_small_text": true
+        },
+        "id": "39a15945-1174-40d9-9a9e-f0f7de1b618a",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1565720880000,
+        "parent_id": "8999d1d7-32c7-4061-b439-ff9efd8f8a70",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "The things we do to ship desktop software"
+            ]
+          ]
+        },
+        "type": "page",
+        "version": 190
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "content": [
+          "78ece8d1-ce4e-49ef-aa62-608247885d4e",
+          "f861195e-c8e0-449c-8986-808968962119",
+          "40965dac-8ee6-4ffa-95b3-4a8dfc79d62b",
+          "11c6c020-51c0-4e6b-87f5-e8e2cf0f77fc",
+          "91a851ff-e06f-4fa7-a1b8-56088c6157e7",
+          "d2348f01-8913-42e4-9d04-097a507f4443",
+          "cee41567-c2a2-4f9c-9ece-293fef9cfba5",
+          "7890c565-905c-4223-bb35-df5e1a6bbd19",
+          "daf82dcf-faa9-48a7-8ef7-7488a5d71a31",
+          "17a84120-c606-4558-a7a3-fd78ecea0758",
+          "1227e188-9c13-40e6-bf45-7a51ad1d1e05",
+          "2155d8c5-435a-47c8-b4fd-3a96c5879bd8",
+          "2e2a4087-0223-4812-a1ff-0af50a3eab32",
+          "9e581eac-3d6f-46cf-a1b1-ac2a109bbec7",
+          "1048ebb8-aec9-404b-bcf9-bd00494141c6",
+          "77f50f3d-ebde-447f-a898-2197077f0438",
+          "9cf269ce-d5fb-43ee-ab65-5da4dd09d355",
+          "08aa447d-5b44-4adc-b8a0-e5b392b0561a",
+          "4c17f5e1-7694-4ee0-b5d3-f134d6f3cfac",
+          "4aa61e37-3c9c-47fd-8f61-c8f1d0e8b74d",
+          "363337c2-7dbe-4d62-85b9-ec1aa716cc84",
+          "a6d83b81-4158-48e2-83f5-6f6aabc46ba9",
+          "22954cc8-0b37-49fa-ac11-5f9b03299c7d",
+          "1de111d2-bfd2-4fcd-8905-89a8113a7d46",
+          "0ea045cb-68ce-43a9-b208-06dc0a1290f4",
+          "1e68c0a5-4018-46b5-ad67-d11a1d89fcac",
+          "e014c572-bb86-44fd-9be0-2ef06093ea83",
+          "f1028975-116b-45dd-8ef3-e5cda305c847",
+          "e77dd19b-6086-4209-96f9-db40ff07dc6b",
+          "b66523ba-8271-4e86-a0ed-ec23ae9c5128",
+          "3f3f09cc-2303-4752-87a2-413321458d99",
+          "89ecb83d-2802-4c35-a0b9-b14fbc4816dd",
+          "f3a05622-7d92-4f27-aff2-e77dd8ab63c6",
+          "ef3c8d07-a309-42bd-bfb9-971098888077",
+          "8ad93a78-9e96-45de-b682-e1ff713ca9a3",
+          "1da0342b-6d2d-4d41-8d7c-3a5ceb8a71b2",
+          "27aace91-0b23-41c7-ba85-6b9d40fbcfec",
+          "3153f3a5-2a29-4b79-bcb7-04b13cd45543",
+          "9d21b815-09ee-426e-94aa-c63ef34031bf",
+          "d836b902-fb8a-4738-aba1-5fa38eb08405",
+          "ec48bb07-778a-402f-bd97-a99d7b12cf0a",
+          "a8a06b0a-5c31-42af-ab07-3fa1432c3e16",
+          "b5fa4b6f-9650-4635-90a1-ec814dba7347",
+          "c39453a7-f8ef-4719-9568-00089e34c612",
+          "19c948a7-49ed-49e7-8f6f-d6a7e581f9e2",
+          "2a528a33-a7ee-4233-939a-fb7102bb53d9",
+          "8743e010-91dd-4186-92b0-2cdab0a28562",
+          "6eee407c-1b56-41f3-9f7f-d1f8bb25b731",
+          "3143be67-3471-4c02-9e27-f683645add34",
+          "4391f252-0777-4dc3-b120-a6569ebde52a",
+          "b9c1180e-4ad1-487c-9651-212a2c0b81d0",
+          "20bec5ae-9907-48db-9f25-18ccf46a2562",
+          "d8cd751c-6ede-494f-890f-4bf9d8d98611",
+          "39300743-f394-40ca-b87a-75759f33cc90",
+          "3abf3ab4-14b9-41da-9748-8c184174d8da",
+          "f1c3920b-0dfc-4b1e-887f-6b6720c639aa",
+          "05bb2f05-5d3b-4af7-b83b-16be1f436308",
+          "10bc8cbd-a7fa-429c-b719-2ef8bf2af9d8",
+          "a2b8c156-0957-4df5-8267-d9853fb790a3",
+          "1f8042fe-738d-41a2-8717-817b31f78474",
+          "b9fbe048-6bef-493c-a4bb-cfb02ec41bf7",
+          "32b3af3d-6aab-4260-bde4-21dde83ae8c7",
+          "66e61816-8cc0-4291-805a-0d35a6590f75",
+          "9278e9c6-39fe-4d69-9565-537c4b112f98",
+          "dab233e6-33a3-426a-8c7d-09508a2fa007",
+          "d83a7700-bfe8-4617-9503-c1f9b860e3ee",
+          "daac8d75-cc5d-43a2-8e99-5133dbcbae01",
+          "3b726c0e-34e0-4244-847f-d3f813d2d8c2",
+          "58e72b49-ebf4-4ce3-bffd-b1d5dc0f33e4",
+          "d20027d5-d31d-442c-b896-bbc462ffb064",
+          "fe36fee7-3795-4bff-aeab-5f9e1e5f47e3",
+          "27baac34-a3cb-4948-9744-877b483146ea",
+          "a2e367aa-d41a-42ff-be83-c92ec9ba33e1",
+          "b9a4c6c4-875f-484b-af9f-0a273c40b91c",
+          "9f2783fb-fa39-4262-91f5-683966302dbd",
+          "49241da0-7453-4ac3-bf45-50adde8398f4",
+          "41c79182-92ca-4a39-a113-89be41d397a8",
+          "72c1598f-2c70-44c0-8949-87644bd45adc",
+          "898ff87e-0d3a-439a-afab-803fe2ccc07b",
+          "9928ddad-460a-4f4c-a00b-2bddc21c33ef"
+        ],
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1553563863050,
+        "file_ids": [
+          "82e56464-fd40-4347-9936-5146f49dc304"
+        ],
+        "format": {
+          "page_cover": "https://s3-us-west-2.amazonaws.com/secure.notion-static.com/82e56464-fd40-4347-9936-5146f49dc304/header-28.jpg",
+          "page_cover_position": 0.5,
+          "page_full_width": true,
+          "page_small_text": true
+        },
+        "id": "fc9203f7-c72a-4532-b1ae-51d018fef7b3",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1564213800000,
+        "parent_id": "8999d1d7-32c7-4061-b439-ff9efd8f8a70",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Trade offs in designing versatile log format"
+            ]
+          ]
+        },
+        "type": "page",
+        "version": 351
+      }
+    }
+  ]
 }

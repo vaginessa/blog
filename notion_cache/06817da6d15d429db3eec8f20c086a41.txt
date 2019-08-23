@@ -1,4 +1,4 @@
-3475 1565589878181 httpcache-v1
+3475 1566590858240 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+110
@@ -92,7 +92,7 @@ Response:+3275
     }
   ]
 }
-49510 1565589878186 httpcache-v1
+49510 1566590858242 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+152
@@ -1454,10 +1454,288 @@ Response:+49269
           "mobile_onboarding_completed": true,
           "onboarding_completed": true,
           "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-          "version": 179
+          "version": 182
         }
       }
     },
     "space": {}
   }
+}
+7592 1566590858242 httpcache-v1
+Method: POST
+URL: https://www.notion.so/api/v3/getRecordValues
+Body:+726
+{
+  "requests": [
+    {
+      "id": "1ca32db5-87d9-41bb-b2d0-737b06375466",
+      "table": "block"
+    },
+    {
+      "id": "32ae297f-9eda-442a-aa91-130cea9e15a2",
+      "table": "block"
+    },
+    {
+      "id": "41097d6a-ae3b-4d9e-916c-d8e3f22199d6",
+      "table": "block"
+    },
+    {
+      "id": "585c8d40-9301-420f-9360-58ff044f51b2",
+      "table": "block"
+    },
+    {
+      "id": "5ca40190-f491-42be-af52-d78d57c37b0a",
+      "table": "block"
+    },
+    {
+      "id": "603ed0b1-304e-4251-a904-bb1a7d6a14a2",
+      "table": "block"
+    },
+    {
+      "id": "7ccde7c0-1177-4860-ac30-0bec8fadbf95",
+      "table": "block"
+    },
+    {
+      "id": "df554996-4596-4a0a-9373-f3f782ce8d40",
+      "table": "block"
+    }
+  ]
+}
+Response:+6776
+{
+  "results": [
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "copied_from": "517057fd-f705-4712-838e-347a6707c9db",
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1532924365119,
+        "id": "1ca32db5-87d9-41bb-b2d0-737b06375466",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1532924365119,
+        "parent_id": "813b68ac-e556-401f-b437-67d5ecdf0a1b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "http://changethis.com/manifesto/98.02.PersonalMBA/pdf/98.02.PersonalMBA.pdf",
+              [
+                [
+                  "a",
+                  "http://changethis.com/manifesto/98.02.PersonalMBA/pdf/98.02.PersonalMBA.pdf"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 5
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1496460519833,
+        "id": "32ae297f-9eda-442a-aa91-130cea9e15a2",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1496460519833,
+        "parent_id": "813b68ac-e556-401f-b437-67d5ecdf0a1b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://github.com/mezod/awesome-indie",
+              [
+                [
+                  "a",
+                  "https://github.com/mezod/awesome-indie"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 0
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1496460204854,
+        "id": "41097d6a-ae3b-4d9e-916c-d8e3f22199d6",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1496460204854,
+        "parent_id": "813b68ac-e556-401f-b437-67d5ecdf0a1b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "http://momtestbook.com/",
+              [
+                [
+                  "a",
+                  "http://momtestbook.com/"
+                ]
+              ]
+            ],
+            [
+              " : \"The Mom Test\" book on how to interview people to figure out business ideas"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 0
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "copied_from": "d576046e-d902-4128-a6b9-de2e94113612",
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1532924365114,
+        "id": "585c8d40-9301-420f-9360-58ff044f51b2",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1532924365114,
+        "parent_id": "813b68ac-e556-401f-b437-67d5ecdf0a1b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "“Go it Alone” full book "
+            ],
+            [
+              "http://brucejudson.com/",
+              [
+                [
+                  "a",
+                  "http://brucejudson.com/"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 5
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1496460173377,
+        "id": "5ca40190-f491-42be-af52-d78d57c37b0a",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1496460173377,
+        "parent_id": "813b68ac-e556-401f-b437-67d5ecdf0a1b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Links:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 0
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1496460175753,
+        "id": "603ed0b1-304e-4251-a904-bb1a7d6a14a2",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1496460175753,
+        "parent_id": "813b68ac-e556-401f-b437-67d5ecdf0a1b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://www.sodaware.net/dev/articles/",
+              [
+                [
+                  "a",
+                  "https://www.sodaware.net/dev/articles/"
+                ]
+              ]
+            ],
+            [
+              " : Steve Pavlina Shareware articles"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 0
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1496460538577,
+        "id": "7ccde7c0-1177-4860-ac30-0bec8fadbf95",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1532924368465,
+        "parent_id": "813b68ac-e556-401f-b437-67d5ecdf0a1b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://barnacl.es/",
+              [
+                [
+                  "a",
+                  "https://barnacl.es/"
+                ]
+              ]
+            ],
+            [
+              " : \"News for bootstrappers, not VC hackers\""
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 2
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "copied_from": "86c75abe-1e38-4057-b9c9-3d57b474cd0d",
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1532924365122,
+        "id": "df554996-4596-4a0a-9373-f3f782ce8d40",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1532924365122,
+        "parent_id": "813b68ac-e556-401f-b437-67d5ecdf0a1b",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://personalmba.com",
+              [
+                [
+                  "a",
+                  "https://personalmba.com"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 5
+      }
+    }
+  ]
 }

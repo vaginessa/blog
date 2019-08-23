@@ -1,4 +1,4 @@
-2805 1565590000344 httpcache-v1
+2805 1566591152247 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+110
@@ -83,7 +83,7 @@ Response:+2605
     }
   ]
 }
-35029 1565590000348 httpcache-v1
+35029 1566591152249 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+152
@@ -1116,33 +1116,25 @@ Response:+34788
           "mobile_onboarding_completed": true,
           "onboarding_completed": true,
           "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-          "version": 179
+          "version": 182
         }
       }
     },
     "space": {}
   }
 }
-15766 1565590000350 httpcache-v1
+15766 1566591152249 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+1694
 {
   "requests": [
     {
+      "id": "1d50bc58-5854-4cc9-80ef-b6e1bdca5621",
+      "table": "block"
+    },
+    {
       "id": "2fbea57a-1f70-4c14-876f-589047ca9bf2",
-      "table": "block"
-    },
-    {
-      "id": "de6199a5-2ca1-4f27-aa26-32c9b3b6a405",
-      "table": "block"
-    },
-    {
-      "id": "8d216ebe-efa1-4f1a-b560-2e4c342bb4e7",
-      "table": "block"
-    },
-    {
-      "id": "ad2af084-20ec-4af7-847c-a7baa8fabdec",
       "table": "block"
     },
     {
@@ -1150,31 +1142,7 @@ Body:+1694
       "table": "block"
     },
     {
-      "id": "e97ea406-b414-4b82-a631-f50bdee5eff4",
-      "table": "block"
-    },
-    {
-      "id": "1d50bc58-5854-4cc9-80ef-b6e1bdca5621",
-      "table": "block"
-    },
-    {
-      "id": "64d77434-c0b5-4ccd-8e3a-e67535cc1a3d",
-      "table": "block"
-    },
-    {
-      "id": "8d0de8b4-8454-453e-a605-50776476b650",
-      "table": "block"
-    },
-    {
-      "id": "88d18cbb-b519-41d0-8c0b-40e1b0db9985",
-      "table": "block"
-    },
-    {
-      "id": "84e28c7e-ee65-42c3-92f1-aa1796422a92",
-      "table": "block"
-    },
-    {
-      "id": "8d7538cd-8e1f-41c9-a1e8-7255c86e43f8",
+      "id": "406f87cb-da7c-464c-9f4f-3d9899191164",
       "table": "block"
     },
     {
@@ -1182,11 +1150,11 @@ Body:+1694
       "table": "block"
     },
     {
-      "id": "5a00325d-5a7a-4911-804d-707ce7bada74",
+      "id": "4806410e-35b8-4c7d-8d93-5f146bcba775",
       "table": "block"
     },
     {
-      "id": "d88ecace-dd0f-459c-bcf7-7d63bf601c53",
+      "id": "5a00325d-5a7a-4911-804d-707ce7bada74",
       "table": "block"
     },
     {
@@ -1194,15 +1162,47 @@ Body:+1694
       "table": "block"
     },
     {
-      "id": "4806410e-35b8-4c7d-8d93-5f146bcba775",
-      "table": "block"
-    },
-    {
-      "id": "406f87cb-da7c-464c-9f4f-3d9899191164",
+      "id": "64d77434-c0b5-4ccd-8e3a-e67535cc1a3d",
       "table": "block"
     },
     {
       "id": "78a77979-8593-4c71-aea2-95c5701bf7cd",
+      "table": "block"
+    },
+    {
+      "id": "84e28c7e-ee65-42c3-92f1-aa1796422a92",
+      "table": "block"
+    },
+    {
+      "id": "88d18cbb-b519-41d0-8c0b-40e1b0db9985",
+      "table": "block"
+    },
+    {
+      "id": "8d0de8b4-8454-453e-a605-50776476b650",
+      "table": "block"
+    },
+    {
+      "id": "8d216ebe-efa1-4f1a-b560-2e4c342bb4e7",
+      "table": "block"
+    },
+    {
+      "id": "8d7538cd-8e1f-41c9-a1e8-7255c86e43f8",
+      "table": "block"
+    },
+    {
+      "id": "ad2af084-20ec-4af7-847c-a7baa8fabdec",
+      "table": "block"
+    },
+    {
+      "id": "d88ecace-dd0f-459c-bcf7-7d63bf601c53",
+      "table": "block"
+    },
+    {
+      "id": "de6199a5-2ca1-4f27-aa26-32c9b3b6a405",
+      "table": "block"
+    },
+    {
+      "id": "e97ea406-b414-4b82-a631-f50bdee5eff4",
       "table": "block"
     }
   ]
@@ -1210,6 +1210,33 @@ Body:+1694
 Response:+13980
 {
   "results": [
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1512364895419,
+        "id": "1d50bc58-5854-4cc9-80ef-b6e1bdca5621",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1512364895419,
+        "parent_id": "d3620a93-f1c5-49c6-b055-999bc387cca3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "cd mupdf",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 0
+      }
+    },
     {
       "role": "comment_only",
       "value": {
@@ -1238,7 +1265,7 @@ Response:+13980
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
         "created_time": 1512364895419,
-        "id": "de6199a5-2ca1-4f27-aa26-32c9b3b6a405",
+        "id": "325bfbcf-615a-446f-becc-a7ac1b7fb517",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
         "last_edited_time": 1512364895419,
         "parent_id": "d3620a93-f1c5-49c6-b055-999bc387cca3",
@@ -1246,7 +1273,268 @@ Response:+13980
         "properties": {
           "title": [
             [
-              "docker run -it ubuntu:16.04 /bin/bash",
+              "apt-get install clang clang-format valgrind",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " : optional"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 0
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1490330897346,
+        "id": "406f87cb-da7c-464c-9f4f-3d9899191164",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1490330897346,
+        "parent_id": "a7f66cca-b2d4-4c86-9e2f-31b88b388c39",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "results go to "
+            ],
+            [
+              "build/release/",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " dir ("
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 0
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1512364918253,
+        "id": "459951d1-f645-401a-9185-73b630f6061f",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1512364918253,
+        "parent_id": "a2e64cf1-d296-4255-b461-a9fb044befc1",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Standard mupdf compile on mac:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 0
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1490330877191,
+        "id": "4806410e-35b8-4c7d-8d93-5f146bcba775",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1490330877191,
+        "parent_id": "a7f66cca-b2d4-4c86-9e2f-31b88b388c39",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "had to "
+            ],
+            [
+              "make HAVE_GLFW=no",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 0
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1512364918253,
+        "id": "5a00325d-5a7a-4911-804d-707ce7bada74",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1512364918253,
+        "parent_id": "a2e64cf1-d296-4255-b461-a9fb044befc1",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "make HAVE_X11=no",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 0
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1490330826253,
+        "id": "5db98ff2-612e-43eb-bde7-437baa96a827",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1490330826253,
+        "parent_id": "a7f66cca-b2d4-4c86-9e2f-31b88b388c39",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Had to remove $(RANLIB_CMD) from %.a rule because it fails under xcode and is not necessary."
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 0
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1512364895419,
+        "id": "64d77434-c0b5-4ccd-8e3a-e67535cc1a3d",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1512364895419,
+        "parent_id": "d3620a93-f1c5-49c6-b055-999bc387cca3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "make",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 0
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1490330943306,
+        "id": "78a77979-8593-4c71-aea2-95c5701bf7cd",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1490330943306,
+        "parent_id": "91e2f3c9-ed02-4885-b9eb-caa73724dda4",
+        "parent_table": "block",
+        "type": "text",
+        "version": 0
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1512364918253,
+        "id": "84e28c7e-ee65-42c3-92f1-aa1796422a92",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1512364918253,
+        "parent_id": "a2e64cf1-d296-4255-b461-a9fb044befc1",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "brew install --with-clang --with-clang-extra-tool --with-compiler-rt --with-libcxx --with-lld --with-lld --with-python --with-rtti --with-utils --HEAD llvm",
+              [
+                [
+                  "c"
+                ]
+              ]
+            ],
+            [
+              " : using HEAD because the latest official is 3.6.2, which is old-ish (3.8 is the latest i.e. 1 year ahead)"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 0
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1512364918253,
+        "id": "88d18cbb-b519-41d0-8c0b-40e1b0db9985",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1512364918253,
+        "parent_id": "a2e64cf1-d296-4255-b461-a9fb044befc1",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Install latest gcc and clang with brew:"
+            ]
+          ]
+        },
+        "type": "text",
+        "version": 0
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1512364895419,
+        "id": "8d0de8b4-8454-453e-a605-50776476b650",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1512364895419,
+        "parent_id": "d3620a93-f1c5-49c6-b055-999bc387cca3",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "it ends up in "
+            ],
+            [
+              "build/release",
               [
                 [
                   "c"
@@ -1291,226 +1579,6 @@ Response:+13980
       "value": {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1512364895419,
-        "id": "ad2af084-20ec-4af7-847c-a7baa8fabdec",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1512364895419,
-        "parent_id": "d3620a93-f1c5-49c6-b055-999bc387cca3",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "apt-get install git g++ make xorg-dev freeglut3-dev pkg-config",
-              [
-                [
-                  "c"
-                ]
-              ]
-            ]
-          ]
-        },
-        "type": "bulleted_list",
-        "version": 0
-      }
-    },
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1512364895419,
-        "id": "325bfbcf-615a-446f-becc-a7ac1b7fb517",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1512364895419,
-        "parent_id": "d3620a93-f1c5-49c6-b055-999bc387cca3",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "apt-get install clang clang-format valgrind",
-              [
-                [
-                  "c"
-                ]
-              ]
-            ],
-            [
-              " : optional"
-            ]
-          ]
-        },
-        "type": "bulleted_list",
-        "version": 0
-      }
-    },
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1512364895419,
-        "id": "e97ea406-b414-4b82-a631-f50bdee5eff4",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1512364895419,
-        "parent_id": "d3620a93-f1c5-49c6-b055-999bc387cca3",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "git clone --recursive git://git.ghostscript.com/mupdf.git",
-              [
-                [
-                  "c"
-                ]
-              ]
-            ]
-          ]
-        },
-        "type": "bulleted_list",
-        "version": 0
-      }
-    },
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1512364895419,
-        "id": "1d50bc58-5854-4cc9-80ef-b6e1bdca5621",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1512364895419,
-        "parent_id": "d3620a93-f1c5-49c6-b055-999bc387cca3",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "cd mupdf",
-              [
-                [
-                  "c"
-                ]
-              ]
-            ]
-          ]
-        },
-        "type": "bulleted_list",
-        "version": 0
-      }
-    },
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1512364895419,
-        "id": "64d77434-c0b5-4ccd-8e3a-e67535cc1a3d",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1512364895419,
-        "parent_id": "d3620a93-f1c5-49c6-b055-999bc387cca3",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "make",
-              [
-                [
-                  "c"
-                ]
-              ]
-            ]
-          ]
-        },
-        "type": "bulleted_list",
-        "version": 0
-      }
-    },
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1512364895419,
-        "id": "8d0de8b4-8454-453e-a605-50776476b650",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1512364895419,
-        "parent_id": "d3620a93-f1c5-49c6-b055-999bc387cca3",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "it ends up in "
-            ],
-            [
-              "build/release",
-              [
-                [
-                  "c"
-                ]
-              ]
-            ]
-          ]
-        },
-        "type": "bulleted_list",
-        "version": 0
-      }
-    },
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1512364918253,
-        "id": "88d18cbb-b519-41d0-8c0b-40e1b0db9985",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1512364918253,
-        "parent_id": "a2e64cf1-d296-4255-b461-a9fb044befc1",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "Install latest gcc and clang with brew:"
-            ]
-          ]
-        },
-        "type": "text",
-        "version": 0
-      }
-    },
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1512364918253,
-        "id": "84e28c7e-ee65-42c3-92f1-aa1796422a92",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1512364918253,
-        "parent_id": "a2e64cf1-d296-4255-b461-a9fb044befc1",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "brew install --with-clang --with-clang-extra-tool --with-compiler-rt --with-libcxx --with-lld --with-lld --with-python --with-rtti --with-utils --HEAD llvm",
-              [
-                [
-                  "c"
-                ]
-              ]
-            ],
-            [
-              " : using HEAD because the latest official is 3.6.2, which is old-ish (3.8 is the latest i.e. 1 year ahead)"
-            ]
-          ]
-        },
-        "type": "bulleted_list",
-        "version": 0
-      }
-    },
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
         "created_time": 1512364918253,
         "id": "8d7538cd-8e1f-41c9-a1e8-7255c86e43f8",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
@@ -1541,38 +1609,16 @@ Response:+13980
       "value": {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1512364918253,
-        "id": "459951d1-f645-401a-9185-73b630f6061f",
+        "created_time": 1512364895419,
+        "id": "ad2af084-20ec-4af7-847c-a7baa8fabdec",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1512364918253,
-        "parent_id": "a2e64cf1-d296-4255-b461-a9fb044befc1",
+        "last_edited_time": 1512364895419,
+        "parent_id": "d3620a93-f1c5-49c6-b055-999bc387cca3",
         "parent_table": "block",
         "properties": {
           "title": [
             [
-              "Standard mupdf compile on mac:"
-            ]
-          ]
-        },
-        "type": "text",
-        "version": 0
-      }
-    },
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1512364918253,
-        "id": "5a00325d-5a7a-4911-804d-707ce7bada74",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1512364918253,
-        "parent_id": "a2e64cf1-d296-4255-b461-a9fb044befc1",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "make HAVE_X11=no",
+              "apt-get install git g++ make xorg-dev freeglut3-dev pkg-config",
               [
                 [
                   "c"
@@ -1617,41 +1663,16 @@ Response:+13980
       "value": {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1490330826253,
-        "id": "5db98ff2-612e-43eb-bde7-437baa96a827",
+        "created_time": 1512364895419,
+        "id": "de6199a5-2ca1-4f27-aa26-32c9b3b6a405",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1490330826253,
-        "parent_id": "a7f66cca-b2d4-4c86-9e2f-31b88b388c39",
+        "last_edited_time": 1512364895419,
+        "parent_id": "d3620a93-f1c5-49c6-b055-999bc387cca3",
         "parent_table": "block",
         "properties": {
           "title": [
             [
-              "Had to remove $(RANLIB_CMD) from %.a rule because it fails under xcode and is not necessary."
-            ]
-          ]
-        },
-        "type": "text",
-        "version": 0
-      }
-    },
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1490330877191,
-        "id": "4806410e-35b8-4c7d-8d93-5f146bcba775",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1490330877191,
-        "parent_id": "a7f66cca-b2d4-4c86-9e2f-31b88b388c39",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "had to "
-            ],
-            [
-              "make HAVE_GLFW=no",
+              "docker run -it ubuntu:16.04 /bin/bash",
               [
                 [
                   "c"
@@ -1660,7 +1681,7 @@ Response:+13980
             ]
           ]
         },
-        "type": "text",
+        "type": "bulleted_list",
         "version": 0
       }
     },
@@ -1669,46 +1690,25 @@ Response:+13980
       "value": {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1490330897346,
-        "id": "406f87cb-da7c-464c-9f4f-3d9899191164",
+        "created_time": 1512364895419,
+        "id": "e97ea406-b414-4b82-a631-f50bdee5eff4",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1490330897346,
-        "parent_id": "a7f66cca-b2d4-4c86-9e2f-31b88b388c39",
+        "last_edited_time": 1512364895419,
+        "parent_id": "d3620a93-f1c5-49c6-b055-999bc387cca3",
         "parent_table": "block",
         "properties": {
           "title": [
             [
-              "results go to "
-            ],
-            [
-              "build/release/",
+              "git clone --recursive git://git.ghostscript.com/mupdf.git",
               [
                 [
                   "c"
                 ]
               ]
-            ],
-            [
-              " dir ("
             ]
           ]
         },
-        "type": "text",
-        "version": 0
-      }
-    },
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1490330943306,
-        "id": "78a77979-8593-4c71-aea2-95c5701bf7cd",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1490330943306,
-        "parent_id": "91e2f3c9-ed02-4885-b9eb-caa73724dda4",
-        "parent_table": "block",
-        "type": "text",
+        "type": "bulleted_list",
         "version": 0
       }
     }

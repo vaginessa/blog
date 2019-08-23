@@ -1,4 +1,4 @@
-1607 1565589858492 httpcache-v1
+1607 1566590271143 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+110
@@ -59,7 +59,7 @@ Response:+1407
     }
   ]
 }
-16020 1565589858493 httpcache-v1
+16020 1566590271144 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+152
@@ -509,25 +509,21 @@ Response:+15779
           "mobile_onboarding_completed": true,
           "onboarding_completed": true,
           "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-          "version": 179
+          "version": 182
         }
       }
     },
     "space": {}
   }
 }
-5789 1565589858494 httpcache-v1
+5789 1566590271144 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+550
 {
   "requests": [
     {
-      "id": "f1b777fb-4ad7-4cf0-b7b6-53bf8b341018",
-      "table": "block"
-    },
-    {
-      "id": "e32bc69a-ffc4-48a7-bd22-1ebd4bce186d",
+      "id": "81a6da31-96b8-4877-993c-5de8d8f9cab8",
       "table": "block"
     },
     {
@@ -535,15 +531,19 @@ Body:+550
       "table": "block"
     },
     {
-      "id": "81a6da31-96b8-4877-993c-5de8d8f9cab8",
-      "table": "block"
-    },
-    {
       "id": "d1e698c3-46a5-4d48-952f-a3dd8910c995",
       "table": "block"
     },
     {
+      "id": "e32bc69a-ffc4-48a7-bd22-1ebd4bce186d",
+      "table": "block"
+    },
+    {
       "id": "e6e1e795-c2a3-41b4-9626-76c6fc76a881",
+      "table": "block"
+    },
+    {
+      "id": "f1b777fb-4ad7-4cf0-b7b6-53bf8b341018",
       "table": "block"
     }
   ]
@@ -556,8 +556,8 @@ Response:+5149
       "value": {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1515890221072,
-        "id": "f1b777fb-4ad7-4cf0-b7b6-53bf8b341018",
+        "created_time": 1514862385344,
+        "id": "81a6da31-96b8-4877-993c-5de8d8f9cab8",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
         "last_edited_time": 1530062913389,
         "parent_id": "530d10fc-60ba-4b13-8b82-5cfb87f87732",
@@ -565,46 +565,18 @@ Response:+5149
         "properties": {
           "title": [
             [
-              "http://www.steveschoger.com/2017/05/30/designing-kitetails-checkout-thank-you-page/",
+              "https://uxdesign.cc/3-ways-to-improve-your-visual-design-skills-fa9dc8e583ff",
               [
                 [
                   "a",
-                  "http://www.steveschoger.com/2017/05/30/designing-kitetails-checkout-thank-you-page/"
+                  "https://uxdesign.cc/3-ways-to-improve-your-visual-design-skills-fa9dc8e583ff"
                 ]
               ]
             ]
           ]
         },
         "type": "bulleted_list",
-        "version": 18
-      }
-    },
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1514860222998,
-        "id": "e32bc69a-ffc4-48a7-bd22-1ebd4bce186d",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1530062913389,
-        "parent_id": "530d10fc-60ba-4b13-8b82-5cfb87f87732",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "https://uxdesign.cc/design-better-forms-96fadca0f49c",
-              [
-                [
-                  "a",
-                  "https://uxdesign.cc/design-better-forms-96fadca0f49c"
-                ]
-              ]
-            ]
-          ]
-        },
-        "type": "bulleted_list",
-        "version": 18
+        "version": 12
       }
     },
     {
@@ -626,34 +598,6 @@ Response:+5149
                 [
                   "a",
                   "http://cdn.ustwo.com/PPP/PP3.pdf"
-                ]
-              ]
-            ]
-          ]
-        },
-        "type": "bulleted_list",
-        "version": 12
-      }
-    },
-    {
-      "role": "comment_only",
-      "value": {
-        "alive": true,
-        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "created_time": 1514862385344,
-        "id": "81a6da31-96b8-4877-993c-5de8d8f9cab8",
-        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1530062913389,
-        "parent_id": "530d10fc-60ba-4b13-8b82-5cfb87f87732",
-        "parent_table": "block",
-        "properties": {
-          "title": [
-            [
-              "https://uxdesign.cc/3-ways-to-improve-your-visual-design-skills-fa9dc8e583ff",
-              [
-                [
-                  "a",
-                  "https://uxdesign.cc/3-ways-to-improve-your-visual-design-skills-fa9dc8e583ff"
                 ]
               ]
             ]
@@ -696,6 +640,34 @@ Response:+5149
       "value": {
         "alive": true,
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1514860222998,
+        "id": "e32bc69a-ffc4-48a7-bd22-1ebd4bce186d",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1530062913389,
+        "parent_id": "530d10fc-60ba-4b13-8b82-5cfb87f87732",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://uxdesign.cc/design-better-forms-96fadca0f49c",
+              [
+                [
+                  "a",
+                  "https://uxdesign.cc/design-better-forms-96fadca0f49c"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 18
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
         "created_time": 1519245284734,
         "id": "e6e1e795-c2a3-41b4-9626-76c6fc76a881",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
@@ -717,6 +689,34 @@ Response:+5149
         },
         "type": "bulleted_list",
         "version": 11
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1515890221072,
+        "id": "f1b777fb-4ad7-4cf0-b7b6-53bf8b341018",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1530062913389,
+        "parent_id": "530d10fc-60ba-4b13-8b82-5cfb87f87732",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "http://www.steveschoger.com/2017/05/30/designing-kitetails-checkout-thank-you-page/",
+              [
+                [
+                  "a",
+                  "http://www.steveschoger.com/2017/05/30/designing-kitetails-checkout-thank-you-page/"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 18
       }
     }
   ]

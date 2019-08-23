@@ -1,4 +1,4 @@
-6101 1565589864599 httpcache-v1
+6101 1566590862539 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+110
@@ -145,7 +145,7 @@ Response:+5901
     }
   ]
 }
-54536 1565589864601 httpcache-v1
+54536 1566590862541 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+152
@@ -1606,14 +1606,14 @@ Response:+54295
           "mobile_onboarding_completed": true,
           "onboarding_completed": true,
           "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-          "version": 179
+          "version": 182
         }
       }
     },
     "space": {}
   }
 }
-39117 1565589864603 httpcache-v1
+39117 1566590862543 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+441
@@ -2651,14 +2651,14 @@ Response:+38587
           "mobile_onboarding_completed": true,
           "onboarding_completed": true,
           "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-          "version": 179
+          "version": 182
         }
       }
     },
     "space": {}
   }
 }
-31642 1565589864604 httpcache-v1
+31642 1566590862544 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+441
@@ -3505,10 +3505,498 @@ Response:+31112
           "mobile_onboarding_completed": true,
           "onboarding_completed": true,
           "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-          "version": 179
+          "version": 182
         }
       }
     },
     "space": {}
   }
+}
+13966 1566590862544 httpcache-v1
+Method: POST
+URL: https://www.notion.so/api/v3/getRecordValues
+Body:+1254
+{
+  "requests": [
+    {
+      "id": "0503b59e-a97f-49d1-a257-0bfd83309406",
+      "table": "block"
+    },
+    {
+      "id": "0a126737-b906-4dd8-b0a9-3a83b68f7731",
+      "table": "block"
+    },
+    {
+      "id": "22a59d3f-b8e8-4981-ab40-b94a541c2437",
+      "table": "block"
+    },
+    {
+      "id": "44f45b0b-79b2-41b6-9708-23f5aafa69d2",
+      "table": "block"
+    },
+    {
+      "id": "5fa486eb-7c9a-4f07-9b3a-509421646037",
+      "table": "block"
+    },
+    {
+      "id": "8f64d704-dc0c-4249-beb1-78341b049893",
+      "table": "block"
+    },
+    {
+      "id": "9af6f279-46d2-4885-8ffa-440e5d3b46a9",
+      "table": "block"
+    },
+    {
+      "id": "ccc2c8c3-fd66-4204-b3a9-6e7e2d328be4",
+      "table": "block"
+    },
+    {
+      "id": "cec790e0-1599-4636-942f-9a75258cb2c1",
+      "table": "block"
+    },
+    {
+      "id": "d6d80bea-d31f-4e62-8d86-d65762793fa0",
+      "table": "block"
+    },
+    {
+      "id": "d79eefde-74d6-449a-a350-8103d4a45061",
+      "table": "block"
+    },
+    {
+      "id": "e2c905ac-a4c1-49e6-bae3-02aced204c14",
+      "table": "block"
+    },
+    {
+      "id": "f0e80e55-651f-4466-b2cb-a687f56ae5da",
+      "table": "block"
+    },
+    {
+      "id": "f67c595e-09cb-4f33-b777-2b9e18a978de",
+      "table": "block"
+    }
+  ]
+}
+Response:+12620
+{
+  "results": [
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1515022490982,
+        "id": "0503b59e-a97f-49d1-a257-0bfd83309406",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1515022496133,
+        "parent_id": "a98dd27a-87ef-432f-b2f5-113e1a0584fe",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://david-smith.org/blog/2013/12/02/creating-animated-gifs-for-documentation/",
+              [
+                [
+                  "a",
+                  "https://david-smith.org/blog/2013/12/02/creating-animated-gifs-for-documentation/"
+                ]
+              ]
+            ],
+            [
+              " "
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 11
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1515022477699,
+        "id": "0a126737-b906-4dd8-b0a9-3a83b68f7731",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1515022480434,
+        "parent_id": "a98dd27a-87ef-432f-b2f5-113e1a0584fe",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "http://priceonomics.com/the-content-marketing-handbook/",
+              [
+                [
+                  "a",
+                  "http://priceonomics.com/the-content-marketing-handbook/"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 19
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1518040289346,
+        "id": "22a59d3f-b8e8-4981-ab40-b94a541c2437",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1518040290106,
+        "parent_id": "a98dd27a-87ef-432f-b2f5-113e1a0584fe",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://selleratheart.com/promote-blog-0-to100-k-views-6-months/",
+              [
+                [
+                  "a",
+                  "https://selleratheart.com/promote-blog-0-to100-k-views-6-months/"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 8
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1515022532129,
+        "id": "44f45b0b-79b2-41b6-9708-23f5aafa69d2",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1515022532865,
+        "parent_id": "a98dd27a-87ef-432f-b2f5-113e1a0584fe",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "http://jesseleimgruber.com/66-proven-tactics-to-acquire-users-with-zero-marketing-budget/",
+              [
+                [
+                  "a",
+                  "http://jesseleimgruber.com/66-proven-tactics-to-acquire-users-with-zero-marketing-budget/"
+                ]
+              ]
+            ],
+            [
+              " "
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 11
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1521147005164,
+        "id": "5fa486eb-7c9a-4f07-9b3a-509421646037",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1521147005691,
+        "parent_id": "a98dd27a-87ef-432f-b2f5-113e1a0584fe",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://www.sideprojectchecklist.com/marketing-checklist/",
+              [
+                [
+                  "a",
+                  "https://www.sideprojectchecklist.com/marketing-checklist/"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 8
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1515022504403,
+        "id": "8f64d704-dc0c-4249-beb1-78341b049893",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1515022508870,
+        "parent_id": "a98dd27a-87ef-432f-b2f5-113e1a0584fe",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "http://www.nickkolenda.com/conversion-optimization-psychology/",
+              [
+                [
+                  "a",
+                  "http://www.nickkolenda.com/conversion-optimization-psychology/"
+                ]
+              ]
+            ],
+            [
+              " "
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 11
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1515022480810,
+        "id": "9af6f279-46d2-4885-8ffa-440e5d3b46a9",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1515022489200,
+        "parent_id": "a98dd27a-87ef-432f-b2f5-113e1a0584fe",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://blog.bugmuncher.com/2015/12/18/from-side-project-to-profitable-start-up-part-7.html",
+              [
+                [
+                  "a",
+                  "https://blog.bugmuncher.com/2015/12/18/from-side-project-to-profitable-start-up-part-7.html"
+                ]
+              ]
+            ],
+            [
+              " - how buying traffic rarely works"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 17
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1515022498484,
+        "id": "ccc2c8c3-fd66-4204-b3a9-6e7e2d328be4",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1515022503456,
+        "parent_id": "a98dd27a-87ef-432f-b2f5-113e1a0584fe",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "http://www.helpscout.net/blog/benefits-sell/",
+              [
+                [
+                  "a",
+                  "http://www.helpscout.net/blog/benefits-sell/"
+                ]
+              ]
+            ],
+            [
+              " "
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 11
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1519169996630,
+        "id": "cec790e0-1599-4636-942f-9a75258cb2c1",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1519169998109,
+        "parent_id": "a98dd27a-87ef-432f-b2f5-113e1a0584fe",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://www.julian.com/learn/growth/intro",
+              [
+                [
+                  "a",
+                  "https://www.julian.com/learn/growth/intro"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 15
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1515022521567,
+        "id": "d6d80bea-d31f-4e62-8d86-d65762793fa0",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1515022522333,
+        "parent_id": "a98dd27a-87ef-432f-b2f5-113e1a0584fe",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://www.goodui.org/",
+              [
+                [
+                  "a",
+                  "https://www.goodui.org/"
+                ]
+              ]
+            ],
+            [
+              " "
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 11
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1516530010451,
+        "id": "d79eefde-74d6-449a-a350-8103d4a45061",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1516530022563,
+        "parent_id": "a98dd27a-87ef-432f-b2f5-113e1a0584fe",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "http://www.kimhartman.se/wp-content/uploads/2016/03/Traction-a-startup-guide-to-getting-more-customers-summary-Gabriel-Weinberg.pdf",
+              [
+                [
+                  "a",
+                  "http://www.kimhartman.se/wp-content/uploads/2016/03/Traction-a-startup-guide-to-getting-more-customers-summary-Gabriel-Weinberg.pdf"
+                ]
+              ]
+            ],
+            [
+              " : summary of the book Traction"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 97
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1515022526426,
+        "id": "e2c905ac-a4c1-49e6-bae3-02aced204c14",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1515022527648,
+        "parent_id": "a98dd27a-87ef-432f-b2f5-113e1a0584fe",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://ma.ttias.be/technical-guide-seo/#sitemap",
+              [
+                [
+                  "a",
+                  "https://ma.ttias.be/technical-guide-seo/#sitemap"
+                ]
+              ]
+            ],
+            [
+              " "
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 11
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1520237472245,
+        "id": "f0e80e55-651f-4466-b2cb-a687f56ae5da",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1520237473315,
+        "parent_id": "a98dd27a-87ef-432f-b2f5-113e1a0584fe",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://www.reddit.com/r/startups/comments/81h9bb/knowledgedump_from_the_dude_that_bootstrapped_to/",
+              [
+                [
+                  "a",
+                  "https://www.reddit.com/r/startups/comments/81h9bb/knowledgedump_from_the_dude_that_bootstrapped_to/"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 8
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1515022509708,
+        "id": "f67c595e-09cb-4f33-b777-2b9e18a978de",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1515022518000,
+        "parent_id": "a98dd27a-87ef-432f-b2f5-113e1a0584fe",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "http://www.craigkerstiens.com/2011/02/28/setting-goals-funnels/",
+              [
+                [
+                  "a",
+                  "http://www.craigkerstiens.com/2011/02/28/setting-goals-funnels/"
+                ]
+              ]
+            ],
+            [
+              " "
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 11
+      }
+    }
+  ]
 }

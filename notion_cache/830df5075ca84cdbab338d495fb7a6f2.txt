@@ -1,4 +1,4 @@
-2374 1565589878877 httpcache-v1
+2374 1566590859719 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+110
@@ -70,7 +70,7 @@ Response:+2174
     }
   ]
 }
-30475 1565589878878 httpcache-v1
+30475 1566590859720 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+152
@@ -916,10 +916,306 @@ Response:+30234
           "mobile_onboarding_completed": true,
           "onboarding_completed": true,
           "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-          "version": 179
+          "version": 182
         }
       }
     },
     "space": {}
   }
+}
+9189 1566590859721 httpcache-v1
+Method: POST
+URL: https://www.notion.so/api/v3/getRecordValues
+Body:+726
+{
+  "requests": [
+    {
+      "id": "051a801b-35c0-4b04-8566-09b4687b4c94",
+      "table": "block"
+    },
+    {
+      "id": "20566b7c-36af-4633-a9a4-3bdb6074f425",
+      "table": "block"
+    },
+    {
+      "id": "3e2dae73-4f84-41a4-b0ab-be674af1c3e0",
+      "table": "block"
+    },
+    {
+      "id": "550a8263-5952-4d9f-b828-5a8182ab5dbc",
+      "table": "block"
+    },
+    {
+      "id": "74a556f4-242b-4752-afb0-8a3c37aeaa8c",
+      "table": "block"
+    },
+    {
+      "id": "d1eeacca-5b64-4a47-8f1f-97f1606b8741",
+      "table": "block"
+    },
+    {
+      "id": "e81eae50-797e-4ee3-915a-7a147f42eaef",
+      "table": "block"
+    },
+    {
+      "id": "fe855cbe-29a5-4e52-bb98-623883f33936",
+      "table": "block"
+    }
+  ]
+}
+Response:+8373
+{
+  "results": [
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "content": [
+          "8146deb1-bc30-41df-8b8e-086ac41ec3b1",
+          "e6ea420d-82a7-49bc-93c3-8e080543ca50",
+          "62c3033e-d67c-421d-90f0-6ecea98a72b5",
+          "64945fcf-250d-42b4-9f73-c4700626bfdd",
+          "d00c7685-d891-4381-b3b2-a2dc11a3a838",
+          "3d1805f1-b654-4caf-a980-1948f23900c4",
+          "f696adda-a22a-4cc6-b5c1-616fb34b6f50",
+          "4ed79f83-6a91-4597-9280-72391487c3f4",
+          "4646fb16-acec-4396-b92b-8348fbb986f8",
+          "37e24db4-caa8-42f5-a5d0-f1a3fd06699f",
+          "47b6dccc-18f5-4199-8f7e-e6767ec2153f",
+          "5ab7b468-ea68-456b-9c3f-2dd730c4f8d9",
+          "7cd750d5-dda4-4de9-82a9-2ead6c5eaabe",
+          "06ab6cae-0b00-47b9-9b42-b2b22369c5d1",
+          "f2e2c968-cc53-4eba-98b4-6194b3496fc3",
+          "f272d0df-0681-44e6-b5ea-d1e46c3963b6",
+          "ced20987-83b8-40aa-bff3-2f856faae0a9",
+          "cc651a86-ab4f-422e-8f1a-5ce6949a40e2"
+        ],
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1532921971695,
+        "format": {
+          "page_full_width": true,
+          "page_small_text": true
+        },
+        "id": "051a801b-35c0-4b04-8566-09b4687b4c94",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1532922033607,
+        "parent_id": "b725097a-bd79-48df-b36e-ad5f89e18654",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "Summary of Founders Battle Virtual Talks #7 about SEO with Michael Schwarz"
+            ]
+          ]
+        },
+        "type": "page",
+        "version": 39
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1532924015337,
+        "id": "20566b7c-36af-4633-a9a4-3bdb6074f425",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1532924028058,
+        "parent_id": "b725097a-bd79-48df-b36e-ad5f89e18654",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://www.reddit.com/r/Entrepreneur/comments/6gveyw/ive_seen_a_lot_of_google_adwords_posts_that_lack/",
+              [
+                [
+                  "a",
+                  "https://www.reddit.com/r/Entrepreneur/comments/6gveyw/ive_seen_a_lot_of_google_adwords_posts_that_lack/"
+                ]
+              ]
+            ],
+            [
+              " : notes on using adsense well; has links to online seo tools."
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 80
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1532315868372,
+        "id": "3e2dae73-4f84-41a4-b0ab-be674af1c3e0",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1532315870448,
+        "parent_id": "b725097a-bd79-48df-b36e-ad5f89e18654",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://medium.com/startup-grind/seo-is-not-hard-a-step-by-step-seo-tutorial-for-beginners-that-will-get-you-ranked-every-single-1b903b3ab6bb",
+              [
+                [
+                  "a",
+                  "https://medium.com/startup-grind/seo-is-not-hard-a-step-by-step-seo-tutorial-for-beginners-that-will-get-you-ranked-every-single-1b903b3ab6bb"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 15
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1518848868876,
+        "id": "550a8263-5952-4d9f-b828-5a8182ab5dbc",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1518848870133,
+        "parent_id": "b725097a-bd79-48df-b36e-ad5f89e18654",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://www.reddit.com/r/startups/comments/7x9gr0/quick_and_easy_guide_to_seo_for_startups/",
+              [
+                [
+                  "a",
+                  "https://www.reddit.com/r/startups/comments/7x9gr0/quick_and_easy_guide_to_seo_for_startups/"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 13
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1554166140000,
+        "id": "74a556f4-242b-4752-afb0-8a3c37aeaa8c",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1554166140000,
+        "parent_id": "b725097a-bd79-48df-b36e-ad5f89e18654",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://backlinko.com/on-page-seo",
+              [
+                [
+                  "a",
+                  "https://backlinko.com/on-page-seo"
+                ]
+              ]
+            ],
+            [
+              " : a good list for basics of seo"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 39
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1532922560403,
+        "id": "d1eeacca-5b64-4a47-8f1f-97f1606b8741",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1532922562418,
+        "parent_id": "b725097a-bd79-48df-b36e-ad5f89e18654",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "http://www.kalzumeus.com/2008/01/28/why-you-shouldnt-pay-any-seo-you-can-afford/",
+              [
+                [
+                  "a",
+                  "http://www.kalzumeus.com/2008/01/28/why-you-shouldnt-pay-any-seo-you-can-afford/"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 10
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1520984416705,
+        "id": "e81eae50-797e-4ee3-915a-7a147f42eaef",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1520984417103,
+        "parent_id": "b725097a-bd79-48df-b36e-ad5f89e18654",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://medium.com/edulift/competitive-analysis-with-ahrefs-how-we-scaled-the-lingualift-blog-to-80-000-readers-b5267df0b8e7",
+              [
+                [
+                  "a",
+                  "https://medium.com/edulift/competitive-analysis-with-ahrefs-how-we-scaled-the-lingualift-blog-to-80-000-readers-b5267df0b8e7"
+                ]
+              ]
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 8
+      }
+    },
+    {
+      "role": "comment_only",
+      "value": {
+        "alive": true,
+        "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "created_time": 1532923994454,
+        "id": "fe855cbe-29a5-4e52-bb98-623883f33936",
+        "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+        "last_edited_time": 1532924015069,
+        "parent_id": "b725097a-bd79-48df-b36e-ad5f89e18654",
+        "parent_table": "block",
+        "properties": {
+          "title": [
+            [
+              "https://inside.6q.io/blogging-for-startups/",
+              [
+                [
+                  "a",
+                  "https://inside.6q.io/blogging-for-startups/"
+                ]
+              ]
+            ],
+            [
+              " is a case study of attracting website traffic by writing blog posts"
+            ]
+          ]
+        },
+        "type": "bulleted_list",
+        "version": 10
+      }
+    }
+  ]
 }
