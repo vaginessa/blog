@@ -2,6 +2,7 @@ module github.com/kjk/blog
 
 require (
 	github.com/alecthomas/chroma v0.6.6
+	github.com/aws/aws-lambda-go v1.13.0
 	github.com/chilts/sid v0.0.0-20190607042430-660e94789ec9
 	github.com/dlclark/regexp2 v1.2.0 // indirect
 	github.com/gomarkdown/markdown v0.0.0-20190802011031-b3dd8ce84a34

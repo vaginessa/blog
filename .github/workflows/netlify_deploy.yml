@@ -1,4 +1,4 @@
-name: Build
+name: Deploy to netlify
 on: [push]
 jobs:
   build:
@@ -16,3 +16,6 @@ jobs:
 
       - name: Test
         run: go test -v .
+
+      - name: Netlify deploy
+        run: ./s/ci_netlify_deploy.sh
