@@ -17,13 +17,23 @@ jobs:
       - name: Test
         run: go test -v .
 
-      - name: Install netlify-ctl
-        run: npm install netlify-cli
+      # - name: Install netlify-ctl
+      #   run: npm install netlify-cli
 
       - name: Download netlifyctl
         run: |
           wget https://github.com/netlify/netlifyctl/releases/download/v0.4.0/netlifyctl-linux-amd64-0.4.0.tar.gz
           tar -xvf netlifyctl-linux-amd64-0.4.0.tar.gz
 
+      - name: build the program
+        run: go build -o blog
+
+      - name: regenerate blog html
+        run: blog -deploy
+
       - name: Netlify deploy
-        run: ./s/ci_netlify_deploy.sh
+        env:
+          NETLIFY_TOKEN: ${{ secrets.NETLIFY_TOKEN }}
+        run: |
+          netlifyctl -A ${NETLIFY_TOKEN} deploy || true
+          cat netlifyctl-debug.log || true
