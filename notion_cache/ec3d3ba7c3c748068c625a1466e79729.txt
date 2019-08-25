@@ -1,4 +1,4 @@
-1516 1566590912690 httpcache-v1
+1766 1566705695136 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+110
@@ -10,7 +10,7 @@ Body:+110
     }
   ]
 }
-Response:+1316
+Response:+1566
 {
   "results": [
     {
@@ -18,6 +18,11 @@ Response:+1316
       "value": {
         "alive": true,
         "content": [
+          "8b7ce2e7-b04d-4f04-a516-55cb6313fccc",
+          "f5945a3d-472d-4fce-aca9-0d25b402a6e2",
+          "d2dae908-5bd4-4c07-8af1-a28a07a4c02a",
+          "042cc019-b042-4f9b-b6ba-901289924b77",
+          "a8000b5c-b186-4e5c-9da6-e3be72ea568d",
           "0a4f86bf-117b-4484-b32d-2a366a298126",
           "042e6f61-e2f0-4e4f-a4f3-f0709d12b9e5",
           "eaaff6c8-2efa-4c7c-a928-69f6b54839c6",
@@ -38,7 +43,7 @@ Response:+1316
         },
         "id": "ec3d3ba7-c3c7-4806-8c62-5a1466e79729",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1561271160000,
+        "last_edited_time": 1566675600000,
         "parent_id": "1c88e826-c6ef-4432-bd0e-188560b1a34f",
         "parent_table": "block",
         "properties": {
@@ -49,12 +54,12 @@ Response:+1316
           ]
         },
         "type": "page",
-        "version": 20
+        "version": 29
       }
     }
   ]
 }
-18316 1566590912690 httpcache-v1
+23095 1566705695137 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+152
@@ -67,13 +72,41 @@ Body:+152
   "pageId": "ec3d3ba7-c3c7-4806-8c62-5a1466e79729",
   "verticalColumns": false
 }
-Response:+18075
+Response:+22854
 {
   "cursor": {
     "stack": []
   },
   "recordMap": {
     "block": {
+      "042cc019-b042-4f9b-b6ba-901289924b77": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1566675540000,
+          "id": "042cc019-b042-4f9b-b6ba-901289924b77",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1566675540000,
+          "parent_id": "ec3d3ba7-c3c7-4806-8c62-5a1466e79729",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "https://www.color-hex.com/color/778899",
+                [
+                  [
+                    "a",
+                    "https://www.color-hex.com/color/778899"
+                  ]
+                ]
+              ]
+            ]
+          },
+          "type": "bulleted_list",
+          "version": 5
+        }
+      },
       "042e6f61-e2f0-4e4f-a4f3-f0709d12b9e5": {
         "role": "comment_only",
         "value": {
@@ -357,6 +390,28 @@ Response:+18075
           "version": 104
         }
       },
+      "8b7ce2e7-b04d-4f04-a516-55cb6313fccc": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1566675240000,
+          "id": "8b7ce2e7-b04d-4f04-a516-55cb6313fccc",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1566675240000,
+          "parent_id": "ec3d3ba7-c3c7-4806-8c62-5a1466e79729",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "tools for playing with color schemes:"
+              ]
+            ]
+          },
+          "type": "text",
+          "version": 73
+        }
+      },
       "8dfa50c1-dd26-4f5e-a28c-5524f7d9dc40": {
         "role": "comment_only",
         "value": {
@@ -416,6 +471,34 @@ Response:+18075
           "version": 61
         }
       },
+      "a8000b5c-b186-4e5c-9da6-e3be72ea568d": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1566675600000,
+          "id": "a8000b5c-b186-4e5c-9da6-e3be72ea568d",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1566675600000,
+          "parent_id": "ec3d3ba7-c3c7-4806-8c62-5a1466e79729",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "https://www.colorhexa.com/7c8f99",
+                [
+                  [
+                    "a",
+                    "https://www.colorhexa.com/7c8f99"
+                  ]
+                ]
+              ]
+            ]
+          },
+          "type": "bulleted_list",
+          "version": 5
+        }
+      },
       "c0f55765-3328-4d17-8e80-a261b165d018": {
         "role": "comment_only",
         "value": {
@@ -442,6 +525,34 @@ Response:+18075
           },
           "type": "bulleted_list",
           "version": 15
+        }
+      },
+      "d2dae908-5bd4-4c07-8af1-a28a07a4c02a": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1566675480000,
+          "id": "d2dae908-5bd4-4c07-8af1-a28a07a4c02a",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1566675480000,
+          "parent_id": "ec3d3ba7-c3c7-4806-8c62-5a1466e79729",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "https://jxnblk.github.io/colorable/demos/text/?background=%237c8f99\u0026foreground=%2326291E",
+                [
+                  [
+                    "a",
+                    "https://jxnblk.github.io/colorable/demos/text/?background=%237c8f99\u0026foreground=%2326291E"
+                  ]
+                ]
+              ]
+            ]
+          },
+          "type": "bulleted_list",
+          "version": 5
         }
       },
       "d61b4f94-b10d-4d80-8d3d-238a4e7c4d10": {
@@ -513,6 +624,11 @@ Response:+18075
         "value": {
           "alive": true,
           "content": [
+            "8b7ce2e7-b04d-4f04-a516-55cb6313fccc",
+            "f5945a3d-472d-4fce-aca9-0d25b402a6e2",
+            "d2dae908-5bd4-4c07-8af1-a28a07a4c02a",
+            "042cc019-b042-4f9b-b6ba-901289924b77",
+            "a8000b5c-b186-4e5c-9da6-e3be72ea568d",
             "0a4f86bf-117b-4484-b32d-2a366a298126",
             "042e6f61-e2f0-4e4f-a4f3-f0709d12b9e5",
             "eaaff6c8-2efa-4c7c-a928-69f6b54839c6",
@@ -533,7 +649,7 @@ Response:+18075
           },
           "id": "ec3d3ba7-c3c7-4806-8c62-5a1466e79729",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1561271160000,
+          "last_edited_time": 1566675600000,
           "parent_id": "1c88e826-c6ef-4432-bd0e-188560b1a34f",
           "parent_table": "block",
           "properties": {
@@ -544,7 +660,35 @@ Response:+18075
             ]
           },
           "type": "page",
-          "version": 20
+          "version": 29
+        }
+      },
+      "f5945a3d-472d-4fce-aca9-0d25b402a6e2": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1566675240000,
+          "id": "f5945a3d-472d-4fce-aca9-0d25b402a6e2",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1566675240000,
+          "parent_id": "ec3d3ba7-c3c7-4806-8c62-5a1466e79729",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "https://www.quackit.com/html/codes/color/color-tester.cfm?colorName=LightSlateGray",
+                [
+                  [
+                    "a",
+                    "https://www.quackit.com/html/codes/color/color-tester.cfm?colorName=LightSlateGray"
+                  ]
+                ]
+              ]
+            ]
+          },
+          "type": "bulleted_list",
+          "version": 9
         }
       },
       "f60311c9-c6ed-4678-a1e8-497fb0ab8545": {
@@ -586,7 +730,7 @@ Response:+18075
     "space": {}
   }
 }
-38778 1566590912692 httpcache-v1
+38778 1566705695139 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+2134
@@ -1733,7 +1877,7 @@ Response:+36552
     }
   ]
 }
-30722 1566590912693 httpcache-v1
+30722 1566705695140 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+2134
