@@ -23,6 +23,7 @@ func closeLog() {
 	logFile = nil
 }
 
+/*
 // TODO: should take additional format and args for optional message
 func logError(err error) {
 	if err != nil {
@@ -30,6 +31,7 @@ func logError(err error) {
 	}
 	lg("%s", err.Error())
 }
+*/
 
 func lg(format string, args ...interface{}) {
 	s := fmt.Sprintf(format, args...)

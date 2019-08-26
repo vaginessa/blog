@@ -3,19 +3,14 @@ package main
 
 import (
 	"bytes"
-	"encoding/hex"
 	"fmt"
 	"io"
 	"io/ioutil"
-	"math/rand"
 	"os"
 	"os/signal"
 	"path/filepath"
 	"strings"
 	"syscall"
-	"unicode/utf8"
-
-	"github.com/yosssi/gohtml"
 )
 
 func must(err error, args ...interface{}) {
@@ -39,11 +34,13 @@ func panicIfErr(err error) {
 	}
 }
 
+/*
 func panicMsg(format string, args ...interface{}) {
 	s := fmt.Sprintf(format, args...)
 	fmt.Printf("%s\n", s)
 	panic(s)
 }
+*/
 
 // FmtArgs formats args as a string. First argument should be format string
 // and the rest are arguments to the format
@@ -158,20 +155,6 @@ func trimEmptyLines(a []string) []string {
 	return res
 }
 
-func lastLineEmpty(lines []string) bool {
-	if len(lines) == 0 {
-		return false
-	}
-	lastIdx := len(lines) - 1
-	line := lines[lastIdx]
-	return len(line) == 0
-}
-
-func removeLastLine(lines []string) []string {
-	lastIdx := len(lines) - 1
-	return lines[:lastIdx]
-}
-
 func findWordEnd(s string, start int) int {
 	for i := start; i < len(s); i++ {
 		c := s[i]
@@ -180,18 +163,6 @@ func findWordEnd(s string, start int) int {
 		}
 	}
 	return -1
-}
-
-// TODO: must not remove spaces from start
-func collapseMultipleSpaces(s string) string {
-	for {
-		s2 := strings.Replace(s, "  ", " ", -1)
-		if s2 == s {
-			return s
-
-		}
-		s = s2
-	}
 }
 
 // remove #tag from start and end
@@ -235,73 +206,12 @@ func removeHashTags(s string) (string, []string) {
 	}
 }
 
-// there are no guarantees in life, but this should be pretty unique string
-func genRandomString() string {
-	var a [20]byte
-	_, err := rand.Read(a[:])
-	if err == nil {
-		return hex.EncodeToString(a[:])
-	}
-	return fmt.Sprintf("__--##%d##--__", rand.Int63())
-}
-
-func dupStringArray(a []string) []string {
-	return append([]string{}, a...)
-}
-
-func reverseStringArray(a []string) {
-	n := len(a) / 2
-	for i := 0; i < n; i++ {
-		end := len(a) - i - 1
-		a[i], a[end] = a[end], a[i]
-	}
-}
-
-func sanitizeForFile(s string) string {
-	var res []byte
-	toRemove := "/\\#()[]{},?+.'\""
-	var prev rune
-	buf := make([]byte, 3)
-	for _, c := range s {
-		if strings.ContainsRune(toRemove, c) {
-			continue
-		}
-		switch c {
-		case ' ', '_':
-			c = '-'
-		}
-		if c == prev {
-			continue
-		}
-		prev = c
-		n := utf8.EncodeRune(buf, c)
-		for i := 0; i < n; i++ {
-			res = append(res, buf[i])
-		}
-	}
-	if len(res) > 32 {
-		res = res[:32]
-	}
-	s = string(res)
-	s = strings.Trim(s, "_- ")
-	s = strings.ToLower(s)
-	return s
-}
-
 func normalizeNewlines(d []byte) []byte {
 	// replace CR LF (windows) with LF (unix)
 	d = bytes.Replace(d, []byte{13, 10}, []byte{10}, -1)
 	// replace CF (mac) with LF (unix)
 	d = bytes.Replace(d, []byte{13}, []byte{10}, -1)
 	return d
-}
-
-// return first line of d and the rest
-func bytesRemoveFirstLine(d []byte) (string, []byte) {
-	idx := bytes.IndexByte(d, 10)
-	panicIf(-1 == idx)
-	l := d[:idx]
-	return string(l), d[idx+1:]
 }
 
 func replaceExt(fileName, newExt string) string {
@@ -382,18 +292,6 @@ func dirCopyRecur(dst string, src string, shouldSkipFile func(string) bool) (int
 		}
 	}
 	return nFilesCopied, nil
-}
-
-func prettyHTML(d []byte) []byte {
-	// TODO: disable for now as it messes up inline by adding padding e.g.
-	// around bold elements
-	if true {
-		return d
-	}
-	gohtml.Condense = true
-	s := string(d)
-	s = gohtml.Format(s)
-	return []byte(s)
 }
 
 func fileExists(path string) bool {

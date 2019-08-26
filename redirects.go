@@ -594,7 +594,7 @@ func readRedirects(store *Articles) {
 	d := []byte(articleRedirectsTxt)
 	lines := bytes.Split(d, []byte{'\n'})
 	for _, l := range lines {
-		if 0 == len(l) {
+		if len(l) == 0 {
 			continue
 		}
 		parts := strings.Split(string(l), "|")
@@ -639,10 +639,6 @@ func netlifyAddRewrite(from, to string) {
 
 func netflifyAddTempRedirect(from, to string) {
 	netlifyAddRedirect(from, to, 302)
-}
-
-func netflifyAddPermRedirect(from, to string) {
-	netlifyAddRedirect(from, to, 301)
 }
 
 func netlifyAddStaticRedirects() {

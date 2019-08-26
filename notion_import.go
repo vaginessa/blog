@@ -48,7 +48,7 @@ func guessExt(fileName string, contentType string) string {
 	case "image/png":
 		return ".png"
 	}
-	panic(fmt.Errorf("Didn't find ext for file '%s', content type '%s'", fileName, contentType))
+	panic(fmt.Errorf("didn't find ext for file '%s', content type '%s'", fileName, contentType))
 }
 
 func downloadImage(c *notionapi.Client, uri string) ([]byte, string, error) {
@@ -81,6 +81,7 @@ func downloadAndCacheImage(c *notionapi.Client, uri string) (string, error) {
 	lg("Downloading %s ... ", uri)
 
 	imgData, ext, err := downloadImage(c, uri)
+	must(err)
 
 	cachedPath = filepath.Join(imgDir, sha+ext)
 
@@ -93,6 +94,7 @@ func downloadAndCacheImage(c *notionapi.Client, uri string) (string, error) {
 	return cachedPath, nil
 }
 
+/*
 func rmFile(path string) {
 	err := os.Remove(path)
 	if err != nil {
@@ -104,6 +106,7 @@ func rmCached(pageID string) {
 	id := normalizeID(pageID)
 	rmFile(filepath.Join(cacheDir, id+".txt"))
 }
+*/
 
 func loadPageAsArticle(d *caching_downloader.Downloader, pageID string) *Article {
 	page, err := d.DownloadPage(pageID)

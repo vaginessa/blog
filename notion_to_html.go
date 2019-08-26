@@ -162,7 +162,7 @@ func (r *Converter) RenderPage(block *notionapi.Block) bool {
 	title = html.EscapeString(title)
 	content := fmt.Sprintf(`<a href="%s">%s</a>`, url, title)
 	attrs := []string{"class", cls}
-	title = html.EscapeString(title)
+	// title = html.EscapeString(title)
 	r.r.WriteElement(block, "div", attrs, content, true)
 	r.r.WriteElement(block, "div", attrs, content, false)
 	return true

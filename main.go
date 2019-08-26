@@ -54,9 +54,11 @@ func runCaddy() {
 	cmd.Run()
 }
 
+/*
 func stopCaddy(cmd *exec.Cmd) {
 	cmd.Process.Kill()
 }
+*/
 
 func openBrowser(url string) {
 	var err error

@@ -50,7 +50,7 @@ func addAllRedirects(store *Articles) {
 
 func copyAndSortArticles(articles []*Article) []*Article {
 	n := len(articles)
-	res := make([]*Article, n, n)
+	res := make([]*Article, n)
 	copy(res, articles)
 	sort.Slice(res, func(i, j int) bool {
 		return res[j].PublishedOn.After(res[i].PublishedOn)
@@ -69,7 +69,7 @@ func genAtomXML(store *Articles, excludeNotes bool) ([]byte, error) {
 		n = len(articles)
 	}
 
-	latest := make([]*Article, n, n)
+	latest := make([]*Article, n)
 	size := len(articles)
 	for i := 0; i < n; i++ {
 		latest[i] = articles[size-1-i]
@@ -231,10 +231,7 @@ func netlifyWriteArticlesArchiveForTag(store *Articles, tag string, w io.Writer)
 }
 
 func skipTmplFiles(path string) bool {
-	if strings.Contains(path, ".tmpl.") {
-		return true
-	}
-	return false
+	return strings.Contains(path, ".tmpl.")
 }
 
 func copyImages() {
