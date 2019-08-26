@@ -5,7 +5,7 @@ set -u -e -o pipefail
 git config --global user.email "kkowalczyk@gmail.com"
 git config --global user.name "Krzysztof Kowalczyk"
 git config --global github.user "kjk"
-git config --global github.token "${GH_TOKEN}"
+git config --global github.token "${GITHUB_TOKEN}"
 
 # redownload latest versions from notion and checkin changes
 # this in turn will trigger deploy on push from ci_netlify_deploy.sh
@@ -29,4 +29,4 @@ if [ "$?" -ne "0" ]; then
     exit 0
 fi
 set -e
-git push "https://${GH_TOKEN}@github.com/kjk/blog.git" master || true
+git push "https://${GITHUB_TOKEN}@github.com/kjk/blog.git" master || true

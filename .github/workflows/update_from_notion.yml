@@ -22,5 +22,5 @@ jobs:
 
       - name: Update from notion
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: ./s/ci_update_from_notion.sh
