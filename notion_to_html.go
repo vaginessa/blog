@@ -24,12 +24,12 @@ type Converter struct {
 // change https://www.notion.so/Advanced-web-spidering-with-Puppeteer-ea07db1b9bff415ab180b0525f3898f6
 // =>
 // /article/${id}
-func (r *Converter) rewriteURL(uri string) string {
+func (c *Converter) rewriteURL(uri string) string {
 	id := notionapi.ExtractNoDashIDFromNotionURL(uri)
 	if id == "" {
 		return uri
 	}
-	article := r.idToArticle(id)
+	article := c.idToArticle(id)
 	// this might happen when I link to some-one else's public notion pages
 	if article == nil {
 		return uri
@@ -37,9 +37,9 @@ func (r *Converter) rewriteURL(uri string) string {
 	return article.URL()
 }
 
-func (r *Converter) getURLAndTitleForBlock(block *notionapi.Block) (string, string) {
+func (c *Converter) getURLAndTitleForBlock(block *notionapi.Block) (string, string) {
 	id := notionapi.ToNoDashID(block.ID)
-	article := r.idToArticle(id)
+	article := c.idToArticle(id)
 	if article == nil {
 		title := block.Title
 		lg("No article for id %s %s\n", id, title)
@@ -94,62 +94,62 @@ func genGalleryThumbHTML(galleryID int, n int, im *ImageMapping) string {
 	return s
 }
 
-func (r *Converter) renderGallery(block *notionapi.Block) bool {
-	imageURLS := r.article.getGalleryImages(block)
+func (c *Converter) renderGallery(block *notionapi.Block) bool {
+	imageURLS := c.article.getGalleryImages(block)
 	if len(imageURLS) == 0 {
 		return false
 	}
 	panicIf(len(imageURLS) < 2, "expected gallery to have at least 2 images, got %d", len(imageURLS))
-	galleryID := len(r.galleries)
-	r.galleries = append(r.galleries, imageURLS)
+	galleryID := len(c.galleries)
+	c.galleries = append(c.galleries, imageURLS)
 	var images []*ImageMapping
 	for _, link := range imageURLS {
-		im := r.article.findImageMappingBySource(link)
+		im := c.article.findImageMappingBySource(link)
 		panicIf(im == nil, "didn't find ImageMapping for %s", link)
 		images = append(images, im)
 	}
 	firstImage := images[0]
 	s := genGalleryMainHTML(galleryID, firstImage.relativeURL)
-	r.r.WriteString(s)
+	c.r.WriteString(s)
 
-	r.r.WriteString(`<div class="center mt3 mb6">`)
+	c.r.WriteString(`<div class="center mt3 mb6">`)
 	for i, im := range images {
 		s := genGalleryThumbHTML(galleryID, i, im)
-		r.r.WriteString(s)
+		c.r.WriteString(s)
 	}
-	r.r.WriteString(`</div>`)
+	c.r.WriteString(`</div>`)
 	return true
 }
 
 // RenderImage renders BlockImage
-func (r *Converter) RenderImage(block *notionapi.Block) bool {
+func (c *Converter) RenderImage(block *notionapi.Block) bool {
 	link := block.Source
-	im := r.article.findImageMappingBySource(link)
+	im := c.article.findImageMappingBySource(link)
 	relURL := im.relativeURL
-	imgURL := r.article.getImageBlockURL(block)
+	imgURL := c.article.getImageBlockURL(block)
 	if imgURL != "" {
 		attrs := []string{"href", imgURL, "target", "_blank"}
-		r.r.WriteElement(block, "a", attrs, "", true)
+		c.r.WriteElement(block, "a", attrs, "", true)
 		{
 			attrs2 := []string{"class", "blog-img", "src", relURL}
-			r.r.WriteElement(block, "img", attrs2, "", true)
-			r.r.WriteElement(block, "img", attrs2, "", false)
+			c.r.WriteElement(block, "img", attrs2, "", true)
+			c.r.WriteElement(block, "img", attrs2, "", false)
 		}
-		r.r.WriteElement(block, "a", attrs, "", false)
+		c.r.WriteElement(block, "a", attrs, "", false)
 	} else {
 		attrs := []string{"class", "blog-img", "src", relURL}
-		r.r.WriteElement(block, "img", attrs, "", false)
-		r.r.WriteElement(block, "img", attrs, "", true)
+		c.r.WriteElement(block, "img", attrs, "", false)
+		c.r.WriteElement(block, "img", attrs, "", true)
 	}
 	return true
 }
 
 // RenderPage renders BlockPage
-func (r *Converter) RenderPage(block *notionapi.Block) bool {
-	if r.r.Page.IsRoot(block) {
-		r.r.Printf(`<div class="notion-page" id="%s">`, block.ID)
-		r.r.RenderChildren(block)
-		r.r.Printf(`</div>`)
+func (c *Converter) RenderPage(block *notionapi.Block) bool {
+	if c.r.Page.IsRoot(block) {
+		c.r.Printf(`<div class="notion-page" id="%s">`, block.ID)
+		c.r.RenderChildren(block)
+		c.r.Printf(`</div>`)
 		return true
 	}
 
@@ -158,43 +158,43 @@ func (r *Converter) RenderPage(block *notionapi.Block) bool {
 		cls = "page"
 	}
 
-	url, title := r.getURLAndTitleForBlock(block)
+	url, title := c.getURLAndTitleForBlock(block)
 	title = html.EscapeString(title)
 	content := fmt.Sprintf(`<a href="%s">%s</a>`, url, title)
 	attrs := []string{"class", cls}
 	// title = html.EscapeString(title)
-	r.r.WriteElement(block, "div", attrs, content, true)
-	r.r.WriteElement(block, "div", attrs, content, false)
+	c.r.WriteElement(block, "div", attrs, content, true)
+	c.r.WriteElement(block, "div", attrs, content, false)
 	return true
 }
 
 // RenderCode renders BlockCode
-func (r *Converter) RenderCode(block *notionapi.Block) bool {
+func (c *Converter) RenderCode(block *notionapi.Block) bool {
 	// code := html.EscapeString(block.Code)
 	// fmt.Fprintf(g.f, `<div class="%s">Lang for code: %s</div>
 	// <pre class="%s">
 	// %s
 	// </pre>`, levelCls, block.CodeLanguage, levelCls, code)
-	err := htmlHighlight(r.r.Buf, string(block.Code), block.CodeLanguage, "")
+	err := htmlHighlight(c.r.Buf, string(block.Code), block.CodeLanguage, "")
 	panicIfErr(err)
 	return true
 }
 
 // if returns false, the block will be rendered with default
-func (r *Converter) blockRenderOverride(block *notionapi.Block) bool {
-	if r.article.shouldSkipBlock(block) {
+func (c *Converter) blockRenderOverride(block *notionapi.Block) bool {
+	if c.article.shouldSkipBlock(block) {
 		return true
 	}
-	if r.renderGallery(block) {
+	if c.renderGallery(block) {
 		return true
 	}
 	switch block.Type {
 	case notionapi.BlockPage:
-		return r.RenderPage(block)
+		return c.RenderPage(block)
 	case notionapi.BlockCode:
-		return r.RenderCode(block)
+		return c.RenderCode(block)
 	case notionapi.BlockImage:
-		return r.RenderImage(block)
+		return c.RenderImage(block)
 	}
 	return false
 }
@@ -217,9 +217,9 @@ func NewHTMLConverter(c *notionapi.Client, article *Article) *Converter {
 }
 
 // Gen returns generated HTML
-func (r *Converter) GenereateHTML() []byte {
-	inner := string(r.r.ToHTML())
-	page := r.page.Root()
+func (c *Converter) GenereateHTML() []byte {
+	inner := string(c.r.ToHTML())
+	page := c.page.Root()
 	f := page.FormatPage()
 	isMono := f != nil && f.PageFont == "mono"
 
@@ -234,13 +234,13 @@ func (r *Converter) GenereateHTML() []byte {
 	return []byte(s)
 }
 
-func notionToHTML(c *notionapi.Client, article *Article, articles *Articles) ([]byte, []*ImageMapping) {
+func notionToHTML(client *notionapi.Client, article *Article, articles *Articles) ([]byte, []*ImageMapping) {
 	//fmt.Printf("notionToHTML: %s\n", notionapi.ToNoDashID(article.ID))
-	r := NewHTMLConverter(c, article)
+	c := NewHTMLConverter(client, article)
 	if articles != nil {
-		r.idToArticle = func(id string) *Article {
+		c.idToArticle = func(id string) *Article {
 			return articles.idToArticle[id]
 		}
 	}
-	return r.GenereateHTML(), r.article.Images
+	return c.GenereateHTML(), c.article.Images
 }
