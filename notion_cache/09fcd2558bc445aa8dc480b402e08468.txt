@@ -1,4 +1,4 @@
-1216 1566590717604 httpcache-v1
+1266 1567116110805 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+110
@@ -10,7 +10,7 @@ Body:+110
     }
   ]
 }
-Response:+1016
+Response:+1066
 {
   "results": [
     {
@@ -22,6 +22,7 @@ Response:+1016
           "b58bc218-3f4a-4d52-8746-2994e6697924",
           "ddcedd29-9e69-418a-a72b-2b5c5559f9bd",
           "3630c5dd-40a5-49e0-b7a4-ca165da575f6",
+          "bc977a00-e3b1-4ad6-84e0-dca3c7fe0770",
           "7894b710-0eb4-44bc-ad09-dca6176b4d0e"
         ],
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
@@ -32,7 +33,7 @@ Response:+1016
         },
         "id": "09fcd255-8bc4-45aa-8dc4-80b402e08468",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1546141025505,
+        "last_edited_time": 1567051560000,
         "parent_id": "fa41cc44-c715-40f3-aafe-fdaff617ef7a",
         "parent_table": "block",
         "properties": {
@@ -43,12 +44,12 @@ Response:+1016
           ]
         },
         "type": "page",
-        "version": 39
+        "version": 41
       }
     }
   ]
 }
-11409 1566590717604 httpcache-v1
+12522 1567116110805 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+152
@@ -61,7 +62,7 @@ Body:+152
   "pageId": "09fcd255-8bc4-45aa-8dc4-80b402e08468",
   "verticalColumns": false
 }
-Response:+11168
+Response:+12281
 {
   "cursor": {
     "stack": []
@@ -77,6 +78,7 @@ Response:+11168
             "b58bc218-3f4a-4d52-8746-2994e6697924",
             "ddcedd29-9e69-418a-a72b-2b5c5559f9bd",
             "3630c5dd-40a5-49e0-b7a4-ca165da575f6",
+            "bc977a00-e3b1-4ad6-84e0-dca3c7fe0770",
             "7894b710-0eb4-44bc-ad09-dca6176b4d0e"
           ],
           "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
@@ -87,7 +89,7 @@ Response:+11168
           },
           "id": "09fcd255-8bc4-45aa-8dc4-80b402e08468",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1546141025505,
+          "last_edited_time": 1567051560000,
           "parent_id": "fa41cc44-c715-40f3-aafe-fdaff617ef7a",
           "parent_table": "block",
           "properties": {
@@ -98,7 +100,7 @@ Response:+11168
             ]
           },
           "type": "page",
-          "version": 39
+          "version": 41
         }
       },
       "3630c5dd-40a5-49e0-b7a4-ca165da575f6": {
@@ -253,6 +255,37 @@ Response:+11168
           "version": 28
         }
       },
+      "bc977a00-e3b1-4ad6-84e0-dca3c7fe0770": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1567051560000,
+          "id": "bc977a00-e3b1-4ad6-84e0-dca3c7fe0770",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1567051560000,
+          "parent_id": "09fcd255-8bc4-45aa-8dc4-80b402e08468",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "https://github.com/agentcooper/typescript-play/blob/master/public/index.html",
+                [
+                  [
+                    "a",
+                    "https://github.com/agentcooper/typescript-play/blob/master/public/index.html"
+                  ]
+                ]
+              ],
+              [
+                " : how to use monaco from unpkg"
+              ]
+            ]
+          },
+          "type": "bulleted_list",
+          "version": 36
+        }
+      },
       "be4134c7-60ed-4b8f-9a53-11bc42fdc7bd": {
         "role": "comment_only",
         "value": {
@@ -381,7 +414,7 @@ Response:+11168
     "space": {}
   }
 }
-25417 1566590717605 httpcache-v1
+25417 1567116110806 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+1694
@@ -1183,7 +1216,7 @@ Response:+23631
     }
   ]
 }
-31452 1566590717606 httpcache-v1
+31452 1567116110808 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+1606
