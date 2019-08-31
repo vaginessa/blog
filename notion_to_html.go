@@ -110,14 +110,14 @@ func (c *Converter) renderGallery(block *notionapi.Block) bool {
 	}
 	firstImage := images[0]
 	s := genGalleryMainHTML(galleryID, firstImage.relativeURL)
-	c.r.WriteString(s)
+	c.r.Printf(s)
 
-	c.r.WriteString(`<div class="center mt3 mb6">`)
+	c.r.Printf(`<div class="center mt3 mb6">`)
 	for i, im := range images {
 		s := genGalleryThumbHTML(galleryID, i, im)
-		c.r.WriteString(s)
+		c.r.Printf(s)
 	}
-	c.r.WriteString(`</div>`)
+	c.r.Printf(`</div>`)
 	return true
 }
 
