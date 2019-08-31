@@ -1,4 +1,4 @@
-2483 1565589856994 httpcache-v1
+2533 1567224499548 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+110
@@ -10,7 +10,7 @@ Body:+110
     }
   ]
 }
-Response:+2283
+Response:+2333
 {
   "results": [
     {
@@ -27,6 +27,7 @@ Response:+2283
           "0a98f17a-0db3-4d34-a098-de440be6ac04",
           "720f3373-697e-49cf-ad02-23014612b4b6",
           "ff715e69-f6c2-4aab-9e6c-4f535d1c8ef7",
+          "033a26b0-a1c6-4192-98e7-a10ee321743d",
           "416a638c-4506-44f6-a97e-e04a27275259",
           "c2fade1a-71ed-4503-b02d-c38a6a8f506e",
           "373a1571-ce4e-4e72-9ebe-2486ef903d9c",
@@ -57,7 +58,7 @@ Response:+2283
         },
         "id": "623523b6-7e15-48a0-b525-749d6921465c",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1564362960000,
+        "last_edited_time": 1567125960000,
         "parent_id": "568ac4c0-64c3-4ef6-a6ad-0b8d77230681",
         "parent_table": "block",
         "properties": {
@@ -68,12 +69,12 @@ Response:+2283
           ]
         },
         "type": "page",
-        "version": 201
+        "version": 204
       }
     }
   ]
 }
-62163 1565589856998 httpcache-v1
+63176 1567224499550 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+152
@@ -86,13 +87,44 @@ Body:+152
   "pageId": "623523b6-7e15-48a0-b525-749d6921465c",
   "verticalColumns": false
 }
-Response:+61922
+Response:+62935
 {
   "cursor": {
     "stack": []
   },
   "recordMap": {
     "block": {
+      "033a26b0-a1c6-4192-98e7-a10ee321743d": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1567125540000,
+          "id": "033a26b0-a1c6-4192-98e7-a10ee321743d",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1567125960000,
+          "parent_id": "623523b6-7e15-48a0-b525-749d6921465c",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "OnePage NoPub",
+                [
+                  [
+                    "a",
+                    "https://onepage.nopub.io/"
+                  ]
+                ]
+              ],
+              [
+                " - allows you to publish a Notion page to web"
+              ]
+            ]
+          },
+          "type": "bulleted_list",
+          "version": 95
+        }
+      },
       "0628691b-cf32-4202-917b-c20ffb93e6ec": {
         "role": "comment_only",
         "value": {
@@ -850,6 +882,7 @@ Response:+61922
             "0a98f17a-0db3-4d34-a098-de440be6ac04",
             "720f3373-697e-49cf-ad02-23014612b4b6",
             "ff715e69-f6c2-4aab-9e6c-4f535d1c8ef7",
+            "033a26b0-a1c6-4192-98e7-a10ee321743d",
             "416a638c-4506-44f6-a97e-e04a27275259",
             "c2fade1a-71ed-4503-b02d-c38a6a8f506e",
             "373a1571-ce4e-4e72-9ebe-2486ef903d9c",
@@ -880,7 +913,7 @@ Response:+61922
           },
           "id": "623523b6-7e15-48a0-b525-749d6921465c",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1564362960000,
+          "last_edited_time": 1567125960000,
           "parent_id": "568ac4c0-64c3-4ef6-a6ad-0b8d77230681",
           "parent_table": "block",
           "properties": {
@@ -891,7 +924,7 @@ Response:+61922
             ]
           },
           "type": "page",
-          "version": 201
+          "version": 204
         }
       },
       "64d13f24-c26b-4966-b8aa-10b134dfd9a6": {
@@ -1854,7 +1887,7 @@ Response:+61922
           "mobile_onboarding_completed": true,
           "onboarding_completed": true,
           "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-          "version": 179
+          "version": 182
         }
       }
     },

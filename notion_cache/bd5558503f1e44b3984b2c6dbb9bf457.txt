@@ -1,4 +1,4 @@
-2771 1565589911387 httpcache-v1
+2821 1567224500605 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+110
@@ -10,7 +10,7 @@ Body:+110
     }
   ]
 }
-Response:+2571
+Response:+2621
 {
   "results": [
     {
@@ -30,6 +30,7 @@ Response:+2571
           "b75fa9a1-8890-4798-a9a8-7bae7c12a451",
           "446f5d46-d00e-43b9-b20a-ede3a5800d17",
           "bd768c25-7e59-4d05-b3ae-72687d7344dc",
+          "a7d2a015-e3bb-4ad4-b0fe-a2e51bad8ff2",
           "b918d52f-44c6-4d8e-8ba8-018031e657db",
           "5d0849d9-e00e-4e88-9d6e-7507f910d92a",
           "732debcf-ea88-4b64-be2e-ef48d1a2ae07",
@@ -63,7 +64,7 @@ Response:+2571
         },
         "id": "bd555850-3f1e-44b3-984b-2c6dbb9bf457",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1553287380000,
+        "last_edited_time": 1567198800000,
         "parent_id": "ee0eee35-e706-4e75-9b2f-69d1d03125b2",
         "parent_table": "block",
         "properties": {
@@ -74,12 +75,12 @@ Response:+2571
           ]
         },
         "type": "page",
-        "version": 79
+        "version": 81
       }
     }
   ]
 }
-39756 1565589911394 httpcache-v1
+40790 1567224500607 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+152
@@ -92,7 +93,7 @@ Body:+152
   "pageId": "bd555850-3f1e-44b3-984b-2c6dbb9bf457",
   "verticalColumns": false
 }
-Response:+39515
+Response:+40549
 {
   "cursor": {
     "stack": []
@@ -819,6 +820,37 @@ Response:+39515
           "version": 8
         }
       },
+      "a7d2a015-e3bb-4ad4-b0fe-a2e51bad8ff2": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1567198800000,
+          "id": "a7d2a015-e3bb-4ad4-b0fe-a2e51bad8ff2",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1567198800000,
+          "parent_id": "bd555850-3f1e-44b3-984b-2c6dbb9bf457",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "https://johnfactotum.github.io/foliate/",
+                [
+                  [
+                    "a",
+                    "https://johnfactotum.github.io/foliate/"
+                  ]
+                ]
+              ],
+              [
+                " : epub reader in Electron"
+              ]
+            ]
+          },
+          "type": "bulleted_list",
+          "version": 43
+        }
+      },
       "a98e304c-8021-4d96-bc53-ff4d457bfe72": {
         "role": "comment_only",
         "value": {
@@ -945,6 +977,7 @@ Response:+39515
             "b75fa9a1-8890-4798-a9a8-7bae7c12a451",
             "446f5d46-d00e-43b9-b20a-ede3a5800d17",
             "bd768c25-7e59-4d05-b3ae-72687d7344dc",
+            "a7d2a015-e3bb-4ad4-b0fe-a2e51bad8ff2",
             "b918d52f-44c6-4d8e-8ba8-018031e657db",
             "5d0849d9-e00e-4e88-9d6e-7507f910d92a",
             "732debcf-ea88-4b64-be2e-ef48d1a2ae07",
@@ -978,7 +1011,7 @@ Response:+39515
           },
           "id": "bd555850-3f1e-44b3-984b-2c6dbb9bf457",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1553287380000,
+          "last_edited_time": 1567198800000,
           "parent_id": "ee0eee35-e706-4e75-9b2f-69d1d03125b2",
           "parent_table": "block",
           "properties": {
@@ -989,7 +1022,7 @@ Response:+39515
             ]
           },
           "type": "page",
-          "version": 79
+          "version": 81
         }
       },
       "bd768c25-7e59-4d05-b3ae-72687d7344dc": {
@@ -1245,7 +1278,7 @@ Response:+39515
           "mobile_onboarding_completed": true,
           "onboarding_completed": true,
           "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-          "version": 179
+          "version": 182
         }
       }
     },
