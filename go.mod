@@ -7,7 +7,7 @@ require (
 	github.com/dlclark/regexp2 v1.2.0 // indirect
 	github.com/gomarkdown/markdown v0.0.0-20190802011031-b3dd8ce84a34
 	github.com/kjk/betterguid v0.0.0-20170621091430-c442874ba63a
-	github.com/kjk/notionapi v0.0.0-20190831042027-bdd39140bff9
+	github.com/kjk/notionapi v0.0.0-20190831050834-0dfe517b50d6
 	github.com/kjk/u v0.0.0-20170711051841-93181be023c9
 	github.com/kr/pretty v0.1.0 // indirect
 	github.com/microcosm-cc/bluemonday v1.0.2

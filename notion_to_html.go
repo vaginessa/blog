@@ -21,6 +21,45 @@ type Converter struct {
 	r *tohtml.Converter
 }
 
+func (c *Converter) maybeGetID(block *notionapi.Block) string {
+	return notionapi.ToNoDashID(block.ID)
+}
+
+/*
+func (c *Converter) WriteElement(block *notionapi.Block, tag string, attrs []string, content string, entering bool) {
+	if !entering {
+		if !isSelfClosing(tag) {
+			c.r.Printf("</" + tag + ">")
+			c.r.Newline()
+		}
+		return
+	}
+
+	s := "<" + tag
+	nAttrs := len(attrs) / 2
+	for i := 0; i < nAttrs; i++ {
+		a := attrs[i*2]
+		// TODO: quote value if necessary
+		v := attrs[i*2+1]
+		s += fmt.Sprintf(` %s="%s"`, a, v)
+	}
+	id := c.r.maybeGetID(block)
+	if id != "" {
+		s += ` id="` + id + `"`
+	}
+	s += ">"
+	c.r.Printf(s)
+	c.r.Newline()
+	if len(content) > 0 {
+		c.r.Printf(content)
+		c.r.Newline()
+	} else {
+		c.r.RenderInlines(block.InlineContent)
+	}
+	c.r.Newline()
+}
+*/
+
 // change https://www.notion.so/Advanced-web-spidering-with-Puppeteer-ea07db1b9bff415ab180b0525f3898f6
 // =>
 // /article/${id}

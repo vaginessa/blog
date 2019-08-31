@@ -49,6 +49,14 @@ github.com/kjk/notionapi v0.0.0-20190828220459-617f63297e83 h1:B0366n1ZJ2D1Z4geE
 github.com/kjk/notionapi v0.0.0-20190828220459-617f63297e83/go.mod h1:xesULPb0neCubXmHZwJJWQCSkWOsL+vzXsNLpCTVfWk=
 github.com/kjk/notionapi v0.0.0-20190831042027-bdd39140bff9 h1:EFLpj0nMjlobaLOmZ5tcePvjleAI2iGOB3VJHO6M544=
 github.com/kjk/notionapi v0.0.0-20190831042027-bdd39140bff9/go.mod h1:xesULPb0neCubXmHZwJJWQCSkWOsL+vzXsNLpCTVfWk=
+github.com/kjk/notionapi v0.0.0-20190831043555-51f5fd4963ac h1:SqF0fSZmGj+WQHDI/n7m5/LN0VuOKd5EGHC3AucwNBY=
+github.com/kjk/notionapi v0.0.0-20190831043555-51f5fd4963ac/go.mod h1:xesULPb0neCubXmHZwJJWQCSkWOsL+vzXsNLpCTVfWk=
+github.com/kjk/notionapi v0.0.0-20190831044158-f4eb0a15b607 h1:enJfRAyNRT8V448B2A/cMgZbSxWUjxuo8Y2GuKfgttI=
+github.com/kjk/notionapi v0.0.0-20190831044158-f4eb0a15b607/go.mod h1:xesULPb0neCubXmHZwJJWQCSkWOsL+vzXsNLpCTVfWk=
+github.com/kjk/notionapi v0.0.0-20190831045322-5e5d6c459e96 h1:ykqDyrCVgGD+RCv6ctLiBhKwESWMCb+vOrDwAp0kDZw=
+github.com/kjk/notionapi v0.0.0-20190831045322-5e5d6c459e96/go.mod h1:xesULPb0neCubXmHZwJJWQCSkWOsL+vzXsNLpCTVfWk=
+github.com/kjk/notionapi v0.0.0-20190831050834-0dfe517b50d6 h1:DqQNLsKjX7C1s/V36c26bba47FF2X6PLmN1Hq7WCe9A=
+github.com/kjk/notionapi v0.0.0-20190831050834-0dfe517b50d6/go.mod h1:xesULPb0neCubXmHZwJJWQCSkWOsL+vzXsNLpCTVfWk=
 github.com/kjk/siser v0.0.0-20190801014033-b3367920d7f2 h1:vrqsThWMeIUgprELZhUEw0wFu/LJANlftGo6US4vIDg=
 github.com/kjk/siser v0.0.0-20190801014033-b3367920d7f2/go.mod h1:5VyY+9nF1wpSfWAIM/mIrd0fZCiA/6IK6CSf3PnjfMA=
 github.com/kjk/u v0.0.0-20170711051841-93181be023c9 h1:1j5Nzg2ooGH8dCMJiiMeRaW8nc299dVotlOkT9RTaK4=
