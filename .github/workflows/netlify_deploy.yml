@@ -16,6 +16,8 @@ jobs:
 
       - name: Build
         run: go build -o blog
+        env:
+          GOPROXY: "https://proxy.golang.org"
 
       - name: Test
         run: go test -v .

@@ -19,6 +19,8 @@ jobs:
 
       - name: build the program
         run: go build -o blog
+        env:
+          GOPROXY: "https://proxy.golang.org"
 
       - name: Update from notion
         env:
