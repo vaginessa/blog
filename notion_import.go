@@ -44,9 +44,13 @@ func guessExt(fileName string, contentType string) string {
 	case ".png", ".jpg", ".jpeg":
 		return ext
 	}
+
+	contentType = strings.ToLower(contentType)
 	switch contentType {
 	case "image/png":
 		return ".png"
+	case "image/jpeg":
+		return ".jpg"
 	}
 	panic(fmt.Errorf("didn't find ext for file '%s', content type '%s'", fileName, contentType))
 }
