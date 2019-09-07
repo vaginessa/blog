@@ -132,13 +132,7 @@ func makeFacebookShareURL(article *Article) string {
 	return fmt.Sprintf(`https://www.facebook.com/sharer/sharer.php?u=%s`, uri)
 }
 
-// https://plus.google.com/share?url=https://nodesource.com/blog/why-the-new-v8-is-so-damn-fast
-func makeGooglePlusShareURL(article *Article) string {
-	uri := netlifyRequestGetFullHost() + article.URL()
-	uri = url.QueryEscape(uri)
-	return fmt.Sprintf(`https://plus.google.com/share?url=%s`, uri)
-}
-
+// https://twitter.com/intent/tweet?text=%s&url=%s&via=kjk
 func makeTwitterShareURL(article *Article) string {
 	title := url.QueryEscape(article.Title)
 	uri := netlifyRequestGetFullHost() + article.URL()
@@ -347,30 +341,28 @@ func genAtomAll(store *Articles, w io.Writer) error {
 func genArticle(article *Article, w io.Writer) error {
 	canonicalURL := netlifyRequestGetFullHost() + article.URL()
 	model := struct {
-		AnalyticsCode      string
-		Article            *Article
-		CanonicalURL       string
-		CoverImage         string
-		PageTitle          string
-		TagsDisplay        string
-		HeaderImageURL     string
-		NotionEditURL      string
-		Description        string
-		TwitterShareURL    string
-		FacebookShareURL   string
-		LinkedInShareURL   string
-		GooglePlusShareURL string
+		AnalyticsCode    string
+		Article          *Article
+		CanonicalURL     string
+		CoverImage       string
+		PageTitle        string
+		TagsDisplay      string
+		HeaderImageURL   string
+		NotionEditURL    string
+		Description      string
+		TwitterShareURL  string
+		FacebookShareURL string
+		LinkedInShareURL string
 	}{
-		AnalyticsCode:      analyticsCode,
-		Article:            article,
-		CanonicalURL:       canonicalURL,
-		CoverImage:         article.HeaderImageURL,
-		PageTitle:          article.Title,
-		Description:        article.Description,
-		TwitterShareURL:    makeTwitterShareURL(article),
-		FacebookShareURL:   makeFacebookShareURL(article),
-		LinkedInShareURL:   makeLinkedinShareURL(article),
-		GooglePlusShareURL: makeGooglePlusShareURL(article),
+		AnalyticsCode:    analyticsCode,
+		Article:          article,
+		CanonicalURL:     canonicalURL,
+		CoverImage:       article.HeaderImageURL,
+		PageTitle:        article.Title,
+		Description:      article.Description,
+		TwitterShareURL:  makeTwitterShareURL(article),
+		FacebookShareURL: makeFacebookShareURL(article),
+		LinkedInShareURL: makeLinkedinShareURL(article),
 	}
 	if article.page != nil {
 		id := normalizeID(article.page.ID)

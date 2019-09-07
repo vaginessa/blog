@@ -47,30 +47,28 @@ func testNotionToHTMLOnePage(d *caching_downloader.Downloader, id string) {
 
 	canonicalURL := netlifyRequestGetFullHost() + article.URL()
 	model := struct {
-		AnalyticsCode      string
-		Article            *Article
-		CanonicalURL       string
-		CoverImage         string
-		PageTitle          string
-		TagsDisplay        string
-		HeaderImageURL     string
-		NotionEditURL      string
-		Description        string
-		TwitterShareURL    string
-		FacebookShareURL   string
-		LinkedInShareURL   string
-		GooglePlusShareURL string
+		AnalyticsCode    string
+		Article          *Article
+		CanonicalURL     string
+		CoverImage       string
+		PageTitle        string
+		TagsDisplay      string
+		HeaderImageURL   string
+		NotionEditURL    string
+		Description      string
+		TwitterShareURL  string
+		FacebookShareURL string
+		LinkedInShareURL string
 	}{
-		AnalyticsCode:      analyticsCode,
-		Article:            article,
-		CanonicalURL:       canonicalURL,
-		CoverImage:         article.HeaderImageURL,
-		PageTitle:          article.Title,
-		Description:        article.Description,
-		TwitterShareURL:    makeTwitterShareURL(article),
-		FacebookShareURL:   makeFacebookShareURL(article),
-		LinkedInShareURL:   makeLinkedinShareURL(article),
-		GooglePlusShareURL: makeGooglePlusShareURL(article),
+		AnalyticsCode:    analyticsCode,
+		Article:          article,
+		CanonicalURL:     canonicalURL,
+		CoverImage:       article.HeaderImageURL,
+		PageTitle:        article.Title,
+		Description:      article.Description,
+		TwitterShareURL:  makeTwitterShareURL(article),
+		FacebookShareURL: makeFacebookShareURL(article),
+		LinkedInShareURL: makeLinkedinShareURL(article),
 	}
 	if article.page != nil {
 		id := normalizeID(article.page.ID)
