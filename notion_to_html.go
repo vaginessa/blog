@@ -6,8 +6,8 @@ import (
 	"strconv"
 	"strings"
 
+	"github.com/kjk/blog/tohtml"
 	"github.com/kjk/notionapi"
-	"github.com/kjk/notionapi/tohtml"
 )
 
 // Converter renders article as html

@@ -2,7 +2,6 @@ module github.com/kjk/blog
 
 require (
 	github.com/alecthomas/chroma v0.6.6
-	github.com/aws/aws-lambda-go v1.13.0
 	github.com/chilts/sid v0.0.0-20190607042430-660e94789ec9
 	github.com/dlclark/regexp2 v1.2.0 // indirect
 	github.com/gomarkdown/markdown v0.0.0-20190802011031-b3dd8ce84a34
@@ -18,7 +17,6 @@ require (
 	github.com/sony/sonyflake v1.0.0
 	github.com/stretchr/testify v1.3.0
 	github.com/thomas11/atomgenerator v0.0.0-20140514140532-0b3b01da14a4
-	github.com/yosssi/gohtml v0.0.0-20190128141317-9b7db94d32d9
 	golang.org/x/net v0.0.0-20190813141303-74dc4d7220e7 // indirect
 	gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127 // indirect
 )
