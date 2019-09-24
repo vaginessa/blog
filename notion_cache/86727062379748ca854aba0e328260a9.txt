@@ -1,4 +1,4 @@
-9874 1566589907392 httpcache-v1
+10275 1569341291615 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+110
@@ -10,7 +10,7 @@ Body:+110
     }
   ]
 }
-Response:+9674
+Response:+10074
 {
   "results": [
     {
@@ -18,6 +18,14 @@ Response:+9674
       "value": {
         "alive": true,
         "content": [
+          "f933b19b-8994-405c-be20-9907d87581c3",
+          "27238484-077c-4217-abef-4642888e4081",
+          "0870bf56-f491-4d01-bdec-a8ab74ba9f84",
+          "489519d5-8d56-4c3d-828e-3d9455c5bc23",
+          "c58e08ab-0bb9-4b46-a4ad-28ca07745dfa",
+          "afaeef51-ae0e-4293-aa04-fd68860165d1",
+          "cf9b5837-c68e-4117-9d9a-ae4c62bf85ce",
+          "013bb3e2-4a27-4d1e-80f8-31761ba2b22d",
           "b11f3351-21b6-4900-81ca-3258b22dcd48",
           "c3f5d714-eb4b-4cdc-9492-91244f90bb86",
           "2c1ea2d1-a06c-4534-aa8e-85bbe1b24059",
@@ -205,7 +213,7 @@ Response:+9674
         },
         "id": "86727062-3797-48ca-854a-ba0e328260a9",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1566587280000,
+        "last_edited_time": 1569122460000,
         "parent_id": "370e30ac-05b6-46ea-b211-f01791b6c740",
         "parent_table": "block",
         "properties": {
@@ -216,12 +224,12 @@ Response:+9674
           ]
         },
         "type": "page",
-        "version": 556
+        "version": 571
       }
     }
   ]
 }
-63392 1566589907394 httpcache-v1
+63779 1569341291618 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+152
@@ -234,7 +242,7 @@ Body:+152
   "pageId": "86727062-3797-48ca-854a-ba0e328260a9",
   "verticalColumns": false
 }
-Response:+63151
+Response:+63538
 {
   "cursor": {
     "stack": [
@@ -247,7 +255,7 @@ Response:+63151
       ],
       [
         {
-          "id": "52d25c85-c858-4261-89ce-e3b082f06682",
+          "id": "f3644807-fb2f-4466-b65b-9285c1aa4f33",
           "index": 0,
           "table": "block"
         }
@@ -269,6 +277,50 @@ Response:+63151
           "parent_table": "block",
           "type": "divider",
           "version": 12
+        }
+      },
+      "013bb3e2-4a27-4d1e-80f8-31761ba2b22d": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1569122460000,
+          "id": "013bb3e2-4a27-4d1e-80f8-31761ba2b22d",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1569122460000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "Call it HTTP Mata Hari"
+              ]
+            ]
+          },
+          "type": "text",
+          "version": 33
+        }
+      },
+      "0870bf56-f491-4d01-bdec-a8ab74ba9f84": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1569122220000,
+          "id": "0870bf56-f491-4d01-bdec-a8ab74ba9f84",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1569122280000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "A chrome extension to record http requests and pretty-print JSON responses."
+              ]
+            ]
+          },
+          "type": "text",
+          "version": 88
         }
       },
       "0a7cd0ce-89c7-4d17-917a-cf1b320443c1": {
@@ -338,15 +390,15 @@ Response:+63151
           "version": 18
         }
       },
-      "25fff735-ce57-4c0f-a3d0-d49f0ac251e8": {
+      "27238484-077c-4217-abef-4642888e4081": {
         "role": "comment_only",
         "value": {
           "alive": true,
           "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1559246281039,
-          "id": "25fff735-ce57-4c0f-a3d0-d49f0ac251e8",
+          "created_time": 1569122231534,
+          "id": "27238484-077c-4217-abef-4642888e4081",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1559246280000,
+          "last_edited_time": 1569122220000,
           "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
           "parent_table": "block",
           "properties": {
@@ -358,11 +410,14 @@ Response:+63151
                     "d",
                     {
                       "date_format": "relative",
-                      "start_date": "2019-05-30",
+                      "start_date": "2019-09-21",
                       "type": "date"
                     }
                   ]
                 ]
+              ],
+              [
+                " "
               ]
             ]
           },
@@ -493,6 +548,28 @@ Response:+63151
           "version": 240
         }
       },
+      "489519d5-8d56-4c3d-828e-3d9455c5bc23": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1569122280000,
+          "id": "489519d5-8d56-4c3d-828e-3d9455c5bc23",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1569122280000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "There are a view but they all seem to just spy on headers."
+              ]
+            ]
+          },
+          "type": "text",
+          "version": 80
+        }
+      },
       "4d9637f3-49ed-4e05-bb85-b40c362ffe13": {
         "role": "comment_only",
         "value": {
@@ -576,38 +653,6 @@ Response:+63151
           "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
           "parent_table": "block",
           "type": "divider",
-          "version": 12
-        }
-      },
-      "52d25c85-c858-4261-89ce-e3b082f06682": {
-        "role": "comment_only",
-        "value": {
-          "alive": true,
-          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1559239285336,
-          "id": "52d25c85-c858-4261-89ce-e3b082f06682",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1559239260000,
-          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
-          "parent_table": "block",
-          "properties": {
-            "title": [
-              [
-                "‣",
-                [
-                  [
-                    "d",
-                    {
-                      "date_format": "relative",
-                      "start_date": "2019-05-30",
-                      "type": "date"
-                    }
-                  ]
-                ]
-              ]
-            ]
-          },
-          "type": "text",
           "version": 12
         }
       },
@@ -745,21 +790,6 @@ Response:+63151
           },
           "type": "text",
           "version": 8
-        }
-      },
-      "6437cf70-e13b-4e93-ba13-56480e2d73f1": {
-        "role": "comment_only",
-        "value": {
-          "alive": true,
-          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1559495520000,
-          "id": "6437cf70-e13b-4e93-ba13-56480e2d73f1",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1559495520000,
-          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
-          "parent_table": "block",
-          "type": "divider",
-          "version": 12
         }
       },
       "765638b3-9804-45ff-8f93-b7b8be6c0863": {
@@ -907,6 +937,14 @@ Response:+63151
         "value": {
           "alive": true,
           "content": [
+            "f933b19b-8994-405c-be20-9907d87581c3",
+            "27238484-077c-4217-abef-4642888e4081",
+            "0870bf56-f491-4d01-bdec-a8ab74ba9f84",
+            "489519d5-8d56-4c3d-828e-3d9455c5bc23",
+            "c58e08ab-0bb9-4b46-a4ad-28ca07745dfa",
+            "afaeef51-ae0e-4293-aa04-fd68860165d1",
+            "cf9b5837-c68e-4117-9d9a-ae4c62bf85ce",
+            "013bb3e2-4a27-4d1e-80f8-31761ba2b22d",
             "b11f3351-21b6-4900-81ca-3258b22dcd48",
             "c3f5d714-eb4b-4cdc-9492-91244f90bb86",
             "2c1ea2d1-a06c-4534-aa8e-85bbe1b24059",
@@ -1094,7 +1132,7 @@ Response:+63151
           },
           "id": "86727062-3797-48ca-854a-ba0e328260a9",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1566587280000,
+          "last_edited_time": 1569122460000,
           "parent_id": "370e30ac-05b6-46ea-b211-f01791b6c740",
           "parent_table": "block",
           "properties": {
@@ -1105,7 +1143,7 @@ Response:+63151
             ]
           },
           "type": "page",
-          "version": 556
+          "version": 571
         }
       },
       "8825e5c7-72e5-4f36-9292-8e1275e9e518": {
@@ -1259,72 +1297,6 @@ Response:+63151
           },
           "type": "text",
           "version": 12
-        }
-      },
-      "9a5a3cc5-ccfd-488c-bf84-eeaa8d6f89b5": {
-        "role": "comment_only",
-        "value": {
-          "alive": true,
-          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1559242680000,
-          "id": "9a5a3cc5-ccfd-488c-bf84-eeaa8d6f89b5",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1559242680000,
-          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
-          "parent_table": "block",
-          "properties": {
-            "title": [
-              [
-                "‣",
-                [
-                  [
-                    "d",
-                    {
-                      "date_format": "relative",
-                      "start_date": "2019-05-30",
-                      "type": "date"
-                    }
-                  ]
-                ]
-              ]
-            ]
-          },
-          "type": "text",
-          "version": 15
-        }
-      },
-      "a258adb6-1ec1-41c7-bc7f-6b61fd4f17d2": {
-        "role": "comment_only",
-        "value": {
-          "alive": true,
-          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1559242680000,
-          "id": "a258adb6-1ec1-41c7-bc7f-6b61fd4f17d2",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1559242680000,
-          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
-          "parent_table": "block",
-          "properties": {
-            "title": [
-              [
-                "Make "
-              ],
-              [
-                "https://cloudcmd.io/",
-                [
-                  [
-                    "a",
-                    "https://cloudcmd.io/"
-                  ]
-                ]
-              ],
-              [
-                " a hosted thing. Add more on-line serves, ability to add local drive via Go agent running on the computer."
-              ]
-            ]
-          },
-          "type": "text",
-          "version": 194
         }
       },
       "a40afd8b-54f7-401d-9015-56a01134760f": {
@@ -1509,6 +1481,49 @@ Response:+63151
           "version": 31
         }
       },
+      "afaeef51-ae0e-4293-aa04-fd68860165d1": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1569122280000,
+          "id": "afaeef51-ae0e-4293-aa04-fd68860165d1",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1569122400000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "Web Sniffer "
+              ],
+              [
+                "http://5ms.ru/sniffer/",
+                [
+                  [
+                    "a",
+                    "http://5ms.ru/sniffer/"
+                  ]
+                ]
+              ],
+              [
+                ", "
+              ],
+              [
+                "https://github.com/5ms/sniffer",
+                [
+                  [
+                    "a",
+                    "https://github.com/5ms/sniffer"
+                  ]
+                ]
+              ]
+            ]
+          },
+          "type": "bulleted_list",
+          "version": 34
+        }
+      },
       "b06a61e6-a290-4b7d-b1dc-79166442391f": {
         "role": "comment_only",
         "value": {
@@ -1540,21 +1555,6 @@ Response:+63151
           "id": "b11f3351-21b6-4900-81ca-3258b22dcd48",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
           "last_edited_time": 1566587220000,
-          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
-          "parent_table": "block",
-          "type": "divider",
-          "version": 12
-        }
-      },
-      "b1ac9ffa-96b0-4d30-a90f-37eb2eb1b258": {
-        "role": "comment_only",
-        "value": {
-          "alive": true,
-          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1559239260000,
-          "id": "b1ac9ffa-96b0-4d30-a90f-37eb2eb1b258",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1559239260000,
           "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
           "parent_table": "block",
           "type": "divider",
@@ -1614,40 +1614,6 @@ Response:+63151
           },
           "type": "text",
           "version": 117
-        }
-      },
-      "b7e434e5-8295-4506-af5e-93ea6ab13e10": {
-        "role": "comment_only",
-        "value": {
-          "alive": true,
-          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1559246280000,
-          "id": "b7e434e5-8295-4506-af5e-93ea6ab13e10",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1559246280000,
-          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
-          "parent_table": "block",
-          "properties": {
-            "title": [
-              [
-                "Web version of "
-              ],
-              [
-                "https://github.com/gcla/termshark",
-                [
-                  [
-                    "a",
-                    "https://github.com/gcla/termshark"
-                  ]
-                ]
-              ],
-              [
-                " (a terminal ui for wireshark / pcap files, written in Go)"
-              ]
-            ]
-          },
-          "type": "text",
-          "version": 80
         }
       },
       "c32ee434-da01-434b-bf27-727343e8a188": {
@@ -1778,6 +1744,28 @@ Response:+63151
           "version": 112
         }
       },
+      "c58e08ab-0bb9-4b46-a4ad-28ca07745dfa": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1569122280000,
+          "id": "c58e08ab-0bb9-4b46-a4ad-28ca07745dfa",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1569122280000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "Inspiration:"
+              ]
+            ]
+          },
+          "type": "text",
+          "version": 16
+        }
+      },
       "c6690fbf-02f6-442d-8648-7873539cec5b": {
         "role": "comment_only",
         "value": {
@@ -1795,6 +1783,37 @@ Response:+63151
           "parent_table": "block",
           "type": "column_list",
           "version": 6
+        }
+      },
+      "cf9b5837-c68e-4117-9d9a-ae4c62bf85ce": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1569122340000,
+          "id": "cf9b5837-c68e-4117-9d9a-ae4c62bf85ce",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1569122400000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "HTTP Header Spy ("
+              ],
+              [
+                "https://github.com/Tuurlijk/HTTP-Header-Spy",
+                [
+                  [
+                    "a",
+                    "https://github.com/Tuurlijk/HTTP-Header-Spy"
+                  ]
+                ]
+              ]
+            ]
+          },
+          "type": "bulleted_list",
+          "version": 24
         }
       },
       "d2f9c632-4e21-4a66-aa44-6895556b3063": {
@@ -1993,21 +2012,6 @@ Response:+63151
           "version": 115
         }
       },
-      "f498e301-2385-49e1-98c1-4e1d9a4c7196": {
-        "role": "comment_only",
-        "value": {
-          "alive": true,
-          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1559242680000,
-          "id": "f498e301-2385-49e1-98c1-4e1d9a4c7196",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1559242680000,
-          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
-          "parent_table": "block",
-          "type": "divider",
-          "version": 12
-        }
-      },
       "f642ca24-2b7e-4894-9a87-2eac48476d22": {
         "role": "comment_only",
         "value": {
@@ -2038,6 +2042,21 @@ Response:+63151
           },
           "type": "text",
           "version": 26
+        }
+      },
+      "f933b19b-8994-405c-be20-9907d87581c3": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1569122220000,
+          "id": "f933b19b-8994-405c-be20-9907d87581c3",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1569122220000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "type": "divider",
+          "version": 12
         }
       },
       "fb91a8df-5995-481a-b1fe-65e2687dec9d": {
@@ -2109,14 +2128,14 @@ Response:+63151
           "mobile_onboarding_completed": true,
           "onboarding_completed": true,
           "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-          "version": 182
+          "version": 193
         }
       }
     },
     "space": {}
   }
 }
-44821 1566589907395 httpcache-v1
+45088 1569341291619 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+441
@@ -2133,7 +2152,7 @@ Body:+441
       ],
       [
         {
-          "id": "52d25c85-c858-4261-89ce-e3b082f06682",
+          "id": "f3644807-fb2f-4466-b65b-9285c1aa4f33",
           "index": 0,
           "table": "block"
         }
@@ -2144,7 +2163,7 @@ Body:+441
   "pageId": "86727062-3797-48ca-854a-ba0e328260a9",
   "verticalColumns": false
 }
-Response:+44291
+Response:+44558
 {
   "cursor": {
     "stack": [
@@ -2157,7 +2176,7 @@ Response:+44291
       ],
       [
         {
-          "id": "960e431c-cfe3-4b9c-a05a-5b6b762381dc",
+          "id": "365d065e-a266-4a2a-a62a-1baf373ec655",
           "index": 0,
           "table": "block"
         }
@@ -2198,15 +2217,15 @@ Response:+44291
           "version": 10
         }
       },
-      "1b3c3431-9fe4-4028-a6f2-bca0c255bec9": {
+      "25fff735-ce57-4c0f-a3d0-d49f0ac251e8": {
         "role": "comment_only",
         "value": {
           "alive": true,
           "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1556424365981,
-          "id": "1b3c3431-9fe4-4028-a6f2-bca0c255bec9",
+          "created_time": 1559246281039,
+          "id": "25fff735-ce57-4c0f-a3d0-d49f0ac251e8",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1556424360000,
+          "last_edited_time": 1559246280000,
           "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
           "parent_table": "block",
           "properties": {
@@ -2218,7 +2237,7 @@ Response:+44291
                     "d",
                     {
                       "date_format": "relative",
-                      "start_date": "2019-04-27",
+                      "start_date": "2019-05-30",
                       "type": "date"
                     }
                   ]
@@ -2227,7 +2246,7 @@ Response:+44291
             ]
           },
           "type": "text",
-          "version": 12
+          "version": 10
         }
       },
       "365d065e-a266-4a2a-a62a-1baf373ec655": {
@@ -2451,6 +2470,21 @@ Response:+44291
           "version": 12
         }
       },
+      "6437cf70-e13b-4e93-ba13-56480e2d73f1": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1559495520000,
+          "id": "6437cf70-e13b-4e93-ba13-56480e2d73f1",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1559495520000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "type": "divider",
+          "version": 12
+        }
+      },
       "659c45b0-8d50-4d06-a53d-f9dfd6587a80": {
         "role": "comment_only",
         "value": {
@@ -2520,33 +2554,6 @@ Response:+44291
           },
           "type": "bulleted_list",
           "version": 127
-        }
-      },
-      "80f69fba-a54d-4a8f-857d-821279493b85": {
-        "role": "comment_only",
-        "value": {
-          "alive": true,
-          "content": [
-            "9c84c680-a440-48ab-9913-93856bf5801c",
-            "49cb9c28-8515-4c90-b8fd-96c5aa6cd1be",
-            "25130f09-1949-4545-bc11-b9bfc42aa376"
-          ],
-          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1556471400000,
-          "id": "80f69fba-a54d-4a8f-857d-821279493b85",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1556471820000,
-          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
-          "parent_table": "block",
-          "properties": {
-            "title": [
-              [
-                "Resources"
-              ]
-            ]
-          },
-          "type": "toggle",
-          "version": 24
         }
       },
       "81c24727-789b-4dca-a8fd-72a3e3425304": {
@@ -2625,26 +2632,19 @@ Response:+44291
           "version": 203
         }
       },
-      "85465627-d0b6-408a-882b-a3f78b16014f": {
-        "role": "comment_only",
-        "value": {
-          "alive": true,
-          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1556215740000,
-          "id": "85465627-d0b6-408a-882b-a3f78b16014f",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1556215740000,
-          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
-          "parent_table": "block",
-          "type": "divider",
-          "version": 12
-        }
-      },
       "86727062-3797-48ca-854a-ba0e328260a9": {
         "role": "comment_only",
         "value": {
           "alive": true,
           "content": [
+            "f933b19b-8994-405c-be20-9907d87581c3",
+            "27238484-077c-4217-abef-4642888e4081",
+            "0870bf56-f491-4d01-bdec-a8ab74ba9f84",
+            "489519d5-8d56-4c3d-828e-3d9455c5bc23",
+            "c58e08ab-0bb9-4b46-a4ad-28ca07745dfa",
+            "afaeef51-ae0e-4293-aa04-fd68860165d1",
+            "cf9b5837-c68e-4117-9d9a-ae4c62bf85ce",
+            "013bb3e2-4a27-4d1e-80f8-31761ba2b22d",
             "b11f3351-21b6-4900-81ca-3258b22dcd48",
             "c3f5d714-eb4b-4cdc-9492-91244f90bb86",
             "2c1ea2d1-a06c-4534-aa8e-85bbe1b24059",
@@ -2832,7 +2832,7 @@ Response:+44291
           },
           "id": "86727062-3797-48ca-854a-ba0e328260a9",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1566587280000,
+          "last_edited_time": 1569122460000,
           "parent_id": "370e30ac-05b6-46ea-b211-f01791b6c740",
           "parent_table": "block",
           "properties": {
@@ -2843,29 +2843,7 @@ Response:+44291
             ]
           },
           "type": "page",
-          "version": 556
-        }
-      },
-      "882d0376-efbc-4eea-9464-d732a012d675": {
-        "role": "comment_only",
-        "value": {
-          "alive": true,
-          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1556471340000,
-          "id": "882d0376-efbc-4eea-9464-d732a012d675",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1556471400000,
-          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
-          "parent_table": "block",
-          "properties": {
-            "title": [
-              [
-                "Then write an article how to debug Go apps on Windows"
-              ]
-            ]
-          },
-          "type": "text",
-          "version": 78
+          "version": 571
         }
       },
       "92a42dc2-7d2c-46e0-b873-58cdbd361742": {
@@ -2890,15 +2868,15 @@ Response:+44291
           "version": 140
         }
       },
-      "960e431c-cfe3-4b9c-a05a-5b6b762381dc": {
+      "9a5a3cc5-ccfd-488c-bf84-eeaa8d6f89b5": {
         "role": "comment_only",
         "value": {
           "alive": true,
           "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1556215776934,
-          "id": "960e431c-cfe3-4b9c-a05a-5b6b762381dc",
+          "created_time": 1559242680000,
+          "id": "9a5a3cc5-ccfd-488c-bf84-eeaa8d6f89b5",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1556215740000,
+          "last_edited_time": 1559242680000,
           "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
           "parent_table": "block",
           "properties": {
@@ -2910,7 +2888,7 @@ Response:+44291
                     "d",
                     {
                       "date_format": "relative",
-                      "start_date": "2019-04-25",
+                      "start_date": "2019-05-30",
                       "type": "date"
                     }
                   ]
@@ -2919,22 +2897,7 @@ Response:+44291
             ]
           },
           "type": "text",
-          "version": 11
-        }
-      },
-      "98b2841b-2096-4213-a0ec-73c335c21646": {
-        "role": "comment_only",
-        "value": {
-          "alive": true,
-          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1556424360000,
-          "id": "98b2841b-2096-4213-a0ec-73c335c21646",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1556424360000,
-          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
-          "parent_table": "block",
-          "type": "divider",
-          "version": 12
+          "version": 15
         }
       },
       "a0c8ac2a-adde-471c-be44-a49476200109": {
@@ -2966,6 +2929,89 @@ Response:+44291
           },
           "type": "text",
           "version": 32
+        }
+      },
+      "a258adb6-1ec1-41c7-bc7f-6b61fd4f17d2": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1559242680000,
+          "id": "a258adb6-1ec1-41c7-bc7f-6b61fd4f17d2",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1559242680000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "Make "
+              ],
+              [
+                "https://cloudcmd.io/",
+                [
+                  [
+                    "a",
+                    "https://cloudcmd.io/"
+                  ]
+                ]
+              ],
+              [
+                " a hosted thing. Add more on-line serves, ability to add local drive via Go agent running on the computer."
+              ]
+            ]
+          },
+          "type": "text",
+          "version": 194
+        }
+      },
+      "b1ac9ffa-96b0-4d30-a90f-37eb2eb1b258": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1559239260000,
+          "id": "b1ac9ffa-96b0-4d30-a90f-37eb2eb1b258",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1559239260000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "type": "divider",
+          "version": 12
+        }
+      },
+      "b7e434e5-8295-4506-af5e-93ea6ab13e10": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1559246280000,
+          "id": "b7e434e5-8295-4506-af5e-93ea6ab13e10",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1559246280000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "Web version of "
+              ],
+              [
+                "https://github.com/gcla/termshark",
+                [
+                  [
+                    "a",
+                    "https://github.com/gcla/termshark"
+                  ]
+                ]
+              ],
+              [
+                " (a terminal ui for wireshark / pcap files, written in Go)"
+              ]
+            ]
+          },
+          "type": "text",
+          "version": 80
         }
       },
       "c6690fbf-02f6-442d-8648-7873539cec5b": {
@@ -3205,37 +3251,6 @@ Response:+44291
           "version": 552
         }
       },
-      "e6ffd4da-56ea-4b49-96be-04cc8bc121eb": {
-        "role": "comment_only",
-        "value": {
-          "alive": true,
-          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1556471280000,
-          "id": "e6ffd4da-56ea-4b49-96be-04cc8bc121eb",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1556471340000,
-          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
-          "parent_table": "block",
-          "properties": {
-            "title": [
-              [
-                "Make a windows gui app that wraps cv2pdb. Re-use most of fast file finder. "
-              ],
-              [
-                "https://github.com/rainers/cv2pdb",
-                [
-                  [
-                    "a",
-                    "https://github.com/rainers/cv2pdb"
-                  ]
-                ]
-              ]
-            ]
-          },
-          "type": "text",
-          "version": 113
-        }
-      },
       "ea65aa31-ef76-46ab-8804-62632c92b655": {
         "role": "comment_only",
         "value": {
@@ -3258,49 +3273,53 @@ Response:+44291
           "version": 68
         }
       },
-      "f4098f58-f189-468f-b2a1-217f4bbe513f": {
+      "f3644807-fb2f-4466-b65b-9285c1aa4f33": {
         "role": "comment_only",
         "value": {
           "alive": true,
           "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1556424360000,
-          "id": "f4098f58-f189-468f-b2a1-217f4bbe513f",
+          "created_time": 1560673320000,
+          "id": "f3644807-fb2f-4466-b65b-9285c1aa4f33",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1556424360000,
+          "last_edited_time": 1564114620000,
           "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
           "parent_table": "block",
           "properties": {
             "title": [
               [
-                "Port "
+                "File manager inspired by ranger "
               ],
               [
-                "https://processhacker.sourceforge.io/",
+                "https://github.com/ranger/ranger",
                 [
                   [
                     "a",
-                    "https://processhacker.sourceforge.io/"
+                    "https://github.com/ranger/ranger"
                   ]
                 ]
               ],
               [
-                " to Go / walk. This is to make sure the "
-              ],
-              [
-                "w",
-                [
-                  [
-                    "c"
-                  ]
-                ]
-              ],
-              [
-                " package is capable enough to do it."
+                " but made with web technologies. Can be desktop app or web-based."
               ]
             ]
           },
           "type": "text",
-          "version": 102
+          "version": 115
+        }
+      },
+      "f498e301-2385-49e1-98c1-4e1d9a4c7196": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1559242680000,
+          "id": "f498e301-2385-49e1-98c1-4e1d9a4c7196",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1559242680000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "type": "divider",
+          "version": 12
         }
       },
       "f6a54a1b-e8c0-4f75-9ede-f3a91dbfef3a": {
@@ -3381,14 +3400,14 @@ Response:+44291
           "mobile_onboarding_completed": true,
           "onboarding_completed": true,
           "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-          "version": 182
+          "version": 193
         }
       }
     },
     "space": {}
   }
 }
-45633 1566589907397 httpcache-v1
+45955 1569341291621 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+441
@@ -3405,7 +3424,7 @@ Body:+441
       ],
       [
         {
-          "id": "960e431c-cfe3-4b9c-a05a-5b6b762381dc",
+          "id": "365d065e-a266-4a2a-a62a-1baf373ec655",
           "index": 0,
           "table": "block"
         }
@@ -3416,7 +3435,7 @@ Body:+441
   "pageId": "86727062-3797-48ca-854a-ba0e328260a9",
   "verticalColumns": false
 }
-Response:+45103
+Response:+45425
 {
   "cursor": {
     "stack": [
@@ -3429,7 +3448,7 @@ Response:+45103
       ],
       [
         {
-          "id": "d70844ee-edc4-4c70-8376-fe29c18fc1dc",
+          "id": "6d012c56-71c6-49a0-adb8-d889f0c424ff",
           "index": 0,
           "table": "block"
         }
@@ -3438,28 +3457,6 @@ Response:+45103
   },
   "recordMap": {
     "block": {
-      "12ea1bac-cb4d-4a6e-9cdb-9b9aa58b0319": {
-        "role": "comment_only",
-        "value": {
-          "alive": true,
-          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1555051620000,
-          "id": "12ea1bac-cb4d-4a6e-9cdb-9b9aa58b0319",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1555051740000,
-          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
-          "parent_table": "block",
-          "properties": {
-            "title": [
-              [
-                "Generate the bindings using winapigen."
-              ]
-            ]
-          },
-          "type": "text",
-          "version": 48
-        }
-      },
       "176b139f-f799-49b5-956a-c01981fb21cc": {
         "role": "comment_only",
         "value": {
@@ -3514,6 +3511,38 @@ Response:+45103
           "version": 11
         }
       },
+      "1b3c3431-9fe4-4028-a6f2-bca0c255bec9": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1556424365981,
+          "id": "1b3c3431-9fe4-4028-a6f2-bca0c255bec9",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1556424360000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "‣",
+                [
+                  [
+                    "d",
+                    {
+                      "date_format": "relative",
+                      "start_date": "2019-04-27",
+                      "type": "date"
+                    }
+                  ]
+                ]
+              ]
+            ]
+          },
+          "type": "text",
+          "version": 12
+        }
+      },
       "1b87165f-0008-4eac-8ca0-1ff573654b4b": {
         "role": "comment_only",
         "value": {
@@ -3561,26 +3590,36 @@ Response:+45103
           "version": 23
         }
       },
-      "34b230c4-9252-4b87-894b-5396a85c3c23": {
+      "365d065e-a266-4a2a-a62a-1baf373ec655": {
         "role": "comment_only",
         "value": {
           "alive": true,
           "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1555051740000,
-          "id": "34b230c4-9252-4b87-894b-5396a85c3c23",
+          "created_time": 1556471311779,
+          "id": "365d065e-a266-4a2a-a62a-1baf373ec655",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1555051920000,
+          "last_edited_time": 1556471280000,
           "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
           "parent_table": "block",
           "properties": {
             "title": [
               [
-                "Could also make it into more generic visualization tool for misc system resources like processes. A quick way to make system utilities."
+                "‣",
+                [
+                  [
+                    "d",
+                    {
+                      "date_format": "relative",
+                      "start_date": "2019-04-28",
+                      "type": "date"
+                    }
+                  ]
+                ]
               ]
             ]
           },
           "type": "text",
-          "version": 207
+          "version": 8
         }
       },
       "370e30ac-05b6-46ea-b211-f01791b6c740": {
@@ -4005,36 +4044,46 @@ Response:+45103
           "version": 12
         }
       },
-      "8163b28e-8cb8-4a84-b853-1c15552bd758": {
+      "80f69fba-a54d-4a8f-857d-821279493b85": {
         "role": "comment_only",
         "value": {
           "alive": true,
+          "content": [
+            "9c84c680-a440-48ab-9913-93856bf5801c",
+            "49cb9c28-8515-4c90-b8fd-96c5aa6cd1be",
+            "25130f09-1949-4545-bc11-b9bfc42aa376"
+          ],
           "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1555051424232,
-          "id": "8163b28e-8cb8-4a84-b853-1c15552bd758",
+          "created_time": 1556471400000,
+          "id": "80f69fba-a54d-4a8f-857d-821279493b85",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1555051380000,
+          "last_edited_time": 1556471820000,
           "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
           "parent_table": "block",
           "properties": {
             "title": [
               [
-                "‣",
-                [
-                  [
-                    "d",
-                    {
-                      "date_format": "relative",
-                      "start_date": "2019-04-11",
-                      "type": "date"
-                    }
-                  ]
-                ]
+                "Resources"
               ]
             ]
           },
-          "type": "text",
-          "version": 10
+          "type": "toggle",
+          "version": 24
+        }
+      },
+      "85465627-d0b6-408a-882b-a3f78b16014f": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1556215740000,
+          "id": "85465627-d0b6-408a-882b-a3f78b16014f",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1556215740000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "type": "divider",
+          "version": 12
         }
       },
       "86727062-3797-48ca-854a-ba0e328260a9": {
@@ -4042,6 +4091,14 @@ Response:+45103
         "value": {
           "alive": true,
           "content": [
+            "f933b19b-8994-405c-be20-9907d87581c3",
+            "27238484-077c-4217-abef-4642888e4081",
+            "0870bf56-f491-4d01-bdec-a8ab74ba9f84",
+            "489519d5-8d56-4c3d-828e-3d9455c5bc23",
+            "c58e08ab-0bb9-4b46-a4ad-28ca07745dfa",
+            "afaeef51-ae0e-4293-aa04-fd68860165d1",
+            "cf9b5837-c68e-4117-9d9a-ae4c62bf85ce",
+            "013bb3e2-4a27-4d1e-80f8-31761ba2b22d",
             "b11f3351-21b6-4900-81ca-3258b22dcd48",
             "c3f5d714-eb4b-4cdc-9492-91244f90bb86",
             "2c1ea2d1-a06c-4534-aa8e-85bbe1b24059",
@@ -4229,7 +4286,7 @@ Response:+45103
           },
           "id": "86727062-3797-48ca-854a-ba0e328260a9",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1566587280000,
+          "last_edited_time": 1569122460000,
           "parent_id": "370e30ac-05b6-46ea-b211-f01791b6c740",
           "parent_table": "block",
           "properties": {
@@ -4240,22 +4297,29 @@ Response:+45103
             ]
           },
           "type": "page",
-          "version": 556
+          "version": 571
         }
       },
-      "91daae3e-4479-4b4f-b8fe-0d3de151522b": {
+      "882d0376-efbc-4eea-9464-d732a012d675": {
         "role": "comment_only",
         "value": {
           "alive": true,
           "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1555051380000,
-          "id": "91daae3e-4479-4b4f-b8fe-0d3de151522b",
+          "created_time": 1556471340000,
+          "id": "882d0376-efbc-4eea-9464-d732a012d675",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1555051380000,
+          "last_edited_time": 1556471400000,
           "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
           "parent_table": "block",
-          "type": "divider",
-          "version": 12
+          "properties": {
+            "title": [
+              [
+                "Then write an article how to debug Go apps on Windows"
+              ]
+            ]
+          },
+          "type": "text",
+          "version": 78
         }
       },
       "92977dd4-20fd-4288-983f-0c9ba01b7b8f": {
@@ -4305,62 +4369,19 @@ Response:+45103
           "version": 11
         }
       },
-      "98c63aff-1749-4788-8fe1-0d2860f8b8a0": {
+      "98b2841b-2096-4213-a0ec-73c335c21646": {
         "role": "comment_only",
         "value": {
           "alive": true,
           "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1555051380000,
-          "id": "98c63aff-1749-4788-8fe1-0d2860f8b8a0",
+          "created_time": 1556424360000,
+          "id": "98b2841b-2096-4213-a0ec-73c335c21646",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1560673620000,
+          "last_edited_time": 1556424360000,
           "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
           "parent_table": "block",
-          "properties": {
-            "title": [
-              [
-                "Make a Windows version of "
-              ],
-              [
-                "https://apandhi.github.io/Autumn/",
-                [
-                  [
-                    "a",
-                    "https://apandhi.github.io/Autumn/"
-                  ]
-                ]
-              ],
-              [
-                " ("
-              ],
-              [
-                "https://web.archive.org/web/20190406003655/https://sephware.com/autumn/",
-                [
-                  [
-                    "a",
-                    "https://web.archive.org/web/20190406003655/https://sephware.com/autumn/"
-                  ]
-                ]
-              ],
-              [
-                ", "
-              ],
-              [
-                "https://github.com/apandhi/Autumn",
-                [
-                  [
-                    "a",
-                    "https://github.com/apandhi/Autumn"
-                  ]
-                ]
-              ],
-              [
-                ")"
-              ]
-            ]
-          },
-          "type": "text",
-          "version": 82
+          "type": "divider",
+          "version": 12
         }
       },
       "a41c485a-98e7-47d1-a0e8-e84af471dca7": {
@@ -4393,43 +4414,6 @@ Response:+45103
           },
           "type": "text",
           "version": 10
-        }
-      },
-      "b1ac8c14-bea7-4b4b-a1ed-c56794558940": {
-        "role": "comment_only",
-        "value": {
-          "alive": true,
-          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1555051500000,
-          "id": "b1ac8c14-bea7-4b4b-a1ed-c56794558940",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1555051620000,
-          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
-          "parent_table": "block",
-          "properties": {
-            "title": [
-              [
-                "Use either chakra (and only support Win 10) or one of the small JS engines (mujs, duktape)."
-              ]
-            ]
-          },
-          "type": "text",
-          "version": 125
-        }
-      },
-      "b312aea6-1398-4d03-8fb4-f1dc04d95c96": {
-        "role": "comment_only",
-        "value": {
-          "alive": true,
-          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1554364200000,
-          "id": "b312aea6-1398-4d03-8fb4-f1dc04d95c96",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1554364260000,
-          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
-          "parent_table": "block",
-          "type": "divider",
-          "version": 13
         }
       },
       "bb35ea35-a5ff-4e25-a3dd-ae18c7f655b2": {
@@ -4529,38 +4513,6 @@ Response:+45103
           "version": 12
         }
       },
-      "d70844ee-edc4-4c70-8376-fe29c18fc1dc": {
-        "role": "comment_only",
-        "value": {
-          "alive": true,
-          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1554364260942,
-          "id": "d70844ee-edc4-4c70-8376-fe29c18fc1dc",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1554364260000,
-          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
-          "parent_table": "block",
-          "properties": {
-            "title": [
-              [
-                "‣",
-                [
-                  [
-                    "d",
-                    {
-                      "date_format": "relative",
-                      "start_date": "2019-04-04",
-                      "type": "date"
-                    }
-                  ]
-                ]
-              ]
-            ]
-          },
-          "type": "text",
-          "version": 10
-        }
-      },
       "ddbcdb2d-e5c4-4995-ad29-9a15b9bee151": {
         "role": "comment_only",
         "value": {
@@ -4639,6 +4591,82 @@ Response:+45103
           "version": 552
         }
       },
+      "e6ffd4da-56ea-4b49-96be-04cc8bc121eb": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1556471280000,
+          "id": "e6ffd4da-56ea-4b49-96be-04cc8bc121eb",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1556471340000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "Make a windows gui app that wraps cv2pdb. Re-use most of fast file finder. "
+              ],
+              [
+                "https://github.com/rainers/cv2pdb",
+                [
+                  [
+                    "a",
+                    "https://github.com/rainers/cv2pdb"
+                  ]
+                ]
+              ]
+            ]
+          },
+          "type": "text",
+          "version": 113
+        }
+      },
+      "f4098f58-f189-468f-b2a1-217f4bbe513f": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1556424360000,
+          "id": "f4098f58-f189-468f-b2a1-217f4bbe513f",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1556424360000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "Port "
+              ],
+              [
+                "https://processhacker.sourceforge.io/",
+                [
+                  [
+                    "a",
+                    "https://processhacker.sourceforge.io/"
+                  ]
+                ]
+              ],
+              [
+                " to Go / walk. This is to make sure the "
+              ],
+              [
+                "w",
+                [
+                  [
+                    "c"
+                  ]
+                ]
+              ],
+              [
+                " package is capable enough to do it."
+              ]
+            ]
+          },
+          "type": "text",
+          "version": 102
+        }
+      },
       "fd965c92-4b72-4420-85af-91240a01a4c4": {
         "role": "comment_only",
         "value": {
@@ -4684,14 +4712,14 @@ Response:+45103
           "mobile_onboarding_completed": true,
           "onboarding_completed": true,
           "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-          "version": 182
+          "version": 193
         }
       }
     },
     "space": {}
   }
 }
-45450 1566589907399 httpcache-v1
+46389 1569341291622 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+442
@@ -4708,7 +4736,7 @@ Body:+442
       ],
       [
         {
-          "id": "d70844ee-edc4-4c70-8376-fe29c18fc1dc",
+          "id": "6d012c56-71c6-49a0-adb8-d889f0c424ff",
           "index": 0,
           "table": "block"
         }
@@ -4719,7 +4747,7 @@ Body:+442
   "pageId": "86727062-3797-48ca-854a-ba0e328260a9",
   "verticalColumns": false
 }
-Response:+44919
+Response:+45858
 {
   "cursor": {
     "stack": [
@@ -4732,7 +4760,7 @@ Response:+44919
       ],
       [
         {
-          "id": "b5635ffb-ed36-4087-a614-b5b1749cb8cb",
+          "id": "f83ffa16-b9e0-4bf1-94e6-a195c1f8a083",
           "index": 0,
           "table": "block"
         }
@@ -4763,28 +4791,6 @@ Response:+44919
           "version": 114
         }
       },
-      "08d2acdf-c514-4694-b7a5-c8dd8106e28c": {
-        "role": "comment_only",
-        "value": {
-          "alive": true,
-          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1554064560000,
-          "id": "08d2acdf-c514-4694-b7a5-c8dd8106e28c",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1554064560000,
-          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
-          "parent_table": "block",
-          "properties": {
-            "title": [
-              [
-                "From soundcloud, nice design for showing keyboard shortcuts. Useful e.g. for comic book reader."
-              ]
-            ]
-          },
-          "type": "text",
-          "version": 127
-        }
-      },
       "0ec45a78-48c1-4a7f-8fe4-507cbfc7214b": {
         "role": "comment_only",
         "value": {
@@ -4807,38 +4813,26 @@ Response:+44919
           "version": 7
         }
       },
-      "192c889f-496b-4839-8ebb-4bcf6038271f": {
+      "12ea1bac-cb4d-4a6e-9cdb-9b9aa58b0319": {
         "role": "comment_only",
         "value": {
           "alive": true,
           "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1554064560000,
-          "file_ids": [
-            "7526a1aa-50ac-4b37-bd14-b842296632fa"
-          ],
-          "format": {
-            "block_aspect_ratio": 0.8240887480190174,
-            "block_full_width": false,
-            "block_height": 520,
-            "block_page_width": false,
-            "block_preserve_scale": true,
-            "block_width": 631,
-            "display_source": "https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7526a1aa-50ac-4b37-bd14-b842296632fa/Untitled.png"
-          },
-          "id": "192c889f-496b-4839-8ebb-4bcf6038271f",
+          "created_time": 1555051620000,
+          "id": "12ea1bac-cb4d-4a6e-9cdb-9b9aa58b0319",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1554064560000,
+          "last_edited_time": 1555051740000,
           "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
           "parent_table": "block",
           "properties": {
-            "source": [
+            "title": [
               [
-                "https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7526a1aa-50ac-4b37-bd14-b842296632fa/Untitled.png"
+                "Generate the bindings using winapigen."
               ]
             ]
           },
-          "type": "image",
-          "version": 8
+          "type": "text",
+          "version": 48
         }
       },
       "1c94a761-863c-4585-a2f8-5e46f59e3cb7": {
@@ -4854,38 +4848,6 @@ Response:+44919
           "parent_table": "block",
           "type": "divider",
           "version": 12
-        }
-      },
-      "24934e05-8502-4ec0-bdd5-b21aaf2ca502": {
-        "role": "comment_only",
-        "value": {
-          "alive": true,
-          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1554018474260,
-          "id": "24934e05-8502-4ec0-bdd5-b21aaf2ca502",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1554018420000,
-          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
-          "parent_table": "block",
-          "properties": {
-            "title": [
-              [
-                "‣",
-                [
-                  [
-                    "d",
-                    {
-                      "date_format": "relative",
-                      "start_date": "2019-03-31",
-                      "type": "date"
-                    }
-                  ]
-                ]
-              ]
-            ]
-          },
-          "type": "text",
-          "version": 10
         }
       },
       "28a2c2bc-bc75-4cf1-a0ac-cb0f7a12ce32": {
@@ -4951,6 +4913,28 @@ Response:+44919
           },
           "type": "bulleted_list",
           "version": 86
+        }
+      },
+      "34b230c4-9252-4b87-894b-5396a85c3c23": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1555051740000,
+          "id": "34b230c4-9252-4b87-894b-5396a85c3c23",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1555051920000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "Could also make it into more generic visualization tool for misc system resources like processes. A quick way to make system utilities."
+              ]
+            ]
+          },
+          "type": "text",
+          "version": 207
         }
       },
       "370e30ac-05b6-46ea-b211-f01791b6c740": {
@@ -5114,36 +5098,6 @@ Response:+44919
           "version": 12
         }
       },
-      "53d58a2f-f274-44f2-b289-2e5bc5047a47": {
-        "role": "comment_only",
-        "value": {
-          "alive": true,
-          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1554064500000,
-          "id": "53d58a2f-f274-44f2-b289-2e5bc5047a47",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1554064560000,
-          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
-          "parent_table": "block",
-          "type": "divider",
-          "version": 13
-        }
-      },
-      "5470f72f-db58-45f7-9d0c-5bf058caf576": {
-        "role": "comment_only",
-        "value": {
-          "alive": true,
-          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1554018420000,
-          "id": "5470f72f-db58-45f7-9d0c-5bf058caf576",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1554018420000,
-          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
-          "parent_table": "block",
-          "type": "divider",
-          "version": 12
-        }
-      },
       "568ac4c0-64c3-4ef6-a6ad-0b8d77230681": {
         "role": "comment_only",
         "value": {
@@ -5231,6 +5185,84 @@ Response:+44919
           "version": 28
         }
       },
+      "6d012c56-71c6-49a0-adb8-d889f0c424ff": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1555290840000,
+          "id": "6d012c56-71c6-49a0-adb8-d889f0c424ff",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1555290840000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "Port "
+              ],
+              [
+                "https://30secondsofcode.org/index",
+                [
+                  [
+                    "a",
+                    "https://30secondsofcode.org/index"
+                  ]
+                ]
+              ],
+              [
+                " and "
+              ],
+              [
+                "https://30-seconds.github.io/30-seconds-of-css/",
+                [
+                  [
+                    "a",
+                    "https://30-seconds.github.io/30-seconds-of-css/"
+                  ]
+                ]
+              ],
+              [
+                " to use the same navigation scheme as python cheat-sheet"
+              ]
+            ]
+          },
+          "type": "text",
+          "version": 100
+        }
+      },
+      "8163b28e-8cb8-4a84-b853-1c15552bd758": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1555051424232,
+          "id": "8163b28e-8cb8-4a84-b853-1c15552bd758",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1555051380000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "‣",
+                [
+                  [
+                    "d",
+                    {
+                      "date_format": "relative",
+                      "start_date": "2019-04-11",
+                      "type": "date"
+                    }
+                  ]
+                ]
+              ]
+            ]
+          },
+          "type": "text",
+          "version": 10
+        }
+      },
       "843451ee-9ffa-473b-b69d-bc8e610e5ecd": {
         "role": "comment_only",
         "value": {
@@ -5268,6 +5300,14 @@ Response:+44919
         "value": {
           "alive": true,
           "content": [
+            "f933b19b-8994-405c-be20-9907d87581c3",
+            "27238484-077c-4217-abef-4642888e4081",
+            "0870bf56-f491-4d01-bdec-a8ab74ba9f84",
+            "489519d5-8d56-4c3d-828e-3d9455c5bc23",
+            "c58e08ab-0bb9-4b46-a4ad-28ca07745dfa",
+            "afaeef51-ae0e-4293-aa04-fd68860165d1",
+            "cf9b5837-c68e-4117-9d9a-ae4c62bf85ce",
+            "013bb3e2-4a27-4d1e-80f8-31761ba2b22d",
             "b11f3351-21b6-4900-81ca-3258b22dcd48",
             "c3f5d714-eb4b-4cdc-9492-91244f90bb86",
             "2c1ea2d1-a06c-4534-aa8e-85bbe1b24059",
@@ -5455,7 +5495,7 @@ Response:+44919
           },
           "id": "86727062-3797-48ca-854a-ba0e328260a9",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1566587280000,
+          "last_edited_time": 1569122460000,
           "parent_id": "370e30ac-05b6-46ea-b211-f01791b6c740",
           "parent_table": "block",
           "properties": {
@@ -5466,29 +5506,80 @@ Response:+44919
             ]
           },
           "type": "page",
-          "version": 556
+          "version": 571
         }
       },
-      "96df03a7-318a-410e-ae5c-2f46b0686195": {
+      "91daae3e-4479-4b4f-b8fe-0d3de151522b": {
         "role": "comment_only",
         "value": {
           "alive": true,
           "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1554160440000,
-          "id": "96df03a7-318a-410e-ae5c-2f46b0686195",
+          "created_time": 1555051380000,
+          "id": "91daae3e-4479-4b4f-b8fe-0d3de151522b",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1562045640000,
+          "last_edited_time": 1555051380000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "type": "divider",
+          "version": 12
+        }
+      },
+      "98c63aff-1749-4788-8fe1-0d2860f8b8a0": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1555051380000,
+          "id": "98c63aff-1749-4788-8fe1-0d2860f8b8a0",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1560673620000,
           "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
           "parent_table": "block",
           "properties": {
             "title": [
               [
-                "Should also have an option to produce a linear list (or a tree view) or maybe flamegraph"
+                "Make a Windows version of "
+              ],
+              [
+                "https://apandhi.github.io/Autumn/",
+                [
+                  [
+                    "a",
+                    "https://apandhi.github.io/Autumn/"
+                  ]
+                ]
+              ],
+              [
+                " ("
+              ],
+              [
+                "https://web.archive.org/web/20190406003655/https://sephware.com/autumn/",
+                [
+                  [
+                    "a",
+                    "https://web.archive.org/web/20190406003655/https://sephware.com/autumn/"
+                  ]
+                ]
+              ],
+              [
+                ", "
+              ],
+              [
+                "https://github.com/apandhi/Autumn",
+                [
+                  [
+                    "a",
+                    "https://github.com/apandhi/Autumn"
+                  ]
+                ]
+              ],
+              [
+                ")"
               ]
             ]
           },
           "type": "text",
-          "version": 124
+          "version": 82
         }
       },
       "9ee5a762-f8d8-4a32-94c4-7a6243ba7cd9": {
@@ -5597,6 +5688,28 @@ Response:+44919
           "version": 5
         }
       },
+      "b1ac8c14-bea7-4b4b-a1ed-c56794558940": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1555051500000,
+          "id": "b1ac8c14-bea7-4b4b-a1ed-c56794558940",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1555051620000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "Use either chakra (and only support Win 10) or one of the small JS engines (mujs, duktape)."
+              ]
+            ]
+          },
+          "type": "text",
+          "version": 125
+        }
+      },
       "b22b950f-7ae3-40b4-9636-bd2f7aa4e653": {
         "role": "comment_only",
         "value": {
@@ -5628,38 +5741,19 @@ Response:+44919
           "version": 25
         }
       },
-      "b5635ffb-ed36-4087-a614-b5b1749cb8cb": {
+      "b312aea6-1398-4d03-8fb4-f1dc04d95c96": {
         "role": "comment_only",
         "value": {
           "alive": true,
           "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1554018420000,
-          "id": "b5635ffb-ed36-4087-a614-b5b1749cb8cb",
+          "created_time": 1554364200000,
+          "id": "b312aea6-1398-4d03-8fb4-f1dc04d95c96",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1554018480000,
+          "last_edited_time": 1554364260000,
           "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
           "parent_table": "block",
-          "properties": {
-            "title": [
-              [
-                "Better godoc. Use "
-              ],
-              [
-                "https://github.com/Unknwon/gowalker",
-                [
-                  [
-                    "a",
-                    "https://github.com/Unknwon/gowalker"
-                  ]
-                ]
-              ],
-              [
-                " bettergodoc, bgodoc"
-              ]
-            ]
-          },
-          "type": "text",
-          "version": 52
+          "type": "divider",
+          "version": 13
         }
       },
       "b6b5e019-6921-4e95-bc05-601a10ac8556": {
@@ -5755,38 +5849,6 @@ Response:+44919
           },
           "type": "text",
           "version": 10
-        }
-      },
-      "e0af497c-6b9a-4877-9191-aedb3d99ec08": {
-        "role": "comment_only",
-        "value": {
-          "alive": true,
-          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1554064560139,
-          "id": "e0af497c-6b9a-4877-9191-aedb3d99ec08",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1554064560000,
-          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
-          "parent_table": "block",
-          "properties": {
-            "title": [
-              [
-                "‣",
-                [
-                  [
-                    "d",
-                    {
-                      "date_format": "relative",
-                      "start_date": "2019-03-31",
-                      "type": "date"
-                    }
-                  ]
-                ]
-              ]
-            ]
-          },
-          "type": "text",
-          "version": 9
         }
       },
       "e2fa18c2-34af-471d-b37d-33049222087e": {
@@ -5936,14 +5998,14 @@ Response:+44919
           "mobile_onboarding_completed": true,
           "onboarding_completed": true,
           "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-          "version": 182
+          "version": 193
         }
       }
     },
     "space": {}
   }
 }
-44198 1566589907400 httpcache-v1
+44238 1569341291623 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+442
@@ -5960,7 +6022,7 @@ Body:+442
       ],
       [
         {
-          "id": "b5635ffb-ed36-4087-a614-b5b1749cb8cb",
+          "id": "f83ffa16-b9e0-4bf1-94e6-a195c1f8a083",
           "index": 0,
           "table": "block"
         }
@@ -5971,7 +6033,7 @@ Body:+442
   "pageId": "86727062-3797-48ca-854a-ba0e328260a9",
   "verticalColumns": false
 }
-Response:+43667
+Response:+43707
 {
   "cursor": {
     "stack": [
@@ -5984,7 +6046,7 @@ Response:+43667
       ],
       [
         {
-          "id": "810ad973-accb-4b20-8f5e-be22e6bc3be3",
+          "id": "1d402d14-30de-421c-90ab-2618de8b8e55",
           "index": 0,
           "table": "block"
         }
@@ -5993,36 +6055,60 @@ Response:+43667
   },
   "recordMap": {
     "block": {
-      "0d76e135-4577-4e05-bb30-2cce40f2af0d": {
+      "08d2acdf-c514-4694-b7a5-c8dd8106e28c": {
         "role": "comment_only",
         "value": {
           "alive": true,
           "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1553630040000,
-          "id": "0d76e135-4577-4e05-bb30-2cce40f2af0d",
+          "created_time": 1554064560000,
+          "id": "08d2acdf-c514-4694-b7a5-c8dd8106e28c",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1553638860000,
+          "last_edited_time": 1554064560000,
           "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
           "parent_table": "block",
           "properties": {
             "title": [
               [
-                "‣",
-                [
-                  [
-                    "d",
-                    {
-                      "date_format": "relative",
-                      "start_date": "2019-03-26",
-                      "type": "date"
-                    }
-                  ]
-                ]
+                "From soundcloud, nice design for showing keyboard shortcuts. Useful e.g. for comic book reader."
               ]
             ]
           },
           "type": "text",
-          "version": 93
+          "version": 127
+        }
+      },
+      "192c889f-496b-4839-8ebb-4bcf6038271f": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1554064560000,
+          "file_ids": [
+            "7526a1aa-50ac-4b37-bd14-b842296632fa"
+          ],
+          "format": {
+            "block_aspect_ratio": 0.8240887480190174,
+            "block_full_width": false,
+            "block_height": 520,
+            "block_page_width": false,
+            "block_preserve_scale": true,
+            "block_width": 631,
+            "display_source": "https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7526a1aa-50ac-4b37-bd14-b842296632fa/Untitled.png"
+          },
+          "id": "192c889f-496b-4839-8ebb-4bcf6038271f",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1554064560000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "properties": {
+            "source": [
+              [
+                "https://s3-us-west-2.amazonaws.com/secure.notion-static.com/7526a1aa-50ac-4b37-bd14-b842296632fa/Untitled.png"
+              ]
+            ]
+          },
+          "type": "image",
+          "version": 8
         }
       },
       "1d402d14-30de-421c-90ab-2618de8b8e55": {
@@ -6067,6 +6153,38 @@ Response:+43667
           },
           "type": "text",
           "version": 133
+        }
+      },
+      "24934e05-8502-4ec0-bdd5-b21aaf2ca502": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1554018474260,
+          "id": "24934e05-8502-4ec0-bdd5-b21aaf2ca502",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1554018420000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "‣",
+                [
+                  [
+                    "d",
+                    {
+                      "date_format": "relative",
+                      "start_date": "2019-03-31",
+                      "type": "date"
+                    }
+                  ]
+                ]
+              ]
+            ]
+          },
+          "type": "text",
+          "version": 10
         }
       },
       "2c1dec96-a0f5-4097-8ad6-3d2c6d857bb3": {
@@ -6262,40 +6380,6 @@ Response:+43667
           "version": 115
         }
       },
-      "3cf3aa61-1198-4c18-8767-bf87e79a2c1a": {
-        "role": "comment_only",
-        "value": {
-          "alive": true,
-          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1553629800000,
-          "id": "3cf3aa61-1198-4c18-8767-bf87e79a2c1a",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1553638860000,
-          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
-          "parent_table": "block",
-          "properties": {
-            "title": [
-              [
-                "Nice design for showing binary structures or in sql essential book. From "
-              ],
-              [
-                "https://numeracy.co",
-                [
-                  [
-                    "a",
-                    "https://numeracy.co/"
-                  ]
-                ]
-              ],
-              [
-                " (now dead)"
-              ]
-            ]
-          },
-          "type": "text",
-          "version": 3
-        }
-      },
       "407bc81d-0e4b-41c6-ad27-c6339737eb9b": {
         "role": "comment_only",
         "value": {
@@ -6346,6 +6430,36 @@ Response:+43667
           },
           "type": "text",
           "version": 18
+        }
+      },
+      "53d58a2f-f274-44f2-b289-2e5bc5047a47": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1554064500000,
+          "id": "53d58a2f-f274-44f2-b289-2e5bc5047a47",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1554064560000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "type": "divider",
+          "version": 13
+        }
+      },
+      "5470f72f-db58-45f7-9d0c-5bf058caf576": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1554018420000,
+          "id": "5470f72f-db58-45f7-9d0c-5bf058caf576",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1554018420000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "type": "divider",
+          "version": 12
         }
       },
       "568ac4c0-64c3-4ef6-a6ad-0b8d77230681": {
@@ -6404,21 +6518,6 @@ Response:+43667
           "version": 370
         }
       },
-      "571c3138-eadd-4386-bdeb-db580b6a6d23": {
-        "role": "comment_only",
-        "value": {
-          "alive": true,
-          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1553629800000,
-          "id": "571c3138-eadd-4386-bdeb-db580b6a6d23",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1553629980000,
-          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
-          "parent_table": "block",
-          "type": "divider",
-          "version": 11
-        }
-      },
       "5812ea18-aeb7-42ad-9053-aec706021219": {
         "role": "comment_only",
         "value": {
@@ -6449,38 +6548,6 @@ Response:+43667
           },
           "type": "text",
           "version": 10
-        }
-      },
-      "591c445e-f1fa-4f53-afff-2b050ac49ba2": {
-        "role": "comment_only",
-        "value": {
-          "alive": true,
-          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1553629980000,
-          "id": "591c445e-f1fa-4f53-afff-2b050ac49ba2",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1553630040000,
-          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
-          "parent_table": "block",
-          "properties": {
-            "title": [
-              [
-                "‣",
-                [
-                  [
-                    "d",
-                    {
-                      "date_format": "relative",
-                      "start_date": "2019-03-26",
-                      "type": "date"
-                    }
-                  ]
-                ]
-              ]
-            ]
-          },
-          "type": "text",
-          "version": 155
         }
       },
       "5d07a622-8114-4a10-bd23-82975851b5b3": {
@@ -6606,66 +6673,19 @@ Response:+43667
           "version": 11
         }
       },
-      "810ad973-accb-4b20-8f5e-be22e6bc3be3": {
-        "role": "comment_only",
-        "value": {
-          "alive": true,
-          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1553629800000,
-          "file_ids": [
-            "ba6a98a3-3968-4027-9832-325759e6db44"
-          ],
-          "format": {
-            "block_aspect_ratio": 0.5507487520798668,
-            "block_full_width": false,
-            "block_page_width": true,
-            "block_preserve_scale": true,
-            "block_width": 1202,
-            "display_source": "https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ba6a98a3-3968-4027-9832-325759e6db44/Screen_Shot_2019-03-26_at_12.49.02_PM.png"
-          },
-          "id": "810ad973-accb-4b20-8f5e-be22e6bc3be3",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1553629800000,
-          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
-          "parent_table": "block",
-          "properties": {
-            "source": [
-              [
-                "https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ba6a98a3-3968-4027-9832-325759e6db44/Screen_Shot_2019-03-26_at_12.49.02_PM.png"
-              ]
-            ]
-          },
-          "type": "image",
-          "version": 8
-        }
-      },
-      "825a6640-7da6-4b63-a2ed-c6b3dd0510d8": {
-        "role": "comment_only",
-        "value": {
-          "alive": true,
-          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1553638860000,
-          "id": "825a6640-7da6-4b63-a2ed-c6b3dd0510d8",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1553638860000,
-          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
-          "parent_table": "block",
-          "properties": {
-            "title": [
-              [
-                "#essentialbook"
-              ]
-            ]
-          },
-          "type": "text",
-          "version": 19
-        }
-      },
       "86727062-3797-48ca-854a-ba0e328260a9": {
         "role": "comment_only",
         "value": {
           "alive": true,
           "content": [
+            "f933b19b-8994-405c-be20-9907d87581c3",
+            "27238484-077c-4217-abef-4642888e4081",
+            "0870bf56-f491-4d01-bdec-a8ab74ba9f84",
+            "489519d5-8d56-4c3d-828e-3d9455c5bc23",
+            "c58e08ab-0bb9-4b46-a4ad-28ca07745dfa",
+            "afaeef51-ae0e-4293-aa04-fd68860165d1",
+            "cf9b5837-c68e-4117-9d9a-ae4c62bf85ce",
+            "013bb3e2-4a27-4d1e-80f8-31761ba2b22d",
             "b11f3351-21b6-4900-81ca-3258b22dcd48",
             "c3f5d714-eb4b-4cdc-9492-91244f90bb86",
             "2c1ea2d1-a06c-4534-aa8e-85bbe1b24059",
@@ -6853,7 +6873,7 @@ Response:+43667
           },
           "id": "86727062-3797-48ca-854a-ba0e328260a9",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1566587280000,
+          "last_edited_time": 1569122460000,
           "parent_id": "370e30ac-05b6-46ea-b211-f01791b6c740",
           "parent_table": "block",
           "properties": {
@@ -6864,7 +6884,7 @@ Response:+43667
             ]
           },
           "type": "page",
-          "version": 556
+          "version": 571
         }
       },
       "91195574-cd58-41a4-a2c5-cca335d4eb1e": {
@@ -6887,6 +6907,28 @@ Response:+43667
           },
           "type": "bulleted_list",
           "version": 286
+        }
+      },
+      "96df03a7-318a-410e-ae5c-2f46b0686195": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1554160440000,
+          "id": "96df03a7-318a-410e-ae5c-2f46b0686195",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1562045640000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "Should also have an option to produce a linear list (or a tree view) or maybe flamegraph"
+              ]
+            ]
+          },
+          "type": "text",
+          "version": 124
         }
       },
       "b5635ffb-ed36-4087-a614-b5b1749cb8cb": {
@@ -6921,37 +6963,6 @@ Response:+43667
           },
           "type": "text",
           "version": 52
-        }
-      },
-      "bbdc10a8-c92b-4f2f-bdca-24f7a8bc036f": {
-        "role": "comment_only",
-        "value": {
-          "alive": true,
-          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1553629800000,
-          "id": "bbdc10a8-c92b-4f2f-bdca-24f7a8bc036f",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1553639040000,
-          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
-          "parent_table": "block",
-          "properties": {
-            "title": [
-              [
-                "mini: command-line sql query with all the nice ui of numeracy "
-              ],
-              [
-                "https://www.snowflake.com/blog/numeracy-investing-in-our-query-ui/",
-                [
-                  [
-                    "a",
-                    "https://www.snowflake.com/blog/numeracy-investing-in-our-query-ui/"
-                  ]
-                ]
-              ]
-            ]
-          },
-          "type": "text",
-          "version": 6
         }
       },
       "bee77862-e70d-471f-8301-6a7e02106dd0": {
@@ -7065,6 +7076,38 @@ Response:+43667
           "version": 12
         }
       },
+      "e0af497c-6b9a-4877-9191-aedb3d99ec08": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1554064560139,
+          "id": "e0af497c-6b9a-4877-9191-aedb3d99ec08",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1554064560000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "‣",
+                [
+                  [
+                    "d",
+                    {
+                      "date_format": "relative",
+                      "start_date": "2019-03-31",
+                      "type": "date"
+                    }
+                  ]
+                ]
+              ]
+            ]
+          },
+          "type": "text",
+          "version": 9
+        }
+      },
       "e4132d5a-4401-4b2a-ad81-d8158c803ad1": {
         "role": "comment_only",
         "value": {
@@ -7094,21 +7137,6 @@ Response:+43667
           },
           "type": "page",
           "version": 552
-        }
-      },
-      "e7e3fe78-f67e-406e-99a2-6555b771f77a": {
-        "role": "comment_only",
-        "value": {
-          "alive": true,
-          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1553629800000,
-          "id": "e7e3fe78-f67e-406e-99a2-6555b771f77a",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1553629800000,
-          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
-          "parent_table": "block",
-          "type": "divider",
-          "version": 26
         }
       },
       "ec5edb72-4ffd-4705-9686-38b3018b088d": {
@@ -7154,6 +7182,34 @@ Response:+43667
           "type": "text",
           "version": 19
         }
+      },
+      "f83ffa16-b9e0-4bf1-94e6-a195c1f8a083": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1554232080000,
+          "id": "f83ffa16-b9e0-4bf1-94e6-a195c1f8a083",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1554232080000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "https://github.com/jondot/goweight",
+                [
+                  [
+                    "a",
+                    "https://github.com/jondot/goweight"
+                  ]
+                ]
+              ]
+            ]
+          },
+          "type": "bulleted_list",
+          "version": 5
+        }
       }
     },
     "notion_user": {
@@ -7168,14 +7224,14 @@ Response:+43667
           "mobile_onboarding_completed": true,
           "onboarding_completed": true,
           "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-          "version": 182
+          "version": 193
         }
       }
     },
     "space": {}
   }
 }
-27865 1566589907401 httpcache-v1
+34896 1569341291624 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+442
@@ -7192,7 +7248,7 @@ Body:+442
       ],
       [
         {
-          "id": "810ad973-accb-4b20-8f5e-be22e6bc3be3",
+          "id": "1d402d14-30de-421c-90ab-2618de8b8e55",
           "index": 0,
           "table": "block"
         }
@@ -7203,13 +7259,67 @@ Body:+442
   "pageId": "86727062-3797-48ca-854a-ba0e328260a9",
   "verticalColumns": false
 }
-Response:+27334
+Response:+34365
 {
   "cursor": {
     "stack": []
   },
   "recordMap": {
     "block": {
+      "0d76e135-4577-4e05-bb30-2cce40f2af0d": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1553630040000,
+          "id": "0d76e135-4577-4e05-bb30-2cce40f2af0d",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1553638860000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "‣",
+                [
+                  [
+                    "d",
+                    {
+                      "date_format": "relative",
+                      "start_date": "2019-03-26",
+                      "type": "date"
+                    }
+                  ]
+                ]
+              ]
+            ]
+          },
+          "type": "text",
+          "version": 93
+        }
+      },
+      "1d402d14-30de-421c-90ab-2618de8b8e55": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1553638200000,
+          "id": "1d402d14-30de-421c-90ab-2618de8b8e55",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1562045700000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "more formats"
+              ]
+            ]
+          },
+          "type": "bulleted_list",
+          "version": 21
+        }
+      },
       "370e30ac-05b6-46ea-b211-f01791b6c740": {
         "role": "comment_only",
         "value": {
@@ -7260,6 +7370,40 @@ Response:+27334
           "parent_table": "block",
           "type": "column",
           "version": 240
+        }
+      },
+      "3cf3aa61-1198-4c18-8767-bf87e79a2c1a": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1553629800000,
+          "id": "3cf3aa61-1198-4c18-8767-bf87e79a2c1a",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1553638860000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "Nice design for showing binary structures or in sql essential book. From "
+              ],
+              [
+                "https://numeracy.co",
+                [
+                  [
+                    "a",
+                    "https://numeracy.co/"
+                  ]
+                ]
+              ],
+              [
+                " (now dead)"
+              ]
+            ]
+          },
+          "type": "text",
+          "version": 3
         }
       },
       "568ac4c0-64c3-4ef6-a6ad-0b8d77230681": {
@@ -7316,6 +7460,53 @@ Response:+27334
           },
           "type": "page",
           "version": 370
+        }
+      },
+      "571c3138-eadd-4386-bdeb-db580b6a6d23": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1553629800000,
+          "id": "571c3138-eadd-4386-bdeb-db580b6a6d23",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1553629980000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "type": "divider",
+          "version": 11
+        }
+      },
+      "591c445e-f1fa-4f53-afff-2b050ac49ba2": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1553629980000,
+          "id": "591c445e-f1fa-4f53-afff-2b050ac49ba2",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1553630040000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "‣",
+                [
+                  [
+                    "d",
+                    {
+                      "date_format": "relative",
+                      "start_date": "2019-03-26",
+                      "type": "date"
+                    }
+                  ]
+                ]
+              ]
+            ]
+          },
+          "type": "text",
+          "version": 155
         }
       },
       "6573269e-5588-4244-9c23-e4a132b98f1f": {
@@ -7425,11 +7616,41 @@ Response:+27334
           "version": 8
         }
       },
+      "825a6640-7da6-4b63-a2ed-c6b3dd0510d8": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1553638860000,
+          "id": "825a6640-7da6-4b63-a2ed-c6b3dd0510d8",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1553638860000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "#essentialbook"
+              ]
+            ]
+          },
+          "type": "text",
+          "version": 19
+        }
+      },
       "86727062-3797-48ca-854a-ba0e328260a9": {
         "role": "comment_only",
         "value": {
           "alive": true,
           "content": [
+            "f933b19b-8994-405c-be20-9907d87581c3",
+            "27238484-077c-4217-abef-4642888e4081",
+            "0870bf56-f491-4d01-bdec-a8ab74ba9f84",
+            "489519d5-8d56-4c3d-828e-3d9455c5bc23",
+            "c58e08ab-0bb9-4b46-a4ad-28ca07745dfa",
+            "afaeef51-ae0e-4293-aa04-fd68860165d1",
+            "cf9b5837-c68e-4117-9d9a-ae4c62bf85ce",
+            "013bb3e2-4a27-4d1e-80f8-31761ba2b22d",
             "b11f3351-21b6-4900-81ca-3258b22dcd48",
             "c3f5d714-eb4b-4cdc-9492-91244f90bb86",
             "2c1ea2d1-a06c-4534-aa8e-85bbe1b24059",
@@ -7617,7 +7838,7 @@ Response:+27334
           },
           "id": "86727062-3797-48ca-854a-ba0e328260a9",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1566587280000,
+          "last_edited_time": 1569122460000,
           "parent_id": "370e30ac-05b6-46ea-b211-f01791b6c740",
           "parent_table": "block",
           "properties": {
@@ -7628,7 +7849,7 @@ Response:+27334
             ]
           },
           "type": "page",
-          "version": 556
+          "version": 571
         }
       },
       "86ff79d8-f5ac-431d-9097-ec30334ec7e1": {
@@ -7659,6 +7880,37 @@ Response:+27334
           },
           "type": "bulleted_list",
           "version": 34
+        }
+      },
+      "bbdc10a8-c92b-4f2f-bdca-24f7a8bc036f": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1553629800000,
+          "id": "bbdc10a8-c92b-4f2f-bdca-24f7a8bc036f",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1553639040000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "mini: command-line sql query with all the nice ui of numeracy "
+              ],
+              [
+                "https://www.snowflake.com/blog/numeracy-investing-in-our-query-ui/",
+                [
+                  [
+                    "a",
+                    "https://www.snowflake.com/blog/numeracy-investing-in-our-query-ui/"
+                  ]
+                ]
+              ]
+            ]
+          },
+          "type": "text",
+          "version": 6
         }
       },
       "c6690fbf-02f6-442d-8648-7873539cec5b": {
@@ -7775,6 +8027,21 @@ Response:+27334
           },
           "type": "bulleted_list",
           "version": 184
+        }
+      },
+      "e7e3fe78-f67e-406e-99a2-6555b771f77a": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1553629800000,
+          "id": "e7e3fe78-f67e-406e-99a2-6555b771f77a",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1553629800000,
+          "parent_id": "86727062-3797-48ca-854a-ba0e328260a9",
+          "parent_table": "block",
+          "type": "divider",
+          "version": 26
         }
       },
       "f027b628-5bd3-4518-aebb-f8566bb9ec3f": {
@@ -7941,14 +8208,14 @@ Response:+27334
           "mobile_onboarding_completed": true,
           "onboarding_completed": true,
           "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-          "version": 182
+          "version": 193
         }
       }
     },
     "space": {}
   }
 }
-36670 1566589907403 httpcache-v1
+36670 1569341291625 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+3102
@@ -9189,7 +9456,7 @@ Response:+33476
     }
   ]
 }
-148449 1566589907408 httpcache-v1
+148449 1569341291630 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+13222
@@ -14233,7 +14500,7 @@ Response:+135133
     }
   ]
 }
-261606 1566589907418 httpcache-v1
+261606 1569341291638 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+25630
@@ -23436,7 +23703,7 @@ Response:+235882
     }
   ]
 }
-153748 1566589907424 httpcache-v1
+153748 1569341291643 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+14982
@@ -28849,7 +29116,7 @@ Response:+138672
     }
   ]
 }
-1475 1566589907424 httpcache-v1
+1475 1569341291643 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+110

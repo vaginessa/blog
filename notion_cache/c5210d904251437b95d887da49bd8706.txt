@@ -1,4 +1,4 @@
-1319 1565589857694 httpcache-v1
+1369 1569341286900 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+110
@@ -10,7 +10,7 @@ Body:+110
     }
   ]
 }
-Response:+1119
+Response:+1169
 {
   "results": [
     {
@@ -24,7 +24,8 @@ Response:+1119
           "dd5c0a81-3dfe-4487-a6cd-432f82c0c2fc",
           "f3dfcf36-fb46-4129-80b8-efa4336c0ea5",
           "c674bebe-8adf-44d1-8c3a-36cc18c131e2",
-          "b51c5400-2cb8-42eb-8dec-2185ad877a9b"
+          "b51c5400-2cb8-42eb-8dec-2185ad877a9b",
+          "7736413a-48d2-49c3-a85e-71209d0c08eb"
         ],
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
         "created_time": 1531194475639,
@@ -34,7 +35,7 @@ Response:+1119
         },
         "id": "c5210d90-4251-437b-95d8-87da49bd8706",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1552422480000,
+        "last_edited_time": 1568532780000,
         "parent_id": "568ac4c0-64c3-4ef6-a6ad-0b8d77230681",
         "parent_table": "block",
         "properties": {
@@ -45,12 +46,12 @@ Response:+1119
           ]
         },
         "type": "page",
-        "version": 124
+        "version": 128
       }
     }
   ]
 }
-14841 1565589857697 httpcache-v1
+15943 1569341286900 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+152
@@ -63,7 +64,7 @@ Body:+152
   "pageId": "c5210d90-4251-437b-95d8-87da49bd8706",
   "verticalColumns": false
 }
-Response:+14600
+Response:+15702
 {
   "cursor": {
     "stack": []
@@ -194,6 +195,38 @@ Response:+14600
           "version": 65
         }
       },
+      "7736413a-48d2-49c3-a85e-71209d0c08eb": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "content": [
+            "355840c6-414f-42d5-80c0-04ded2c6b473",
+            "de4e39e3-7f81-4ec4-95d0-adb0cd0b01d2",
+            "ad65684b-4eeb-4a01-9ddd-80e2e20da04a",
+            "b0ee40fd-594f-4d5f-85cc-fc7e960d5cbf"
+          ],
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1568532802094,
+          "format": {
+            "page_full_width": true,
+            "page_small_text": true
+          },
+          "id": "7736413a-48d2-49c3-a85e-71209d0c08eb",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1568533140000,
+          "parent_id": "c5210d90-4251-437b-95d8-87da49bd8706",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "JS CDNS"
+              ]
+            ]
+          },
+          "type": "page",
+          "version": 19
+        }
+      },
       "b51c5400-2cb8-42eb-8dec-2185ad877a9b": {
         "role": "comment_only",
         "value": {
@@ -243,7 +276,8 @@ Response:+14600
             "dd5c0a81-3dfe-4487-a6cd-432f82c0c2fc",
             "f3dfcf36-fb46-4129-80b8-efa4336c0ea5",
             "c674bebe-8adf-44d1-8c3a-36cc18c131e2",
-            "b51c5400-2cb8-42eb-8dec-2185ad877a9b"
+            "b51c5400-2cb8-42eb-8dec-2185ad877a9b",
+            "7736413a-48d2-49c3-a85e-71209d0c08eb"
           ],
           "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
           "created_time": 1531194475639,
@@ -253,7 +287,7 @@ Response:+14600
           },
           "id": "c5210d90-4251-437b-95d8-87da49bd8706",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1552422480000,
+          "last_edited_time": 1568532780000,
           "parent_id": "568ac4c0-64c3-4ef6-a6ad-0b8d77230681",
           "parent_table": "block",
           "properties": {
@@ -264,7 +298,7 @@ Response:+14600
             ]
           },
           "type": "page",
-          "version": 124
+          "version": 128
         }
       },
       "c674bebe-8adf-44d1-8c3a-36cc18c131e2": {
@@ -459,7 +493,7 @@ Response:+14600
           "mobile_onboarding_completed": true,
           "onboarding_completed": true,
           "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-          "version": 179
+          "version": 193
         }
       }
     },

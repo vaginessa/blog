@@ -1,4 +1,4 @@
-6066 1566591171023 httpcache-v1
+6117 1569341294193 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+110
@@ -10,7 +10,7 @@ Body:+110
     }
   ]
 }
-Response:+5866
+Response:+5917
 {
   "results": [
     {
@@ -19,6 +19,7 @@ Response:+5866
         "alive": true,
         "content": [
           "481787dd-1b36-4fbe-b358-2d8f563829dc",
+          "bd366330-0dab-4b8c-8684-08df4b90d867",
           "c4d96490-3ed2-4825-aaf8-bda7fa989434",
           "f5a69a88-b742-4eac-83f3-5d3ade1d8c80",
           "c2d0a1d6-2354-4fc5-804b-2721114fd760",
@@ -129,7 +130,7 @@ Response:+5866
         },
         "id": "7d8c2038-ba70-456c-9f36-e2fb323d1f5c",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1530090811876,
+        "last_edited_time": 1569055260000,
         "parent_id": "8f1d8b2e-d76b-4be9-a6ff-01375fbc04d9",
         "parent_table": "block",
         "properties": {
@@ -140,12 +141,12 @@ Response:+5866
           ]
         },
         "type": "page",
-        "version": 9
+        "version": 11
       }
     }
   ]
 }
-66566 1566591171025 httpcache-v1
+66623 1569341294195 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+152
@@ -158,7 +159,7 @@ Body:+152
   "pageId": "7d8c2038-ba70-456c-9f36-e2fb323d1f5c",
   "verticalColumns": false
 }
-Response:+66325
+Response:+66382
 {
   "cursor": {
     "stack": [
@@ -171,7 +172,7 @@ Response:+66325
       ],
       [
         {
-          "id": "3550aae1-c867-4e47-9761-2d297cac84f7",
+          "id": "c8037432-8a9e-42f4-a82e-a1bf2a6b72b6",
           "index": 0,
           "table": "block"
         }
@@ -322,34 +323,6 @@ Response:+66325
               ],
               [
                 " - lots of win32 code (MFC, but still)"
-              ]
-            ]
-          },
-          "type": "bulleted_list",
-          "version": 6
-        }
-      },
-      "3550aae1-c867-4e47-9761-2d297cac84f7": {
-        "role": "comment_only",
-        "value": {
-          "alive": true,
-          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1512293448959,
-          "id": "3550aae1-c867-4e47-9761-2d297cac84f7",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1530090702015,
-          "parent_id": "7d8c2038-ba70-456c-9f36-e2fb323d1f5c",
-          "parent_table": "block",
-          "properties": {
-            "title": [
-              [
-                "https://code.google.com/p/xuilib/",
-                [
-                  [
-                    "a",
-                    "https://code.google.com/p/xuilib/"
-                  ]
-                ]
               ]
             ]
           },
@@ -864,6 +837,7 @@ Response:+66325
           "alive": true,
           "content": [
             "481787dd-1b36-4fbe-b358-2d8f563829dc",
+            "bd366330-0dab-4b8c-8684-08df4b90d867",
             "c4d96490-3ed2-4825-aaf8-bda7fa989434",
             "f5a69a88-b742-4eac-83f3-5d3ade1d8c80",
             "c2d0a1d6-2354-4fc5-804b-2721114fd760",
@@ -974,7 +948,7 @@ Response:+66325
           },
           "id": "7d8c2038-ba70-456c-9f36-e2fb323d1f5c",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1530090811876,
+          "last_edited_time": 1569055260000,
           "parent_id": "8f1d8b2e-d76b-4be9-a6ff-01375fbc04d9",
           "parent_table": "block",
           "properties": {
@@ -985,7 +959,7 @@ Response:+66325
             ]
           },
           "type": "page",
-          "version": 9
+          "version": 11
         }
       },
       "7e5443d0-9f2c-4153-a429-78154331c0ff": {
@@ -1522,6 +1496,34 @@ Response:+66325
           "version": 6
         }
       },
+      "bd366330-0dab-4b8c-8684-08df4b90d867": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1569055260000,
+          "id": "bd366330-0dab-4b8c-8684-08df4b90d867",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1569055260000,
+          "parent_id": "7d8c2038-ba70-456c-9f36-e2fb323d1f5c",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "https://github.com/tringi/win32-dpi",
+                [
+                  [
+                    "a",
+                    "https://github.com/tringi/win32-dpi"
+                  ]
+                ]
+              ]
+            ]
+          },
+          "type": "bulleted_list",
+          "version": 9
+        }
+      },
       "c2564d2b-2c4e-4420-bac1-c4caea58541d": {
         "role": "comment_only",
         "value": {
@@ -2038,14 +2040,14 @@ Response:+66325
           "mobile_onboarding_completed": true,
           "onboarding_completed": true,
           "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-          "version": 182
+          "version": 193
         }
       }
     },
     "space": {}
   }
 }
-45260 1566591171027 httpcache-v1
+45278 1569341294197 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+441
@@ -2062,7 +2064,7 @@ Body:+441
       ],
       [
         {
-          "id": "3550aae1-c867-4e47-9761-2d297cac84f7",
+          "id": "c8037432-8a9e-42f4-a82e-a1bf2a6b72b6",
           "index": 0,
           "table": "block"
         }
@@ -2073,7 +2075,7 @@ Body:+441
   "pageId": "7d8c2038-ba70-456c-9f36-e2fb323d1f5c",
   "verticalColumns": false
 }
-Response:+44730
+Response:+44748
 {
   "cursor": {
     "stack": [
@@ -2086,7 +2088,7 @@ Response:+44730
       ],
       [
         {
-          "id": "e84f6891-b986-491a-a922-7ec6f6ff97ad",
+          "id": "9289bc7c-553a-4b44-a0cb-7bf5a1e1fb9d",
           "index": 0,
           "table": "block"
         }
@@ -2599,6 +2601,7 @@ Response:+44730
           "alive": true,
           "content": [
             "481787dd-1b36-4fbe-b358-2d8f563829dc",
+            "bd366330-0dab-4b8c-8684-08df4b90d867",
             "c4d96490-3ed2-4825-aaf8-bda7fa989434",
             "f5a69a88-b742-4eac-83f3-5d3ade1d8c80",
             "c2d0a1d6-2354-4fc5-804b-2721114fd760",
@@ -2709,7 +2712,7 @@ Response:+44730
           },
           "id": "7d8c2038-ba70-456c-9f36-e2fb323d1f5c",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1530090811876,
+          "last_edited_time": 1569055260000,
           "parent_id": "8f1d8b2e-d76b-4be9-a6ff-01375fbc04d9",
           "parent_table": "block",
           "properties": {
@@ -2720,7 +2723,7 @@ Response:+44730
             ]
           },
           "type": "page",
-          "version": 9
+          "version": 11
         }
       },
       "7e5c0a7b-0aab-4f22-bce4-e722df8a3564": {
@@ -3101,6 +3104,34 @@ Response:+44730
           "version": 0
         }
       },
+      "c8037432-8a9e-42f4-a82e-a1bf2a6b72b6": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1512293447645,
+          "id": "c8037432-8a9e-42f4-a82e-a1bf2a6b72b6",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1530090700984,
+          "parent_id": "7d8c2038-ba70-456c-9f36-e2fb323d1f5c",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "http://www.drdobbs.com/avoiding-trouble-with-mouse-capture/184416474",
+                [
+                  [
+                    "a",
+                    "http://www.drdobbs.com/avoiding-trouble-with-mouse-capture/184416474"
+                  ]
+                ]
+              ]
+            ]
+          },
+          "type": "bulleted_list",
+          "version": 6
+        }
+      },
       "d61b4f94-b10d-4d80-8d3d-238a4e7c4d10": {
         "role": "comment_only",
         "value": {
@@ -3172,37 +3203,6 @@ Response:+44730
           "parent_table": "block",
           "type": "text",
           "version": 0
-        }
-      },
-      "e84f6891-b986-491a-a922-7ec6f6ff97ad": {
-        "role": "comment_only",
-        "value": {
-          "alive": true,
-          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "created_time": 1512293573213,
-          "id": "e84f6891-b986-491a-a922-7ec6f6ff97ad",
-          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1530090761465,
-          "parent_id": "7d8c2038-ba70-456c-9f36-e2fb323d1f5c",
-          "parent_table": "block",
-          "properties": {
-            "title": [
-              [
-                "https://code.google.com/p/musikcube/",
-                [
-                  [
-                    "a",
-                    "https://code.google.com/p/musikcube/"
-                  ]
-                ]
-              ],
-              [
-                " - has its own C++ wrappers around win controls"
-              ]
-            ]
-          },
-          "type": "bulleted_list",
-          "version": 6
         }
       },
       "e9d12bbe-50de-40e6-9b38-7bb49a11e46e": {
@@ -3338,14 +3338,14 @@ Response:+44730
           "mobile_onboarding_completed": true,
           "onboarding_completed": true,
           "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-          "version": 182
+          "version": 193
         }
       }
     },
     "space": {}
   }
 }
-40184 1566591171028 httpcache-v1
+41130 1569341294198 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/loadPageChunk
 Body:+441
@@ -3362,7 +3362,7 @@ Body:+441
       ],
       [
         {
-          "id": "e84f6891-b986-491a-a922-7ec6f6ff97ad",
+          "id": "9289bc7c-553a-4b44-a0cb-7bf5a1e1fb9d",
           "index": 0,
           "table": "block"
         }
@@ -3373,7 +3373,7 @@ Body:+441
   "pageId": "7d8c2038-ba70-456c-9f36-e2fb323d1f5c",
   "verticalColumns": false
 }
-Response:+39654
+Response:+40600
 {
   "cursor": {
     "stack": []
@@ -3722,6 +3722,7 @@ Response:+39654
           "alive": true,
           "content": [
             "481787dd-1b36-4fbe-b358-2d8f563829dc",
+            "bd366330-0dab-4b8c-8684-08df4b90d867",
             "c4d96490-3ed2-4825-aaf8-bda7fa989434",
             "f5a69a88-b742-4eac-83f3-5d3ade1d8c80",
             "c2d0a1d6-2354-4fc5-804b-2721114fd760",
@@ -3832,7 +3833,7 @@ Response:+39654
           },
           "id": "7d8c2038-ba70-456c-9f36-e2fb323d1f5c",
           "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-          "last_edited_time": 1530090811876,
+          "last_edited_time": 1569055260000,
           "parent_id": "8f1d8b2e-d76b-4be9-a6ff-01375fbc04d9",
           "parent_table": "block",
           "properties": {
@@ -3843,7 +3844,7 @@ Response:+39654
             ]
           },
           "type": "page",
-          "version": 9
+          "version": 11
         }
       },
       "7eb451eb-0cc3-4716-a4a2-31694d92ed64": {
@@ -4068,6 +4069,34 @@ Response:+39654
               ],
               [
                 " - Using the MNS_DRAGDROP style: Dragging out"
+              ]
+            ]
+          },
+          "type": "bulleted_list",
+          "version": 6
+        }
+      },
+      "9289bc7c-553a-4b44-a0cb-7bf5a1e1fb9d": {
+        "role": "comment_only",
+        "value": {
+          "alive": true,
+          "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "created_time": 1512293566573,
+          "id": "9289bc7c-553a-4b44-a0cb-7bf5a1e1fb9d",
+          "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
+          "last_edited_time": 1530090757750,
+          "parent_id": "7d8c2038-ba70-456c-9f36-e2fb323d1f5c",
+          "parent_table": "block",
+          "properties": {
+            "title": [
+              [
+                "https://github.com/sunwangme/kalpa",
+                [
+                  [
+                    "a",
+                    "https://github.com/sunwangme/kalpa"
+                  ]
+                ]
               ]
             ]
           },
@@ -4451,14 +4480,14 @@ Response:+39654
           "mobile_onboarding_completed": true,
           "onboarding_completed": true,
           "profile_photo": "https://s3-us-west-2.amazonaws.com/public.notion-static.com/2dcaa66c-7674-4ff6-9924-601785b63561/head-bw-640x960.png",
-          "version": 182
+          "version": 193
         }
       }
     },
     "space": {}
   }
 }
-30919 1566591171029 httpcache-v1
+30870 1569341294199 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+2134
@@ -4562,7 +4591,7 @@ Body:+2134
     }
   ]
 }
-Response:+28693
+Response:+28644
 {
   "results": [
     {
@@ -4607,12 +4636,11 @@ Response:+28693
         "alive": true,
         "content": [
           "e8384172-315e-479a-96ca-de3d6a55b917",
-          "06374674-4bbd-4fc2-bd22-3c7d92305bee",
-          "e79f7267-2aa4-4b48-a71e-85381d97302a",
-          "bde6b335-70fe-4d21-ba52-ea6cd86da5ac",
+          "535cfa63-8abf-41b6-be33-6153320f07a7",
           "1ae2f8b0-9f7e-45cc-ab77-3dd435e4a5a2",
           "66495b06-f208-473a-951b-505ef8a24e84",
-          "129d770e-d82b-490d-af41-ea6f98026e23"
+          "129d770e-d82b-490d-af41-ea6f98026e23",
+          "d9eb9034-82cd-4d67-a133-104ea48ad9f5"
         ],
         "created_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
         "created_time": 1512458337863,
@@ -4622,7 +4650,7 @@ Response:+28693
         },
         "id": "1a23cb2d-ca3e-40e3-bfff-ae52b04551fb",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1530048927534,
+        "last_edited_time": 1567403040000,
         "parent_id": "515006ec-a4e4-48fa-af52-65dce7674e79",
         "parent_table": "block",
         "properties": {
@@ -4633,7 +4661,7 @@ Response:+28693
           ]
         },
         "type": "page",
-        "version": 3
+        "version": 11
       }
     },
     {
@@ -5440,7 +5468,7 @@ Response:+28693
     }
   ]
 }
-38280 1566591171030 httpcache-v1
+38580 1569341294200 httpcache-v1
 Method: POST
 URL: https://www.notion.so/api/v3/getRecordValues
 Body:+2134
@@ -5544,7 +5572,7 @@ Body:+2134
     }
   ]
 }
-Response:+36054
+Response:+36354
 {
   "results": [
     {
@@ -6546,6 +6574,12 @@ Response:+36054
       "value": {
         "alive": true,
         "content": [
+          "8b7ce2e7-b04d-4f04-a516-55cb6313fccc",
+          "f5945a3d-472d-4fce-aca9-0d25b402a6e2",
+          "d2dae908-5bd4-4c07-8af1-a28a07a4c02a",
+          "042cc019-b042-4f9b-b6ba-901289924b77",
+          "a8000b5c-b186-4e5c-9da6-e3be72ea568d",
+          "1e9579c7-a2c7-4e02-8e82-4528db23d911",
           "0a4f86bf-117b-4484-b32d-2a366a298126",
           "042e6f61-e2f0-4e4f-a4f3-f0709d12b9e5",
           "eaaff6c8-2efa-4c7c-a928-69f6b54839c6",
@@ -6566,7 +6600,7 @@ Response:+36054
         },
         "id": "ec3d3ba7-c3c7-4806-8c62-5a1466e79729",
         "last_edited_by": "bb760e2d-d679-4b64-b2a9-03005b21870a",
-        "last_edited_time": 1561271160000,
+        "last_edited_time": 1569012420000,
         "parent_id": "1c88e826-c6ef-4432-bd0e-188560b1a34f",
         "parent_table": "block",
         "properties": {
@@ -6577,7 +6611,7 @@ Response:+36054
           ]
         },
         "type": "page",
-        "version": 20
+        "version": 31
       }
     }
   ]
