@@ -29,11 +29,11 @@ func logError(err error) {
 	if err != nil {
 		return
 	}
-	lg("%s", err.Error())
+	logf("%s", err.Error())
 }
 */
 
-func lg(format string, args ...interface{}) {
+func logf(format string, args ...interface{}) {
 	s := fmt.Sprintf(format, args...)
 	if logFile != nil {
 		fmt.Fprint(logFile, s)
@@ -61,5 +61,5 @@ func logTemp(format string, args ...interface{}) {
 	if !doTempLog {
 		return
 	}
-	lg(format, args...)
+	logf(format, args...)
 }

@@ -56,7 +56,7 @@ func htmlFileName(title string) string {
 func HTMLFileNameForPage(page *notionapi.Page) string {
 	return htmlFileName(page.Root().Title)
 }
-func log(format string, args ...interface{}) {
+func logf(format string, args ...interface{}) {
 	notionapi.Logf(format, args...)
 }
 
@@ -621,7 +621,7 @@ func getColumns(view *notionapi.Block) []*notionapi.TableProperty {
 		format := view.FormatList()
 		return format.ListProperties
 	} else {
-		log("unexpected block type '%s' in block '%s', wanted 'list' or 'table'\n", view.ID, view.Type)
+		logf("unexpected block type '%s' in block '%s', wanted 'list' or 'table'\n", view.ID, view.Type)
 		return nil
 	}
 }
@@ -637,14 +637,14 @@ func (c *Converter) RenderCollectionView(block *notionapi.Block) {
 			if c.Page != nil {
 				id = notionapi.ToNoDashID(c.Page.ID)
 			}
-			log("missing view.Format for block %s %s in page %s\n", block.ID, block.Type, id)
+			logf("missing view.Format for block %s %s in page %s\n", block.ID, block.Type, id)
 			return
 		}
 		columns := view.Format.TableProperties
 	*/
 	columns := getColumns(viewInfo.CollectionView)
 	if len(columns) == 0 {
-		log("didn't find columns in block '%s'\n", viewInfo.CollectionView.ID)
+		logf("didn't find columns in block '%s'\n", viewInfo.CollectionView.ID)
 		return
 	}
 

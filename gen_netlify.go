@@ -110,7 +110,7 @@ func netlifyPath(fileName string) string {
 
 func netlifyWriteFile(fileName string, d []byte) {
 	path := netlifyPath(fileName)
-	//lg("%s\n", path)
+	//logf("%s\n", path)
 	ioutil.WriteFile(path, d, 0644)
 }
 
@@ -444,7 +444,7 @@ func netlifyBuild(store *Articles) {
 	panicIfErr(err)
 	nCopied, err := dirCopyRecur(outDir, "www", skipTmplFiles)
 	panicIfErr(err)
-	lg("Copied %d files\n", nCopied)
+	logf("Copied %d files\n", nCopied)
 
 	addAllRedirects(store)
 

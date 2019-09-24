@@ -93,23 +93,23 @@ var (
 func eventObserver(ev interface{}) {
 	switch v := ev.(type) {
 	case *caching_downloader.EventError:
-		lg(v.Error)
+		logf(v.Error)
 	case *caching_downloader.EventDidDownload:
 		nDownloadedPage++
-		lg("%03d '%s' : downloaded in %s\n", nDownloadedPage, v.PageID, v.Duration)
+		logf("%03d '%s' : downloaded in %s\n", nDownloadedPage, v.PageID, v.Duration)
 	case *caching_downloader.EventDidReadFromCache:
 		// TODO: only verbose
 		nDownloadedPage++
-		lg("%03d '%s' : read from cache in %s\n", nDownloadedPage, v.PageID, v.Duration)
+		logf("%03d '%s' : read from cache in %s\n", nDownloadedPage, v.PageID, v.Duration)
 	case *caching_downloader.EventGotVersions:
-		lg("downloaded info about %d versions in %s\n", v.Count, v.Duration)
+		logf("downloaded info about %d versions in %s\n", v.Count, v.Duration)
 	}
 }
 
 func newNotionClient() *notionapi.Client {
 	token := os.Getenv("NOTION_TOKEN")
 	if token == "" {
-		lg("must set NOTION_TOKEN env variable\n")
+		logf("must set NOTION_TOKEN env variable\n")
 		os.Exit(1)
 	}
 	// TODO: verify token still valid, somehow

@@ -58,7 +58,7 @@ func guessExt(fileName string, contentType string) string {
 func downloadImage(c *notionapi.Client, uri string) ([]byte, string, error) {
 	img, err := c.DownloadFile(uri)
 	if err != nil {
-		lg("\n  failed with %s\n", err)
+		logf("\n  failed with %s\n", err)
 		return nil, "", err
 	}
 	ext := guessExt(uri, img.Header.Get("Content-Type"))
@@ -82,7 +82,7 @@ func downloadAndCacheImage(c *notionapi.Client, uri string) (string, error) {
 	}
 
 	timeStart := time.Now()
-	lg("Downloading %s ... ", uri)
+	logf("Downloading %s ... ", uri)
 
 	imgData, ext, err := downloadImage(c, uri)
 	must(err)
@@ -93,7 +93,7 @@ func downloadAndCacheImage(c *notionapi.Client, uri string) (string, error) {
 	if err != nil {
 		return "", err
 	}
-	lg("finished in %s. Wrote as '%s'\n", time.Since(timeStart), cachedPath)
+	logf("finished in %s. Wrote as '%s'\n", time.Since(timeStart), cachedPath)
 
 	return cachedPath, nil
 }
@@ -102,7 +102,7 @@ func downloadAndCacheImage(c *notionapi.Client, uri string) (string, error) {
 func rmFile(path string) {
 	err := os.Remove(path)
 	if err != nil {
-		lg("os.Remove(%s) failed with %s\n", path, err)
+		logf("os.Remove(%s) failed with %s\n", path, err)
 	}
 }
 
@@ -115,7 +115,7 @@ func rmCached(pageID string) {
 func loadPageAsArticle(d *caching_downloader.Downloader, pageID string) *Article {
 	page, err := d.DownloadPage(pageID)
 	panicIfErr(err)
-	lg("Downloaded %s %s\n", pageID, page.Root().Title)
+	logf("Downloaded %s %s\n", pageID, page.Root().Title)
 	c := &notionapi.Client{}
 	return notionPageToArticle(c, page)
 }

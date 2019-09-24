@@ -81,7 +81,7 @@ func (c *Converter) getURLAndTitleForBlock(block *notionapi.Block) (string, stri
 	article := c.idToArticle(id)
 	if article == nil {
 		title := block.Title
-		lg("No article for id %s %s\n", id, title)
+		logf("No article for id %s %s\n", id, title)
 		url := "/article/" + id + "/" + urlify(title)
 		return url, title
 	}

@@ -326,7 +326,7 @@ func (a *Article) maybeParseGallery(block *notionapi.Block, nBlock int, blocks [
 	}
 
 	if len(imageBlocks) < 2 {
-		lg("Found #gallery followed by %d image blocks (should be at least 2). Page id: %s, #gallery block id: %s\n", len(imageBlocks), a.page.ID, block.ID)
+		logf("Found #gallery followed by %d image blocks (should be at least 2). Page id: %s, #gallery block id: %s\n", len(imageBlocks), a.page.ID, block.ID)
 		return false
 	}
 	var urls []string
@@ -499,7 +499,7 @@ func (a *Article) processBlocks(blocks []*notionapi.Block) {
 			link := block.Source
 			path, err := downloadAndCacheImage(a.notionClient, link)
 			if err != nil {
-				lg("genImage: downloadAndCacheImage('%s') from page https://notion.so/%s failed with '%s'\n", link, normalizeID(a.page.ID), err)
+				logf("genImage: downloadAndCacheImage('%s') from page https://notion.so/%s failed with '%s'\n", link, normalizeID(a.page.ID), err)
 				panicIfErr(err)
 			}
 			relURL := "/img/" + filepath.Base(path)
@@ -524,10 +524,10 @@ func (a *Article) findImageMappingBySource(link string) *ImageMapping {
 			return im
 		}
 	}
-	lg("Didn't find image with link '%s'\n", link)
-	lg("Available images:\n")
+	logf("Didn't find image with link '%s'\n", link)
+	logf("Available images:\n")
 	for _, im := range a.Images {
-		lg("  link: %s, relativeURL: %s, path: %s\n", im.link, im.relativeURL, im.path)
+		logf("  link: %s, relativeURL: %s, path: %s\n", im.link, im.relativeURL, im.path)
 	}
 	return nil
 }
