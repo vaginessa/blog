@@ -106,6 +106,22 @@ func eventObserver(ev interface{}) {
 	}
 }
 
+func newNotionClient() *notionapi.Client {
+	token := os.Getenv("NOTION_TOKEN")
+	if token == "" {
+		lg("must set NOTION_TOKEN env variable\n")
+		os.Exit(1)
+	}
+	// TODO: verify token still valid, somehow
+	client := &notionapi.Client{
+		AuthToken: token,
+	}
+	if flgVerbose {
+		client.Logger = os.Stdout
+	}
+	return client
+}
+
 func main() {
 	parseCmdLineFlags()
 	os.MkdirAll("netlify_static", 0755)
@@ -113,10 +129,7 @@ func main() {
 	openLog()
 	defer closeLog()
 
-	client := &notionapi.Client{}
-	if flgVerbose {
-		client.Logger = os.Stdout
-	}
+	client := newNotionClient()
 	cache, err := caching_downloader.NewDirectoryCache(cacheDir)
 	must(err)
 	d := caching_downloader.New(cache, client)

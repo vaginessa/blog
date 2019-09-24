@@ -42,8 +42,6 @@ github.com/kjk/betterguid v0.0.0-20170621091430-c442874ba63a h1:b+Gt8sQs//Sl5Dce
 github.com/kjk/betterguid v0.0.0-20170621091430-c442874ba63a/go.mod h1:uxRAhHE1nl34DpWgfe0CYbNYbCnYplaB6rZH9ReWtUk=
 github.com/kjk/caching_http_client v0.0.0-20190810075619-06ff809674f7 h1:QpTfahFJ/tetY9TR6GeV3ubuzU5qJnmfTk35cJF8/WQ=
 github.com/kjk/caching_http_client v0.0.0-20190810075619-06ff809674f7/go.mod h1:uZMXWOA3unK8KYdy6aBIel64MMqZwsRFRKIvgSadLAU=
-github.com/kjk/notionapi v0.0.0-20190831050834-0dfe517b50d6 h1:DqQNLsKjX7C1s/V36c26bba47FF2X6PLmN1Hq7WCe9A=
-github.com/kjk/notionapi v0.0.0-20190831050834-0dfe517b50d6/go.mod h1:xesULPb0neCubXmHZwJJWQCSkWOsL+vzXsNLpCTVfWk=
 github.com/kjk/notionapi v0.0.0-20190924052531-25bdaa896e95 h1:GCvuyqtH4BqMCMDu6Zfd4xyK/igemRRFQLD9bR9AO2o=
 github.com/kjk/notionapi v0.0.0-20190924052531-25bdaa896e95/go.mod h1:SkNYWLSAPjeUYyUmGCWZNKrdkq0uokz2iw3kvYY/o/k=
 github.com/kjk/siser v0.0.0-20190801014033-b3367920d7f2 h1:vrqsThWMeIUgprELZhUEw0wFu/LJANlftGo6US4vIDg=

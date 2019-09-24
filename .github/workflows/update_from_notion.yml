@@ -8,20 +8,21 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Go 1.12
+      - name: Set up Go 1.13
         uses: actions/setup-go@v1
         with:
-          go-version: 1.12
+          go-version: 1.13
 
       - name: Check out source code
         uses: actions/checkout@v1
 
       - name: build the program
-        run: go build -o blog
         env:
-          GOPROXY: "https://proxy.golang.org"
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+        run: go build -o blog
 
       - name: Update from notion
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
         run: ./s/ci_update_from_notion.sh

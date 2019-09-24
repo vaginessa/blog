@@ -5,24 +5,26 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Go 1.12
+      - name: Set up Go 1.13
         uses: actions/setup-go@v1
         with:
-          go-version: 1.12
+          go-version: 1.13
         id: go
 
       - name: Check out source code
         uses: actions/checkout@v1
 
       - name: Build
-        run: go build -o blog
         env:
-          GOPROXY: "https://proxy.golang.org"
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+        run: go build -o blog
 
       - name: Test
         run: go test -v .
 
       - name: Regenerate blog html
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
         run: ./blog -deploy
 
       - name: Install netlifyctl
