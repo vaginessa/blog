@@ -57,7 +57,7 @@ func HTMLFileNameForPage(page *notionapi.Page) string {
 	return htmlFileName(page.Root().Title)
 }
 func log(format string, args ...interface{}) {
-	notionapi.Log(format, args...)
+	notionapi.Logf(format, args...)
 }
 
 // BlockRenderFunc is a function for rendering a particular block
@@ -613,19 +613,40 @@ func (c *Converter) RenderNotImplemented(block *notionapi.Block) {
 	c.Printf("<div>TODO: '%s' NYI!</div>", block.Type)
 }
 
+func getColumns(view *notionapi.Block) []*notionapi.TableProperty {
+	if view.Type == notionapi.BlockTable {
+		format := view.FormatTable()
+		return format.TableProperties
+	} else if view.Type == notionapi.BlockList {
+		format := view.FormatList()
+		return format.ListProperties
+	} else {
+		log("unexpected block type '%s' in block '%s', wanted 'list' or 'table'\n", view.ID, view.Type)
+		return nil
+	}
+}
+
 // RenderCollectionView renders BlockCollectionView
 func (c *Converter) RenderCollectionView(block *notionapi.Block) {
 	viewInfo := block.CollectionViews[0]
-	view := viewInfo.CollectionView
-	if view.Format == nil {
-		id := ""
-		if c.Page != nil {
-			id = notionapi.ToNoDashID(c.Page.ID)
+	//collection := viewInfo.Collection
+	//schema := collection.CollectionSchema
+	/*
+		if view.Format == nil {
+			id := ""
+			if c.Page != nil {
+				id = notionapi.ToNoDashID(c.Page.ID)
+			}
+			log("missing view.Format for block %s %s in page %s\n", block.ID, block.Type, id)
+			return
 		}
-		log("missing view.Format for block %s %s in page %s\n", block.ID, block.Type, id)
+		columns := view.Format.TableProperties
+	*/
+	columns := getColumns(viewInfo.CollectionView)
+	if len(columns) == 0 {
+		log("didn't find columns in block '%s'\n", viewInfo.CollectionView.ID)
 		return
 	}
-	columns := view.Format.TableProperties
 
 	c.Newline()
 	c.Printf("\n" + `<table class="notion-collection-view">` + "\n")

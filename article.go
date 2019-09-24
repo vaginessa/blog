@@ -556,7 +556,7 @@ func notionPageToArticle(c *notionapi.Client, page *notionapi.Page) *Article {
 	}
 
 	a.PublishedOn = root.CreatedOn()
-	a.UpdatedOn = root.UpdatedOn()
+	a.UpdatedOn = root.LastEditedOn()
 
 	a.processBlocks(page.Root().Content)
 
