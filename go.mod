@@ -9,7 +9,7 @@ require (
 	github.com/kjk/notionapi v0.0.0-20190924052531-25bdaa896e95
 	github.com/kjk/u v0.0.0-20170711051841-93181be023c9
 	github.com/kr/pretty v0.1.0 // indirect
-	github.com/microcosm-cc/bluemonday v1.0.2
+	github.com/microcosm-cc/bluemonday v1.0.20
 	github.com/oklog/ulid v1.3.1
 	github.com/rs/xid v1.2.1
 	github.com/satori/go.uuid v1.2.0
@@ -17,7 +17,6 @@ require (
 	github.com/sony/sonyflake v1.0.0
 	github.com/stretchr/testify v1.3.0
 	github.com/thomas11/atomgenerator v0.0.0-20140514140532-0b3b01da14a4
-	golang.org/x/net v0.0.0-20190813141303-74dc4d7220e7 // indirect
 	gopkg.in/check.v1 v1.0.0-20180628173108-788fd7840127 // indirect
 )
 
